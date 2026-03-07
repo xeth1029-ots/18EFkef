@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+//  Mixins > Background mask
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// 
+// @include three-colors-grad($color1: #21145a, $color2: #0a5c87, $color3: #f7b315)
+@mixin three-colors-grad($color1: #21145a, $color2: #0a5c87, $color3: #f7b315) {
+  background: linear-gradient(70deg, $color1 30%, rgba($white, 0) 30%), linear-gradient(30deg, $color2 60%, $color3 60%);
+}
+
+@mixin grid-iso-svg-pattern($size, $opacity) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-1 -1 74 42'%3E%3Cpath d='M36 0 0 20 36 40 72 20Z' fill='none' stroke='%23000'/%3E%3C/svg%3E");
+  background-size: $size;
+  background-repeat: repeat;
+  opacity: $opacity;
+}
+
+@mixin grid-iso-perspective($size: 3em, $deg: 45deg, $color: rgba($dark, 0.12)) {
+  &:before {
+    content: '';
+    background-color: $color;
+    background-image: -webkit-linear-gradient($color 2.5%, transparent 2.5%, transparent 97.5%, $color 97.5%), -webkit-linear-gradient(left, $color 2.5%, transparent 2.5%, transparent 97.5%, $color 97.5%);
+    background-size: $size $size;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateX($deg) rotateZ($deg);
+    transform-style: preserve-3d;
+  }
+}
+
+// $COMMA: ",";
+// $EMPTY_STRING: "";
+
+// $purple: #1f0f34;
+// $pink: #f30042;
+// $sand: mix($purple, $pink, 80%);
+
+// // Dots-technique taken from https://codepen.io/carpenumidium/pen/qtnfJ 
+// //
+// @mixin halftone-pattern-dots($amount, $start-size, $end-size) {
+//   $dots: $EMPTY_STRING;
+//   $sizes: $EMPTY_STRING;
+//   $dot-size: percentage(1 / $amount);
+//   $step-size: ($start-size - $end-size) / $amount;
+//   $bg-size: 100vw / $amount;
+
+//   @for $step from 0 through $amount {
+//     $size: $start-size - $step-size * $step;
+//     $dots: $dots + "radial-gradient(circle, #{$sand} #{$size}, transparent 0)";
+//     $sizes: "#{$sizes + $step * $dot-size / 1% * 1vw} 0";
+
+//     // Add a comma between the sizes or circles, unless we're in the last loop
+//     @if $step != $amount {
+//       $dots: $dots + $COMMA;
+//       $sizes: $sizes + $COMMA;
+//     }
+
+//     background-position: unquote($sizes);
+//     background-image: unquote($dots);
+//     background-size: $bg-size $bg-size;
+//   }
+// }
+
+// // 
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin grid-x2-name($params) {
+//   background-image: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, rgba(255, 255, 255, 0.3) 1px, rgba(255, 255, 255, 0.3) 16px, rgba(0, 0, 0, 0.3) 16px), repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, rgba(255, 255, 255, 0.3) 1px, rgba(255, 255, 255, 0.3) 16px, rgba(0, 0, 0, 0.3) 16px);
+// }
+
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin Gem-pattern($params) {
+//   background-image: conic-gradient(from 70deg at 35% 25%, #922 32deg, #F44 0 50%, #FFF 0 212deg, #FF6 0), conic-gradient(from 54deg at 70% 64%, #725 28deg, #B27 0 50%, #FFA 0 208deg, #F66 0);
+//   background-color: #FFF;
+//   background-blend-mode: multiply;
+// }
+
+// // 
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin cube-sm-pattern($params) {
+//   background-color: #f76;
+//   background-image: linear-gradient(30deg, #fee 13.5%, transparent 13.5%, transparent 86.5%, #fee 86.5%), linear-gradient(-30deg, #fee 13.5%, transparent 13.5%, transparent 86.5%, #fee 86.5%), linear-gradient(30deg, #dcc 13.5%, transparent 13.5%, transparent 86.5%, #dcc 86.5%), linear-gradient(-30deg, #dcc 13.5%, transparent 13.5%, transparent 86.5%, #dcc 86.5%), linear-gradient(30deg, #fee 13.5%, transparent 13.5%, transparent 86.5%, #fee 86.5%), linear-gradient(-30deg, #fee 13.5%, transparent 13.5%, transparent 86.5%, #fee 86.5%), linear-gradient(30deg, #dcc 13.5%, transparent 13.5%, transparent 86.5%, #dcc 86.5%), linear-gradient(-30deg, #dcc 13.5%, transparent 13.5%, transparent 86.5%, #dcc 86.5%), linear-gradient(45deg, #544 25%, transparent 25%, transparent 75%, #544 75%), linear-gradient(45deg, #544 25%, transparent 25%, transparent 75%, #544 75%);
+//   background-position: 0em 2em, 0em 2em, 2em 4em, 2em 4em, 4em 2em, 4em 2em, 6em 4em, 6em 4em, 0em 0em, 2em 2em;
+//   background-size: 8em 4em, 8em 4em, 8em 4em, 8em 4em, 8em 4em, 8em 4em, 8em 4em, 8em 4em, 4em 4em, 4em 4em;
+// }
+
+// // 
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin basket-pattern($params) {
+//   background: linear-gradient(45deg, #dde 12%, transparent 0, transparent 88%, #dde 0), linear-gradient(135deg, transparent 37%, #aab 0, #aab 63%, transparent 0), linear-gradient(45deg, transparent 37%, #dde 0, #dde 63%, transparent 0), #335;
+//   background-size: 40px 40px;
+// }
+
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin play-pattern($params) {
+//   background-image: linear-gradient(45deg, transparent 20%, black 25%, transparent 25%), linear-gradient(-45deg, transparent 20%, black 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, black 80%, transparent 0), radial-gradient(gray 2px, transparent 0);
+//   background-size: 30px 30px, 30px 30px;
+// }
+
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin masthead-pattern($params) {
+//   .bootstrap-docs-masthead-pattern {
+//     background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px), repeating-linear-gradient(26.56505deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07) 2px, transparent 2px, transparent 44.72136px), repeating-linear-gradient(153.43495deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07) 2px, transparent 2px, transparent 44.72136px), radial-gradient(closest-side, transparent 0%, transparent 148px, rgba(255, 255, 255, 0.07) 148px, rgba(255, 255, 255, 0.07) 149px, transparent), radial-gradient(closest-side, transparent 0%, transparent 148px, rgba(255, 255, 255, 0.07) 148px, rgba(255, 255, 255, 0.07) 149px, transparent), radial-gradient(closest-side, transparent 0%, transparent 148px, rgba(255, 255, 255, 0.07) 148px, rgba(255, 255, 255, 0.07) 149px, transparent), radial-gradient(closest-side, transparent 0%, transparent 148px, rgba(255, 255, 255, 0.07) 148px, rgba(255, 255, 255, 0.07) 149px, transparent);
+//     background-size: 100px 50px, 100px 50px, 100px 50px, 100px 50px, 300px 300px, 300px 300px, 300px 300px, 300px 300px; /* Quadrant-circles(?) - four corners
+//     background-position: 0 0, -50px 0, -51px 0, -51px 0, 0px 0, 150px 0, 0 150px, 150px 150px; /* Quadrant-circles(?) - four corners
+//   }
+// }
+
+// // 
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin bg-light($params) {
+//   background: radial-gradient(circle, #fff 50%, transparent 50%) center (center / 27vmin) 27vmin no-repeat, repeating-conic-gradient(transparent 0 5deg, #fff 5deg 10deg), linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), currentColor;
+// }
+
+// // 
+// // @TODO: Add docs to mixin-name!
+// //
+// @mixin bg-grey-themes($params) {
+//       background: repeating-radial-gradient(#333 2%, transparent 5%) 0 0, repeating-radial-gradient(white 13%, transparent 24%) 100px 100px, radial-gradient(rgba(255,255,255, .5) 18%, transparent 100%), radial-gradient(rgba(255,255,255,.9) 26%, transparent 20%) 100px 100px;
+//     background-color: #222;
+//     background-size: 100px 100px;
+// }

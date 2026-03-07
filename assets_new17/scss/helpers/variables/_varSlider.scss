@@ -1,0 +1,15 @@
+// Sliding Image
+// =========================================================
+
+// Width & Heights
+$sliding-img-frame-width: calc(5760px * 1 / 2) !default;
+$sliding-img-frame-height: calc(562px * 1 / 2) !default;
+
+// Backgrounds
+$sliding-img-frame-bg-size: $sliding-img-frame-width $sliding-img-frame-height !default;
+
+// Animations
+$sliding-img-frame-to-start-animation: sliding-img-frame-to-start 60s linear infinite !default;
+$sliding-img-frame-to-start-sm-animation: sliding-img-frame-to-start-sm 90s linear infinite !default;
+$sliding-img-frame-to-end-animation: sliding-img-frame-to-end 60s linear infinite !default;
+

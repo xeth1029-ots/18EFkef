@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+//  Components -> Separator
+// --------------------------------------------------
+$separator-width: 2px;
+
+// <div class="t-separator t-separator-content t-border-primary my-4">
+//   Separator
+// </div>
+.t-separator {
+  display: block;
+  height: 0;
+  border-bottom: $separator-width solid $border-color;
+
+  &.t-separator-dotted {
+    border-bottom-style: dotted;
+    border-bottom-color: $border;
+  }
+
+  &.t-separator-dashed {
+    border-bottom-style: dashed;
+    border-bottom-color: $border;
+  }
+
+  &.t-separator-content {
+    display: flex;
+    align-items: center;
+    border-bottom: 0;
+    text-align: center;
+
+    &::before,
+    &::after {
+      content: '';
+      opacity: 0.44;
+      width: 50%;
+      border-bottom: $separator-width solid currentcolor;
+    }
+
+    &::before {
+      margin-right: 1.25rem;
+    }
+
+    &::after {
+      margin-left: 1.25rem;
+    }
+
+    &.t-separator-dotted {
+      &::before,
+      &::after {
+        border-bottom-style: dotted;
+        border-bottom-color: currentcolor;
+      }
+    }
+
+    &.t-separator-dashed {
+      &::before,
+      &::after {
+        border-bottom-style: dashed;
+        border-bottom-color: currentcolor;
+      }
+    }
+  }
+}

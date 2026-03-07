@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Report" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <resultMaps></resultMaps>
+
+  <statements>
+    <select id="reportA2C502M" resultClass="Hashtable" parameterClass="Hashtable" cacheModel="WDASE-cache">
+        <![CDATA[
+SELECT a.Seq, a.Year, a.UnitCode, a.TeacherAccount, b.TeacherName,
+	a.JobAbilityCode, a.CourseUnitCode,
+	a.OBJECT_TYPE, a.StudNum,
+	a.TObject, a.TMethod,
+	a.TslidesOrg, a.TslidesNew, a.TslidesType, a.Other,
+	a.StudyGReportOrg, a.StudyGReportNew, a.StudyGReportType,
+	a.WorksheetsOrg, a.WorksheetsNew, a.WorksheetsType,
+	a.HomeWorkOrg, a.HomeWorkNew, a.HomeWorkType,
+	a.ExpReportOrg, a.ExpReportNew, a.ExpReportType,
+	a.ExamOrg, a.ExamNew, a.ExamType,
+	a.Other1Org, a.Other1New, a.Other1Type, a.Other1Remark,
+	a.Other2Org, a.Other2New, a.Other2Type, a.Other2Remark,
+	a.Effect, a.PlanImprove, a.ExamImprove, a.materialsImprove, a.Other3,
+	CONVERT(NVARCHAR, a.FirstTime, 120) AS FirstTime
+FROM SelfReport a
+LEFT JOIN Teacher b ON a.TeacherAccount=b.ACCOUNT
+WHERE a.Seq=#Seq#
+        ]]>
+    </select>
+
+    <select id="reportA3C204M" resultClass="Hashtable" parameterClass="Hashtable" cacheModel="WDASE-cache">
+        <![CDATA[
+SELECT a.Seq, a.Year, a.UnitCode, a.TeacherAccount, b.TeacherName,
+	a.JobAbilityCode, a.CourseUnitCode,
+	a.OBJECT_TYPE, a.StudNum,
+	a.TObject, a.TMethod,
+	a.TslidesOrg, a.TslidesNew, a.TslidesType, a.Other,
+	a.StudyGReportOrg, a.StudyGReportNew, a.StudyGReportType,
+	a.WorksheetsOrg, a.WorksheetsNew, a.WorksheetsType,
+	a.HomeWorkOrg, a.HomeWorkNew, a.HomeWorkType,
+	a.ExpReportOrg, a.ExpReportNew, a.ExpReportType,
+	a.ExamOrg, a.ExamNew, a.ExamType,
+	a.Other1Org, a.Other1New, a.Other1Type, a.Other1Remark,
+	a.Other2Org, a.Other2New, a.Other2Type, a.Other2Remark,
+	a.Effect, a.PlanImprove, a.ExamImprove, a.materialsImprove, a.Other3,
+	CONVERT(NVARCHAR, a.FirstTime, 120) AS FirstTime
+FROM SelfReport a
+LEFT JOIN Teacher b ON a.TeacherAccount=b.ACCOUNT
+WHERE a.Seq=#Seq#
+        ]]>
+    </select>
+
+    <select id="reportAMC902M" resultClass="Hashtable" parameterClass="Hashtable" cacheModel="WDASE-cache">
+        <![CDATA[
+SELECT a.Seq, a.Year, a.UnitCode, a.TeacherAccount, b.TeacherName,
+	a.JobAbilityCode, a.CourseUnitCode,
+	a.OBJECT_TYPE, a.StudNum,
+	a.TObject, a.TMethod,
+	a.TslidesOrg, a.TslidesNew, a.TslidesType, a.Other,
+	a.StudyGReportOrg, a.StudyGReportNew, a.StudyGReportType,
+	a.WorksheetsOrg, a.WorksheetsNew, a.WorksheetsType,
+	a.HomeWorkOrg, a.HomeWorkNew, a.HomeWorkType,
+	a.ExpReportOrg, a.ExpReportNew, a.ExpReportType,
+	a.ExamOrg, a.ExamNew, a.ExamType,
+	a.Other1Org, a.Other1New, a.Other1Type, a.Other1Remark,
+	a.Other2Org, a.Other2New, a.Other2Type, a.Other2Remark,
+	a.Effect, a.PlanImprove, a.ExamImprove, a.materialsImprove, a.Other3,
+	CONVERT(NVARCHAR, a.FirstTime, 120) AS FirstTime
+FROM SelfReport a
+LEFT JOIN Teacher b ON a.TeacherAccount=b.ACCOUNT
+WHERE a.Seq=#Seq#
+        ]]>
+    </select>
+
+    <!-- 結束行(這行放在最下面, 不要刪) -->
+  </statements>
+</sqlMap>

@@ -1,0 +1,149 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A3.Models;
+@model C601MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C601M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">了解相關須知</h3>
+                            <p class="bt-section-para">提供課綱、師資管理原則及相關表單等資料下載功能。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.KeyWord, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.KeyWord, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("公告日期(起 ~ 迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.DateS_A_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.DateS_B_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*
+                    <div class="col-sm-12">
+                        <div class="t-panel bt-section-result">
+                            @if (Model.Grid != null)
+                            {
+                                @Html.Partial("_PagingLink", Model)
+                                <div class="t-table-cnt t-table-responsive table--dark">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rows">
+                                            @Html.Partial("_GridRows")
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                *@
+                <div class="col-sm-12" style="margin-bottom: 0px;">
+                    <div class="t-panel" style="margin-top: 0px;">
+                        <section class="t-teachers-list" style="margin-bottom: 2rem; margin-top: 0px; padding-bottom: 0rem;">
+                            <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                                <div class="bt-section-heading">查詢結果&nbsp;(@Model.Grid.ToCount())</div>
+                            </div>
+                            @if (Model.Grid != null)
+                            {
+                                <div style="margin-bottom: 30px;">@Html.Partial("_PagingLink", Model)</div>
+                                <ul class="t-news-list-backend" style="margin-top: 0px;">
+                                    <!-- 為了分頁，強行硬塞 -->
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rows">
+                                            @Html.Partial("_GridRows")
+                                        </tbody>
+                                    </table>
+                                </ul>
+                            }
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+    });
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#KeyWord').removeAttr('value');
+        $('#DateS_A_AD').removeAttr('value');
+        $('#DateS_B_AD').removeAttr('value');
+        $('#DateS_A_AD_TW').removeAttr('value');
+        $('#DateS_B_AD_TW').removeAttr('value');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    function doLog(Org, New) {
+        $.ajax({
+            url: "@Url.Action("FileDownloadLog", "Backend", new { area = "" })",
+            data: { "Func": "A3/C601M", "Org": Org, "New": New },
+            dataType: "json",
+            method: "post",
+            success: function (data) { },
+            error: function (data) { }
+        });
+    }
+
+</script>

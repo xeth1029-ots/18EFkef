@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+//   Mixins > browser
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin ie {
+  .ie & {
+    @content;
+  }
+}
+
+@mixin ie9 {
+  .ie9 & {
+    @content;
+  }
+}
+
+@mixin ie10 {
+  .ie10 & {
+    @content;
+  }
+}
+
+@mixin edge {
+  // Microsoft Edge
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}

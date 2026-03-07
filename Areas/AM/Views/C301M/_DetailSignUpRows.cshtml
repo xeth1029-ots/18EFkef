@@ -1,0 +1,42 @@
+﻿@using WKEFSERVICE.Areas.AM.Models;
+@model C301MViewModel
+
+@if (Model.DetailSignUp.SignUpList != null && Model.DetailSignUp.SignUpList.Count > 0)
+{
+    for (int i = 0; i < Model.DetailSignUp.SignUpList.Count; i++)
+    {
+        var item = Model.DetailSignUp.SignUpList[i];
+        string tmpStyle_tr = (item.isActive) ? "" : "style=opacity:.66";
+        string tmpStyle_BtnDelete = (item.isActive) ? "" : "style=display:none";
+
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].ROWID)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].Seq)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].MeetingSeq)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].isActive)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].TeacherAccount)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].TeacherName)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].SignUpType)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].SignUpDatetime)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].UpdatedAccount)
+        @Html.HiddenFor(m => m.DetailSignUp.SignUpList[i].UpdatedDatetime)
+
+        <tr @tmpStyle_tr>
+            <td>@item.ROWID</td>
+            <td>@item.TeacherName</td>
+            <td>@item.SignUpTypeName</td>
+            <td>
+                <button type="button" class="btn btn-danger"
+                        onclick="doSignUpListDelete('@item.ROWID', '@item.TeacherAccount', '@item.TeacherName')"
+                        @tmpStyle_BtnDelete>
+                    刪除
+                </button>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="4">(查無資料，請重新查詢)</td>
+    </tr>
+}

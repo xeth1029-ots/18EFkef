@@ -1,0 +1,54 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@using WKEFSERVICE.DataLayers
+@using WKEFSERVICE.Areas.A2.Models
+@model C202MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        var s_itemSatisfy = !string.IsNullOrEmpty(item.Satisfy) ? string.Concat(item.Satisfy, "%") : "";
+        <tr>
+            <td align="center">@item.ROWID</td>
+            <td>@item.PlanTypeText</td>
+            <td>@item.UnitName</td>
+            <td>@item.TrainingUnit</td>
+            <td>@item.ClassName</td>
+            <td align="center">@item.CourseUnitCode</td>
+            <td align="center">@item.ClassDateS</td>
+            <td align="center">@item.TeachHours</td>
+            <td align="center">
+                @if (item.QRCode.TONotNullString() != "")
+                {
+                    <div onclick="window.open('@item.QuestLink')">
+                        <img src="@item.QRCode" title="@item.QuestLink" style="width:100%;height:100%" />
+                    </div>
+                }
+            </td>
+            <td align="center">
+                @if (item.QRCode2.TONotNullString() != "")
+                {
+                    <div onclick="window.open('@item.QuesSearchLink')">
+                        <img src="@item.QRCode2" title="@item.QuesSearchLink" style="width:80%;height:80%" />
+                    </div>
+                }
+            </td>
+            <td align="center"><span>@(s_itemSatisfy)</span></td>
+            <td align="center">
+                @Html.HiddenFor(x => x.Grid[i].ROWID)
+                @Html.HiddenFor(x => x.Grid[i].PlanTypeCode)
+                @Html.HiddenFor(x => x.Grid[i].PlanID)
+                @Html.HiddenFor(x => x.Grid[i].ClassID)
+                @Html.HiddenFor(x => x.Grid[i].CourseUnitCode)
+                @Html.HiddenFor(x => x.Grid[i].Year)
+                @Html.HiddenFor(x => x.Grid[i].ClassDateS)
+                @Html.HiddenFor(x => x.Grid[i].TeacherID)
+                <button type="button" class="btn btn-info" onclick="doDetail('@item.PlanTypeCode', '@item.PlanID','@item.ClassID','@item.CourseUnitCode', '@item.Year', '@item.ClassDateS', '@item.TeacherID')">
+                    檢視
+                </button>
+            </td>
+        </tr>
+    }
+}

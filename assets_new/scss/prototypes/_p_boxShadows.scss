@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+//  Prototypes -> BoxShadows 
+// --------------------------------------------------
+
+@each $name, $value in $shadow-styles {
+  .t-#{$name} {
+    box-shadow: $value;
+  }
+}
+
+.t-shadow-card {
+  box-shadow: $tu-shadow-card;
+}
+
+.t-shadow-label {
+  box-shadow: $tu-shadow-label;
+
+  @include hover {
+    box-shadow: $tu-shadow-label-hover;
+  }
+}
+
+.t-shadow-none {
+  @include shadow-none;
+}
+
+.t-shadow-hv-v {
+  &1 {
+    @include shadow--hv--ver_1;
+
+    transition: $transition-base;
+  }
+
+  &2 {
+    @include shadow--hv--ver_2;
+
+    transition: $transition-base;
+  }
+
+  &3 {
+    @include shadow--hv--ver_3;
+
+    transition: $transition-base;
+  }
+
+  &4 {
+    @include shadow--hv--ver_4;
+
+    transition: $transition-base;
+  }
+
+  &5 {
+    @include shadow--hv--ver_5;
+
+    transition: $transition-base;
+  }
+}

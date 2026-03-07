@@ -1,0 +1,189 @@
+// 
+// Forms -> Files
+// --------------------------------------------------
+
+
+input[type=file] {
+  overflow: hidden;
+  background-color: $white;
+  border: 2px solid $border;
+
+  @include border-radius($input-btn-radius);
+
+  font-size: $input-btn-font-size;
+  color: $lightgrey;
+  padding: 0.25rem;
+  text-align: left;
+  text-align-last: left;
+  transition: $transition-input;
+
+  &:not(:disabled):not([readonly]) {
+    cursor: pointer;
+
+  }
+
+  &::file-upload-button {
+    padding: .875rem 1.8125rem;
+    margin-inline-end: 1.8125rem;
+    color: $grey;
+    background-color: rgba($grey, 0.06);
+    pointer-events: none;
+    border: 2px solid $border;
+
+    @include border-radius($input-btn-radius);
+
+    border-inline-end-width: .0625rem;
+    transition: $transition-input;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &::file-selector-button {
+    padding: .875rem 1.8125rem;
+    margin-inline-end: 1.8125rem;
+    color: $grey;
+    background-color: rgba($grey, 0.06);
+    pointer-events: none;
+    border: 2px solid $border;
+
+    @include border-radius($input-btn-radius);
+
+    border-inline-end-width: .0625rem;
+    transition: $transition-input;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &:hover {
+    color: $grey;
+
+    &:not(:disabled) {
+      &:not([readonly]) {
+        &::file-upload-button,
+        &::file-selector-button {
+          background-color: rgba($grey, 0.12);
+        }
+      }
+    }
+  }
+
+  &:focus {
+    color: $grey;
+    background-color: $white;
+    border-color: rgba($grey, 0.24);
+    outline: 0;
+    box-shadow: 0 0 1rem 0 rgba($grey, 0.24);
+  }
+}
+
+// Base
+.t-image-input {
+  position: relative;
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+
+  @include img-square;
+  @include border-radius($border-radius);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  // Empty state
+  &:not(.t-image-input-empty) {
+    background-image: none !important;
+  }
+
+  // Wrapper
+  .t-image-input-wrapper {
+    width: 100%;
+    height: 100%;
+
+    @include border-radius($border-radius);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  // Change Button
+  [data-tu-image-input-action="change"] {
+    cursor: pointer;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+
+    input {
+      width: 0 !important;
+      height: 0 !important;
+      overflow: hidden;
+      opacity: 0;
+      display: none
+    }
+  }
+
+  // Cancel & Remove Buttons
+  [data-tu-image-input-action="cancel"],
+  [data-tu-image-input-action="remove"] {
+    position: absolute;
+    right: -10px;
+    bottom: -5px;
+  }
+
+  [data-tu-image-input-action="cancel"] {
+    display: none;
+  }
+
+  // Input Changed State
+  &.t-image-input-changed {
+    [data-tu-image-input-action="cancel"] {
+      display: flex;
+    }
+
+    [data-tu-image-input-action="remove"] {
+      display: none;
+    }
+  }
+
+  // Input Empty State
+  &.t-image-input-empty {
+    [data-tu-image-input-action="remove"],
+    [data-tu-image-input-action="cancel"] {
+      display: none;
+    }
+  }
+
+  // Circle style
+  &.t-image-input-circle {
+    border-radius: 50%;
+
+    // Wrapper
+    .t-image-input-wrapper {
+      border-radius: 50%;
+    }
+
+    // Change Control
+    [data-tu-image-input-action="change"] {
+      right: 5px;
+      top: 5px;
+    }
+
+    // Cancel & Remove Buttons
+    [data-tu-image-input-action="cancel"],
+    [data-tu-image-input-action="remove"] {
+      right: 5px;
+      bottom: 5px;
+    }
+  }
+
+  // Bordered style
+  &.t-image-input-outline {
+    .t-image-input-wrapper {
+      border: 3px solid $body-bg;
+      box-shadow: if(isDarkMode(), $box-shadow, $box-shadow-sm);
+    }
+  }
+}

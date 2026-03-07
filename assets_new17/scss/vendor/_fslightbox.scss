@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+//  Symbols fslightbox
+// --------------------------------------------------
+
+.fslightbox-open.fslightbox-open {
+  overflow: initial;
+  height: initial;
+
+  body {
+    overflow: hidden;
+  }
+
+  .fslightbox-slide-btn {
+    border-radius: $border-radius;
+  }
+
+  .fslightbox-toolbar {
+    border-bottom-left-radius: $border-radius;
+  }
+
+  .fslightbox-source {
+    border-radius: $border-radius;
+  }
+}

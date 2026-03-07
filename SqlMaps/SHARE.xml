@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="SHARE" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <resultMaps></resultMaps>
+  <cacheModel id="WKEF-cache" implementation="MEMORY">
+    <flushInterval hours="1" />
+    <property name="Type" value="WEAK" />
+  </cacheModel>
+
+  <statements>
+
+    <!-- 取得郵遞區號狀態 -->
+    <select id="getZipAll" resultClass="Hashtable" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT TOP 1 SUBSTRING(ZIP_CO,1,1) + CITYNM CITYCODE,SUBSTRING(ZIP_CO,1,3)+TOWNNM TOWNCODE,ZIP_CO ZIPCO FROM ZIPCODE
+WHERE ZIP_CO = #ZipCode#
+       ]]>
+    </select>
+
+    <!-- 取得郵遞區號狀態 -->
+    <select id="getZip3All" resultClass="Hashtable" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT TOP 1 SUBSTRING(ZIP_CO,1,1) + CITYNM CITYCODE,SUBSTRING(ZIP_CO,1,3)+TOWNNM TOWNCODE,ZIP_CO ZIPCO FROM ZIPCODE
+WHERE SUBSTRING(ZIP_CO,1,3) = #ZipCode#
+       ]]>
+    </select>
+
+    <!-- 取得三碼郵遞區號狀態 -->
+    <select id="queryZIP_CO_Three" resultClass="Hashtable" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT TOP 1 SUBSTRING(ZIP_CO,1,1) + CITYNM CITYCODE,SUBSTRING(ZIP_CO,1,3)+TOWNNM TOWNCODE,SUBSTRING(ZIP_CO,1,3) ZIPCO FROM ZIPCODE
+WHERE SUBSTRING(ZIP_CO,1,3) = #ZipCode#
+       ]]>
+    </select>
+
+  </statements>
+</sqlMap>

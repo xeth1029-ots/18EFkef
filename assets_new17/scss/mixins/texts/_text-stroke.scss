@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+//  Mixins > Text stroke
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+
+
+
+
+// @include background-text($fontSize: 2.5rem, $color: $primary , $strokeColor : $primary-600, $strokeWidth: 2px)
+@mixin background-text($fontSize: 2.5rem, $color: $primary, $strokeColor: $primary-700, $strokeWidth: 2px) {
+  font-size: $fontSize;
+  font-weight: 900;
+  background-image: t-svg(url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Lager_1" x="0" y="0" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20" xml:space="preserve"><style>.st1,.st2{fill:none;stroke:#{$color};stroke-width:2;stroke-miterlimit:10}.st2{stroke: #{lighten($color, 12%)};stroke-width:3}</style><path style="fill:#{lighten($color, 6%)}" d="M0 0h20v20H0z"/><path class="st1" d="M1 22 22 1M19 22-2 1"/><path class="st2" d="m-.5-.5 21 21M-.5 20.5l21-21"/></svg>'));
+  background-size: .625rem .625rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: $strokeWidth;
+  -webkit-text-stroke-color: $strokeColor;
+}
+
+// @include text-typo(2px,$dark,transparent,$secondary,$dark);
+@mixin text-typo($width: 4px,
+$stroke: transparent,
+$fill: $dark,
+$text1: $primary,
+$text2: $dark) {
+  -webkit-text-fill-color: $fill;
+  -webkit-text-stroke-width: $width;
+  -webkit-text-stroke-color: $stroke;
+  text-shadow: #{$width*2} #{$width*2} $text1,
+  #{$width*5} #{$width*5} $text2;
+}
+
+//   @include svg-stroke($dilate: 0.5, $erode: 4);
+@mixin svg-stroke($dilate: 0.125, $erode: 4) {
+  filter: t-svg(url("data:image/svg+xml,%3Csvg width='0' height='0' viewBox='0 0 0 0' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3Cdefs%3E%3Cfilter id='stroke'%3E%3CfeMorphology in='SourceGraphic' operator='erode' radius='#{$erode}' result='erode'%3E%3C/feMorphology%3E%3CfeMorphology in='SourceGraphic' operator='dilate' radius='#{$erode}' result='dilate'%3E%3C/feMorphology%3E%3CfeComposite in='erode' in2='dilate' operator='xor'%3E%3C/feComposite%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E#stroke"));
+}
+
+// @include text-stroke($width: 2px, $fill: currentColor, $stroke: $white)
+@mixin text-stroke($width: 2px, $fill: currentColor, $stroke: $white) {
+  -webkit-text-stroke-width: $width;
+  -moz-text-stroke-width: $width;
+  -webkit-text-stroke-color: $stroke;
+  -moz-text-stroke-color: $stroke;
+  -webkit-text-fill-color: $fill;
+  -moz-text-fill-color: $fill;
+}
+
+// @include stroke(1px,currentColor);
+@mixin stroke($w: 1px, $color: currentColor) {
+  -webkit-text-stroke: $w $color;
+}
+// @include text-outline($primary-800,  0.0375em, 0.15em, $dark, $primary-300,transparent);
+// @include text-outline($primary,  0.0375em, 0.15em, linear-gradient(to top, rgba($grey-400, 1) 0%, rgba($grey-800, 1) 58%, rgba($dark, 1) 100%), $primary-300, transparent);
+// @include text-outline($primary,0.0375em,0.15em,linear-gradient(to top,rgba($secondary, 0.6) 0%,rgba($secondary, 1) 58%,rgba($dark, 1) 100%),$secondary,$primary);
+@mixin text-outline($color: $primary, $stroke-width: 0.0375em, $stroke-outline: 0.15em, $fill: linear-gradient(top, rgba($grey-400, 1) 0%, rgba($grey-800, 1) 58%, rgba($dark, 1) 100%), $stroke: $primary-300, $text-fill-color: transparent) {
+  position: relative;
+  font-weight: 700;
+  letter-spacing: $stroke-width / 2;
+  -webkit-text-stroke: $stroke-width $color;
+  background: $fill;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: $text-fill-color;
+  z-index: 1;
+
+  &:before {
+    content: attr(data-outline-text);
+    display: inherit;
+    position: absolute;
+    -webkit-text-stroke: $stroke-outline $stroke;
+    top: 0;
+    left: 0;
+    font-size: inherit;
+    z-index: -1;
+  }
+}
+
+@mixin stroke-outline-shadow {
+  --stroke-color: _var('primary', $primary);
+  --stroke-width: .25rem;
+  // letter-spacing: var(--stroke-width);
+  // color: $white;
+  text-shadow: var(--stroke-width) 0 0 var(--stroke-color), calc(var(--stroke-width) * -1) 0 0 var(--stroke-color), 0 var(--stroke-width) 0 var(--stroke-color), 0 calc(var(--stroke-width) * -1) 0 var(--stroke-color);
+}
+
+
+
+@mixin stroke-outline-shadow-16 {
+  text-shadow:
+    calc(var(--stroke-width) * 1) calc(var(--stroke-width) * 0) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0.9239) calc(var(--stroke-width) * 0.3827) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0.7071) calc(var(--stroke-width) * 0.7071) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0.3827) calc(var(--stroke-width) * 0.9239) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0) calc(var(--stroke-width) * 1) 0 var(--stroke-color),
+    calc(var(--stroke-width) * -0.3827) calc(var(--stroke-width) * 0.9239) 0 var(--stroke-color),
+    calc(var(--stroke-width) * -0.7071) calc(var(--stroke-width) * 0.7071) 0 var(--stroke-color),
+    calc(var(--stroke-width) * -0.9239) calc(var(--stroke-width) * 0.3827) 0 var(--stroke-color),
+    calc(var(--stroke-width) * -1) calc(var(--stroke-width) * 0) 0 var(--stroke-color),
+    calc(var(--stroke-width) * -0.9239) calc(var(--stroke-width) * -0.3827) 0 var(--stroke-color),
+    calc(var(--stroke-width) * -0.7071) calc(var(--stroke-width) * -0.7071) 0 var(--stroke-color),
+    calc(var(--stroke-width) * -0.3827) calc(var(--stroke-width) * -0.9239) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0) calc(var(--stroke-width) * -1) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0.3827) calc(var(--stroke-width) * -0.9239) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0.7071) calc(var(--stroke-width) * -0.7071) 0 var(--stroke-color),
+    calc(var(--stroke-width) * 0.9239) calc(var(--stroke-width) * -0.3827) 0 var(--stroke-color)
+}
+
+//scss use
+// .text-shadow{
+//   text-shadow: textStroke( 2, $dark);
+// }

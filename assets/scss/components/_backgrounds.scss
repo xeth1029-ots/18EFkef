@@ -1,0 +1,24 @@
+//
+//  Components -> Backgrounds
+// --------------------------------------------------
+
+@each $color, $value in $element-colors {
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+
+  %bg-#{$color} {
+    background-color: $value;
+  }
+}
+
+@each $color, $value in $element-soft-colors {
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+
+  %bg-#{$color} {
+    background-color: $value;
+  }
+}
+

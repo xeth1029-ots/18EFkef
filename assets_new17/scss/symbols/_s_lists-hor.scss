@@ -1,0 +1,117 @@
+@charset "utf-8";
+
+//  Symbols Lists
+// --------------------------------------------------
+
+.t-definition-list {
+  display: flex;
+  align-items: center;
+  line-height: $t-line-height-card;
+  font-size: 0.8125rem;
+  margin-bottom: 0.625rem;
+
+  .t-definition-term {
+    color: $grey-600;
+    flex: 0 0 5.75rem;
+  }
+
+  .t-definition-description {
+    margin-left: 2rem;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-dl-group {
+  border-left: 4px solid $primary-200;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1.75rem;
+
+  .t-dl-group-term {}
+
+  .t-dl-group-description {
+    color: $lightgrey;
+    width: fit-content;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-list-group {
+  display: flex;
+  align-items: center;
+
+  .t-list-group-item {
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    .t-list-group {}
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+$t-list-txts-sm-margin-right:       1rem;
+$t-list-txts-sm-margin-right-ofset: 0.5rem;
+$t-list-txts-sm-border-width:       0.0625rem;
+
+.t-list-txts-sm {
+  @include flex($justify: start, $flex-wrap: wrap, $align-items: center);
+
+  .t-list-txts-item {
+    position: relative;
+    font-size: 0.75rem;
+
+    > span , p , label{
+      font-size: 0.75rem;
+    }
+
+    &:not(:last-child) {
+      margin-right: $t-list-txts-sm-margin-right;
+
+      &:after {
+        content: '';
+        position: absolute;
+        // #{$t-list-txts-sm-margin-right-ofset - ($t-list-txts-sm-border-width / 2)}
+        right: -#{$t-list-txts-sm-margin-right-ofset + ($t-list-txts-sm-border-width / 2)};
+        top: 50%;
+
+        @include translate(0, -50%);
+
+        background-color: $grey-200;
+        width: $t-list-txts-sm-border-width;
+        height: 60%;
+      }
+    }
+  }
+}
+
+.t-list-txts {
+
+  @include flex($justify: start, $flex-wrap: wrap, $align-items: center);
+  line-height: $t-line-height-card;
+
+  .t-list-txts-item {
+    position: relative;
+    margin-bottom: 0.25rem;
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+
+      &:after {
+        content: '';
+        position: absolute;
+        right: -0.9375rem;
+        top: 50%;
+
+        @include translate(0, -50%);
+
+        background-color: $border;
+        width: .125rem;
+        height: 60%;
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////

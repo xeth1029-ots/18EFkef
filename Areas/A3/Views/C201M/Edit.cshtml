@@ -1,0 +1,1204 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.A3.Models;
+@model C201MViewModel
+@{
+    /// <summary>注意！提示：此 A3/C201M 之語法取自 AM/C201M，並做功能性刪減</summary>
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+
+    SessionModel sm = SessionModel.Get();
+
+    string PicPath = (Model.Detail.Sex == "F") ? "~/assets_new/images/avastarPlaceholders-girl.svg" : "~/assets_new/images/avastarPlaceholders.svg";
+    if (!string.IsNullOrEmpty(Model.Detail.SelfPicPath))
+    {
+        string picfile1 = string.Concat(new AMDAO().UploadPathTeacher, Model.Detail.SelfPicPath);
+        if (File.Exists(Server.MapPath(picfile1))) { PicPath = picfile1; }
+    }
+    string svg10Ratio3 = "~/assets_new/images/10Ratio3.3333_v1.svg";
+
+    string[] SubItemStyleColors = new string[] { "secondary", "primary", "tertiary", "quaternary", "success", "warning", "info" };
+    string SexMark = (Model.Detail.Sex == "F" ? "♀" : "♂");
+    string strPostCode = "";
+    if (Model.Detail.PostalCode1.TONotNullString() != "") { strPostCode = Model.Detail.PostalCode1; }
+    if (Model.Detail.PostalCode2.TONotNullString() != "") { strPostCode = strPostCode + "-" + Model.Detail.PostalCode2; }
+    if (strPostCode != "") { strPostCode = "(" + strPostCode + ") "; }
+    bool isCanEdit = (sm.UserInfo.User.UNITID == Model.Detail.UnitCode);
+}
+
+<style>
+    .t-teacher-page .t-wrapper-inner .t-panel .t-panel-item-cnt { padding-left: 0rem; }
+
+    .t-form-label { min-width: 10rem; }
+
+    .t-form-control { min-width: 15rem; }
+</style>
+
+@using (Html.BeginForm("Save", "C201M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Detail.EditAreaIdx)
+    @Html.HiddenFor(m => m.Detail.Seq)
+    // for View
+    @Html.HiddenFor(m => m.Detail.UnitName)
+    @Html.HiddenFor(m => m.Detail.CombineName)
+    @Html.HiddenFor(m => m.Detail.EduLevelHighest_Name)
+    @Html.HiddenFor(m => m.Detail.EduLevel1_Name)
+    @Html.HiddenFor(m => m.Detail.EduLevel2_Name)
+    @Html.HiddenFor(m => m.Detail.EduLevel3_Name)
+    @Html.HiddenFor(m => m.Detail.Expertise_Str)
+    @Html.HiddenFor(m => m.Detail.TeachArea_Name)
+    @Html.HiddenFor(m => m.Detail.IndustryStr)
+    @Html.HiddenFor(m => m.Detail.Industry_Name)<section class="t-teacher-page" style="padding: unset; margin-bottom: 10rem;">
+        <div class="container">
+            <div class="t-wrapper-inner">
+                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()" style="margin-bottom: 1rem;">
+                    <i class="svg-icon mr-2" aria-hidden="true">
+                        <svg>
+                            <use href="#ic-arrow-l"></use>
+                        </svg>
+                    </i>
+                    回上一頁
+                </button>
+                <!-- 師資介紹 Start -->
+                <a name="academic_info" id="academic_info"></a>
+                <div id="Info" class="t-info-item" data-profile="academic_info">
+                    <div class="t-form-legend-info t-inline-flex" style="top: -3rem;">
+                        <h3 class="t-inline-flex">師資介紹</h3>
+                    </div>
+                    <div class="t-panel bt-section-search">
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_1_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('1')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_1_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('1')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_1_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('1')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div class="t-panel-main" style="justify-content:unset; padding-left: 0rem; padding-right: 0rem; ">
+                            <div class="mask mask-card-ruler"></div>
+                            <div class="mask mask-brand-wda-logo-backgrounds"></div>
+                            <div id="Editor_1_View" class="t-panel-item-cnt" style="display: inline; width: 100%;">
+                                <div style="float: left; width: 300px">
+                                    <div class="t-panel-item-img-container" style="width: unset;">
+                                        <a class="t-panel-img t-img-overlay" data-fslightbox="gallery" href="@Url.Content(PicPath)">
+                                            <picture>
+                                                <source src="@Url.Content(PicPath)" data-src="@Url.Content(svg10Ratio3)">
+                                                <img src="@Url.Content(PicPath)" alt="@Model.Detail.TeacherName" class="t-lazy-load" width="160" height="188" />
+                                            </picture>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div style="float: right; width: 700px">
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term" hidden>
+                                            @Model.Detail.CombineName
+                                        </dt>
+                                        <dd class="t-definition-description ml-0">
+                                            <div data-grad-under="info" class="t-panel-title">
+                                                @Model.Detail.TeacherName
+                                            </div>
+                                            <div data-grad-under="secondary" class="t-panel-sub-title">
+                                                @Model.Detail.TeacherEName
+                                                &nbsp;
+                                                @SexMark
+                                                &nbsp;
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                    <div class="t-panel-main-txt">
+                                        前一年度授課總時數：<big>@Model.Detail.R1_THOURS_TRANSDATA_TOTAL</big> 小時
+                                    </div>
+                                    <ul class="t-list-txts mb-2">
+                                        @if (Model.Detail.TeachJobAbilityDC.TONotNullString() == "Y")
+                                        {
+                                            <li class="t-list-txts-item">
+                                                DC： <big class="t-fw-500">@Model.Detail.R2_THOURS_TRANSDATA_DC</big> 小時
+                                            </li>
+                                        }
+                                        @if (Model.Detail.TeachJobAbilityBC.TONotNullString() == "Y")
+                                        {
+                                            <li class="t-list-txts-item">
+                                                BC： <big class="t-fw-500">@Model.Detail.R2_THOURS_TRANSDATA_BC</big> 小時
+                                            </li>
+                                        }
+                                        @if (Model.Detail.TeachJobAbilityKC.TONotNullString() == "Y")
+                                        {
+                                            <li class="t-list-txts-item">
+                                                KC： <big class="t-fw-500">@Model.Detail.R2_THOURS_TRANSDATA_KC</big> 小時
+                                            </li>
+                                        }
+                                        <li class="t-list-txts-item"><div>(當年度授課時數)</div></li>
+                                        @*<li class="t-list-txts-item">	DC： <big class="t-fw-500">0</big> 小時	</li>
+                                            <li class="t-list-txts-item">	BC： <big class="t-fw-500">0</big> 小時	</li>
+                                            <li class="t-list-txts-item">	KC： <big class="t-fw-500">0</big> 小時	</li>*@
+                                    </ul>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            聯絡電話
+                                        </dt>
+                                        <dd data-tu-inlineEdit="true" data-tu-inlineEdit-label="聯絡電話" data-tu-inlineEdit-name="userInfo" data-tu-inlineEdit-id="UserPhone" data-tu-inlineEdit-placeholder="請輸入您的聯絡電話" class="t-definition-description">
+                                            @Model.Detail.Tel
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            聯絡手機
+                                        </dt>
+                                        <dd data-tu-inlineEdit="true" data-tu-inlineEdit-label="聯絡手機" data-tu-inlineEdit-name="userInfo" data-tu-inlineEdit-id="UserPhone" data-tu-inlineEdit-placeholder="請輸入您的聯絡手機" class="t-definition-description">
+                                            @Model.Detail.Phone
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            出生日期
+                                        </dt>
+                                        <dd data-tu-inlineEdit="true" data-tu-inlineEdit-label="出生日期" data-tu-inlineEdit-name="UserBirth" data-tu-inlineEdit-id="UserBirth" data-tu-inlineEdit-placeholder="請輸入您的出生日期" class="t-definition-description">
+                                            @Model.Detail.Birthday
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            電子郵件
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            <a data-tu-inlineEdit="true" data-tu-inlineEdit-label="電子郵件" data-tu-inlineEdit-name="userInfo" data-tu-inlineEdit-id="UserMail" data-tu-inlineEdit-placeholder="請輸入您的電子郵件" @*href="mailto:"*@ title="@Model.Detail.Email" data-under="primary">
+                                                @Model.Detail.Email
+                                            </a>
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term t-relative">
+                                            電子郵件 (工作)
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            <a data-tu-inlineEdit="true" data-tu-inlineEdit-label="電子郵件" data-tu-inlineEdit-name="userInfo" data-tu-inlineEdit-id="UserMailWork" data-tu-inlineEdit-placeholder="請輸入您的電子郵件 " @*href="mailto:"*@ title="@Model.Detail.EmailWork" data-under="primary">
+                                                @Model.Detail.EmailWork
+                                            </a>
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            聯絡地址
+                                        </dt>
+                                        <dd data-tu-inlineEdit="true" data-tu-inlineEdit-label="聯絡地址" data-tu-inlineEdit-name="userInfo" data-tu-inlineEdit-id="userAdress" data-tu-inlineEdit="true" data-tu-inlineEdit-placeholder="請輸入您的聯絡地址" class="t-definition-description">
+                                            @strPostCode @Model.Detail.Address
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div id="Editor_1_Edit" class="bt-form-cnt" style="display: none;">
+                                <div class="t-form t-txt-left">
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">&nbsp;</p>
+                                            @Html.LabelFor(m => m.Detail.Pic_FILE, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Detail.Pic_FILE, new { type = "file", @class = "t-form-control", accept = ".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">*</p>
+                                            @Html.LabelFor(m => m.Detail.TeacherName, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Detail.TeacherName, new { size = "30", maxlength = "20", @class = "t-form-control" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">&nbsp;</p>
+                                            @Html.LabelFor(m => m.Detail.TeacherEName, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Detail.TeacherEName, new { size = "60", maxlength = "20", @class = "t-form-control" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">*</p>
+                                            @Html.LabelFor(m => m.Detail.Sex, new { @class = "t-form-label" })
+                                            @Html.RadioButtonFor(m => m.Detail.Sex, "M", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">男</p>
+                                            @Html.RadioButtonFor(m => m.Detail.Sex, "F", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px; margin-left: 15px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">女</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">&nbsp;</p>
+                                            @Html.LabelFor(m => m.Detail.Tel, new { @class = "t-form-label" })
+                                            @Html.CheckBoxFor(m => m.Detail.IsShow_Tel, new { align = "left", style = "margin-top: 10px; margin-right: 10px; width: 70px; height: 30px;" })
+                                            @Html.LabelFor(m => m.Detail.IsShow_Tel, new { align = "left", style = "margin-top: 10px; margin-right: 10px;" })
+                                            @Html.TextBoxFor(m => m.Detail.Tel, new { size = "30", maxlength = "30", @class = "t-form-control" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">&nbsp;</p>
+                                            @Html.LabelFor(m => m.Detail.Phone, new { @class = "t-form-label" })
+                                            @Html.CheckBoxFor(m => m.Detail.IsShow_Phone, new { align = "left", style = "margin-top: 10px; margin-right: 10px; width: 70px; height: 30px;" })
+                                            @Html.LabelFor(m => m.Detail.IsShow_Phone, new { align = "left", style = "margin-top: 10px; margin-right: 10px;" })
+                                            @Html.TextBoxFor(m => m.Detail.Phone, new { size = "30", maxlength = "30", @class = "t-form-control" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">*</p>
+                                            @Html.LabelFor(m => m.Detail.Birthday_AD, new { @class = "t-form-label" })
+                                            @Html.CheckBoxFor(m => m.Detail.IsShow_Birthday, new { align = "left", style = "margin-top: 10px; margin-right: 10px; width: 70px; height: 30px;" })
+                                            @Html.LabelFor(m => m.Detail.IsShow_Birthday, new { align = "left", style = "margin-top: 10px; margin-right: 10px;" })
+                                            @Html.DatePickerTWFor(m => m.Detail.Birthday_AD, new { @class = "t-form-control", placeholder = "YYY/MM/DD", style = "pointer-events:none;opacity:.66" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">*</p>
+                                            @Html.LabelFor(m => m.Detail.Email, new { @class = "t-form-label" })
+                                            @Html.CheckBoxFor(m => m.Detail.IsShow_Email, new { align = "left", style = "margin-top: 10px; margin-right: 10px; width: 70px; height: 30px;" })
+                                            @Html.LabelFor(m => m.Detail.IsShow_Email, new { align = "left", style = "margin-top: 10px; margin-right: 10px;" })
+                                            @Html.TextBoxFor(m => m.Detail.Email, new { size = "999", maxlength = "64", @class = "t-form-control", style = "pointer-events:none;opacity:.66" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">&nbsp;</p>
+                                            @Html.LabelFor(m => m.Detail.EmailWork, new { @class = "t-form-label" })
+                                            @Html.CheckBoxFor(m => m.Detail.IsShow_EmailWork, new { align = "left", style = "margin-top: 10px; margin-right: 10px; width: 70px; height: 30px;" })
+                                            @Html.LabelFor(m => m.Detail.IsShow_EmailWork, new { align = "left", style = "margin-top: 10px; margin-right: 10px;" })
+                                            @Html.TextBoxFor(m => m.Detail.EmailWork, new { size = "999", maxlength = "64", @class = "t-form-control" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">&nbsp;</p>
+                                            @Html.LabelFor(m => m.Detail.Address, new { @class = "t-form-label" })
+                                            @Html.CheckBoxFor(m => m.Detail.IsShow_Address, new { align = "left", style = "margin-top: 10px; margin-right: 10px; width: 30px; height: 30px;" })
+                                            @Html.LabelFor(m => m.Detail.IsShow_Address, new { align = "left", style = "margin-top: 10px; margin-right: 10px;" })
+                                            @Html.TextBoxFor(m => m.Detail.PostalCode1, new { type = "number", maxlength = "3", @class = "t-form-control", style = "min-width:200px; width:200px" })&nbsp;-&nbsp;
+                                            @Html.TextBoxFor(m => m.Detail.PostalCode2, new { type = "number", maxlength = "3", @class = "t-form-control", style = "min-width:200px; width:200px" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <p style="color:red">&nbsp;</p>
+                                            @Html.Label(" ", new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Detail.Address, new { size = "999", maxlength = "200", @class = "t-form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 師資介紹 End -->
+                <!-- 最高學歷 Start -->
+                <a name="academic_highesteducation" id="academic_highesteducation"></a>
+                <div id="Highest_Education" class="t-info-item" data-profile="academic_highesteducation">
+                    <div class="t-panel bt-section-search" style="align-items: center;">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-education"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="HIGHEST EDUCATION">最高學歷</div>
+                        </div>
+                        <div id="Editor_2_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    @Model.Detail.EduLevelHighest_Name
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 最高學歷 End -->
+                <!-- 學歷背景 Start -->
+                <a name="academic_education" id="academic_education"></a>
+                <div id="Education" class="t-info-item" data-profile="academic_education">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-education"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="EDUCATION">學歷背景</div>
+                        </div>
+                        <div id="Editor_3_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    <ul class="t-timeline">
+                                        @if (@Model.Detail.EduSchool1.TONotNullString() != "")
+                                        {
+                                            <li class="t-timeline-item">
+                                                <div class="t-timeline-marker"></div>
+                                                <div class="t-timeline-content">
+                                                    <div class="t-timeline-title">@Model.Detail.EduSchool1</div>
+                                                    <ul class="t-list-txts">
+                                                        <li class="t-list-txts-item">@Model.Detail.EduDept1</li>
+                                                        <li class="t-list-txts-item">@Model.Detail.EduLevel1_Name</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        }
+                                        @if (@Model.Detail.EduSchool2.TONotNullString() != "")
+                                        {
+                                            <li class="t-timeline-item">
+                                                <div class="t-timeline-marker"></div>
+                                                <div class="t-timeline-content">
+                                                    <div class="t-timeline-title">@Model.Detail.EduSchool2</div>
+                                                    <ul class="t-list-txts">
+                                                        <li class="t-list-txts-item">@Model.Detail.EduDept2</li>
+                                                        <li class="t-list-txts-item">@Model.Detail.EduLevel2_Name</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        }
+                                        @if (@Model.Detail.EduSchool3.TONotNullString() != "")
+                                        {
+                                            <li class="t-timeline-item">
+                                                <div class="t-timeline-marker"></div>
+                                                <div class="t-timeline-content">
+                                                    <div class="t-timeline-title">@Model.Detail.EduSchool3</div>
+                                                    <ul class="t-list-txts">
+                                                        <li class="t-list-txts-item">@Model.Detail.EduDept3</li>
+                                                        <li class="t-list-txts-item">@Model.Detail.EduLevel3_Name</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 學歷背景 End -->
+                <!-- 服務單位/職稱 Start -->
+                <a name="academic_employment " id="academic_employment"></a>
+                <div id="Employment" class="t-info-item" data-profile="academic_employment">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-briefcase"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="EMPLOYMENT HISTORY">服務單位/職稱</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_4_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('4')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_4_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('4')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_4_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('4')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_4_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    <ul class="t-timeline">
+                                        @if (@Model.Detail.ServiceUnit1.TONotNullString() != "")
+                                        {
+                                            <li class="t-timeline-item">
+                                                <div class="t-timeline-marker"></div>
+                                                <div class="t-timeline-content">
+                                                    <div class="t-timeline-title">@Model.Detail.ServiceUnit1</div>
+                                                    <ul class="t-list-txts"><li class="t-list-txts-item">@Model.Detail.JobTitle1</li></ul>
+                                                </div>
+                                            </li>
+                                        }
+                                        @if (@Model.Detail.ServiceUnit2.TONotNullString() != "")
+                                        {
+                                            <li class="t-timeline-item">
+                                                <div class="t-timeline-marker"></div>
+                                                <div class="t-timeline-content">
+                                                    <div class="t-timeline-title">@Model.Detail.ServiceUnit2</div>
+                                                    <ul class="t-list-txts"><li class="t-list-txts-item">@Model.Detail.JobTitle2</li></ul>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_4_Edit" class="bt-form-cnt" style="display: none; margin-top: 60px;">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="margin-left: 10px;">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.ServiceUnit1, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.ServiceUnit1, new { size = "20", maxlength = "25", @class = "t-form-control" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.JobTitle1, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.JobTitle1, new { size = "20", maxlength = "50", @class = "t-form-control", style = "min-width: 10rem;" })
+                                    </div>
+                                </div>
+                                <hr size="8px" align="center" width="100%" style="margin-left: 20px;">
+                                <div class="t-form-inline" style="margin-left: 10px;">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.ServiceUnit2, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.ServiceUnit2, new { size = "20", maxlength = "25", @class = "t-form-control" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.JobTitle2, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.JobTitle2, new { size = "20", maxlength = "50", @class = "t-form-control", style = "min-width: 10rem;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 服務單位/職稱 End -->
+                <!-- 所屬轄區 Start -->
+                <a name="academic_unit" id="academic_unit"></a>
+                <div id="Unit" class="t-info-item" data-profile="academic_unit">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-location"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="UNIT">所屬轄區</div>
+                        </div>
+                        <div id="Editor_5_View" class="t-panel-item-cnt" style="display: inline; align-self: center;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    @Model.Detail.UnitName
+                                    @Html.HiddenFor(m => m.Detail.UnitCode)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 所屬轄區 End -->
+                <!-- 專長/領域 Start -->
+                <a name="academic_expertise" id="academic_"></a>
+                <div id="Expertise" class="t-info-item" data-profile="academic_expertise">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-medal-star"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="EXPERTISE">專長/領域</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_6_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('6')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_6_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('6')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_6_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('6')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_6_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    @*<ul><li class="t-timeline-item"></li></ul>*@
+                                    <div class="t-para" style="white-space: pre-line; width: 100%;">@Model.Detail.ExpertiseDesc</div>
+                                    <div class="teachers-list-item-lab-cobtainer" style="width: 100%;">
+                                        <div class="t-label-list flex-row" style="word-wrap: break-word; white-space: normal;">
+                                            @if (Model.Detail.Expertise_List.ToCount() > 0)
+                                            {
+                                                for (int j = 0; j < Model.Detail.Expertise_List.Length; j++)
+                                                {
+                                                    var itemSub = Model.Detail.Expertise_List[j];
+                                                    if (itemSub.TONotNullString() == "") { continue; }
+                                                    var SubItemStyleColor = SubItemStyleColors[j % SubItemStyleColors.Length];
+                                                    <label class="t-badge t-badge-light-@SubItemStyleColor" data-bs-toggle="tooltip" aria-label="@itemSub" data-bs-placement="top">
+                                                        @itemSub
+                                                    </label>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_6_Edit" class="bt-form-cnt" style="display: none; margin-top: 60px;">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.ExpertiseDesc, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.TextAreaFor(m => m.Detail.ExpertiseDesc, new { size = "20", @class = "t-form-control", style = "margin-left: 20px; height:200px; overflow: auto;" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.ExpertiseCode, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.CheckBoxListFor(m => m.Detail.ExpertiseCode_SHOW, Model.Detail.ExpertiseCode_SHOW_list, new { @class = "t-form-control", id = "ExpertiseCode_SHOW", style = "margin-left: 20px; width:100%; height:200px; overflow: auto;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 專長/領域 End -->
+                <!-- 職能類別 Start -->
+                <a name="academic_skills" id="academic_skills"></a>
+                <div id="Skills" class="t-info-item" data-profile="academic_skills">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-diamond"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="SKILLS">職能類別</div>
+                        </div>
+                        <div id="Editor_7_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    <div class="t-label-list flex-row">
+                                        @if (Model.Detail.TeachJobAbilityKC.TONotNullString() == "Y")
+                                        {
+                                            <label class="t-badge t-badge-light-secondary" data-bs-toggle="tooltip" title="飛航、服務、管理就業學程" aria-label="飛航、服務、管理就業學程" data-bs-placement="top">
+                                                知識職能 (KC)
+                                            </label>
+                                        }
+                                        @if (Model.Detail.TeachJobAbilityBC.TONotNullString() == "Y")
+                                        {
+                                            <label class="t-badge t-badge-light-warning" data-bs-toggle="tooltip" title="飛航、服務、管理就業學程" aria-label="飛航、服務、管理就業學程" data-bs-placement="top">
+                                                行為職能 (BC)
+                                            </label>
+                                        }
+                                        @if (Model.Detail.TeachJobAbilityDC.TONotNullString() == "Y")
+                                        {
+                                            <label class="t-badge t-badge-light-primary" data-bs-toggle="tooltip" title="飛航、服務、管理就業學程" aria-label="飛航、服務、管理就業學程" data-bs-placement="top">
+                                                動機職能 (DC)
+                                            </label>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 職能類別 End -->
+                <!-- 授課區域 Start -->
+                <a name="academic_teacharea" id="academic_teacharea"></a>
+                <div id="TeachArea" class="t-info-item" data-profile="academic_teacharea">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-map"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="TEACH AREA">授課區域</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_8_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('8')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_8_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('8')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_8_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('8')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_8_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild" style="word-wrap: break-word; white-space: pre-line;">
+                                    <div class="t-para">@Model.Detail.TeachArea_Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_8_Edit" class="bt-form-cnt" style="display: none; margin-top: 60px; margin-left: 10px; width: 100%;">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="width: 100%; margin-left: 10px;">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.TeachArea, new { @class = "t-form-label", @for = "s_areaPicker1" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.TextBoxFor(m => m.Detail.TeachArea, new { size = "30", maxlength = "200", @class = "t-form-control", id = "s_areaPicker1", @readonly = "true", style = "border: 0.125rem solid #f3f3f3; border-radius: 0.625rem;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 授課區域 End -->
+                <!-- 授課產業別 Start -->
+                <a name="academic_teachindustry" id="academic_teachindustry"></a>
+                <div id="TeachIndustry" class="t-info-item" data-profile="academic_teachindustry">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-map"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="TEACH INDUSTRY">授課產業別</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_9_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('9')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_9_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('9')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_9_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('9')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_9_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild" style="word-wrap: break-word; white-space: pre-line;">
+                                    <div class="t-para">@Model.Detail.Industry_Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_9_Edit" class="bt-form-cnt" style="display: none; margin-top: 60px; margin-left: 10px; width: 100%;">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="width: 100%; margin-left: 10px;">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.TeachIndustryDetName, new { @class = "t-form-label", @for = "IndustryPicker" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.TextBoxFor(m => m.Detail.TeachIndustryDetName, new { size = "30", maxlength = "200", @class = "t-form-control", id = "IndustryPicker", @readonly = "true", style = "border: 0.125rem solid #f3f3f3; border-radius: 0.625rem;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 授課產業別 End -->
+                <!-- 產學類別 Start -->
+                <a name="academic_IndustryAcademicType" id="academic_IndustryAcademicType"></a>
+                <div id="IndustryAcademicType" class="t-info-item" data-profile="academic_IndustryAcademicType">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-location"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="IndustryAcademicType">產學類別</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_14_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('14')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_14_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('14')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_14_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('14')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_14_View" class="t-panel-item-cnt" style="display: inline; align-self: center;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    @Model.Detail.IndustryAcademicType_Name
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_14_Edit" class="bt-form-cnt" style="display: none; margin-top: 60px;">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="margin-left: 10px;">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.IndustryAcademicType, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.IndustryAcademicType, new SelectList(Model.Detail.IndustryAcademicType_list, "Value", "Text", Model.Detail.IndustryAcademicType), new { @class = "t-form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 產學類別 End -->
+                <!-- 工作經歷 Start -->
+                <a name="academic_workhistory" id="academic_workhistory"></a>
+                <div id="WorkHistory" class="t-info-item" data-profile="academic_workhistory">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-archive-book"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="WORK HISTORY">工作經歷</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_10_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('10')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_10_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('10')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_10_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('10')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_10_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild" style="word-wrap: break-word; white-space: pre-line;">
+                                    <div class="t-para">@Model.Detail.WorkHistory</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_10_Edit" class="bt-form-cnt" style="display: none; width: 100%">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.WorkHistory, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.TextAreaFor(m => m.Detail.WorkHistory, new { @class = "t-form-control", style = "margin-left: 20px; height:200px; overflow: auto;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 工作經歷 End -->
+                <!-- 專業證照 Start -->
+                <a name="academic_prolicense" id="academic_prolicense"></a>
+                <div id="ProLicense" class="t-info-item" data-profile="academic_prolicense">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-cup"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="PROFESSIONAL LICENSE">專業證照</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_11_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('11')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_11_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('11')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_11_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('11')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_11_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild" style="word-wrap: break-word; white-space: pre-line;">
+                                    <div class="t-para">@Model.Detail.ProLicense</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_11_Edit" class="bt-form-cnt" style="display: none; width: 100%">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.ProLicense, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.TextAreaFor(m => m.Detail.ProLicense, new { @class = "t-form-control", style = "margin-left: 20px; height:200px; overflow: auto;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 專業證照 End -->
+                <!-- 自我簡介 Start -->
+                <a name="academic_selfintroduction" id="academic_selfintroduction"></a>
+                <div id="SelfIntroduction" class="t-info-item" data-profile="academic_selfintroduction">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-3d-square"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="SELF INTRODUCTION">自我簡介</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_12_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('12')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_12_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('12')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_12_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('12')" style="margin-right: 120px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_12_View" class="t-panel-item-cnt" style="display: inline;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild" style="word-wrap: break-word; white-space: pre-line;">
+                                    <div class="t-para">@Model.Detail.SelfIntroduction</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_12_Edit" class="bt-form-cnt" style="display: none; width: 100%">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.SelfIntroduction, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.TextAreaFor(m => m.Detail.SelfIntroduction, new { @class = "t-form-control", style = "margin-left: 20px; height:200px; overflow: auto;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 自我簡介 End -->
+                <!-- 曾開授課程 Start -->
+                @*<a name="academic_classhistory" id="academic_classhistory"></a>
+                    <div id="ClassHistory" class="t-info-item" data-profile="academic_classhistory">
+                        <div class="t-panel bt-section-search">
+                            <div class="t-panel-heading">
+                                <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                    <svg>
+                                        <use href="#ic-3d-square"></use>
+                                    </svg>
+                                </i>
+                                <div class="t-panel-heading-txt" data-title="CLASS HISTORY">曾開授課程</div>
+                            </div>
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild">
+                                    敬請期待
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- 曾開授課程 End -->
+                <!-- 其他 Start -->
+                <a name="academic_other" id="academic_other"></a>
+                <div id="other" class="t-info-item" data-profile="academic_other">
+                    <div class="t-panel bt-section-search">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon svg-icon-2x" aria-hidden="true">
+                                <svg>
+                                    <use href="#ic-3d-square"></use>
+                                </svg>
+                            </i>
+                            <div class="t-panel-heading-txt" data-title="OTHER">其他</div>
+                        </div>
+                        @if (isCanEdit)
+                        {
+                            <div id="Editor_13_BtnE" style="display: inline;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--primary" onclick="doEdit('13')">
+                                        <i class="svg-icon"><svg><use href="#ic-edit"></use></svg></i>編輯
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_13_BtnS" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--danger" onclick="doSave('13')">
+                                        <i class="svg-icon"><svg><use href="#ic-save"></use></svg></i>儲存
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="Editor_13_BtnC" style="display: none;">
+                                <div id="edit-userInfo" class="t-panel-heading">
+                                    <a data-tu-inlineEditBtn="true" href="javascript:;" class="btn btn--dark" onclick="doCancel('13')" style="margin-right: 130px;">
+                                        <i class="svg-icon"><svg><use href="#ic-redo"></use></svg></i>取消
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <div id="Editor_13_View" class="t-panel-item-cnt" style="display: inline; width: 100%;">
+                            <div class="t-panel-main">
+                                <div class="t-panel-main-fuild" style="display: unset; word-wrap: break-word;">
+                                    <div class="t-para">加入時間：@Model.Detail.JoinYear</div>
+                                    <div class="t-para">服務單位屬性：@Model.Detail.ServiceUnitProperties_Str</div>
+                                    <div class="t-para">在線/下線：@Model.Detail.Online_Name</div>
+                                    <div class="t-para">下線日期：@Model.Detail.OfflineDate</div>
+                                    <div class="t-para">
+                                        下線原因：
+                                        <label class="t-form-control" style="height: 200px; overflow: auto; white-space: pre-line;">@Model.Detail.OfflineReason_Str</label>
+                                        @*@Html.CheckBoxListFor(m => m.Detail.OfflineReason_SHOW, Model.Detail.OfflineReason_SHOW_list, new { @class = "t-form-control", id = "OfflineReason_SHOW_View", style = "width: 100%; height: 100%; overflow: auto; border-radius: 0rem; border: 0rem; pointer-events:none;" })*@
+                                    </div>
+                                    <div class="t-para">
+                                        下線原因(其他)：
+                                        <label class="t-form-control" style="height: 200px; overflow: auto; white-space: pre-line;">@Model.Detail.OfflineReasonRemark</label>
+                                        @*@Html.TextAreaFor(m => m.Detail.OfflineReasonRemark, new { @class = "t-form-control", style = "height:200px; overflow: auto; border: 0.125rem solid #f3f3f3; border-radius: 0.625rem;", @readonly = "true", id= "OfflineReasonRemark_View" })*@
+                                    </div>
+                                    <div class="t-para">是否在首頁輪播：@Model.Detail.HomePageCarousel_Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Editor_13_Edit" class="bt-form-cnt" style="display: none; margin-top: 60px;">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.JoinYear, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.JoinYear, new { size = "30", maxlength = "4", @class = "t-form-control" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="t-form-inline" style="margin-left: 10px; width: 100%">
+                                    <div class="t-form-group" style="margin: 0px;">
+                                        @Html.LabelFor(m => m.Detail.HomePageCarousel, new { @class = "t-form-label", style = "min-width: 5rem;" })
+                                        @Html.RadioButtonFor(m => m.Detail.HomePageCarousel, "Y", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">是</p>
+                                        @Html.RadioButtonFor(m => m.Detail.HomePageCarousel, "N", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px; margin-left: 15px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">否</p>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(m => m.Detail.Online)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 其他 End -->
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $("#Detail_Pic_FILE").on("change", function () {
+        let fileType = "." + document.getElementById("Detail_Pic_FILE").value.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();
+        let acceptType = document.getElementById("Detail_Pic_FILE").accept.toLowerCase();
+        //console.log(fileType);
+        //console.log(acceptType);
+        //console.log(acceptType.indexOf(fileType));
+        if (acceptType.indexOf(fileType) === -1) {
+            blockAlert("請選擇正確的檔案格式！ (" + acceptType + ")");
+            document.getElementById("Detail_Pic_FILE").value = null;
+        }
+    });
+
+    let isEdit = false;
+    $(document).ready(function () {
+        isEdit = false;
+        @* 不為空白時，表示是之前儲存失敗，因此要還原該區塊的編輯狀態 *@
+        var Idx = $("#Detail_EditAreaIdx").val();
+        if (Idx != "") { doEdit(Idx); }
+        //alert(Idx);
+        $("#ExpertiseCode_SHOW div").attr("style", "float:left;width:350px;");
+    });
+
+    @*var citysJson = "@Url.Action("JsonFiles1", "Home", new { area = "" })";*@
+    var citysJson = decodeURIComponent("%2FHome%2FJsonFiles1");
+    var industryJson = "@Url.Action("GetJsonIndustry", "C201M")";
+    document.addEventListener("DOMContentLoaded", function () {
+        var picker1 = new JsCategoryPicker('s_areaPicker1', {
+            id: 'areaPicker1', // Picker ID
+            data: citysJson, // 代入縣市資訊
+            dataArray: ["CTID", "CTNAME"], // 只接受兩個 目前還沒寫擴充
+            dataArraySub: ["ZIPCODE", "ZIPNAME"], // 只接受兩個 目前還沒寫擴充
+            prefix: 'city1_',
+            prefixSub: 'dist1_',
+            selectAll: true, // 二層選單是否要開啟第一個全選 預設 false
+            title: '地區類別選單',
+        });
+        var IndustryPicker = new JsCategoryPicker('IndustryPicker', {
+            id: 'TheIndustryPicker',
+            data: industryJson,
+            dataArray: ["MSTID", "MSTNAME"],
+            dataArraySub: ["DETID", "DETNAME"],
+            prefix: 'mst1_',
+            prefixSub: 'det1_',
+            selectAll: false,  // 沒作用
+            title: '授課產業別選單',
+        });
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index", "C201M")').submit();
+    }
+
+    // 按鈕 個別區塊 編輯
+    function doEdit(Idx) {
+        if (isEdit === true) {
+            alert("請先結束編輯狀態，再進行操作！");
+            return;
+        }
+        document.getElementById("Editor_" + Idx + "_BtnE").style.display = 'none';  // Hide
+        document.getElementById("Editor_" + Idx + "_View").style.display = 'none';  // Hide
+        document.getElementById("Editor_" + Idx + "_BtnS").style.display = 'inline';  // Show
+        document.getElementById("Editor_" + Idx + "_Edit").style.display = 'inline';  // Show
+        document.getElementById("Editor_" + Idx + "_BtnC").style.display = 'inline';  // Show
+        isEdit = true;
+    }
+
+    // 按鈕 個別區塊 取消
+    function doCancel(Idx) {
+        document.getElementById("Editor_" + Idx + "_BtnE").style.display = 'inline';  // Show
+        document.getElementById("Editor_" + Idx + "_View").style.display = 'inline';  // Show
+        document.getElementById("Editor_" + Idx + "_BtnS").style.display = 'none';  // Hide
+        document.getElementById("Editor_" + Idx + "_Edit").style.display = 'none';  // Hide
+        document.getElementById("Editor_" + Idx + "_BtnC").style.display = 'none';  // Hide
+        isEdit = false;
+        @* 因修改儲存欄位與顯示欄位共用，若未必填儲存失敗返還且按下取消時，會導致顯示空白異常問題，故用重整方式修正 (偷吃步) *@
+        if ($("#Detail_EditAreaIdx").val() != "") {
+            var data = { "Seq": $("#Detail_Seq").val() }
+            var url = '@Url.Action("Edit", "C201M")?' + $.param(data);
+            window.location = url;
+        }
+    }
+
+    // 按鈕 個別區塊 儲存
+    function doSave(Idx) {
+        $("#Detail_EditAreaIdx").val(Idx);
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save", "C201M")').submit();
+    }
+
+</script>

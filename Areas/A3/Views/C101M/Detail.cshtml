@@ -1,0 +1,249 @@
+﻿@using WKEFSERVICE.Services
+@using WKEFSERVICE.Areas.A3.Models;
+@model C101MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+@using (Html.BeginForm("Save", "C101M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Detail.IsNew)
+    @Html.HiddenFor(x => x.Detail.Seq)
+    @Html.HiddenFor(x => x.Detail.FileNameOrg)
+    @Html.HiddenFor(x => x.Detail.FileNameNew)
+    @Html.HiddenFor(x => x.Detail.UpdatedAccount)
+    @Html.HiddenFor(x => x.Detail.UpdatedDatetime)
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">公告維護</h3>
+                                <p class="bt-section-para">提供訊息公告、會議報名公告維護功能。</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                @if (Model.Detail.IsNew || Model.Detail.isCanModify)
+                                {
+                                    <button type="button" class="btn btn--checked btn--sm" onclick="doSave()">
+                                        <i class="svg-icon mr-2" aria-hidden="true">
+                                            <svg>
+                                                <use href="#ic-save"></use>
+                                            </svg>
+                                        </i>
+                                        儲存
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PostType, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.PostType, new SelectList(Model.Detail.PostType_list, "Value", "Text", Model.Detail.PostType), new { @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.PostType)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PostTo, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.PostTo, new SelectList(Model.Detail.PostTo_list, "Value", "Text", Model.Detail.PostTo), new { @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.PostTo)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PostDateS_AD, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.PostDateS_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.PostDateS_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PostDateE_AD, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.PostDateE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.PostDateE_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PostCaption, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.PostCaption, new { size = "30", maxlength = "500", placeholder = "", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.PostCaption)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Is_OnTop, new { @class = "t-form-label" })
+                                        @Html.CheckBoxFor(m => m.Detail.Is_OnTop, new { align = "left", style = "margin-top: 10px; margin-left: 30px; width: 30px; height: 30px;" })
+                                        @Html.HiddenFor(m => m.Detail.Is_OnTop)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.IsShowSignUp, new { @class = "t-form-label" })
+                                        @Html.RadioButtonFor(m => m.Detail.IsShowSignUp, "1", new { style = "margin-top: 10px; margin-left: 30px; margin-right: 10px; width: 30px; height: 30px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">是</p>
+                                        @Html.RadioButtonFor(m => m.Detail.IsShowSignUp, "0", new { style = "margin-top: 10px; margin-left: 30px; margin-right: 10px; width: 30px; height: 30px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">否</p>
+                                        @Html.HiddenFor(m => m.Detail.IsShowSignUp)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MeetingSeq, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.MeetingSeq, new SelectList(Model.Detail.MeetingSeq_list, "Value", "Text", Model.Detail.MeetingSeq), new { @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.MeetingSeq)
+                                        @Html.TextBoxFor(m => m.Detail.MeetingSeq_Name, new { @class = "t-form-control ml-4", @readonly = true, @disabled = true })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PostContent, new { @class = "t-form-label" })
+                                        @*
+                                            使用 Html.TextAreaFor 會導致必填驗證時，莫名產生逗號及重複字串問題，只好直接硬寫 HTML
+                                            @Html.TextAreaFor(m => m.Detail.PostContent, new { @class = "t-form-control ml-4" })
+                                        *@
+                                        <textarea class="t-form-control ml-4" cols="20" data-val="true" data-val-required="公告內容 欄位是必要項。" id="Detail_PostContent" name="Detail.PostContent" rows="3">@Model.Detail.PostContent</textarea>
+                                        @Html.HiddenFor(m => m.Detail.PostContent)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PublishedUnitName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.PublishedUnitName, new { @class = "t-form-control ml-4", @readonly = true, @disabled = true })
+                                        @Html.HiddenFor(m => m.Detail.PublishedUnit)
+                                        @Html.HiddenFor(m => m.Detail.PublishedUnitName)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 附件明細 -->
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        <div class="bt-section-heading">附件檔案</div>
+                        <div style="margin-bottom: 10px">
+                            @Html.TextBoxFor(m => m.Detail._UPLOAD_FILE, new { type = "file", accept = ".doc, .docx, .ppt, .pdf, .odt, .odp" })
+                            @if (Model.Detail.IsNew || Model.Detail.isCanModify)
+                            {
+                                <button type="button" class="btn btn-info" onclick="doUpload()">上傳檔案</button>
+                            }
+                        </div>
+                        <div class="t-table-cnt t-table-responsive table--dark">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                <thead>
+                                    <tr>
+                                        <th align="left" width="10%">項次</th>
+                                        <th align="left" width="20%">上傳檔原檔名</th>
+                                        <th align="left" width="20%">上傳檔儲存檔名</th>
+                                        <th align="left" width="20%">檔案格式</th>
+                                        <th align="left" width="20%">異動時間</th>
+                                        <th align="left" width="10%">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="DetailAttachedsRows">
+                                    @Html.Partial("_DetailAttachedsRows", Model)
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 當【類別】為「會議報名公告」，公告對象鎖定教師。
+    $(document).ready(function () {
+        if (document.getElementById("Detail_PostType").value === "2" && document.getElementById("Detail_PostTo").value === "2") {
+            $("#Detail_PostTo").attr("style", "pointer-events:none;opacity:.66");
+        }
+    });
+    $("#Detail_PostType").on("change", function (e) {
+        if (e.target.value === "2") {
+            document.getElementById("Detail_PostTo").value = "2";
+            $("#Detail_PostTo").attr("style", "pointer-events:none;opacity:.66");
+        }
+        else {
+            $("#Detail_PostTo").attr("style", "pointer-events:unset;opacity:1");
+        }
+    });
+    $("#Detail__UPLOAD_FILE").on("change", function () {
+        let fileType = "." + document.getElementById("Detail__UPLOAD_FILE").value.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();
+        let acceptType = document.getElementById("Detail__UPLOAD_FILE").accept.toLowerCase();
+        //console.log(fileType);
+        //console.log(acceptType);
+        //console.log(acceptType.indexOf(fileType));
+        if (acceptType.indexOf(fileType) === -1) {
+            blockAlert("請選擇正確的檔案格式！ (" + acceptType + ")");
+            document.getElementById("Detail__UPLOAD_FILE").value = null;
+        }
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save")').submit();
+    }
+
+    // 上傳檔案
+    function doUpload() {
+        var url = "@Url.Action("DetailAttachedsUpload", "C101M")";
+        var model = new FormData($('form').get(0));
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: model,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (resp) {
+                if (resp) {
+                    //debugger;
+                    document.getElementById('Detail__UPLOAD_FILE').value = null;
+                    $("#DetailAttachedsRows").html(resp);
+                }
+            }
+        });
+    }
+
+    // 刪除
+    function doAttachedsDelete(Seq, RowId) {
+        blockConfirm("您確定要刪除此筆資料嗎？" + "項次：" + RowId, null, function () {
+            $("#Model_Detail_Attacheds_" + Seq).attr("style", "opacity:.66");
+            $("#Model_Detail_Attacheds_BtnDelete_" + Seq).attr("style", "display:none;");
+            $("#Model_Detail_Attacheds_BtnCancel_" + Seq).removeAttr("style");
+            $("#Model_Detail_Attacheds_isActive_" + Seq).val("False");
+        });
+    }
+
+    // 復原刪除
+    function doAttachedsCancel(Seq, RowId) {
+        $("#Model_Detail_Attacheds_" + Seq).removeAttr("style");
+        $("#Model_Detail_Attacheds_BtnDelete_" + Seq).removeAttr("style");
+        $("#Model_Detail_Attacheds_BtnCancel_" + Seq).attr("style", "display:none;");
+        $("#Model_Detail_Attacheds_isActive_" + Seq).val("True");
+    }
+
+</script>

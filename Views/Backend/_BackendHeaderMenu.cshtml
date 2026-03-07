@@ -1,0 +1,123 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Models.Entities
+@using WKEFSERVICE.Services
+@using Omu.ValueInjecter;
+@{
+    SessionModel sm = SessionModel.Get();
+    string GRPID_Str = "";
+    if (sm.UserInfo != null && sm.UserInfo.User.GRPID == "2") { GRPID_Str = "A2"; }  // 2. 教師使用者
+    if (sm.UserInfo != null && sm.UserInfo.User.GRPID == "3") { GRPID_Str = "A3"; }  // 3. 分署使用者
+    if (sm.UserInfo != null && sm.UserInfo.User.GRPID == "4") { GRPID_Str = "AM"; }  // 4. 管理者
+
+    // 最外層未有程式連結的節點
+    IList<AMFUNCM> BigFuncModules = ApplicationModel.GetClamFuncsOutAll(GRPID_Str);
+    // 有程式連結的節點
+    IList<AMFUNCM> funcModules = new List<AMFUNCM>();
+    // 依權限給予節點
+    foreach (var item in sm.RoleFuncs)
+    {
+        // 第一層
+        var firstFuncCode = item.SYSID + "| " + "| " + "| ";
+        var firstFunc = BigFuncModules.Where(m =>
+            m.SYSID + "|" +
+            m.MODULES + "|" +
+            m.SUBMODULES + "|" +
+            m.PRGID == firstFuncCode
+        ).FirstOrDefault();
+        if (!funcModules.Contains(firstFunc) && firstFunc != null) { funcModules.Add(firstFunc); }
+
+        // 第二層
+        var secFuncCode = item.SYSID + "|" + item.MODULES + "| " + "| ";
+        var secFunc = BigFuncModules.Where(m =>
+            m.SYSID + "|" +
+            m.MODULES + "|" +
+            m.SUBMODULES + "|" +
+            m.PRGID == secFuncCode
+        ).FirstOrDefault();
+        if (!funcModules.Contains(secFunc) && secFunc != null) { funcModules.Add(secFunc); }
+
+        // 第三層
+        var thrFuncCode = item.SYSID + "|" + item.MODULES + "|" + item.SUBMODULES + "| ";
+        var thrFunc = BigFuncModules.Where(m =>
+            m.SYSID + "|" +
+            m.MODULES + "|" +
+            m.SUBMODULES + "|" +
+            m.PRGID == thrFuncCode
+        ).FirstOrDefault();
+        if (!funcModules.Contains(thrFunc) && thrFunc != null) { funcModules.Add(thrFunc); }
+
+        AMFUNCM func = new AMFUNCM();
+        func.InjectFrom(item);
+        funcModules.Add(func);
+    }
+
+    foreach (var item in funcModules.Where(m => m.PRGID.TONotNullString() != " "))
+    {
+        item.PRGID = item.PRGID;
+    }
+}
+
+@functions{
+    private string MakeTree(IList<AMFUNCM> funcModules, string GRPID_Str, string ConfigModelWKEF)
+    {
+        string html = "";
+        var branchGroup1 = funcModules.Where(m =>
+            m.SYSID.TONotNullString() == GRPID_Str &&
+            m.MODULES.TONotNullString() != " " &&
+            m.SUBMODULES.TONotNullString() == " " &&
+            m.PRGID.TONotNullString() == " "
+        ).ToList();
+        foreach (var branch1 in branchGroup1)
+        {
+            #region 第一層
+            html += "<li class=\"menu-item\" data-sub=\"true\" data-tu-menu-trigger=\"{default: 'hover','lg': 'hover','sm': 'click'}\" data-tu-menu-placement=\"bottom\">";
+            html += "<a class=\"menu-link\">";
+            html += "<i class=\"svg-icon\">";
+            html += "<svg><use href=\"" + branch1.SYSID + "\"></use></svg>";
+            html += "</i>";
+            html += branch1.PRGNAME;
+            html += "</a>";
+
+            #region 第二層
+            var branchGroup2 = funcModules.Where(m =>
+                m.SYSID == branch1.SYSID &&
+                m.MODULES.TONotNullString() == branch1.MODULES &&
+                m.SUBMODULES.TONotNullString() == " " &&
+                m.PRGID.TONotNullString() != " "
+            );
+            html += "<div id=\"menus\" class=\"menu menu-sub menu-sub-dropdown menu-column menu-rounded\" data-tu-menu=\"true\">";
+            foreach (var branch2 in branchGroup2)
+            {
+                html += "<div class=\"menu-item\">";
+                html += "<a href=\"" + ConfigModelWKEF + "/" + branch2.PRGID + "\" class=\"menu-link\">";
+                html += branch2.PRGNAME;
+                html += "</a>";
+                html += "</div>";
+            }
+            html += "</div>";
+            #endregion
+
+            html += "</li>";
+            #endregion
+        }
+        return html;
+    }
+}
+
+<nav class="navbar navbar-expand-md navbar-expand-custom collapse navbar-collapse" id="navBar">
+    <ul id="navBar" class="menu menu-rounded menu-column menu-lg-row menu-hover-bg menu-primary align-items-stretch flex-grow-1 ">
+        <li class="menu-item">
+            <a class="menu-link active" href="~/Backend">
+                <i class="svg-icon"><svg><use href="#ic-home"></use></svg></i>
+                首頁
+            </a>
+        </li>
+        @Html.Raw(this.MakeTree(funcModules, GRPID_Str, ConfigModel.WKEF))
+        @*<button class="btn btn--soft--white btn--square">
+                <i class="svg-icon mr-0"><svg class="text-white"><use href="#ic-search"></use></svg></i></button>*@
+    </ul>
+</nav>
+
+<script>
+
+</script>

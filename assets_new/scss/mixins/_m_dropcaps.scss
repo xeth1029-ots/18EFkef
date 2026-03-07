@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+//  Mixins > dropcaps
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+$dropcaps-lines: 3 !default;
+$dropcaps-line-height: 1.5 !default;
+$dropcaps-uppercase: true !default;
+
+@mixin dropcaps(
+  $lines: $dropcaps-lines,
+  $line-height: $dropcaps-line-height,
+  $uppercase: $dropcaps-uppercase
+) {
+  $-margin-right: 0.0962em;
+  $mt: (15.6 / 100); 
+  $mb: (13.2 / 100);
+
+  $lh: $line-height;
+  $n: $lines;
+  $h: $n * $lh;
+
+  $-font-size: ($h - ($lh + $mt + $mb) + 1) / (1 - ($mt + $mb));
+  $-margin-top: -($mt - ($mt + ($lh - 1) / 2) / $-font-size);
+  $-margin-bottom: -($mb);
+
+  &::first-letter {
+    float: #{$global-left};
+    margin-top: $-margin-top * 1em;
+    margin-bottom: $-margin-bottom * 1em;
+    margin-#{$global-right}: $-margin-right;
+    font-size: $-font-size * 1em;
+    line-height: 1;
+
+    @if $uppercase {
+      text-transform: uppercase;
+    }
+  }
+}
+
+@mixin foundation-dropcaps {
+  .t-dropcaps {
+    @include dropcaps();
+  }
+}
+
+// .dropcaps {
+//   line-height: 1.6; 
+// }
+
+// .dropcaps::first-letter {
+//   float: left;
+//   margin-top: -0.07301em;
+//   margin-bottom: -0.132em;
+//   margin-right: 0.0962em;
+//   font-size: 5.49438em;
+//   line-height: 1;
+//   text-transform: uppercase; 
+// }

@@ -1,0 +1,32 @@
+.t-link--svg-filter {
+  
+  &-turbulence:hover {
+    filter: url("#turbulenceFilter");
+    filter: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='0' width='0' style='position: absolute;'%3E%3C!--Don't hide this with display: none; or the filter won't show on Firefox! --%3E%3Cfilter id='turbulenceFilter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.01 0.03' numOctaves='2' seed='1337' stitchTiles='noStitch' result='turbulence' /%3E%3CfeDisplacementMap in='SourceGraphic' in2='turbulence' scale='10' xChannelSelector='G' yChannelSelector='A' result='displacementMap' /%3E%3C/filter%3E%3C/svg%3E#turbulenceFilter");
+  }
+
+  &-outline:hover {
+    filter: url("#outlineFilter");
+    filter: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='0' width='0' style='position: absolute;'%3E%3Cfilter id='outlineFilter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeMorphology operator='dilate' radius='2 2' in='SourceAlpha' result='morphology' /%3E%3CfeFlood flood-color='%23072AC8' flood-opacity='1' result='flood' /%3E%3C!--Add your link colour here.--%3E%3CfeComposite in='flood' in2='morphology' operator='in' result='composite' /%3E%3CfeComposite in='composite' in2='SourceAlpha' operator='out' result='composite1' /%3E%3C/filter%3E%3C/svg%3E#outlineFilter");
+  }
+
+  &-dust:hover {
+    filter: url("#dustFilter");
+    filter: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='0' width='0' style='position: absolute;'%3E%3Cfilter id='dustFilter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.8 0.8' numOctaves='2' seed='4' stitchTiles='stitch' result='turbulence' /%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -35 10' in='turbulence' result='colormatrix' /%3E%3C!-- Increase the -35 to get more dust, decrease to get less.--%3E%3CfeComposite in='colormatrix' in2='SourceAlpha' operator='in' result='composite' /%3E%3CfeTurbulence type='turbulence' baseFrequency='0.001 0.001' numOctaves='1' seed='2' stitchTiles='stitch' result='turbulence1' /%3E%3C!-- Change the scale factor of the displacement map until it looks right. --%3E%3CfeDisplacementMap in='composite' in2='turbulence1' scale='3' xChannelSelector='R' yChannelSelector='B' result='displacementMap' /%3E%3C!-- Set the link color below. --%3E%3CfeFlood flood-color='%23072AC8' flood-opacity='1' x='0%25' y='0%25' width='100%25' height='100%25' result='flood' /%3E%3CfeComposite in='flood' in2='displacementMap' operator='in' x='0%25' y='0%25' width='100%25' height='100%25' result='composite1' /%3E%3C/filter%3E%3C/svg%3E#dustFilter");
+  }
+
+  &-horizontal-blur:hover {
+    filter: url("#horizontalBlurFilter");
+    filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='0' width='0' style='position: absolute;'%3E%3Cfilter id='horizontalBlurFilter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeGaussianBlur stdDeviation='20 0' x='-20%25' y='0%25' width='140%25' height='100%25' in='SourceGraphic' edgeMode='none' result='blur' /%3E%3C!--Increase the 20 stdDeviation value for more blur.--%3E%3C!--Increase the x from -20%25 to 0%25 and decrease width to 100%25 to stop the link blurring over other text. --%3E%3C/filter%3E%3C/svg%3E#horizontalBlurFilter");
+  }
+
+  &-vertical-blur:hover {
+    filter: url("#verticalBlurFilter");
+    filter: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='0' width='0' style='position: absolute;'%3E%3Cfilter id='verticalBlurFilter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeGaussianBlur stdDeviation='0 5' x='-10%25' y='-50%25' width='120%25' height='200%25' in='SourceGraphic' edgeMode='none' result='blur' /%3E%3C/filter%3E%3C/svg%3E#verticalBlurFilter");
+  }
+
+  &-colourful-stripe:hover {
+    filter: url("#stripeFilter");
+    filter: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' height='0' width='0' style='position: absolute;'%3E%3Cfilter id='stripeFilter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.03 0' numOctaves='10' seed='3' stitchTiles='stitch' result='turbulence' /%3E%3CfeColorMatrix type='saturate' values='20' in='morphology1' result='colormatrix' /%3E%3CfeFlood flood-color='%23ffeb00' flood-opacity='1' result='flood' /%3E%3CfeComposite in='flood' in2='SourceGraphic' operator='in' result='composite' /%3E%3CfeComposite in='colormatrix' in2='SourceGraphic' operator='in' result='composite1' /%3E%3CfeMerge result='merge'%3E%3CfeMergeNode in='composite' result='mergeNode' /%3E%3CfeMergeNode in='composite1' result='mergeNode1' /%3E%3CfeMergeNode in='composite1' result='mergeNode2' /%3E%3CfeMergeNode in='composite1' result='mergeNode3' /%3E%3CfeMergeNode in='composite1' result='mergeNode4' /%3E%3CfeMergeNode in='composite1' result='mergeNode5' /%3E%3CfeMergeNode in='composite1' result='mergeNode6' /%3E%3C/feMerge%3E%3C/filter%3E%3C/svg%3E#stripeFilter");
+  }
+}

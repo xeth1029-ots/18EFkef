@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+//  Layout -> Radio v2
+// --------------------------------------------------
+
+.t-form-check-groups {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  background-color: $radio-background-color;
+
+  &:not(:last-child) {
+    margin-right: 0.75rem;
+  }
+
+  .t-rad-inp {
+    + .t-rad-lab {
+      padding: 0.75rem ($radio-size * 3) 0.75rem 1.5rem;
+      width: 100%;
+      text-align: left;
+      color: $dark;
+      border-radius: $border-radius;
+
+      @include ceaser-transition(all, 250ms, "easeInOutCubic");
+
+      overflow: hidden;
+      z-index: 2;
+
+      &:after,
+      &:before {
+        content: '';
+        border-radius: 50%;
+        @include ceaser-transition(all, 250ms, "easeInOutCubic");
+      }
+
+      &:before {
+        width: $radio-size / 2;
+        height: $radio-size / 2;
+        background-color: $primary-600;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale3d(1, 1, 1);
+        opacity: 0;
+        z-index: -1;
+      }
+
+      &:after {
+        width: $radio-size + 0.25rem;
+        height: $radio-size + 0.25rem;
+        border: $radio-item-border-w solid $border;
+        background-color: $white;
+
+        @include svg-bg-icon(checked, $white, center, 80%);
+
+        z-index: 2;
+        right: 1rem;
+
+        @include absolute-y-center;
+      }
+    }
+  }
+
+  .t-rad-inp:checked + .t-rad-lab {
+    color: $white;
+
+    &:before {
+      transform: translate(-50%, -50%) scale3d(56, 56, 1);
+      opacity: 1;
+    }
+
+    &:after {
+      background-color: $tertiary;
+      border-color: rgba($white, 0.12);
+    }
+  }
+}

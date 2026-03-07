@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+// SVG Icon
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin svg-variant($parent, $color) {
+  #{$parent} {
+    fill: $color !important;
+  }
+}
+
+@mixin svg-icon-color($color, $important: false) {
+  svg {
+    [fill]:not(.permanent):not(g) {
+      // @extend %svg-transition;
+
+      fill: $color valueif($important, !important, null);
+    }
+
+    &:hover {
+      [fill]:not(.permanent):not(g) {
+        // @extend %svg-transition;
+      }
+    }
+  }
+}
+
+@mixin svg-icon-transition {
+  svg {
+    [fill]:not(g) {
+      // @extend %svg-transition;
+    }
+  }
+}
+
+@mixin svg-icon-size($size, $important: false) {
+  svg {
+    height: $size valueif($important, !important, null);
+    width: $size valueif($important, !important, null);
+  }
+}

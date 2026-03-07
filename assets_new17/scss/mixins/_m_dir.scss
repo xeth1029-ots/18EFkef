@@ -1,0 +1,234 @@
+@charset "utf-8";
+
+//   Mixins > dirs
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+/// Transforms shorthand to its shortest possible form.
+///
+/// @argument {list} $values
+///   List of directional values.
+///
+/// @example scss
+///   $values: _compact-shorthand(10px 20px 10px 20px);
+///
+///   // Output
+///   $values: 10px 20px;
+///
+/// @return {list}
+///
+/// @access private
+
+@function _compact-shorthand($values) {
+  $output: null;
+
+  $a: nth($values, 1);
+  $b: if(length($values) < 2, $a, nth($values, 2));
+  $c: if(length($values) < 3, $a, nth($values, 3));
+  $d: if(length($values) < 2, $a, nth($values, if(length($values) < 4, 2, 4)));
+
+  @if $a == 0 { $a: 0; }
+  @if $b == 0 { $b: 0; }
+  @if $c == 0 { $c: 0; }
+  @if $d == 0 { $d: 0; }
+
+  @if $a == $b and $a == $c and $a == $d {
+    $output: $a;
+  } @else if $a == $c and $b == $d {
+    $output: $a $b;
+  } @else if $b == $d {
+    $output: $a $b $c;
+  } @else {
+    $output: $a $b $c $d;
+  }
+
+  @return $output;
+}
+
+/// Builds directional properties by parsing CSS shorthand values. For example,
+/// a value of `10px null` will output top and bottom directional properties,
+/// but the `null` skips left and right from being output.
+///
+/// @argument {string} $property
+///   Base property.
+///
+/// @argument {string} $suffix
+///   Suffix to append. Use `null` to omit.
+///
+/// @argument {list} $values
+///   List of values to set for the property.
+///
+/// @example scss
+///   .element {
+///     @include _directional-property(border, width, null 5px);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     border-right-width: 5px;
+///     border-left-width: 5px;
+///   }
+///
+/// @require {function} _compact-shorthand
+///
+/// @require {function} _contains-falsy
+///
+/// @access private
+
+@mixin _directional-property(
+  $property,
+  $suffix,
+  $values
+) {
+  $top: $property + "-top" + if($suffix, "-#{$suffix}", "");
+  $bottom: $property + "-bottom" + if($suffix, "-#{$suffix}", "");
+  $left: $property + "-left" + if($suffix, "-#{$suffix}", "");
+  $right: $property + "-right" + if($suffix, "-#{$suffix}", "");
+  $all: $property + if($suffix, "-#{$suffix}", "");
+
+  $values: _compact-shorthand($values);
+
+  @if _contains-falsy($values) {
+    @if nth($values, 1) { #{$top}: nth($values, 1); }
+
+    @if length($values) == 1 {
+      @if nth($values, 1) { #{$right}: nth($values, 1); }
+    } @else {
+      @if nth($values, 2) { #{$right}: nth($values, 2); }
+    }
+
+    @if length($values) == 2 {
+      @if nth($values, 1) { #{$bottom}: nth($values, 1); }
+      @if nth($values, 2) { #{$left}: nth($values, 2); }
+    } @else if length($values) == 3 {
+      @if nth($values, 3) { #{$bottom}: nth($values, 3); }
+      @if nth($values, 2) { #{$left}: nth($values, 2); }
+    } @else if length($values) == 4 {
+      @if nth($values, 3) { #{$bottom}: nth($values, 3); }
+      @if nth($values, 4) { #{$left}: nth($values, 4); }
+    }
+  } @else {
+    #{$all}: $values;
+  }
+}
+/// Transforms shorthand that can range from 1-to-4 values to be 4 values.
+///
+/// @argument {list} $shorthand
+///
+/// @example scss
+///   .element {
+///     margin: _unpack-shorthand(1em 2em);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     margin: 1em 2em 1em 2em;
+///   }
+///
+/// @access private
+
+@function _unpack-shorthand($shorthand) {
+  @if length($shorthand) == 1 {
+    @return nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1);
+  } @else if length($shorthand) == 2 {
+    @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 1) nth($shorthand, 2);
+  } @else if length($shorthand) == 3 {
+    @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 3) nth($shorthand, 2);
+  } @else {
+    @return $shorthand;
+  }
+}
+
+
+/// Programatically determines the lightness of a color.
+///
+/// @argument {color (hex)} $hex-color
+///
+/// @return {number (0-1)}
+///
+/// @example scss
+///   _lightness($color)
+///
+/// @access private
+
+@function _lightness($hex-color) {
+  $-local-red-raw: red(rgba($hex-color, 1));
+  $-local-green-raw: green(rgba($hex-color, 1));
+  $-local-blue-raw: blue(rgba($hex-color, 1));
+
+  $-local-red: _gamma($-local-red-raw / 255);
+  $-local-green: _gamma($-local-green-raw / 255);
+  $-local-blue: _gamma($-local-blue-raw / 255);
+
+  @return $-local-red * 0.2126 + $-local-green * 0.7152 + $-local-blue * 0.0722;
+}
+
+
+/// Performs gamma correction on a single color channel.
+///
+/// Note that the calculation is approximate if a `pow()` is not available.
+///
+/// @argument {number (0-1)} $channel
+///
+/// @return {number (0-1)}
+///
+/// @access private
+
+@function _gamma($channel) {
+  @if $channel < 0.03928 {
+    @return $channel / 12.92;
+  } @else {
+    $c: ($channel + 0.055) / 1.055;
+    @if function-exists("pow") {
+      @return pow($c, 2.4);
+    } @else {
+      @return 0.56 * $c * $c * $c + 0.44 * $c * $c;
+    }
+  }
+}
+
+
+/// Return a Bourbon setting.
+///
+/// @argument {string} $setting
+///
+/// @return {boolean | color | list | number | string}
+///
+/// @example scss
+///   _fetch-bourbon-setting(rails-asset-pipeline)
+///
+/// @access private
+
+@function _fetch-bourbon-setting($setting) {
+  @return map-get(map-merge($_bourbon-defaults, $bourbon), $setting);
+}
+
+
+/// Programatically determines the contrast ratio between two colors.
+///
+/// Note that the alpha channel is ignored.
+///
+/// @link https://goo.gl/54htLV
+///
+/// @argument {color (hex)} $color-1
+///
+/// @argument {color (hex)} $color-2
+///
+/// @return {number (1-21)}
+///
+/// @example scss
+///   _contrast-ratio(black, white)
+///
+/// @require {function} _lightness
+///
+/// @access private
+
+@function _contrast-ratio($color-1, $color-2) {
+  $-local-lightness-1: _lightness($color-1) + 0.05;
+  $-local-lightness-2: _lightness($color-2) + 0.05;
+
+  @if $-local-lightness-1 > $-local-lightness-2 {
+    @return $-local-lightness-1 / $-local-lightness-2;
+  } @else {
+    @return $-local-lightness-2 / $-local-lightness-1;
+  }
+}
+

@@ -1,0 +1,277 @@
+﻿@using WKEFSERVICE.Models;
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    SessionModel sm = SessionModel.Get();
+    string LoginTag = "1";
+    if (sm.UserInfo != null)
+    {
+        LoginTag = sm.UserInfo.LoginCharacter;
+    }
+}
+
+<form action="" class="form-horizontal" id="main_form" method="post">
+    <!-- breadcrumbs -->
+    <section class="t-breadcrumbs-section">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <ul class="t-breadcrumbs">
+                    <li class="t-breadcrumbs-item">
+                        <a href="#C" title="中央功能區塊, 快速鍵: Alt+C " id="AC" accesskey="C" name="C" class="quicklink t-header-top-list-link">:::</a>
+                        目前位置：<a class="t-link" href="~/" title="回首頁">首頁</a>
+                    </li>
+                    <li class="t-breadcrumbs-item">網站導覽</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- searchBar -->
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <!--<div class="mask mask_noise_sm"></div>-->
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <div class="bt-section-heading">網站導覽</div>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                <div class="t-form t-txt-left ">
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <ul style="list-style-type:none;padding:0 0 0 20px; margin:0 0 0 0">
+                                                本網站主要內容分為三大區塊：
+                                                <li>
+                                                    <ul>
+                                                        <li>1.上方功能區塊</li>
+                                                        <li>2.中央功能區塊</li>
+                                                        <li>3.下方功能區塊</li>
+                                                    </ul>
+                                                    <br>
+                                                </li>
+                                                本網站提供定位點快速鍵﹝Accesskey﹞說明設定如下：
+                                                <br />
+                                                使用者可以利用鍵盤上的特定組合鍵，快速跳轉至網頁上的主要功能區塊，以提升瀏覽效率。
+                                                <br />
+                                                請注意：快速鍵組合會因您使用的瀏覽器和作業系統而有所不同。
+                                                <li>
+                                                    <ul>
+                                                        <li>Alt+U：上方功能區塊，此區塊列有本網站主要連結。</li>
+                                                        <li>Alt+C：中央功能區塊，為本頁主要內容區。</li>
+                                                        <li>Alt+L：下方功能區塊，頁尾網站資訊。</li>
+                                                    </ul>
+                                                    <br>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <ul style="width:auto">
+                                                <li class="list-checked-item">
+                                                    <a href="~/A1/C102M/Index" title="前往：1.訊息公告">1.訊息公告</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <ul style="width:auto">
+                                                <li class="list-checked-item">
+                                                    <a href="~/Home/Temp_IntroCourse" title="前往：2.課程介紹">2.課程介紹</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <ul style="width:auto">
+                                                <li class="list-checked-item">
+                                                    <a href="~/A1/C101M/Ipresent" title="前往：3.師資介紹">3.師資介紹</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <ul style="width:auto">
+                                                <li class="list-checked-item">
+                                                    <a href="~/Home/Login" title="前往：4.登入">4.登入</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @*<div class="row"><br></div>*@
+                                    @*<div class="row"></div>*@
+                                    <br />
+                                    @if (LoginTag == "2")
+                                    {
+                                        <div class="row">
+                                            <br>教師專區
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexTeacher" title="前往：1. 基本資料">1. 基本資料</a>
+                                                        <ul>
+                                                            <li><a href="~/A2/C201M" title="前往：1.1. 基本資料維護">1.1. 基本資料維護</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexTeacher" title="前往：2. 會議報名管理">2. 會議報名管理</a>
+                                                        <ul>
+                                                            <li><a href="~/A2/C301M" title="前往：2.1. 會議查詢與報名">2.1. 會議查詢與報名</a></li>
+                                                            <li><a href="~/A2/C302M" title="前往：2.2. 已報名會議管理">2.2. 已報名會議管理</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexTeacher" title="前往：3. 報告管理">3. 報告管理</a>
+                                                        <ul>
+                                                            <li><a href="~/A2/C501M" title="前往：3.1. 教學自我審核報告">3.1. 教學自我審核報告</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (LoginTag == "3")
+                                    {
+                                        <div class="row">
+                                            <br>分署專區
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexBranch" title="前往：1. 系統管理">1. 系統管理</a>
+                                                        <ul>
+                                                            <li><a href="~/A3/C101M" title="前往：1.1. 公告維護">1.1. 公告維護</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexBranch" title="前往：2. 師資管理">2. 師資管理</a>
+                                                        <ul>
+                                                            <li><a href="~/A3/C201M" title="前往：2.1. 教師資料設定">2.1. 教師資料設定</a></li>
+                                                            @*<li><a href="~/A3/C202M" title="前往：2.2. 教學自我審核報告">2.2. 教學自我審核報告</a></li>*@
+                                                            <li><a href="~/A3/C204M" title="前往：2.2. 教學自我審核報告">2.2. 教學自我審核報告</a></li>
+                                                            <li><a href="~/A3/C205M" title="前往：2.3. 教師授課資料">2.3. 教師授課資料</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexBranch" title="前往：3. 會議管理">3. 會議管理</a>
+                                                        <ul>
+                                                            <li><a href="~/A3/C401M" title="前往：3.1. 會議報名管理">3.1. 會議報名管理</a></li>
+                                                            <li><a href="~/A3/C402M" title="前往：3.2. 出席名單管理">3.2. 出席名單管理</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <br>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexBranch" title="前往：4. 資料匯出">4. 資料匯出</a>
+                                                        <ul>
+                                                            <li><a href="~/A3/C501M" title="前往：4.1. 教師資料明細">4.1. 教師資料明細</a></li>
+                                                            <li><a href="~/A3/C502M" title="前往：4.2. 師資授課情形統計表">4.2. 師資授課情形統計表</a></li>
+                                                            <li><a href="~/A3/C503M" title="前往：4.3. 滿意度調查表">4.3. 滿意度調查表</a></li>
+                                                            <li><a href="~/A3/C504M" title="前往：4.4. 年度評核結果總表">4.4. 年度評核結果總表</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (LoginTag == "4")
+                                    {
+                                        <div class="row">
+                                            <br>管理者專區
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexAdmin" title="前往：1. 系統管理">1. 系統管理</a>
+                                                        <ul>
+                                                            <li><a href="~/AM/C101M" title="前往：1.1. 帳號管理">1.1. 帳號管理</a></li>
+                                                            <li><a href="~/AM/C102M" title="前往：1.2. 群組管理">1.2. 群組管理</a></li>
+                                                            <li><a href="~/AM/C104M" title="前往：1.3. 公告維護">1.3. 公告維護</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexAdmin" title="前往：2. 師資管理">2. 師資管理</a>
+                                                        <ul>
+                                                            <li><a href="~/AM/C201M" title="前往：2.1. 教師資料設定">2.1. 教師資料設定</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexAdmin" title="前往：3. 會議管理">3. 會議管理</a>
+                                                        <ul>
+                                                            <li><a href="~/AM/C301M" title="前往：3.1. 會議報名管理">3.1. 會議報名管理</a></li>
+                                                            <li><a href="~/AM/C302M" title="前往：3.2. 出席名單管理">3.2. 出席名單管理</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <br>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <ul style="width:auto">
+                                                    <li class="list-checked-item">
+                                                        <a href="~/Backend/indexAdmin" title="前往：4. 資料匯出">4. 資料匯出</a>
+                                                        <ul>
+                                                            <li><a href="~/AM/C401M" title="前往：4.1. 教師資料明細">4.1. 教師資料明細</a></li>
+                                                            <li><a href="~/AM/C402M" title="前往：4.2. 師資授課情形統計表">4.2. 師資授課情形統計表</a></li>
+                                                            <li><a href="~/AM/C403M" title="前往：4.3. 滿意度調查表">4.3. 滿意度調查表</a></li>
+                                                            <li><a href="~/AM/C404M" title="前往：4.4. 年度評核結果總表">4.4. 年度評核結果總表</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    }
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="col-sm-12">
+                    <div class="t-panel" style="margin-top: 0px;">
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

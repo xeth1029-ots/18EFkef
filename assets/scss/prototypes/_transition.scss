@@ -1,0 +1,48 @@
+//
+//  Components -> transition 
+// --------------------------------------------------
+.fade {
+  @include transition($transition-fade);
+
+  &:not(.show) {
+    opacity: 0;
+  }
+}
+
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+
+  @include transition($transition-collapse);
+}
+
+.t-grow-in {
+  animation-name: growIn;
+  animation-duration: .2s;
+  animation-timing-function: transform cubic-bezier(.18, 1.25, .4, 1), opacity cubic-bezier(0, 1, .4, 1)
+}
+
+.t-fade-in {
+  animation-name: fadeIn;
+  animation-duration: .2s;
+  animation-timing-function: opacity cubic-bezier(0, 1, .4, 1)
+}
+
+@keyframes growIn {
+  0% {
+    transform: scale(.9);
+    opacity: 0
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1
+  }
+}

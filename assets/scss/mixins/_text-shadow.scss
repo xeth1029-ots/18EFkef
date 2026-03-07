@@ -1,0 +1,191 @@
+// text-shadow: long-shadow($depth: 6, $shadowColor: rgba($dark, 0.08))
+
+@function long-shadow($depth: 10, $shadowColor: rgba($dark, 0.08)) {
+  $shadow: -1px 1px $shadowColor;
+  @for $i from 1 through $depth {
+    $shadow: #{$shadow}, #{$i}px #{$i}px #{$shadowColor}
+  }
+  @return $shadow;
+}
+
+
+// @include text-shaded($size: 1px, $shadow: $primary ,$through: 10);
+@mixin text-shaded($size: 1px, $shadow: $primary ,$through: 10) {
+  	font-weight: 700;
+    // --shadow-color: $color;
+    $value: ();
+	  @for $i from 1 through $through {
+	    $num: $i * $size;
+	    $theShadow: #{-$num} $num $shadow;
+	    $value: append($value, $theShadow, comma);
+	  }
+	  text-shadow: $value;
+}
+
+
+@mixin text-emboss($color: $primary, $depth: 2) {
+  font-weight: 700; 
+  // color: $color;
+  text-shadow: 
+    0 ($depth * 0.01em) ($depth * 0.01em) lighten($color, 15%),
+    
+    0 ($depth * 0.01em) ($depth * 0.00em) darken($color, 10%),
+    0 ($depth * 0.02em) ($depth * 0.00em) darken($color, 11%),
+    0 ($depth * 0.03em) ($depth * 0.01em) darken($color, 12%),
+    0 ($depth * 0.04em) ($depth * 0.02em) darken($color, 13%),
+    0 ($depth * 0.05em) ($depth * 0.03em) darken($color, 14%),
+    0 ($depth * 0.06em) ($depth * 0.03em) darken($color, 15%),
+    0 ($depth * 0.07em) ($depth * 0.02em) darken($color, 16%),
+    0 ($depth * 0.08em) ($depth * 0.01em) darken($color, 17%),
+    0 ($depth * 0.09em) ($depth * 0.00em) darken($color, 18%),
+    0 ($depth * 0.10em) ($depth * 0.00em) darken($color, 19%),
+    
+    0 ($depth * 0.10em) ($depth * 0.04em) rgba($dark, 0.2),
+    0 ($depth * 0.10em) ($depth * 0.08em) rgba($dark, 0.4),
+    0 ($depth * 0.10em) ($depth * 0.12em) rgba($dark, 0.6),
+    
+    0 ($depth * 0.14em) ($depth * 0.10em) rgba($dark, 0.2),
+    0 ($depth * 0.18em) ($depth * 0.10em) rgba($dark, 0.2);
+  
+}
+
+@mixin text-emboss-v2($color: $primary, $depth: 2) {
+  font-weight: 700; 
+  // color: $color;
+  text-shadow: 
+    0 ($depth * 0.01em) ($depth * 0.01em) lighten($color, 15%),
+    0 ($depth * 0.01em) ($depth * 0.00em) darken($color, 10%),
+    0 ($depth * 0.02em) ($depth * 0.00em) darken($color, 11%),
+    0 ($depth * 0.03em) ($depth * 0.01em) darken($color, 12%),
+    0 ($depth * 0.04em) ($depth * 0.02em) darken($color, 13%),
+    0 ($depth * 0.05em) ($depth * 0.03em) darken($color, 14%),
+    
+    0 ($depth * 0.10em) ($depth * 0.04em) rgba($dark, 0.12),
+    0 ($depth * 0.10em) ($depth * 0.08em) rgba($dark, 0.32),
+    0 ($depth * 0.18em) ($depth * 0.10em) rgba($dark, 0.12);
+  
+}
+  // text-shadow 
+  // rgb(230, 173, 51) -2.88px -2.88px 0px, 
+  // rgb(244, 219, 164) -4.8px -4.8px 0px, 
+  // rgb(159, 115, 20) -0.96px -0.96px 0px
+
+// @mixin text-3d($size: 1px, $shadow: $primary , $through: 6) {
+//     font-weight: 700;
+//     @for $i from 1 through $through {
+//       $num: $i * $size;
+//       $theShadow: 0 $num $shadow;
+//       $value: append($value, $theShadow, comma);
+//     }
+//     text-shadow: $value;
+//   text-shadow: 
+//     0 1px 0 hsl(0, 0%, 80%), 
+//     0 2px 0 hsl(0, 0%, 75%),
+//     0 3px 0 hsl(0, 0%, 70%), 
+//     0 4px 0 hsl(0, 0%, 65%), 
+//     0 5px 0 hsl(0, 0%, 60%),
+//     0 6px 0 hsl(0, 0%, 55%), 
+
+//     0 7px 1px hsla(0, 0%, 0%, 20%),
+
+//     0 0 5px hsla(0, 0%, 0%, 10%), 
+//     0 1px 3px hsla(0, 0%, 0%, 30%),
+//     0 3px 5px hsla(0, 0%, 0%, 20%), 
+//     0 5px 10px hsla(0, 0%, 0%, 25%),
+//     0 10px 10px hsla(0, 0%, 0%, 20%), 
+//     0 25px 25px hsla(0, 0%, 0%, 15%);
+// }
+
+
+$LIGHTING_FLOOR: 1;
+$LIGHTING_CEIL: 2;
+$LIGHTING_FLAT: 3;
+
+@mixin text-3d(
+  $color: $primary,
+  $depth: 5,
+  $shadowsteps: 5,
+  $shadowincrementer: .1875rem,
+  $shadowopacity: .5,
+  $colorShadow: $dark,
+  $lighting: $LIGHTING_CEIL) {
+
+  $predefinedShadows: (
+    0 0 4px rgba($colorShadow, .04), 
+    0 -1px 3px rgba($colorShadow, .18), 
+    0 4px 6px rgba($colorShadow, .18));
+  
+  $value: ();
+  @for $i from 1 through $depth {
+    $num: $i + px;
+    $hueadjust: $i;
+    @if($lighting == $LIGHTING_FLOOR) {
+      $hueadjust: ($i * 2 - $depth - 5) * 1%;
+    }
+    @else if($lighting == $LIGHTING_CEIL) {
+      $hueadjust: -($i * 2 + $depth - 10) * 1%;
+    }
+    @else if($lighting == $LIGHTING_FLAT) {
+      $hueadjust: -$depth * 1%;
+    }
+    $colour: adjust-color($color, $lightness: $hueadjust);
+    $theShadow: 0 $num 0 $colour;
+    $value: append($value, $theShadow, comma);
+  }
+  @for $i from 1 through $shadowsteps {
+    @if($i >=length($predefinedShadows)) {
+      $dist: $i * $shadowincrementer;
+      $value: append($value, 0 $dist $dist rgba($colorShadow, $shadowopacity));
+    }
+    @else {
+      $value: append($value, nth($predefinedShadows, $i));
+    }
+  }
+  text-shadow: $value;
+}
+
+// @include heading-shadow-v1($color-1: $danger, $color-2: $dark);
+@mixin heading-shadow-v1($color-1: $danger, $color-2: $dark) {
+  font-weight: 700;
+  $value: ();
+  @for $i from 1 through $through {
+    $num: $i * $size;
+    $theShadow: #{-$num} $num $shadow;
+    $value: append($value, $theShadow, comma);
+  }
+  text-shadow: $value;
+  text-shadow: 
+  0px 1px $color-1, 
+  1px 2px $color-1, 
+  2px 3px $color-1,
+  3px 4px $color-1, 
+  4px 5px $color-1,
+  8px 9px rgba($color-2, 0.12);
+}
+
+// @include heading-shadow-v2($color: $dark);
+@mixin heading-shadow-v2($color: $primary) {
+  font-weight: 700;
+  text-shadow: 
+  0 0.1em 20px $color, 
+  0.05em -0.03em 0 $color,
+  0.05em 0.005em 0 $color, 
+  0em 0.08em 0 $color, 
+  0.05em 0.08em 0 $color,
+  0px -0.03em 0 $color, 
+  -0.03em -0.03em 0 $color, 
+  -0.03em 0.08em 0 $color,
+  -0.03em 0 0 $color;
+}
+
+// @include heading-shadow-v3($color: $primary, $shadow: darken($primary, 16%));
+@mixin heading-shadow-v3($color: $primary, $shadow: darken($primary, 16%),$through: 24) {
+  color: $color;
+  $value: ();
+  @for $i from 1 through $through {
+    $num: $i * 0.25 + px;
+    $theShadow: $num $num $shadow;
+    $value: append($value, $theShadow, comma);
+  }
+  text-shadow: $value;
+}

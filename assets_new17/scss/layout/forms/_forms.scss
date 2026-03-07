@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+//  Layout -> Forms 
+// --------------------------------------------------
+.t-form {
+
+  padding: 1.25rem 0;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.t-form-btn-bt-row{
+      display: flex;
+    gap: 0.5rem;
+    padding-top: 1rem;
+}
+.t-form-input-field {
+  .t-form-group {
+    >label {
+      font-size: 0.75rem;
+      position: absolute;
+      pointer-events: none;
+      transition: $transition-input;
+      z-index: 1;
+      margin-bottom: 0;
+      left: auto;
+      top: 0.5rem;
+      right: 0.75rem;
+    }
+
+    .t-form-control {
+      padding: $field-input-control-padding;
+
+      @include focus {
+        +label {
+          color: $primary;
+          left: $input-label-field-left * 1.625;
+          right: auto;
+        }
+      }
+    }
+  }
+}
+
+.t-form-group {
+  position: relative;
+  display: flex;
+  margin-bottom: $form-group-margin-bottom;
+
+  >label {
+    font-size: $form-label-font-size;
+    display: block;
+    font-weight: $form-label-font-weight;
+    margin-bottom: $form-label-margin-bottom;
+  }
+}
+
+.t-form-col {
+  position: relative;
+
+  @include in-bk-mid;
+}
+
+.t-form-legend {
+  font-weight: $form-legend-font-weight;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.t-form-inline {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  // flex-wrap: wrap;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+ 
+  .t-form-group {
+    // flex: 1 1 45%;
+    flex: 1 1 auto;
+  }
+}
+
+.t-form-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  >.t-form-group {
+    max-width: 100%;
+    flex: 0 0 auto;
+    width: auto;
+  }
+}

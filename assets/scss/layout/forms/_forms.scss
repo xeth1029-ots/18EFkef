@@ -1,0 +1,257 @@
+//
+//  Layout -> Forms 
+// --------------------------------------------------
+// input-label-field
+$input-label-field-size: 0.875rem;
+$input-label-field-top: 0.625rem;
+$input-label-field-left: 1.5rem;
+$input-control-padding: 2.25rem 1.25rem 0.875rem 1.25rem;
+
+%t-form-control {
+  background-color: $white;
+  border: $input-btn-border-width solid $border;
+
+  @include border-radius($input-btn-radius);
+
+  font-size: $input-btn-font-size;
+  padding: $input-btn-padding-y $input-btn-padding-x;
+  transition: $transition-input;
+
+  @include placeholder;
+}
+
+.t-form-control {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  @extend %t-form-control;
+
+  text-align: left;
+  text-align-last: left;
+
+  @include focus {
+    border-color: rgba($primary, 0.88);
+    box-shadow: 0 0 0 4px rgba($primary, 0.24);
+  }
+
+
+  @include disabled {
+    cursor: not-allowed;
+  }
+
+
+  @include disabled-readonly {
+    opacity: .66;
+    border: 2px solid $border;
+  }
+
+
+  &[type="number"] {
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &:hover,
+    &:focus {
+      appearance: number-input;
+    }
+  }
+
+  @at-root select#{&} {
+    appearance: none;
+    @include svg-bg-icon(arrow-bottom, $primary, right 1rem center, 1.25rem 50%);
+    cursor: pointer;
+    padding-right: 3.5rem;
+    user-select: none;
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  &--md {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+  }
+
+  &.is-valid {
+    padding-right: 2.75rem;
+    border-color: $success;
+  }
+
+  &.is-invalid {
+    padding-right: 2.75rem;
+    border-color: $danger;
+  }
+}
+
+.t-form {
+
+  &.t-form-input-field {
+    .t-form-group {
+      >label {
+        font-size: $input-label-field-size;
+        position: absolute;
+        top: $input-label-field-top;
+        left: $input-label-field-left;
+        pointer-events: none;
+        transition: $transition-input;
+        z-index: 1;
+        margin-bottom: 0;
+      }
+
+      .t-form-control {
+        padding: $input-control-padding;
+      }
+    }
+  }
+
+  .t-form-group {
+    position: relative;
+    margin: 0 0.5rem 1.5rem;
+
+    >label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: .625rem;
+    }
+  }
+
+  .t-form-check {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .t-form-col {
+    position: relative;
+    @include in-bk-mid;
+  }
+
+  .t-form-legend {
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.t-form-inline {
+  display: inline-flex;
+
+  .t-form-group {
+    flex: 1 1 auto;
+        margin-right: 0.75rem;
+  }
+}
+
+[data-required]{
+  &:after{
+    content: '* ';
+    font-size: 1.25rem;
+    position: absolute;
+    left: 0.125rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $danger;
+  }
+}
+.shell {
+  position: relative;
+  line-height: 1;
+  span {
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  color: $lightgrey;
+  pointer-events: none;
+  z-index: -1;
+    i { 
+        color: transparent;
+        opacity: 0;
+        visibility: hidden;
+    }
+  }
+}
+// :invalid {
+//   outline: 1px solid red;
+// }
+[data-tu-mask],
+.shell span {
+  font-size: 1rem;
+  font-family: monospace;
+  padding-right: 0.75rem 1.8125rem;
+  background-color: transparent;
+  text-transform: uppercase;
+}
+
+
+
+// li {
+//   line-height: 2;
+//   font-family: helvetica;
+//   list-style-type: none;
+//   border-bottom: 1px solid #ccc;
+// }
+// label { 
+//   display: inline-block;
+//   width: 14em;
+// }
+// input {
+//   border: none;
+// }
+
+
+// textarea {
+//   appearance: none;
+//   position: relative;
+//   background-color: $dark--neu-background;
+//   border: 2px solid rgba($white, 0);
+//   border-radius: 12px;
+//   box-shadow: $dark--neu-shadows;
+//   color: rgba($white, 0.72);
+//   font-size: 1.125rem;
+//   height: calc(100% + 4px);
+//   width: 100%;
+//   outline: 0 solid rgba($primary-100, 0.08);
+//   padding: 1rem 1.5rem;
+//   transition: all 0.125s ease-in-out;
+
+//   &:focus {
+//     background-color: $dark--neu-background-focus;
+//     box-shadow: $dark--neu-shadows-focus;
+//     outline: 4px solid rgba($primary-100, 0.02);
+//     outline-offset: 0;
+//   }
+
+//   &[disabled],
+//   &[readonly] {
+//     background-color: $dark--neu-background-disabled;
+//     opacity: 0.66;
+//     box-shadow: $dark--neu-shadows-focus-disabled;
+//     border: 2px solid rgba($white, 0.02);
+//   }
+
+//   &::placeholder {
+//     color: $dark--neu-placeholder;
+//   }
+
+//   &[type="number"] {
+//     appearance: textfield;
+
+//     &::-webkit-outer-spin-button,
+//     &::-webkit-inner-spin-button {
+//       appearance: none;
+//       margin: 0;
+//     }
+
+//     &:hover,
+//     &:focus {
+//       appearance: number-input;
+//     }
+//   }
+// }

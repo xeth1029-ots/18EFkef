@@ -1,0 +1,178 @@
+﻿@using WKEFSERVICE.Models
+@{
+    SessionModel sm = SessionModel.Get();
+}
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <title>勞動部勞動力發展署｜關鍵就業力網站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="勞動部勞動力發展署｜關鍵就業力網站">
+    <meta name="keywords" content="勞動部勞動力發展署,關鍵就業力網站">
+    <meta name="author" content="東柏資訊">
+    <meta name="copyright" content="本網頁著作權屬勞動部勞動力發展署所有">
+
+    @*antiClickjack*@
+    <style id="antiClickjack" type="text/css">
+        html { display: none; }
+        body { display: none !important; background-color: #ffffff; }
+    </style>
+    <script type="text/javascript">
+        //解決不支援 X-Frame-Options設定，需額外判斷 //if (top != self) { top.location = self.location; }
+        if (self === top || self == top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            if (antiClickjack) { antiClickjack.parentNode.removeChild(antiClickjack); }
+            document.documentElement.style.display = 'block';
+        }
+        else {
+            top.location = self.location;
+        }
+        if (parent.document.frames != undefined && parent.document.frames.length != 0) {
+            top.location.replace(self.location);
+        }
+    </script>
+
+    @Styles.Render("~/Content/jquery")
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/css/base")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery-ui.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*Scripts.Render("~/bundles/jqueryval")*@
+    <!--20180827 加入解決 IE 10 以下不支援 CSS3 pointer-events:none 設定問題（https://github.com/kmewhort/pointer_events_polyfill）-->
+    @Scripts.Render("~/Scripts/polyfill/pointer_events_polyfill.js")
+    @Scripts.Render("~/bundles/globaljs")
+    @Scripts.Render("~/Scripts/ckeditor/ckeditor.js")
+
+    <style type="text/css">
+        .loading-mask { display: none; text-align: center; padding-top: 10px; }
+        .processing-text { text-align: center; height: 42px; color: burlywood; }
+        .white-background { background-color: #fff; }
+        .hidden-form { display: none; }
+    </style>
+    <script type="text/javascript">
+        @* 前一個頁面最後錯誤或結果訊息 *@
+        var lastErrorMessage = '@Html.Raw(sm.LastErrorMessage)';
+        var lastResultMessage = '@Html.Raw(sm.LastResultMessage)';
+        var redirectUrl = '@Html.Raw(sm.RedirectUrlAfterBlock)';
+
+        function RedirectAfterPopup () {
+            if (redirectUrl) {
+                @*有指定 RedirectUrlAfterBlock, 進行重導動作 *@
+                var form = $("form[name=RedirAfterBlockResult]");
+                var p = redirectUrl.indexOf("?");
+                if (p > 0) {
+                    var parms = redirectUrl.substring(p + 1).split("&");
+                    redirectUrl = redirectUrl.substring(0, p);
+                    for (var i = 0; i < parms.length; i++) {
+                        var ptoken = parms[i].split("=");
+                        if (ptoken.length == 2) {
+                            var input = document.createElement("input");
+                            $(input).attr("type", "hidden");
+                            $(input).attr("name", ptoken[0]);
+                            $(input).attr("value", ptoken[1]);
+
+                            form.append(input);
+                        }
+                        else {
+                            debugTrace("RedirectUrlAfterBlock: parameter syntax error '" + parms[i] + "'");
+                        }
+                    }
+                }
+                form.attr("action", redirectUrl);
+                form.submit();
+            }
+            else {
+                //20180530 加入使用 HTTP Get 方式導向指定網址
+                redirectUrl = "@Html.Raw(sm.RedirectUrlAfterBlockViaGet)";
+                if (redirectUrl.length > 0) location.href = redirectUrl;
+            }
+        }
+
+        //20181002 增加在顯示錯誤訊息之後要呼叫的網頁端 Javascript 方法
+        function raiseLastErrorMessageCallback() {
+            try {
+                func = window["lastErrorMessageCallback"];
+                if (typeof func === "function") func();
+            }
+            catch (ex) {
+                alert(ex.message);
+            }
+        }
+
+        $(document).ready(function () {
+            //20180827 加入解決 IE 10 以下不支援 CSS3 pointer-events:none 設定問題
+            PointerEventsPolyfill.initialize({});
+
+            //20180902 加入可拖放對話盒設定
+            $(".modal-dialog").draggable({ handle: ".modal-header", "cursor": "move" });
+
+            @* blockUI 引用的 loading image // globalSetting.processingImg = "@Url.Content("~/images/processing.gif")";*@
+            @* 前一個頁面最後錯誤或結果訊息 popup 處理*@
+            if (lastErrorMessage) {
+                blockAlert(lastErrorMessage, "錯誤訊息", function () {
+                    raiseLastErrorMessageCallback();
+                    RedirectAfterPopup();
+                });
+            }
+            else if (lastResultMessage) {
+                blockMessage(lastResultMessage, null, function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else {
+                @* 前一個表單 Post 後的 Validation Summary 訊息顯示 *@
+                var IsValid = '@(ViewData.ModelState.IsValid)';
+                var validationMsg = $("#ValidationSummary").html();
+                if (IsValid == 'False' && validationMsg) {
+                    blockAlert(validationMsg, "表單檢核訊息", function() {
+                        raiseLastErrorMessageCallback();
+                    });
+                }
+                else {
+                    raiseLastErrorMessageCallback();
+                }
+            }
+
+            @*binding OnlineHelp button's click*@
+            $("input[type=button][data-role=OnlineHelp]").click(function () {
+                popupHelp();
+            });
+        });
+    </script>
+    @Html.Partial("_PagingLink_js")
+</head>
+<body>
+    <div class="bodybg">
+        <div class="container-fluid">
+            <!-- page body start -->
+            @RenderBody()
+            <!-- page body end -->
+        </div>
+    </div>
+    @Html.Partial("_CommonDialog")
+
+    @Html.Partial("_DatePickerTW")
+
+    @*Loading Mask*@
+    <div id="loadingMask" class="loading-mask">
+        <img src="~/images/processing.gif" width="90" alt="processing" /><br />
+        <div class="processing-text">處理中...</div>
+    </div>
+
+    @* Validation Summary *@
+    <div class="hide" id="ValidationSummary">@Html.ValidationSummary()</div>
+
+
+    @* 線上說明 *@
+    <div class="help-container hide"></div>
+    <form name="OnlineHelpForm" action="~/OnlineHelp/Index" method="post" class="hidden-form"></form>
+    @* /線上說明 *@
+
+    <form name="RedirAfterBlockResult" action="" method="POST"></form>
+
+</body>
+</html>

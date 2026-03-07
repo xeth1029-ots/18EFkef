@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+//  mixin  selectBg
+// --------------------------------------------------
+
+@mixin selected($size: 8px, $color: white) {  
+  background-image:
+    linear-gradient($color, $color), 
+    linear-gradient($color, $color), 
+    linear-gradient($color, $color), 
+    linear-gradient($color, $color), 
+    linear-gradient($color, $color), 
+    linear-gradient($color, $color), 
+    linear-gradient($color, $color), 
+    linear-gradient($color, $color), 
+    linear-gradient(rgba($color, 0.5), rgba($color, 0.5)), 
+    linear-gradient(rgba($color, 0.5), rgba($color, 0.5)), 
+    linear-gradient(rgba($color, 0.5), rgba($color, 0.5)), 
+    linear-gradient(rgba($color, 0.5), rgba($color, 0.5));
+  background-position: 
+    top left, 
+    top center, 
+    top right, 
+    right center, 
+    bottom right, 
+    bottom center, 
+    bottom left, 
+    left center, 
+    center top ($size / 2), 
+    center right ($size / 2), 
+    center bottom ($size / 2), 
+    center left ($size / 2);
+  background-size:
+    $size $size, 
+    $size $size, 
+    $size $size, 
+    $size $size, 
+    $size $size, 
+    $size $size, 
+    $size $size, 
+    $size $size, 
+    100% 1px, 
+    1px 100%, 
+    100% 1px, 
+    1px 100%;
+  background-repeat: no-repeat;
+  padding: ($size / 2);
+}
+// <div class="el selected">
+//   <p>“Selected” style with gradients.</p>
+//   <p>Cool things: you don't need pseudo-elements, you can keep them for something else; it works fine with <code>overflow: hidden</code> as well.</p>
+//   <p>Ideally a use case for <code>border-image</code> although it's pretty hard to use / broken.</p>
+// </div>
+// .selected {
+//   @include selected;
+// }
+
+// .el {
+//   width: 500px;
+//   max-width: 90%;
+//   margin: 2em auto;
+//   padding: 20px;
+// }

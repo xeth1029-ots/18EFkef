@@ -1,0 +1,12 @@
+//
+//   Components -> Opacitys
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@for $i from 0 through 25 {
+  .opt-#{$i * 4} {
+    opacity: #{$i * 0.04} !important;
+  }
+
+  %opt-#{$i * 4} {
+    opacity: #{$i * 0.04};
+  }
+}

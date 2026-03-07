@@ -1,0 +1,235 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C302MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+    //會議類別／1:回流訓／2:共識會議
+    var s_MeetingType = Model.Detail.MeetingType;
+}
+
+@using (Html.BeginForm("Save", "C302M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Detail.Seq)
+    @Html.HiddenFor(x => x.Detail.vPage)
+    @Html.HiddenFor(x => x.Detail.MeetingType)
+    @Html.HiddenFor(x => x.Form.Seq)
+    @Html.HiddenFor(x => x.Form.vPage)
+    @Html.HiddenFor(x => x.Form.MeetingType)
+    @Html.HiddenFor(x => x.Form.MeetingName)
+    @Html.HiddenFor(x => x.Form.TeacherName)
+    @Html.HiddenFor(x => x.Form.MeetingDateS_AD)
+    @Html.HiddenFor(x => x.Form.MeetingDateE_AD)
+    @Html.HiddenFor(x => x.Form.SignUpDateS_AD)
+    @Html.HiddenFor(x => x.Form.SignUpDateE_AD)
+
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">出席名單管理</h3>
+                                <p class="bt-section-para">提供會議活動實際出席名單管理等功能</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                @*
+                                    <button type="button" class="btn btn-primary btn--sm mr-2" onclick="doReport()"><i class="svg-icon mr-2" aria-hidden="true"><svg><use href="#ic-print"></use></svg></i>匯出出席名單</button>
+                                *@
+                                <button type="button" class="btn btn--checked btn--sm" onclick="doSave()" id="SaveBtn">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    儲存
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MeetingTypeName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.MeetingTypeName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MeetingName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.MeetingName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MeetingDate, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.MeetingDate, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MeetingTime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.MeetingTime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Location, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.Location, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MaximumPeople, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.MaximumPeople, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.SignUpDateTime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.SignUpDateTime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 已報名名單明細 -->
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        <div class="bt-section-heading">會議名單</div>
+                        @if (Model.Detail.DetailRows != null)
+                        {
+                            int ivPage = !string.IsNullOrEmpty(Model.Detail.vPage) ? Convert.ToInt32(Model.Detail.vPage) : 1;
+                            Model.Detail.vPage = ivPage.ToString();
+                            int iprePage = (ivPage - 1 <= 1) ? 1 : (ivPage - 1);
+                            int inextPage = (ivPage + 1 >= 9) ? 9 : (ivPage + 1);
+                            var css_prePage = "btn btn-sm btn-secondary";
+                            var css_nextPage = "btn btn-sm btn-secondary";
+                            if (ivPage <= 1)
+                            {
+                                css_prePage = "btn btn-sm btn-secondary disabled";
+                                css_nextPage = "btn btn-sm btn-secondary";
+                            }
+                            else if (Model.Detail.DetailRows.Count == 0)
+                            {
+                                css_prePage = "btn btn-sm btn-secondary";
+                                css_nextPage = "btn btn-sm btn-secondary disabled";
+                            }
+                            <a id="prePage" href="javascript:doAttend('@Model.Detail.Seq','@(iprePage)')" class="@(css_prePage)">上頁</a>
+                            <a id="nextPage" href="javascript:doAttend('@Model.Detail.Seq','@(inextPage)')" class="@(css_nextPage)">下頁</a>
+                            <span>(每次顯示最多50筆)</span>
+
+                            <div style="margin-bottom: 10px;">
+                                @*margin-left: 340px*@
+                                <button type="button" style="margin-left: 5px" class="btn btn-info" onclick="selectAll('main_form', 'DetRowCk1')">出席全選</button>
+                                <button type="button" style="margin-left: 5px" class="btn btn-info" onclick="selectAll('main_form', 'DetRowCk2')">通過全選</button>
+                            </div>
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="12%">項次</th>
+                                            <th align="left" width="17%">教師姓名</th>
+                                            <th align="left" width="12%">所屬轄區</th>
+                                            <th align="center" width="12%">有出席</th>
+                                            @if (s_MeetingType == "1")
+                                            {
+                                                <th align="center" width="12%">通過測驗</th>
+                                            }
+                                            @*<th align="left" width="10%">分數</th>*@
+                                            <th align="center" width="35%">備註說明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="DetailRows">
+                                        @if (s_MeetingType == "1")
+                                        {
+                                            @Html.Partial("_DetailRows1", Model)
+                                        }
+                                        else if (s_MeetingType == "2")
+                                        {
+                                            @Html.Partial("_DetailRows2", Model)
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<form id="attendquery_form" action="" method="post">
+    @Html.Hidden("Seq")
+    @Html.Hidden("vPage")
+    @Html.Hidden("MeetingType")
+    @Html.Hidden("MeetingName")
+    @Html.Hidden("TeacherName")
+    @Html.Hidden("MeetingDateS_AD")
+    @Html.Hidden("MeetingDateE_AD")
+    @Html.Hidden("SignUpDateS_AD")
+    @Html.Hidden("SignUpDateE_AD")
+</form>
+
+<script type="text/javascript">
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save")').submit();
+    }
+
+    // 匯出出席名單
+    function doReport() {
+    }
+
+    // 全選
+    function selectAll(formId, checkid) {
+        $('#' + formId + ' input[checkid=' + checkid + ']').prop('checked', true);
+    }
+
+        // 出席管理
+    function doAttend(Seq, vPage) {
+        //var data = { "Seq": Seq, "MF": $("#MeetingType").val() }
+        console.log("Seq:" + Seq);
+        console.log("vPage:" + vPage);
+        console.log("MeetingType:" + $("#Form_MeetingType").val());
+        console.log("MeetingName:" + $("#Form_MeetingName").val());
+        console.log("TeacherName:" + $("#Form_TeacherName").val());
+        console.log("MeetingDateS_AD:" + $("#Form_MeetingDateS_AD").val());
+        console.log("MeetingDateE_AD:" + $("#Form_MeetingDateE_AD").val());
+        console.log("SignUpDateS_AD:" + $("#Form_SignUpDateS_AD").val());
+        console.log("SignUpDateE_AD:" + $("#Form_SignUpDateE_AD").val());
+        @*debugger; var url = '@Url.Action("Detail", "C302M")?' + $.param(data); window.location = url;*@
+        var form = $("form[id=attendquery_form]");
+        $("#attendquery_form input[name='Seq']").val(Seq);
+        $("#attendquery_form input[name='vPage']").val(vPage);
+        $("#attendquery_form input[name='MeetingType']").val($('#Form_MeetingType').val());
+        $("#attendquery_form input[name='MeetingName']").val($('#Form_MeetingName').val());
+        $("#attendquery_form input[name='TeacherName']").val($('#Form_TeacherName').val());
+        $("#attendquery_form input[name='MeetingDateS_AD']").val($('#Form_MeetingDateS_AD').val());
+        $("#attendquery_form input[name='MeetingDateE_AD']").val($('#Form_MeetingDateE_AD').val());
+        $("#attendquery_form input[name='SignUpDateS_AD']").val($('#Form_SignUpDateS_AD').val());
+        $("#attendquery_form input[name='SignUpDateE_AD']").val($('#Form_SignUpDateE_AD').val());
+        form.attr('action', '@Url.Action("DetailPost", "C302M")').submit();
+    }
+
+</script>

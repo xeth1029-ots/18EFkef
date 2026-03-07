@@ -1,0 +1,53 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@using WKEFSERVICE.DataLayers
+@{
+    string CurrentUrl = new Uri(Request.Url.AbsoluteUri).PathAndQuery;
+    string ConfigModelWKEF = (ConfigModel.WKEF == "") ? "20221128" : ConfigModel.WKEF;
+    string[] SplitUrl = CurrentUrl.Replace(ConfigModelWKEF, "").Split('/');
+    string Url = "";
+    if (SplitUrl.ToCount() >= 3) { Url = SplitUrl[1] + "/" + SplitUrl[2]; }
+    string[] CheckList = new string[] { "Backend/indexTeacher", "Backend/indexBranch", "Backend/indexAdmin" };
+    bool isHome = CheckList.Contains(Url);
+    string Name1 = "";
+    string Name2 = "";
+    string Name3 = "";
+    AMDAO dao = new AMDAO();
+    var GetAddr = dao.GetBackendAddr(Url);
+    if (GetAddr != null)
+    {
+        Name1 = GetAddr["Name1"].TONotNullString();
+        Name2 = GetAddr["Name2"].TONotNullString();
+        Name3 = GetAddr["Name3"].TONotNullString();
+    }
+}
+@if (!isHome && Url != "" && GetAddr != null)
+{
+    <style>
+        .p-display1 { display: inline-block; margin-bottom: unset; color: #d0a430; }
+        .p-display2 { display: inline-block; margin-bottom: unset; color: #000000; font-weight: bold; font-size: 1.125rem; }
+    </style>
+    <div id="BackendAddr" class="container">
+        <ol class="bt-breadcrumbs">
+            <li class="bt-breadcrumbs-item">
+                <a href="#C" title="中央功能區塊, 快速鍵: Alt+C " id="AC" accesskey="C" name="C" class="quicklink t-header-top-list-link">:::</a>
+                <p class="p-display1">@Name1</p>
+            </li>
+            <li class="bt-breadcrumbs-item">
+                <p class="p-display1">@Name2</p>
+            </li>
+            <li class="bt-breadcrumbs-item active">
+                <p class="p-display2">@Name3</p>
+            </li>
+        </ol>
+    </div>
+}
+else
+{
+    if (!isHome)
+    {
+        <div id="BackendAddr" class="container">
+            <ol class="bt-breadcrumbs"></ol>
+        </div>
+    }
+}

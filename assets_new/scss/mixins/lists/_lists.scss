@@ -1,0 +1,37 @@
+// Lists
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+@mixin list-column {
+  display: flex;
+  flex-flow: wrap column;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+@mixin list-counter(
+    $textShadow: 1vmin 0 4vmin  , 
+    $color: currentColor ,
+    $fontSize: inherit, 
+    $stroke: #white,
+    $stroke-width: 0.5vmin) {
+    
+    counter-reset: list;
+    
+    &:before {
+        content: counter(list);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: $color;
+        font-size: $fontSize;
+        font-weight: 700;
+        -webkit-text-stroke: $width $stroke;
+        text-shadow: $textShadow $color;
+        transform: translate(-15%, 0);
+    }
+}

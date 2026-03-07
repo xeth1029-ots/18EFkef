@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+//  Components -> panels
+// --------------------------------------------------
+
+.t-panel {
+  background-color: _var("white", $white);
+  border: transparent 2px solid;
+  border-radius: $border-radius;
+}

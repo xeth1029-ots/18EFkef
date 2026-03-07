@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+//   Mixins > ribbon v3
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin t-ribbon($background: $primary) {
+    position: relative;
+    z-index: 1;
+    transition: $transition-base;
+    background-image: -webkit-linear-gradient(left top, transparent 0%, transparent 25%, rgba($dark, 0.15) 25%, rgba($dark, 0.15) 50%, transparent 50%, transparent 75%, rgba($dark, 0.15) 75%);
+    background-size: 4px 4px;
+    box-shadow: 0 0 0 1px rgba($dark, 0.4) inset, 0 0 20px -5px rgba($dark, 0.4), 0 0 0px 3px $white inset;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 100%;
+      background: #BBB;
+      transform: skewY(8deg);
+      z-index: -3;
+      border-radius: 4px;
+    }
+
+    &:after {
+      background-image: -webkit-linear-gradient(left, transparent 0%, rgba($dark, 0.4) 100%);
+      right: 0;
+      top: -4px;
+    }
+
+    &:before {
+      left: 0;
+      bottom: -4px;
+      background-image: -webkit-linear-gradient(right, transparent 0%, rgba($dark, 0.4) 100%);
+    }
+}

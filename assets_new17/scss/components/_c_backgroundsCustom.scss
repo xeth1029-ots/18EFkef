@@ -1,0 +1,52 @@
+//
+//  Components -> Backgrounds Custom
+// --------------------------------------------------
+
+
+
+.t-bg-blobs-v1 {
+  @include blobs-v1($size: cover, $color1: $dark, $color2: $primary);
+}
+
+
+.t-bg-blobs-v2 {
+  @include blobs-v2($size: cover, $color1: $dark, $color2: $grey-900, $color3: $grey-800);
+}
+
+// {
+//   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500' preserveAspectRatio='xMinYMin meet' style='z-index:-3;'%3E%3Cpath d='M0, 100 C150, 300 350, 0 500, 100 L500, 00 L0, 0 Z' style='stroke: none; fill:rgba(220, 20, 60, 0.5);'%3E%3C/path%3E%3C/svg%3E");
+// }
+// @mixin blobs-v3-top{
+//   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 308'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' stroke='%23707070' d='M0 0h1920v308H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg%3E%3Cg fill-rule='evenodd' clip-path='url(%23a)'%3E%3Cpath fill='rgba(0,0,0,0.3)' d='M0 101s546 6 1074 0c466-6 336 250 916 0l154 207H0Z'/%3E%3Cpath d='M-31 123s496-276 991 0c0 0 493 276 989 0v185H-31Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");// }
+// @mixin blobs-v3-bottom{
+//    background-image: 
+// url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' data-name='Group 221588' viewBox='0 0 745 111'%3E%3Cpath fill='rgba(0,0,0,0.3)' fill-rule='evenodd' d='M50 44s177 2 348 0c151-2 109 81 297 0l50 67H50Z' data-name='Path 258268'/%3E%3Cpath fill-rule='evenodd' d='M0 44s174-100 348 0c0 0 173 100 347 0v67H0Z' data-name='Path 258269'/%3E%3C/svg%3E");
+// }
+
+
+// .t-bg-gradients-v1 {
+//   background-image: radial-gradient(circle farthest-corner at 100% 0, #005f73 0%, #005f73 0.9%, #ee9b00 15.9%, #ee9b00 24.4%, #121924 0.5%, #121924 66%);
+// }
+
+// .t-bg-gradients-v2 {
+//   background-image: radial-gradient(circle farthest-corner at 0 0, #14371f 0%, #14371f 15.9%, #4a7140 15.9%, #4a7140 24.4%, #d8e2dc 24.5%, #d8e2dc 66%);
+// }
+
+// .t-bg-gradients-v3 {
+//   background-image: radial-gradient(circle farthest-corner at -8.9% 51.2%, #ff7c00 0%, #ff7c00 15.9%, #ffa34d 15.9%, #ffa34d 24.4%, #131e25 24.5%, #131e25 66%);
+// }
+
+// .t-bg-gradients-v4 {
+//   background-image: radial-gradient(circle farthest-corner at 108.9% 51.2%, #94d2bd 0%, #94d2bd 15.9%, #005f73 15.9%, #005f73 24.4%, #fbf8cc 24.5%, #fbf8cc 66%);
+//   block-size: 100%;
+//   min-block-size: 100vh;
+// }
+
+// {
+//  background: linear-gradient(80deg,
+//   rgb(226, 236, 233) 0%, rgb(226, 236, 233) 3%,
+//   rgb(0, 109, 119) 3%, rgb(0, 109, 119) 4%, 
+//   rgb(226, 236, 233) 4%, rgb(226, 236, 233) 91%,
+//    rgb(250, 210, 225) 91%, rgb(250, 210, 225) 95%, 
+//    rgb(205, 218, 253) 95%, rgb(205, 218, 253) 100%)
+// }

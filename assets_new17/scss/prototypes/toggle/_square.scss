@@ -1,0 +1,130 @@
+
+
+.t-square {
+  display: inline-block;
+  label {
+    // background
+    @include toggle-label;
+    width: 8em;
+    height: 3em;
+    background: _var("white", $white);
+    transition: $transition;
+    &:before {
+      // moving square
+      @include before-after;
+      width: 4em;
+      height: 3em;
+      background: #f0134d;
+      transition: $transition;
+      z-index: 1;
+    }
+  }
+  input {
+    @include input-checkbox;
+    &:before,
+    &:after {
+      // background on-off label
+      @include before-after;
+      width: 4em;
+      height: 3em;
+      z-index: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #888;
+      letter-spacing: 1px;
+    }
+    &:before {
+      // background on-off label
+      content: "ON";
+    }
+    &:after {
+      // background on-off label
+      content: "OFF";
+      left: 4em;
+    }
+  }
+  input:checked + label {
+    &:before {
+      // moving square
+      background: $info;
+      transform: translateX(4em);
+    }
+  }
+  input:disabled {
+    &:before,
+    &:after {
+      // background on-off label
+      cursor: not-allowed !important;
+    }
+    & + label {
+      // background
+      background: $grey-300 !important;
+      cursor: not-allowed !important;
+      &:before {
+        // moving square
+        background: #ddd !important;
+      }
+    }
+  }
+}
+.t-square-garden {
+  @extend .t-square;
+  label {
+    &:before {
+      // moving square
+      background: #ff2e63;
+    }
+  }
+  input:checked + label {
+    &:before {
+      // moving square
+      background: #21bf73;
+    }
+  }
+}
+.t-square-tomato {
+  @extend .t-square;
+  label {
+    &:before {
+      // moving square
+      background: #ff6347;
+    }
+  }
+  input:checked + label {
+    &:before {
+      // moving square
+      background: #32cd32;
+    }
+  }
+}
+.t-square-matcha {
+  @extend .t-square;
+  label {
+    &:before {
+      // moving square
+      background: #5b5656;
+    }
+  }
+  input:checked + label {
+    &:before {
+      // moving square
+      background: $success;
+    }
+  }
+}
+.t-square-pink {
+  @extend .t-square;
+  label {
+    &:before {
+      // moving square
+      background: #ffe3ed;
+    }
+  }
+  input:checked + label {
+    &:before {
+      // moving square
+      background: #beebe9;
+    }
+  }
+}

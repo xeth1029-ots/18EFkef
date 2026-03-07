@@ -1,0 +1,302 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C105MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+
+    string TabFocus1 = (Model.FilterTab == "1") ? "checked=\"\"" : "";
+    string TabFocus2 = (Model.FilterTab == "2") ? "checked=\"\"" : "";
+    string TabFocus3 = (Model.FilterTab == "3") ? "checked=\"\"" : "";
+}
+
+@using (Html.BeginForm("Index", "C105M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.FilterTab, new { id = "Hidden_FilterTab" })
+
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">LOG紀錄</h3>
+                            <p class="bt-section-para">可提供登入紀錄查詢、檔案上傳查詢、使用歷程查詢。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <section class="t-tab-contents" style="padding-bottom: unset;">
+                            <div class="t-form t-txt-left bt-form-cnt">
+                                <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                <!-- 過濾欄位 -->
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col-sm-12">
+                                        <div class="t-tab t-tab-line-bottom">
+                                            <input id="item_1" type="radio" name="tabsV1" class="hide" @TabFocus1>
+                                            <input id="item_2" type="radio" name="tabsV1" class="hide" @TabFocus2>
+                                            <input id="item_3" type="radio" name="tabsV1" class="hide" @TabFocus3>
+                                            <div id="tab-nav-v1" class="t-tab-nav" data-scroll="x">
+                                                <label for="item_1" class="t-tab-nav-item" id="item_1_lab" onclick="OnTabChange('1')">登入記錄查詢</label>
+                                                <label for="item_2" class="t-tab-nav-item" id="item_2_lab" onclick="OnTabChange('2')">檔案上傳查詢</label>
+                                                <label for="item_3" class="t-tab-nav-item" id="item_3_lab" onclick="OnTabChange('3')">使用歷程查詢</label>
+                                            </div>
+                                            <div class="t-tab-contents">
+                                                <div id="tab_content_1" class="t-tab-content">
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.Label("日期區間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                                            @Html.DatePickerTWFor(m => m.CreateTime_A_Tab1_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                                            @Html.DatePickerTWFor(m => m.CreateTime_B_Tab1_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.Label("時間區間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                                            @Html.DropDownListFor(m => m.CreateTime_C1_Tab1, new SelectList(Model.CreateTime_C1_Tab1_list, "Value", "Text", Model.CreateTime_C1_Tab1), new { @class = "t-form-control ml-4" }) &nbsp;:
+                                                            @Html.DropDownListFor(m => m.CreateTime_C2_Tab1, new SelectList(Model.CreateTime_C2_Tab1_list, "Value", "Text", Model.CreateTime_C2_Tab1), new { @class = "t-form-control ml-4" }) &nbsp;～
+                                                            @Html.DropDownListFor(m => m.CreateTime_D1_Tab1, new SelectList(Model.CreateTime_D1_Tab1_list, "Value", "Text", Model.CreateTime_D1_Tab1), new { @class = "t-form-control ml-4" }) &nbsp;:
+                                                            @Html.DropDownListFor(m => m.CreateTime_D2_Tab1, new SelectList(Model.CreateTime_D2_Tab1_list, "Value", "Text", Model.CreateTime_D2_Tab1), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.FilterType_Tab1, new { @class = "t-form-label" })
+                                                            @Html.DropDownListFor(m => m.FilterType_Tab1, new SelectList(Model.FilterType_Tab1_list, "Value", "Text", Model.FilterType_Tab1), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.FilterAccount_Tab1, new { @class = "t-form-label" })
+                                                            @Html.TextBoxFor(m => m.FilterAccount_Tab1, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.ExpYearMonth_Tab1, new { @class = "t-form-label" })
+                                                            @Html.DropDownListFor(m => m.ExpYear_Tab1, new SelectList(Model.Year_list, "Value", "Text", Model.ExpYear_Tab1), new { @class = "t-form-control ml-4" })
+                                                            @Html.DropDownListFor(m => m.ExpMonth_Tab1, new SelectList(Model.Month_list, "Value", "Text", Model.ExpMonth_Tab1), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="tab_content_2" class="t-tab-content">
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.Label("日期區間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                                            @Html.DatePickerTWFor(m => m.CreateTime_A_Tab2_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                                            @Html.DatePickerTWFor(m => m.CreateTime_B_Tab2_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.Label("時間區間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                                            @Html.DropDownListFor(m => m.CreateTime_C1_Tab2, new SelectList(Model.CreateTime_C1_Tab2_list, "Value", "Text", Model.CreateTime_C1_Tab2), new { @class = "t-form-control ml-4" }) &nbsp;:
+                                                            @Html.DropDownListFor(m => m.CreateTime_C2_Tab2, new SelectList(Model.CreateTime_C2_Tab2_list, "Value", "Text", Model.CreateTime_C2_Tab2), new { @class = "t-form-control ml-4" }) &nbsp;～
+                                                            @Html.DropDownListFor(m => m.CreateTime_D1_Tab2, new SelectList(Model.CreateTime_D1_Tab2_list, "Value", "Text", Model.CreateTime_D1_Tab2), new { @class = "t-form-control ml-4" }) &nbsp;:
+                                                            @Html.DropDownListFor(m => m.CreateTime_D2_Tab2, new SelectList(Model.CreateTime_D2_Tab2_list, "Value", "Text", Model.CreateTime_D2_Tab2), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.FilterType_Tab2, new { @class = "t-form-label" })
+                                                            @Html.DropDownListFor(m => m.FilterType_Tab2, new SelectList(Model.FilterType_Tab2_list, "Value", "Text", Model.FilterType_Tab2), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.FilterAccount_Tab2, new { @class = "t-form-label" })
+                                                            @Html.TextBoxFor(m => m.FilterAccount_Tab2, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="tab_content_3" class="t-tab-content">
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.Label("日期區間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                                            @Html.DatePickerTWFor(m => m.CreateTime_A_Tab3_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                                            @Html.DatePickerTWFor(m => m.CreateTime_B_Tab3_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.Label("時間區間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                                            @Html.DropDownListFor(m => m.CreateTime_C1_Tab3, new SelectList(Model.CreateTime_C1_Tab3_list, "Value", "Text", Model.CreateTime_C1_Tab3), new { @class = "t-form-control ml-4" }) &nbsp;:
+                                                            @Html.DropDownListFor(m => m.CreateTime_C2_Tab3, new SelectList(Model.CreateTime_C2_Tab3_list, "Value", "Text", Model.CreateTime_C2_Tab3), new { @class = "t-form-control ml-4" }) &nbsp;～
+                                                            @Html.DropDownListFor(m => m.CreateTime_D1_Tab3, new SelectList(Model.CreateTime_D1_Tab3_list, "Value", "Text", Model.CreateTime_D1_Tab3), new { @class = "t-form-control ml-4" }) &nbsp;:
+                                                            @Html.DropDownListFor(m => m.CreateTime_D2_Tab3, new SelectList(Model.CreateTime_D2_Tab3_list, "Value", "Text", Model.CreateTime_D2_Tab3), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.FilterFunc_Tab3, new { @class = "t-form-label" })
+                                                            @Html.DropDownListFor(m => m.FilterFunc_Tab3, new SelectList(Model.FilterFunc_Tab3_list, "Value", "Text", Model.FilterFunc_Tab3), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.FilterType_Tab3, new { @class = "t-form-label" })
+                                                            @Html.DropDownListFor(m => m.FilterType_Tab3, new SelectList(Model.FilterType_Tab3_list, "Value", "Text", Model.FilterType_Tab3), new { @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%;">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.FilterAccount_Tab3, new { @class = "t-form-label" })
+                                                            @Html.TextBoxFor(m => m.FilterAccount_Tab3, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 按鈕 -->
+                                <div class="t-form-inline t-form-btns">
+                                    <div class="t-form-group mb-0">
+                                        <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                            <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                <svg>
+                                                    <use href="#ic-reset"></use>
+                                                </svg>
+                                            </i>
+                                            清空條件
+                                        </button>
+                                        <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                            <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                <svg>
+                                                    <use href="#ic-search"></use>
+                                                </svg>
+                                            </i>
+                                            查詢
+                                        </button>
+                                        <button type="button" class="btn btn--quaternary w-80" onclick="doExport()">
+                                            <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                <svg>
+                                                    <use href="#ic-print"></use>
+                                                </svg>
+                                            </i>
+                                            匯出每月登入異常日誌
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- 查詢結果 -->
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="10%">項次</th>
+                                            <th align="left" width="10%">帳號</th>
+                                            <th align="left" width="10%">姓名</th>
+                                            @if (Model.FilterTab == "1")
+                                            {
+                                                <th align="left" width="10%">類型</th>
+                                                <th align="left" width="15%">記錄時間</th>
+                                                <th align="left" width="10%">IP</th>
+                                                <th align="left" width="15%">訊息</th>
+                                                <th align="left" width="20%">使用瀏覽器</th>
+                                            }
+                                            @if (Model.FilterTab == "2")
+                                            {
+                                                <th align="left" width="10%">記錄時間</th>
+                                                <th align="left" width="10%">類型</th>
+                                                <th align="left" width="10%">使用功能</th>
+                                                <th align="left" width="10%">執行結果</th>
+                                                <th align="left" width="10%">檔名(原)</th>
+                                                <th align="left" width="20%">檔名(新)</th>
+                                            }
+                                            @if (Model.FilterTab == "3")
+                                            {
+                                                <th align="left" width="10%">操作類型</th>
+                                                <th align="left" width="10%">功能項項目</th>
+                                                <th align="left" width="10%">記錄時間</th>
+                                                <th align="left" width="30%">異動資料說明</th>
+                                                <th align="left" width="10%">執行結果</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    function OnTabChange(tab) {
+        //console.log(tab);
+        $("#Hidden_FilterTab").val(tab);
+        var exportButton = $('button[onclick="doExport()"]');
+        // 使用三元運算子決定呼叫 show() 還是 hide()
+        tab == '1' ? exportButton.show() : exportButton.hide();
+    }
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#CreateTime_A_Tab1_AD').removeAttr('value');
+        $('#CreateTime_B_Tab1_AD').removeAttr('value');
+        $('#CreateTime_A_Tab1_AD_TW').removeAttr('value');
+        $('#CreateTime_B_Tab1_AD_TW').removeAttr('value');
+        $('#CreateTime_A_Tab2_AD').removeAttr('value');
+        $('#CreateTime_B_Tab2_AD').removeAttr('value');
+        $('#CreateTime_A_Tab2_AD_TW').removeAttr('value');
+        $('#CreateTime_B_Tab2_AD_TW').removeAttr('value');
+        $('#CreateTime_A_Tab3_AD').removeAttr('value');
+        $('#CreateTime_B_Tab3_AD').removeAttr('value');
+        $('#CreateTime_A_Tab3_AD_TW').removeAttr('value');
+        $('#CreateTime_B_Tab3_AD_TW').removeAttr('value');
+        $('#FilterAccount_Tab1').removeAttr('value');
+        $('#FilterAccount_Tab2').removeAttr('value');
+        $('#FilterAccount_Tab3').removeAttr('value');
+        $('#FilterType_Tab1 option').removeAttr('selected');
+        $('#FilterType_Tab2 option').removeAttr('selected');
+        $('#FilterType_Tab3 option').removeAttr('selected');
+        $('#FilterFunc_Tab3 option').removeAttr('selected');
+        $('#CreateTime_C1_Tab1').removeAttr('value');
+        $('#CreateTime_C2_Tab1').removeAttr('value');
+        $('#CreateTime_D1_Tab1').removeAttr('value');
+        $('#CreateTime_D2_Tab1').removeAttr('value');
+        $('#CreateTime_C1_Tab2').removeAttr('value');
+        $('#CreateTime_C2_Tab2').removeAttr('value');
+        $('#CreateTime_D1_Tab2').removeAttr('value');
+        $('#CreateTime_D2_Tab2').removeAttr('value');
+        $('#CreateTime_C1_Tab3').removeAttr('value');
+        $('#CreateTime_C2_Tab3').removeAttr('value');
+        $('#CreateTime_D1_Tab3').removeAttr('value');
+        $('#CreateTime_D2_Tab3').removeAttr('value');
+        $('#CreateTime_C_Tab1').removeAttr('value');
+        $('#CreateTime_D_Tab1').removeAttr('value');
+        $('#CreateTime_C_Tab2').removeAttr('value');
+        $('#CreateTime_D_Tab2').removeAttr('value');
+        $('#CreateTime_C_Tab3').removeAttr('value');
+        $('#CreateTime_D_Tab3').removeAttr('value');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index", "C105M")').submit();
+    }
+
+    // 匯出
+    function doExport() {
+        //blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("IdxExport", "C105M")').submit();
+    }
+</script>

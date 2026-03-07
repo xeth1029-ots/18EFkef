@@ -1,0 +1,44 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@model WKEFSERVICE.Models.HomeModel
+
+@if (Model.AuditReportsGrid.ToCount() > 0)
+{
+    <style>
+        .no-bottom-right-padding { margin-bottom: 0rem; padding-right: 0rem; }
+        .inline-no-bottom-margin { display: inline-block; margin-bottom: unset; }
+    </style>
+    for (int i = 0; i < Model.AuditReportsGrid.Count; i++)
+    {
+        var item = Model.AuditReportsGrid[i];
+        string[] dateArr = new string[] { };
+        DateTime dateWeek = DateTime.MinValue;
+        if (item.FirstTime_Name.TONotNullString() != "")
+        {
+            dateArr = item.FirstTime_Name.TONotNullString().Split('/');
+            dateWeek = new DateTime(dateArr[0].TOInt32() + 1911, dateArr[1].TOInt32(), dateArr[2].TOInt32());
+        }
+        @Html.HiddenFor(m => m.AuditReportsGrid[i].Seq)
+
+        <li class="t-list-item">
+            <div class="t-flex">
+                <dl class="t-date-item no-bottom-right-padding">
+                    <dt>
+                        <p class="date-year inline-no-bottom-margin">@dateArr[0]</p>
+                    </dt>
+                    <dd>
+                        <p class="date-month inline-no-bottom-margin">@dateArr[1]/@dateArr[2]</p>
+                        <p class="date-day inline-no-bottom-margin">@dateWeek.ToString("ddd")</p>
+                    </dd>
+                </dl>
+            </div>
+            @item.TeacherName
+            <div class="t-flex flex-column">
+                <a href="javascript:;" onclick="doViewAuditReports('@item.Seq')" title="「另開新視窗」查看自我審核報告">@item.JobAbilityName</a>
+            </div>
+            <div class="t-flex">
+                <label class="t-badge">@item.AuditStatus_Name</label>
+            </div>
+        </li>
+    }
+}

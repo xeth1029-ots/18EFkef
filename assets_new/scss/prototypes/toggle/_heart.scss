@@ -1,0 +1,92 @@
+.t-heart {
+  display: inline-block;
+
+  label {
+    // bound
+    @include toggle-label;
+
+    width: 5em;
+    height: 5em;
+    transition: $transition;
+    overflow: hidden;
+    clip-path: $heart;
+    -webkit-clip-path: $heart;
+
+    &:before {
+      // background
+      @include before-after;
+
+      width: 5em;
+      height: 10em;
+      background: linear-gradient(200deg, #cac9d1 0%, #cac9d1 42%, #ff7ea1 55%, #f00846 100%);
+      transition: 0.2s ease;
+    }
+  }
+
+  input {
+    @include input-checkbox;
+
+    &:before,
+    &:after {
+      @include before-after;
+    }
+  }
+
+  input:checked + label {
+    &:before {
+      // background
+      transform: translateY(-50%);
+    }
+  }
+
+  input:disabled {
+    & + label {
+      // bound
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.t-heart-blush {
+  @extend .t-heart;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(200deg, #cac9d1 0%, #cac9d1 42%, #ffaab7 55%, #ff435f 100%);
+    }
+  }
+}
+
+.t-heart-indigo {
+  @extend .t-heart;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(200deg, #cac9d1 0%, #cac9d1 42%, #a4a9ff 55%, #4b54ff 100%);
+    }
+  }
+}
+
+.t-heart-pink {
+  @extend .t-heart;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(200deg, #cac9d1 0%, #cac9d1 42%, #ffc1d7 55%, #ff77a6 100%);
+    }
+  }
+}
+
+.t-heart-golden {
+  @extend .t-heart;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(200deg, #cac9d1 0%, #cac9d1 42%, rgb(255, 230, 121) 55%, rgb(243, 207, 1) 100%);
+    }
+  }
+}

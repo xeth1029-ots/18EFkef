@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+//  Mixins -> Mask Filter
+// ====================================================
+
+$name: "勞動力發展署";
+$sub-name: "關鍵就業力";
+
+// @include mask-filter($color, $size);
+@mixin mask-filter($color, $size) {
+  background: transparent linear-gradient(45deg, transparent, $color $size);
+  background-size: #{$size * 1.5} #{$size * 1.5};
+  backdrop-filter: saturate(50%) blur($size);
+  opacity: 0.92;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: transparent linear-gradient(45deg, transparent, $color $size);
+    width: 100%;
+    height: 100%;
+    background-size: #{$size * 1.25} #{$size * 1.25};
+    backdrop-filter: blur(#{$size * 2});
+    opacity: 0.02;
+    pointer-events: none;
+  }
+}
+
+// @include mask-filter($white, 0.125rem);
+@mixin mask-filter-v2($color, $size, $size2) {
+  background-color: transparent;
+  background-image: radial-gradient(transparent $size2, $color $size2);
+  background-size: $size $size;
+  backdrop-filter: saturate(50%) blur($size);
+}
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+// @include filters-radius();
+@mixin filters-radius {
+  filter: url("data:image/svg+xml,%3Csvg style='visibility: hidden; position: absolute;' width='0' height='0' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3Cdefs%3E%3Cfilter id='goo'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='10' result='blur' /%3E%3CfeColorMatrix in='blur' mode='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9' result='goo' /%3E%3CfeComposite in='SourceGraphic' in2='goo' operator='atop'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E#goo");
+}
+
+// @include surf-filters($opacity: 0.2, $background: linear-gradient(-160deg, hsl(215, 85%, 45%), hsl(190, 85%, 50%), hsl(200, 85%, 55%)))
+@mixin surf-filters($opacity: 0.2, $background: linear-gradient(-160deg, hsl(215, 85%, 45%), hsl(190, 85%, 50%), hsl(200, 85%, 55%))) {
+  background: url("data:image/svg+xml,%3Csvg opacity='#{$opacity}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' width='100' height='100'%3E%3Cpath id='line' d='M 0 0 C 15 5 5 15 20 20' fill='none' stroke='hsl(190, 85%25, 80%25)' stroke-linecap='square' stroke-width='1' /%3E%3Cuse href='%23line' x='0' y='-20' /%3E%3Cuse href='%23line' x='-20' y='0' /%3E%3Cuse href='%23line' x='0' y='20' /%3E%3Cuse href='%23line' x='20' y='0' /%3E%3C/svg%3E"), $background;
+  background-size: 3.125rem, 100%;
+}
+
+// @include pixel-error($color, $color1, $color2, $color3, $color4, $color5, $color6)
+@mixin pixel-error($color: $primary-800, $color1: $primary-800, $color2: $primary-800, $color3: $primary-800, $color4: $primary-800, $color5: $primary-800, $color6: $primary-800) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100%25 100%25'%3E%3Cfilter color-interpolation-filters='sRGB' id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9'%3E%3Canimate attributeName='numOctaves' values='0;5;4;3;2;7;8;9;10;1;2' dur='20s' repeatCount='indefinite'/%3E%3Canimate attributeName='baseFrequency' values='0;5;4;3;2;7;8;9;10;1;2' dur='20s' repeatCount='indefinite'/%3E%3C/feTurbulence%3E%3CfeColorMatrix result='result5' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 6 -4.15'/%3E%3CfeComposite in2='result5' operator='in' in='SourceGraphic' result='result6'/%3E%3CfeMorphology in='result6' operator='dilate' radius='9' result='result3'%3E%3Canimate attributeName='radius' values='1;2;3;4;5;6;7;8;9;1;9' dur='20s' repeatCount='indefinite'/%3E%3C/feMorphology%3E%3C/filter%3E%3Crect width='100%25' height='100%25'/%3E%3Crect width='100%25' height='100%25' filter='url(%23a)' fill='#{$color}'%3E%3Canimate attributeName='width' values='90%25; 80%25; 50%25; 60%25; 80%25; 10%25' begin='1s' dur='10s'/%3E%3Canimate attributeName='fill' dur='20s' values='#{$color1}; #{$color2}; #{$color3}; #{$color4}; #{$color5}; #{$color6};' begin='1s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/svg%3E");
+}
+
+// @include shade-watermark($name, $sub-name, $grey-600);
+@mixin shade-watermark($name, $sub-name, $color, $deg: -30, $font-family: sans-serif) {
+  background-repeat: repeat;
+  background-image: t-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'\a                               id='diagtext' width='100%25' height='100%25'%3\a                               %3Cstyle type='text/css'%3Etext %7B fill:#{$color}; font-family: #{$font-family} ;\a                               %7D%3C/style%3E%\a                               3Cdefs%3E%3Cpattern id='twitterhandle' patternUnits='userSpaceOnUse' width='400' height='200'%3E%3Ctext y='30' font-size='40' id='name'%3E\a                               @#{$name}%3C/text%3E%3C/pattern%3E%3Cpattern xlink:href='%23twitterhandle'%3E%3Ctext y='120' x='200' font-size='28' id='occupation'%3E#{$sub-name}%3C/text%3E\a                               %3C/pattern%3E%3Cpattern id='combo' xlink:href='%23twitterhandle' patternTransform='rotate(#{$deg})'%3E\a                               %3Cuse y='6' xlink:href='%23name'/%3E%3Cuse xlink:href='%23occupation'/%3E\a                               %3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23combo)'/%3E%3C/svg%3E"));
+}
+
+.t-watermark {
+  @include shade-watermark($name, $sub-name, $grey-600);
+}

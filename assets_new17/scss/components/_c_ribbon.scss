@@ -1,0 +1,231 @@
+@charset "utf-8";
+
+//  Components -> Ribbon
+// --------------------------------------------------
+// <div class="t-ribbon-primary">最新消息</div>
+// <div class="t-ribbon-d-primary">最新消息</div>
+// Ribbon Styles
+@each $color, $value in $element-colors {
+  .t-ribbon-#{$color} {
+    @include ribbon($background: $value);
+  }
+}
+
+@each $color, $value in $element-colors {
+  .t-ribbon-r-#{$color} {
+    @include ribbon-r($background: $value);
+  }
+}
+
+// Ribbon Styles
+@each $color, $value in $element-colors {
+  @include ribbon-d($color, 1rem, $value);
+}
+
+////////////////////////////////////////////////////////////
+
+.t-ribbon {
+  position: relative;
+
+  .t-ribbon-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .375rem .625rem;
+    position: absolute;
+    z-index: 1;
+    background-color: $primary;
+    box-shadow: 0px -1px 5px 0px rgba(#000, 0.1);
+    color: theme-inverse-color("primary");
+    top: 50%;
+    right: 0;
+    transform: translateX(5px) translateY(-50%);
+
+    > .t-ribbon-inner {
+      z-index: -1;
+      position: absolute;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    &:after {
+      border-color: darken($primary, 30%);
+    }
+  }
+
+  // Vertical aligment
+  &-vertical {
+    .t-ribbon-label {
+      padding: .375rem .625rem;
+      min-width: 36px;
+      min-height: 46px;
+      text-align: center;
+    }
+  }
+
+  &.t-ribbon-top {
+    .t-ribbon-label {
+      top: 0;
+      transform: translateX(-15px) translateY(-4px);
+      border-bottom-right-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+  }
+
+  &.t-ribbon-bottom {
+    .t-ribbon-label {
+      border-top-right-radius: $border-radius;
+      border-top-left-radius: $border-radius;
+    }
+  }
+
+  &.t-ribbon-start {
+    .t-ribbon-label {
+      top: 50%;
+      left: 0;
+      right: auto;
+      transform: translateX(-0.375rem) translateY(-50%);
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+
+  &.t-ribbon-end {
+    .t-ribbon-label {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+  }
+}
+
+// Clip style
+.t-ribbon.t-ribbon-clip {
+  &.t-ribbon-start {
+    .t-ribbon-label {
+      left: -.375rem;
+
+      .t-ribbon-inner {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          border-style: solid;
+          border-color: transparent !important;
+          bottom: -0.625rem;
+        }
+
+        &:before {
+          border-width: 0 0.625rem 0.625rem 0;
+          border-right-color: if(isDarkMode(), $light, $dark) !important;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  &.t-ribbon-end {
+    .t-ribbon-label {
+      right: -.375rem;
+
+      .t-ribbon-inner {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          border-style: solid;
+          border-color: transparent !important;
+          bottom: -0.625rem;
+        }
+
+        &:before {
+          border-width: 0 0 0.625rem 0.625rem;
+          border-left-color: if(isDarkMode(), $light, $dark) !important;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+// Triangle style
+.t-ribbon.t-ribbon-triangle {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  pointer-events: none;
+
+  // Top start position
+  &.t-ribbon-top-start {
+    top: 0;
+    left: 0;
+    width: 3rem;
+    height: 3rem;
+    border-bottom: solid 1.5rem transparent !important;
+    border-left: solid 1.5rem $blue;
+    border-right: solid 1.5rem transparent !important;
+    border-top: solid 1.5rem $blue;
+  }
+
+  // Top end position
+  &.t-ribbon-top-end {
+    top: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    border-bottom: solid 1.5rem transparent !important;
+    border-left: solid 1.5rem transparent !important;
+    border-right: solid 1.5rem $blue;
+    border-top: solid 1.5rem $blue;
+  }
+
+  // Botton start position
+  &.t-ribbon-bottom-start {
+    bottom: 0;
+    left: 0;
+    width: 3rem;
+    height: 3rem;
+    border-bottom: solid 1.5rem $blue;
+    border-left: solid 1.5rem $blue;
+    border-right: solid 1.5rem transparent !important;
+    border-top: solid 1.5rem transparent !important;
+  }
+
+  // Botton end position
+  &.t-ribbon-bottom-end {
+    bottom: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    border-bottom: solid 1.5rem $blue;
+    border-right: solid 1.5rem $blue;
+    border-left: solid 1.5rem transparent !important;
+    border-top: solid 1.5rem transparent !important;
+  }
+
+  .t-ribbon-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: max-content;
+
+    .svg-icon {
+      position: absolute;
+      left: -1.125rem;
+      top: -1.125rem;
+      width: max-content;
+
+      @include rotate(-45deg);
+    }
+  }
+}

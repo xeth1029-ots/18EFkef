@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - fetch Get json &amp;&amp; scroll infinity observer </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+</head>
+
+<body>
+  <ul>
+    <li>
+      <label for="expiration">Credit Card Expiration Month</label>
+      <input id="expiration" type="tel" data-tu-mask="true" placeholder="MM/YY" class="masked" pattern="(1[0-2]|0[1-9])\/\d\d" data-valid-example="11/18" title="月/年">
+    </li>
+    <li>
+      <label for="zip">Zip Code</label>
+      <input id="zip" type="tel" name="zipcode" placeholder="XXXXX" pattern="\d{5}" class="masked" title="郵遞區號" data-tu-mask="true">
+    </li>
+    <li>
+      <label for="zipca">Canadian Zip Code</label>
+      <input id="zipca" type="text" name="zipcodeca" placeholder="XXX XXX" pattern="\w\d\w \d\w\d" class="masked" data-charset="_X_ X_X" title="郵遞區號" data-tu-mask="true">
+    </li>
+    <li>
+      <label for="tel">Telephone</label>
+      <input id="tel" type="tel" name="phone" placeholder="(XXX) XXX-XXXX" pattern="\(\d{3}\) \d{3}\-\d{4}" class="masked" title="電話號碼" data-tu-mask="true">
+    </li>
+    <li>
+      <label for="cc">Credit Card Number</label>
+      <input id="cc" type="tel" name="ccnumber" placeholder="XXXX XXXX XXXX XXXX" pattern="\d{4} \d{4} \d{4} \d{4}" class="masked" title="信用卡號" data-tu-mask="true">
+    </li>
+  </ul>
+
+  <script src="../../forms/JsInputMask.js"></script>
+  <script src="../../turboframes_justJavascript/turboframe_JsUtils.js"></script>
+  <script>
+  const array = ['foo', 'boo', 'zoo'];
+  const obj = Object.assign({}, array);
+  // console.log(obj)
+  // Function.prototype.construct = function(aArgs) {
+  //   var fConstructor = this,
+  //     fNewConstr = function() {
+  //       fConstructor.apply(this, aArgs);
+  //     };
+  //   fNewConstr.prototype = fConstructor.prototype;
+  //   return new fNewConstr();
+  // };
+
+  // function test() {
+  //   let a = { b: 4 , d:  1  }
+  //   let g = Object.assign({}, a) // 淺層
+  //   let h = JSON.parse(JSON.stringify(a)); // 深層
+  //   console.log(g) // { e: { f: 1 } }
+  //   g.d.e = 32
+  //   console.log('g.d.e set to 32.') // g.d.e set to 32.
+  //   console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(h) // { b: { c: 4 }, d: { e: { f: 1 } } }
+  //   h.d.e = 54
+  //   console.log('h.d.e set to 54.') // h.d.e set to 54.
+  //   console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(h) // { b: { c: 4 }, d: { e: 54 } }
+  // }
+  // console.log(test())
+
+  // function addConstructor() {
+  //   for (var nProp = 0; nProp < arguments.length; nProp++) {
+  //     this['property' + nProp] = arguments[nProp];
+  //   }
+  // }
+  // var myArray = ["Zip5", "10058", false];
+  // var myInstance = addConstructor.construct(myArray);
+
+  // console.log(myInstance.property1); // logs 'Hello world!'
+  // console.log(myInstance instanceof addConstructor); // logs 'true'
+  // console.log(myInstance);
+  </script>
+</body>
+
+</html>

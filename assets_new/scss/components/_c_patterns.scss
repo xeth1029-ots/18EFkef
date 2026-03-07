@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+//  Components > Patterns
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// <div class="t-pattern-diagonal-stripes-sm py-2 w-4 h-4 t-fc-primaryopt-12"></div>
+// <div class="t-pattern-grid-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-dots-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-cross-dots-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-vertical-lines-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-horizontal-lines-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-diagonal-lines-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-vertical-stripes-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-horizontal-stripes-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-diagonal-stripes-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-horizontal-sm w-4 h-4 t-fc-primary"></div>
+// <div class="t-pattern-zigzag-sm w-4 h-4 t-fc-primary"></div>
+// 
+@if index($pattern-list, "checks") {
+  @each $name, $size in $pattern-sizes {
+    .#{$pattern-prefix}-checks-#{$name} {
+      @include pattern-checks($size);
+    }
+  }
+}
+
+// .bb-pattern-grid-{sm, md, lg, xl}
+@if index($pattern-list, "grid") {
+  @each $name, $size in $pattern-sizes {
+    .#{$pattern-prefix}-grid-#{$name} {
+      @include pattern-grid($size);
+    }
+  }
+}
+
+// .bb-pattern-dots-{sm, md, lg, xl}
+@if index($pattern-list, "dots") {
+  @each $name, $size in $dots {
+    .#{$pattern-prefix}-dots-#{$name} {
+      // background-image: radial-gradient(currentColor #{$size}, transparent #{$size});
+      // background-size: calc(10 * #{$size}) calc(10 * #{$size});
+      @include pattern-dots($size);
+    }
+  }
+}
+
+// .bb-pattern-cross-dots-{sm, md, lg, xl}
+@if index($pattern-list, "cross-dots") {
+  @each $name, $size in $dots {
+    .#{$pattern-prefix}-cross-dots-#{$name} {
+      @include pattern-cross-dots($size);
+    }
+  }
+}
+
+@each $name, $size in $pattern-sizes {
+  // .bb-pattern-vertical-lines-{sm, md, lg, xl}
+  @if index($pattern-list, "vertical-lines") {
+    .#{$pattern-prefix}-vertical-lines-#{$name} {
+      @include pattern-vertical-lines($size);
+    }
+  }
+
+  // .bb-pattern-horizontal-lines-{sm, md, lg, xl}
+  @if index($pattern-list, "horizontal-lines") {
+    .#{$pattern-prefix}-horizontal-lines-#{$name} {
+      @include pattern-horizontal-lines($size);
+    }
+  }
+
+  // .bb-pattern-diagonal-lines-{sm, md, lg, xl}
+  @if index($pattern-list, "diagonal-lines") {
+    .#{$pattern-prefix}-diagonal-lines-#{$name} {
+      @include pattern-diagonal-lines($size);
+    }
+  }
+}
+
+@each $name, $size in $pattern-sizes {
+  // .bb-pattern-vertical-stripes-{sm, md, lg, xl}
+  @if index($pattern-list, "vertical-stripes") {
+    .#{$pattern-prefix}-vertical-stripes-#{$name} {
+      @include pattern-vertical-stripes($size);
+    }
+  }
+
+  // .bb-pattern-horizontal-stripes-{sm, md, lg, xl}
+  @if index($pattern-list, "horizontal-stripes") {
+    .#{$pattern-prefix}-horizontal-stripes-#{$name} {
+      @include pattern-horizontal-stripes($size);
+    }
+  }
+
+  // .bb-pattern-diagonal-stripes-{sm, md, lg, xl}
+  @if index($pattern-list, "diagonal-stripes") {
+    .#{$pattern-prefix}-diagonal-stripes-#{$name} {
+      @include pattern-diagonal-stripes($size);
+    }
+  }
+}
+
+// .bb-pattern-zigzag-{sm, md, lg, xl}
+@if index($pattern-list, "zigzag") {
+  @each $name, $size in $pattern-sizes {
+    .#{$pattern-prefix}-zigzag-#{$name} {
+      @include pattern-zigzag($size);
+    }
+  }
+}
+
+// .bb-pattern-triangles-{sm, md, lg, xl}
+@if index($pattern-list, "triangles") {
+  @each $name, $size in $pattern-sizes {
+    .#{$pattern-prefix}-triangles-#{$name} {
+      @include pattern-triangles($size);
+    }
+  }
+}
+
+// .t-pattern-text-pattern
+.#{$pattern-prefix}-txt {
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

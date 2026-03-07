@@ -1,0 +1,84 @@
+@charset "utf-8";
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//  Mixins > Buttons
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Button Variant
+@mixin button-variant($background,
+$border: rgba($background, 0.24),
+$hover-background: darken($background, 8%),
+$hover-border: darken($border, 10%),
+$active-background: darken($background, 4%),
+$active-border: darken($border, 6%),
+$t-btn-box-shadow: $t-btn-box-shadow,
+$t-btn-box-shadow-hover: $t-btn-box-shadow-hover, $t-btn-box-shadow-active: $t-btn-box-shadow-active, $t-btn-box-shadow-focus: $t-btn-box-shadow-focus) {
+
+
+  $fontColor: color-contrast(darken($background, 8%), shade-color($background, 95%), $white);
+  $shadowColor: color-contrast($fontColor, shade-color($background, 80%), tint-color($background, 80%));
+
+  border-color: $border;
+  color: $fontColor;
+  box-shadow: $t-btn-box-shadow rgba($background, 0.48);
+
+  @include text-shadow-v1($shadowColor);
+
+
+
+  @if(lightness($background) > 80%) {
+    @include gradient-x-three-colors(adjust-hue(shade-color($background, 5%), -60deg) -20% 0, shade-color($background, 5%), 50%, adjust-hue(shade-color($background, 5%), 60deg) 120%);
+  }
+  @else if(lightness($background) < 20%) {
+    @include gradient-x-three-colors(adjust-hue(tint-color($background, 10%), -60deg) -20% 0, tint-color($background, 10%), 50%, adjust-hue(tint-color($background, 10%), 60deg) 120%);
+  }
+  @else{
+    @include gradient-x-three-colors(adjust-hue($background, -60deg) -20% 0, tint-color($background, 0%), 50%, adjust-hue($background, 60deg) 120%);
+  }
+
+
+  // $color: lightness( $mid-color);
+  // @debug $color;
+  // @include gradient-x-three-colors(adjust-hue($background, -60deg) -20% 0, tint-color($background, 0%), 50%, adjust-hue($background, 60deg) 120%);
+
+
+
+  @include btn-hover {
+    border-color: $hover-border;
+    color: color-contrast($hover-background, shade-color($background, 95%), $white);
+    box-shadow: $t-btn-box-shadow-hover rgba($background, 0.72);
+    background-position: 75%;
+  }
+
+
+  @include btn-focus {
+    box-shadow: $t-btn-box-shadow-focus rgba($background, 0.54), 0 0 0 0.25rem rgba($background, 0.32);
+
+    // @if $enable-shadows {
+    //   box-shadow: $btn-box-shadow, 0 0 0 3px rgba(mix(color-yiq($background), $border, 15%), 0.5);
+    // }
+  }
+
+
+  @include btn-active {
+    color: color-contrast($active-background, shade-color($active-background, 87.5%), $white);
+    border-color: $active-border;
+    box-shadow: $t-btn-box-shadow-active rgba($background, 0.48);
+
+    // @include gradient-bg($active-background);
+    background-position: 50%;
+
+    @include btn-focus {
+      @if $enable-shadows {
+        box-shadow: $btn-box-shadow-value rgba($background, 0.12), $btn-focus-box-shadow-value rgba(mix(color-contrast($background), $border, 10%), 0.48);
+      }
+    }
+  }
+
+
+  @include btn-disabled {
+    color: color-contrast($background, shade-color($background, 95%), $white);
+    background-color: $background;
+    border-color: $white;
+  }
+}

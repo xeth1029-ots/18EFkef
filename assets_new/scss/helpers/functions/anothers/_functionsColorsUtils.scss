@@ -1,0 +1,128 @@
+// @import 'functionsUtilsHelpers';
+
+// colors
+// ------
+@function tu-css-color($hue: 500,  $opacity: null, $palette: 'primary', $is-contrast-color: false) {
+  $palette_: $tu-css-palette-primary;
+  @if ($is-contrast-color == true) {
+    @if ($palette=='primary') {
+      $palette_: $tu-css-contrast-palette;
+    } @else if ($palette=='accent') {
+      $palette_: $tu-css-contrast-palette-accent;
+    } @else if ($palette=='warn') {
+      $palette_: $tu-css-contrast-palette-warn;
+    } @else {
+      @error 'Invalid contrast palette';
+    }
+  } @else {
+    @if ($palette=='primary') {
+      $palette_: $tu-css-palette-primary;
+    } @else if ($palette=='accent') {
+      $palette_: $tu-css-palette-accent;
+    } @else if ($palette=='warn') {
+      $palette_: $tu-css-palette-warn;
+    } @else {
+      @error 'Invalid palette';
+    }
+  }
+
+  $color: _tu-css-strip-variable(map_get($palette_, $hue));
+
+  @if (type-of($opacity) == number) {
+    @return rgba($color, $opacity);
+  } @else {
+    @return rgb($color);
+  }
+}
+
+@function tu-css-color-primary($hue: 500,  $opacity: null) {
+  @return tu-css-color($hue, $opacity, 'primary');
+}
+
+@function tu-css-color-accent($hue: 500,  $opacity: null) {
+  @return tu-css-color($hue, $opacity, 'accent');
+}
+
+@function tu-css-color-warn($hue: 500,  $opacity: null) {
+  @return tu-css-color($hue, $opacity, 'warn');
+}
+
+// contrast-colors
+// ---------------
+@function tu-css-contrast-color($hue: 500,  $opacity: null, $palette: 'primary') {
+  @return tu-css-color($hue, $opacity, $palette, true);
+}
+
+@function tu-css-contrast-color-primary($hue: 500,  $opacity: null) {
+  @return tu-css-contrast-color($hue, $opacity, 'primary');
+}
+
+@function tu-css-contrast-color-accent($hue: 500,  $opacity: null) {
+  @return tu-css-contrast-color($hue, $opacity, 'accent');
+}
+
+@function tu-css-contrast-color-warn($hue: 500,  $opacity: null) {
+  @return tu-css-contrast-color($hue, $opacity, 'warn');
+}
+
+// mixins
+// ------
+@mixin tu-css-color-and-contrast($hue) {
+  @warn 'tu-css-color-and-contrast() is deprecated. Please use tu-css-color-and-contrast-primary() instead.';
+  @include tu-css-color-and-contrast-primary($hue);
+}
+
+@mixin tu-css-color-and-contrast-primary($hue) {
+  background: tu-css-color-primary($hue);
+  color: tu-css-contrast-color($hue);
+}
+
+@mixin tu-css-color-and-contrast-accent($hue) {
+  background: tu-css-color-accent($hue);
+  color: tu-css-contrast-color-accent($hue);
+}
+
+@mixin tu-css-color-and-contrast-warn($hue) {
+  background: tu-css-color-warn($hue);
+  color: tu-css-contrast-color-warn($hue);
+}
+
+@mixin tu-css-bg($hue) {
+  background: tu-css-color-primary($hue);
+}
+
+@mixin tu-css-dark-theme {
+  :host-context(#{$tu-css-dark-theme-selector}) & {
+    @content;
+  }
+}
+
+@mixin tu-css-light-theme {
+  :host-context(#{$tu-css-light-theme-selector}) & {
+    @content;
+  }
+}
+
+@mixin tu-css-dark-theme-global {
+  #{$tu-css-dark-theme-selector} & {
+    @content;
+  }
+}
+
+@mixin tu-css-light-theme-global {
+  #{$tu-css-light-theme-selector} & {
+    @content;
+  }
+}
+
+@mixin tu-css-set-palette-defaults($css-var-map, $paletteType: 'primary') {
+  $new-map: ();
+  @each $var, $defaultVal in $css-var-map {
+    @if ($var != 'contrast') {
+      $colorVal: _tu-css-hex-to-rgb($defaultVal);
+      @if $colorVal != null {
+        $new-map: map_merge($new-map, (--tu-#{$paletteType}-#{$var}: #{$colorVal}));
+      }
+    }
+  }
+}

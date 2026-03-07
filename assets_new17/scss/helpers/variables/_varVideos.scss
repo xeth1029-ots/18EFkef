@@ -1,0 +1,32 @@
+// Video Player
+// =========================================================
+
+// Width & Heights
+$video-bg-min-height:     75vh !default;
+// Colors
+$video-player-btn-color: $headings-color !default;
+$video-player-icon-color: $primary !default;
+
+// Backgrounds
+$video-player-bg-color: $dark !default;
+$video-player-icon-bg-color: $white !default;
+
+// Width & Heights
+$video-player-icon-width: $font-size-base * 5 !default;
+$video-player-icon-height: $video-player-icon-width !default;
+
+// Type
+$video-player-icon-font-size: $font-size-base * 2 !default;
+
+// Borders
+$video-player-icon-border-radius: $border-radius-rounded !default;
+
+// Margins
+$video-player-icon-inner-margin-x: 0.125rem !default;
+
+// Transition
+$video-player-icon-transition: $transition-timing !default;
+$video-player-icon-hover-scale: 1.1 !default;
+$video-player-preview-transition: opacity $transition-timing $transition-function !default;
+$video-player-btn-transition: transform $transition-timing $transition-function !default;
+$video-player-btn-played-animateion: videoPlayerButton $transition-timing $transition-function forwards !default;

@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+//  Components -> Buttons -> Buttons soft
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Buttons soft Colors
+@if $enable-custom-buttons-soft == true {
+  @each $color, $value in $element-colors {
+    .btn.btn--soft--#{$color} {
+      @include button-inverse-variant($value);
+    }
+  }
+}

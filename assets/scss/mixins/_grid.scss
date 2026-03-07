@@ -1,0 +1,16 @@
+// Grid system
+// Centered container element
+@mixin container-fixed($gutter: $grid-gutter-width-rem) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  pxTorem(($gutter));
+  padding-right: pxTorem(($gutter));
+  @include clearfix;
+}
+
+// // Creates a wrapper for a series of columns
+// @mixin make-row($gutter: $grid-gutter-width-rem) {
+//   margin-left:  pxTorem((-$gutter));
+//   margin-right: pxTorem((-$gutter));
+//   @include clearfix;
+// }

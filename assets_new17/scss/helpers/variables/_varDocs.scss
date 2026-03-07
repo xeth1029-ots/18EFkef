@@ -1,0 +1,24 @@
+// Menu Base
+// Content background Color
+$docs-page-bg-color: if(isDarkMode(), $dark, $gray-100) !default;
+
+// Content Spacing
+$docs-content-spacing: (desktop: 30px, tablet-and-mobile: 15px) !default;
+
+// Menu Base
+// Content background Color
+$docs-page-bg-color: if(isDarkMode(), $dark, $gray-100) !default;
+
+// Content Spacing
+$docs-content-spacing: (desktop: 30px, tablet-and-mobile: 15px) !default;
+
+// Content background Color
+$docs-page-bg-color: if(isDarkMode(), #151521, $gray-100) !default;
+
+// Content Spacing
+$docs-content-spacing: (desktop: 30px, tablet-and-mobile: 15px) !default;
+
+// Aside
+$docs-aside-config: (z-index: 101, padding-x: 25px, menu-indention: 0.75rem, width: 265px, bg-color: if(isDarkMode(), #1e1e2d, $white), box-shadow: 0 0 28px 0 rgba(82, 63, 105, 0.025)) !default;
+
+// Custom variable

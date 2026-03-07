@@ -1,0 +1,47 @@
+@function theme-color($key: "primary") {
+  @return map-get($theme-colors, $key);
+}
+
+@function element-soft-color($key: "primary") {
+  @return map-get($element-soft-colors, $key);
+}
+
+// @function brand-color($key: "facebook") {
+//     @return map-get($brand-colors, $key);
+// }
+//
+// Bootstrap extended functions
+//
+
+@function theme-inverse-color($key: "primary") {
+  @return get($theme-inverse-colors, $key);
+}
+
+@function theme-active-color($key: "primary") {
+  @return get($theme-active-colors, $key);
+}
+
+@function theme-light-color($key: "primary") {
+  @return get($theme-light-colors, $key);
+}
+
+@function grey($key: "100") {
+  @return map-get($greys, $key);
+}
+
+// Request a theme color level
+@function theme-color-level($color-name: "primary", $level: 0) {
+  $color: theme-color($color-name);
+  $color-base: if($level > 0, $black, $white);
+  $level: abs($level);
+
+  @return mix($color-base, $color, $level * $theme-color-interval);
+}
+
+@function element-soft-color-level($color-name: "soft-primary", $level: 0) {
+  $color: element-soft-color($color-name);
+  $color-base: if($level > 0, $black, $white);
+  $level: abs($level);
+
+  @return mix($color-base, $color, $level * $theme-color-interval);
+}

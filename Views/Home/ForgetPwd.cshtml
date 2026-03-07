@@ -1,0 +1,224 @@
+﻿@using WKEFSERVICE.Models
+@model WKEFSERVICE.Models.LoginModel
+@{
+    //Layout = "~/Views/Shared/_MainLayout_NoHeader_NoBg.cshtml";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    SessionModel sm = SessionModel.Get();
+    //ID number is required
+    string s_idno_placeholder = "請輸入您的身分證號(是必填欄位)";
+    string s_email_placeholder = "請輸入您的電子郵件(是必填欄位)";
+    string s_birth_placeholder = "出生民國年月日(格式YYYMMDD),請輸入您的生日(是必填欄位)";
+    string s_ValidateCode_placeholder = "請輸入驗證碼,參考下方產生的字元或語音撥放(是必填欄位)";
+}
+
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/slim-icon/styles.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/swiper/swiper-bundle.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/icon-turbotech/style.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/css/all.css">*@
+
+<!-- breadcrumbs -->
+@Html.Partial("_PartialBread3")
+<style type="text/css">
+    /*style=*/
+    .width-88-percent { width: 15rem; width: 88%; }
+    .text-center { text-align: center; }
+    .spacer-40 { height: 40px; }
+    .content-container { height: auto; margin-bottom: 15rem; }
+    .hidden-player-captcha { display: none; }
+</style>
+<div class="spacer-40">&nbsp;</div>
+<div class="container content-container">
+    <div class="col-12">
+        @using (Html.BeginForm("doForgetPwd", "Home", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", autocomplete = "off" }))
+        {
+            <div class="wrap">
+                <form class="form-horizontal">
+                    <div class="col-sm-12">
+                        <div class="form-border">
+                            <div class="form-group">
+                                @*Html.CustomLabelFor(m => m.ForgetPasswd.IDNO, new { @class = "col-sm-3 control-label label-set", title = "身分證號是必填欄位" })*@
+                                <label for="ForgetPasswd_IDNO" class="col-sm-4 control-label label-set" title=@(s_idno_placeholder)><span class="mark-red" sr-only="身分證號是必填">＊</span><strong>@(s_idno_placeholder)</strong></label>
+                                <div class="col-sm-8 form-inline">
+                                    @Html.PasswordFor(m => m.ForgetPasswd.IDNO, new { @class = "form-control formbar-bg", @maxlength = 12, title = "請輸入您的身分證號", placeholder = s_idno_placeholder, style = "width:15rem;width:88%;", autocomplete = "off" })
+                                    <label id="labmsgIDNO"></label>
+                                    <button type="button" id="show-btn-uuid" class="btn-show status-hidden" title="(開啟或關閉)開啟顯示輸入內容"><i class="fa fa-lg fa-eye-slash" aria-hidden="true" id="show-icon-uuid"></i><span class="sr-only">開啟顯示輸入內容</span></button>
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <div class="form-group">
+                                @*Html.CustomLabelFor(m => m.ForgetPasswd.EMAIL, new { @class = "col-sm-3 control-label label-set", title = "電子郵件是必填欄位" })*@
+                                <label for="ForgetPasswd_EMAIL" class="col-sm-4 control-label label-set" title=@(s_email_placeholder)><span class="mark-red" sr-only="電子郵件是必填">＊</span><strong>@(s_email_placeholder)</strong></label>
+                                <div class="col-sm-8 form-inline">
+                                    @Html.TextBoxFor(m => m.ForgetPasswd.EMAIL, new { @class = "form-control formbar-bg", @maxlength = 77, title = "請輸入您的電子郵件", placeholder = s_email_placeholder, style = "width:15rem;width:88%;", autocomplete = "off" })
+                                    <label id="labmsgEMAIL"></label>
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <div class="form-group">
+                                @*Html.CustomLabelFor(m => m.ForgetPasswd.BIRTHDAY_AD, new { @for = "ForgetPasswd_BIRTHDAY_AD_TW", @class = "col-sm-3 control-label label-set", title = "生日是必填欄位" })*@
+                                <label for="ForgetPasswd_BIRTHDAY_AD_TW" class="col-sm-4 control-label label-set" title=@(s_birth_placeholder)><span class="mark-red" sr-only="出生民國年月日YYYMMDD是必填">＊</span><strong>@(s_birth_placeholder)</strong></label>
+                                <div class="col-sm-8 form-inline">
+                                    @Html.DatePickerTWFor(m => m.ForgetPasswd.BIRTHDAY_AD, new { @placeholder = s_birth_placeholder, @maxlength = 10, title = "您的生日", style = "width:15rem;width:88%;" })
+                                    <label id="labmsgBIRTHDAY_AD"></label>
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <div class="form-group">
+                                @*Html.CustomLabelFor(m => m.ForgetPasswd.ValidateCode, new { @class = "col-sm-3 control-label label-set", title = "驗證碼是必填欄位" })*@
+                                <label for="ForgetPasswd_ValidateCode" class="col-sm-4 control-label label-set" title=@(s_ValidateCode_placeholder)><span class="mark-red" sr-only="驗證碼是必填欄位">＊</span><strong>@(s_ValidateCode_placeholder)</strong></label>
+                                <div class="col-sm-8 form-inline">
+                                    @Html.TextBoxFor(m => m.ForgetPasswd.ValidateCode, new { @class = "form-control formbar-bg", @maxlength = "10", title = "請輸入驗證碼", placeholder = s_ValidateCode_placeholder, @style = "width:33%;", autocomplete = "off" })
+                                    <label id="labmsgValidateCode"></label>
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label label-set">@*驗證碼*@</label>
+                                <div class="col-sm-9 form-inline">
+                                    <img class="img-captcha" src="@Url.Action("GetValidateCode", "Home")" id="vCode" alt="(點擊)產生新驗證碼" title="點擊以產生新驗證碼" tabindex="0" />
+                                    <a href="@Url.Action("VCodeAudio", "Home")" class="btn btn--square btn--dark" id="imgChgNum2" data-toggle="tooltip" title="(點擊)語音撥放驗證碼" target="frmPlayer" data-placement="right" data-original-title="語音播放">
+                                        <span class="sr-only">(點擊)語音撥放驗證碼</span>
+                                        <i id="playCode" title="點擊以撥放語音驗證碼" class="tu-f-volume" aria-hidden="true"></i>
+                                    </a>
+                                    <iframe name="frmPlayer" class="hidden-player-captcha" title="語音撥放器,驗證碼存放區"></iframe>
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <label id="labmsgALL"></label>
+                        </div>
+                    </div>
+                    <br />&nbsp;
+                    <div class="text-center">
+                        <button type="button" class="btn btn-info" id="btnSubmit" title="送出">&nbsp;確認&nbsp;</button>
+                        <button type="button" class="btn btn-info" id="btnCancel" title="取消查詢動作">&nbsp;離開&nbsp;</button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    function showErrmsg2(vERRmsg2) {
+        //var vERRmsg2 = res.data.ERRMSG2;
+        //電子郵件信箱EMail格式錯誤，使用者生日比對不正確，使用者電子郵件信箱(EMAIL)比對不正確，驗證碼輸入錯誤，請重新輸入
+        var fgErr5 = (vERRmsg2.indexOf("使用者帳號不存在") > -1);
+        var fgErr1 = (vERRmsg2.indexOf("驗證碼輸入錯誤") > -1);
+        var fgErr2 = (vERRmsg2.indexOf("使用者生日比對不正確") > -1);
+        var fgErr3 = (vERRmsg2.indexOf("使用者電子郵件信箱") > -1);
+        var fgErr4 = (vERRmsg2.indexOf("電子郵件信箱") > -1);
+        var focusVal = 0;
+        //console.log('.0:' + vERRmsg2);
+        //console.log('.1:' + fgErr1 + '.2:' + fgErr2 + '.3:' + fgErr3 + '.4:' + fgErr4);
+        if (fgErr5) { $("#ForgetPasswd_IDNO").focus(); focusVal = 3; }
+        else if (fgErr1) { $("#ForgetPasswd_ValidateCode").focus(); focusVal=1; }
+        else if (fgErr2) { $("#ForgetPasswd_BIRTHDAY_AD_TW").focus(); focusVal = 2; }
+        else if (fgErr3) { $("#ForgetPasswd_IDNO").focus(); focusVal = 3; }
+        else if (fgErr4) { $("#ForgetPasswd_EMAIL").focus(); focusVal = 4; }
+        //console.log('.focusVal:' + focusVal);
+        return;
+    }
+
+    $(document).ready(function () {
+        $("#show-btn-uuid").click(function () {
+            //const classValue = $("#show-btn-uuid").prop('class');
+            const currentVal = $('#ForgetPasswd_IDNO').val();
+            const currentType = $('#ForgetPasswd_IDNO').attr('type');
+            const newType = (currentType == 'text' ? 'password' : 'text');
+            $('#ForgetPasswd_IDNO').replaceWith(`<input class="form-control formbar-bg" data-val="true" data-val-required="身分證號 欄位是必要項。" id="ForgetPasswd_IDNO" maxlength="12" name="ForgetPasswd.IDNO" placeholder="請輸入您的身分證號(是必填欄位)" class="width-88-percent" title="請輸入您的身分證號" type="${newType}" value="">`);
+            $(this).toggleClass('status-hidden status-show');
+            if ($(this).attr('title').includes("開啟顯示輸入內容")) {
+                var newText= "隱藏顯示輸入內容";
+                var newTitle = "(開啟或隱藏)" + newText;
+                $(this).attr('title', newTitle);
+                $(this).find('.sr-only').text(newText);
+            } else {
+                var newText = "開啟顯示輸入內容";
+                var newTitle = "(開啟或隱藏)" + newText;
+                $(this).attr('title', newTitle);
+                $(this).find('.sr-only').text(newText);
+            }
+            $('#show-icon-uuid').toggleClass('fa-eye-slash fa-eye');
+            $('#ForgetPasswd_IDNO').val(currentVal);
+        });
+
+        $("#btnSubmit").click(function () {
+            //$("#labmessage1").css({"color": "red"}).html("出生民國年月日YYYMMDD是必填");
+            //$("#labmessage1").css({"color": "red"});
+            var msgIDNO = "";
+            var msgEMAIL = "";
+            var msgBIRTHDAY_AD = "";
+            var msgValidateCode = "";
+            $("#labmsgALL").css({ "color": "red" }).html("");
+            msgValidateCode = ($("#ForgetPasswd_ValidateCode").val() == "") ? "驗證碼是必填欄位不可為空白!" : "";
+            $("#labmsgValidateCode").css({ "color": "red" }).html(msgValidateCode);
+            if (msgValidateCode != "") {
+                $("#ForgetPasswd_ValidateCode").focus();
+                //blockAlert((msgValidateCode+"\n"), "表單檢核訊息");
+                return;
+            }
+
+            msgIDNO = ($("#ForgetPasswd_IDNO").val() == "") ? "身分證號是必填不可為空白!" : "";
+            msgEMAIL = ($("#ForgetPasswd_EMAIL").val() == "") ? "電子郵件是必填不可為空白!" : "";
+            msgBIRTHDAY_AD = ($("#ForgetPasswd_BIRTHDAY_AD").val() == "") ? "出生民國年月日(格式YYYMMDD)是必填不可為空白!" : "";
+
+            $("#labmsgIDNO").css({ "color": "red" }).html(msgIDNO);
+            $("#labmsgEMAIL").css({ "color": "red" }).html(msgEMAIL);
+            $("#labmsgBIRTHDAY_AD").css({ "color": "red" }).html(msgBIRTHDAY_AD);
+
+            if (msgIDNO != "" || msgEMAIL != "" || msgBIRTHDAY_AD != "") {
+                var focusVal = 0;
+                var resERRMSG = "";
+                if (msgIDNO != "") { resERRMSG += (msgEMAIL + "\n"); $("#ForgetPasswd_IDNO").focus(); focusVal=1; }
+                else if (msgEMAIL != "") { resERRMSG += (msgEMAIL + "\n"); $("#ForgetPasswd_EMAIL").focus(); focusVal = 2; }
+                else if (msgBIRTHDAY_AD != "") { resERRMSG += (msgBIRTHDAY_AD + "\n"); $("#ForgetPasswd_BIRTHDAY_AD_TW").focus(); focusVal = 3; }
+                //blockAlert(resERRMSG, "表單檢核訊息");
+                //console.log('.focusVal:' + focusVal);
+                return;
+            }
+
+            var params = {
+                /*"UserNo": $("#ForgetPasswd_UserNo").val(),*/
+                "IDNO": $("#ForgetPasswd_IDNO").val(),
+                "EMAIL": $("#ForgetPasswd_EMAIL").val(),
+                "BIRTHDAY_AD": $("#ForgetPasswd_BIRTHDAY_AD").val(),
+                "ValidateCode": $("#ForgetPasswd_ValidateCode").val()
+            };
+
+            var url = "@Url.Action("doForgetPwd")";
+            ajaxResult(url, params, function (res) {
+                blockMessage(
+                    //"寄發密碼的電子郵件已發送，請您稍候到電子郵件信箱中讀取!",
+                    "為確保您所登記的Email帳號正確無誤，系統已寄發認證信至您的電子信箱，請至信箱完成E-mail認證，方可使用E-mail帳號登入，謝謝!",
+                    null, function () {
+                        //parent.closeWindow();
+                        window.location.href = "@Url.Action("Login", "Home")";
+                    });
+            }, function (res) {
+                $('#vCode').click();
+                $("#labmsgALL").css({ "color": "red" }).html(res.data.ERRMSG2);
+                //blockAlert(res.data.ERRMSG, "表單檢核訊息");
+                if (res.data.ERRMSG2 == "") { return; }
+                var vERRmsg2 = res.data.ERRMSG2;
+                showErrmsg2(vERRmsg2);
+            });
+        });
+
+        $("#btnCancel").click(function () {
+            //parent.closeWindow();
+            window.location.href = "@Url.Action("Login", "Home")";
+        });
+    });
+
+    $(function () {
+        $('#vCode').on("click", function (e) {
+            $('#vCode').attr("src", '@Url.Action("GetValidateCode")' + "?rand=" + new Date().getMilliseconds());
+        });
+        $('#vCode').on("keypress", function (e) {
+            $('#vCode').attr("src", '@Url.Action("GetValidateCode")' + "?rand=" + new Date().getMilliseconds());
+        });
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+
+</script>

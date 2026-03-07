@@ -1,0 +1,103 @@
+﻿@using WKEFSERVICE.Models;
+@{
+    string svg10Ratio3 = "~/assets_new/images/10Ratio3.3333_v1.svg";
+    //@Url.Content(svglogobg)
+    string svglogobg = "~/assets_new/images/wda_logo_bg.svg";
+    //@Url.Content(svglogocircle)
+    string svglogocircle = "~/assets_new/images/wda_logo_circle.svg";
+    // 無障礙-首頁抬頭文字
+    string s_MainTitle = "勞動部勞動力發展署-關鍵就業力課程";
+    string s_DepWorkAddress = "24219 新北市新莊區中平路 439 號 (南棟 4 樓)";
+    string s_TelRepnumber = "(02)8995-6000";
+    // 移除//string s_supporthotline1 = "(03)6210160";  //string s_supporthotline2 = "(03)6210163";
+    string s_supporthotline3 = "(03)564-0958分機23、24";
+    string s_OurServiceHours = "週一～週五 08:30～12:30、13:30～17:30";
+    //隱私權及資訊安全政策 /隱私權及安全政策
+    ViewBag.Url_Privacy1 = "https://www.wda.gov.tw/cp.aspx?n=13";
+
+}
+
+<footer class="t-custom-footer" id="mainFooter">
+    <div class="container">
+        <div class="row align-items-center pb-4">
+            <div class="col-md">
+                <div class="t-custom-footer-logo">
+                    <picture class="opt-36">
+                        <source class="" src="@Url.Content(svglogobg)" data-src="@Url.Content(svg10Ratio3)">
+                        <img alt="@s_MainTitle" src="@Url.Content(svglogobg)" />
+                    </picture>
+                </div>
+            </div>
+        </div>
+        <div class="t-custom-footer-bd pb-4">
+            <div class="row">
+                <div class="col-sm-3">
+                    <ul class="list-unstyled t-footer-list">
+                        <li>
+                            <a href="#L" title="下方功能區塊, 快速鍵: Alt+L " id="AL" accesskey="L" name="L" class="quicklink t-header-top-list-link">:::</a>
+                            <a class="link link-light" href="~/Home/SiteGuide" title="前往網站導覽">網站導覽</a>
+                        </li>
+                        <li><a class="link link-light" href="~/Home/Footer_Page1" target="_blank" title="「另開新視窗」前往政府網站資訊開放宣告">政府網站資訊開放宣告</a></li>
+                        @*<li><a class="link link-light" href="~/Home/Footer_Page2" target="_blank" title="「另開新視窗」前往隱私權及安全政策">隱私權及安全政策</a></li>*@
+                        <li><a class="link link-light" href="@ViewBag.Url_Privacy1" target="_blank" title="「另開新視窗」前往隱私權及資訊安全政策">隱私權及資訊安全政策</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 ">
+                    <ul class="list-unstyled t-footer-list">
+                        <li>
+                            勞動部勞動力發展署：
+                            <span class="sr-only">勞動部勞動力發展署：@s_DepWorkAddress</span>
+                            <span class="span-link-light-75" href="javascript:;" title="勞動部勞動力發展署：@s_DepWorkAddress" sr->@s_DepWorkAddress</span>
+                        </li>
+                        <li>
+                            電話代表號：
+                            <span class="sr-only">電話代表號：@s_TelRepnumber</span>
+                            <span class="span-link-light-75" href="javascript:;" title="電話代表號：@s_TelRepnumber">@s_TelRepnumber</span>
+                        </li>
+                        <li>
+                            諮詢電話：
+                            @*<a class="link link-light link-light-75" href="javascript:;" title="諮詢電話：@s_supporthotline1">@s_supporthotline1</a>、*@
+                            @*<a class="link link-light link-light-75" href="javascript:;" title="諮詢電話：@s_supporthotline2">@s_supporthotline2</a>*@
+                            <span class="sr-only">諮詢電話：@s_supporthotline3</span>
+                            <span class="span-link-light-75" href="javascript:;" title="諮詢電話：@s_supporthotline3">@s_supporthotline3</span>
+                        </li>
+                        <li>
+                            本署服務時間：
+                            <span class="sr-only">本署服務時間：@s_OurServiceHours</span>
+                            <span class="span-link-light-75" href="javascript:;" title="本署服務時間：@s_OurServiceHours">@s_OurServiceHours</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <br />
+                    <a href="@ConfigModel.AccessibleWebsite" target="_blank" class="link link-light link-light-75" title="「另開新視窗」前往無障礙網站">
+                        <img src="@Url.Content("~/images/Website_accessibility_mark_AA_level_icon_1.png")" border="0" alt="通過AA無障礙網頁檢測" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-md-center pt-4">
+            <div class="col-md">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <span class="d-flex align-items-center">
+                            <picture class="t-footer-logos">
+                                <source src="@Url.Content(svglogocircle)" data-src="@Url.Content(svg10Ratio3)">
+                                <img alt="@s_MainTitle" src="@Url.Content(svglogocircle)" width="20" height="20" />
+                            </picture>
+                            <span>
+                                @*本網站建議使用 IE10 以上版本瀏覽器及以1024ｘ768以上解析度，以獲得最佳瀏覽體驗。*@
+                                網頁瀏覽器建議使用最新版本Edge、Chrome、Firefox，最佳瀏覽解析度為1024ｘ768以上。
+                            </span>
+                        </span>
+                    </li>
+                    <li class="list-inline-item">
+                        <span class="d-flex align-items-center">
+                            <p class="mb-0">© 2023 All rights reserved. 本網站為勞動部勞動力發展署版權所有.</p>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

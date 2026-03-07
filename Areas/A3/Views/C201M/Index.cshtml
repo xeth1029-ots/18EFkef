@@ -1,0 +1,225 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A3.Models;
+@model C201MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+
+    string TabFocus1 = (Model.FilterTab == "1") ? "checked=\"\"" : "";
+    string TabFocus2 = (Model.FilterTab == "2") ? "checked=\"\"" : "";
+}
+
+@using (Html.BeginForm("Index", "C201M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.FilterTab, new { id = "Hidden_FilterTab" })
+
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">教師資料設定</h3>
+                            <p class="bt-section-para">提供管理者可進行教師個人基本資料修改</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <section class="t-tab-contents" style="padding-bottom: unset;">
+                            <div class="t-form t-txt-left bt-form-cnt">
+                                <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                <!-- 過濾欄位 -->
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col-sm-12">
+                                        <div class="t-tab t-tab-line-bottom">
+                                            <input id="item_1" type="radio" name="tabsV1" class="hide" @TabFocus1>
+                                            <input id="item_2" type="radio" name="tabsV1" class="hide" @TabFocus2>
+                                            <div id="tab-nav-v1" class="t-tab-nav" data-scroll="x">
+                                                <label for="item_1" class="t-tab-nav-item" id="item_1_lab" onclick="OnTabChange('1')">師資列表</label>
+                                                <label for="item_2" class="t-tab-nav-item" id="item_2_lab" onclick="OnTabChange('2')">專長 / 領域</label>
+                                            </div>
+                                            <div class="t-tab-contents">
+                                                <div id="tab_content_1" class="t-tab-content">
+                                                    <div class="t-form-inline" style="width: 100%">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.Email, new { @class = "t-form-label" })
+                                                            @Html.TextBoxFor(m => m.Email, new { size = "100", maxlength = "64", @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.TeacherName, new { @class = "t-form-label" })
+                                                            @Html.TextBoxFor(m => m.TeacherName, new { size = "30", maxlength = "20", @class = "t-form-control ml-4" })
+                                                        </div>
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.IDNO, new { @class = "t-form-label" })
+                                                            @Html.TextBoxFor(m => m.IDNO, new { size = "30", maxlength = "15", @class = "t-form-control ml-4" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="tab_content_2" class="t-tab-content">
+                                                    <div class="t-form-inline" style="width: 100%">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.Keyword, new { @class = "t-form-label" })
+                                                            @Html.TextBoxFor(m => m.Keyword, new { size = "100", maxlength = "50", @class = "t-form-control ml-4", placeholder = "姓名 (中、英文)、專長 / 領域" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.TeachUnit, new { @class = "t-form-label" })
+                                                            @Html.DropDownListFor(m => m.TeachUnit, new SelectList(Model.TeachUnit_list, "Value", "Text", Model.TeachUnit), new { @class = "t-form-control ml-4", style = "padding-right:200px;" })
+                                                        </div>
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.Industry, new { @class = "t-form-label" })
+                                                            @Html.DropDownListFor(m => m.Industry, new SelectList(Model.Industry_list, "Value", "Text", Model.Industry), new { @class = "t-form-control ml-4", style = "padding-right:200px;" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-form-inline" style="width: 100%">
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.TeachArea, new { @class = "t-form-label", @for = "s_areaPicker1" })
+                                                            @Html.TextBoxFor(m => m.TeachArea, new { size = "30", maxlength = "50", @class = "t-form-control ml-4", id = "s_areaPicker1" })
+                                                        </div>
+                                                        <div class="t-form-group">
+                                                            @Html.LabelFor(m => m.LiveArea, new { @class = "t-form-label", @for = "s_areaPicker2" })
+                                                            @Html.TextBoxFor(m => m.LiveArea, new { size = "30", maxlength = "50", @class = "t-form-control ml-4", id = "s_areaPicker2" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 按鈕 -->
+                                <div class="t-form-inline t-form-btns">
+                                    <div class="t-form-group mb-0">
+                                        <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                            <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                <svg>
+                                                    <use href="#ic-reset"></use>
+                                                </svg>
+                                            </i>
+                                            清空條件
+                                        </button>
+                                        @*
+                                            <button type="button" class="btn btn--quaternary" onclick="doNew()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-add"></use>
+                                                    </svg>
+                                                </i>
+                                                新增
+                                            </button>
+                                        *@
+                                        <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                            <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                <svg>
+                                                    <use href="#ic-search"></use>
+                                                </svg>
+                                            </i>
+                                            查詢
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- 查詢結果 -->
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            <div style="margin-bottom: 30px;">@Html.Partial("_PagingLink", Model)</div>
+                            <!-- 為了分頁，強行硬塞 -->
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rows">
+                                    @Html.Partial("_GridRows")
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+    @*var citysJson = "@Url.Action("JsonFiles1", "Home", new { area = "" })";*@
+    //var citysJson = decodeURIComponent("%2FHome%2FJsonFiles1");;
+    //document.addEventListener("DOMContentLoaded", function () {
+    //    var picker1 = new JsCategoryPicker('s_areaPicker1', {
+    //        id: 'areaPicker1', // Picker ID
+    //        data: citysJson, // 代入縣市資訊
+    //        dataArray: ["CTID", "CTNAME"], // 只接受兩個 目前還沒寫擴充
+    //        dataArraySub: ["ZIPCODE", "ZIPNAME"], // 只接受兩個 目前還沒寫擴充
+    //        prefix: 'city1_',
+    //        prefixSub: 'dist1_',
+    //        selectAll: true, // 二層選單是否要開啟第一個全選 預設 false
+    //        title: '地區類別選單',
+    //    });
+
+    //    var picker2 = new JsCategoryPicker('s_areaPicker2', {
+    //        id: 'areaPicker2', // Picker ID
+    //        data: citysJson, // 代入縣市資訊
+    //        dataArray: ["CTID", "CTNAME"], // 只接受兩個 目前還沒寫擴充
+    //        dataArraySub: ["ZIPCODE", "ZIPNAME"], // 只接受兩個 目前還沒寫擴充
+    //        prefix: 'city2_',
+    //        prefixSub: 'dist2_',
+    //        selectAll: true, // 二層選單是否要開啟第一個全選 預設 false
+    //        title: '地區類別選單',
+    //    });
+    //});
+
+    function OnTabChange(tab) {
+        //console.log(tab);
+        $("#Hidden_FilterTab").val(tab);
+    }
+
+    // 切換頁籤時 清除原頁籤資料
+    //function doPageChange(Idx) {
+    //    if (Idx === '1') {
+    //        $('#Keyword').removeAttr('value');
+    //        $('#TeachUnit option').removeAttr('selected');
+    //        $('#s_areaPicker1').removeAttr('value');
+    //        $('#s_areaPicker2').removeAttr('value');
+    //        $('#Industry option').removeAttr('selected');
+    //    }
+    //    if (Idx === '2') {
+    //        $('#Email').removeAttr('value');
+    //        $('#TeacherName').removeAttr('value');
+    //        $('#IDNO').removeAttr('value');
+    //    }
+    //}
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#Email').removeAttr('value');
+        $('#TeacherName').removeAttr('value');
+        $('#IDNO').removeAttr('value');
+        $('#Keyword').removeAttr('value');
+        $('#TeachUnit option').removeAttr('selected');
+        $('#s_areaPicker1').removeAttr('value');
+        $('#s_areaPicker2').removeAttr('value');
+        $('#Industry option').removeAttr('selected');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index", "C201M")').submit();
+    }
+
+    // 編輯
+    function doEdit(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("Edit", "C201M")?' + $.param(data);
+        window.location = url;
+    }
+
+</script>

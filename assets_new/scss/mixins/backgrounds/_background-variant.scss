@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+// 
+//  Mixins > Background Variant
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin bg-variant($parent, $color) {
+  #{$parent} {
+    background-color: $color !important;
+  }
+
+  a#{$parent},
+  button#{$parent} {
+    @include hover-focus {
+      background-color: darken($color, 10%) !important;
+    }
+  }
+}
+
+@mixin bg-gradient-variant($parent, $color) {
+  #{$parent} {
+    background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
+  }
+}
+
+@mixin cover-bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+// 背景圓圈
+// @include bg-gradient-circles($primary, $primary-300); shade-color($primary, 60%); tint-color($primary, 90%);
+@mixin bg-gradient-circles($color, $color2) {
+  background-image: repeating-radial-gradient(circle at 15% center, rgba($white, 0) 0%, rgba($white, 0) 10%, rgba($color, 0.16) 10%, rgba($color, 0.16) 16%), linear-gradient(to right, $color2, $color);
+}
+
+// @include bg-45deg-square($color: $dark);
+@mixin bg-45deg-square($color: $dark) {
+  background-image: radial-gradient(circle at center center, rgba($color, 0), rgba($color, 1)), repeating-linear-gradient(135deg, rgba($color, 1) 0px, rgba($color, 1) 1px, transparent 1px, transparent 4px), repeating-linear-gradient(45deg, rgb(56, 56, 56) 0px, rgb(56, 56, 56) 5px, transparent 5px, transparent 6px), linear-gradient(90deg, rgba($color, 1), rgba($color, 1));
+}
+
+
+
+// @include background-transition(#4CAF50, #3F51B5);
+@mixin background-transition($initial, $hover, $inversed: false) {
+  background: linear-gradient(
+    90deg,
+    $hover 0%,
+    $hover 50%,
+    $initial 50%,
+    $initial 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+
+  background-position: right bottom;
+  @if $inversed {
+    background-position: left bottom;
+  }
+  transition: background-position 0.25s ease-out;
+
+  &:hover {
+    background-position: left bottom;
+    @if $inversed {
+      background-position: right bottom;
+    }
+  }
+}

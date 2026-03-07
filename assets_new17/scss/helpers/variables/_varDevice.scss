@@ -1,0 +1,69 @@
+// Divider
+// =========================================================
+
+// Colors
+$divider-color: $text-muted !default;
+
+// Borders
+$divider-border-width: $border-width !default;
+$divider-border-color: $border-color !default;
+
+// Margins
+$divider-margin-x: 1.5rem !default;
+
+// Devices
+// =========================================================
+
+// Colors
+$device-browser-header-browser-bar-color: $white-70 !default;
+
+// Backgrounds
+$device-mobile-bg-color: $dark !default;
+$device-browser-bg-color: $dark !default;
+$device-browser-header-bg-color: $dark !default;
+$device-browser-header-btn-list-btn-bg-color: lighten($dark, 10%) !default;
+$device-browser-header-browser-bar-bg-color: lighten($dark, 10%) !default;
+
+// Borders
+$device-mobile-border-radius: 2rem !default;
+$device-browser-border-radius: 0.5rem !default;
+$device-browser-header-border-width: $border-width !default;
+$device-browser-header-border-color: lighten($gray-300, 3%) !default;
+$device-browser-header-btn-list-btn-border-radius: $border-radius-rounded !default;
+$device-browser-header-browser-bar-border-radius: 0.125rem !default;
+
+// Width & Heights
+$devices-max-width: 1140px !default;
+$device-mobile-width: 15rem !default;
+$device-vertical-tablet-width: 30rem !default;
+$device-browser-width: 50rem !default;
+$device-browser-lg-width: 60rem !default;
+$device-browser-header-btn-list-btn-width: 0.5rem !default;
+$device-browser-header-btn-list-btn-height: $device-browser-header-btn-list-btn-width !default;
+
+// Shadows
+$device-mobile-box-shadow: 0 2.75rem 5.5rem -3.5rem rgba($dark, 0.2), 0 2rem 4rem -2rem rgba($dark, 0.3), inset 0 -0.1875rem 0.3125rem 0 rgba($dark, 0.2) !default;
+$device-browser-box-shadow: 0 2.75rem 3.5rem -2rem rgba($dark, 0.2), 0 0 5rem -2rem rgba($dark, 0.15) !default;
+
+// Type
+$device-browser-header-browser-bar-font-size: $font-size-base * 0.5 !default;
+
+// Positions
+$device-browser-header-btn-list-btn-start-offset: 1rem !default;
+
+// Margins
+$devices-margin-y: 5rem !default;
+$devices-margin-x: 0.75rem !default;
+$devices-margin-x-offset: 5rem !default;
+
+// Padding
+$devices-padding-y: $devices-margin-y + 2rem !default;
+$device-mobile-padding: 0.3125rem !default;
+$device-browser-header-padding-y: 0.5rem !default;
+$device-browser-header-padding-x: 6.5rem !default;
+
+// Margins
+$devices-mobile-margin-x: 0.5rem !default;
+
+// Gap
+$device-browser-header-btn-list-btn-gap: 0.25rem !default;

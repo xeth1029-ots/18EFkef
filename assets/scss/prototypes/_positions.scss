@@ -1,0 +1,48 @@
+
+
+.t-ab-center {
+  @include absolute-center
+}
+
+.t-ab-center-x {
+  @include absolute-x-center
+}
+
+.t-ab-center-y {
+  @include absolute-y-center
+}
+
+@for $i from 0 through 10 {
+
+  .t-lt-#{$i} {
+    left: unquote("#{$i * 1}rem !important");
+  }
+
+  .t-rt-#{$i} {
+    right: unquote("#{$i * 1}rem !important");
+  }
+
+  .t-tp-#{$i} {
+    top: unquote("#{$i * 1}rem !important");
+  }
+
+  .t-bt-#{$i} {
+    bottom: unquote("#{$i * 1}rem !important");
+  }
+
+  .t-lt--#{$i} {
+    left: unquote("#{$i * -1}rem !important");
+  }
+
+  .t-rt--#{$i} {
+    right: unquote("#{$i * -1}rem !important");
+  }
+
+  .t-tp--#{$i} {
+    top: unquote("#{$i * -1}rem !important");
+  }
+
+  .t-bt--#{$i} {
+    bottom: unquote("#{$i * -1}rem !important");
+  }
+}

@@ -1,0 +1,139 @@
+
+
+// Swiper
+// =========================================================
+
+// Colors
+$swiper-arrow-icon-color: $gray-700 !default;
+$swiper-arrow-hover-color: $primary !default;
+$swiper-arrow-soft-white-icon-color: $white !default;
+
+$swiper-thumb-progress-path-stroke-color: $primary !default;
+$swiper-step-pagination-title-color: rgba($dark, 0.7) !default;
+$swiper-step-pagination-title-active-color: $dark !default;
+$swiper-step-pagination-light-title-color: rgba($white, 0.7) !default;
+$swiper-step-pagination-light-title-active-color: $white !default;
+
+// Backgrounds
+$swiper-preloader-bg-color: $white !default;
+$swiper-arrow-icon-bg-color: $white !default;
+
+$swiper-arrow-soft-white-icon-bg-color: rgba($white, 0.1) !default;
+$swiper-arrow-soft-white-hover-bg-color: $primary !default;
+
+$swiper-arrow-soft-dark-icon-color: $dark !default;
+$swiper-arrow-soft-dark-icon-bg-color: rgba($dark, 0.66) !default;
+$swiper-arrow-soft-dark-hover-bg-color: $primary !default;
+
+
+
+
+
+$swiper-pagination-bullet-bg-color: transparent !default;
+$swiper-pagination-bullet-pseudo-bg-color: $gray-400 !default;
+$swiper-pagination-bullet-pseudo-active-bg-color: $primary !default;
+$swiper-pagination-bullet-pseudo-hover-bg-color: rgba($primary, 0.5) !default;
+$swiper-pagination-light-bullet-pseudo-bg-color: rgba($white, 0.5) !default;
+$swiper-pagination-light-bullet-pseudo-hover-bg-color: rgba($white, 0.5) !default;
+$swiper-pagination-light-bullet-pseudo-active-bg-color: $white !default;
+$swiper-pagination-progressbar-bg-color: rgba($dark, 0.1) !default;
+$swiper-pagination-progressbar-fill-bg-color: $primary !default;
+$swiper-pagination-progress-body-bg-color: $swiper-pagination-progressbar-bg-color !default;
+$swiper-pagination-progress-body-helper-bg-color: $swiper-pagination-progressbar-fill-bg-color !default;
+$swiper-pagination-progress-light-body-bg-color: rgba($white, 0.5) !default;
+$swiper-pagination-progress-light-body-helper-bg-color: $white !default;
+$swiper-step-divider-bg-color: $primary !default;
+$swiper-step-divider-pseudo-before-bg-color: $white !default;
+$swiper-step-pagination-item-pseudo-bg-color: rgba($dark, 0.1) !default;
+$swiper-step-pagination-item-active-pseudo-bg-color: $dark !default;
+$swiper-step-pagination-light-item-pseudo-bg-color: rgba($white, 0.2) !default;
+$swiper-step-pagination-light-item-active-pseudo-bg-color: $white !default;
+
+// Borders
+$swiper-arrow-icon-border-width: $border-width !default;
+$swiper-arrow-icon-border-color: $gray-300 !default;
+$swiper-arrow-icon-border-radius: $border-radius-rounded !default;
+
+
+
+
+$swiper-pagination-bullet-border-width: $border-width !default;
+$swiper-pagination-bullet-border-color: transparent !default;
+$swiper-pagination-bullet-active-border-color: $primary !default;
+$swiper-pagination-bullet-hover-border-color: rgba($primary, 0.5) !default;
+$swiper-pagination-light-bullet-hover-border-color: $white !default;
+$swiper-pagination-light-bullet-active-border-color: $white !default;
+$swiper-pagination-bullet-pseudo-border-radius: $border-radius-rounded !default;
+$swiper-pagination-progress-border-radius: $border-radius-pill !default;
+$swiper-thumb-progress-avatar-border-width: $border-width !default;
+$swiper-thumb-progress-avatar-border-color: $border-color !default;
+$swiper-thumb-progress-avatar-border-radius: $avatar-circle-border-radius !default;
+$swiper-step-divider-pseudo-border-radius: $border-radius-rounded !default;
+
+// Width & Heights
+
+$swiper-arrow-icon-width: $btn-icon-width !default;
+$swiper-arrow-icon-pseudo-width: 1rem !default;
+$swiper-arrow-icon-pseudo-height: $swiper-arrow-icon-pseudo-width !default;
+$swiper-pagination-bullet-width: 1.5rem !default;
+$swiper-pagination-bullet-height: $swiper-pagination-bullet-width !default;
+$swiper-pagination-bullet-pseudo-width: 0.25rem !default;
+$swiper-pagination-bullet-pseudo-height: $swiper-pagination-bullet-pseudo-width !default;
+$swiper-pagination-progress-body-height: 0.25rem !default;
+$swiper-thumb-progress-avatar-width: $avatar-width !default;
+$swiper-thumb-progress-avatar-height: $swiper-thumb-progress-avatar-width !default;
+$swiper-step-divider-width: calc(100% + 2rem) !default;
+$swiper-step-divider-height: 0.125rem !default;
+$swiper-step-divider-pseudo-before-width: 1.5rem !default;
+$swiper-step-divider-pseudo-before-height: $swiper-step-divider-pseudo-before-width !default;
+$swiper-step-divider-pseudo-after-width: 0.5rem !default;
+$swiper-step-divider-pseudo-after-height: $swiper-step-divider-pseudo-after-width !default;
+$swiper-step-pagination-item-pseudo-height: 0.125rem !default;
+
+$swiper-arrow-icon-pseudo-width-md: 1.375rem !default;
+$swiper-arrow-icon-pseudo-height-md: $swiper-arrow-icon-pseudo-width-md !default;
+
+$swiper-arrow-icon-pseudo-width-lg: 1.625rem !default;
+$swiper-arrow-icon-pseudo-height-lg: $swiper-arrow-icon-pseudo-width-lg !default;
+
+$swiper-arrow-icon-pseudo-width-xl: 2rem !default;
+$swiper-arrow-icon-pseudo-height-xl: $swiper-arrow-icon-pseudo-width-xl !default;
+// Type
+$swiper-arrow-prev-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$swiper-arrow-icon-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>") !default;
+$swiper-arrow-next-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$swiper-arrow-icon-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$swiper-arrow-prev-icon-hover-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$swiper-arrow-hover-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>") !default;
+$swiper-arrow-next-icon-hover-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$swiper-arrow-hover-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$swiper-arrow-prev-soft-white-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$swiper-arrow-soft-white-icon-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>") !default;
+$swiper-arrow-next-soft-white-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$swiper-arrow-soft-white-icon-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$swiper-pagination-fraction-current-font-size: $font-size-base * 4 !default;
+$swiper-pagination-fraction-letter-spacing: 0.125rem !default;
+
+$swiper-arrow-prev-icon-bg-t : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$white}' viewBox='0 0 24 24'%3E%3Crect width='13' height='2' x='6' y='11' opacity='.5' rx='1'/%3E%3Cpath d='m8.6 11.4 4.2-4.2a1 1 0 0 0-1.6-1.5l-5.5 5.6a1 1 0 0 0 0 1.4l5.5 5.6a1 1 0 0 0 1.6-1.6l-4.2-4.1a.8.8 0 0 1 0-1.2Z'/%3E%3C/svg%3E");
+$swiper-arrow-next-icon-bg-t : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#{$white}' viewBox='0 0 24 24'%3E%3Crect width='13' height='2' x='18' y='13' opacity='.5' rx='1' transform='rotate(-180 18 13)'/%3E%3Cpath d='m15.4 12.6-4.2 4.2a1 1 0 0 0 1.6 1.4l5.5-5.5c.4-.4.4-1 0-1.4l-5.6-5.6a1 1 0 0 0-1.4 1.5l4.1 4.2c.3.3.3.9 0 1.2Z'/%3E%3C/svg%3E");
+
+
+
+// Shadows
+$swiper-arrow-icon-hover-box-shadow: 0rem 0.1875rem 0.3125rem 0rem rgba($gray-600, 0.2) !default;
+$swiper-step-divider-pseudo-before-box-shadow: $box-shadow-sm !default;
+
+// Padding
+$swiper-thumb-progress-avatar-padding: 0.25rem !default;
+$swiper-step-divider-padding-x: 0.3125rem !default;
+$swiper-step-pagination-wrapper-padding-y: 1rem !default;
+
+// Margins
+$swiper-arrow-icon-margin-y: 0.5rem !default;
+$swiper-arrow-icon-margin-x: 0.25rem !default;
+$swiper-pagination-margin-y: 2rem !default;
+$swiper-pagination-bullet-margin-x: 0.25rem !default;
+$swiper-pagination-bullet-margin-y: 0.25rem !default;
+$swiper-center-mode-end: calc(-1px - ((100vw - 100%) / 2) + 15px) !default;
+$swiper-thumb-progress-avatar-margin: 0.25rem !default;
+$swiper-step-divider-margin-y: 2rem !default;
+
+// Transitions
+$swiper-arrow-transition: $btn-transition !default;
+
+// Others
+$swiper-arrow-icon-disabled-opacity: 0.5 !default;

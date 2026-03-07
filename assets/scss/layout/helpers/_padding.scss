@@ -1,0 +1,24 @@
+//
+//  Layout -> Padding 
+// --------------------------------------------------
+@for $i from 0 through 15 {
+  .padding-#{$i * 4} {
+    padding: #{$i * 4 / 16}rem !important;
+  }
+
+  .pt-#{$i * 4} {
+    padding-top: #{$i * 4 / 16}rem !important;
+  }
+
+  .pr-#{$i * 4} {
+    padding-right: #{$i * 4 / 16}rem !important;
+  }
+
+  .pb-#{$i * 4} {
+    padding-bottom: #{$i * 4 / 16}rem !important;
+  }
+
+  .pl-#{$i * 4} {
+    padding-left: #{$i * 4 / 16}rem !important;
+  }
+}

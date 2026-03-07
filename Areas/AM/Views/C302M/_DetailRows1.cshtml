@@ -1,0 +1,30 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C302MViewModel
+@{
+    //ViewBag.MF 會議類別／1:回流訓／2:共識會議
+    //var s_MeetingType = Model.Detail.MeetingType;
+}
+
+@if (Model.Detail.DetailRows != null)
+{
+    for (int i = 0; i < Model.Detail.DetailRows.Count; i++)
+    {
+        var item = Model.Detail.DetailRows[i];
+        @Html.HiddenFor(m => m.Detail.DetailRows[i].ROWID)
+        @Html.HiddenFor(m => m.Detail.DetailRows[i].Seq)
+        @Html.HiddenFor(m => m.Detail.DetailRows[i].MeetingSeq)
+        @Html.HiddenFor(m => m.Detail.DetailRows[i].TeacherAccount)
+        @Html.HiddenFor(m => m.Detail.DetailRows[i].TeacherName)
+        @Html.HiddenFor(m => m.Detail.DetailRows[i].UnitName)
+        @*@Html.HiddenFor(m => m.Detail.DetailRows[i].TestScore)*@
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.TeacherName</td>
+            <td>@item.UnitName</td>
+            <td align="center">@Html.CheckBoxFor(m => m.Detail.DetailRows[i].Attend_Bool, new { checkid = "DetRowCk1", @style = "width: 30px; height: 30px;" })</td>
+            <td align="center">@Html.CheckBoxFor(m => m.Detail.DetailRows[i].TestPassed_Bool, new { checkid = "DetRowCk2", @style = "width: 30px; height: 30px;" })</td>
+            <td align="center">@Html.TextAreaFor(m => m.Detail.DetailRows[i].Remark, new { @class = "t-form-control" })</td>
+        </tr>
+    }
+}

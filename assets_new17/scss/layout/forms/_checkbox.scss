@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+//  Layout -> checkbox 
+// --------------------------------------------------
+
+@import "checkbox/_checkbox-v1.scss";
+@import "checkbox/_checkbox-v2.scss";
+@import "checkbox/_checkbox-v3.scss";
+@import "checkbox/_checkbox-v4.scss";
+@import "checkbox/_checkbox-v5.scss";
+
+
+.t-form-check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.t-rad-inp,
+.t-chk-inp {
+  display: none;
+
+  @include check-disabled {
+    + .t-chk-lab {
+      opacity: $checkbox-item-opacity--disabled;
+      cursor: not-allowed;
+    }
+  }
+}
+.t-rad-lab,
+.t-chk-lab {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-size: $input-btn-font-size;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  @include ceaser-transition(all, 250ms, "easeInOutCubic");
+}

@@ -1,0 +1,204 @@
+﻿@using WKEFSERVICE.Areas.AM.Models;
+@model C104MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C104M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">公告維護</h3>
+                            <p class="bt-section-para">提供訊息公告、會議報名公告維護功能。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.PostType, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.PostType, new SelectList(Model.PostType_list, "Value", "Text", Model.PostType), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.PostTo, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.PostTo, new SelectList(Model.PostTo_list, "Value", "Text", Model.PostTo), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.KeyWord, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.KeyWord, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("公告日期(起 ~ 迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.PostDateS_A_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.PostDateS_B_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("停用日期(起 ~ 迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.PostDateE_A_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.PostDateE_B_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("異動日期(起 ~ 迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.UpdatedDatetime_A_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.UpdatedDatetime_B_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.OrderField, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.OrderField, new SelectList(Model.OrderField_list, "Value", "Text", Model.OrderField), new { @class = "t-form-control ml-4" })
+                                            @Html.DropDownListFor(m => m.OrderField_ASC_DESC, new SelectList(Model.OrderField_ASC_DESC_list, "Value", "Text", Model.OrderField_ASC_DESC), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary" onclick="doNew()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-add"></use>
+                                                    </svg>
+                                                </i>
+                                                新增
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.Seq_forDel)
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="10%">項次</th>
+                                            <th align="left" width="20%">類別</th>
+                                            <th align="left" width="16%">公告對象</th>
+                                            <th align="left" width="08%">公告日期</th>
+                                            <th align="left" width="08%">停用日期</th>
+                                            <th align="left" width="20%">標題</th>
+                                            <th align="left" width="08%">異動日期</th>
+                                            <th align="left" width="10%">功能</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 當【類別】為「會議報名公告」，公告對象鎖定教師。
+    $(document).ready(function () {
+        if (document.getElementById("PostType").value === "2" && document.getElementById("PostTo").value === "2") {
+            $("#PostTo").attr("style", "pointer-events:none;opacity:.66");
+        }
+    });
+    $("#PostType").on("change", function (e) {
+        if (e.target.value === "2") {
+            document.getElementById("PostTo").value = "2";
+            $("#PostTo").attr("style", "pointer-events:none;opacity:.66");
+        }
+        else {
+            $("#PostTo").attr("style", "pointer-events:unset;opacity:1");
+        }
+    });
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#PostType option').removeAttr('selected');
+        $('#PostTo option').removeAttr('selected');
+        $('#KeyWord').removeAttr('value');
+        $('#PostDateS_A_AD').removeAttr('value');
+        $('#PostDateS_B_AD').removeAttr('value');
+        $('#PostDateE_A_AD').removeAttr('value');
+        $('#PostDateE_B_AD').removeAttr('value');
+        $('#UpdatedDatetime_A_AD').removeAttr('value');
+        $('#UpdatedDatetime_B_AD').removeAttr('value');
+        $('#PostDateS_A_AD_TW').removeAttr('value');
+        $('#PostDateS_B_AD_TW').removeAttr('value');
+        $('#PostDateE_A_AD_TW').removeAttr('value');
+        $('#PostDateE_B_AD_TW').removeAttr('value');
+        $('#UpdatedDatetime_A_AD_TW').removeAttr('value');
+        $('#UpdatedDatetime_B_AD_TW').removeAttr('value');
+        $('#OrderField option').removeAttr('selected');
+        $('#OrderField_ASC_DESC_list option').removeAttr('selected');
+        $("#PostTo").attr("style", "pointer-events:unset;opacity:1");
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 新增
+    function doNew() {
+        var url = '@Url.Action("New", "C104M")';
+        window.location = url;
+    }
+
+    // 修改
+    function doUpd(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("Detail", "C104M")?' + $.param(data);
+        window.location = url;
+    }
+
+    // 刪除
+    function doDel(Seq, RowId) {
+        blockConfirm("您確定要刪除此筆資料嗎？" + "項次：" + RowId, null, function () {
+            var form = $("form[id=main_form]");
+            $("#main_form #Seq_forDel").val(Seq);
+            form.attr('action', '@Url.Action("Delete")').submit();
+        });
+    }
+
+</script>

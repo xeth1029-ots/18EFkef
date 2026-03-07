@@ -1,0 +1,52 @@
+
+// Toast State
+// =========================================================
+$toast-color:                        $white                !default;
+$toast-bg-opacity:                   0.86                  !default;
+
+$toast-border-width:                 $border-width          !default;
+$toast-border-style:                 solid                  !default;
+$toast-border-radius:                $border-radius-lg      !default;
+$toast-border-color:                 rgba($white, 0.12)     !default;
+
+$toast-font-size:                    1.25rem                !default;
+$toast-font-margin:                  0.5rem                 !default;
+$toast-stroke-color:                 rgba($white, 0.24)     !default;
+
+
+$toast-icon-size:                    6rem                 !default;
+$toast-icon-margin:                  0.75rem              !default;
+$toast-icon-opacity:                 0.82                 !default;
+
+$toast-margin:                       1rem                 !default;
+$toast-padding:                      1rem 3rem            !default;
+$toast-zindex:                       1                    !default;
+$toast-zindex-fixed:                 999                  !default;
+
+$toast-animation-duration:           250ms                !default;
+
+$toast-blur:                         10px                 !default;
+
+$toast-filter:                       1.25rem              !default;
+$toast-filter-scale:                 1.125                !default;
+
+$toast-gradient-deg:                 -45deg               !default;
+
+$toast-min-width:                    10rem                !default;
+$toast-max-width:                    12rem                !default;
+
+$toast-opacity-hide:                 0                    !default;
+$toast-opacity:                      1                    !default;
+$toast-opacity-before:               0.66                  !default;
+$toast-opacity-after:                $toast-opacity-before !default;
+
+
+$toast-box-shadow: $box-shadow-sm;
+
+$toast-colors: (
+  "success": $success-600, 
+  "error":   $danger-600, 
+  "warning": $warning-600, 
+  "info":    $info-600, 
+  "help":    $primary-600, 
+  "default": $dark) !default;

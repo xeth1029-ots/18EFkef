@@ -1,0 +1,32 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Areas.A3.Models;
+@model C101MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        string BtnName1 = item.isCanModify ? "修改" : "檢視";
+
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.PostType_Name</td>
+            <td>@item.PostTo_Name</td>
+            <td>@item.PostDateS_Name</td>
+            <td>@item.PostDateE_Name</td>
+            <td>@item.PostCaption</td>
+            <td>@item.UpdatedDatetime_Name</td>
+            <td align="center">
+                <button type="button" class="btn btn-info" onclick="doUpd('@item.Seq')">@BtnName1</button>
+                @if (item.isCanModify)
+                {
+                    <button type="button" class="btn btn-danger" onclick="doDel('@item.Seq', '@item.ROWID')">刪除</button>
+                }
+            </td>
+        </tr>
+    }
+}

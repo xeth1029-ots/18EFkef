@@ -1,0 +1,117 @@
+//
+//  Layout -> chkeckbox 
+// --------------------------------------------------
+.chk-inp {
+  display: none;
+
+  ~.chk-lab {
+    cursor: pointer;
+    font-size: .875rem;
+    user-select: none;
+
+    .box,
+    a,
+    font,
+    span {
+      @include in-bk-mid;
+    }
+
+    .box {
+      height: pxTorem(18px);
+      width: pxTorem(18px);
+      background-color: $white;
+      border: 1px solid $grey-200;
+      border-radius: 2px;
+      margin-right: .5rem;
+      transition: all 0.125s ease-in-out;
+
+      &:hover {
+        border-color: lighten($secondary, 20%);
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 100%;
+        background-color: $secondary;
+        border-radius: 12%;
+        opacity: 0.08;
+        transform: scale(0);
+        transition: all .25s ease-in-out;
+      }
+
+      &:after {
+        content: "";
+        opacity: 0;
+        height: .5rem;
+        width: .25rem;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        transition: all .25s ease-in-out;
+      }
+
+      &:hover:before {
+        transform: scale(1.75);
+      }
+
+      &.box--md {
+        height: pxTorem(20px);
+        width: pxTorem(20px);
+
+        &:after {
+          width: pxTorem(6px);
+          height: pxTorem(10px);
+        }
+      }
+
+      &.box--lg {
+        height: pxTorem(22px);
+        width: pxTorem(22px);
+
+        &:after {
+          width: pxTorem(8px);
+          height: pxTorem(12px);
+        }
+      }
+    }
+  }
+
+  &:checked+.chk-lab .box {
+    background: $secondary;
+    border-color: $secondary;
+
+    &:before {
+      opacity: 0;
+      transform: scale(1.75);
+    }
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:disabled+.chk-lab {
+    .box {
+      border-color: $grey-100;
+      background: $grey-200;
+      cursor: not-allowed;
+    }
+
+    a,
+    font,
+    span {
+      cursor: not-allowed;
+    }
+
+    .box:hover:before {
+      display: none;
+    }
+  }
+}
+
+

@@ -1,0 +1,1120 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "slim-icon";
+  src:url("fonts/slim-icon.eot");
+  src:url("fonts/slim-icon.eot?#iefix") format("embedded-opentype"),
+    url("fonts/slim-icon.woff") format("woff"),
+    url("fonts/slim-icon.ttf") format("truetype"),
+    url("fonts/slim-icon.svg#slim-icon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "slim-icon" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="ts-"]:before,
+[class*=" ts-"]:before {
+  font-family: "slim-icon" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ts-arrow-down:before {
+  content: "\61";
+}
+.ts-arrow-left:before {
+  content: "\62";
+}
+.ts-arrow-right:before {
+  content: "\63";
+}
+.ts-arrow-up:before {
+  content: "\64";
+}
+.ts-bell:before {
+  content: "\65";
+}
+.ts-bell-slash:before {
+  content: "\66";
+}
+.ts-bookmark:before {
+  content: "\67";
+}
+.ts-calendar:before {
+  content: "\68";
+}
+.ts-camera:before {
+  content: "\69";
+}
+.ts-chart-pie:before {
+  content: "\6a";
+}
+.ts-check-circle:before {
+  content: "\6b";
+}
+.ts-chevron-circle-down:before {
+  content: "\6c";
+}
+.ts-chevron-circle-left:before {
+  content: "\6d";
+}
+.ts-chevron-circle-right:before {
+  content: "\6e";
+}
+.ts-chevron-circle-up:before {
+  content: "\6f";
+}
+.ts-chevron-down:before {
+  content: "\70";
+}
+.ts-chevron-left:before {
+  content: "\71";
+}
+.ts-chevron-right:before {
+  content: "\72";
+}
+.ts-chevron-up:before {
+  content: "\73";
+}
+.ts-clock:before {
+  content: "\74";
+}
+.ts-comment:before {
+  content: "\75";
+}
+.ts-comment-dots:before {
+  content: "\76";
+}
+.ts-comments:before {
+  content: "\77";
+}
+.ts-compass:before {
+  content: "\78";
+}
+.ts-copy:before {
+  content: "\79";
+}
+.ts-coupon:before {
+  content: "\7a";
+}
+.ts-credit-card:before {
+  content: "\41";
+}
+.ts-desktop:before {
+  content: "\42";
+}
+.ts-discount:before {
+  content: "\43";
+}
+.ts-download:before {
+  content: "\44";
+}
+.ts-envelope:before {
+  content: "\45";
+}
+.ts-exclamation-circle:before {
+  content: "\46";
+}
+.ts-eye:before {
+  content: "\47";
+}
+.ts-eye-slash:before {
+  content: "\48";
+}
+.ts-file:before {
+  content: "\49";
+}
+.ts-film:before {
+  content: "\4a";
+}
+.ts-filter:before {
+  content: "\4b";
+}
+.ts-flag:before {
+  content: "\4c";
+}
+.ts-folder:before {
+  content: "\4d";
+}
+.ts-globe:before {
+  content: "\4e";
+}
+.ts-headphones:before {
+  content: "\4f";
+}
+.ts-heart:before {
+  content: "\50";
+}
+.ts-home:before {
+  content: "\51";
+}
+.ts-image:before {
+  content: "\52";
+}
+.ts-inbox:before {
+  content: "\53";
+}
+.ts-info-circle:before {
+  content: "\54";
+}
+.ts-link:before {
+  content: "\55";
+}
+.ts-lock:before {
+  content: "\56";
+}
+.ts-log-in:before {
+  content: "\57";
+}
+.ts-log-out:before {
+  content: "\58";
+}
+.ts-map:before {
+  content: "\59";
+}
+.ts-map-marker:before {
+  content: "\5a";
+}
+.ts-map-pin:before {
+  content: "\30";
+}
+.ts-menu:before {
+  content: "\31";
+}
+.ts-microphone:before {
+  content: "\32";
+}
+.ts-microphone-slash:before {
+  content: "\33";
+}
+.ts-minus-square:before {
+  content: "\34";
+}
+.ts-mobile:before {
+  content: "\35";
+}
+.ts-more-h-circle:before {
+  content: "\36";
+}
+.ts-more-v-circle:before {
+  content: "\37";
+}
+.ts-package:before {
+  content: "\38";
+}
+.ts-paperclip:before {
+  content: "\39";
+}
+.ts-pen:before {
+  content: "\21";
+}
+.ts-phone:before {
+  content: "\22";
+}
+.ts-plus-square:before {
+  content: "\23";
+}
+.ts-question-circle:before {
+  content: "\24";
+}
+.ts-search:before {
+  content: "\25";
+}
+.ts-send:before {
+  content: "\26";
+}
+.ts-settings:before {
+  content: "\27";
+}
+.ts-shield:before {
+  content: "\28";
+}
+.ts-shopping-basket:before {
+  content: "\29";
+}
+.ts-sliders-h:before {
+  content: "\2a";
+}
+.ts-sort-ascending:before {
+  content: "\2b";
+}
+.ts-sort-descending:before {
+  content: "\2c";
+}
+.ts-star:before {
+  content: "\2d";
+}
+.ts-stopwatch:before {
+  content: "\2e";
+}
+.ts-store:before {
+  content: "\2f";
+}
+.ts-tablet:before {
+  content: "\3a";
+}
+.ts-tag:before {
+  content: "\3b";
+}
+.ts-thumbtack:before {
+  content: "\3c";
+}
+.ts-times-square:before {
+  content: "\3d";
+}
+.ts-trash:before {
+  content: "\3e";
+}
+.ts-unlock:before {
+  content: "\3f";
+}
+.ts-upload:before {
+  content: "\40";
+}
+.ts-user:before {
+  content: "\5b";
+}
+.ts-users:before {
+  content: "\5d";
+}
+.ts-users-three:before {
+  content: "\5e";
+}
+.ts-video:before {
+  content: "\5f";
+}
+.ts-video-slash:before {
+  content: "\60";
+}
+.ts-volume-up:before {
+  content: "\7b";
+}
+.ts-arrow-down-1:before {
+  content: "\7c";
+}
+.ts-arrow-left-1:before {
+  content: "\7d";
+}
+.ts-arrow-right-1:before {
+  content: "\7e";
+}
+.ts-arrow-up-1:before {
+  content: "\5c";
+}
+.ts-bell-1:before {
+  content: "\e000";
+}
+.ts-bell-slash-1:before {
+  content: "\e001";
+}
+.ts-bookmark-1:before {
+  content: "\e002";
+}
+.ts-calendar-1:before {
+  content: "\e003";
+}
+.ts-camera-1:before {
+  content: "\e004";
+}
+.ts-chart-pie-1:before {
+  content: "\e005";
+}
+.ts-check-circle-1:before {
+  content: "\e006";
+}
+.ts-chevron-circle-down-1:before {
+  content: "\e007";
+}
+.ts-chevron-circle-left-1:before {
+  content: "\e008";
+}
+.ts-chevron-circle-right-1:before {
+  content: "\e009";
+}
+.ts-chevron-circle-up-1:before {
+  content: "\e00a";
+}
+.ts-chevron-down-1:before {
+  content: "\e00b";
+}
+.ts-chevron-left-1:before {
+  content: "\e00c";
+}
+.ts-chevron-right-1:before {
+  content: "\e00d";
+}
+.ts-chevron-up-1:before {
+  content: "\e00e";
+}
+.ts-clock-1:before {
+  content: "\e00f";
+}
+.ts-comment-1:before {
+  content: "\e010";
+}
+.ts-comment-dots-1:before {
+  content: "\e011";
+}
+.ts-comments-1:before {
+  content: "\e012";
+}
+.ts-compass-1:before {
+  content: "\e013";
+}
+.ts-copy-1:before {
+  content: "\e014";
+}
+.ts-coupon-1:before {
+  content: "\e015";
+}
+.ts-credit-card-1:before {
+  content: "\e016";
+}
+.ts-desktop-1:before {
+  content: "\e017";
+}
+.ts-discount-1:before {
+  content: "\e018";
+}
+.ts-download-1:before {
+  content: "\e019";
+}
+.ts-envelope-1:before {
+  content: "\e01a";
+}
+.ts-exclamation-circle-1:before {
+  content: "\e01b";
+}
+.ts-eye-1:before {
+  content: "\e01c";
+}
+.ts-eye-slash-1:before {
+  content: "\e01d";
+}
+.ts-file-1:before {
+  content: "\e01e";
+}
+.ts-film-1:before {
+  content: "\e01f";
+}
+.ts-filter-1:before {
+  content: "\e020";
+}
+.ts-flag-1:before {
+  content: "\e021";
+}
+.ts-folder-1:before {
+  content: "\e022";
+}
+.ts-globe-1:before {
+  content: "\e023";
+}
+.ts-headphones-1:before {
+  content: "\e024";
+}
+.ts-heart-1:before {
+  content: "\e025";
+}
+.ts-home-1:before {
+  content: "\e026";
+}
+.ts-image-1:before {
+  content: "\e027";
+}
+.ts-inbox-1:before {
+  content: "\e028";
+}
+.ts-info-circle-1:before {
+  content: "\e029";
+}
+.ts-link-1:before {
+  content: "\e02a";
+}
+.ts-lock-1:before {
+  content: "\e02b";
+}
+.ts-log-in-1:before {
+  content: "\e02c";
+}
+.ts-log-out-1:before {
+  content: "\e02d";
+}
+.ts-map-1:before {
+  content: "\e02e";
+}
+.ts-map-marker-1:before {
+  content: "\e02f";
+}
+.ts-map-pin-1:before {
+  content: "\e030";
+}
+.ts-menu-1:before {
+  content: "\e031";
+}
+.ts-microphone-1:before {
+  content: "\e032";
+}
+.ts-microphone-slash-1:before {
+  content: "\e033";
+}
+.ts-minus-square-1:before {
+  content: "\e034";
+}
+.ts-mobile-1:before {
+  content: "\e035";
+}
+.ts-more-h-circle-1:before {
+  content: "\e036";
+}
+.ts-more-v-circle-1:before {
+  content: "\e037";
+}
+.ts-package-1:before {
+  content: "\e038";
+}
+.ts-paperclip-1:before {
+  content: "\e039";
+}
+.ts-pen-1:before {
+  content: "\e03a";
+}
+.ts-phone-1:before {
+  content: "\e03b";
+}
+.ts-plus-square-1:before {
+  content: "\e03c";
+}
+.ts-question-circle-1:before {
+  content: "\e03d";
+}
+.ts-search-1:before {
+  content: "\e03e";
+}
+.ts-send-1:before {
+  content: "\e03f";
+}
+.ts-settings-1:before {
+  content: "\e040";
+}
+.ts-shield-1:before {
+  content: "\e041";
+}
+.ts-shopping-basket-1:before {
+  content: "\e042";
+}
+.ts-sliders-h-1:before {
+  content: "\e043";
+}
+.ts-sort-ascending-1:before {
+  content: "\e044";
+}
+.ts-sort-descending-1:before {
+  content: "\e045";
+}
+.ts-star-1:before {
+  content: "\e046";
+}
+.ts-stopwatch-1:before {
+  content: "\e047";
+}
+.ts-store-1:before {
+  content: "\e048";
+}
+.ts-tablet-1:before {
+  content: "\e049";
+}
+.ts-tag-1:before {
+  content: "\e04a";
+}
+.ts-thumbtack-1:before {
+  content: "\e04b";
+}
+.ts-times-square-1:before {
+  content: "\e04c";
+}
+.ts-trash-1:before {
+  content: "\e04d";
+}
+.ts-unlock-1:before {
+  content: "\e04e";
+}
+.ts-upload-1:before {
+  content: "\e04f";
+}
+.ts-user-1:before {
+  content: "\e050";
+}
+.ts-users-1:before {
+  content: "\e051";
+}
+.ts-users-three-1:before {
+  content: "\e052";
+}
+.ts-video-1:before {
+  content: "\e053";
+}
+.ts-video-slash-1:before {
+  content: "\e054";
+}
+.ts-volume-up-1:before {
+  content: "\e055";
+}
+.ts-arrow-down-2:before {
+  content: "\e056";
+}
+.ts-arrow-left-2:before {
+  content: "\e057";
+}
+.ts-arrow-right-2:before {
+  content: "\e058";
+}
+.ts-arrow-up-2:before {
+  content: "\e059";
+}
+.ts-bell-2:before {
+  content: "\e05a";
+}
+.ts-bell-slash-2:before {
+  content: "\e05b";
+}
+.ts-bookmark-2:before {
+  content: "\e05c";
+}
+.ts-calendar-2:before {
+  content: "\e05d";
+}
+.ts-camera-2:before {
+  content: "\e05e";
+}
+.ts-chart-pie-2:before {
+  content: "\e05f";
+}
+.ts-check-circle-2:before {
+  content: "\e060";
+}
+.ts-chevron-circle-down-2:before {
+  content: "\e061";
+}
+.ts-chevron-circle-left-2:before {
+  content: "\e062";
+}
+.ts-chevron-circle-right-2:before {
+  content: "\e063";
+}
+.ts-chevron-circle-up-2:before {
+  content: "\e064";
+}
+.ts-chevron-down-2:before {
+  content: "\e065";
+}
+.ts-chevron-left-2:before {
+  content: "\e066";
+}
+.ts-chevron-right-2:before {
+  content: "\e067";
+}
+.ts-chevron-up-2:before {
+  content: "\e068";
+}
+.ts-clock-2:before {
+  content: "\e069";
+}
+.ts-comment-2:before {
+  content: "\e06a";
+}
+.ts-comment-dots-2:before {
+  content: "\e06b";
+}
+.ts-comments-2:before {
+  content: "\e06c";
+}
+.ts-compass-2:before {
+  content: "\e06d";
+}
+.ts-copy-2:before {
+  content: "\e06e";
+}
+.ts-coupon-2:before {
+  content: "\e06f";
+}
+.ts-credit-card-2:before {
+  content: "\e070";
+}
+.ts-desktop-2:before {
+  content: "\e071";
+}
+.ts-discount-2:before {
+  content: "\e072";
+}
+.ts-download-2:before {
+  content: "\e073";
+}
+.ts-envelope-2:before {
+  content: "\e074";
+}
+.ts-exclamation-circle-2:before {
+  content: "\e075";
+}
+.ts-eye-2:before {
+  content: "\e076";
+}
+.ts-eye-slash-2:before {
+  content: "\e077";
+}
+.ts-file-2:before {
+  content: "\e078";
+}
+.ts-film-2:before {
+  content: "\e079";
+}
+.ts-filter-2:before {
+  content: "\e07a";
+}
+.ts-flag-2:before {
+  content: "\e07b";
+}
+.ts-folder-2:before {
+  content: "\e07c";
+}
+.ts-globe-2:before {
+  content: "\e07d";
+}
+.ts-headphones-2:before {
+  content: "\e07e";
+}
+.ts-heart-2:before {
+  content: "\e07f";
+}
+.ts-home-2:before {
+  content: "\e080";
+}
+.ts-image-2:before {
+  content: "\e081";
+}
+.ts-inbox-2:before {
+  content: "\e082";
+}
+.ts-info-circle-2:before {
+  content: "\e083";
+}
+.ts-link-2:before {
+  content: "\e084";
+}
+.ts-lock-2:before {
+  content: "\e085";
+}
+.ts-log-in-2:before {
+  content: "\e086";
+}
+.ts-log-out-2:before {
+  content: "\e087";
+}
+.ts-map-2:before {
+  content: "\e088";
+}
+.ts-map-marker-2:before {
+  content: "\e089";
+}
+.ts-map-pin-2:before {
+  content: "\e08a";
+}
+.ts-menu-2:before {
+  content: "\e08b";
+}
+.ts-microphone-2:before {
+  content: "\e08c";
+}
+.ts-microphone-slash-2:before {
+  content: "\e08d";
+}
+.ts-minus-square-2:before {
+  content: "\e08e";
+}
+.ts-mobile-2:before {
+  content: "\e08f";
+}
+.ts-more-h-circle-2:before {
+  content: "\e090";
+}
+.ts-more-v-circle-2:before {
+  content: "\e091";
+}
+.ts-package-2:before {
+  content: "\e092";
+}
+.ts-paperclip-2:before {
+  content: "\e093";
+}
+.ts-pen-2:before {
+  content: "\e094";
+}
+.ts-phone-2:before {
+  content: "\e095";
+}
+.ts-plus-square-2:before {
+  content: "\e096";
+}
+.ts-question-circle-2:before {
+  content: "\e097";
+}
+.ts-search-2:before {
+  content: "\e098";
+}
+.ts-send-2:before {
+  content: "\e099";
+}
+.ts-settings-2:before {
+  content: "\e09a";
+}
+.ts-shield-2:before {
+  content: "\e09b";
+}
+.ts-shopping-basket-2:before {
+  content: "\e09c";
+}
+.ts-sliders-h-2:before {
+  content: "\e09d";
+}
+.ts-sort-ascending-2:before {
+  content: "\e09e";
+}
+.ts-sort-descending-2:before {
+  content: "\e09f";
+}
+.ts-star-2:before {
+  content: "\e0a0";
+}
+.ts-stopwatch-2:before {
+  content: "\e0a1";
+}
+.ts-store-2:before {
+  content: "\e0a2";
+}
+.ts-tablet-2:before {
+  content: "\e0a3";
+}
+.ts-tag-2:before {
+  content: "\e0a4";
+}
+.ts-thumbtack-2:before {
+  content: "\e0a5";
+}
+.ts-times-square-2:before {
+  content: "\e0a6";
+}
+.ts-trash-2:before {
+  content: "\e0a7";
+}
+.ts-unlock-2:before {
+  content: "\e0a8";
+}
+.ts-upload-2:before {
+  content: "\e0a9";
+}
+.ts-user-2:before {
+  content: "\e0aa";
+}
+.ts-users-2:before {
+  content: "\e0ab";
+}
+.ts-users-three-2:before {
+  content: "\e0ac";
+}
+.ts-video-2:before {
+  content: "\e0ad";
+}
+.ts-video-slash-2:before {
+  content: "\e0ae";
+}
+.ts-volume-up-2:before {
+  content: "\e0af";
+}
+.ts-arrow-down-3:before {
+  content: "\e0b0";
+}
+.ts-arrow-left-3:before {
+  content: "\e0b1";
+}
+.ts-arrow-right-3:before {
+  content: "\e0b2";
+}
+.ts-arrow-up-3:before {
+  content: "\e0b3";
+}
+.ts-bell-3:before {
+  content: "\e0b4";
+}
+.ts-bell-slash-3:before {
+  content: "\e0b5";
+}
+.ts-bookmark-3:before {
+  content: "\e0b6";
+}
+.ts-calendar-3:before {
+  content: "\e0b7";
+}
+.ts-camera-3:before {
+  content: "\e0b8";
+}
+.ts-chart-pie-3:before {
+  content: "\e0b9";
+}
+.ts-check-circle-3:before {
+  content: "\e0ba";
+}
+.ts-chevron-circle-down-3:before {
+  content: "\e0bb";
+}
+.ts-chevron-circle-left-3:before {
+  content: "\e0bc";
+}
+.ts-chevron-circle-right-3:before {
+  content: "\e0bd";
+}
+.ts-chevron-circle-up-3:before {
+  content: "\e0be";
+}
+.ts-chevron-down-3:before {
+  content: "\e0bf";
+}
+.ts-chevron-left-3:before {
+  content: "\e0c0";
+}
+.ts-chevron-right-3:before {
+  content: "\e0c1";
+}
+.ts-chevron-up-3:before {
+  content: "\e0c2";
+}
+.ts-clock-3:before {
+  content: "\e0c3";
+}
+.ts-comment-3:before {
+  content: "\e0c4";
+}
+.ts-comment-dots-3:before {
+  content: "\e0c5";
+}
+.ts-comments-3:before {
+  content: "\e0c6";
+}
+.ts-compass-3:before {
+  content: "\e0c7";
+}
+.ts-copy-3:before {
+  content: "\e0c8";
+}
+.ts-coupon-3:before {
+  content: "\e0c9";
+}
+.ts-credit-card-3:before {
+  content: "\e0ca";
+}
+.ts-desktop-3:before {
+  content: "\e0cb";
+}
+.ts-discount-3:before {
+  content: "\e0cc";
+}
+.ts-download-3:before {
+  content: "\e0cd";
+}
+.ts-envelope-3:before {
+  content: "\e0ce";
+}
+.ts-exclamation-circle-3:before {
+  content: "\e0cf";
+}
+.ts-eye-3:before {
+  content: "\e0d0";
+}
+.ts-eye-slash-3:before {
+  content: "\e0d1";
+}
+.ts-file-3:before {
+  content: "\e0d2";
+}
+.ts-film-3:before {
+  content: "\e0d3";
+}
+.ts-filter-3:before {
+  content: "\e0d4";
+}
+.ts-flag-3:before {
+  content: "\e0d5";
+}
+.ts-folder-3:before {
+  content: "\e0d6";
+}
+.ts-globe-3:before {
+  content: "\e0d7";
+}
+.ts-headphones-3:before {
+  content: "\e0d8";
+}
+.ts-heart-3:before {
+  content: "\e0d9";
+}
+.ts-home-3:before {
+  content: "\e0da";
+}
+.ts-image-3:before {
+  content: "\e0db";
+}
+.ts-inbox-3:before {
+  content: "\e0dc";
+}
+.ts-info-circle-3:before {
+  content: "\e0dd";
+}
+.ts-link-3:before {
+  content: "\e0de";
+}
+.ts-lock-3:before {
+  content: "\e0df";
+}
+.ts-log-in-3:before {
+  content: "\e0e0";
+}
+.ts-log-out-3:before {
+  content: "\e0e1";
+}
+.ts-map-3:before {
+  content: "\e0e2";
+}
+.ts-map-marker-3:before {
+  content: "\e0e3";
+}
+.ts-map-pin-3:before {
+  content: "\e0e4";
+}
+.ts-menu-3:before {
+  content: "\e0e5";
+}
+.ts-microphone-3:before {
+  content: "\e0e6";
+}
+.ts-microphone-slash-3:before {
+  content: "\e0e7";
+}
+.ts-minus-square-3:before {
+  content: "\e0e8";
+}
+.ts-mobile-3:before {
+  content: "\e0e9";
+}
+.ts-more-h-circle-3:before {
+  content: "\e0ea";
+}
+.ts-more-v-circle-3:before {
+  content: "\e0eb";
+}
+.ts-package-3:before {
+  content: "\e0ec";
+}
+.ts-paperclip-3:before {
+  content: "\e0ed";
+}
+.ts-pen-3:before {
+  content: "\e0ee";
+}
+.ts-phone-3:before {
+  content: "\e0ef";
+}
+.ts-plus-square-3:before {
+  content: "\e0f0";
+}
+.ts-question-circle-3:before {
+  content: "\e0f1";
+}
+.ts-search-3:before {
+  content: "\e0f2";
+}
+.ts-send-3:before {
+  content: "\e0f3";
+}
+.ts-settings-3:before {
+  content: "\e0f4";
+}
+.ts-shield-3:before {
+  content: "\e0f5";
+}
+.ts-shopping-basket-3:before {
+  content: "\e0f6";
+}
+.ts-sliders-h-3:before {
+  content: "\e0f7";
+}
+.ts-sort-ascending-3:before {
+  content: "\e0f8";
+}
+.ts-sort-descending-3:before {
+  content: "\e0f9";
+}
+.ts-star-3:before {
+  content: "\e0fa";
+}
+.ts-stopwatch-3:before {
+  content: "\e0fb";
+}
+.ts-store-3:before {
+  content: "\e0fc";
+}
+.ts-tablet-3:before {
+  content: "\e0fd";
+}
+.ts-tag-3:before {
+  content: "\e0fe";
+}
+.ts-thumbtack-3:before {
+  content: "\e0ff";
+}
+.ts-times-square-3:before {
+  content: "\e100";
+}
+.ts-trash-3:before {
+  content: "\e101";
+}
+.ts-unlock-3:before {
+  content: "\e102";
+}
+.ts-upload-3:before {
+  content: "\e103";
+}
+.ts-user-3:before {
+  content: "\e104";
+}
+.ts-users-3:before {
+  content: "\e105";
+}
+.ts-users-three-3:before {
+  content: "\e106";
+}
+.ts-video-3:before {
+  content: "\e107";
+}
+.ts-video-slash-3:before {
+  content: "\e108";
+}
+.ts-volume-up-3:before {
+  content: "\e109";
+}

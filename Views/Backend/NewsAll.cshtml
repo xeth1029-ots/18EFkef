@@ -1,0 +1,162 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@model WKEFSERVICE.Areas.A1.Models.C102MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+    SessionModel sm = SessionModel.Get();
+    string LoginUserNo = "";
+    string LoginCharacter = "";
+    if (sm.UserInfo != null)
+    {
+        LoginUserNo = sm.UserInfo.UserNo;
+        LoginCharacter = sm.UserInfo.LoginCharacter;
+    }
+}
+
+@using (Html.BeginForm("Index", "Backend", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @*
+        <!-- breadcrumbs -->
+        <section class="t-breadcrumbs-section">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <ul class="t-breadcrumbs">
+                        <li class="t-breadcrumbs-item">目前位置： <a class="t-link" href="~/Backend">首頁</a></li>
+                        <li class="t-breadcrumbs-item">訊息公告</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    *@
+    <!-- searchBar -->
+    <section id="BtLog" class="bt-section pt-0" style="margin-top: 20px;">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <div class="bt-section-heading">訊息公告</div>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                <div class="t-form t-txt-left ">
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("關鍵字", new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.KeyWord, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("公告日期", new { @class = "t-form-label" })
+                                            @Html.DatePickerTWFor(m => m.PostDate_A_AD, new { @class = "t-form-control", placeholder = "YYY/MM/DD" })&nbsp;&nbsp;&nbsp;
+                                            @Html.DatePickerTWFor(m => m.PostDate_B_AD, new { @class = "t-form-control", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-bottom: 0px;">
+                    <div class="t-panel" style="margin-top: 0px;">
+                        <section class="t-teachers-list" style="margin-bottom: 2rem; margin-top: 0px; padding-bottom: 0rem;">
+                            <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                                <div class="bt-section-heading">查詢結果&nbsp;(@Model.Grid.ToCount())</div>
+                            </div>
+                            @if (Model.Grid != null)
+                            {
+                                <div style="margin-bottom: 30px;">@Html.Partial("_PagingLink", Model)</div>
+                                <ul class="t-news-list-backend" style="margin-top: 0px;">
+                                    <!-- 為了分頁，強行硬塞 -->
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rows">
+                                            @Html.Partial("_GridRowsNewsAll_Backend", Model)
+                                        </tbody>
+                                    </table>
+                                </ul>
+                            }
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#BackendAddr").attr("style", "display:none;");
+    });
+
+    // 清空條件
+    function doSearchClear() {
+        $('#KeyWord').removeAttr('value');
+        $('#PostDate_A_AD').removeAttr('value');
+        $('#PostDate_B_AD').removeAttr('value');
+        $('#PostDate_A_AD_TW').removeAttr('value');
+        $('#PostDate_B_AD_TW').removeAttr('value');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("NewsAll", "Backend")').submit();
+    }
+
+    // 詳細資料
+    function doNewsDetail(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("NewsDetail", "Backend")?' + $.param(data);
+        window.location = url;
+    }
+
+    // 立即報名
+    function doHomeSignUp(MeetingSeq) {
+        var LoginUserNo = '@LoginUserNo';
+        var LoginCharacter = '@LoginCharacter';
+        if (LoginUserNo === "") {
+            alert("請先登入");
+        }
+        else {
+            if (LoginCharacter !== "2") {
+                alert("身分不符");
+            }
+            else {
+                var data = { "Seq": MeetingSeq }
+                var url = "@ConfigModel.WKEF/A2/C301M/Detail?" + $.param(data);
+                window.location = url;
+            }
+        }
+    }
+
+</script>

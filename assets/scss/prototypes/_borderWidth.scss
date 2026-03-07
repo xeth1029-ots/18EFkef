@@ -1,0 +1,31 @@
+//
+//  prototypes -> Border Width
+// --------------------------------------------------
+@for $i from 0 through 8 {
+  
+  .t-border-#{$i} {
+    border-width: unquote("#{$i}px !important");
+  }
+
+  .t-border-t-#{$i} {
+    border-top-width: unquote("#{$i}px !important");
+  }
+
+  .t-border-r-#{$i} {
+    border-right-width: unquote("#{$i}px !important");
+  }
+
+  .t-border-b-#{$i} {
+    border-bottom-width: unquote("#{$i}px !important");
+  }
+
+  .t-border-l-#{$i} {
+    border-left-width: unquote("#{$i}px !important");
+  }
+
+}
+
+
+
+
+

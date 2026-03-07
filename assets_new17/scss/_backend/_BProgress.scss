@@ -1,0 +1,80 @@
+
+.t-progress-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $secondary-50;
+  border-radius: $border-radius;
+  border: 0.125rem dashed rgba($dark, 0.12);
+  padding: 1rem 0.5rem;
+  width: 50%;
+
+  &.t-progress-card-info {
+    background-color: $info-50;
+
+    .t-progress-card-title {
+      color: $info-700;
+
+      @include text-shaded($size: 0.25px, $shadow: $info-300, $through: 4);
+      @include stroke(0.5px, $info-600);
+
+      &:before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27.066 27.983'%3E%3Cdefs%3E%3Cfilter id='a' width='27.066' height='26.798' x='0' y='0' filterUnits='userSpaceOnUse'%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur result='blur' stdDeviation='2.5'/%3E%3CfeFlood flood-color='%23abe5eb'/%3E%3CfeComposite in2='blur' operator='in'/%3E%3CfeComposite in='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3Cg data-name='Frame 50'%3E%3Cpath fill='none' d='M1.947.948h23.172v27.035H1.947z' data-name='Frame 50 (Background)'/%3E%3Cpath fill='%233d89f9' d='M5.257.948h16.552a3.345 3.345 0 0 1 3.31 3.379v12.721a3.405 3.405 0 0 1-1.265 2.657l-8.276 6.638a3.257 3.257 0 0 1-4.09 0l-8.276-6.639a3.405 3.405 0 0 1-1.265-2.656V4.327A3.345 3.345 0 0 1 5.257.948Z' data-name='Rectangle 21'/%3E%3Cpath fill='%230f69af' d='M13.533 27.487a3.692 3.692 0 0 1-2.3-.812l-8.277-6.638a3.81 3.81 0 0 1-1.423-2.989V4.326a3.768 3.768 0 0 1 3.724-3.8h16.552a3.768 3.768 0 0 1 3.724 3.8v12.72a3.81 3.81 0 0 1-1.423 2.989l-8.277 6.64a3.692 3.692 0 0 1-2.3.812ZM5.257 1.371A2.931 2.931 0 0 0 2.36 4.326v12.72a2.962 2.962 0 0 0 1.107 2.324l8.276 6.638a2.849 2.849 0 0 0 3.579 0l8.276-6.638a2.962 2.962 0 0 0 1.107-2.324V4.326a2.931 2.931 0 0 0-2.9-2.957Z' data-name='Rectangle 21 (Stroke)'/%3E%3Cg filter='url(%23a)' transform='translate(.003 -.004)'%3E%3Cpath fill='%23fff' d='m14.285 5.991 1.156 2.558a.829.829 0 0 0 .654.485l2.741.332a.849.849 0 0 1 .464 1.459l-2.027 1.913a.856.856 0 0 0-.25.785l.538 2.763a.831.831 0 0 1-1.216.9l-2.408-1.374a.813.813 0 0 0-.808 0l-2.408 1.376a.831.831 0 0 1-1.221-.902l.538-2.763a.856.856 0 0 0-.25-.785l-2.021-1.913a.849.849 0 0 1 .464-1.459l2.741-.332a.829.829 0 0 0 .654-.485l1.156-2.558a.821.821 0 0 1 1.503 0Z' data-name='Star 1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+    }
+  }
+
+  .t-progress-card-title {
+    position: relative;
+    margin-top: 0.5rem;
+    font-weight: 900;
+    color: $secondary-900;
+    margin-bottom: 1rem;
+    font-size: 1.0625rem;
+    padding-left: 2rem;
+
+    @include text-shaded($size: 0.25px, $shadow: $secondary-300, $through: 4);
+
+    @include stroke(0.5px, $secondary-700);
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27.066 27.983'%3E%3Cdefs%3E%3Cfilter id='a' width='27.066' height='26.798' x='0' y='0' filterUnits='userSpaceOnUse'%3E%3CfeOffset dy='2'/%3E%3CfeGaussianBlur result='blur' stdDeviation='2.5'/%3E%3CfeFlood flood-color='%23ffa001' flood-opacity='.549'/%3E%3CfeComposite in2='blur' operator='in'/%3E%3CfeComposite in='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3Cg data-name='Frame 50'%3E%3Cpath fill='none' d='M1.947.948h23.172v27.035H1.947z' data-name='Frame 50 (Background)'/%3E%3Cpath fill='%23f3be2f' d='M5.257.948h16.552a3.345 3.345 0 0 1 3.31 3.379v12.721a3.405 3.405 0 0 1-1.265 2.657l-8.276 6.638a3.257 3.257 0 0 1-4.09 0l-8.276-6.639a3.405 3.405 0 0 1-1.265-2.656V4.327A3.345 3.345 0 0 1 5.257.948Z' data-name='Rectangle 21'/%3E%3Cpath fill='rgba(255,240,188,0.84)' d='M13.533 27.487a3.692 3.692 0 0 1-2.3-.812l-8.277-6.638a3.81 3.81 0 0 1-1.423-2.989V4.326a3.768 3.768 0 0 1 3.724-3.8h16.552a3.768 3.768 0 0 1 3.724 3.8v12.72a3.81 3.81 0 0 1-1.423 2.989l-8.277 6.64a3.692 3.692 0 0 1-2.3.812ZM5.257 1.371A2.931 2.931 0 0 0 2.36 4.326v12.72a2.962 2.962 0 0 0 1.107 2.324l8.276 6.638a2.849 2.849 0 0 0 3.579 0l8.276-6.638a2.962 2.962 0 0 0 1.107-2.324V4.326a2.931 2.931 0 0 0-2.9-2.957Z' data-name='Rectangle 21 (Stroke)'/%3E%3Cg filter='url(%23a)' transform='translate(.003 -.004)'%3E%3Cpath fill='rgba(255,248,221,0.84)' d='m14.285 5.991 1.156 2.558a.829.829 0 0 0 .654.485l2.741.332a.849.849 0 0 1 .464 1.459l-2.027 1.913a.856.856 0 0 0-.25.785l.538 2.763a.831.831 0 0 1-1.216.9l-2.408-1.374a.813.813 0 0 0-.808 0l-2.408 1.376a.831.831 0 0 1-1.221-.902l.538-2.763a.856.856 0 0 0-.25-.785l-2.021-1.913a.849.849 0 0 1 .464-1.459l2.741-.332a.829.829 0 0 0 .654-.485l1.156-2.558a.821.821 0 0 1 1.503 0Z' data-name='Star 1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+  }
+
+  .t-progress-container {
+    background-color: rgba($dark, 0.06);
+    border-radius: $border-radius;
+    padding: 1rem 0.5rem;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    .t-progress-txt {
+      width: 100%;
+      justify-content: space-between;
+      display: flex;
+      font-size: 0.875rem;
+      align-items: baseline;
+    }
+
+    .t-progress-bar {
+      border-color: transparent;
+    }
+  }
+
+  .btn {
+    @extend .t-pill;
+  }
+}

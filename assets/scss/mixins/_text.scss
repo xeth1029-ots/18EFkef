@@ -1,0 +1,120 @@
+//   Mixins > Text
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin title {
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight-bold;
+}
+
+@mixin titleSkewX($color: $white, $bg: $dark, $transform:skewX(-10deg) rotate(-2deg)) {
+  align-self: center;
+  padding: 0.25rem 0.5rem;
+  color: $color;
+  font-weight: 700;
+  background-color: $bg;
+  transform: $transform;
+  text-align: center;
+}
+
+// .highlight-container, .highlight {
+//   position: relative;
+// }
+
+// .highlight-container {
+//   display: inline-block;
+// }
+// .highlight-container:before {
+//   content: " ";
+//   display: block;
+//   height: 90%;
+//   width: 100%;
+//   margin-left: -3px;
+//   margin-right: -3px;
+//   position: absolute;
+//   background: #ffd500;
+//   transform: rotate(2deg);
+//   top: -1px;
+//   left: -1px;
+//   border-radius: 20% 25% 20% 24%;
+//   padding: 10px 3px 3px 10px;
+// }
+@mixin titleComic($color: $dark) {
+  shadow-shadow:
+    -1px -1px 0 $color,
+    0 -1px 0 $color,
+    1px -1px 0 $color,
+    -1px 0 0 $color,
+    1px 0 0 $color,
+    -1px 1px 0 $color,
+    0 1px 0 $color,
+    1px 1px 0 $color,
+    -2px -2px 0 $color,
+    -1px -2px 0 $color,
+    0 -2px 0 $color,
+    1px -2px 0 $color,
+    2px -2px 0 $color,
+    2px -1px 0 $color,
+    2px 0 0 $color,
+    2px 1px 0 $color,
+    2px 2px 0 $color,
+    1px 2px 0 $color,
+    0 2px 0 $color,
+    -1px 2px 0 $color,
+    -2px 2px 0 $color,
+    -2px 1px 0 $color,
+    -2px 0 0 $color,
+    -2px -1px 0 $color;
+
+}
+
+
+
+
+@mixin text-before-square($background: $dark, $width: 10rem, $height: 10rem, $border-radius: 0.25rem) {
+  content: '';
+  background-color: $background;
+  border-radius: $border-radius;
+  position: absolute;
+  transform: rotate(45deg) translate(-20%, -50%);
+  width: $width;
+  height: $height;
+  left: 0;
+  top: 50%;
+  z-index: -1;
+}
+// @include text-gradients-offset(
+// $shadowOffset: 0.25rem, 
+// $color: $white, 
+// $deg: 60deg,
+// $gradient-startColor: $primary, 
+// $gradient-endColor: $secondary,
+// $gradient-start: 10%, 
+// $gradient-end: 90%,
+// $hover: false);
+@mixin text-gradients-offset (
+  $shadowOffset: 0.25rem,
+  $color: $white,
+  $deg: 60deg,
+  $gradient-startColor: $primary,
+  $gradient-endColor: $secondary,
+  $gradient-start: 10%,
+  $gradient-end: 90%,
+  $hover: true) {
+  @supports (-webkit-background-clip: text) {
+    font-weight: $headings-font-weight-bolder;
+    background: linear-gradient($deg, $gradient-startColor $gradient-start, $gradient-endColor $gradient-end);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    padding: $shadowOffset 0 0 $shadowOffset;
+    text-shadow: calc(-1 * #{$shadowOffset}) calc(-1 * #{$shadowOffset}) $color;
+
+    @if $hover == true {
+      &:hover {
+        background: linear-gradient($deg, darken($gradient-startColor, 6%) $gradient-start, darken($gradient-endColor, 6%) $gradient-end);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+    }
+  }
+}

@@ -1,0 +1,249 @@
+@charset "utf-8";
+
+.t-check-box {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.75em;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+
+  .t-check-box-inp {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: $white;
+    border-radius: 0.2em;
+    box-shadow: 0 0 0 1px $grey-300 inset;
+    margin-right: 0.75em;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:after,
+    &:before {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &:before {
+      content: "";
+      background: $white;
+      border-radius: 0.2em;
+      box-shadow: 0 0 0 1px $grey-300 inset;
+      animation: t-unstrike 0.6s linear;
+      transform-origin: 0 50%;
+      z-index: 1;
+
+      // animation: none;
+   
+    }
+
+    &:after {
+      color: $primary;
+      content: "\2713";
+      font-size: 1.5rem;
+      line-height: 1;
+      text-align: center;
+    }
+
+    & + .t-check-box-txt {
+      animation: t-brighten 0.6s linear;
+    }
+
+    @include check-focus {
+      outline: transparent;
+
+      & + .t-check-box-txt {
+        text-decoration: underline;
+      }
+    }
+
+
+    @include check-checked {
+      & + .t-check-box-txt {
+        animation-name: t-dim;
+        color: $white;
+      }
+
+      &:before {
+        animation-name: t-strike;
+        background: $lightgrey;
+        border-radius: 0;
+        box-shadow: 0 0 0 1px $lightgrey inset;
+        transform: translateX(2.25rem) scale(1, 0.05);
+        width: calc(100% - 2.25rem);
+      }
+    }
+  }
+}
+
+// <form>
+//                   <label class="t-check-box">
+//                     <input class="t-check-box-inp pristine" type="checkbox" name="aa" checked="">
+//                     <span class="t-check-box-txt">Apples</span>
+//                   </label>
+//                   <br>
+//                   <label class="t-check-box">
+//                     <input class="t-check-box-inp" type="checkbox" name="aa"> 
+//                     <span class="t-check-box-txt">Bananas</span>
+//                   </label>
+//                   <br>
+//                   <label class="t-check-box">
+//                     <input class="t-check-box-inp" type="checkbox" name="aa"> 
+//                     <span class="t-check-box-txt">Cherries</span>
+//                   </label>
+//                   <br>
+//                   <label class="t-check-box">
+//                     <input class="t-check-box-inp" type="checkbox" name="aa"> 
+//                     <span class="t-check-box-txt">Oranges</span>
+//                   </label>
+//                 </form>
+@keyframes "t-dim" {
+  from,
+  83% {
+    color: $dark;
+  }
+
+  to {
+    color: $lightgrey;
+  }
+}
+
+@keyframes "t-brighten" {
+  from {
+    color: $lightgrey;
+  }
+
+  17%,
+  to {
+    color: $dark;
+  }
+}
+
+@keyframes "t-unstrike" {
+  from {
+    background: $lightgrey;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $lightgrey inset;
+    transform: translateX(2.25em) scale(1, 0.05);
+    width: calc(100% - 2.25em);
+  }
+
+  14% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(2.25em) scale(1, 0.05);
+    width: calc(100% - 2.25em);
+  }
+
+  29% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(2.75em) scale(1, 0.05);
+    width: calc(100% - 2.25em);
+  }
+
+  43% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(-0.5em) scale(0.75, 0.05);
+    width: 1.5em;
+  }
+
+  57% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(0) scale(1, 0.05);
+    width: 1.5em;
+  }
+
+  71% {
+    background: $dark;
+    border-radius: 0.2em;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(0) scale(1, 1.25);
+    width: 1.5em;
+  }
+
+  86% {
+    background: $dark;
+    border-radius: 0.2em;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(0) scale(1, 1);
+    width: 1.5em;
+  }
+
+  to {
+    background: $white;
+    border-radius: 0.2em;
+    box-shadow: 0 0 0 1px $grey-300 inset;
+    transform: translateX(0) scale(1, 1);
+    width: 1.5em;
+  }
+}
+
+@keyframes "t-strike" {
+  from {
+    background: $white;
+    border-radius: 0.2em;
+    box-shadow: 0 0 0 1px $grey-300 inset;
+    transform: translateX(0) scale(1, 1);
+    width: 1.5em;
+  }
+
+  17% {
+    background: $dark;
+    border-radius: 0.2em;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(0) scale(1, 1);
+    width: 1.5em;
+  }
+
+  33% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(0) scale(1, 0.05);
+    width: 1.5em;
+  }
+
+  50% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(-0.5em) scale(1, 0.05);
+    width: 1.5em;
+  }
+
+  67% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(2.25em) scale(1.25, 0.05);
+    width: calc(100% - 2.25em);
+  }
+
+  83% {
+    background: $dark;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $dark inset;
+    transform: translateX(2.25em) scale(1, 0.05);
+    width: calc(100% - 2.25em);
+  }
+
+  to {
+    background: $lightgrey;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $lightgrey inset;
+    transform: translateX(2.25em) scale(1, 0.05);
+    width: calc(100% - 2.25em);
+  }
+}

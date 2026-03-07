@@ -1,0 +1,313 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Models.Entities;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.DataLayers;
+@model WKEFSERVICE.Models.HomeModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+
+    // 去抓取最新消息資料，預設 5 筆
+    var tmpRtnObj = new WKEFSERVICE.Controllers.BackendController().GetNewsDatas("", "2");
+    var tmpModelObj = (HomeModel)tmpRtnObj.GetType().GetProperty("Model").GetValue(tmpRtnObj, null);
+
+    SessionModel sm = SessionModel.Get();
+    AMDAO dao = new AMDAO();
+    var teacherData = dao.GetRow<Teacher>(new Teacher() { ACCOUNT = sm.UserInfo.UserNo });
+    if (teacherData == null) { teacherData = new Teacher(); }
+
+    string PicPath = (teacherData.Sex == "F") ? "~/assets_new/images/avastarPlaceholders-girl.svg" : "~/assets_new/images/avastarPlaceholders.svg";
+    if (!string.IsNullOrEmpty(teacherData.SelfPicPath))
+    {
+        string picfile1 = string.Concat(new AMDAO().UploadPathTeacher, teacherData.SelfPicPath);
+        if (File.Exists(Server.MapPath(picfile1))) { PicPath = picfile1; }
+    }
+
+    string LoginUserNo = sm.UserInfo != null ? sm.UserInfo.UserNo : "";
+    string LoginCharacter = sm.UserInfo != null ? sm.UserInfo.LoginCharacter : "";
+
+    string ClassStr1 = "success";
+    if (!Model.TeachersAdminModel.Attend || !Model.TeachersAdminModel.TestPassed) { ClassStr1 = "danger"; }
+    string ClassStr2 = "color:#149B5F;";
+    string ClassStr3 = "color:#149B5F;";
+    if (!Model.TeachersAdminModel.Attend) { ClassStr2 = "color:#E61E50;"; }
+    if (!Model.TeachersAdminModel.TestPassed) { ClassStr3 = "color:#E61E50;"; }
+    string ClassStr4 = "success";
+    string ClassStr5 = "color:#149B5F;";
+    if (!Model.TeachersAdminModel.Meeting2Attend) { ClassStr4 = "danger"; ClassStr5 = "color:#E61E50;"; }
+    string ClassStr6 = "success";
+    string ClassStr7 = "color:#149B5F;";
+    if (!Model.TeachersAdminModel.ReportRec) { ClassStr6 = "danger"; ClassStr7 = "color:#E61E50;"; }
+
+    var BackendObj = new WKEFSERVICE.Controllers.BackendController();
+
+    // 教師 個人資料完成度
+    var tmpPercentObj = BackendObj.GetTeacherPercent();
+    var tmpPercent = tmpPercentObj != null && tmpPercentObj.GetType().GetProperty("Content") != null ? tmpPercentObj.GetType().GetProperty("Content").GetValue(tmpPercentObj, null).TONotNullString() : "...";
+
+    // 教師 授課時數
+    //var teachHourObj = BackendObj.GetTeacherTeachHour();
+    //var teachHour = teachHourObj != null && teachHourObj.GetType().GetProperty("Content") != null ? teachHourObj.GetType().GetProperty("Content").GetValue(teachHourObj, null).TONotNullString() : "...";
+    //var teachHourCut = 0;
+    //if (teachHour.TOInt32() < 36) { teachHourCut = 36 - teachHour.TOInt32(); }
+    //string ClassStr8 = "success";
+    //if (teachHour.TOInt32() < 36) { ClassStr8 = "danger"; }
+
+    // 教師 授課情形 達成 尚未達成
+    var teachHourObj = BackendObj.GetTeacherTeachHour2();
+    var teachHour = teachHourObj != null && teachHourObj.GetType().GetProperty("Content") != null ? teachHourObj.GetType().GetProperty("Content").GetValue(teachHourObj, null).TONotNullString() : "...";
+    string ClassStr8 = teachHour.TOInt32() == 0 ? "danger" : "success";
+    string ClassStrN = teachHour.TOInt32() == 0 ? "尚未達成" : "達成";
+
+    // 教師 授課滿意度
+    var teachSatisfyObj = BackendObj.GetTeacherTeachSatisfy();
+    var teachSatisfy = teachSatisfyObj != null && teachSatisfyObj.GetType().GetProperty("Content") != null ? teachSatisfyObj.GetType().GetProperty("Content").GetValue(teachSatisfyObj, null).TONotNullString() : null;
+    string ClassStr9 = "success";
+    if (!string.IsNullOrEmpty(teachSatisfy) && teachSatisfy.TOInt32() < 70) { ClassStr9 = "danger"; }
+    //var teachSatisfy_txt = !string.IsNullOrEmpty(teachSatisfy) ? string.Concat(teachSatisfy, " %") : "...";
+    var teachSatisfy_txt = " ";
+}
+
+<section class="bt-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-md-4 col-xl-3">
+                <div class="t-panel">
+                    <div class="t-panel-top">
+                        <!-- image upload -->
+                        <div @*data-overlay="upload"*@
+                             class="t-corp-img-overlay t-image-input t-image-input-empty"
+                             @*data-tu-image-input="true"*@
+                             style="background-image : url(@Url.Content(PicPath));">
+                            @*<div class="t-image-input-wrapper"></div>
+                                <label class="btn btn--in--icon t-pill btn--dark w-8 h-8" data-tu-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="上傳大頭照"
+                                aria-label="上傳大頭照"><i class="svg-icon ml-0 mr-0"><svg><use href="#ic-edit"></use></svg></i>
+                                <input type="file" name="avatar" accept=".png, .jpg, .jpeg, .svg"><input type="hidden" name="avatar_remove"></label>
+                                <button class="btn btn--in--icon t-pill btn--dark w-8 h-8" data-tu-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="取消"
+                                aria-label="取消"><i class="svg-icon ml-0 mr-0"><svg><use href="#ic-close-circle"></use></svg></i></button>
+                                <label class="btn btn--in--icon t-pill btn--dark w-8 h-8" data-tu-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="移除大頭照"
+                                aria-label="移除大頭照"><i class="svg-icon ml-0 mr-0"><svg><use href="#ic-close"></use></svg></i></label>*@
+                        </div>
+                        <!-- Teacher Name -->
+                        <div class="t-panel-title mt-2">
+                            @teacherData.TeacherName
+                        </div>
+                        <div class="t-panel-sub-title">
+                            @teacherData.TeacherEName
+                        </div>
+                    </div>
+                    <div class="t-panel-bottom">
+                        <article class="t-progress-container t-txt-right">
+                            <text class="t-progress-txt">
+                                個人資料完成度
+                                <strong class="t-fc-tertiary">@tmpPercent%</strong>
+                            </text>
+                            <div class="t-progress-wrap">
+                                <span class="t-progress-bar t-bg-grad-tertiary t-progress-bar-striped" role="progressbar" aria-valuenow="@tmpPercent" aria-valuemin="0" aria-valuemax="100" style="width: @tmpPercent%"></span>
+                            </div>
+                        </article>
+                        <a class="btn btn--tertiary btn--block t-pill" href="~/A1/C101M/Detail?Seq=@teacherData.Seq" target="_blank" title="「另開新視窗」查看">
+                            前台師資頁面預覽
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-eye"></use>
+                                </svg>
+                            </i>
+                        </a>
+                        <a class="btn btn--border--tertiary btn--block t-pill" href="~/A2/C201M">
+                            基本資料維護
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-edit"></use>
+                                </svg>
+                            </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 col-md-8 col-xl-9">
+                <div class="t-panel">
+                    <div class="t-panel-heading">
+                        <i class="svg-icon" aria-hidden="true">
+                            <svg>
+                                <use href="#ic-map"></use>
+                            </svg>
+                        </i>
+                        <div class="t-panel-heading-txt">評核指標</div>
+                        <!--<a class="btn btn--circle  btn--xxs" href="javascript:;"> 前往 年度評核指標
+                            <i class="svg-icon"> <svg> <use href="#ic-arrow-double"></use> </svg></i></a>-->
+                    </div>
+                    <div class="t-panel-main">
+                        <div class="t-panel-main-fuild">
+                            <ul class="t-list-grid-card t-list-grid-card-5-cols">
+                                <li class="t-list-grid-card-item t-list-grid-card-item-@ClassStr1">
+                                    <div class="mask mask_card"></div>
+                                    <div class="t-list-grid-card-title">參加回流訓 / 通過測驗</div>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            評核標準
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            出席場次 / 通過測驗
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            指標進度
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            <strong class="t-fc-success">
+                                                <span style="@ClassStr2">@Model.TeachersAdminModel.AttendShow</span> /
+                                                <span style="@ClassStr3">@Model.TeachersAdminModel.TestPassedShow</span>
+                                            </strong>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="t-list-grid-card-item t-list-grid-card-item-@ClassStr9">
+                                    <div class="t-list-grid-card-title">授課對象表示滿意之人數百分比</div>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            評核標準
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            達 <big class="t-fc-primary">70%</big> 以上
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">@*指標進度*@</dt>
+                                        <dd class="t-definition-description">
+                                            <big class="t-fc-primary">@teachSatisfy_txt</big>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                @*<li class="t-list-grid-card-item t-list-grid-card-item-@ClassStr8"><div class="t-list-grid-card-title">授課時數</div>
+                                    <dl class="t-definition-list"><dt class="t-definition-term">評核標準</dt><dd class="t-definition-description">36 小時</dd></dl>
+                                    <dl class="t-definition-list"><dt class="t-definition-term">指標進度</dt><dd class="t-definition-description">
+                                    <label class="t-badge t-badge-@ClassStr8">@teachHour 小時 &nbsp;@if (teachHour.TOInt32() < 36){<i class="svg-icon"><svg><use href="#ic-info">
+                                    <title>還差 @teachHourCut 小時</title></use></svg></i>}</label></dd></dl></li>*@
+                                <li class="t-list-grid-card-item t-list-grid-card-item-@ClassStr8">
+                                    <div class="t-list-grid-card-title">授課情形</div>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            評核標準
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            至少一個課程單元
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            指標進度
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            <label class="t-badge t-badge-@ClassStr8">
+                                                @(ClassStrN)
+                                            </label>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="t-list-grid-card-item t-list-grid-card-item-@ClassStr4">
+                                    <div class="mask mask_card"></div>
+                                    <div class="t-list-grid-card-title">參加共識會議</div>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            評核標準
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            每年參加 2 次
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list">
+                                        <dt class="t-definition-term">
+                                            指標進度
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            <strong class="t-fc-success">
+                                                <span style="@ClassStr5">@Model.TeachersAdminModel.Meeting2AttendShow</span>
+                                            </strong>
+                                            <label class="t-badge t-badge-secondary" style="padding-right: 0.75rem;">
+                                                @Model.TeachersAdminModel.Meeting2AttendCount 次
+                                                @*<i class="svg-icon"><svg><use href="#ic-info"></use></svg></i>*@
+                                            </label>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="t-list-grid-card-item t-list-grid-card-item-@ClassStr6">
+                                    <div class="t-list-grid-card-title">繳交教學自我審核報告</div>
+                                    <dl class="t-definition-list ">
+                                        <dt class="t-definition-term">
+                                            評核標準
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            每年繳交一份
+                                            <small class="t-fc-lightgrey">( @Model.TeachersAdminModel.YearShow 年繳交期限：@Model.TeachersAdminModel.ReportLimit )</small>
+                                        </dd>
+                                    </dl>
+                                    <dl class="t-definition-list ">
+                                        <dt class="t-definition-term">
+                                            指標進度
+                                        </dt>
+                                        <dd class="t-definition-description">
+                                            <strong class="t-fc-@ClassStr6">@Model.TeachersAdminModel.ReportRecShow</strong>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="t-panel">
+                    <div class="t-panel-heading">
+                        <i class="svg-icon" aria-hidden="true">
+                            <svg>
+                                <use href="#ic-map"></use>
+                            </svg>
+                        </i>
+                        <div class="t-panel-heading-txt">訊息公告</div>
+                        <a class="btn btn--circle  btn--xxs" href="~/Backend/NewsAll" target="_blank" title="「另開新視窗」查看訊息公告內容">
+                            查看更多訊息公告
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-arrow-double"></use>
+                                </svg>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="t-panel-main">
+                        <div class="t-panel-main-fuild">
+                            <ul class="t-news-list-backend">
+                                @Html.Partial("_GridRowsNews_Backend", tmpModelObj)
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    // 立即報名
+    function doHomeSignUp(MeetingSeq) {
+        var LoginUserNo = '@LoginUserNo';
+        var LoginCharacter = '@LoginCharacter';
+        if (LoginUserNo === "") {
+            alert("請先登入");
+        }
+        else {
+            if (LoginCharacter !== "2") {
+                alert("身分不符");
+            }
+            else {
+                var data = { "Seq": MeetingSeq }
+                var url = "@ConfigModel.WKEF/A2/C301M/Detail?" + $.param(data);
+                window.open(url, '_blank');
+            }
+        }
+    }
+
+</script>

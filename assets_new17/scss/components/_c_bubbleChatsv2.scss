@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+// Components Bubbles 
+// --------------------------------------------------
+
+.t-bubble {
+  --r: 1.5625rem;
+  --t: 1.875rem;
+  max-width: 18.75rem;
+  padding: calc(2 * var(--r) / 3);
+  -webkit-mask: radial-gradient(var(--t) at var(--pres) 0, transparent 98%, $dark 102%) var(--pres) (100% / calc(100% - var(--r))) var(--t) no-repeat, conic-gradient(at var(--r) var(--r), $dark 75%, transparent 0) calc(var(--r) / -2) calc(var(--r) / -2) padding-box, radial-gradient(50% 50%, $dark 98%, transparent 101%) 0 (0 / var(--r)) var(--r) space padding-box;
+  background: linear-gradient(135deg, $primary, $primary-200) border-box;
+  color: $white;
+
+  &.t-bubble-left {
+    --pres: 0%;
+    border-left: var(--t) solid transparent;
+    margin-right: var(--t);
+    place-self: start;
+  }
+
+  &.t-bubble-right {
+    --pres: 100%;
+    border-right: var(--t) solid transparent;
+    margin-left: var(--t);
+    place-self: end;
+  }
+}
+
+// <div class="t-bubble t-bubble-left">Bro ipsum dolor sit amet gaper backside single track, manny Bike epic clipless. Schraeder drop gondy, rail fatty slash gear jammer steeps</div>
+// <div class="t-bubble t-bubble-right">Ok, Thank you</div>
+// <div class="t-bubble t-bubble-left"> ut labore et dolore magna </div>
+// <div class="t-bubble t-bubble-right">👌</div>
+
+// .from-me, .from-them {
+//   max-width: 255px;
+//   word-wrap: break-word;
+//   margin-bottom: 12px;
+//   line-height: 24px;
+//   position: relative;
+//   padding: 10px 20px;
+//   border-radius: 25px;
+//   margin-left: 100px;
+
+//   &:before,
+//   &:after {
+//     content: "";
+//     position: absolute;
+//     bottom: 0;
+//     height: 25px;
+//   }
+// }
+
+// .from-me {
+//   color: white;
+//   background: #0b93f6;
+//   align-self: flex-end;
+
+//   &:before {
+//     right: -4rem;
+//     width: 6.25rem;
+//     height: 4.75rem;
+//     background-color: inherit;
+//     clip-path: path("M82 79c-11 0-23-1-35-2a445 445 0 01-47-6 10 10 0 000-3V3a142 142 0 0016 32 104 104 0 0022 24 91 91 0 0027 15 103 103 0 0033 5c-2 0-8 0-17 0Z");
+//     transform: scale(0.5);
+//   }
+// }
+
+// .from-them {
+//   background: #e5e5ea;
+//   color: black;
+//   align-self: flex-start;
+
+//   &:before {
+//     left: -4rem;
+//     width: 6.25rem;
+//     height: 4.75rem;
+//     background-color: inherit;
+//     clip-path: path("M98 1v66a10 10 0 000 3 445 445 0 01-47 6c-12 1-23 2-35 2C6 77 0 76 0 76A103 103 0 0033 71a91 91 0 0028-15 104 104 0 0022-24A142 142 0 0098 1Z");
+//     transform: scale(0.5);
+//   }
+// }
+
+// <div class='speech-bubble'>Hello!</div>
+// .speech-bubble {
+//   position: relative;
+//   margin: .5em auto;
+//   padding: 1em;
+//   width: 10em; height: 4em;
+//   border-radius: .25em;
+//   transform: rotate(-4deg) rotateY(15deg);
+//   background: #629bdd;
+//   font: 2em/4 Century Gothic, Verdana, sans-serif;
+//   text-align: center;
+// }
+// .speech-bubble:before, .speech-bubble:after {
+//   position: absolute;
+//   z-index: -1;
+//   content: '';
+// }
+// .speech-bubble:after {
+//   top: 0; right: 0; bottom: 0; left: 0;
+//   border-radius: inherit;
+//   transform: rotate(2deg) translate(.35em, -.15em) scale(1.02);
+//   background: #f4fbfe;
+// }
+// .speech-bubble:before {
+//   border: solid 0 transparent;
+//   border-right: solid 3.5em #f4fbfe;
+//   border-bottom: solid .25em #629bdd;
+//   bottom: .25em; left: 1.25em;
+//   width: 0; height: 1em;
+//   transform: rotate(45deg) skewX(75deg);
+// }

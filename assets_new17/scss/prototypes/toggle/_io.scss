@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+//  prototypes -> check
+// --------------------------------------------------
+
+
+.t-io {
+  display: inline-block;
+  position: relative;
+
+  .t-io-label {
+    @include toggle-label;
+
+    position: relative;
+    width: 5.5rem;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    background-image: linear-gradient(to right, $grey-50 0%, $grey-50 50%, $primary 50%, $primary 100%);
+    background-size: 200%;
+    transition: $transition;
+
+    &:before {
+      @include before-after;
+
+      width: 3rem;
+      height: 3rem;
+      top: -0.25rem;
+      left: 0;
+      border-radius: 2rem;
+      background: _var("white", $white);
+      transition: $transition;
+      box-shadow: 0 0.25rem 0.5rem rgba($dark, 0.24);
+      z-index: 1;
+    }
+  }
+
+  .t-io-input {
+    @include input-checkbox-not-ab;
+
+    &:before,
+    &:after {
+      @include before-after;
+
+      top: 50%;
+      transform: translateY(calc(-50% - 0.15rem));
+      z-index: 1;
+      border-radius: 1rem;
+    }
+
+    &:before {
+      width: 0.5rem;
+      height: 1rem;
+      left: 1.25rem;
+      background: _var("white", $white);
+    }
+
+    &:after {
+      width: 1.25rem;
+      height: 1.25rem;
+      left: 3.5rem;
+      background: transparent;
+      border: 0.25rem solid $grey-400;
+    }
+  }
+
+  .t-io-input:checked + .t-io-label {
+    background-position: -100%;
+
+    &:before {
+      transform: translateX(2.5rem);
+    }
+  }
+
+  .t-io-input:disabled {
+    &:before {
+      background: $grey-400;
+    }
+
+    & + .t-io-label {
+      background: $grey-200 !important;
+      cursor: not-allowed !important;
+
+      &:before {
+        background: $grey-200 !important;
+        box-shadow: 0 0.2rem 0.45rem rgba($dark, 0.5) !important;
+      }
+    }
+  }
+}
+
+@each $name, $value in $toggle-theme-colors {
+  .t-io-#{$name} {
+    @extend .t-io;
+
+    .t-io-label {
+      background-image: linear-gradient(to right, $grey-50 0%, $grey-50 50%, $value 50%, $value 100%);
+    }
+  }
+}

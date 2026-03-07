@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+//   Mixins > Buttons boxShadow
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Button BoxShadow Variant
+@mixin button-boxShadow-variant($background, $border, $hover-background: lighten($background, 7.5%), $hover-border: lighten($border, 12.5%), $active-background: lighten($background, 12.5%), $active-border: lighten($border, 15%)) {
+  border-color: $border;
+  box-shadow: 0 4px 12px 0 rgba($background, 0.66);
+  color: color-yiq($background);
+
+  @include gradient-bg($background);
+
+  @include btn-hover {
+    @include gradient-bg($hover-background);
+
+    border-color: $hover-border;
+    color: color-yiq($hover-background);
+    transform: translateY(-2px);
+  }
+
+
+  @include btn-focus {
+    // box-shadow: 0 6px 18px 0 rgba($background, 0.82);
+    box-shadow: 0 1px 2px 0 rgba($background, 0.45), 0 1px 3px 1px rgba($background, 0.3);
+    transform: translateY(0);
+  }
+
+
+  @include btn-disabled {
+    background-color: $background;
+    border-color: $white;
+    color: color-yiq($background);
+
+    // Remove CSS gradients if they're enabled
+    @if $enable-gradients {
+      background-image: none;
+    }
+  }
+
+
+  @include btn-active {
+    background-color: $active-background;
+    color: color-yiq($active-background);
+    box-shadow: 0 1px 2px 0 rgba($background, 0.48), 0 1px 3px 1px rgba($background, 0.32);
+    transform: translateY(0);
+
+    @if $enable-gradients {
+      background-image: none;
+
+      // Remove the gradient for the pressed/active state
+    }
+
+    border-color: $active-border;
+
+    @include btn-focus {
+      box-shadow: none;
+    }
+  }
+}

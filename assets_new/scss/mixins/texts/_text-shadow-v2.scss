@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+//  Mixins > Text shadow v2
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin text-shadow-bigger($color: $dark) {
+  text-shadow: $dark -1px -1px 0, $dark 0 -1px 0, $dark 1px -1px 0, $dark -1px 0 0, $dark 1px 0 0, $dark -1px 1px 0, $dark 0 1px 0, $dark 1px 1px 0, $dark -2px -2px 0, $dark -1px -2px 0, $dark 0 -2px 0, $dark 1px -2px 0, $dark 2px -2px 0, $dark2px -1px 0, $dark 2px 0 0, $dark 2px 1px 0, $dark 2px 2px 0, $dark 1px 2px 0, $dark 0 2px 0, $dark -1px 2px 0, $dark -2px 2px 0, $dark -2px 1px 0, $dark -2px 0 0, $dark -2px -1px 0, $dark -3px -3px 0, $dark -2px -3px 0, $dark 0 -3px 0, $dark2px -3px 0, $dark 3px -3px 0, $dark 3px -2px 0, $dark 3px 0 0, $dark 3px 2px 0, $dark 3px 3px 0, $dark 2px 3px 0, $dark 0 3px 0, $dark -2px 3px 0, $dark -3px 3px 0, $dark -3px 2px 0, $dark-3px 0 0, $dark -3px -2px 0, $dark -3px -3px 0, $dark -1px -3px 0, $dark 0 -3px 0, $dark 1px -3px 0, $dark 3px -3px 0, $dark 3px -1px 0, $dark3px 0 0, $dark 3px 1px 0, $dark 3px 3px 0, $dark 1px 3px 0, $dark 0 3px 0, $dark -1px 3px 0, $dark -3px 3px 0, $dark -3px 1px 0, $dark -3px 0 0, $dark -3px -1px 0, $dark -3px 4px 0, $dark 0 4px 0, $dark 3px 4px 0, $dark -3px 5px 0, $dark 0 5px 0, $dark 3px 5px 0, $dark -3px 6px 0, $dark0 6px 0, $dark 3px 6px 0, $dark -3px 7px 0, $dark 0 7px 0, $dark 3px 7px 0, $dark -3px 8px 0, $dark 0 8px 0, $dark 3px 8px 0, $dark -3px 9px 0, $dark 0 9px 0, $dark 3px 9px 0, $dark -3px 10 0, $dark 0 10 0, $dark 3px 10 0, $dark-3px 11px 0, $dark 0 11px 0, $dark 3px 11px 0, $dark -3px 12px 0, $dark 0 12px 0, $dark 3px 12px 0, $dark -3px 13px 0, $dark 0 13px 0, $dark 3px 13px 0, $dark -3px 14px 0, $dark 0 14px 0, $dark3px 14px 0, $dark -3px 15px 0, $dark 0 15px 0, $dark 3px 15px 0, $dark -3px 16px 0, $dark 0 16px 0, $dark 3px 16px 0, $dark -3px 17px 0, $dark 0 17px 0, $dark 3px 17px 0, $dark -3px 18px 0, $dark0 18px 0, $dark 3px 18px 0;
+}
+
+@mixin text-shadow-big($color: $dark) {
+  text-shadow: $dark -1px -1px 0, $dark 0 -1px 0, $dark 1px -1px 0, $dark -1px 0 0, $dark 1px 0 0, $dark -1px 1px 0, $dark 0 1px 0, $dark 1px 1px 0, $dark -2px -2px 0, $dark -1px -2px 0, $dark 0 -2px 0, $dark 1px -2px 0, $dark 2px -2px 0, $dark 2px -1px 0, $dark 2px 0 0, $dark 2px 1px 0, $dark2px 2px 0, $dark 1px 2px 0, $dark 0 2px 0, $dark -1px 2px 0, $dark -2px 2px 0, $dark -2px 1px 0, $dark -2px 0 0, $dark -2px -1px 0;
+}
+
+@mixin comic-btn {
+  box-shadow: rgb(255, 255, 255) 3px 3px 0 0 inset, $dark -3px -3px 0 0 inset;
+
+  @include hover {
+    box-shadow: $dark 2.5px 2.5px 0 0 inset;
+  }
+
+
+  @include focus {
+    box-shadow: $dark 0 0 0 3px;
+  }
+}
+
+@mixin comic-heading {
+  background-color: $dark;
+  transform: skewX(-10deg) rotate(-2deg);
+}
+
+@mixin comic-bubble {
+  position: absolute;
+  content: "";
+  left: 0.75rem;
+  bottom: -0.5rem;
+  width: 0;
+  height: 0;
+  border-top: 0.3125rem solid $dark;
+  border-left: 0.9375rem solid $dark;
+  border-right: .3125rem solid transparent;
+  border-bottom: .625rem solid transparent;
+}
+
+@mixin comic-contribute-counter {
+  position: relative;
+  counter-increment: contribute-counter;
+  padding-left: 3rem;
+
+  &:before {
+    position: absolute;
+    content: counter(contribute-counter);
+    top: -0.1875rem;
+    left: 0;
+    width: 1.5em;
+    height: 1.5em;
+    color: var(--color-yellow); // rgb(255, 234, 100)
+    font-size: var(--font-size-h4);
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: $dark;
+    text-align: center;
+  }
+}
+
+@keyframes tipsy {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
+
+// .tt {
+//   font-weight: 900;
+//   text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
+// }
+
+// .tt:before,
+// .tt:after {
+//   content: '';
+//   padding: .9em .4em;
+//   position: absolute;
+//   left: 50%;
+//   width: 100%;
+//   top: 50%;
+//   display: block;
+//   border: 15px solid red;
+//   transform: translateX(-50%) translateY(-50%) rotate(0deg);
+//   animation: 10s infinite alternate ease-in-out tipsy;
+// }
+
+// .a:before {
+//   border-color: #d9524a #d9524a rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+//   z-index: -1;
+// }
+
+// .a:after {
+//   border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #d9524a #d9524a;
+//   box-shadow: 25px 25px 25px rgba(46, 46, 49, 0.8);
+// }

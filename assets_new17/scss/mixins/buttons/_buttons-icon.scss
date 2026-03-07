@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+//  Mixin -> Buttons -> Icons
+//====================================================
+// @include btn-in-icon($dark, $white);
+@mixin btn-in-icon($color: $dark, $shadow: $white) {
+  background-color: rgba($color, 0.66);
+  box-shadow: 0 0 0 0.125em rgba($shadow, 0.24);
+  border-radius: 50%;
+  padding: 0.25rem;
+  position: absolute;
+  right: 0.5rem;
+  border-bottom: 0.15em solid rgba($color, 1);
+}

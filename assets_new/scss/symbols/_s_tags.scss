@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+//  Symbols Tag
+// --------------------------------------------------
+.t-tag {
+  @each $color, $value in $element-colors {
+    &.t-tag-#{$color} {
+      display: inline-flex;
+      cursor: pointer;
+      border-radius: $border-radius-sm;
+      font-size: .75rem;
+      line-height: 1.25;
+      padding: 0.375rem 0.5rem 0.25rem;
+      transition: $transition-fast;
+      user-select: none;
+      vertical-align: middle;
+      white-space: nowrap;
+      background: _var("white", $white);
+      border: 2px solid rgba($value, 0.24);
+      color: $value;
+
+      @include hover {
+        @include scale(1.05);
+
+        background: tint-color($value, 95%);
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-list-tag {
+  @extend .t-flex;
+
+  position: relative;
+  cursor: pointer;
+
+  @extend .flex-center;
+
+  border-radius: $border-radius-sm;
+  border: $white 1.5px solid;
+  background-color: $grey-100;
+  color: _var("dark", $dark);
+  padding: .625rem 1.125rem;
+  font-size: 1rem;
+  font-weight: 500;
+  user-select: none;
+  margin-right: 1.25rem;
+  transition: $transition-base;
+
+  @include hover {
+    background-color: $grey-600;
+    color: _var("grey-50", $grey-50);
+    transform: scale(1.05);
+
+    .t-list-tag-close {
+      color: _var("white", $white);
+    }
+  }
+
+
+  > span {
+    display: block;
+  }
+
+  .t-list-tag-close {
+    color: $grey-600;
+    cursor: pointer;
+    transition: $transition;
+    margin-left: .75rem;
+  }
+}
+
+
+//////////////////////////////////////////////////////////////////////

@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//  Mixins > Buttons
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Button Variant
+@mixin button-variant($background, 
+  $border: rgba($background, 0.24), 
+  $hover-background: darken($background, 8%), 
+  $hover-border: darken($border, 10%), 
+  $active-background: darken($background, 4%), 
+  $active-border: darken($border, 6%), 
+  $t-btn-box-shadow: $t-btn-box-shadow, 
+  $t-btn-box-shadow-hover: $t-btn-box-shadow-hover, $t-btn-box-shadow-active: $t-btn-box-shadow-active, $t-btn-box-shadow-focus: $t-btn-box-shadow-focus) {
+  border-color: $border;
+  color: color-contrast(darken($background, 8%), shade-color($background, 95%), $white);
+  box-shadow: $t-btn-box-shadow rgba($background, 0.48);
+
+  @include gradient-bg($background);
+
+  @include btn-hover {
+    border-color: $hover-border;
+    color: color-contrast($hover-background, shade-color($background, 95%), $white);
+    background-color: $hover-background;
+    box-shadow: $t-btn-box-shadow-hover rgba($background, 0.72);
+
+    @include gradient-bg($hover-background);
+  }
+
+
+  @include btn-focus {
+    box-shadow: $t-btn-box-shadow-focus rgba($background, 0.54), 0 0 0 0.25rem rgba($background, 0.32);
+
+    // @if $enable-shadows {
+    //   box-shadow: $btn-box-shadow, 0 0 0 3px rgba(mix(color-yiq($background), $border, 15%), 0.5);
+    // }
+  }
+
+
+  @include btn-active {
+    color: color-contrast($active-background, shade-color($active-background, 87.5%), $white);
+    background-color: $active-background;
+    border-color: $active-border;
+    box-shadow: $t-btn-box-shadow-active rgba($background, 0.48);
+
+    @include gradient-bg($active-background);
+
+    @include btn-focus {
+      @if $enable-shadows {
+        box-shadow: $btn-box-shadow-value rgba($background, 0.12), $btn-focus-box-shadow-value rgba(mix(color-contrast($background), $border, 10%), 0.48);
+      }
+    }
+  }
+
+
+  @include btn-disabled {
+    color: color-contrast($background, shade-color($background, 95%), $white);
+    background-color: $background;
+    border-color: $white;
+  }
+}

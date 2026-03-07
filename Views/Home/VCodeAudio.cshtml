@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>勞動部勞動力發展署-關鍵就業力課程-圖形驗證碼語音撥放</title>
+</head>
+<body>
+    <h1><span class="sr-only">(點擊)圖形驗證碼語音撥放</span></h1>
+    <audio src="@Url.Action("GetValidateCodeAudio")?@(DateTime.Now.Millisecond)" controls autoplay>
+        HTML5 audio not supported
+    </audio>
+</body>
+</html>

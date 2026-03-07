@@ -1,0 +1,62 @@
+// 
+//  Components -> Roundeds
+// --------------------------------------------------
+:root {
+  --borderRadius: 1rem;
+}
+
+@for $i from 0 through 25 {
+  .rounded--#{$i * 4} {
+    border-radius: #{$i * 4}px !important;
+  }
+
+  %rounded--#{$i * 4} {
+    border-radius: #{$i * 4}px !important;
+  }
+}
+
+.t- {
+  &br-all {
+    border-radius: var(--borderRadius);
+  }
+
+  &br-top-left {
+    border-top-left-radius: var(--borderRadius);
+  }
+
+  &br-top-right {
+    border-top-right-radius: var(--borderRadius);
+  }
+
+  &br-bottom-left {
+    border-bottom-left-radius: var(--borderRadius);
+  }
+
+  &br-bottom-right {
+    border-bottom-right-radius: var(--borderRadius);
+  }
+
+  &br-four-value {
+    border-radius: var(--borderRadius) calc(var(--borderRadius)*2) calc(var(--borderRadius)*3) calc(var(--borderRadius)/2);
+  }
+
+  &br-three-value {
+    border-radius: var(--borderRadius) calc(var(--borderRadius)*2) calc(var(--borderRadius)*3);
+  }
+
+  &br-two-value {
+    border-radius: var(--borderRadius) calc(var(--borderRadius)*2);
+  }
+
+  &br-slash-one {
+    border-radius: var(--borderRadius)/calc(var(--borderRadius)*3);
+  }
+
+  &br-slash-two {
+    border-radius: calc(var(--borderRadius)*3)/var(--borderRadius);
+  }
+
+  &br-slash-three {
+    border-radius: calc(var(--borderRadius)*4) calc(var(--borderRadius)*3) calc(var(--borderRadius)*2) calc(var(--borderRadius)*1)/calc(var(--borderRadius)*1) calc(var(--borderRadius)*2) calc(var(--borderRadius)*3) calc(var(--borderRadius)*4);
+  }
+}

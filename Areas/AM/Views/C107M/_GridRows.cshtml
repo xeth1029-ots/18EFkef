@@ -1,0 +1,24 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C107MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.DateS_Name - @item.DateE_Name</td>
+            <td>@item.Caption</td>
+            <td>@item.UpdatedDatetime_Name</td>
+            <td align="center">
+                <button type="button" class="btn btn-info" onclick="doUpd('@item.Seq')">修改</button>
+                <button type="button" class="btn btn-danger" onclick="doDel('@item.Seq', '@item.ROWID')">刪除</button>
+            </td>
+        </tr>
+    }
+}

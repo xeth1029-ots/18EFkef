@@ -1,0 +1,9 @@
+@charset "utf-8";
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//   Mixins > Opacity
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin opacity($opacity: 0.5) {
+  filter: alpha(opacity=$opacity*100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=#{$opacity*100});
+  opacity: $opacity;
+}

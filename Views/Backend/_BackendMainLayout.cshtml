@@ -1,0 +1,436 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Commons
+@using WKEFSERVICE.Services
+@using Turbo.ReportTK
+@using Newtonsoft.Json
+@{
+    ViewBag.HTitle = "勞動部勞動力發展署關鍵就業力課程";
+    ViewBag.HTitle2 = "歡迎光臨 關鍵就業力課程";
+    // 無障礙-首頁抬頭文字
+    string s_MainTitle = "勞動部勞動力發展署-關鍵就業力課程";
+
+    string TitleName = "";
+    string AreasName = "";
+    string className = "admin";
+    SessionModel sm = SessionModel.Get();
+    if (sm.UserInfo == null)
+    {
+        Response.Redirect(Url.Action("Login", "Home"));
+    }
+    else
+    {
+        if (sm.UserInfo.User.GRPID.TOInt32() <= 1) { Response.Redirect(Url.Action("Login", "Home")); }        // 1. 一般使用者
+        if (sm.UserInfo.User.GRPID == "2") { className = "teacher"; AreasName = "A2"; TitleName = "-教師"; }  // 2. 教師使用者
+        if (sm.UserInfo.User.GRPID == "3") { className = "branch"; AreasName = "A3"; TitleName = "-分署"; }   // 3. 分署使用者
+        if (sm.UserInfo.User.GRPID == "4") { className = "admin"; AreasName = "AM"; TitleName = "-管理者"; }  // 4. 管理者
+    }
+    string[] UrlLists = new string[] { };
+    string ConfigModelWKEF = (ConfigModel.WKEF == "") ? "20221128" : ConfigModel.WKEF;
+    UrlLists = HttpContext.Current.Request.Url.AbsoluteUri.Replace(ConfigModelWKEF, "").Split('/');
+    if (UrlLists.ToCount() <= 0) { Response.Redirect(Url.Action("Index", "Home")); }
+    else
+    {
+        if (UrlLists[3] != "Backend" && UrlLists[3] != AreasName) { Response.Redirect("Home/Login"); }
+    }
+}
+@{
+    // 判斷是否由 ReportTK.Controller 查詢檢核失敗導過來, 抓取錯誤訊息
+    Report report = (Report)Session[Turbo.Controllers.ReportController.REPORT_SESSION_KEY];
+    var reportErrMessage = string.Empty;
+    var reportParms = new System.Collections.Hashtable();
+    if (report != null)
+    {
+        if (!string.IsNullOrEmpty(report.ResultMessage))
+        {
+            reportErrMessage = report.ResultMessage;
+            //讀取後清空 report.ResultMessage
+            report.ResultMessage = "";
+        }
+        if (report.QueryParms != null && report.QueryParms.Count > 0)
+        {
+            foreach (string key in report.QueryParms.Keys)
+            {
+                reportParms[key] = report.QueryParms[key];
+            }
+            //讀取後清空 report.QueryParms
+            report.QueryParms.Clear();
+        }
+        // 回存 Report Session
+        Session[Turbo.Controllers.ReportController.REPORT_SESSION_KEY] = report;
+    }
+    //嚐試取得 HTTP 請求導向來源功能編號
+    var redirectFromPRGID2 = RedirectToResult.GetRedirectFromLabel(this.Request);
+}
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=no">
+    <meta charset="UTF-8">
+    <title>@s_MainTitle@{}@TitleName</title>
+
+    @*antiClickjack*@
+    <style id="antiClickjack" type="text/css">
+        html { display: none; }
+        body { display: none !important; background-color: #ffffff; }
+    </style>
+    <script type="text/javascript">
+        //解決不支援 X-Frame-Options設定，需額外判斷
+        //if (top != self) { top.location = self.location; }
+        if (self === top || self == top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            if (antiClickjack) { antiClickjack.parentNode.removeChild(antiClickjack); }
+            document.documentElement.style.display = 'block';
+        }
+        else {
+            top.location = self.location;
+        }
+        if (parent.document.frames != undefined && parent.document.frames.length != 0) {
+            top.location.replace(self.location);
+        }
+    </script>
+
+    @Styles.Render("~/Content/FontBootstrap")
+    @Scripts.Render("~/bundles/FrontBootstrapScript")
+    @Styles.Render("~/Content/backend_assets_css")
+    @Scripts.Render("~/bundles/backend_assets_js")
+
+    <script type="text/javascript">
+        @*2019-01-16 無障礙檢測：add 按esc鍵關閉彈跳視窗*@
+        var app = {
+            alertWindow: null,
+            alertWindowCallback: [], // function[]
+            confirmWindow: null,
+            confirmWindowCallback: [], // function[]
+        };
+
+        @* 前一個頁面最後錯誤或結果訊息 *@
+        var lastErrorMessage = '@Html.Raw(sm.LastErrorMessage)';
+        var lastResultMessage = '@Html.Raw(sm.LastResultMessage)';
+        var redirectUrl = '@Html.Raw(sm.RedirectUrlAfterBlock)';
+        var reportErrMessage = '@Html.Raw(reportErrMessage)';
+
+        function RedirectAfterPopup(redirectUrlPost) {
+            if ((redirectUrlPost != undefined) && (redirectUrlPost != "")) { redirectUrl = redirectUrlPost; }
+            if (redirectUrl.length > 0) {
+                @*有指定 RedirectUrlAfterBlock, 進行重導動作 *@
+                var form = $("form[name=RedirAfterBlockResult]");
+                var p = redirectUrl.indexOf("?");
+                if (p > 0) {
+                    var parms = redirectUrl.substring(p + 1).split("&");
+                    redirectUrl = redirectUrl.substring(0, p);
+                    for (var i = 0; i < parms.length; i++) {
+                        var ptoken = parms[i].split("=");
+                        if (ptoken.length == 2) {
+                            var input = document.createElement("input");
+                            $(input).attr("type", "hidden");
+                            $(input).attr("name", ptoken[0]);
+                            $(input).attr("value", ptoken[1]);
+
+                            form.append(input);
+                        }
+                        else {
+                            debugTrace("RedirectUrlAfterBlock: parameter syntax error '" + parms[i] + "'");
+                        }
+                    }
+                }
+                form.attr("action", redirectUrl);
+                form.submit();
+            }
+            else {
+                //20180530 加入使用 HTTP Get 方式導向指定網址
+                redirectUrl = "@Html.Raw(sm.RedirectUrlAfterBlockViaGet)";
+                if (redirectUrl.length > 0) location.href = redirectUrl;
+            }
+        }
+
+        $(document).ready(function () {
+            @* blockUI 引用的 loading image // globalSetting.processingImg = "@Url.Content("~/images/processing.gif")"; *@
+            @*Report 查詢導回來時的各個查詢條件 binding*@
+            var reportParms = $.parseJSON('@Html.Raw(JsonConvert.SerializeObject(reportParms))');
+            $.each(reportParms, function (key, value) {
+                $("input[name$='" + key + "']")
+                    .each(function (idx) {
+                        var name = $(this).attr("name");
+                        if (name == key || name.lastIndexOf("." + key) > -1) {
+                            debugTrace(this);
+                            $(this).val(value);
+                        }
+                    })
+                    .trigger('blur');
+                $("select[name$='" + key + "']")
+                    .each(function (idx) {
+                        var name = $(this).attr("name");
+                        if (name = key || name.lastIndexOf("." + key) > -1) {
+                            debugTrace(this);
+                            $(this).val(value);
+                        }
+                    })
+                    .trigger('change');
+            });
+
+            @* 前一個頁面最後錯誤或結果訊息 popup 處理*@
+            if (lastErrorMessage) {
+                blockAlert(lastErrorMessage, "錯誤訊息", function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else if (lastResultMessage) {
+                blockMessage(lastResultMessage, null, function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else if (reportErrMessage) { @*報表核檢或結果訊息*@
+                blockAlert(reportErrMessage, "錯誤訊息", function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else {
+                @* 前一個表單 Post 後的 Validation Summary 訊息顯示 *@
+                var IsValid = '@(ViewData.ModelState.IsValid)';
+                var validationMsg = $("#ValidationSummary").html();
+                if (IsValid == 'False' && validationMsg) {
+                    blockAlert(validationMsg, "錯誤訊息", function () {
+                        RedirectAfterPopup()
+                    });
+                }
+            }
+
+            @* 設定  div[class='wrap'] 的 min-height *@
+            $("div.wrap").css("min-height",
+                $("div.container-fluid").innerHeight()
+                - $("div.header").outerHeight()
+                - $("div.type-bar").outerHeight() + 200
+                );
+
+        });
+
+        //let meetingDate = new Pikaday({
+        //    field: document.getElementById('btMeetingDate'),
+        //    theme: "pikaday-white",
+        //    firstDay: 1,
+        //    minDate: new Date('2000-01-31 12:00'),
+        //    maxDate: new Date('2022-12-31 23:59'),
+        //    yearRange: [2000, 2022],
+        //    showTime: false,
+        //    toString(date, format) {
+        //        console.log(date.getHours())
+        //        return JsUtils.chineseYearFormat(date, format);
+        //    },
+        //    onSelect: function (date, format) {
+        //        let TwDate = JsUtils.chineseYearFormat(date, format)
+        //        let hidden = this._o.field.nextElementSibling;
+        //        hidden.value = date;
+        //    },
+        //});
+
+        //window.addEventListener("load", function (event) { });
+
+        function doLogout() {
+            blockConfirm("您確定要登出系統？", null, function () {
+                window.location.href = "@(Url.Action("Logout", "Backend", new { area = "" }))";
+            });
+        }
+
+    </script>
+    <script type="text/javascript">
+        //$(document).ready
+        @*2019-01-16 無障礙檢測：add 按esc鍵關閉彈跳視窗*@
+        $(document).on('keyup', function (e) {
+            if (app && app.confirmWindow) {  // app.confirmWindow in global.js: blockMessage function
+                if (e.keyCode === 27) { // 如果按下esc
+                    console.log('confirm escape press');
+                    app.confirmWindow.close();
+                }
+            }
+            if (app && app.alertWindow) {  // app.alertWindow in global.js: blockMessage function
+                if (e.keyCode === 27) { // 如果按下esc
+                    console.log('alert escape press');
+                    app.alertWindow.close();
+                }
+            }
+        });
+
+        $(function () {
+            //主功能選單focus事件，要能關掉其它功能子選項已開的狀態
+            $("a.dropdown-toggle").on("focus", function () {
+                var li = $(this).closest("li");
+                var datarole = li.attr("data-role");
+                //$(this).trigger("click");
+                //$(this).dropdown("toggle");
+
+                //移除所有存在開啟子選單的行為
+                //$("li.dropdown.open").removeClass("open");
+
+                //重新設定所在主選單的開啟子選單區塊事件
+                //if (!$(li).hasClass("open")) {
+                //    li.addClass("open");
+                //}
+            });
+
+            //主功能選單click事件
+            $("a.dropdown-toggle").on("click", function () {
+                var li = $(this).closest("li");
+
+                //移除所有存在開啟子選單的行為
+                //$("li.dropdown.open").removeClass("open");
+
+                //重新設定所在主選單的開啟子選單區塊事件
+                /*if (!$(li).hasClass("open")) {
+                    li.addClass("open");
+                }*/
+            });
+
+            //2019-02-25 無障礙修正 5.1內容的所有功能都能透過鍵盤介面來操作，而且不能額外要求在限定時間內完成按鍵操作
+            //EV1050100：提供由鍵盤觸發的事件處理程式
+            //使用鍵盤操作時，游標遊走至主選單按Enter鍵後雖會展開次選單，但當游標跳離後，子選單並未收合或隱藏
+            //從功能表區（Q&A）tab到下一個非功能表區時，要移除功表開啟的狀態
+            $("a.left.carousel-control").on("focus", function () {
+                $("li.dropdown.open").removeClass("open");
+            });
+        });
+    </script>
+    <style type="text/css">
+        .open-datepicker { height: 100%; }
+        .disabled_C { pointer-events: none; }
+        /*2019-01-08 無障礙檢測：聚焦當前物件(加粗邊框)*/
+        input:focus, a:focus, select:focus, textarea:focus, button:focus, .form-control:focus, .dropdown-toggle:focus { /* border: 0.17em dashed; border-color: #0000ff; */ outline-style: dashed; outline-color: #0000ff; outline-width: 3px; }
+        .aBanner { display: block; }
+            .alogo:focus, .aBanner:focus { border: 3px dashed; border-color: #0000ff; }
+        .carousel-control:focus { outline-style: dashed; outline-color: #0000FF; outline-width: 10px; }
+        .zero-font-margin { font-size: 0em; margin: 0; }
+        .loading-mask { display: none; text-align: center; padding-top: 10px; }
+        .processing-text { text-align: center; height: 42px; color: burlywood; }
+        .hidden { display: none; }
+    </style>
+</head>
+
+<body class="user-@className">
+    <div>@RenderHeaderNoScriptBloack()</div>
+    <h1 class="zero-font-margin">@ViewBag.HTitle</h1>
+    <h2 class="zero-font-margin">@ViewBag.HTitle2</h2>
+    <main id="backWeb" class="bt-wrapper">
+        <!-- Header -->
+        @Html.Partial("~/Views/Backend/_BackendHeader.cshtml")
+        <!-- 路徑的區塊 -->
+        @Html.Partial("~/Views/Backend/_BackendAddr.cshtml")
+        <!-- Body -->
+        @RenderBody()
+        <!-- DatePicker -->
+        @Html.Partial("_DatePickerFrontTW")
+        <!--  -->
+        @Html.Partial("_CommonDialog")
+        <!--  -->
+        <div class="hide" id="ValidationSummary">@Html.ValidationSummary()</div>
+        <!-- Footer -->
+        @Html.Partial("~/Views/Backend/_BackendFooter.cshtml")
+    </main>
+
+    <!-- Loading Mask -->
+    <div id="loadingMask" class="loading-mask">
+        <img src="~/images/processing.gif" width="90" alt="processing" /><br />
+        <div class="processing-text">處理中...</div>
+    </div>
+    <!-- SVG Symbols -->
+    @*<img src="~/images/ac368bfe-d78c-47d0-be33-18d89ab5e551.svg" />*@
+    @Html.Raw(File.ReadAllText(Server.MapPath("~/images/ac368bfe-d78c-47d0-be33-18d89ab5e551.svg")))
+
+    <!-- ChangeMode 黑白切換 -->
+    <!-- <div class="t-float-change-mode" id="tuChangeMode"></div> -->
+    <!-- Scrolltop -->
+    @Html.Partial("_Scrolltop1")
+
+    <script type="text/javascript">
+        var tExpire = 900; //900=15*60 //1200=20*60 // 30(sec);//330(sec)test
+        var tCounter = tExpire;
+        var tM = '--';
+        var tS = '--';
+        var tMS = '--';
+        var timeoutMsg = "您的登入 Session 已過期, 請重新登入!";
+        $s_lastM = '05:00'; //'19:40';'00:10';'05:00';//最後倒數時間(分鐘)
+        //$s_lastM = '00:20'; //'19:40';'00:10';'05:00';//最後倒數時間(分鐘)
+
+        function showMsg2() {
+            //debugTrace("Start showMsg2"); //alert(msg2);
+            var msg2 = '您閒置系統已超過１０分鐘\n若未進行資料儲存或點選其他功能，再過５分鐘系統將會自動中斷連線。';
+            blockAlert(msg2);
+        }
+
+        function refreshTimer() {
+            $("span.data-timer-number").text(tM + ":" + tS);
+        }
+
+        function timerTick() {
+            if (tCounter <= 0) {
+                blockAlert(timeoutMsg, "逾時", function () {
+                    window.location.href = "@(Url.Action("Logout", "Backend", new { area = "" }))";
+                });
+                return;
+            }
+
+            var timer = setTimeout(function () { timerTick(); }, 1000);
+
+            tCounter--;
+            var m = Math.trunc(tCounter / 60);
+            var s = tCounter - (m * 60);
+            tM = ((m < 10) ? '0' : '') + m;
+            tS = ((s < 10) ? '0' : '') + s;
+            tMS = tM + ':' + tS;
+
+            //show_secs //$s_dgmsg1 = "tCounter: " + tCounter + ",tMS : " + tMS; debugTrace($s_dgmsg1);
+            if (tMS == $s_lastM) { showMsg2(); }
+
+            refreshTimer();
+        }
+
+        function resetTimer() {
+            tCounter = tExpire;
+            var parms = { };
+            var url = "/Backend";
+            ajaxLoadMore(url, parms, function (resp) {
+                if (resp != undefined) {
+                    debugTrace("resetTimer success");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            //if (app && app.confirmWindow != null) {
+            //    console.log('app.confirmWindow != null..');
+            //    $('jconfirm-box').find('.buttons').find('.btn btn-info').focus();
+            //}
+            //else if (app && app.alertWindow != null) {
+            //    console.log('app.alertWindow != null..');
+            //    $('jconfirm-box').find('.buttons').find('.btn btn-info').focus();
+            //}
+
+            timerTick();
+        });
+
+        //var contentDoc;
+        //var curSubmitBtnId;
+        @*function getRandom(x) { return (Math.floor(Math.random() * x) + 1); }
+          function sessionTimeout() {
+            blockAlert(timeoutMsg, "逾時", function () {
+                window.location.href = "@(Url.Action("Logout", "Backend", new { area = "" }))";
+            }); }*@
+    </script>
+
+</body>
+</html>
+@helper RenderHeaderNoScriptBloack()
+{
+    <noscript>
+        <style type="text/css">
+            html { display: block; }
+            body { display: block !important; }
+            .text-center-em { text-align: center; font-size: 1.2em; }
+        </style>
+        <div class="text-center text-center-em">
+            @*fix無障礙檢測: GN1410200E使用者介面元件應暴露名稱與角色，允許直接設定可由使用者設定的屬性，並在變更時提供通知 *@
+            您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript狀態
+        </div>
+    </noscript>
+}

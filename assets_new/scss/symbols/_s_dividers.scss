@@ -1,0 +1,81 @@
+// _dividers
+$color_catalina_blue_14_approx: rgba(15, 49, 134, 0.14);
+$color_resolution_blue_approx: #03228f;
+$color_sea_buckthorn_approx: #fb9a27;
+$white_30: rgba(255, 255, 255, 0.3);
+$animation-duration: 5s;
+
+.t-divider {
+  position: relative;
+  height: .5rem;
+  width: 7.5rem;
+  background: $color_catalina_blue_14_approx;
+  margin: 1.25rem auto 0;
+
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 1.875rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0.375rem solid $color_resolution_blue_approx;
+    border-radius: 50%;
+    background: $color_sea_buckthorn_approx;
+    animation-duration: $animation-duration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: circle1;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0.375rem solid $color_resolution_blue_approx;
+    border-radius: 50%;
+    background: $color_sea_buckthorn_approx;
+    animation-duration: $animation-duration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: circle2;
+  }
+
+  &.white {
+    background: $white_30;
+
+    &:before {
+      border: 0.375rem solid $white;
+      background: $white !important;
+    }
+
+    &:after {
+      border: 0.375rem solid $white;
+      background: $white !important;
+    }
+  }
+}
+
+@keyframes circle1 {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes circle2 {
+  from {
+    right: 0;
+  }
+
+  to {
+    right: 100%;
+  }
+}

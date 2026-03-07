@@ -1,0 +1,98 @@
+﻿@using WKEFSERVICE.Models;
+@{
+    Layout = "";
+
+    SessionModel sm = SessionModel.Get();
+
+    string LoginTag = (sm.UserInfo != null) ? sm.UserInfo.LoginCharacter : "1";
+
+    //@Url.Content(svn_wdacorelogo)
+    string svn_wdalogo = "~/assets_new/images/wda-logo.svg";
+    string svn_wdacorelogotest = "~/assets_new/images/wda-core-logo-test.svg";
+    string svn_wdacorelogo = "~/assets_new/images/wda-core-logo.svg";
+    string s_Htitle2 = "關鍵就業力課程";
+}
+
+<style type="text/css">
+    /*style=*/
+    .t-header-nav-bar-link { background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 296 30'%3E%3Cpath fill='%23f6bfb3' d='M293 30C168-6 51 13 1 21l-1-9c51-8 169-27 296 10Z'/%3E%3C/svg%3E"); background-position: bottom; background-repeat: repeat-x; background-size: 120%; background-position-y: 15px; z-index: -1; transition: all 0.25s ease-in-out; height: 100%; left: 0; bottom: -0.25rem; }
+    .bt-header-top-height { height: 40px; /* 新增的樣式 */ }
+    .sr-only-color { /* 其他 sr-only 的樣式 */ color: cornsilk; /* 新增的樣式 */ }
+    .quicklink-color { /* 其他 quicklink 的樣式 */ color: #a89aeb; /* 新增的樣式 */ }
+    .t-header-link { margin-right: 20px; color: #674edd; }
+    .bt-header-main-bottom { border-bottom: inset; }
+    .container-margin { margin-top: 10px; margin-bottom: 10px; }
+    .picture-flex { display: flex; }
+</style>
+
+<header class="bt-header">
+    <div class="bt-header-top bt-header-top-height">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <ul class="bt-header-top-lf-list">
+                        <li class="bt-header-top-list-item">
+                            <a href="#C" class="sr-only sr-only-focusable sr-only-color" title="跳到主要內容區塊" tabindex="1">跳到主要內容區塊</a>
+                            <a href="#U" title="上方功能區塊, 快速鍵: Alt+U " id="AU" accesskey="U" name="U" class="quicklink t-header-top-list-link quicklink-color">:::</a>
+                        </li>
+                        <li class="bt-header-top-list-item active">
+                            <a href="~/" class="bt-header-top-list-link" title="回首頁-@s_Htitle2">@s_Htitle2</a>
+                        </li>
+                        <li class="bt-header-top-list-item">
+                            <a href="javascript:;" class="bt-header-top-list-link" onclick="window.open('https://corecompetencies.wda.gov.tw/' + location.search)" onkeypress="window.open('https://corecompetencies.wda.gov.tw/' + location.search)" title="「另開新視窗」前往共通核心職能專區">
+                                共通核心職能專區
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="bt-header-top-rf-list">
+                        <li class="bt-header-top-list-item">
+                            <a href="~/Home/SiteGuide" class="bt-header-top-list-link" @*data-bs-toggle="modal" data-bs-target="#accesskeyInfo"*@ title="前往網站導覽">::: 網站導覽</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bt-header-main bt-header-main-bottom">
+        <div class="container container-margin">
+            <div class="row justify-content-between align-items-center">
+                <!-- <canvas id="output"></canvas> -->
+                <div class="col-4 t-header-brand">
+                    <!-- <img src=""  alt="勞動部勞動力發展署" width="164" height="26"> -->
+                    <a class="t-header-logo" href="~/" title="回首頁-@s_Htitle2">
+                        @*<span class="sr-only">回首頁</span>*@
+                        <picture class="t-header-logo-sub picture-flex" id="a1">
+                            <!-- <canvas id="output11"></canvas> -->
+                            <img id="imas11" src="data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 164 26'></svg>" data-src="@Url.Content(svn_wdalogo)" alt="勞動部勞動力發展署" class="t-lazy-load" width="164" height="26">
+                            <!-- <canvas id="output11"></canvas> -->
+                            <!-- <canvas id="output11"></canvas> -->
+                            <source type="image/svg+xml" srcset="@Url.Content(svn_wdalogo)" />
+                        </picture>
+                        <picture class="t-header-logo-main">
+                            @if (ConfigModel.UseTestWeb1)
+                            {
+                                <img src="data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 164 26'></svg>" data-src="@Url.Content(svn_wdacorelogotest)" alt="@s_Htitle2" class="t-lazy-load" width="414" height="42">
+                                <source type="image/svg+xml" srcset="@Url.Content(svn_wdacorelogotest)" />
+                            }
+                            else
+                            {
+                                <img src="data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 164 26'></svg>" data-src="@Url.Content(svn_wdacorelogo)" alt="@s_Htitle2" class="t-lazy-load" width="214" height="42">
+                                <source type="image/svg+xml" srcset="@Url.Content(svn_wdacorelogo)" />
+                            }
+                        </picture>
+                    </a>
+                </div>
+                @*<input class="t-pixel-burger-input" type="checkbox" id="BurgerMenu" name="BurgerMenu" hidden />
+                    <label class="t-pixel-burger t-pixel-burger-rt w-12" for="BurgerMenu" data-active-type="close">
+                        <i class="t-burger-line" aria-hidden="true"></i></label>*@
+                <nav class="col-auto t-header-nav-bar ml-auto">
+                    <a class="t-header-nav-bar-link t-header-link" href="~/A1/C102M/Index" title="前往訊息公告">最新訊息</a>
+                    @*<a class="t-header-nav-bar-link t-header-link" href="javascript:;" title="前往課程需求刊登">課程需求刊登</a>*@
+                    <a class="t-header-nav-bar-link t-header-link" href="~/Home/Temp_IntroCourse" title="前往課程介紹">課程介紹</a>
+                    <a class="t-header-nav-bar-link t-header-link" href="~/A1/C101M/Ipresent" title="前往課程師資介紹">師資介紹</a>
+                </nav>
+                <a class="col-auto t-header-nav-bar-hightlight btn btn--primary" href="~/Home/Login" title="前往會員登入">登入</a>
+            </div>
+        </div>
+    </div>
+</header>

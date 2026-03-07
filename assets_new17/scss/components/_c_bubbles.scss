@@ -1,0 +1,413 @@
+@charset "utf-8";
+
+// Components Bubbles 
+// --------------------------------------------------
+// @extend %ab-bubble;
+%ab-bubble {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+%bubble-before {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-right: 1.5rem solid $white;
+  border-left: .75rem solid transparent;
+  border-top: .75rem solid $white;
+  border-bottom: 1.25rem solid transparent;
+  bottom: -1.5rem;
+}
+
+%bubble-before-lt {
+  &:before {
+    @extend %bubble-before;
+    border-left: 1.5rem solid $white;
+    border-right: .75rem solid transparent;
+    left: 2rem;
+  }
+}
+
+%bubble-before-rt {
+  &:before {
+    @extend %bubble-before;
+    border-right: 1.5rem solid $white;
+    border-left: .75rem solid transparent;
+    right: 2rem;
+  }
+}
+
+.t-talk-bubble {
+  position: relative;
+  margin: 1.5rem;
+  display: inline-block;
+  height: auto;
+  background-color: _var("dark", $dark);
+  border-radius: $border-radius-sm;
+  color: $white;
+  @include bubble-after-shadow($color: _var("dark", $dark));
+
+  .t-talk-text {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  &.t-round {
+    border-radius: 1.875rem;
+  }
+
+  &.left-top {
+    &:after {
+      @extend %ab-bubble;
+
+      left: -1.25rem;
+      right: auto;
+      top: 0;
+      bottom: auto;
+      border: 1.375rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+    }
+  }
+
+  &.left-in {
+    &:after {
+      @extend %ab-bubble;
+
+      left: -1.25rem;
+      right: auto;
+      top: 2.375rem;
+      bottom: auto;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) $dark transparent transparent;
+    }
+  }
+
+  &.btm-left {
+    &:after {
+      @extend %ab-bubble;
+
+      left: 0;
+      right: auto;
+      top: auto;
+      bottom: -1.25rem;
+      border: 1.375rem solid;
+      border-color: transparent transparent transparent $dark;
+    }
+  }
+
+  &.btm-left-in {
+    &:after {
+      @extend %ab-bubble;
+
+      left: 2.375rem;
+      right: auto;
+      top: auto;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent $dark;
+    }
+  }
+
+  &.btm-left-in-auto {
+    &:after {
+      @extend %ab-bubble;
+
+      left: 2.375rem;
+      right: auto;
+      top: auto;
+      bottom: -0.625rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+      border-bottom-width: 0;
+    }
+  }
+
+  &.btm-right-in {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: 2.375rem;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) $dark transparent transparent;
+    }
+  }
+
+  &.btm-right-in-auto {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: 2.375rem;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+    }
+  }
+
+  &.btm-right {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: 0;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) $dark transparent transparent;
+    }
+  }
+
+  &.right-in {
+    &:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: auto;
+      right: -1.25rem;
+      top: 2.375rem;
+      bottom: auto;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent $dark;
+    }
+  }
+
+  &.right-top {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: -1.25rem;
+      top: 0;
+      bottom: auto;
+      border: 1.25rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+    }
+  }
+
+  &.t-border {
+    border: 0.25rem solid $border;
+
+    &.left-top {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: -2.5rem;
+        right: auto;
+        top: -0.5rem;
+        bottom: auto;
+        border: 2rem solid;
+        border-color: $border transparent transparent transparent;
+      }
+    }
+
+    &.left-in {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: -2.5rem;
+        right: auto;
+        top: 1.875rem;
+        bottom: auto;
+        border: 1.25rem solid;
+        border-color: $border $border transparent transparent;
+      }
+    }
+
+    &.btm-left {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 2.125rem;
+        right: auto;
+        top: auto;
+        bottom: -2rem;
+        border: 1rem solid;
+        border-color: $border transparent transparent $border;
+      }
+    }
+
+    &.btm-left-in {
+      &:before {
+        content: " ";
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 2.125rem;
+        right: auto;
+        top: auto;
+        bottom: -2rem;
+        border: 1rem solid;
+        border-color: $border transparent transparent $border;
+      }
+    }
+
+    &.btm-left-in-auto {
+      &:before {
+        content: " ";
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 2.125rem;
+        right: auto;
+        top: auto;
+        bottom: -2rem;
+        border: 1rem solid;
+        border-color: $border transparent transparent transparent;
+      }
+    }
+
+    &.btm-right {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: -0.5rem;
+        bottom: -2.5rem;
+        border: 1.25rem solid;
+        border-color: $border $border transparent transparent;
+      }
+    }
+
+    &.btm-right-in {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: 2.125rem;
+        bottom: -2rem;
+        border: 1.25rem solid;
+        border-color: $border $border transparent transparent;
+        z-index: -1;
+      }
+    }
+
+    &.btm-right-in-auto {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: 1.875rem;
+        bottom: -2.125rem;
+        border: 1.25rem solid;
+        border-color: $border transparent transparent transparent;
+        z-index: -1;
+      }
+    }
+
+    &.right-in {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: -2.5rem;
+        top: 1.875rem;
+        bottom: auto;
+        border: 1.25rem solid;
+        border-color: $border transparent transparent $border;
+      }
+    }
+
+    &.right-top {
+      &:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: -2.25rem;
+        top: -0.25rem;
+        bottom: auto;
+        border: 2rem solid;
+        border-color: $border transparent transparent transparent;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+// <div class="t-talk-bubble">
+//   <div class="t-talk-text">
+//     <p>CSS Talk Bubble configured by classes. Defaults to square shape, no triangle. Height is auto-adjusting to the height of the text.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble left-top">
+//   <div class="t-talk-text">
+//     <p>This one adds a right triangle on the left, flush at the top by using .t-tri-right and .left-top to specify the location.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble left-in">
+//   <div class="t-talk-text">
+//     <p>This t-talk-bubble uses .left-in class to show a triangle on the left slightly indented. Still a blocky square.</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-round btm-left">
+//   <div class="t-talk-text">
+//     <p>And now using .t-round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-left-in">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-right-in-auto">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-left-in-auto">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble t-border btm-right-in">
+//   <div class="t-talk-text">
+//     <p>Now flipped the other way and square. Uses .t-border and .btm-right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble btm-right">
+//   <div class="t-talk-text">
+//     <p>Flush to the bottom right. Uses .btm-right only.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble t-round right-in">
+//   <div class="t-talk-text">
+//     <p>Moving our way back up the right side indented. Uses .t-round and .right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border btm-right-in">
+//   <div class="t-talk-text">
+//     <p>Now flipped the other way and square. Uses .t-border and .btm-right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-round t-border right-top">
+//   <div class="t-talk-text">
+//     <p>And finally on the right flush at the top. Uses .t-round .t-border and .right-top</p>
+//   </div>
+// </div>
+

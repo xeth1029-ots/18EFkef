@@ -1,0 +1,95 @@
+﻿@using WKEFSERVICE.Services
+@using WKEFSERVICE.Areas.A3.Models;
+@model C102MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+@using (Html.BeginForm("Save", "C102M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Detail.IsNew)
+    @Html.HiddenFor(x => x.Detail.Year)
+    @Html.HiddenFor(x => x.Detail.Year_Name)
+    @Html.HiddenFor(x => x.Detail.UnitCode)
+    @Html.HiddenFor(x => x.Detail.UnitName)
+
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">報告繳交期限設定</h3>
+                                <p class="bt-section-para">提供五分署可以設定各年度各分署「教學自我審核報告」上傳繳交期限。</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm" onclick="doSave()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    儲存
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Year_Name, new { @class = "t-form-label", style = "width:10rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.Year_Name, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.UnitName, new { @class = "t-form-label", style = "width:10rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.UnitName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.DateS_AD, new { @class = "t-form-label", style = "width:10rem;" })
+                                        @Html.DatePickerTWFor(m => m.Detail.DateS_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.DateS_AD)
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.DateE_AD, new { @class = "t-form-label", style = "width:10rem;" })
+                                        @Html.DatePickerTWFor(m => m.Detail.DateE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.DateE_AD)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save")').submit();
+    }
+
+</script>

@@ -1,0 +1,25 @@
+﻿@using WKEFSERVICE.Services
+@using WKEFSERVICE.DataLayers
+@model WKEFSERVICE.Areas.A1.Models.C102MViewModel
+
+@if (Model.Detail.Attacheds != null && Model.Detail.Attacheds.Count() > 0)
+{
+    for (int i = 0; i < Model.Detail.Attacheds.Count; i++)
+    {
+        var item = Model.Detail.Attacheds[i];
+        string tmpType = item.FileNameType.TONotNullString().Replace(".", "");
+        string downloadUrl = new AMDAO().UploadPathC104M + item.FileNameNew;
+
+        <li class="t-list-item">
+            <a href="@downloadUrl" download="@item.FileNameOrg" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted' onclick="doLog('@item.FileNameOrg', '@item.FileNameNew')">
+                @item.FileNameOrg.TONotNullString()
+            </a>
+        </li>
+    }
+}
+else
+{
+    <li class="t-list-item">
+        - 尚無上傳檔案 -
+    </li>
+}

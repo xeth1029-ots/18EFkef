@@ -1,0 +1,187 @@
+﻿@using WKEFSERVICE.Services
+@using WKEFSERVICE.Areas.AM.Models;
+@model C107MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+@using (Html.BeginForm("Save", "C107M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Detail.IsNew)
+    @Html.HiddenFor(x => x.Detail.Seq)
+    @Html.HiddenFor(x => x.Detail.UpdatedAccount)
+    @Html.HiddenFor(x => x.Detail.UpdatedDatetime)
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">相關須知維護</h3>
+                                <p class="bt-section-para">提供課綱、師資管理原則及相關表單等下載檔案管理功能。</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm" onclick="doSave()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    儲存
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Caption, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.Caption, new { size = "30", maxlength = "500", placeholder = "", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.Caption)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.DateS_AD, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.DateS_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.DateS_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.DateE_AD, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.DateE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.DateE_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Is_OnTop, new { @class = "t-form-label" })
+                                        @Html.CheckBoxFor(m => m.Detail.Is_OnTop, new { align = "left", style = "margin-top: 10px; margin-left: 30px; width: 30px; height: 30px;" })
+                                        @Html.HiddenFor(m => m.Detail.Is_OnTop)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 附件明細 -->
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        <div class="bt-section-heading">附件檔案(*.odt,*.pdf,*.doc,*.docx)</div>
+                        <div style="margin-bottom: 10px">
+                            @*@Html.TextBoxFor(m => m.Detail._UPLOAD_FILE, new { type = "file", accept = ".odt,.pdf,.doc,.docx/application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" })*@
+                            @Html.TextBoxFor(m => m.Detail._UPLOAD_FILE, new { type = "file", accept = ".odt, .pdf, .doc, .docx" })
+                            <button type="button" class="btn btn-info" onclick="doUpload()">上傳檔案</button>
+                        </div>
+                        <div class="t-table-cnt t-table-responsive table--dark">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                <thead>
+                                    <tr>
+                                        <th align="left" width="10%">項次</th>
+                                        <th align="left" width="20%">上傳檔原檔名</th>
+                                        <th align="left" width="20%">上傳檔儲存檔名</th>
+                                        <th align="left" width="20%">檔案格式</th>
+                                        <th align="left" width="20%">異動時間</th>
+                                        <th align="left" width="10%">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="DetailAttachedsRows">
+                                    @Html.Partial("_DetailAttachedsRows", Model)
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save")').submit();
+    }
+
+    $("#Detail__UPLOAD_FILE").on("change", function () {
+        let fileType = "." + document.getElementById("Detail__UPLOAD_FILE").value.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();
+        let acceptType = document.getElementById("Detail__UPLOAD_FILE").accept.toLowerCase();
+        //console.log(fileType);
+        //console.log(acceptType);
+        //console.log(acceptType.indexOf(fileType));
+        if (acceptType.indexOf(fileType) === -1) {
+            blockAlert("請選擇正確的檔案格式！ (" + acceptType + ")");
+            document.getElementById("Detail__UPLOAD_FILE").value = null;
+        }
+    });
+
+    // 上傳檔案
+    function doUpload() {
+        let fullPath = $("#Detail__UPLOAD_FILE").val();
+        if (fullPath == "") { blockAlert("請選擇上傳檔案"); return; }
+        let fileType = fullPath.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();  //console.log(fileType);
+        const arrType = ["odt", "pdf", "doc", "docx"];
+        if (!arrType.includes(fileType)) { blockAlert("請選擇正確的檔案格式！ (*.odt, *.pdf, *.doc, *.docx)"); return; }
+
+        var url = "@Url.Action("DetailAttachedsUpload", "C107M")";
+        var model = new FormData($('form').get(0));
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: model,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (resp) {
+                if (resp) {
+                    //debugger;
+                    document.getElementById('Detail__UPLOAD_FILE').value = null;
+                    $("#DetailAttachedsRows").html(resp);
+                }
+            }
+        });
+    }
+
+    // 刪除
+    function doAttachedsDelete(Seq, RowId) {
+        blockConfirm("您確定要刪除此筆資料嗎？" + "項次：" + RowId, null, function () {
+            $("#Model_Detail_Attacheds_" + Seq).attr("style", "opacity:.66");
+            $("#Model_Detail_Attacheds_BtnDelete_" + Seq).attr("style", "display:none;");
+            $("#Model_Detail_Attacheds_BtnCancel_" + Seq).removeAttr("style");
+            $("#Model_Detail_Attacheds_isActive_" + Seq).val("False");
+        });
+    }
+
+    // 復原刪除
+    function doAttachedsCancel(Seq, RowId) {
+        $("#Model_Detail_Attacheds_" + Seq).removeAttr("style");
+        $("#Model_Detail_Attacheds_BtnDelete_" + Seq).removeAttr("style");
+        $("#Model_Detail_Attacheds_BtnCancel_" + Seq).attr("style", "display:none;");
+        $("#Model_Detail_Attacheds_isActive_" + Seq).val("True");
+    }
+
+</script>

@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+//  Symbols -> Buttons
+// --------------------------------------------------
+
+.t-applys-btns {
+  max-width: 50%;
+  margin: 0 auto;
+
+  .t-applys-progress {
+    width: 80%;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-btn-fav {
+  > * {
+    fill: currentColor;
+    transition: $transition-fast;
+  }
+
+  .svg-icon {
+    stroke: rgba($dark, 0.08);
+    color: _var("grey-50", $grey-50);
+    pointer-events: none;
+  }
+
+  @include active {
+    .svg-icon {
+      color: $yellow;
+    }
+  }
+
+
+  @include hover {
+    .svg-icon {
+      @include scale(1.075);
+
+      color: $yellow-300;
+      opacity: 0.80;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-star {
+  cursor: pointer;
+  color: _var("grey-50", $grey-50);
+  transition: $transition-fast;
+
+  > * {
+    fill: currentColor;
+    transition: $transition-fast;
+  }
+
+  use {
+    pointer-events: none;
+  }
+
+  @include active {
+    color: $yellow;
+  }
+
+
+  @include hover {
+    @include scale(1.05);
+
+    stroke: $grey-200;
+    opacity: 0.80;
+  }
+}

@@ -1,0 +1,31 @@
+@charset "utf-8";
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//   Mixins > Spaing
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin padding($dir: x, $size: null) {
+    @if $dir == "x" {
+        padding-left: $size;
+        padding-right: $size;
+    }
+    @else if $dir == "y" {
+        padding-top: $size;
+        padding-bottom: $size;
+    }
+    @else if $dir == "a" {
+        padding: $size;
+    }
+}
+
+@mixin margin($dir: x, $size: null) {
+    @if $dir == "x" {
+        margin-left: $size;
+        margin-right: $size;
+    }
+    @else if $dir == "y" {
+        margin-top: $size;
+        margin-bottom: $size;
+    }
+    @else if $dir == "a" {
+        margin: $size;
+    }
+}

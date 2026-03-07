@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.2 903.2">
+  <style>
+    @keyframes stroke{20%{stroke-dashoffset:0}40%{stroke-dashoffset:-500}}svg *{stroke-dasharray:500;stroke-dashoffset:500;animation:stroke 5s ease-in-out infinite}
+  </style>
+  <g id="g_data" stroke="currentColor" stroke-miterlimit="10" color="#FFF450" transform="translate(-68.7 -68.2)">
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(140.7 189.2)"/>
+    <circle cx="20" cy="20" r="20" fill="currentColor" stroke-width="10" transform="translate(341.7 647.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(649.7 716.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(716.7 443.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(320.7 361.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(826.7 222.2)"/>
+    <circle cx="20" cy="20" r="20" fill="currentColor" stroke-width="10" transform="translate(922.7 451.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(659.7 73.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(196.7 828.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(507.7 925.2)"/>
+    <circle cx="20" cy="20" r="20" fill="currentColor" stroke-width="10" transform="translate(799.7 790.2)"/>
+    <circle cx="20" cy="20" r="20" fill="currentColor" stroke-width="10" transform="translate(73.7 500.2)"/>
+    <circle cx="20" cy="20" r="20" fill="currentColor" stroke-width="10" transform="translate(507.7 247.2)"/>
+    <circle cx="20" cy="20" r="20" fill="none" stroke-width="10" transform="translate(374.7 73.2)"/>
+    <path fill="none" stroke-width="10" d="m155 230-55 272m82-292 326 58"/>
+    <path fill="none" stroke-width="22" d="M416 95h244"/>
+    <path fill="none" stroke-width="10" d="m406 114 107 133m188-141 131 123m25 34 74 188m-14 21-160-8M513 281l-154 90m-30-6L174 226m-61 304 232 127"/>
+    <path fill="none" stroke-width="22" d="m383 657 335-185"/>
+    <path fill="none" stroke-width="10" d="m361 388 356 76m25 20 78 306m-591 42 119-149"/>
+    <path fill="none" stroke-width="22" d="m375 684 138 248"/>
+    <path fill="none" stroke-width="10" d="m539 928 121-174"/>
+    <path fill="none" stroke-width="22" d="m732 443-51-329"/>
+    <path fill="none" stroke-width="10" d="m341 402 21 245M233 862l275 84m162-230L352 400m197-132 283-12M685 722l247-233M549 946l255-122"/>
+  </g>
+</svg>

@@ -1,0 +1,63 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@model WKEFSERVICE.Models.HomeModel
+
+@if (Model.MeetingsGrid.ToCount() > 0)
+{
+    for (int i = 0; i < Model.MeetingsGrid.Count; i++)
+    {
+        var item = Model.MeetingsGrid[i];
+
+        @Html.HiddenFor(m => m.MeetingsGrid[i].ROWID)
+        @Html.HiddenFor(m => m.MeetingsGrid[i].Seq)
+
+        <li class="t-list-group-item-v t-card-glass">
+            <div class="t-card-glass-inner flex-row align-items-center">
+                <div class="t-flex flex-column">
+                    <ul class="t-list-txts">
+                        <li class="t-list-txts-item t-fc-lightgrey">
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-eye"></use>
+                                </svg>
+                            </i>
+                            @item.MeetingDate
+                        </li>
+                        <li class="t-list-txts-item t-fc-lightgrey">
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-calendar"></use>
+                                </svg>
+                            </i>
+                            @item.MeetingTime
+                        </li>
+                        <li class="t-list-txts-item">
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-map"></use>
+                                </svg>
+                            </i>
+                            @item.Location
+                        </li>
+                    </ul>
+                    <a href="javascript:;" class="t-fs-16" onclick="doViewMeeting('@item.Seq')" title="「另開新視窗」查看會議內容">
+                        (@item.MeetingTypeName) - @item.MeetingName
+                    </a>
+                </div>
+                <div class="t-flex pl-2">
+                    @if (item.isCanView)
+                    {
+                        <a class="btn" href="javascript:;" onclick="doViewSignUpList('@item.Seq')" style="writing-mode: unset;" title="「另開新視窗」查看會議名單內容">
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-eye"></use>
+                                </svg>
+                            </i>
+                            查看名單
+                        </a>
+                    }
+                </div>
+            </div>
+        </li>
+    }
+}

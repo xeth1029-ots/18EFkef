@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+//  Symbols -> Counter
+// --------------------------------------------------
+// @include counter($before: true, $color: $dark, $fontSize: 12.5rem, $lineHeight: 8.5rem);
+@mixin counter($before: true, $color: $dark, $fontSize: 12.5rem, $lineHeight: 8.5rem) {
+  %counter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: $fontSize;
+    font-weight: 700;
+    color: $color;
+    line-height: $lineHeight;
+  }
+
+  @if $before == true {
+    &:before {
+      counter-increment: steps;
+      content: counter(steps);
+
+      @extend %counter;
+    }
+  }
+  @else {
+    &:after {
+      counter-increment: steps;
+      content: counter(steps);
+    }
+  }
+}

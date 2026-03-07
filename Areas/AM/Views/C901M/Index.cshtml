@@ -1,0 +1,143 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C901MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C901M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">教學自我審核報告</h3>
+                            <p class="bt-section-para">提供各分署可下載、審核各自分署教師上傳之教學自我審核報告。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Year, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Year, new SelectList(Model.Year_list, "Value", "Text", Model.Year), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.AuditStatus, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.AuditStatus, new SelectList(Model.AuditStatus_list, "Value", "Text", Model.AuditStatus), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Teacher_Name, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Teacher_Name, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("首次上傳日期", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.FirstTime_S_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.FirstTime_E_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="05%">項次</th>
+                                            <th align="left" width="17%">教師</th>
+                                            <th align="left" width="17%">報告名稱</th>
+                                            <th align="left" width="17%">上傳時間</th>
+                                            <th align="left" width="17%">職能類別</th>
+                                            <th align="left" width="17%">審核狀態</th>
+                                            <th align="left" width="10%">功能</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#Year option').removeAttr('selected');
+        $('#Teacher_Name').removeAttr('value');
+        $('#FirstTime_S_AD').removeAttr('value');
+        $('#FirstTime_E_AD').removeAttr('value');
+        $('#AuditStatus option').removeAttr('selected');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 審核
+    function doAudit(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("Audit", "C901M")?' + $.param(data);
+        window.location = url;
+    }
+
+    function doLog(Org, New) {
+        $.ajax({
+            url: "@Url.Action("FileDownloadLog", "Backend", new { area = "" })",
+            data: { "Func": "AM/C901M", "Org": Org, "New": New },
+            dataType: "json",
+            method: "post",
+            success: function (data) { },
+            error: function (data) { }
+        });
+    }
+
+</script>

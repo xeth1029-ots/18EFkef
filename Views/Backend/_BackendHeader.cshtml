@@ -1,0 +1,127 @@
+﻿@using WKEFSERVICE.Models
+@{
+    SessionModel sm = SessionModel.Get();
+    string s_UserInfo_1 = (sm.UserInfo != null) ? string.Concat(sm.UserInfo.User.GRP_NAME, "｜", sm.UserInfo.User.UNIT_NAME, "｜", sm.UserInfo.User.USERNAME) : "";
+    string s_SysInfo_YEAR_ROC = (Convert.ToInt32(DateTime.Now.ToString("yyyy")) - 1911).ToString();
+    string s_SysInfo_MONTH = DateTime.Now.ToString("MM");
+    string s_SysInfo_DAY = DateTime.Now.ToString("dd");
+
+    //@Url.Content(svn_wdacorelogo)
+    string svn_wdalogo = "~/assets_new/images/wda-logo.svg";
+    string svn_wdacorelogotest = "~/assets_new/images/wda-core-logo-test.svg";
+    string svn_wdacorelogo = "~/assets_new/images/wda-core-logo.svg";
+    string svn_iconrotate = "~/assets_new/images/icon-rotate.svg";
+}
+<style type="text/css">
+    /*style=*/
+    .picture-display-flex { display: flex; }
+    .bt-header-top-height { height: 40px; }
+    .quicklink-color1 { color: #a89aeb; }
+</style>
+<header class="bt-header">
+    <div class="bt-header-top bt-header-top-height">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <ul class="bt-header-top-lf-list">
+                        <li class="bt-header-top-list-item">
+                            <a href="#U" title="上方功能區塊, 快速鍵: Alt+U " id="AU" accesskey="U" name="U" class="quicklink t-header-top-list-link quicklink-color1">:::</a>
+                        </li>
+                        <li class="bt-header-top-list-item active">
+                            <a href="~/" class="bt-header-top-list-link">關鍵就業力課程</a>
+                        </li>
+                        <li class="bt-header-top-list-item">
+                            <a href="javascript:;" class="bt-header-top-list-link" onclick="window.open('https://corecompetencies.wda.gov.tw/' + location.search)">
+                                共通核心職能專區
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="bt-header-top-rf-list">
+                        <li class="bt-header-top-list-item">
+                            <a href="~/Home/SiteGuide" class="bt-header-top-list-link" @*data-bs-toggle="modal" data-bs-target="#accesskeyInfo"*@>::: 網站導覽</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bt-header-main">
+        <div class="container">
+            <div class="row justify-content-between align-items-center flex-nowrap">
+                <div class="col-auto">
+                    <button class="navbar-toggler navbar-toggler-left" type="button" aria-label="主要選單" aria-expanded="false" aria-controls="navBar" data-bs-toggle="collapse" data-bs-target="#navBar">
+                        <i class="svg-icon svg-icon-2x">
+                            <svg>
+                                <use href="#ic-burger"></use>
+                            </svg>
+                        </i>
+                    </button>
+                    <a class="t-header-logo" href="~/Backend">
+                        <picture class="t-header-logo-sub picture-display-flex" id="a1">
+                            <!-- <canvas id="output11"></canvas> -->
+                            <img id="imas11" src="data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 164 26'></svg>" data-src="@Url.Content(svn_wdalogo)" alt="勞動部勞動力發展署" class="t-lazy-load" width="164" height="26">
+                            <!-- <canvas id="output11"></canvas> -->
+                            <!-- <canvas id="output11"></canvas> -->
+                            <source type="image/svg+xml" srcset="@Url.Content(svn_wdalogo)" />
+                            @*<source type="image/webp" srcset="../../../@ConfigModel.WKEF/assets_new/images/wda-logo.webp" />*@
+                        </picture>
+                        <picture class="t-header-logo-main">
+                            @if (ConfigModel.UseTestWeb1)
+                            {
+                                <img src="data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 164 26'></svg>" data-src="@Url.Content(svn_wdacorelogotest)" alt="關鍵就業力課程" class="t-lazy-load" width="414" height="42">
+                                <source type="image/svg+xml" srcset="@Url.Content(svn_wdacorelogotest)" />
+                            }
+                            else
+                            {
+                                <img src="data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 164 26'></svg>" data-src="@Url.Content(svn_wdacorelogo)" alt="關鍵就業力課程" class="t-lazy-load" width="214" height="42">
+                                <source type="image/svg+xml" srcset="@Url.Content(svn_wdacorelogo)" />
+                            }
+                            @*<source type="image/webp" srcset="../../../@ConfigModel.WKEF/assets_new/images/wda-core-logo.webp" />*@
+                        </picture>
+                    </a>
+                    @*<a class="bt-header-logo" href="~/Backend"><picture class="bt-header-logo-main">
+                        <img src="data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 58'></svg>
+                        " data-src="../../../@ConfigModel.WKEF/assets_new/images/wda-admin-logo.svg" alt="關鍵就業力課程"
+                         class="t-lazy-load" width="300" height="58"><source type="image/svg+xml" srcset="../../../@ConfigModel.WKEF/assets_new/images/wda-admin-logo.svg" />
+                        <source type="image/webp" srcset="../../../@ConfigModel.WKEF/assets_new/images/wda-admin-logo.webp" /></picture></a>*@
+                </div>
+
+                <div class="col ml-2 hidden-sm">
+                    <div class="t-flex t-fs-15 t-inline-flex t-relative" data-grad-under="secondary">
+                        @(s_UserInfo_1)
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="data-set">
+                        <div class="data-timer">
+                            倒數 <span class="data-timer-number">00:00</span>
+                            <button type="submit" class="btn-reset" onclick="resetTimer();" title="重設倒數計時"><img src="@Url.Content(svn_iconrotate)" alt="重設倒數計時"></button>
+                        </div>
+                        <div class="data-cal">
+                            <span class="data-cal-number">@(s_SysInfo_YEAR_ROC)</span>年
+                            <span class="data-cal-number">@(s_SysInfo_MONTH)</span>月
+                            <span class="data-cal-number">@(s_SysInfo_DAY)</span>日
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto flex-nowrap">
+                    <div class="d-flex align-items-center active show" data-kt-search-element="toggle" id="kt_header_search_toggle">
+                    </div>
+                    <a class="col-auto btn btn--xxs btn--flush" href="javascript:;" onclick="doLogout();">
+                        登出
+                        <i class="svg-icon svg-icon-muted svg-icon-2x">
+                            <svg>
+                                <use href="#ic-logout"></use>
+                            </svg>
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bt-header-navs">
+        <div class="container">
+            @Html.Partial("~/Views/Backend/_BackendHeaderMenu.cshtml")
+        </div>
+    </div>
+</header>

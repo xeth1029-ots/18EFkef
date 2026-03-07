@@ -1,0 +1,55 @@
+@charset "utf-8";
+//  Components -> inputs 
+// --------------------------------------------------
+.input--xs {
+    &.input--xs {
+        font-size: .75rem;
+        padding: .375rem .625rem;
+        max-width: 12rem;
+    }
+}
+
+.input--sm {
+    &.input--sm {
+        padding: .5rem .75rem;
+        width: 16rem;
+        max-width: 100%;
+    }
+}
+
+.input--md {
+    &.input--md {
+        width: 20rem;
+        max-width: 100%;
+    }
+}
+
+.input--lg {
+    &.input--lg {
+        padding: .875rem 1rem;
+        width: 24rem;
+        max-width: 100%;
+    }
+}
+
+.input--xlg {
+    &.input--xlg {
+        padding: 1rem 1.125rem;
+        width: 28rem;
+        max-width: 100%;
+    }
+}
+
+.input--xxlg {
+    &.input--xxlg {
+        padding: 1.125rem 1.25rem;
+        width: 32rem;
+        max-width: 100%;
+    }
+}
+
+.input--full {
+    &.input--full {
+        width: 100%;
+    }
+}

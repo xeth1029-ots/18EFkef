@@ -1,0 +1,62 @@
+//
+// Components -> svg bg icon
+// --------------------------------------------------
+
+.svg-bg-icon-close {
+  @include svg-bg-icon(close, $grey);
+}
+
+.svg-bg-icon-arrow-top {
+  @include svg-bg-icon(arrow-top, $grey);
+}
+
+.svg-bg-icon-arrow-bottom {
+  @include svg-bg-icon(arrow-bottom, $grey);
+}
+
+.svg-bg-icon-arrow-start {
+  @include svg-bg-icon(arrow-start, $grey);
+}
+
+.svg-bg-icon-arrow-end {
+  @include svg-bg-icon(arrow-end, $grey);
+}
+
+.svg-bg-icon-blob {
+  @include svg-bg-icon(blob, $grey);
+}
+
+.svg-bg-icon-home {
+  @include svg-bg-icon(home, $grey);
+}
+
+// $element-colors
+@each $name,
+$color in $element-colors {
+  .svg-bg-icon-blob-#{$name} {
+    @include svg-bg-icon(blob, $color);
+  }
+}
+
+@each $name,
+$color in $greys {
+  .svg-bg-icon-blob-gray#{$name} {
+    @include svg-bg-icon(blob, $color);
+  }
+}
+
+
+@each $name,
+$color in $neutrals {
+  .svg-bg-icon-blob-neutral#{$name} {
+    @include svg-bg-icon(blob, $color);
+  }
+}
+
+
+// <div class="svg-bg-icon-close w-20 h-20" ></div>
+// <div class="svg-bg-icon-arrow-top w-20 h-20" ></div>
+// <div class="svg-bg-icon-arrow-bottom w-20 h-20" ></div>
+// <div class="svg-bg-icon-arrow-start w-20 h-20" ></div>
+// <div class="svg-bg-icon-arrow-end w-20 h-20" ></div>
+// <div class="svg-bg-icon-blob svg-bg-icon-blob-primary w-20 h-20" ></div>

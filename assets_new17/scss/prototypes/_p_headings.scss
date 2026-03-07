@@ -1,0 +1,40 @@
+
+
+
+
+.t-heading-title,
+.t-heading-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: inherit;
+
+  > i {
+    font-size: 125%;
+    margin-right: .5rem;
+  }
+
+  > big {
+    font-size: 137.5%;
+  }
+}
+
+
+[data-heading] {
+  position: relative;
+  text-shadow: $grey-50 3px 2px 0;
+
+	&:after {
+	  content: attr(data-heading);
+	  position: absolute;
+	  left: .5rem;
+	  top: 2rem;
+	  background-image: -webkit-linear-gradient(left top, transparent 0%, transparent 25%, $dark 25%, $dark 50%, transparent 50%, transparent 75%, $dark 75%);
+	  background-size: 4px 4px;
+	  -webkit-background-clip: text;
+	  -webkit-text-fill-color: transparent;
+	  display: block;
+	  text-shadow: none;
+	  z-index: -1;
+	}
+}

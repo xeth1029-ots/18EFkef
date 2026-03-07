@@ -1,0 +1,550 @@
+@charset "utf-8";
+
+//  Components cssTabs
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+.t-nav-grab {
+  cursor: grab;
+
+  &.t-tab-nav {
+    > .t-tab-nav-item {
+      cursor: grab;
+    }
+  }
+}
+
+.t-tab {
+  position: relative;
+  // overflow-x: clip;
+  display: flex;
+  flex-wrap: wrap;
+
+  &.t-tab-justifiy {
+    .t-tab-nav {
+      display: flex;
+    }
+  }
+
+  &.t-tab-sliding {
+    .t-tab-nav {
+      ~ .t-tab-contents {
+        .t-tab-content {
+          transform: translateX(-100%);
+        }
+      }
+    }
+  }
+
+  &.t-tab-scale {
+    .t-tab-nav {
+      ~ .t-tab-contents {
+        .t-tab-content {
+          transform: scale(0);
+        }
+      }
+    }
+  }
+
+  %t-tab-nav-contents-checked-default {
+    position: relative;
+    transition: $tab-transition;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  %t-tab-nav-item-checked-default {
+    position: relative;
+    transition: $tab-transition;
+    opacity: 1;
+    font-size: 125%;
+    font-weight: 700;
+    z-index: 1;
+  }
+
+  @for $i from 1 through 5 {
+    >input:nth-child(#{$i}):checked~.t-tab-contents>.t-tab-content:nth-child(#{$i}) {
+      @extend %t-tab-nav-contents-checked-default;
+    }
+
+    &.t-tab-sliding>input:nth-child(#{$i}):checked~.t-tab-contents>.t-tab-content:nth-child(#{$i}) {
+      transform: translateX(0%);
+    }
+
+    &.t-tab-scale>input:nth-child(#{$i}):checked~.t-tab-contents>.t-tab-content:nth-child(#{$i}) {
+      transform: scale(1);
+    }
+
+    %t-tab-nav-item-checked {
+      @extend %t-tab-nav-item-checked-default;
+    }
+
+    >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+      @extend %t-tab-nav-item-checked;
+    }
+  }
+
+  .t-tab-nav {
+    position: relative;
+    display: inline-flex;
+
+    .t-tab-nav-item {
+      position: relative;
+      border: 0 solid transparent;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex: 1 1 auto;
+      font-size: 0.875rem;
+      cursor: pointer;
+      user-select: none;
+      line-height: 1.375;
+      transition: $filter-transition;
+
+      @include hover {
+        transition: $filter-transition;
+        filter: hue-rotate(180deg);
+      }
+    }
+
+    ~ .t-tab-contents {
+      position: relative;
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0 0.75rem;
+
+      .t-tab-content {
+        padding: .75rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        flex-flow: column;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &-bookmark {
+    > .t-tab-nav {
+      overflow-x: auto;
+      white-space: nowrap;
+      align-items: self-end;
+
+      @include scrollbar-color($tab-bookmark-item-background, $tab-bookmark-item-background-hover);
+
+      .t-tab-nav-item {
+        background-color: $tab-bookmark-item-background;
+        border-radius: $tab-bookmark-item-radius;
+        padding: $tab-bookmark-item-padding;
+        transition: $tab-bookmark-item-transition;
+
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          width: $tab-bookmark-item-size-sm;
+          height: $tab-bookmark-item-size-sm;
+          z-index: -1;
+        }
+
+        &:before {
+          left: $tab-bookmark-item-position-x;
+
+          @include gradient-radial-sm(0 0, $tab-bookmark-item-background, $tab-bookmark-item-size-sm, $tab-bookmark-item-size);
+        }
+
+        &:after {
+          right: $tab-bookmark-item-position-x;
+
+          @include gradient-radial-sm(100% 0, $tab-bookmark-item-background, $tab-bookmark-item-size-sm, $tab-bookmark-item-size);
+        }
+
+        @include hover {
+          background: $tab-bookmark-item-background-hover;
+
+          &:before {
+            background-image: radial-gradient(circle at 0 0, transparent $tab-bookmark-item-size-sm, $tab-bookmark-item-background-hover $tab-bookmark-item-size);
+          }
+
+          &:after {
+            background-image: radial-gradient(circle at 100% 0, transparent $tab-bookmark-item-size-sm, $tab-bookmark-item-background-hover $tab-bookmark-item-size);
+          }
+        }
+
+
+        @include focus {
+          outline: none;
+          color: _var("dark", $dark);
+          background-color: $default;
+          z-index: 1;
+
+          &:before {
+            @include gradient-radial-sm(0 0, $default, $tab-bookmark-item-size-sm, $tab-bookmark-item-size);
+          }
+
+          &:after {
+            @include gradient-radial-sm(100% 0, $default, $tab-bookmark-item-size-sm, $tab-bookmark-item-size);
+          }
+        }
+
+
+        &:not(:last-child) {
+          margin-right: $tab-bookmark-gap;
+        }
+
+        &:first-child {
+          margin-left: $tab-bookmark-first-margin;
+
+          &:before {
+            left: -#{$tab-bookmark-first-margin};
+          }
+        }
+      }
+    }
+
+    > .t-tab-contents {
+      .t-tab-content {}
+    }
+
+    %t-tab-nav-item-bookmark-checked {
+      color: color-contrast($primary-400);
+
+      @include gradient-directional($primary-200, $primary-400, 45deg);
+
+      &:before {
+        @include gradient-radial-sm(0 0, $primary-200, $tab-bookmark-item-size-sm, $tab-bookmark-item-size);
+      }
+
+      &:after {
+        @include gradient-radial-sm(100% 0, $primary-400, $tab-bookmark-item-size-sm, $tab-bookmark-item-size);
+      }
+    }
+
+    @for $i from 1 through 5 {
+      >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+        @extend %t-tab-nav-item-bookmark-checked;
+      }
+    }
+  }
+
+  &-card {
+    > .t-tab-nav {
+      padding: 0.75rem;
+      border-radius: 2rem;
+      gap: 1rem;
+      overflow: auto;
+
+      @include scrollbar-color($grey-100, $grey-200);
+
+      .t-tab-nav-item {
+        counter-increment: step-counter;
+        display: flex;
+        align-items: center;
+        border: 0.25rem solid $box-shadow-border-color;
+        border-radius: inherit;
+        padding: 1.75rem 1.25rem 1.75rem 3.25em;
+        box-shadow: $box-shadow-tab;
+        transition: $transition-base;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-align: left;
+
+        &:before {
+          content: counter(step-counter);
+          background: $tertiary-700;
+          filter: drop-shadow(0 0.4375rem 0 rgba($tertiary-700, 0.36));
+          border-radius: 2em;
+          color: $white;
+          font-size: 92.5%;
+          font-weight: 700;
+          position: absolute;
+          left: 0.875rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 2em;
+          height: 2.25em;
+          align-items: center;
+          display: flex;
+          justify-content: center;
+        }
+
+        .t-tab-nav-item-txt {
+          font-size: inherit;
+        }
+
+        .t-tab-nav-item-txt-sm {
+          padding-top: .5rem;
+          color: $success;
+          font-size: 80%;
+        }
+
+        // .t-tab-nav-label {
+        //   align-items: center;
+        //   justify-content: center;
+        //   width: 2rem;
+        //   height: 2rem;
+        //   margin-left: 0.75rem;
+        //   border-radius: 50%;
+        //   background-color: var(--secondary-color);
+        //   transition: 0.15s ease-in;
+        // }
+     
+      }
+
+      ~ .t-tab-contents {
+        .t-tab-content {
+          // text-align: center;
+       
+        }
+      }
+    }
+
+    %tab-card-check {
+      color: $white;
+
+      @include gradient-directional($hawthorn, $meteorite, 60deg);
+
+      box-shadow: $box-shadow-tab-ac;
+      background-repeat: repeat;
+      border-color: $box-shadow-border-color-ac;
+
+      &:before {
+        background: $yellow-400;
+        color: contrast-color($yellow-400, $dark, $white);
+        filter: drop-shadow(0 0.4375rem 0 rgba($yellow-400, 0.4));
+      }
+    }
+
+    @for $i from 1 through 5 {
+      >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+        @extend %tab-card-check;
+      }
+    }
+  }
+
+  &-segment {
+    &,
+    &-fill {
+      > .t-tab-nav {
+        background-color: $gray-100;
+        padding: $tab-segment-padding;
+        border-radius: $tab-segment-radius;
+        gap: $tab-segment-gap;
+
+        .t-tab-nav-item {
+          align-items: end;
+          transition: $transition-base;
+          padding: $tab-segment-item-padding;
+          border-radius: $border-radius;
+          color: $grey-600;
+        }
+
+        ~ .t-tab-contents {
+          .t-tab-content {}
+        }
+      }
+
+      %tab-segment-check-item {
+        letter-spacing: $tab-letter-spacing;
+        color: _var("dark", $dark);
+        background-color: _var("white", $white);
+        box-shadow: $tab-segment-shadow $tab-segment-shadow-color;
+      }
+
+      @for $i from 1 through 5 {
+        >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+          @extend %tab-segment-check-item;
+        }
+      }
+    }
+
+    &-fill {
+      %tab-segment-fill-check-item {
+        color: color-contrast($primary-600);
+        border: $tab-segment-border;
+
+        @include gradient-directional($primary, $secondary-300, 60deg);
+
+        background-size: 120% 120%;
+        background-position: center center;
+        box-shadow: $tab-segment-shadow $tab-segment-shadow-color-primary;
+      }
+
+      @for $i from 1 through 5 {
+        >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+          @extend %tab-segment-fill-check-item;
+        }
+      }
+    }
+  }
+
+  &-line {
+    // &,
+    &-bottom,
+    &-top {
+      > .t-tab-nav {
+        gap: $tab-line-gap;
+
+        .t-tab-nav-item {
+          flex: 1 1 auto;
+          align-items: center;
+          transition: $transition-base;
+          padding: .5rem 1.25rem;
+          border-radius: 0.5rem;
+          color: $grey-600;
+
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            border-radius: $border-radius-sm;
+            width: 0%;
+            height: $tab-line-active-line;
+
+            @include text_gradient_under($color1: $primary, $color2: $primary-300, $w: 100%, $h: 100%);
+          }
+        }
+
+        ~ .t-tab-contents {
+          border-top: $tab-line-border-top-width solid $grey-100;
+
+          .t-tab-content {
+            padding: 1.5rem 0;
+          }
+        }
+      }
+
+      %tab-line-check-item {
+        letter-spacing: .015625rem;
+        color: _var("dark", $dark);
+      }
+
+      @for $i from 1 through 5 {
+        >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+          @extend %tab-line-check-item;
+        }
+      }
+    }
+
+    &-bottom {
+      .t-tab-nav-item {
+        &:after {
+          bottom: -#{$tab-line-active-line / 2};
+        }
+      }
+
+      %tab-line-check-item-bottom {
+        width: 100%;
+      }
+
+      @for $i from 1 through 5 {
+        >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+          &:after {
+            @extend %tab-line-check-item-bottom;
+          }
+        }
+      }
+    }
+
+    &-top {
+      .t-tab-nav-item {
+        &:after {
+          top: -#{$tab-line-active-line};
+        }
+      }
+
+      %tab-line-check-item-top {
+        width: 100%;
+      }
+
+      @for $i from 1 through 5 {
+        >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+          &:after {
+            width: 100%;
+            @extend %tab-line-check-item-bottom;
+          }
+        }
+      }
+    }
+  }
+
+  &-pill {
+    > .t-tab-nav {
+      gap: $tab-pill-gap;
+      border-radius: $border-radius-xl;
+      background-color: _var("white", $white);
+      box-shadow: 0 0 0.125rem 0 rgba($primary, 0.12), 0 0.375rem 1.25rem 0 rgba($primary, 0.16);
+      padding: $tab-pill-padding;
+      border-radius: $tab-pill-border-radius;
+
+      .t-tab-nav-item {
+        align-items: end;
+        transition: $transition-base;
+        padding: $tab-pill-item-padding;
+        border-radius: $tab-pill-border-radius;
+      }
+
+      ~ .t-tab-contents {
+        .t-tab-content {
+          // padding: 1.5rem 0;
+       
+        }
+      }
+    }
+
+    %t-tab-nav-pill-checked {
+      letter-spacing: $tab-letter-spacing;
+      color: $primary-900;
+      background: $primary-50;
+    }
+
+    @for $i from 1 through 5 {
+      >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+        @extend %t-tab-nav-pill-checked;
+      }
+    }
+  }
+
+  &-pill-top {
+    > .t-tab-nav {
+      align-items: end;
+      gap: $tab-pill-top-gap;
+      padding: $tab-pill-top-nav-padding;
+
+      .t-tab-nav-item {
+        align-items: center;
+        background-color: $tab-pill-top-background;
+        transition: $transition-base;
+        padding: $tab-pill-top-item-padding;
+        border-radius: $tab-pill-top-item-radius;
+      }
+
+      ~ .t-tab-contents {
+        background-color: $tab-pill-top-item-background;
+        border-radius: $tab-pill-top-contents-radius;
+
+        .t-tab-content {}
+      }
+    }
+
+    %t-tab-nav-pill-checked-top {
+      letter-spacing: $tab-letter-spacing;
+      color: $primary-900;
+      padding: $tab-pill-top-item-padding-active;
+      background: $primary-50;
+    }
+
+    @for $i from 1 through 5 {
+      >input:nth-child(#{$i}):checked~.t-tab-nav>.t-tab-nav-item:nth-child(#{$i}) {
+        @extend %t-tab-nav-pill-checked-top;
+      }
+    }
+  }
+}

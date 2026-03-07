@@ -1,0 +1,356 @@
+@charset "utf-8";
+
+//  Symbols  Images
+// --------------------------------------------------
+
+%img-overlay-after {
+  content: '';
+
+  @include absolute-center;
+
+  display: block;
+  opacity: 0;
+
+  @include size(2rem);
+
+  transition: $transition;
+  z-index: 1;
+  pointer-events: none;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+%img-overlay-before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($dark, 0);
+  opacity: 1;
+
+  @include scale(1.0625);
+
+  border: $primary-200 0.1875rem solid;
+  transition: $transition;
+  cursor: pointer;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+%img-overlay-before-hover {
+  border-color: $primary-400;
+  background-color: rgba($dark, 0.66);
+  backdrop-filter: blur(2px);
+  
+  @include scale(1.125);
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-card-mask-v1 {
+  position: relative;
+  border-radius: $border-radius;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  color: _var("white", $white);
+  transition: $transition-mask;
+
+  &.t-card-mask-gradient-bottom-left {
+    transition: $transition-mask;
+    background-image: linear-gradient(125deg, $white 0%, $gray-50 100%);
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: _var("white", $white);
+    transform: scaleX(0);
+    transition: $transition-mask;
+    z-index: 2;
+    height: 0.375rem;
+    width: calc(100% - 2rem);
+    overflow: hidden;
+  }
+
+  &:before {
+    left: 1rem;
+    top: 1rem;
+    transform-origin: 0% 0%;
+  }
+
+  &:after {
+    right: 1rem;
+    bottom: 1rem;
+    transform-origin: 100% 100%;
+  }
+
+  .t-card-mask-v1-cnt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 2.5rem 5rem $primary-200;
+    width: 100%;
+    z-index: 1;
+    background-image: linear-gradient(45deg, $black 0%, $gray-700 100%);
+    opacity: 0;
+    transition: $transition-mask;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: _var("white", $white);
+      transform: scaleY(0);
+      transform-origin: 0;
+      transition: all 600ms ease;
+      width: 0.375rem;
+      height: .25rem;
+      z-index: -1;
+      overflow: hidden;
+      transition: $transition-mask;
+    }
+
+    &:before {
+      left: 1rem;
+      bottom: 1rem;
+      transform-origin: 0% 0%;
+    }
+
+    &:after {
+      top: 1rem;
+      right: 1rem;
+      transform-origin: 100% 0%;
+    }
+
+    .t-icon-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      transition: $transition-mask;
+
+      i {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(2.55);
+        font-size: 3rem;
+        transition: $transition-mask;
+      }
+    }
+  }
+
+  .t-card-img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    transition: $transition-mask;
+    aspect-ratio: 16 / 9;
+  }
+
+  &:hover {
+    cursor: pointer;
+    --f-n: 1;
+    --f-m: 1;
+
+    &.card-mask-gradient-bottom-left {
+      background-image: linear-gradient(45deg, $black 0%, $gray-700 100%);
+    }
+
+    &:before,
+    &:after {
+      transform: scale(1);
+      opacity: 0.72;
+    }
+
+    &:before {
+      transition-delay: 0.1s;
+    }
+
+    &:after {
+      transition-delay: 0.3s;
+    }
+
+    .t-card-mask-v1-cnt {
+      opacity: 0.72;
+
+      &:before,
+      &:after {
+        transform: scale(1);
+        height: calc(100% - 2rem);
+      }
+
+      &:before {
+        transition-delay: 0.4s;
+        transform-origin: 0% 100%;
+      }
+
+      &:after {
+        transition-delay: 0.2s;
+        transform-origin: 100% 0%;
+      }
+
+      .t-icon-wrapper .svg-icon {
+        transform: translate3d(-50%, -50%, 0) scale(1.25);
+      }
+    }
+
+    .t-card-img {
+      z-index: -1;
+      opacity: 0.32;
+      transform: scale(1.375);
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      filter: blur(2px);
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-img-overlay {
+  display: block;
+  position: relative;
+
+  &:before {
+    @extend %img-overlay-before;
+  }
+
+  &:after {
+    @extend %img-overlay-after;
+  }
+
+  &[data-overlay="upload"] {
+    &:after {
+      @include svg-bg-icon(imgAdd, $white, center, contain);
+    }
+  }
+
+  &[data-fslightbox="portfolio"] {
+    &:after {
+      @include svg-bg-icon(youtube, $white, center, contain);
+    }
+  }
+
+  &[data-fslightbox="youtube"] {
+    &:after {
+      @include svg-bg-icon(youtube, $white, center, contain);
+    }
+  }
+
+  &[data-fslightbox="gallery"] {
+    &:after {
+      @include svg-bg-icon(zoomin, $white, center, contain);
+    }
+  }
+
+  &:hover {
+    &:before,
+    &:after {
+      opacity: 1;
+    }
+
+    &:before {
+      // z-index: 1;
+      @extend %img-overlay-before-hover;
+      z-index: 1;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-corp-img-overlay {
+  outline: 2px $white solid;
+  outline-offset: -2px;
+  border-radius: $rounded-pill;
+
+  &:before {
+    @extend %img-overlay-before;
+  }
+
+  @include teacher {
+    &:before {
+      border: $tertiary-200 0.1875rem solid;
+    }
+  }
+
+
+  &:after {
+    @extend %img-overlay-after;
+  }
+
+  &[data-overlay="upload"] {
+    &:after {
+      @include svg-bg-icon(imgAdd, $white, center, contain);
+    }
+  }
+
+  &:hover {
+    &:before,
+    &:after {
+      opacity: 1;
+    }
+
+    &:before {
+      @extend %img-overlay-before-hover;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-detail-corp-img {
+  flex: 0 0 auto;
+  border-radius: $border-radius;
+  border: 0.125rem solid $grey-100;
+  width: 4rem;
+  height: 4rem;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-panel-item-img-container {
+  position: relative;
+  flex: 0 0 auto;
+
+  .t-panel-img {
+    position: relative;
+    display: block;
+    border-radius: 50%;
+    margin: 0 auto;
+
+    > source,
+    > img {
+      width: inherit;
+      height: inherit;
+      border-radius: inherit;
+      object-fit: cover;
+
+      @include img-square;
+
+      &:before {
+        content: '';
+        border-radius: inherit;
+        width: 107.5%;
+        height: 107.5%;
+        border: $primary-100 0.1875rem solid;
+
+        @include absolute-center;
+      }
+    }
+  }
+}

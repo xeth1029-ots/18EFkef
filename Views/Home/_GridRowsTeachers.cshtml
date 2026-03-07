@@ -1,0 +1,45 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@using WKEFSERVICE.DataLayers
+@model WKEFSERVICE.Models.HomeModel
+
+@if (Model.TeachersGrid.ToCount() > 0)
+{
+    for (int i = 0; i < Model.TeachersGrid.Count; i++)
+    {
+        var item = Model.TeachersGrid[i];
+
+        string PicPath = (item.Sex == "F") ? "~/assets_new/images/avastarPlaceholders-girl.svg" : "~/assets_new/images/avastarPlaceholders.svg";
+        if (!string.IsNullOrEmpty(item.SelfPicPath))
+        {
+            string picfile1 = string.Concat(new AMDAO().UploadPathTeacher, item.SelfPicPath);
+            if (File.Exists(Server.MapPath(picfile1))) { PicPath = picfile1; }
+        }
+
+        @Html.HiddenFor(m => m.TeachersGrid[i].Seq)
+
+        <li style="margin-left: 20px;">
+            <div class="swiper-slide">
+                @{ 
+                    string s_WINOPEN1 = string.Concat(ConfigModel.WKEF, "/A1/C101M/Detail?Seq=" , item.Seq);
+                }
+                <a @*class="t-card t-card-transition"*@ href="javascript:;" style="background-color: white; color: black;" onclick="window.open('@s_WINOPEN1' + location.search)" onkeypress="window.open('@s_WINOPEN1' + location.search)"  title="前往師資介紹：@item.TeacherName">
+                    <div class="t-card-pinned">
+                        <img class="t-card-img-top" src="@Url.Content(PicPath)" alt="@item.TeacherName" style="height: 270px; width: 250px;" />
+                        <span class="badge bg-dark text-white t-card-pinned-top-end">精選教師</span>
+                    </div>
+                    <div class="t-card-body" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+                        <div class="t-card-title txt-bg-underline-primary">@item.TeacherName</div>
+                        <p>
+                            <ul class="t-card-list">
+                                <li class="t-card-list-item" style="border-style: none;">・ @item.Tag1</li>
+                                <li class="t-card-list-item" style="border-style: none;">・ @item.Tag2</li>
+                                <li class="t-card-list-item" style="border-style: none;">・ @item.Tag3</li>
+                            </ul>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </li>
+    }
+}

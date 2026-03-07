@@ -1,0 +1,525 @@
+$emoji-base-color: #ffda6a;
+$emoji-like-color: #548dff;
+$emoji-love-color: #f55064;
+$emoji-angry-color: #d5234c;
+$emoji-white-color: #ffffff;
+$emoji-black-color: #000000;
+$emoji-text-color: #8a8a8a;
+
+// <div class="t-emoji t-emoji--like">
+//   <div class="t-emoji__hand">
+//     <div class="t-emoji__thumb"></div>
+//   </div>
+// </div>
+// <div class="t-emoji t-emoji--love">
+//   <div class="t-emoji__heart"></div>
+// </div>
+// <div class="t-emoji t-emoji--haha">
+//   <div class="t-emoji__face">
+//     <div class="t-emoji__eyes"></div>
+//     <div class="t-emoji__mouth">
+//       <div class="t-emoji__tongue"></div>
+//     </div>
+//   </div>
+// </div>
+// <div class="t-emoji t-emoji--yay">
+//   <div class="t-emoji__face">
+//     <div class="t-emoji__eyebrows"></div>
+//     <div class="t-emoji__mouth"></div>
+//   </div>
+// </div>
+// <div class="t-emoji t-emoji--wow">
+//   <div class="t-emoji__face">
+//     <div class="t-emoji__eyebrows"></div>
+//     <div class="t-emoji__eyes"></div>
+//     <div class="t-emoji__mouth"></div>
+//   </div>
+// </div>
+// <div class="t-emoji t-emoji--sad">
+//   <div class="t-emoji__face">
+//     <div class="t-emoji__eyebrows"></div>
+//     <div class="t-emoji__eyes"></div>
+//     <div class="t-emoji__mouth"></div>
+//   </div>
+// </div>
+// <div class="t-emoji t-emoji--angry">
+//   <div class="t-emoji__face">
+//     <div class="t-emoji__eyebrows"></div>
+//     <div class="t-emoji__eyes"></div>
+//     <div class="t-emoji__mouth"></div>
+//   </div>
+// </div>
+
+.t-emoji {
+  width: 100%;
+  height: 100%;
+  margin: 1rem 1rem 33.33333%;
+  background: $emoji-base-color;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    bottom: -33.33333%;
+    font-size: 18px;
+    width: 50%;
+    left: calc(50% - 1.875rem);
+    color: $emoji-text-color;
+  }
+}
+
+.t-emoji__face,
+.t-emoji__eyebrows,
+.t-emoji__eyes,
+.t-emoji__mouth,
+.t-emoji__tongue,
+.t-emoji__heart,
+.t-emoji__hand,
+.t-emoji__thumb {
+  position: absolute;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+  }
+}
+
+.t-emoji__face {
+  width: inherit;
+  height: inherit;
+}
+
+.t-emoji--like {
+  background: $emoji-like-color;
+
+  &:after {
+    content: "Like";
+  }
+
+  .t-emoji__hand {
+    left: 1.25rem;
+    bottom: 1.875rem;
+    width: 1.25rem;
+    height: 33.333333%;
+    background: $emoji-white-color;
+    border-radius: .375rem;
+    z-index: 0;
+    animation: hands-up 2s linear infinite;
+
+    &:before {
+      left: 1.25rem;
+      bottom: .375rem;
+      width: 33.333333%;
+      background: inherit;
+      height: 10px;
+      border-radius: 2px 10px 10px 2px;
+      box-shadow: 1px -9px 0 1px $emoji-white-color, 2px -19px 0 2px $emoji-white-color, 3px -29px 0 3px $emoji-white-color;
+    }
+  }
+
+  .t-emoji__thumb {
+    border-bottom: 1.25rem solid $emoji-white-color;
+    border-left: 1.25rem solid transparent;
+    top: -1.25rem;
+    right: -1.25rem;
+    z-index: 2;
+    transform: rotate(5deg);
+    transform-origin: 0% 100%;
+    animation: thumbs-up 2s linear infinite;
+
+    &:before {
+      border-radius: 50% 50% 0 0;
+      background: $emoji-white-color;
+      width: 10px;
+      height: 12px;
+      left: -10px;
+      top: -8px;
+      transform: rotate(-15deg);
+      transform-origin: 100% 100%;
+      box-shadow: -1px 4px 0 -1px $emoji-white-color;
+    }
+  }
+}
+
+.t-emoji--love {
+  background: $emoji-love-color;
+
+  &:after {
+    content: "Love";
+  }
+
+  .t-emoji__heart {
+    left: calc(50% - 33.333333%);
+    top: calc(50% - 33.333333%);
+    width: 5rem;
+    height: 5rem;
+    animation: heart-beat 1s linear infinite alternate;
+
+    &:before,
+    &:after {
+      left: calc(50% - 1.25rem);
+      top: calc(50% - 2rem);
+      width: 33.333333%;
+      height: 4rem;
+      background: $emoji-white-color;
+      border-radius: 1.25rem 1.25rem 0 0;
+    }
+
+    &:before {
+      transform: translate(1.25rem) rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    &:after {
+      transform: translate(-1.25rem) rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+  }
+}
+
+.t-emoji--haha {
+  &:after {
+    content: "Haha";
+  }
+
+  .t-emoji__face {
+    animation: haha-face 2s linear infinite;
+  }
+
+  .t-emoji__eyes {
+    width: 1.625rem;
+    height: .375rem;
+    border-radius: 2px;
+    left: calc(50% - .8125rem);
+    top: 2.1875rem;
+    transform: rotate(20deg);
+    background: transparent;
+    box-shadow: -1.25rem 0.3125rem 0 0 $emoji-black-color, 1.25rem -0.375rem 0 0 $emoji-black-color;
+
+    &:after {
+      left: 0;
+      top: 0;
+      width: 26px;
+      height: 6px;
+      border-radius: 2px;
+      transform: rotate(-40deg);
+      background: transparent;
+      box-shadow: -1.25rem -5px 0 0 $emoji-black-color, 1.25rem 5px 0 0 $emoji-black-color;
+    }
+  }
+
+  .t-emoji__mouth {
+    width: 5rem;
+    height: 33.333333%;
+    left: calc(50% - 33.333333%);
+    top: 50%;
+    background: $emoji-black-color;
+    border-radius: 0 0 33.333333% 33.333333%;
+    overflow: hidden;
+    z-index: 1;
+    animation: haha-mouth 2s linear infinite;
+  }
+
+  .t-emoji__tongue {
+    width: 55%;
+    height: 1.875rem;
+    background: $emoji-love-color;
+    left: calc(50% - 2.1875rem);
+    bottom: -10px;
+    border-radius: 50%;
+  }
+}
+
+.t-emoji--yay {
+  &:after {
+    content: "Yay";
+    animation: yay-reverse 1s linear infinite;
+  }
+
+  .t-emoji__face {
+    animation: yay 1s linear infinite alternate;
+  }
+
+  .t-emoji__eyebrows {
+    left: calc(50% - 3px);
+    top: 1.875rem;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: -6px 0 0 0 $emoji-black-color, -36px 0 0 0px $emoji-black-color, 6px 0 0 0 $emoji-black-color, 36px 0 0 0px $emoji-black-color;
+
+    &:before,
+    &:after {
+      width: 2.25rem;
+      height: 1.125rem;
+      border-radius: 50% 50% 0 0;
+      background: transparent;
+      border: .375rem solid black;
+      box-sizing: border-box;
+      border-bottom: 0;
+      bottom: .1875rem;
+      left: calc(50% - 1.125rem);
+    }
+
+    &:before {
+      margin-left: -21px;
+    }
+
+    &:after {
+      margin-left: 21px;
+    }
+  }
+
+  .t-emoji__mouth {
+    top: 50%;
+    background: transparent;
+    left: 50%;
+
+    &:after {
+      width: 5rem;
+      height: 5rem;
+      left: calc(50% - 40px);
+      top: -75px;
+      border-radius: 50%;
+      background: transparent;
+      border: 6px solid $emoji-black-color;
+      box-sizing: border-box;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      z-index: 1;
+    }
+
+    &:before {
+      width: 6px;
+      height: 6px;
+      background: transparent;
+      border-radius: 50%;
+      bottom: 5px;
+      left: calc(50% - 3px);
+      box-shadow: -1.25rem 0 0 0 $emoji-black-color, 1.25rem 0 0 0 $emoji-black-color, -35px -2px 1.875rem 10px $emoji-angry-color, 35px -2px 1.875rem 10px $emoji-angry-color;
+    }
+  }
+}
+
+.t-emoji--wow {
+  &:after {
+    content: "Wow";
+  }
+
+  .t-emoji__face {
+    animation: wow-face 3s linear infinite;
+  }
+
+  .t-emoji__eyebrows {
+    left: calc(50% - 3px);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: -18px 0 0 0 $emoji-black-color, -33px 0 0 0 $emoji-black-color, 18px 0 0 0 $emoji-black-color, 33px 0 0 0 $emoji-black-color;
+    animation: wow-brow 3s linear infinite;
+
+    &:before,
+    &:after {
+      width: 24px;
+      height: 1.25rem;
+      border: 6px solid $emoji-black-color;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      top: -3px;
+      left: calc(50% - 12px);
+    }
+
+    &:before {
+      margin-left: -1.25rem;
+    }
+
+    &:after {
+      margin-left: 1.25rem;
+    }
+  }
+
+  .t-emoji__eyes {
+    width: 1rem;
+    height: 24px;
+    left: calc(50% - 8px);
+    top: 35px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 1.25rem 0 0 0 $emoji-black-color, -1.25rem 0 0 0 $emoji-black-color;
+  }
+
+  .t-emoji__mouth {
+    width: 1.875rem;
+    height: 45px;
+    left: calc(50% - 1rem);
+    top: 50%;
+    border-radius: 50%;
+    background: $emoji-black-color;
+    animation: wow-mouth 3s linear infinite;
+  }
+}
+
+.t-emoji--sad {
+  &:after {
+    content: "Sad";
+  }
+
+  .t-emoji__face {
+    animation: sad-face 2s ease-in infinite;
+  }
+
+  .t-emoji__eyebrows {
+    left: calc(50% - 3px);
+    top: 35px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: -40px 9px 0 0 $emoji-black-color, -1.25rem 0 0 0 $emoji-black-color, 1.25rem 0 0 0 $emoji-black-color, 40px 9px 0 0 $emoji-black-color;
+
+    &:before,
+    &:after {
+      width: 1.875rem;
+      height: 1.25rem;
+      border: 6px solid $emoji-black-color;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      top: 2px;
+      left: calc(50% - 1rem);
+    }
+
+    &:before {
+      margin-left: -1.875rem;
+      transform: rotate(-30deg);
+    }
+
+    &:after {
+      margin-left: 1.875rem;
+      transform: rotate(30deg);
+    }
+  }
+
+  .t-emoji__eyes {
+    width: 14px;
+    height: 1rem;
+    left: calc(50% - 7px);
+    top: 50px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 1.25rem 0 0 0 $emoji-black-color, -1.25rem 0 0 0 $emoji-black-color;
+
+    &:after {
+      background: $emoji-like-color;
+      width: 12px;
+      height: 12px;
+      margin-left: 6px;
+      border-radius: 0 100% 40% 50% / 0 50% 40% 100%;
+      transform-origin: 0% 0%;
+      animation: tear-drop 2s ease-in infinite;
+    }
+  }
+
+  .t-emoji__mouth {
+    width: 60px;
+    height: 5rem;
+    left: calc(50% - 1.875rem);
+    top: 5rem;
+    box-sizing: border-box;
+    border: 6px solid $emoji-black-color;
+    border-radius: 50%;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    background: transparent;
+    animation: sad-mouth 2s ease-in infinite;
+
+    &:after {
+      width: 6px;
+      height: 6px;
+      background: transparent;
+      border-radius: 50%;
+      top: 4px;
+      left: calc(50% - 3px);
+      box-shadow: -18px 0 0 0 $emoji-black-color, 18px 0 0 0 $emoji-black-color;
+    }
+  }
+}
+
+.t-emoji--angry {
+  background: linear-gradient($emoji-angry-color -10%, $emoji-base-color);
+  background-size: 100%;
+  animation: angry-color 2s ease-in infinite;
+
+  &:after {
+    content: "Angry";
+  }
+
+  .t-emoji__face {
+    animation: angry-face 2s ease-in infinite;
+  }
+
+  .t-emoji__eyebrows {
+    left: calc(50% - 3px);
+    top: 3.4375rem;
+    height: .375rem;
+    width: .375rem;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: -44px 5px 0 0 $emoji-black-color, -.4375rem 1rem 0 0 $emoji-black-color, .4375rem 1rem 0 0 $emoji-black-color, 2.75rem .3125rem 0 0 $emoji-black-color;
+
+    &:before,
+    &:after {
+      width: 3.125rem;
+      height: 1.25rem;
+      border: .375rem solid $emoji-black-color;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      top: 0;
+      left: calc(50% - 1.25rem);
+    }
+
+    &:before {
+      margin-left: -1.25rem;
+      transform: rotate(15deg);
+    }
+
+    &:after {
+      margin-left: 1.25rem;
+      transform: rotate(-15deg);
+    }
+  }
+
+  .t-emoji__eyes {
+    width: 12px;
+    height: 12px;
+    left: calc(50% - 6px);
+    top: 70px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 1.25rem 0 0 0 $emoji-black-color, -1.25rem 0 0 0 $emoji-black-color;
+  }
+
+  .t-emoji__mouth {
+    width: 36px;
+    height: 18px;
+    left: calc(50% - 18px);
+    bottom: 1rem;
+    background: $emoji-black-color;
+    border-radius: 50%;
+    animation: angry-mouth 2s ease-in infinite;
+  }
+}

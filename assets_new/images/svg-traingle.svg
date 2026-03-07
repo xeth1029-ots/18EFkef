@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="prefix__triangle" viewBox="0 0 818 728">
+  <linearGradient id="a" x1="761" x2="342" y1="-32" y2="371" gradientTransform="rotate(15 392 376)" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#19a2df"/>
+    <stop offset="1" stop-color="#1e85c4"/>
+  </linearGradient>
+  <path fill="url(#a)" d="M809 18a45 45 0 0 0-41-18L226 64a46 46 0 0 0-31 73l333 440a46 46 0 0 0 79-10L816 63a45 45 0 0 0-6-45"/>
+</svg>

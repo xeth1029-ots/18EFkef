@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+//  Layout -> chkeckBox v1
+// --------------------------------------------------
+.t-form-check {
+
+  .t-chk-inp {
+    ~ .t-chk-lab {
+      .t-checkbox {
+        position: relative;
+        height: $checkbox-size;
+        width: $checkbox-size;
+        background-color: $checkbox-background-color;
+        border: $checkbox-border-w solid $grey-200;
+        border-radius: $border-radius-sm;
+
+        @include ceaser-transition(all, 250ms, "easeInOutCubic");
+
+        &:not(:last-child) {
+          margin-right: $checkbox-margin-right;
+        }
+
+        &:before,
+        &:after {
+          content: '';
+          display: block;
+
+          @include ceaser-transition(all, 250ms, "easeInOutCubic");
+        }
+
+        &:before {
+          height: 100%;
+          width: 100%;
+          background-color: $secondary;
+          border-radius: inherit;
+          opacity: 0.08;
+          transform: scale(0);
+        }
+
+        &:after {
+          opacity: 0;
+          height: $checkbox-h;
+          width: $checkbox-w;
+          border: solid $white;
+          border-width: 0 $checkbox-border-w $checkbox-border-w 0;
+          position: absolute;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+      }
+
+      @include check-hover {
+        opacity: 0.80;
+
+        .t-checkbox {
+          border-color: $secondary-300;
+
+          &:before {
+            transform: scale(1.75);
+            opacity: 0.20;
+          }
+        }
+      }
+    }
+
+    @include check-checked {
+
+      + .t-chk-lab .t-checkbox {
+        background: $secondary;
+        border-color: $secondary-400;
+
+        &:before {
+          opacity: 0;
+          transform: scale(1.75);
+        }
+
+        &:after {
+          opacity: 1;
+        }
+      }
+
+      @include check-disabled {
+        + .t-chk-lab {
+          .t-checkbox {
+            border-color: $grey-100;
+            background: $grey-200;
+            cursor: not-allowed;
+          }
+
+          .t-checkbox:hover:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.t-form-check--md {
+    .t-chk-lab {
+      font-size: $input-btn-font-size-md;
+
+      .t-checkbox {
+        height: $checkbox-size-md;
+        width: $checkbox-size-md;
+
+        &:after {
+          width: $checkbox-w-md;
+          height: $checkbox-h-md;
+        }
+      }
+    }
+  }
+
+  &.t-form-check--lg {
+    .t-chk-lab {
+      font-size: $input-btn-font-size-lg;
+
+      .t-checkbox {
+        height: $checkbox-size-lg;
+        width: $checkbox-size-lg;
+
+        &:after {
+          width: $checkbox-w-lg;
+          height: $checkbox-h-lg;
+        }
+      }
+    }
+  }
+
+  &:not(:last-child) {
+    margin-right: 0.75rem;
+  }
+}

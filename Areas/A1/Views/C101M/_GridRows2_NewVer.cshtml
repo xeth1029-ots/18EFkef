@@ -1,0 +1,36 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.A1.Models;
+@model C101MViewModel
+
+@if (Model.Form.Grid.ToCount() > 0)
+{
+    for (int i = 0; i < Model.Form.Grid.Count; i++)
+    {
+        var item = Model.Form.Grid[i];
+        string PicPath = (item.Sex == "F") ? "~/assets_new/images/avastarPlaceholders-girl.svg" : "~/assets_new/images/avastarPlaceholders.svg";
+        if (!string.IsNullOrEmpty(item.SelfPicPath))
+        {
+            string picfile1 = string.Concat(new AMDAO().UploadPathTeacher, item.SelfPicPath);
+            if (File.Exists(Server.MapPath(picfile1))) { PicPath = picfile1; }
+        }
+
+        string tt1 = string.Concat("前往 「", item.TeacherName, " 教師」頁面,查看詳細資料");
+        string tt2 = string.Concat(item.TeacherName, "大頭照或照片");
+        @Html.HiddenFor(m => m.Form.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Form.Grid[i].Seq)
+
+        <li class="teachers-list-small-item" onclick="doViewTeach('@item.Seq')" onkeypress="doViewTeach('@item.Seq')" tabindex="0" title="@tt1">
+            <div class="teachers-list-small-item-avatar">
+                <img alt="" width="100%" src="@Url.Content(PicPath)" title="@tt2" />
+            </div>
+            <div class="teachers-list-small-item-cnt">
+                <span style="font-size: 1.125rem; font-weight: 500;" title="@tt1">@item.TeacherName</span>
+            </div>
+        </li>
+    }
+}
+
+
+

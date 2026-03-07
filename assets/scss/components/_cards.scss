@@ -1,0 +1,370 @@
+@import "card/card";
+@import "card/_card-group-break.scss";
+@import "card/_card-group-row.scss";
+
+$card-bg-v1: #F6ABC8 !default;
+$card-bg-v2: #FFC199 !default;
+$card-bg-v3: #6EBEAF !default;
+$card-bg-v4: #92BBFC !default;
+
+$card-img-w: 8rem !default;
+$card-img-border: 0.25rem dotted rgba($white, 0.66) !default;
+$card-bg-v1-icon: escape-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42.8' height='59.6'%3E%3Cpath data-name='Path 248249' d='M25.5 9.4a1 1 0 0 1-1-1V5.2a3.2 3.2 0 1 0-6.3 0v3.4a1 1 0 0 1-1.9 0V5a5.1 5.1 0 1 1 10.2 0v3.4a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248250' d='M36.3 38.5a1 1 0 0 1-1-1V22.9a14 14 0 1 0-27.9 0v14.8a1 1 0 0 1-1.9 0V22.8a15.9 15.9 0 1 1 31.8 0v14.8a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248251' d='M40.2 44.8H2.6A2.6 2.6 0 0 1 0 42.2v-3a2.6 2.6 0 0 1 2.6-2.6h37.6a2.6 2.6 0 0 1 2.6 2.6v3a2.6 2.6 0 0 1-2.6 2.6ZM2.6 38.5a.7.7 0 0 0-.7.7v3a.7.7 0 0 0 .7.7h37.6a.7.7 0 0 0 .7-.7v-3a.7.7 0 0 0-.7-.7Z' fill='%23fff'/%3E%3Cpath data-name='Path 248252' d='M21.4 49.3a12 12 0 0 1-9.7-4.9 1 1 0 0 1 .8-1.5h17.9a1 1 0 0 1 .7 1.5 12 12 0 0 1-9.7 5Zm-6.8-4.5a10.2 10.2 0 0 0 13.6 0Z' fill='%23fff'/%3E%3Cpath data-name='Path 248253' d='M21.4 59.6a1 1 0 0 1-1-1V54a1 1 0 0 1 2 0v4.7a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248254' d='M9 56.8a1 1 0 0 1-.8-1.5l2.8-3.8a1 1 0 1 1 1.5 1.2l-2.8 3.8a1 1 0 0 1-.8.3Z' fill='%23fff'/%3E%3Cpath data-name='Path 248255' d='M33.9 56.8a1 1 0 0 1-.8-.3l-2.8-3.8a1 1 0 1 1 1.5-1.2l2.8 3.8a1 1 0 0 1-.7 1.5Z' fill='%23fff'/%3E%3C/svg%3E")) !default;
+$card-bg-v2-icon: escape-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59.6' height='59.3'%3E%3Cpath data-name='Path 248256' d='M53.5 53.2H6.1a1 1 0 0 1-1-1V22.6A2.6 2.6 0 0 1 7.8 20h12.5a1 1 0 1 1 0 1.9H7.7a.6.6 0 0 0-.6.6v28.8h45.5V22.5a.6.6 0 0 0-.7-.6H39a1 1 0 1 1 0-2h13a2.6 2.6 0 0 1 2.6 2.6v29.8a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248257' d='M55 59.3H4.6A4.6 4.6 0 0 1 0 54.6v-1.4a1.9 1.9 0 0 1 1.9-1.9h55.9a1.9 1.9 0 0 1 1.8 1.9v1.4a4.6 4.6 0 0 1-4.6 4.7ZM2 53.3v1.3a2.7 2.7 0 0 0 2.7 2.7H55a2.7 2.7 0 0 0 2.7-2.7v-1.4Z' fill='%23fff'/%3E%3Cpath data-name='Path 248258' d='M26 26.5a4.8 4.8 0 0 1-4.7-4 4.7 4.7 0 0 1-2.7-6.2 4.7 4.7 0 0 1 0-6A4.7 4.7 0 0 1 21.3 4a4.7 4.7 0 0 1 9.5.6v17a4.8 4.8 0 0 1-4.8 4.8ZM26 2a2.8 2.8 0 0 0-2.8 2.8 1 1 0 0 1-.7 1 2.8 2.8 0 0 0-1.9 4.2 1 1 0 0 1-.2 1.2 2.8 2.8 0 0 0 0 4.3 1 1 0 0 1 .2 1.2 2.8 2.8 0 0 0 1.9 4.1 1 1 0 0 1 .7 1 2.8 2.8 0 0 0 5.7 0v-17A2.8 2.8 0 0 0 26 2Z' fill='%23fff'/%3E%3Cpath data-name='Path 248259' d='M33.6 26.5a4.8 4.8 0 0 1-4.7-4.7v-17a4.7 4.7 0 0 1 9.4-.7 4.7 4.7 0 0 1 2.7 6.1 4.7 4.7 0 0 1 0 6.1 4.7 4.7 0 0 1-2.7 6.1 4.8 4.8 0 0 1-4.7 4.1Zm0-24.6a2.8 2.8 0 0 0-2.8 2.8v17a2.8 2.8 0 0 0 5.6 0 1 1 0 0 1 .8-1 2.8 2.8 0 0 0 1.8-4.1 1 1 0 0 1 .2-1.2 2.8 2.8 0 0 0 0-4.3A1 1 0 0 1 39 10a2.8 2.8 0 0 0-1.8-4.1 1 1 0 0 1-.8-1 2.8 2.8 0 0 0-2.8-2.9Z' fill='%23fff'/%3E%3Cpath data-name='Path 248260' d='M24.6 6.2a1 1 0 0 1-.5-.1 2.8 2.8 0 0 0-1.7-.3 1 1 0 0 1-.3-2 4.6 4.6 0 0 1 3 .6 1 1 0 0 1-.5 1.8Z' fill='%23fff'/%3E%3Cpath data-name='Path 248261' d='M22.1 12.8A4.2 4.2 0 0 1 19 11a1 1 0 0 1 1.6-1s.7 1 1.6 1a1 1 0 0 1 1 1 1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248262' d='M22.3 22.6a1 1 0 0 1-1-1 3.5 3.5 0 0 1 3.5-3.4h.2a1 1 0 0 1 0 2c-1.7 0-1.8 1.2-1.8 1.5a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248263' d='M34.9 8.5a1 1 0 1 1 0-2c.3 0 1.5-.1 1.5-1.8a1 1 0 0 1 2 0A3.5 3.5 0 0 1 35 8.5H35Z' fill='%23fff'/%3E%3Cpath data-name='Path 248264' d='M39.8 17a4.7 4.7 0 0 1-4.6-4.6 1 1 0 0 1 1.9-.2c.2 2.8 2.3 3 2.8 3a1 1 0 0 1 0 1.9Z' fill='%23fff'/%3E%3Cpath data-name='Path 248265' d='M37.7 22.6a1 1 0 0 1-.5 0 4 4 0 0 1-1.7-3.4 1 1 0 0 1 2-.1 2.3 2.3 0 0 0 .7 1.8 1 1 0 0 1 .3 1.3 1 1 0 0 1-.8.4Z' fill='%23fff'/%3E%3Cpath data-name='Path 248266' d='M29.8 47.4a1 1 0 0 1-.3 0 17.3 17.3 0 0 0-10.8 0 1 1 0 0 1-1.3-1V32.1a1 1 0 0 1 .7-1 19.1 19.1 0 0 1 12 0 1 1 0 0 1 .7 1v14.3a1 1 0 0 1-1 1Zm-5.7-2.9a19.1 19.1 0 0 1 4.8.6V32.8a17.2 17.2 0 0 0-9.5 0v12.3a19.1 19.1 0 0 1 4.7-.6Z' fill='%23fff'/%3E%3Cpath data-name='Path 248267' d='M41.2 47.4a1 1 0 0 1-.3 0 17.3 17.3 0 0 0-10.8 0 1 1 0 0 1-1.2-1V32.1a1 1 0 0 1 .6-1 19.1 19.1 0 0 1 12 0 1 1 0 0 1 .7 1v14.3a1 1 0 0 1-1 1Zm-5.7-2.9a19.1 19.1 0 0 1 4.8.6V32.8a17.2 17.2 0 0 0-9.5 0v12.3a19.1 19.1 0 0 1 4.7-.6Z' fill='%23fff'/%3E%3Cpath data-name='Path 248268' d='M38 37.7a.8.8 0 0 1-.2 0 7 7 0 0 0-4.5 0 .8.8 0 0 1-.5-1.6 8.8 8.8 0 0 1 5.5 0 .8.8 0 0 1-.3 1.6Z' fill='%23fff'/%3E%3Cpath data-name='Path 248269' d='M33 42a.8.8 0 0 1-.2-1.6 8.8 8.8 0 0 1 5.5 0 .8.8 0 1 1-.5 1.5 7 7 0 0 0-4.5 0 .8.8 0 0 1-.3 0Z' fill='%23fff'/%3E%3Cpath data-name='Path 248270' d='M23 38.7a.8.8 0 0 1-.1-1.6 10.9 10.9 0 0 1 2.4 0 .8.8 0 1 1-.1 1.6 9 9 0 0 0-2.1 0 .8.8 0 0 1-.1 0Z' fill='%23fff'/%3E%3Cpath data-name='Path 248271' d='M21.3 42.8a.8.8 0 0 1-.2-1.6 10.9 10.9 0 0 1 6 0 .8.8 0 0 1-.4 1.5 9.3 9.3 0 0 0-5.2 0 .8.8 0 0 1-.2 0Z' fill='%23fff'/%3E%3C/svg%3E")) !default;
+$card-bg-v3-icon: escape-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59.6' height='59.3'%3E%3Cpath data-name='Path 248256' d='M53.5 53.2H6.1a1 1 0 0 1-1-1V22.6A2.6 2.6 0 0 1 7.8 20h12.5a1 1 0 1 1 0 1.9H7.7a.6.6 0 0 0-.6.6v28.8h45.5V22.5a.6.6 0 0 0-.7-.6H39a1 1 0 1 1 0-2h13a2.6 2.6 0 0 1 2.6 2.6v29.8a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248257' d='M55 59.3H4.6A4.6 4.6 0 0 1 0 54.6v-1.4a1.9 1.9 0 0 1 1.9-1.9h55.9a1.9 1.9 0 0 1 1.8 1.9v1.4a4.6 4.6 0 0 1-4.6 4.7ZM2 53.3v1.3a2.7 2.7 0 0 0 2.7 2.7H55a2.7 2.7 0 0 0 2.7-2.7v-1.4Z' fill='%23fff'/%3E%3Cpath data-name='Path 248258' d='M26 26.5a4.8 4.8 0 0 1-4.7-4 4.7 4.7 0 0 1-2.7-6.2 4.7 4.7 0 0 1 0-6A4.7 4.7 0 0 1 21.3 4a4.7 4.7 0 0 1 9.5.6v17a4.8 4.8 0 0 1-4.8 4.8ZM26 2a2.8 2.8 0 0 0-2.8 2.8 1 1 0 0 1-.7 1 2.8 2.8 0 0 0-1.9 4.2 1 1 0 0 1-.2 1.2 2.8 2.8 0 0 0 0 4.3 1 1 0 0 1 .2 1.2 2.8 2.8 0 0 0 1.9 4.1 1 1 0 0 1 .7 1 2.8 2.8 0 0 0 5.7 0v-17A2.8 2.8 0 0 0 26 2Z' fill='%23fff'/%3E%3Cpath data-name='Path 248259' d='M33.6 26.5a4.8 4.8 0 0 1-4.7-4.7v-17a4.7 4.7 0 0 1 9.4-.7 4.7 4.7 0 0 1 2.7 6.1 4.7 4.7 0 0 1 0 6.1 4.7 4.7 0 0 1-2.7 6.1 4.8 4.8 0 0 1-4.7 4.1Zm0-24.6a2.8 2.8 0 0 0-2.8 2.8v17a2.8 2.8 0 0 0 5.6 0 1 1 0 0 1 .8-1 2.8 2.8 0 0 0 1.8-4.1 1 1 0 0 1 .2-1.2 2.8 2.8 0 0 0 0-4.3A1 1 0 0 1 39 10a2.8 2.8 0 0 0-1.8-4.1 1 1 0 0 1-.8-1 2.8 2.8 0 0 0-2.8-2.9Z' fill='%23fff'/%3E%3Cpath data-name='Path 248260' d='M24.6 6.2a1 1 0 0 1-.5-.1 2.8 2.8 0 0 0-1.7-.3 1 1 0 0 1-.3-2 4.6 4.6 0 0 1 3 .6 1 1 0 0 1-.5 1.8Z' fill='%23fff'/%3E%3Cpath data-name='Path 248261' d='M22.1 12.8A4.2 4.2 0 0 1 19 11a1 1 0 0 1 1.6-1s.7 1 1.6 1a1 1 0 0 1 1 1 1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248262' d='M22.3 22.6a1 1 0 0 1-1-1 3.5 3.5 0 0 1 3.5-3.4h.2a1 1 0 0 1 0 2c-1.7 0-1.8 1.2-1.8 1.5a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248263' d='M34.9 8.5a1 1 0 1 1 0-2c.3 0 1.5-.1 1.5-1.8a1 1 0 0 1 2 0A3.5 3.5 0 0 1 35 8.5H35Z' fill='%23fff'/%3E%3Cpath data-name='Path 248264' d='M39.8 17a4.7 4.7 0 0 1-4.6-4.6 1 1 0 0 1 1.9-.2c.2 2.8 2.3 3 2.8 3a1 1 0 0 1 0 1.9Z' fill='%23fff'/%3E%3Cpath data-name='Path 248265' d='M37.7 22.6a1 1 0 0 1-.5 0 4 4 0 0 1-1.7-3.4 1 1 0 0 1 2-.1 2.3 2.3 0 0 0 .7 1.8 1 1 0 0 1 .3 1.3 1 1 0 0 1-.8.4Z' fill='%23fff'/%3E%3Cpath data-name='Path 248266' d='M29.8 47.4a1 1 0 0 1-.3 0 17.3 17.3 0 0 0-10.8 0 1 1 0 0 1-1.3-1V32.1a1 1 0 0 1 .7-1 19.1 19.1 0 0 1 12 0 1 1 0 0 1 .7 1v14.3a1 1 0 0 1-1 1Zm-5.7-2.9a19.1 19.1 0 0 1 4.8.6V32.8a17.2 17.2 0 0 0-9.5 0v12.3a19.1 19.1 0 0 1 4.7-.6Z' fill='%23fff'/%3E%3Cpath data-name='Path 248267' d='M41.2 47.4a1 1 0 0 1-.3 0 17.3 17.3 0 0 0-10.8 0 1 1 0 0 1-1.2-1V32.1a1 1 0 0 1 .6-1 19.1 19.1 0 0 1 12 0 1 1 0 0 1 .7 1v14.3a1 1 0 0 1-1 1Zm-5.7-2.9a19.1 19.1 0 0 1 4.8.6V32.8a17.2 17.2 0 0 0-9.5 0v12.3a19.1 19.1 0 0 1 4.7-.6Z' fill='%23fff'/%3E%3Cpath data-name='Path 248268' d='M38 37.7a.8.8 0 0 1-.2 0 7 7 0 0 0-4.5 0 .8.8 0 0 1-.5-1.6 8.8 8.8 0 0 1 5.5 0 .8.8 0 0 1-.3 1.6Z' fill='%23fff'/%3E%3Cpath data-name='Path 248269' d='M33 42a.8.8 0 0 1-.2-1.6 8.8 8.8 0 0 1 5.5 0 .8.8 0 1 1-.5 1.5 7 7 0 0 0-4.5 0 .8.8 0 0 1-.3 0Z' fill='%23fff'/%3E%3Cpath data-name='Path 248270' d='M23 38.7a.8.8 0 0 1-.1-1.6 10.9 10.9 0 0 1 2.4 0 .8.8 0 1 1-.1 1.6 9 9 0 0 0-2.1 0 .8.8 0 0 1-.1 0Z' fill='%23fff'/%3E%3Cpath data-name='Path 248271' d='M21.3 42.8a.8.8 0 0 1-.2-1.6 10.9 10.9 0 0 1 6 0 .8.8 0 0 1-.4 1.5 9.3 9.3 0 0 0-5.2 0 .8.8 0 0 1-.2 0Z' fill='%23fff'/%3E%3C/svg%3E")) !default;
+$card-bg-v4-icon: escape-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59.6' height='59.6'%3E%3Cpath data-name='Path 248238' d='M55.6 43.6h-.1a1 1 0 1 1 0-2 2.2 2.2 0 0 0 2.2-2.1V4a2.2 2.2 0 0 0-2.1-2.2H4a2.2 2.2 0 0 0-2.2 2.2v35.4a2.2 2.2 0 0 0 2.2 2.1h12.4a1 1 0 0 1 0 2H4A4 4 0 0 1 0 39.5V4A4 4 0 0 1 4 0h51.6a4 4 0 0 1 4 4v35.5a4 4 0 0 1-4 4Z' fill='%23fff'/%3E%3Cpath data-name='Path 248239' d='M25.2 10.2H12.5a1 1 0 0 1 0-1.9h12.7a1 1 0 0 1 0 2Z' fill='%23fff'/%3E%3Cpath data-name='Path 248240' d='M47.1 10.2H34.5a1 1 0 0 1 0-1.9H47a1 1 0 1 1 0 2Z' fill='%23fff'/%3E%3Cpath data-name='Path 248241' d='M18.8 17.4h-6.3a1 1 0 0 1 0-2h6.3a1 1 0 0 1 0 2Z' fill='%23fff'/%3E%3Cpath data-name='Path 248242' d='M41 17.4h-6.4a1 1 0 0 1 0-2H41a1 1 0 0 1 0 2Z' fill='%23fff'/%3E%3Cpath data-name='Path 248243' d='M36.3 31.9a13 13 0 0 1-2.6-.3 1 1 0 0 1-.8-1 9 9 0 0 1 18 0 1 1 0 0 1-1 1 7 7 0 0 1-5.8-3 10 10 0 0 1-7.8 3.3Zm-1.4-2c1.8.2 6.3.3 8.5-3.6a1 1 0 0 1 1.8.2 4.6 4.6 0 0 0 3.6 3 7 7 0 0 0-14 .4Z' fill='%23fff'/%3E%3Cpath data-name='Path 248244' d='M15 40.2a1 1 0 0 1-.8-.5L11.4 33a4.1 4.1 0 0 1 7.6-3.2l2.7 6.5a1 1 0 0 1-.5 1.3l-5.8 2.6a1 1 0 0 1-.3 0Zm.2-11a2.2 2.2 0 0 0-2.2 2.2 2.2 2.2 0 0 0 .2 1l2.4 5.6 4-1.8-2.4-5.6a2.2 2.2 0 0 0-2-1.4Z' fill='%23fff'/%3E%3Cpath data-name='Path 248245' d='M55.6 59.6H30.1a2.3 2.3 0 0 1-2.2-2.2V47h-7.4a4.7 4.7 0 0 1-4.4-2.8l-2-4.6a1 1 0 0 1 .6-1.3l5.7-2.6a1 1 0 0 1 1.3.5l1 2.3a.5.5 0 0 0 .5.3h15a1 1 0 1 1 0 2h-15a2.4 2.4 0 0 1-2.3-1.6l-.6-1.3-4 1.8 1.6 3.7a2.8 2.8 0 0 0 2.6 1.7h8.3a1 1 0 0 1 1 1v11.2a.3.3 0 0 0 .3.3h25.5a.3.3 0 0 0 .4-.3V46.9a6.1 6.1 0 0 0-6.1-6h-4.3a1 1 0 1 1 0-2H50a8 8 0 0 1 8 8v10.5a2.3 2.3 0 0 1-2.3 2.3Z' fill='%23fff'/%3E%3Cpath data-name='Path 248246' d='M50 59.6a1 1 0 0 1-1-1V46.5a1 1 0 1 1 2 0v12.3a1 1 0 0 1-1 1Z' fill='%23fff'/%3E%3Cpath data-name='Path 248247' d='M12.5 40.2a1 1 0 0 1-.9-1.3l11.1-23a1 1 0 0 1 1.7.9l-11 22.9a1 1 0 0 1-.9.5Z' fill='%23fff'/%3E%3Cpath data-name='Path 248248' d='M41.9 42.9a5.4 5.4 0 0 1-4.6-2.5 1 1 0 0 1-.1-.6v-1.5a9 9 0 0 1-4.3-7.6 1 1 0 0 1 1.2-1c.3.1 6.6 1.4 9.3-3.4a1 1 0 0 1 1.8.2c1 3.2 4.6 3.2 4.7 3.2a1 1 0 0 1 .6.3 1 1 0 0 1 .3.7 9 9 0 0 1-4.2 7.6v1.5a1 1 0 0 1-.2.6 5.4 5.4 0 0 1-4.5 2.5ZM39 39.6a3.5 3.5 0 0 0 5.6 0v-1.9a1 1 0 0 1 .5-.8 7 7 0 0 0 3.6-5.3 7 7 0 0 1-4.7-3c-2.8 3.3-7 3.4-9.2 3.2a7 7 0 0 0 3.7 5 1 1 0 0 1 .5 1Z' fill='%23fff'/%3E%3C/svg%3E")) !default;
+
+$card-bgs: () !default;
+$card-bgs: map-merge(("v1": $card-bg-v1, "v2": $card-bg-v2, "v3": $card-bg-v3, "v4": $card-bg-v4), $card-bgs);
+
+$card-computs: "v1"$card-bg-v1 $card-bg-v1-icon,
+"v2"$card-bg-v2 $card-bg-v2-icon,
+"v3"$card-bg-v3 $card-bg-v3-icon,
+"v4"$card-bg-v4 $card-bg-v4-icon;
+
+// Alternate styles
+@each $name,
+$value,
+$icon in $card-computs {
+  .t-card {
+    
+    &.t-card-#{$name} {
+      background-color: tint-color($value, 80);
+      box-shadow: 0 2.75rem 5.5rem -3.5rem rgba($value, 0.28), 0 2rem 4rem -2rem rgba($value, 0.38);
+      border: tint-color($value, 72) 0.125rem solid;
+
+      .t-card-img {
+        background-color: $value;
+        border-radius: unquote("#{randomNums(10, 60)}%");
+
+        &::before {
+          transform: rotate(unquote("#{randomNums(-70, 70)}+deg"));
+          left: unquote("#{randomNums(-2, 2)}+rem");
+          top: unquote("#{randomNums(-2, 2)}+rem");
+        }
+
+        .t-card-img-icons {
+          background-image: $icon;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 3rem 6rem -4.5rem rgba($value, 0.66), 0 2.5rem 4.25rem -1.5rem rgba($value, 0.52);
+
+        .t-card-title {
+          color: darken($value, 10%);
+        }
+      }
+    }
+  }
+}
+
+.t-card {
+  // position: relative;
+
+  .t-card-img {
+    position: absolute;
+    width: $card-img-w;
+    height: $card-img-w;
+    border: $card-img-border;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: inherit;
+      border-radius: inherit;
+      background-color: inherit;
+      opacity: 0.36;
+    }
+
+    .t-card-img-icons {
+      opacity: 0.92;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &:hover {
+    .t-card-title {
+      font-size: 1.75rem;
+      transform: scale(1.05);
+      transition: $transition-base;
+    }
+  }
+
+  .t-card-body {
+    .t-card-list {
+      .t-card-list-item {
+        color: $grey;
+        font-size: 0.875rem;
+
+        &:not(:last-child) {
+
+          margin-bottom: .5rem;
+        }
+      }
+    }
+
+    .t-card-title {
+      position: relative;
+      margin-bottom: 1rem;
+      // padding-bottom: 1rem;
+    }
+  }
+}
+
+.t-card {
+  // scss-docs-start card-css-vars
+  --#{$prefix}card-spacer-y: #{$card-spacer-y};
+  --#{$prefix}card-spacer-x: #{$card-spacer-x};
+  --#{$prefix}card-title-spacer-y: #{$card-title-spacer-y};
+  --#{$prefix}card-border-width: #{$card-border-width};
+  --#{$prefix}card-border-color: #{$card-border-color};
+  --#{$prefix}card-border-radius: #{$card-border-radius};
+  --#{$prefix}card-box-shadow: #{$card-box-shadow};
+  --#{$prefix}card-inner-border-radius: #{$card-inner-border-radius};
+  --#{$prefix}card-cap-padding-y: #{$card-cap-padding-y};
+  --#{$prefix}card-cap-padding-x: #{$card-cap-padding-x};
+  --#{$prefix}card-cap-bg: #{$card-cap-bg};
+  --#{$prefix}card-cap-color: #{$card-cap-color};
+  --#{$prefix}card-height: #{$card-height};
+  --#{$prefix}card-color: #{$card-color};
+  --#{$prefix}card-bg: #{$card-bg};
+  --#{$prefix}card-img-overlay-padding: #{$card-img-overlay-padding};
+  --#{$prefix}card-group-margin: #{$card-group-margin};
+
+  // scss-docs-end card-css-vars
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  // See https://github.t-com/twbs/bootstrap/pull/22740#issuecomment-305868106
+  height: var(--#{$prefix}card-height);
+  word-wrap: break-word;
+  background-color: var(--#{$prefix}card-bg);
+  background-clip: border-box;
+  border: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
+
+  @include border-radius(var(--#{$prefix}card-border-radius));
+  @include box-shadow(var(--#{$prefix}card-box-shadow));
+
+  >hr {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  >.list-group {
+    border-top: inherit;
+    border-bottom: inherit;
+
+    &:first-child {
+      border-top-width: 0;
+
+      @include border-top-radius(var(--#{$prefix}card-inner-border-radius));
+    }
+
+    &:last-child {
+      border-bottom-width: 0;
+
+      @include border-bottom-radius(var(--#{$prefix}card-inner-border-radius));
+    }
+  }
+
+  // Due to specificity of the above selector (`.t-card > .list-group`), we must
+  // use a child selector here to prevent double borders.
+  >.t-card-header+.list-group,
+  >.list-group+.t-card-footer {
+    border-top: 0;
+  }
+}
+
+.t-card-body {
+  // Enable `flex-grow: 1` for decks and groups so that card blocks take up
+  // as much space as possible, ensuring footers are aligned to the bottom.
+  flex: 1 1 auto;
+  padding: var(--#{$prefix}card-spacer-y) var(--#{$prefix}card-spacer-x);
+  color: var(--#{$prefix}card-color);
+}
+
+.t-card-title {
+  margin-bottom: var(--#{$prefix}card-title-spacer-y);
+}
+
+.t-card-subtitle {
+  margin-top: calc(-.5 * var(--#{$prefix}card-title-spacer-y));
+  margin-bottom: 0;
+}
+
+.t-card-text:last-child {
+  margin-bottom: 0;
+}
+
+.t-card-link {
+  &:hover {
+    text-decoration: if($link-hover-decoration==underline, none, null);
+  }
+
+  +.t-card-link {
+    margin-left: var(--#{$prefix}card-spacer-x);
+  }
+}
+
+//
+// Optional textual caps
+//
+
+.t-card-header {
+  padding: var(--#{$prefix}card-cap-padding-y) var(--#{$prefix}card-cap-padding-x);
+  margin-bottom: 0;
+
+  // Removes the default margin-bottom of <hN>
+  color: var(--#{$prefix}card-cap-color);
+  background-color: var(--#{$prefix}card-cap-bg);
+  border-bottom: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
+
+  &:first-child {
+    @include border-radius(var(--#{$prefix}card-inner-border-radius) var(--#{$prefix}card-inner-border-radius) 0 0);
+  }
+}
+
+.t-card-footer {
+  padding: var(--#{$prefix}card-cap-padding-y) var(--#{$prefix}card-cap-padding-x);
+  color: var(--#{$prefix}card-cap-color);
+  background-color: var(--#{$prefix}card-cap-bg);
+  border-top: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
+
+  &:last-child {
+    @include border-radius(0 0 var(--#{$prefix}card-inner-border-radius) var(--#{$prefix}card-inner-border-radius));
+  }
+}
+
+//
+// Header navs
+//
+
+.t-card-header-tabs {
+  margin-right: calc(-.5 * var(--#{$prefix}card-cap-padding-x));
+
+  // stylelint-disable-line function-disallowed-list
+  margin-bottom: calc(-1 * var(--#{$prefix}card-cap-padding-y));
+
+  // stylelint-disable-line function-disallowed-list
+  margin-left: calc(-.5 * var(--#{$prefix}card-cap-padding-x));
+
+  // stylelint-disable-line function-disallowed-list
+  border-bottom: 0;
+
+  .nav-link.active {
+    background-color: var(--#{$prefix}card-bg);
+    border-bottom-color: var(--#{$prefix}card-bg);
+  }
+}
+
+.t-card-header-pills {
+  margin-right: calc(-.5 * var(--#{$prefix}card-cap-padding-x));
+
+  // stylelint-disable-line function-disallowed-list
+  margin-left: calc(-.5 * var(--#{$prefix}card-cap-padding-x));
+
+  // stylelint-disable-line function-disallowed-list
+}
+
+// Card image
+.t-card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: var(--#{$prefix}card-img-overlay-padding);
+
+  @include border-radius(var(--#{$prefix}card-inner-border-radius));
+}
+
+.t-card-img,
+.t-card-img-top,
+.t-card-img-bottom {
+  width: 100%;
+
+  // Required because we use flexbox and this inherently applies align-self: stretch
+}
+
+.t-card-img,
+.t-card-img-top {
+  @include border-top-radius(var(--#{$prefix}card-inner-border-radius));
+}
+
+.t-card-img,
+.t-card-img-bottom {
+  @include border-bottom-radius(var(--#{$prefix}card-inner-border-radius));
+}
+
+//
+// Card groups
+//
+
+.t-card-group {
+
+  // The child selector allows nested `.t-card` within `.t-card-group`
+  // to display properly.
+  >.t-card {
+    margin-bottom: var(--#{$prefix}card-group-margin);
+  }
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    flex-flow: row wrap;
+
+    // The child selector allows nested `.t-card` within `.t-card-group`
+    // to display properly.
+    >.t-card {
+      // Flexbugs #4: https://github.t-com/philipwalton/flexbugs#flexbug-4
+      flex: 1 0 0%;
+      margin-bottom: 0;
+
+      +.t-card {
+        margin-left: 0;
+        border-left: 0;
+      }
+
+      // Handle rounded corners
+      @if $enable-rounded {
+        &:not(:last-child) {
+          @include border-end-radius(0);
+
+          .t-card-img-top,
+          .t-card-header {
+            // stylelint-disable-next-line property-disallowed-list
+            border-top-right-radius: 0;
+          }
+
+          .t-card-img-bottom,
+          .t-card-footer {
+            // stylelint-disable-next-line property-disallowed-list
+            border-bottom-right-radius: 0;
+          }
+        }
+
+        &:not(:first-child) {
+          @include border-start-radius(0);
+
+          .t-card-img-top,
+          .t-card-header {
+            // stylelint-disable-next-line property-disallowed-list
+            border-top-left-radius: 0;
+          }
+
+          .t-card-img-bottom,
+          .t-card-footer {
+            // stylelint-disable-next-line property-disallowed-list
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+    }
+  }
+}

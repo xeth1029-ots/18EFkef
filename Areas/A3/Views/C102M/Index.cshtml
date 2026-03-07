@@ -1,0 +1,134 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A3.Models;
+@model C102MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C102M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.UnitCode)
+
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">報告繳交期限設定</h3>
+                            <p class="bt-section-para">提供五分署可以設定各年度各分署「教學自我審核報告」上傳繳交期限。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.UnitName, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.UnitName, new { @class = "t-form-control ml-4", @disabled = "", @readonly = "" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Year, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Year, new SelectList(Model.Year_list, "Value", "Text", Model.Year), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary" onclick="doNew()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-add"></use>
+                                                    </svg>
+                                                </i>
+                                                新增
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            <div class="form-group page-total" style="text-align:center">查詢成功！共 @Model.Grid.ToCount() 筆資料</div>
+                            @*@Html.Partial("_PagingLink", Model)*@
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="20%">項次</th>
+                                            <th align="left" width="20%">年份</th>
+                                            <th align="left" width="20%">繳交起始日</th>
+                                            <th align="left" width="20%">繳交截止日</th>
+                                            <th align="left" width="20%">功能</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#Year option').removeAttr('selected');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 新增
+    function doNew() {
+        var data = {
+            "Year": $("#Year").val(),
+            "Unit": $("#UnitCode").val()
+        }
+        var url = '@Url.Action("New", "C102M")?' + $.param(data);
+        window.location = url;
+    }
+
+    // 修改
+    function doUpd(Year, Unit) {
+        var data = {
+            "Year": Year,
+            "Unit": Unit
+        }
+        var url = '@Url.Action("Detail", "C102M")?' + $.param(data);
+        window.location = url;
+    }
+
+</script>

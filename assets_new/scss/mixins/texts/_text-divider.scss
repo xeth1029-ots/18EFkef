@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+//  Mixins > Text divider
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin text-divider-smaple($gap: 0.5rem) {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  letter-spacing: 1px;
+  gap: $gap;
+  text-align: center;
+}
+
+// @include text-divider($background:$primary-100, $height:0.125rem);
+@mixin text-divider($background: $primary-100, $height: 0.125rem, $width: 2rem, $gap: 0.5rem) {
+  @include text-divider-smaple($gap: 0.5rem) ;
+
+  &:before {
+    content: "";
+    width: $width;
+    height: $height;
+    background-color: $background;
+    border-radius: $border-radius-sm;
+
+  }
+
+  &:after {
+    content: "";
+    width: $width;
+    height: $height;
+    background-color: $background;
+    border-radius: $border-radius-sm;
+  }
+}
+
+// @include text-divider-lt($background:$primary-100, $height:0.125rem);
+@mixin text-divider-lt($background: $primary-100, $height: 0.125rem, $width: 2rem, $gap: 0.5rem) {
+  @include text-divider-smaple($gap: 0.5rem) ;
+
+  &:before {
+    content: "";
+    width: $width;
+    height: $height;
+    background-color: $background;
+    border-radius: $border-radius-sm;
+  }
+}
+
+// @include text-divider-rt($background:$primary-100, $height:0.125rem);
+@mixin text-divider-rt($background: $primary-100, $height: 0.125rem, $width: 2rem, $gap: 0.5rem) {
+  @include text-divider-smaple($gap: 0.5rem) ;
+
+  &:after {
+    content: "";
+    width: $width;
+    height: $height;
+    background-color: $background;
+    border-radius: $border-radius-sm;
+  }
+}

@@ -1,0 +1,105 @@
+//  Used -->
+// @include px-border-box(
+//   $bd-color: #484872,
+//   $bg-color: #F6F6F6,
+//   $px-width: 32px,
+//   $grid: true,
+//   $grid-line-width: 2px);
+$pixel-width: 1rem; // ４ 的倍數
+$pixel-border-color: #0F0F2F;
+$pixel-inner-bg-color: #fff;
+@mixin px-border-box($bd-color: $pixel-border-color, $bg-color: $pixel-inner-bg-color, $px-width: $pixel-width, $grid: true, $grid-line-width: 1px, $grid-line-color: rgba($white, 0.02), $fixed: false) {
+  @if not $fixed {
+    position: relative;
+  } @else {
+  }
+
+
+    background: linear-gradient($bd-color, $bd-color), linear-gradient(rgba($bd-color, 0.66), rgba($bd-color, 0.66)), linear-gradient($bd-color, $bd-color);
+    background-repeat: no-repeat;
+    background-size: 100% calc(100% - #{$px-width * 2}), calc(100% - #{$px-width}) calc(100% - #{$px-width}), calc(100% - #{$px-width * 2}) 100%;
+    background-position: 0 $px-width, #{$px-width / 2} #{$px-width / 2}, $px-width 0;
+
+    @if $grid == true {
+        &:before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: repeating-linear-gradient(90deg, rgba(white, 0.12), rgba(white, 0.12) $grid-line-width, transparent 0, transparent #{$px-width / 2}), repeating-linear-gradient(0deg, rgba(white, 0.12), rgba(white, 0.12) $grid-line-width, transparent 0, transparent #{$px-width / 2});
+        }
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        width: calc(100% - #{$px-width} + #{$grid-line-width * 2});
+        height: calc(100% - #{$px-width} + #{$grid-line-width * 2});
+        background: linear-gradient($bg-color, $bg-color), linear-gradient(rgba($bg-color, 0.66), rgba($bg-color, 0.66)), linear-gradient($bg-color, $bg-color);
+        background-repeat: no-repeat;
+        background-size: 100% calc(100% - #{$px-width * 2}), calc(100% - #{$px-width}) calc(100% - #{$px-width}), calc(100% - #{$px-width * 2}) 100%;
+        background-position: 0 $px-width, #{$px-width / 2} #{$px-width / 2}, $px-width 0;
+    }
+}
+
+// @include px-shadow-box(
+//   $color: #feebfe,
+//   $width: 15rem,
+//   $height: 12rem,
+//   $size: 1rem
+// );
+@mixin px-shadow-box($color: $dark, $width: 15rem, $height: 12rem, $size: 1rem) {
+    position: relative;
+    background-color: $color;
+    width: $width;
+    height: $height;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: -#{$size / 2};
+        left: -#{$size / 2};
+        width: $size;
+        height: $size;
+        background-color: inherit;
+        box-shadow: $width 0 $color, $width $height $color, 0 $height $color;
+    }
+}
+
+// @include px-corner-bg-box(
+//   $background: #febc14,
+//   $color: rgba(0, 0, 0, 0.52),
+//   $shadow-color: rgba(0, 0, 0, 0.68),
+//   // transparent
+//   $shadow-size: 0.625rem,
+//   $size: 0.5rem,
+//   $outline-size: 0.25rem,
+//   $outline-color-r: #111,
+//   $outline-color-l: #999
+// );
+@mixin px-corner-bg-box($background: #feded7, $color: #fff, $size: 0.5rem, $shadow-size: 0.75rem, $shadow-color: #000, $outline-size: 0.25rem, $outline-color-r: lighten($shadow-color, 20%), $outline-color-l: lighten($outline-color-r, 10%)) {
+    $outer-person: 1.5;
+    $outer: $size / $outer-person - ($shadow-size - $size);
+    $ltx: $size / $outer-person;
+    $lty: $ltx;
+    $rtx: calc(100% - #{$size / $outer-person});
+    $rty: $lty;
+    $rtx-b: calc(100% - #{$outer});
+    $rbx: $rtx;
+    $rby: $rbx;
+    $rbx-b: calc(100% - #{$outer});
+    $rby-b: $rtx-b;
+    $lbx: $ltx;
+    $lby: $rby;
+    $lby-b: $rtx-b;
+
+    background: linear-gradient(to right, $color, $color) $ltx $ltx / #{$size} $size no-repeat, linear-gradient(to right, $shadow-color, $shadow-color) $ltx #{$lty} / $shadow-size $shadow-size no-repeat, linear-gradient(to right, $color, $color) $rtx #{$rty} / $size $size no-repeat, linear-gradient(to right, $shadow-color, $shadow-color) $rtx-b #{$rty} / $shadow-size $shadow-size no-repeat, linear-gradient(to left, $color, $color) $rbx #{$rby} / $size $size no-repeat, linear-gradient(to left, $shadow-color, $shadow-color) $rbx-b #{$rby-b} / $shadow-size $shadow-size no-repeat, linear-gradient(to left, $color, $color) $lbx #{$lby} / $size $size no-repeat, linear-gradient(to left, $shadow-color, $shadow-color) $lbx #{$lby-b} / $shadow-size $shadow-size no-repeat, $background;
+    box-shadow: #{-$outline-size} 0 0 $outline-color-l, 0 #{-$outline-size} 0 $outline-color-l, 0 $outline-size 0 $outline-color-r, $outline-size 0 0 $outline-color-r, #{-$outline-size} $outline-size 0 $outline-color-r;
+}

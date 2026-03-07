@@ -1,0 +1,103 @@
+
+
+
+@charset "utf-8";
+
+// Components Bubbles 
+// --------------------------------------------------
+
+.t-mask-bubble {
+  --r: 1.5rem;
+  --t: 2rem;
+  --s: calc(var(--r) + var(--t));
+
+  margin: calc(-1 * var(--t)) 0;
+  border: solid var(--t) transparent;
+  padding: calc(2 * var(--r)/3);
+  border-radius: var(--s);
+  background: linear-gradient(135deg, $primary, $secondary) border-box;
+  color: $white;
+  --mask:
+    radial-gradient(circle var(--t) at var(--start) 0%,
+    transparent calc(100% - 0.5px), #000 calc(100% + 0.5px)) left var(--start) bottom var(--t)/ var(--s) var(--t) no-repeat border-box,
+    linear-gradient(#000 0 0) padding-box;
+  mask: var(--mask);
+
+  &.t-mask-bubble-left {
+    --start: 0%;
+    place-self: start
+  }
+
+  &.t-mask-bubble-right {
+    --start: 100%;
+    place-self: end
+  }
+}
+
+// <div class="t-talk-bubble">
+//   <div class="t-talk-text">
+//     <p>CSS Talk Bubble configured by classes. Defaults to square shape, no triangle. Height is auto-adjusting to the height of the text.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble left-top">
+//   <div class="t-talk-text">
+//     <p>This one adds a right triangle on the left, flush at the top by using .t-tri-right and .left-top to specify the location.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble left-in">
+//   <div class="t-talk-text">
+//     <p>This t-talk-bubble uses .left-in class to show a triangle on the left slightly indented. Still a blocky square.</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-round btm-left">
+//   <div class="t-talk-text">
+//     <p>And now using .t-round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-left-in">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-right-in-auto">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-left-in-auto">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble t-border btm-right-in">
+//   <div class="t-talk-text">
+//     <p>Now flipped the other way and square. Uses .t-border and .btm-right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble btm-right">
+//   <div class="t-talk-text">
+//     <p>Flush to the bottom right. Uses .btm-right only.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble t-round right-in">
+//   <div class="t-talk-text">
+//     <p>Moving our way back up the right side indented. Uses .t-round and .right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border btm-right-in">
+//   <div class="t-talk-text">
+//     <p>Now flipped the other way and square. Uses .t-border and .btm-right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-round t-border right-top">
+//   <div class="t-talk-text">
+//     <p>And finally on the right flush at the top. Uses .t-round .t-border and .right-top</p>
+//   </div>
+// </div>

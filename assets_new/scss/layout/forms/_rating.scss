@@ -1,0 +1,49 @@
+//
+//  Layout -> rating 
+// --------------------------------------------------
+.rating {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.rating-input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+.rating-input[disabled] {
+  display: none;
+}
+
+.rating-label {
+  padding: 0;
+  margin: 0;
+}
+.rating-label > i, .rating-label > .svg-icon {
+  line-height: 1;
+  color: $lightgrey;
+}
+
+label.rating-label {
+  cursor: pointer;
+}
+
+div.rating-label.checked > i, div.rating-label.checked > .svg-icon,
+label.rating-label > i,
+label.rating-label > .svg-icon {
+  color: $yellow;
+}
+
+.rating-input:checked ~ .rating-label > i, .rating-input:checked ~ .rating-label > .svg-icon {
+  color: $lightgrey;
+}
+
+.rating:hover label.rating-label > i, .rating:hover label.rating-label > .svg-icon {
+  color: $yellow;
+}
+
+label.rating-label:hover ~ .rating-label {
+  color: $lightgrey;
+}
+label.rating-label:hover ~ .rating-label > i, label.rating-label:hover ~ .rating-label > .svg-icon {
+  color: $lightgrey;
+}

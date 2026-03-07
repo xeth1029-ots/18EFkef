@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+// Forms -> controls
+// --------------------------------------------------
+[data-required] {
+  &:after {
+    content: '* ';
+    display: inline-flex;
+    color: $danger;
+  }
+}
+
+
+.t-form-control {
+  text-align: left;
+  text-align-last: left;
+
+  @extend %t-form-control;
+
+
+  &[type="number"] {
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &:hover,
+    &:focus {
+      appearance: number-input;
+    }
+  }
+
+  @at-root select#{&} {
+    appearance: none;
+    @include svg-bg-icon(arrow-bottom, $primary, right 1rem center, 0.75rem 50%);
+
+    cursor: pointer;
+    padding-right: 3.5rem;
+    user-select: none;
+    width: fit-content;
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  &.is-valid {
+    padding-right: 2.75rem;
+    border-color: $success;
+  }
+
+  &.is-invalid {
+    padding-right: 2.75rem;
+    border-color: $danger;
+  }
+}

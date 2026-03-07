@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+/**
+//   Components -> Buttons -> Buttons brands
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+// Buttons Brand Colors
+@each $color,
+$value in $brand-colors {
+  .btn.btn--#{$color} {
+    @include button-variant($value, $value);
+  }
+}

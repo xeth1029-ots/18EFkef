@@ -1,0 +1,20 @@
+//
+//  prototypes -> backgroundsMask 
+// --------------------------------------------------
+
+
+
+.t-bg-mask-bottom {
+  &-af {
+    &:after {
+			@include bg-grad-mask-bottom($h: 15rem, $color: $white)
+    }
+  }
+
+  &-bf {
+    &:before {
+			@include bg-grad-mask-bottom($h: 15rem, $color: $white)
+    }
+  }
+
+}

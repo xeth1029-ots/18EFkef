@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//  Mixins > InPuts
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin placeholder-theme($styles) {
+    @each $pseudo in $pseudo-phprefix {
+        @at-root #{&}#{$pseudo} {
+            @each $key, $value in $styles {
+                #{$key}: #{$value};
+            }
+        }
+    }
+};
+
+@mixin placeholder {
+    @each $pseudo in $pseudo-phprefix {
+        @at-root #{&}#{$pseudo} {
+            @content;
+        }
+    }
+}
+
+@mixin fieldset {
+    fieldset[disabled] & {
+        @content;
+    }
+}

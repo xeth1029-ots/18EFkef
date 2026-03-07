@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+//   Mixins > wraps
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin overflow-wrap($wrap: break-word) {
+  word-wrap: $wrap;
+  // stylelint-disable-next-line order/properties-alphabetical-order
+  overflow-wrap: $wrap;
+}

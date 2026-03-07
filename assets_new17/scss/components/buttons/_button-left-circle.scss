@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+//   Components -> Buttons -> Buttons circles
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+// 
+@if $enable-custom-buttons-left-circle==true {
+  .btn--circle {
+    @include button-circle-variant;
+  }
+}

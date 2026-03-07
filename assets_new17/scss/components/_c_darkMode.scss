@@ -1,0 +1,57 @@
+%float-btn {
+  cursor: pointer;
+  width: $go-icon-size-box;
+  height: $go-icon-size-box;
+  position: fixed;
+  right: $fixedAreaR;
+  border-radius: 50%;
+  z-index: $float-z-index;
+  transition: $transition;
+  user-select: none;
+}
+
+.t-float-change-mode {
+  bottom: $change-mode-bottom;
+  background: $dark-background;
+  box-shadow: $dark-icon-box-shadow;
+
+  @extend %float-btn;
+
+  &:hover,
+  &:focus:hover {
+    opacity: 0.6;
+
+    &:before {
+      content: '';
+      border-radius: inherit;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: $dark-icon-box-shadow;
+    }
+  }
+
+  svg {
+    user-select: none;
+
+    @include absolute-center;
+
+    width: $go-icon-size;
+    height: $go-icon-size;
+    transition: $float-transition;
+
+    > * {
+      transition: $float-transition;
+      user-select: none;
+    }
+  }
+}
+
+[data-theme="dark"] {
+  .t-float-change-mode {
+    background: $light-background;
+    box-shadow: $light-shadow;
+  }
+}

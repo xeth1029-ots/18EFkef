@@ -1,0 +1,54 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C104MViewModel
+
+@if (Model.Detail.Attacheds != null && Model.Detail.Attacheds.Count() > 0)
+{
+    for (int i = 0; i < Model.Detail.Attacheds.Count; i++)
+    {
+        var item = Model.Detail.Attacheds[i];
+        string tmpStyle_tr = (item.isActive) ? "" : "style=opacity:.66";
+        string tmpStyle_BtnDelete = (item.isActive) ? "" : "style=display:none";
+        string tmpStyle_BtnCancel = (item.isActive) ? "style=display:none" : "";
+
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].isActive, new { id = "Model_Detail_Attacheds_isActive_" + item.Seq })
+        @*@Html.HiddenFor(m => m.Detail.Attacheds[i].isNewFile)*@
+        @*@Html.HiddenFor(m => m.Detail.Attacheds[i].FILE)*@
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].ROWID)
+
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].Seq)
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].MsgPostSeq)
+
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].FileNameOrg)
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].FileNameNew)
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].FileNameType)
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].UpdatedAccount)
+        @Html.HiddenFor(m => m.Detail.Attacheds[i].UpdatedDatetime)
+
+        <tr id="Model_Detail_Attacheds_@item.Seq" @tmpStyle_tr>
+            <td>@item.ROWID</td>
+            <td>@item.FileNameOrg</td>
+            <td>@item.FileNameNew</td>
+            <td>@item.FileNameType</td>
+            <td>@item.UpdatedDatetime_Name</td>
+            <td>
+                <button id="Model_Detail_Attacheds_BtnDelete_@item.Seq"
+                        type="button" class="btn btn-danger"
+                        onclick="doAttachedsDelete('@item.Seq', '@item.ROWID')" @tmpStyle_BtnDelete>
+                    刪除
+                </button>
+                <button id="Model_Detail_Attacheds_BtnCancel_@item.Seq"
+                        type="button" class="btn btn--secondary"
+                        onclick="doAttachedsCancel('@item.Seq', '@item.ROWID')" @tmpStyle_BtnCancel>
+                    復原
+                </button>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td style="text-align: center; color: #a94442;" colspan="100">尚無上傳檔案</td>
+    </tr>
+}

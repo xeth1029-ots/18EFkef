@@ -1,0 +1,584 @@
+@charset "utf-8";
+
+//  Prototypes -> Timeline
+// --------------------------------------------------
+
+.t-timeline {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .t-timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    flex: 1 1 auto;
+    width: 100%;
+    transition: $transition;
+    padding-bottom: 1rem;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &:last-child {
+      .t-timeline-marker {
+        &:after {
+          // content: none;
+        }
+      }
+    }
+
+    &:not(.t-period):hover {
+      .t-timeline-content {
+        background-color: $grey-50;
+        transition: $transition;
+        border-radius: $border-radius;
+      }
+
+      .t-timeline-marker:before {
+        background: transparent;
+        border: 0.1875rem solid $primary;
+      }
+    }
+  }
+
+  .t-timeline-info {
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .0625rem;
+    margin: 0 0 .5rem 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: $lightgrey;
+
+    &.t-timeline-float {
+      position: absolute;
+      right: 0.75rem;
+      top: 0.5rem;
+    }
+  }
+
+  .t-timeline-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1rem;
+
+    &:before {
+      background: $primary-200;
+      border: .1875rem solid transparent;
+      border-radius: 100%;
+      content: "";
+      display: block;
+      height: 1rem;
+      position: absolute;
+      top: .25rem;
+      left: 0;
+      width: 1rem;
+      transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+    }
+
+    &:after {
+      content: "";
+      width: .1875rem;
+      background: $gray-100;
+      display: block;
+      position: absolute;
+      top: 1.25rem;
+      bottom: 0;
+      left: .375rem;
+    }
+  }
+
+  .t-timeline-content {
+    padding: 0.5rem 0.75rem;
+
+    .t-timeline-title {
+      font-size: 1rem;
+      margin-bottom: .375rem;
+    }
+
+    .t-para {
+      color: $gray-500;
+    }
+
+    .t-list-txts {
+      color: $gray-700;
+    }
+  }
+
+  .t-period {
+    padding: 0;
+
+    .t-timeline-info {
+      display: none;
+    }
+
+    .t-timeline-marker {
+      &:before {
+        background: transparent;
+        content: "";
+        width: 1rem;
+        height: auto;
+        border: none;
+        border-radius: 0;
+        top: 0;
+        bottom: 1.875rem;
+        position: absolute;
+        border-top: .1875rem solid $gray-100;
+        border-bottom: .1875rem solid $gray-100;
+      }
+
+      &:after {
+        content: "";
+        height: 2rem;
+        top: auto;
+      }
+    }
+
+    .t-timeline-content {
+      padding: 2.5rem 0 4.375rem;
+    }
+
+    .t-timeline-title {
+      margin: 0;
+    }
+  }
+
+  .t-timeline-separator {
+    .t-timeline-content {
+      border-top: 0.25rem solid $primary-200;
+
+      .t-definition-list {
+        margin-bottom: 0;
+
+        .t-definition-term {
+          flex: 0 0 6rem;
+        }
+      }
+    }
+  }
+
+  &.t-timeline-split {
+    @media (min-width: 768px) {
+      .t-timeline {
+        display: table;
+      }
+
+      .t-timeline-item {
+        display: table-row;
+        padding: 0;
+      }
+
+      .t-timeline-info,
+      .t-timeline-marker,
+      .t-timeline-content,
+      .t-period .t-timeline-info {
+        display: table-cell;
+        vertical-align: top;
+      }
+
+      .t-timeline-marker {
+        position: relative;
+      }
+
+      .t-timeline-content {
+        padding-left: 1.875rem;
+      }
+
+      .t-timeline-info {
+        padding-right: 1.875rem;
+      }
+
+      .t-period .t-timeline-title {
+        position: relative;
+        left: 2.875rem;
+      }
+    }
+  }
+
+  &.t-timeline-centered {
+    @extend .t-timeline-split;
+
+    @media (min-width: 992px) {
+      &,
+      .t-timeline-item,
+      .t-timeline-info,
+      .t-timeline-marker,
+      .t-timeline-content {
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+
+      .t-timeline-item {
+        padding-bottom: 2.5rem;
+        overflow: hidden;
+      }
+
+      .t-timeline-marker {
+        position: absolute;
+        left: 50%;
+        margin-left: -.46875rem;
+      }
+
+      .t-timeline-info,
+      .t-timeline-content {
+        width: 50%;
+      }
+
+      > .t-timeline-item:nth-child(odd) .t-timeline-info {
+        float: left;
+        text-align: right;
+        padding-right: 1.875rem;
+      }
+
+      > .t-timeline-item:nth-child(odd) .t-timeline-content {
+        float: right;
+        text-align: left;
+        padding-left: 1.875rem;
+      }
+
+      > .t-timeline-item:nth-child(even) .t-timeline-info {
+        float: right;
+        text-align: left;
+        padding-left: 1.875rem;
+      }
+
+      > .t-timeline-item:nth-child(even) .t-timeline-content {
+        float: left;
+        text-align: right;
+        padding-right: 1.875rem;
+      }
+
+      > .t-timeline-item.t-period .t-timeline-content {
+        float: none;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .t-timeline-item.t-period {
+        padding: 3.125rem 0 5.625rem;
+      }
+
+      .t-period .t-timeline-marker:after {
+        height: 1.875rem;
+        bottom: 0;
+        top: auto;
+      }
+
+      .t-period .t-timeline-title {
+        left: auto;
+      }
+    }
+  }
+
+  .t-marker-outline {
+    .t-timeline-marker {
+      &:before {
+        background: transparent;
+        border-color: $primary-200;
+      }
+    }
+
+    .t-timeline-item:hover .t-timeline-marker:before {
+      background: $primary-200;
+    }
+  }
+}
+
+// <ul class="t-timeline">
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>March 12, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque.</p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>March 23, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item t-period">
+//                     <div class="t-timeline-info"></div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h2 class="t-timeline-title">April 2016</h2>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>April 02, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>April 28, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                 </ul>
+
+//                 <ul class="t-timeline t-timeline-split">
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>March 12, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque.</p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>March 23, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item period">
+//                     <div class="t-timeline-info"></div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h2 class="t-timeline-title">April 2016</h2>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>April 02, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>April 28, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                 </ul>
+//                 <ul class="t-timeline t-timeline-centered">
+//                   <li class="t-timeline-item t-marker-outline ">
+//                     <div class="t-timeline-info">
+//                       <span>March 12, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque.</p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>March 23, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item period">
+//                     <div class="t-timeline-info"></div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h2 class="t-timeline-title">April 2016</h2>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>April 02, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                   <li class="t-timeline-item">
+//                     <div class="t-timeline-info">
+//                       <span>April 28, 2016</span>
+//                     </div>
+//                     <div class="t-timeline-marker"></div>
+//                     <div class="t-timeline-content">
+//                       <h3 class="t-timeline-title">Event Title</h3>
+//                       <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+//                         eu pede mollis pretium. Pellentesque ut neque. </p>
+//                     </div>
+//                   </li>
+//                 </ul>
+
+// // Base
+// .t-timeline {
+//   // Item
+//   .t-timeline-item {
+//     position: relative;
+//     padding: 0;
+//     margin: 0;
+//     display: flex;
+//     align-items: flex-start;
+
+//     &:last-child {
+//       .t-timeline-line {
+//         bottom: 100%;
+//       }
+//     }
+//   }
+
+//   // Line
+//   .t-timeline-line {
+//     display: block;
+//     content: " ";
+//     justify-content: center;
+//     position: absolute;
+//     z-index: 0;
+//     left: 0;
+//     top: 0;
+//     bottom: 0;
+//     transform: translate(50%);
+//     border-left-width: 1px;
+//     border-left-style: dashed;
+//     border-left-color: $gray-300;
+//   }
+
+//   // Icon
+//   .t-timeline-icon {
+//     z-index: 1;
+//     flex-shrink: 0;
+//     margin-right: 1rem;
+//   }
+
+//   // Content
+//   .t-timeline-content {
+//     width: 100%;
+//     overflow: auto;
+//     margin-bottom: 1.5rem;
+//   }
+
+//   // Vertical center
+//   &.t-timeline-center {
+//     .t-timeline-item {
+//       align-items: center;
+
+//       &:first-child {
+//         .t-timeline-line {
+//           top: 50%;
+//         }
+//       }
+
+//       &:last-child {
+//         .t-timeline-line {
+//           bottom: 50%;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .t-timeline-label {
+//   position: relative;
+
+//   $label-width: 50px;
+
+//   &:before {
+//     content: '';
+//     position: absolute;
+//     left: $label-width + 1px;
+//     width: .1875rem;
+//     top: 0;
+//     bottom: 0;
+//     background-color: $gray-200;
+//   }
+
+//   //
+//   .t-timeline-item {
+//     display: flex;
+//     align-items: flex-start;
+//     position: relative;
+//     margin-bottom: 1.7rem;
+
+//     &:last-child {
+//       margin-bottom: 0;
+//     }
+//   }
+
+//   .t-timeline-label {
+//     width: $label-width;
+//     flex-shrink: 0;
+//     position: relative;
+//     color: $gray-800;
+//   }
+
+//   .t-timeline-badge {
+//     flex-shrink: 0;
+//     background: $body-bg;
+//     width: 1rem;
+//     height: 1rem;
+//     border-radius: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     z-index: 1;
+//     position: relative;
+//     margin-top: 1px;
+//     margin-left: -0.5rem;
+//     padding: .1875rem !important;
+//     border: 6px solid $body-bg !important;
+
+//     span {
+//       display: block;
+//       border-radius: 100%;
+//       width: 6px;
+//       height: 6px;
+//       background-color: $gray-200;
+//     }
+//   }
+
+//   .t-timeline-content {
+//     flex-grow: 1;
+//   }
+// }

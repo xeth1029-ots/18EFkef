@@ -1,0 +1,60 @@
+// stylelint-disable declaration-no-important
+
+// Visibility
+
+
+@mixin invisible($visibility) {
+  visibility: $visibility !important;
+}
+
+$transition-visually : .5s height ease,.5s max-height ease,.5s opacity ease, 0s visibility ease;
+
+
+@mixin visually-hidden($max-height: 0, $height: 0, $width: 0, $opacity: 0) {
+  display: block;
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: hidden;
+  visibility: hidden;
+  transition: $transition-visually;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  @include opacity(0);
+}
+
+@mixin visually-visible($max-height: 40rem, $height: auto, $width: auto, $opacity: 1) {
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: visible;
+  visibility: visible;
+  transition: $transition-visually;
+  @include opacity(1);
+}
+
+@mixin visually-hidden-card($max-height: 0, $height: 0, $width: 0, $opacity: 0) {
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: hidden;
+  visibility: hidden;
+  transition: $transition-visually;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  transform: rotate(-30deg);
+  @include opacity(0);
+}
+
+@mixin visually-visible-card($max-height: 40rem, $height: auto, $width: auto, $opacity: 1) {
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: visible;
+  visibility: visible;
+  transition: $transition-visually;
+  transform: rotate(0deg);
+  @include opacity(1);
+}

@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+@mixin wave-svg($color1, $color2, $color3) {
+  background-image: t-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cpath fill='#{$color1}' d='m0 492 180 10 180 12 180-10 180 10 180-8v95H0Z'/%3E%3Cpath fill='#{$color2}' d='m0 544 180 1 180 11 180 3 180-24 180-3v69H0Z'/%3E%3Cpath fill='#{$color3}' d='m0 561 180 18 180-8 180 5 180-27 180 32v20H0Z'/%3E%3C/svg%3E"));
+}
+
+@mixin mask-grid($size: 1rem, $color: $white, $line: $grey-700) {
+  background-size: $size $size;
+  background-position: $size $size;
+  mask-image: linear-gradient(0deg, rgba($color, 0.08), rgba($color, 0.48));
+  background-image: t-svg(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='#{$line}'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"));
+}
+
+@mixin blobs-v1($size: cover, $color1: $dark, $color2: $primary) {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $size;
+  background-image: t-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1536 450'%3E%3Cpath stroke='${$color1}' stroke-linecap='square' stroke-linejoin='bevel' stroke-width='200' d='m100 356 43-217 43.1 237 43-339 43.1 169 43-29 43 138 43.1-257 43 228 43.1-140 43-17 43.1 121 43 70 43.1-263 43 114 43.1 210 44.6-312 43 141 43 140 43.1-166 40.8-88 43 48 45.4 219 43-319 43 253 43.1-163 43 13 43.1 15 43 154 43.1-61 43 158L1436 92'/%3E%3Cpath stroke='#{$color2}' stroke-linecap='square' stroke-linejoin='bevel' stroke-width='130' d='m100 356 43-217 43.1 237 43-339 43.1 169 43-29 43 138 43.1-257 43 228 43.1-140 43-17 43.1 121 43 70 43.1-263 43 114 43.1 210 44.6-312 43 141 43 140 43.1-166 40.8-88 43 48 45.4 219 43-319 43 253 43.1-163 43 13 43.1 15 43 154 43.1-61 43 158L1436 92'/%3E%3C/svg%3E"));
+}
+
+@mixin blobs-v2($size: cover, $color1: $dark, $color2: $grey-900, $color3: $grey-800) {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $size;
+  background-image: t-svg(url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' display='block' viewBox='0 0 1440 900'%3E%3Cpath fill='${$color1}' d='M0 0h1440v900H0z'/%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' x2='100%25' y1='0%25' y2='0%25'%3E%3Cstop offset='15%25' stop-color='${$color2}'/%3E%3Cstop offset='90%25' stop-color='${$color1}'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0%25' x2='100%25' y1='0%25' y2='0%25'%3E%3Cstop offset='5%25' stop-color='${$color2}'/%3E%3Cstop offset='50%25' stop-color='${$color3}'/%3E%3Cstop offset='85%25' stop-color='${$color2}'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cdefs%3E%3ClinearGradient id='c' x1='0%25' x2='100%25' y1='0%25' y2='0%25'%3E%3Cstop offset='15%25' stop-color='${$color1}'/%3E%3Cstop offset='95%25' stop-color='${$color2}'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23a)' d='m0 664 60-14.3c60-14.4 180-43 300-39.2 120 3.8 240 40.2 360 60.8 120 20.7 240 25.7 360 15.2s240-36.5 300-49.5l60-13V1H0z'/%3E%3Cpath fill='url(%23b)' d='m0 503 60-17c60-17 180-51 300-45s240 52 360 44.2c120-7.9 240-69.5 360-109.4 120-39.8 240-57.8 300-66.8l60-9V1H0z'/%3E%3Cpath fill='url(%23c)' d='m0 304 60 1.3c60 1.4 180 4 300-17.1C480 267 600 222 720 191.3c120-30.6 240-47 360-25s240 82.4 300 112.5l60 30.2V1H0z'/%3E%3C/svg%3E"));
+}

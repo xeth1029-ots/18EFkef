@@ -1,0 +1,454 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@using WKEFSERVICE.Commons
+@using Turbo.ReportTK
+@using Newtonsoft.Json
+@{
+    ViewBag.HTitle = "勞動部勞動力發展署關鍵就業力課程";
+    ViewBag.HTitle2 = "歡迎光臨 關鍵就業力課程";
+    // 無障礙-首頁抬頭文字
+    string s_MainTitle = "勞動部勞動力發展署-關鍵就業力課程";
+
+    // 判斷是否由 ReportTK.Controller 查詢檢核失敗導過來, 抓取錯誤訊息
+    Report report = (Report)Session[Turbo.Controllers.ReportController.REPORT_SESSION_KEY];
+    var reportErrMessage = string.Empty;
+    var reportParms = new System.Collections.Hashtable();
+    if (report != null)
+    {
+        if (!string.IsNullOrEmpty(report.ResultMessage))
+        {
+            reportErrMessage = report.ResultMessage;
+            //讀取後清空 report.ResultMessage
+            report.ResultMessage = "";
+        }
+        if (report.QueryParms != null && report.QueryParms.Count > 0)
+        {
+            foreach (string key in report.QueryParms.Keys)
+            {
+                reportParms[key] = report.QueryParms[key];
+            }
+            //讀取後清空 report.QueryParms
+            report.QueryParms.Clear();
+        }
+        // 回存 Report Session
+        Session[Turbo.Controllers.ReportController.REPORT_SESSION_KEY] = report;
+    }
+
+    //嚐試取得 HTTP 請求導向來源功能編號
+    var redirectFromPRGID2 = RedirectToResult.GetRedirectFromLabel(this.Request);
+
+    //取得目前程式功能模組路徑及名稱顯示資訊
+    SessionModel sm = SessionModel.Get();
+    //Session["USERNAME"] = sm.UserInfo.User.username;
+
+    // 無障礙-首頁抬頭文字
+    string homeTitle = "";
+    string ConfigModelWKEF = (ConfigModel.WKEF == "") ? "20221128" : ConfigModel.WKEF;
+    var tmpStr = this.Request.FilePath.TONotNullString().Replace(ConfigModelWKEF, "").Split('/');
+    if (tmpStr.ToCount() >= 3)
+    {
+        if (tmpStr[1] == "Home")
+        {
+            if (tmpStr[2] == "SiteGuide") { homeTitle = "-網站導覽"; }
+            if (tmpStr[2] == "Footer_Page1") { homeTitle = "-政府網站資訊開放宣告"; }
+            if (tmpStr[2] == "Footer_Page2") { homeTitle = "-隱私權及安全政策"; }
+            if (tmpStr[2] == "Login") { homeTitle = "-登入"; }
+            if (tmpStr[2] == "ForgetPwd") { homeTitle = "-忘記密碼"; }
+            if (tmpStr[2] == "MailPasswordChange") { homeTitle = "-變更密碼"; }
+            if (tmpStr[2] == "PwdChange") { homeTitle = "-變更密碼"; }
+            if (tmpStr[2] == "VCodeAudio") { homeTitle = "-圖形驗證碼語音撥放"; }
+        }
+        else
+        {
+            //if (tmpStr[2] == "C101M") { homeTitle = "-課程師資介紹"; }
+            if (tmpStr[2] == "C101M")
+            {
+                if (tmpStr.ToCount() >= 4)
+                {
+                    if (tmpStr[3] == "Index") { homeTitle = "-搜尋師資"; }
+                    else if (tmpStr[3] == "Detail") { homeTitle = "-師資介紹"; }
+                    else { homeTitle = "-課程師資介紹"; }
+                }
+                else { homeTitle = "-搜尋師資"; }
+            }
+            if (tmpStr[2] == "C102M") { homeTitle = "-訊息公告"; }
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <title>@s_MainTitle@{}@homeTitle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=8,9,edge,chrome=1">
+    <meta name="google-site-verification" content="xO1rl3yyV9pA8bYEEbsrQHV6bsvYiN-OmygfyITWAyQ">
+    <meta name="description" content="@s_MainTitle@{}@homeTitle">
+    <meta name="keywords" content="@s_MainTitle@{}@homeTitle">
+    <meta name="author" content="東柏資訊">
+    <meta name="copyright" content="本網頁著作權屬勞動力發展署所有">
+    <meta name="robots" content="all">
+    <meta name="apple-touch-fullscreen" content="yes" />
+
+    @*antiClickjack*@
+    <style id="antiClickjack" type="text/css">
+        html { display: none; }
+        body { display: none !important; background-color: #ffffff; }
+    </style>
+    <script type="text/javascript">
+        //解決不支援 X-Frame-Options設定，需額外判斷
+        //if (top != self) { top.location = self.location; }
+        if (self === top || self == top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            if (antiClickjack) { antiClickjack.parentNode.removeChild(antiClickjack); }
+            document.documentElement.style.display = 'block';
+        }
+        else {
+            top.location = self.location;
+        }
+        if (parent.document.frames != undefined && parent.document.frames.length != 0) {
+            top.location.replace(self.location);
+        }
+    </script>
+
+    @Styles.Render("~/Content/owlcarousel")
+    @Styles.Render("~/Content/FontBootstrap")
+    @Styles.Render("~/Content/FontBootstrapTable")
+    @Styles.Render("~/Content/main")
+    @Styles.Render("~/Content/assets_new_css")
+    @Scripts.Render("~/bundles/FrontBootstrapScript")
+    @Scripts.Render("~/bundles/FrontOwlScript")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/assets_new_js")
+
+    @*<script>(function (d) { var config = { kitId: 'soy4top', scriptTimeout: 3000, async: true }, h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s) })(document);</script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+
+        @*2019-01-16 無障礙檢測：add 按esc鍵關閉彈跳視窗*@
+        var app = {
+            alertWindow: null,
+            alertWindowCallback: [], // function[]
+            confirmWindow: null,
+            confirmWindowCallback: [], // function[]
+        };
+
+        @* 前一個頁面最後錯誤或結果訊息 *@
+        var lastErrorMessage = '@Html.Raw(sm.LastErrorMessage)';
+        var lastResultMessage = '@Html.Raw(sm.LastResultMessage)';
+        var redirectUrl = '@Html.Raw(sm.RedirectUrlAfterBlock)';
+        var reportErrMessage = '@Html.Raw(reportErrMessage)';
+
+        function RedirectAfterPopup(redirectUrlPost) {
+            if ((redirectUrlPost != undefined) && (redirectUrlPost != "")) { redirectUrl = redirectUrlPost; }
+            if (redirectUrl.length > 0) {
+                @*有指定 RedirectUrlAfterBlock, 進行重導動作 *@
+                var form = $("form[name=RedirAfterBlockResult]");
+                var p = redirectUrl.indexOf("?");
+                if (p > 0) {
+                    var parms = redirectUrl.substring(p + 1).split("&");
+                    redirectUrl = redirectUrl.substring(0, p);
+                    for (var i = 0; i < parms.length; i++) {
+                        var ptoken = parms[i].split("=");
+                        if (ptoken.length == 2) {
+                            var input = document.createElement("input");
+                            $(input).attr("type", "hidden");
+                            $(input).attr("name", ptoken[0]);
+                            $(input).attr("value", ptoken[1]);
+                            form.append(input);
+                        }
+                        else {
+                            debugTrace("RedirectUrlAfterBlock: parameter syntax error '" + parms[i] + "'");
+                        }
+                    }
+                }
+                form.attr("action", redirectUrl);
+                form.submit();
+            }
+            else {
+                //20180530 加入使用 HTTP Get 方式導向指定網址
+                redirectUrl = "@Html.Raw(sm.RedirectUrlAfterBlockViaGet)";
+                if (redirectUrl.length > 0) location.href = redirectUrl;
+            }
+        }
+
+        $(document).ready(function () {
+            @* blockUI 引用的 loading image // globalSetting.processingImg = "@Url.Content("~/images/processing.gif")";*@
+            @*Report 查詢導回來時的各個查詢條件 binding*@
+            var reportParms = $.parseJSON('@Html.Raw(JsonConvert.SerializeObject(reportParms))');
+            $.each(reportParms, function (key, value) {
+                $("input[name$='" + key + "']")
+                    .each(function (idx) {
+                        var name = $(this).attr("name");
+                        if (name == key || name.lastIndexOf("." + key) > -1) {
+                            debugTrace(this);
+                            $(this).val(value);
+                        }
+                    })
+                    .trigger('blur');
+                $("select[name$='" + key + "']")
+                    .each(function (idx) {
+                        var name = $(this).attr("name");
+                        if (name = key || name.lastIndexOf("." + key) > -1) {
+                            debugTrace(this);
+                            $(this).val(value);
+                        }
+                    })
+                    .trigger('change');
+            });
+
+            @* 前一個頁面最後錯誤或結果訊息 popup 處理*@
+            if (lastErrorMessage) {
+                blockAlert(lastErrorMessage, "錯誤訊息", function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else if (lastResultMessage) {
+                blockMessage(lastResultMessage, null, function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else if (reportErrMessage) {
+                //報表核檢或結果訊息
+                blockAlert(reportErrMessage, "錯誤訊息", function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else {
+                @* 前一個表單 Post 後的 Validation Summary 訊息顯示 *@
+                var IsValid = '@(ViewData.ModelState.IsValid)';
+                var validationMsg = $("#ValidationSummary").html();
+                if (IsValid == 'False' && validationMsg) {
+                    blockMessage(validationMsg, "錯誤訊息", function () {
+                        RedirectAfterPopup()
+                    });
+                }
+            }
+
+            @* 設定  div[class='wrap'] 的 min-height *@
+            $("div.wrap").css("min-height",
+                $("div.container-fluid").innerHeight()
+                - $("div.header").outerHeight()
+                - $("div.type-bar").outerHeight() + 200
+                );
+        });
+
+    </script>
+    <script type="text/javascript">
+        @*2019-01-16 無障礙檢測：add 按esc鍵關閉彈跳視窗*@
+        $(document).on('keyup', function (e) {
+            if (app && app.confirmWindow) {  // app.confirmWindow in global.js: blockMessage function
+                if (e.keyCode === 27) { // 如果按下esc
+                    console.log('confirm escape press');
+                    app.confirmWindow.close();
+                }
+            }
+            if (app && app.alertWindow) {  // app.alertWindow in global.js: blockMessage function
+                if (e.keyCode === 27) { // 如果按下esc
+                    console.log('alert escape press');
+                    app.alertWindow.close();
+                }
+            }
+        });
+
+        $(function () {
+            //主功能選單focus事件，要能關掉其它功能子選項已開的狀態
+            $("a.dropdown-toggle").on("focus", function () {
+                var li = $(this).closest("li");
+                var datarole = li.attr("data-role");
+                //$(this).trigger("click");
+                //$(this).dropdown("toggle");
+                //移除所有存在開啟子選單的行為
+                //$("li.dropdown.open").removeClass("open");
+                //重新設定所在主選單的開啟子選單區塊事件
+                //if (!$(li).hasClass("open")) {
+                //    li.addClass("open");
+                //}
+            });
+
+            //主功能選單click事件
+            $("a.dropdown-toggle").on("click", function () {
+                var li = $(this).closest("li");
+                //移除所有存在開啟子選單的行為
+                //$("li.dropdown.open").removeClass("open");
+                //重新設定所在主選單的開啟子選單區塊事件
+                /*if (!$(li).hasClass("open")) {
+                    li.addClass("open");
+                }*/
+            });
+
+            //2019-02-25 無障礙修正 5.1內容的所有功能都能透過鍵盤介面來操作，而且不能額外要求在限定時間內完成按鍵操作
+            //EV1050100：提供由鍵盤觸發的事件處理程式
+            //使用鍵盤操作時，游標遊走至主選單按Enter鍵後雖會展開次選單，但當游標跳離後，子選單並未收合或隱藏
+            //從功能表區（Q&A）tab到下一個非功能表區時，要移除功表開啟的狀態
+            $("a.left.carousel-control").on("focus", function () {
+                $("li.dropdown.open").removeClass("open");
+            });
+        });
+    </script>
+    <style type="text/css">
+        .open-datepicker { height: 100%; }
+        .disabled_C { pointer-events: none; }
+        /*2019-01-08 無障礙檢測：聚焦當前物件(加粗邊框)*/
+        /* border: 0.17em dashed; border-color: #0000ff; */
+        input:focus, a:focus, select:focus, textarea:focus, button:focus, .form-control:focus, .dropdown-toggle:focus { outline-style: dashed; outline-color: #0000ff; outline-width: 3px; }
+        .aBanner { display: block; }
+            .alogo:focus, .aBanner:focus { border: 3px dashed; border-color: #0000ff; }
+        .carousel-control:focus { outline-style: dashed; outline-color: #0000FF; outline-width: 10px; }
+        .zero-font-margin { font-size: 0em; margin: 0; }
+        .loading-mask { display: none; text-align: center; padding-top: 10px; }
+        .processing-text { text-align: center; height: 42px; color: burlywood; }
+        .hidden { display: none; }
+    </style>
+</head>
+
+<body>
+    <div>@RenderHeaderNoScriptBloack()</div>
+    <h1 class="zero-font-margin">@ViewBag.HTitle</h1>
+    <h2 class="zero-font-margin">@ViewBag.HTitle2</h2>
+    <ht id="web" class="t-wrapper">
+        <!--header-->
+        @Html.Partial("_MainHeader")
+        <!-- header end -->
+        <!-- main start -->
+        @RenderBody()
+
+        @Html.Partial("_DatePickerFrontTW")
+        <!-- main end -->
+        <!--footer start -->
+        @Html.Partial("_Footer")
+        <!--footer end -->
+
+        @Html.Partial("_CommonDialog")
+
+        <!-- Validation Summary -->
+        <div class="hide" id="ValidationSummary">@Html.ValidationSummary()</div>
+
+        <form name="RedirAfterBlockResult" action="" method="POST"></form>
+
+        <!-- Loading Mask -->
+        <div id="loadingMask" class="loading-mask">
+            <img src="~/images/processing.gif" width="90" alt="processing" /><br />
+            <div class="processing-text">處理中...</div>
+        </div>
+
+        <!-- SVG Symbols -->
+        @*<img src="~/images/ac368bfe-d78c-47d0-be33-18d89ab5e551.svg" />*@
+        @Html.Raw(File.ReadAllText(Server.MapPath("~/images/ac368bfe-d78c-47d0-be33-18d89ab5e551.svg")))
+
+        <!-- ChangeMode 黑白切換 -->
+        <!-- <div class="t-float-change-mode" id="tuChangeMode"></div> -->
+        <!-- Scrolltop -->
+        @Html.Partial("_Scrolltop1")
+        <script>
+            // var output = document.querySelector("#output");
+            // var src = document.querySelector("#imas");
+            // localBlur(src, 10, [76,40,360,240], output);
+
+            // imagesLazyLoad("img[data-src]")
+            // Scroll Fixed Header 未封裝 判斷滾動方向
+            headerScrollFunc('tHeader');
+
+            // localBlur(source, 10, [76,40,360,240], output);
+
+            function headerScrollFunc(id) {
+
+                const header = document.getElementById(id);
+                const options = {
+                    fixClass: 'is-fix',
+                    hideClass: 'is-hide',
+                    showClass: 'is-show',
+                    showDelay: 500
+                };
+
+                if (!header) { return false }
+                options.startPosi = 0;
+                options.upFlg = false;
+                options.setTimeoutFlg = false;
+                options.setTimeoutId = 0;
+
+                window.addEventListener('resize', function () {
+                    headerFix(options);
+                });
+                window.addEventListener('scroll', function () {
+                    headerFix(options);
+                });
+
+
+                function headerFix(options) {
+
+                    const headerBasePosi = 0;
+                    const headerFixPosi = header.clientHeight;
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const fixClass = options.fixClass;
+                    const showClass = options.showClass;
+                    const hideClass = options.hideClass;
+
+                    if (scrollTop > options.startPosi) {
+                        options.upFlg = false;
+                        clearTimeout(options.setTimeoutId);
+                        options.setTimeoutFlg = false;
+
+                        if (scrollTop > headerFixPosi) {
+                            header.classList.add(fixClass);
+                        }
+                        const pageHeight = document.documentElement.scrollHeight;
+                        const scrollBottom = window.innerHeight + scrollTop;
+                        if (pageHeight <= scrollBottom) {
+                            headerShow(hideClass, showClass);
+                        } else {
+                            if (header.classList.contains(showClass)) {
+                                headerHide(hideClass, showClass);
+                            }
+                        }
+                    } else {
+                        options.upFlg = true;
+                        if (scrollTop <= headerBasePosi) {
+                            header.classList.remove(fixClass, showClass, hideClass);
+                        } else {
+                            if (!options.setTimeoutFlg) {
+                                options.setTimeoutFlg = true;
+                                options.setTimeoutId = setTimeout(function () {
+                                    if (options.upFlg && header.classList.contains(fixClass)) {
+                                        headerShow(hideClass, showClass);
+                                    }
+                                }, options.showDelay);
+                            }
+                        }
+                    }
+                    options.startPosi = scrollTop;
+                }
+
+                function headerShow(hideClass, showClass) {
+                    header.classList.remove(hideClass);
+                    header.classList.add(showClass);
+                }
+
+                function headerHide(hideClass, showClass) {
+                    header.classList.remove(showClass);
+                    header.classList.add(hideClass);
+                }
+            }
+
+            window.addEventListener("load", function (event) {
+
+            });
+        </script>
+</body>
+</html>
+@helper RenderHeaderNoScriptBloack()
+{
+    <noscript>
+        <style type="text/css">
+            html { display: block; }
+            body { display: block !important; }
+            .text-center-em { text-align: center; font-size: 1.2em; }
+        </style>
+        <div class="text-center text-center-em">
+            @*fix無障礙檢測: GN1410200E使用者介面元件應暴露名稱與角色，允許直接設定可由使用者設定的屬性，並在變更時提供通知 *@
+            您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript狀態
+        </div>
+    </noscript>
+}

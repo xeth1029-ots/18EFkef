@@ -1,0 +1,30 @@
+
+
+
+
+
+// Progress bars
+$progress-height:                   1rem !default;
+$progress-font-size:                $font-size-base * .75 !default;
+$progress-bg:                       $gray-200 !default;
+$progress-border-radius:            $border-radius !default;
+$progress-box-shadow:               $box-shadow-inset !default;
+$progress-bar-color:                $white !default;
+$progress-bar-bg:                   $primary !default;
+$progress-bar-animation-timing:     1s linear infinite !default;
+$progress-bar-transition:           width .6s ease !default;
+$progress-height: 1rem !default;
+$progress-font-size: $font-size-base * 0.75 !default;
+$progress-bg: $gray-100 !default;
+$progress-border-radius: 6px !default;
+$progress-box-shadow: none !default;
+
+
+// Background
+$progress-bg: $gray-300;
+$progress-vertical-bg-color: $progress-bg !default;
+
+// Width & Heights
+$progress-height: 0.5rem;
+$progress-vertical-width: 0.5rem !default;
+$progress-vertical-height: 12.5rem !default;

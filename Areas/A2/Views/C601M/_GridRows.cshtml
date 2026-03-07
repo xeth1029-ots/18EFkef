@@ -1,0 +1,87 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.A2.Models;
+@model C601MFormModel
+
+<!-- 為了分頁，強行硬塞 -->
+<tr>
+    <td>
+        @if (Model.Grid.ToCount() > 0)
+        {
+            for (int i = 0; i < Model.Grid.Count; i++)
+            {
+                var item = Model.Grid[i];
+                string[] dateArr = new string[] { };
+                DateTime dateWeek = DateTime.MinValue;
+                if (item.DateS_Name.TONotNullString() != "")
+                {
+                    dateArr = item.DateS_Name.TONotNullString().Split('/');
+                    dateWeek = new DateTime(dateArr[0].TOInt32() + 1911, dateArr[1].TOInt32(), dateArr[2].TOInt32());
+                }
+
+                @Html.HiddenFor(m => m.Grid[i].Seq)
+
+                <li class="t-news-list-item t-news-list-item-teacher">
+                    <div class="t-news-cnt">
+                        <div class="t-flex align-items-center">
+                            <div class="t-news-icon"></div>
+                            <dl class="t-date-item">
+                                <dt>
+                                    <p class="date-year" style="display: inline-block; margin-bottom: unset;">@dateArr[0]</p>
+                                </dt>
+                                <dd>
+                                    <p class="date-month" style="display: inline-block; margin-bottom: unset; margin-right: 8px;">@dateArr[1]/@dateArr[2]</p>
+                                    <p class="date-day" style="display: inline-block; margin-bottom: unset; margin-right: 8px;">@dateWeek.ToString("ddd")</p>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div style="padding-left: 0.5rem; padding-right: 0.5rem;">
+                            @item.Caption
+                        </div>
+                        @if (item.GridAttached != null && item.GridAttached.Any())
+                        {
+                            string icon_pdf = Url.Content("~/assets_new17/images/pdf.png");
+                            string icon_odt = Url.Content("~/assets_new17/images/odt.png");
+                            string icon_doc = Url.Content("~/assets_new17/images/doc.png");
+                            string icon_docx = Url.Content("~/assets_new17/images/docx.png");
+                            foreach (var row in item.GridAttached)
+                            {
+                                string downloadUrl = new AMDAO().UploadPathC107M + row.FileNameNew;
+                                <div style="padding-left: 0.5rem; padding-right: 0.5rem;">
+                                    <a href="@downloadUrl" title="@row.FileNameOrg" download="@row.FileNameOrg" onclick="doLog('@row.FileNameOrg', '@row.FileNameNew')" style="display: contents;">
+                                        @if (row.FileNameType.ToLower() == ".pdf")
+                                        {
+                                            <img src="@icon_pdf" @*data-src="@icon_pdf"*@ alt="pdf" width="30" height="30">
+                                            <span>pdf</span>
+                                        }
+                                        @if (row.FileNameType.ToLower() == ".odt")
+                                        {
+                                            <img src="@icon_odt" @*data-src="@icon_odt"*@ alt="odt" width="30" height="30">
+                                            <span>odt</span>
+                                        }
+                                        @if (row.FileNameType.ToLower() == ".doc")
+                                        {
+                                            <img src="@icon_doc" @*data-src="@icon_doc"*@ alt="doc" width="30" height="30">
+                                            <span>doc</span>
+                                        }
+                                        @if (row.FileNameType.ToLower() == ".docx")
+                                        {
+                                            <img src="@icon_docx" @*data-src="@icon_docx"*@ alt="docx" width="30" height="30">
+                                            <span>docx</span>
+                                        }
+                                    </a>
+                                </div>
+                            }
+                        }
+                        @if (item.IsOnTop == "1")
+                        {
+                            <svg style="position: absolute; top: -5px; right: 50px; width: 30px; height: 30px;">
+                                <use href="#bi-bookmark-fill"></use>
+                            </svg>
+                        }
+                    </div>
+                </li>
+            }
+        }
+    </td>
+</tr>

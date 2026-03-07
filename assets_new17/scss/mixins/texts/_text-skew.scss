@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+//  Mixins > Text Skew
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin titleSkewX($color: $white, $bg: $dark, $transform: skewX(-10deg) rotate(-2deg)) {
+  align-self: center;
+  padding: 0.25rem 0.5rem;
+  color: $color;
+  font-weight: 700;
+  background-color: $bg;
+  transform: $transform;
+  text-align: center;
+}

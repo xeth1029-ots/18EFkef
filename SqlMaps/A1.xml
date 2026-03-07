@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sqlMap namespace="A1"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <resultMaps></resultMaps>
+  <cacheModel id="WKEF-cache" implementation="MEMORY">
+    <flushInterval hours="1"/>
+    <property name="Type" value="WEAK"/>
+  </cacheModel>
+  
+  <statements>
+    <select id="getTeacher_HomePageCarousel" resultClass="WKEFSERVICE.Models.TeachersModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT $TopCount$ 
+	a.Seq,
+	a.TeacherName,
+	a.ExpertiseCode,
+	(SELECT bb.ExpertiseName + ',' FROM STRING_SPLIT(ISNULL(a.ExpertiseCode,''), ',') aa LEFT JOIN Expertise bb ON aa.value=bb.ExpertiseCode FOR XML PATH('')) AS Expertise_Str,
+	a.Sex,
+	a.SelfPicPath
+FROM Teacher a
+WHERE a.HomePageCarousel='Y'
+AND a.Online='Y'
+			]]>
+    </select>
+
+    <!--A1.queryC101M-->
+    <select id="queryC101M" resultClass="WKEFSERVICE.Areas.A1.Models.C101MGridModel"
+            parameterClass="WKEFSERVICE.Areas.A1.Models.C101MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT ROW_NUMBER() OVER(ORDER BY a.TeacherName) AS ROWID,
+	a.Seq, a.ACCOUNT, a.IDNO, a.UnitCode, a.Sex, a.TeacherName, a.TeacherEName,
+	CONVERT(NVARCHAR, a.Birthday, 111) AS Birthday, a.IsShowBirthday,
+	a.Tel, a.IsShowTel,
+	a.Phone, a.IsShowPhone,
+	a.PostalCode1, a.PostalCode2,
+	a.Address, a.IsShowAddress,
+	a.Email, a.IsShowEmail,
+	a.EmailWork, a.IsShowEmailWork,
+	a.EduLevelHighest, a.EduSchool1, a.EduDept1, a.EduLevel1, a.EduSchool2, a.EduDept2, a.EduLevel2, a.EduSchool3, a.EduDept3, a.EduLevel3,
+	a.ServiceUnit1, a.JobTitle1, a.ServiceUnit2, a.JobTitle2,
+	a.ExpertiseDesc, a.ExpertiseCode,
+	a.TeachJobAbilityDC, a.TeachJobAbilityBC, a.TeachJobAbilityKC,
+	a.TeachArea, a.TeachIndustryDetCode, a.WorkHistory, a.ProLicense, a.SelfIntroduction, a.SelfPicPath,
+	a.Online, a.JoinYear, 
+	CONVERT(NVARCHAR, a.OfflineDate, 111) AS OfflineDate, 
+	a.OfflineReason, 
+	a.OfflineReasonRemark, a.HomePageCarousel,
+	a.CreatedAccount, CONVERT(NVARCHAR, a.CreatedDatetime, 120) AS CreatedDatetime,
+	a.UpdatedAccount, CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime,
+	ISNULL(a.TeacherName,'') + ',' + ISNULL(a.TeacherEName,'') + ',' + ISNULL(CAST(a.ExpertiseDesc AS NVARCHAR),'') + 
+	(SELECT ',' + bb.ExpertiseName FROM STRING_SPLIT(ISNULL(a.ExpertiseCode,''), ',') aa LEFT JOIN Expertise bb ON aa.value=bb.ExpertiseCode FOR XML PATH('')) AS forKeyword,
+	(SELECT bb.ExpertiseName + ',' FROM STRING_SPLIT(ISNULL(a.ExpertiseCode,''), ',') aa LEFT JOIN Expertise bb ON aa.value=bb.ExpertiseCode FOR XML PATH('')) AS Expertise_Str,
+	b.EduName AS EduLevelHighest_Name,
+	IIF(a.TeachJobAbilityKC='Y','知識職能(KC)、','') +
+	IIF(a.TeachJobAbilityBC='Y','行為職能(BC)、','') +
+	IIF(a.TeachJobAbilityDC='Y','動機職能(DC)、','') AS TeachJobAbilityStr,
+	(SELECT COUNT(bb.value) FROM STRING_SPLIT(a.TeachArea,',') aa LEFT JOIN STRING_SPLIT(#TeachArea_forSQL#,',') bb ON '%' + aa.value + '%' LIKE '%' + bb.value + '%') AS Find_TeachArea,
+	(SELECT COUNT(aa.value) FROM STRING_SPLIT(#LiveArea_forSQL#,',') aa WHERE a.Address LIKE '%' + aa.value + '%') AS Find_LiveArea,
+	(SELECT COUNT(aa.IndustryMstCode) FROM IndustryDet aa WHERE aa.IndustryCode IN (SELECT value FROM STRING_SPLIT(a.TeachIndustryDetCode,',')) AND aa.IndustryMstCode=#Industry#) AS Find_IndustryMstCode,
+	(SELECT aa.IndustryName + ',' FROM IndustryDet aa WHERE aa.IndustryCode IN (SELECT value FROM STRING_SPLIT(a.TeachIndustryDetCode,',')) FOR XML PATH('')) AS IndustryStr,
+	a.IndustryAcademicType
+FROM Teacher a
+LEFT JOIN Edu b ON a.EduLevelHighest=b.EduLevel
+WHERE a.Online='Y' ]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="Keyword">
+            <![CDATA[ 
+						AND ( ISNULL(a.TeacherName,'') + ',' + ISNULL(a.TeacherEName,'') + ',' + ISNULL(CAST(a.ExpertiseDesc AS NVARCHAR),'') + 
+							(SELECT ',' + bb.ExpertiseName FROM STRING_SPLIT(ISNULL(a.ExpertiseCode,''), ',') aa LEFT JOIN Expertise bb ON aa.value=bb.ExpertiseCode FOR XML PATH(''))
+						) LIKE '%' + #Keyword# + '%' 
+						]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="" property="TeachUnit_forSQL">
+            <![CDATA[ AND a.TeachJobAbility$TeachUnit_forSQL$ = 'Y' ]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="" property="TeachArea_forSQL">
+            <![CDATA[ 
+						AND ( SELECT COUNT(bb.value) 
+							FROM STRING_SPLIT(a.TeachArea,',') aa
+							LEFT JOIN STRING_SPLIT(#TeachArea_forSQL#,',') bb ON '%' + aa.value + '%' LIKE '%' + bb.value + '%'
+						)>0 
+						]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="" property="LiveArea_forSQL">
+            <![CDATA[ 
+						AND ( SELECT COUNT(aa.value) FROM STRING_SPLIT(#LiveArea_forSQL#,',') aa 
+							WHERE a.Address LIKE '%' + aa.value + '%'
+						)>0 
+						]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="" property="Industry">
+            <![CDATA[ 
+						AND ( SELECT COUNT(aa.IndustryMstCode) FROM IndustryDet aa 
+							WHERE aa.IndustryCode IN (SELECT value FROM STRING_SPLIT(a.TeachIndustryDetCode,','))
+							  AND aa.IndustryMstCode=#Industry#
+						)>0
+						]]>
+          </isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ /*a.UnitCode,a.TeacherName*/ ORDER BY NEWID() ]]>
+    </select>
+
+    <select id="detailC101M" resultClass="WKEFSERVICE.Areas.A1.Models.C101MDetailModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT a.Seq, a.ACCOUNT, a.IDNO, a.UnitCode, a.Sex, a.TeacherName, a.TeacherEName,
+CONVERT(NVARCHAR, a.Birthday, 111) AS Birthday, a.IsShowBirthday,
+a.Tel, a.IsShowTel,
+a.Phone, a.IsShowPhone,
+a.PostalCode1, a.PostalCode2,
+a.Address, a.IsShowAddress,
+a.Email, a.IsShowEmail,
+a.EmailWork, a.IsShowEmailWork,
+a.EduLevelHighest,
+a.EduSchool1, a.EduDept1, a.EduLevel1,
+a.EduSchool2, a.EduDept2, a.EduLevel2,
+a.EduSchool3, a.EduDept3, a.EduLevel3,
+a.ServiceUnit1, a.JobTitle1,
+a.ServiceUnit2, a.JobTitle2,
+a.ExpertiseDesc, a.ExpertiseCode,
+a.TeachJobAbilityDC, a.TeachJobAbilityBC, a.TeachJobAbilityKC,
+a.TeachArea, a.TeachIndustryDetCode, a.WorkHistory, a.ProLicense, a.SelfIntroduction, a.SelfPicPath,
+a.Online, a.JoinYear, 
+CONVERT(NVARCHAR, a.OfflineDate, 111) AS OfflineDate, 
+a.OfflineReason, 
+a.OfflineReasonRemark, a.HomePageCarousel,
+a.CreatedAccount, CONVERT(NVARCHAR, a.CreatedDatetime, 120) AS CreatedDatetime,
+a.UpdatedAccount, CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime,
+(select b.EduName from Edu b WHERE a.EduLevelHighest=b.EduLevel) AS EduLevelHighest_Name,
+(select c1.EduName from Edu c1 WHERE a.EduLevel1=c1.EduLevel) AS EduLevel1_Name,
+(select c2.EduName from Edu c2 WHERE a.EduLevel2=c2.EduLevel) AS EduLevel2_Name,
+(select c3.EduName from Edu c3 WHERE a.EduLevel3=c3.EduLevel) AS EduLevel3_Name,
+(SELECT bb.ExpertiseName + ',' FROM STRING_SPLIT(a.ExpertiseCode, ',') aa LEFT JOIN Expertise bb ON aa.value=bb.ExpertiseCode FOR XML PATH('')) AS Expertise_Str,
+(SELECT aa.IndustryName + ',' FROM IndustryDet aa WHERE aa.IndustryCode IN (SELECT value FROM STRING_SPLIT(a.TeachIndustryDetCode,',')) FOR XML PATH('')) AS IndustryStr,
+a.IndustryAcademicType,
+isnull(r1.THOURS_TRANSDATA_D_DC,0)+isnull(r1.THOURS_TRANSDATA_S_DC,0)+isnull(r1.THOURS_TRANSDATA_K_DC,0) as R1_THOURS_TRANSDATA_DC,
+isnull(r1.THOURS_TRANSDATA_D_BC,0)+isnull(r1.THOURS_TRANSDATA_S_BC,0)+isnull(r1.THOURS_TRANSDATA_K_BC,0) as R1_THOURS_TRANSDATA_BC,
+isnull(r1.THOURS_TRANSDATA_D_KC,0)+isnull(r1.THOURS_TRANSDATA_S_KC,0)+isnull(r1.THOURS_TRANSDATA_K_KC,0) as R1_THOURS_TRANSDATA_KC,
+isnull(r1.THOURS_TRANSDATA_D_TOTAL,0)+isnull(r1.THOURS_TRANSDATA_S_TOTAL,0)+isnull(r1.THOURS_TRANSDATA_K_TOTAL,0) as R1_THOURS_TRANSDATA_TOTAL,
+isnull(r2.THOURS_TRANSDATA_D_DC,0)+isnull(r2.THOURS_TRANSDATA_S_DC,0)+isnull(r2.THOURS_TRANSDATA_K_DC,0) as R2_THOURS_TRANSDATA_DC,
+isnull(r2.THOURS_TRANSDATA_D_BC,0)+isnull(r2.THOURS_TRANSDATA_S_BC,0)+isnull(r2.THOURS_TRANSDATA_K_BC,0) as R2_THOURS_TRANSDATA_BC,
+isnull(r2.THOURS_TRANSDATA_D_KC,0)+isnull(r2.THOURS_TRANSDATA_S_KC,0)+isnull(r2.THOURS_TRANSDATA_K_KC,0) as R2_THOURS_TRANSDATA_KC,
+isnull(r2.THOURS_TRANSDATA_D_TOTAL,0)+isnull(r2.THOURS_TRANSDATA_S_TOTAL,0)+isnull(r2.THOURS_TRANSDATA_K_TOTAL,0) as R2_THOURS_TRANSDATA_TOTAL
+FROM Teacher a
+LEFT JOIN ReviewReport r1 ON r1.Year=cast(Year(GETDATE())-1 as varchar(4)) and r1.IDNO=a.IDNO
+LEFT JOIN ReviewReport r2 ON r2.Year=cast(Year(GETDATE()) as varchar(4)) and r2.IDNO=a.IDNO
+WHERE a.Seq=#Seq# ]]>
+    </select>
+
+    <select id="queryC102M" resultClass="WKEFSERVICE.Areas.A1.Models.C102MGridModel" parameterClass="WKEFSERVICE.Areas.A1.Models.C102MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT 
+	ROW_NUMBER() OVER(ORDER BY a.IsOnTop DESC, a.PostDateS DESC, a.PostDateE DESC ) AS ROWID,
+	CONVERT(NVARCHAR, a.PostDateS, 120) AS PostDateS,
+	CONVERT(NVARCHAR, a.PostDateE, 120) AS PostDateE,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime,
+	a.Seq,
+	a.PostType,
+	a.PostCaption,
+	a.PostTo,
+	a.PostContent,
+	a.FileNameOrg,
+	a.FileNameNew,
+	a.IsOnTop,
+	a.IsShowSignUp,
+	a.MeetingSeq,
+	IIF(GETDATE()>=b.SignUpDateS AND GETDATE()<=b.SignUpDateE,1,0) AS isCanSignUp,
+	a.PublishedUnit,
+	a.OrderBy,
+	a.Actived,
+	a.UpdatedAccount
+FROM MsgPost a
+LEFT JOIN Meeting b ON a.MeetingSeq=b.Seq
+WHERE ISNULL(a.Actived,'Y')!='N'
+  AND a.PostType='1'
+  AND a.PostTo='1'
+  AND CONVERT(VARCHAR, a.PostDateS, 120)<=GETDATE()
+  AND CONVERT(VARCHAR, a.PostDateE, 120)>=GETDATE()
+			]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="KeyWord">
+            <![CDATA[ AND a.PostCaption + CAST(a.PostContent AS nvarchar(4000)) LIKE '%' + #KeyWord# + '%' ]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="" property="PostDate_A">
+            <![CDATA[ AND CONVERT(VARCHAR, a.PostDateS, 112) >= #PostDate_A# ]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="" property="PostDate_B">
+            <![CDATA[ AND CONVERT(VARCHAR, a.PostDateE, 112) <= #PostDate_B# ]]>
+          </isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY a.IsOnTop DESC, a.PostDateS DESC, a.PostDateE DESC, a.PostCaption ]]>
+    </select>
+
+
+    <select id="detailC102M" parameterClass="Hashtable" resultClass="WKEFSERVICE.Areas.A1.Models.C102MDetailModel" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT
+	a.Seq,
+	a.PostType,
+	a.PostCaption,
+	CONVERT(NVARCHAR, a.PostDateS, 120) AS PostDateS,
+	CONVERT(NVARCHAR, a.PostDateE, 120) AS PostDateE,
+	a.PostTo,
+	a.PostContent,
+	a.FileNameOrg,
+	a.FileNameNew,
+	a.IsOnTop,
+	a.IsShowSignUp,
+	a.MeetingSeq,
+	IIF(GETDATE()>=b.SignUpDateS AND GETDATE()<=b.SignUpDateE,1,0) AS isCanSignUp,
+	a.PublishedUnit,
+	a.OrderBy,
+	a.Actived,
+	a.UpdatedAccount,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM MsgPost a
+LEFT JOIN Meeting b ON a.MeetingSeq=b.Seq
+WHERE a.Seq=#Seq#
+			]]>
+    </select>
+
+    <select id="detailAttachedsC102M" parameterClass="Hashtable" resultClass="WKEFSERVICE.Areas.A1.Models.C102MAttachedsModel" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT ROW_NUMBER() OVER(ORDER BY a.Seq) AS ROWID,
+	a.Seq,
+	a.MsgPostSeq,
+	a.FileNameOrg,
+	a.FileNameNew,
+	a.FileNameType,
+	a.UpdatedAccount,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM MsgPostAttached a
+WHERE a.MsgPostSeq=#Seq#
+			]]>
+    </select>
+  </statements>
+</sqlMap>

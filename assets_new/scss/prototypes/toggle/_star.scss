@@ -1,0 +1,92 @@
+.t-star {
+  display: inline-block;
+
+  label {
+    // bound
+    @include toggle-label;
+
+    width: 5em;
+    height: 5em;
+    transition: $transition;
+    overflow: hidden;
+    clip-path: $star;
+    -webkit-clip-path: $star;
+
+    &:before {
+      // background
+      @include before-after;
+
+      width: 5em;
+      height: 10em;
+      background: linear-gradient(#cac9d1 0%, #cac9d1 42%, #91e0f8 55%, #1b68cb 100%);
+      transition: 0.2s ease;
+    }
+  }
+
+  input {
+    @include input-checkbox;
+
+    &:before,
+    &:after {
+      @include before-after;
+    }
+  }
+
+  input:checked + label {
+    &:before {
+      // background
+      transform: translateY(-50%);
+    }
+  }
+
+  input:disabled {
+    & + label {
+      // bound
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.t-star-garden {
+  @extend .t-star;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(#cac9d1 0%, #cac9d1 42%, #7fee7f 55%, #21bf73 100%);
+    }
+  }
+}
+
+.t-star-tomato {
+  @extend .t-star;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(#cac9d1 0%, #cac9d1 42%, #f1a27d 55%, #ff6347 100%);
+    }
+  }
+}
+
+.t-star-pink {
+  @extend .t-star;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(#cac9d1 0%, #cac9d1 42%, #ffc1d7 55%, #ff77a6 100%);
+    }
+  }
+}
+
+.t-star-golden {
+  @extend .t-star;
+
+  label {
+    &:before {
+      // background
+      background: linear-gradient(#cac9d1 0%, #cac9d1 42%, rgb(255, 237, 136) 55%, rgb(243, 207, 1) 100%);
+    }
+  }
+}

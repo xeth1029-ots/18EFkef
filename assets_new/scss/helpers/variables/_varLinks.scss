@@ -1,0 +1,41 @@
+
+// Links
+// =========================================================
+$link-color:               		$link							               !default;
+// $link-decoration:        underline !default;
+$link-shade-percentage:     20% !default;
+$link-hover-color:          shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration:     null !default;
+$link-decoration:           	none 							               !default;
+$link-decoration: none;
+$link-hover-decoration: underline;
+$link-darker: darken($primary, 12%) !default;
+$link-hover-opacity: 0.7 !default;
+
+// Width & Heights
+$link-pointer-pseudo-arrow-width: 1.25rem !default;
+$link-pointer-pseudo-arrow-height: $link-pointer-pseudo-arrow-width !default;
+
+// Backgrounds
+$link-pointer-pseudo-arrow-pseudo-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='#{$link-color}' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z'/></svg>") !default;
+
+// Borders
+$link-bordered-border-width: 0.125rem !default;
+$link-bordered-border-color: $link-color !default;
+
+// Type
+$link-font-size: $font-size-base * 0.9375 !default;
+$link-font-weight: $font-weight-medium !default;
+
+// Positions
+$link-pointer-pseudo-arrow-position-offset: 0.75rem !default;
+$link-pointer-pseudo-arrow-hover-position-offset: 0.4375rem !default;
+
+// Padding
+$link-padding-x: 1.25rem !default;
+$link-pointer-pseudo-padding-x: 1rem !default;
+$link-pointer-pseudo-margin-x: calc($link-pointer-pseudo-padding-x / 2) !default;
+
+// Transition
+$link-pointer-pseudo-arrow-transition: $transition-timing-sm !default;
+$emphasized-link-hover-darken-percentage: 15% !default;

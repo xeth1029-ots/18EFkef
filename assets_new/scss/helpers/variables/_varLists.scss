@@ -1,0 +1,238 @@
+
+@charset "utf-8";
+
+
+// List group
+
+// scss-docs-start list-group-variables
+$list-group-color:                  $gray-900 !default;
+$list-group-bg:                     $white !default;
+$list-group-border-color:           rgba($black, .125) !default;
+$list-group-border-width:           $border-width !default;
+$list-group-border-radius:          $border-radius !default;
+
+$list-group-item-padding-y:         $spacer * .5 !default;
+$list-group-item-padding-x:         $spacer !default;
+$list-group-item-bg-scale:          -80% !default;
+$list-group-item-color-scale:       40% !default;
+
+$list-group-hover-bg:               $gray-100 !default;
+$list-group-active-color:           $component-active-color !default;
+$list-group-active-bg:              $component-active-bg !default;
+$list-group-active-border-color:    $list-group-active-bg !default;
+
+$list-group-disabled-color:         $gray-600 !default;
+$list-group-disabled-bg:            $list-group-bg !default;
+
+$list-group-action-color:           $gray-700 !default;
+$list-group-action-hover-color:     $list-group-action-color !default;
+
+$list-group-action-active-color:    $body-color !default;
+$list-group-action-active-bg:       $gray-200 !default;
+
+$list-group-bg: $white !default;
+$list-group-border: $grey-100 !default;
+$list-group-border-radius: $border-radius-base !default;
+$list-group-hover-bg: $default !default;
+$list-group-active-color: $component-active-color !default;
+$list-group-active-bg: $component-active-bg !default;
+$list-group-active-border: $list-group-active-bg !default;
+$list-group-active-text-color: lighten($list-group-active-bg, 40%) !default;
+$list-group-disabled-color: $grey-light !default;
+$list-group-disabled-bg: $grey-lighter !default;
+
+$list-group-disabled-text-color: $list-group-disabled-color !default;
+
+$list-group-link-color: $dark !default;
+$list-group-link-hover-color: $primary !default;
+$list-group-link-heading-color: $dark !default;
+
+
+
+// Lists
+// =========================================================
+
+// Backgrounds
+$list-group-striped-bg-color: rgba($warning, 0.1) !default;
+
+// Borders
+$list-group-border-color: $gray-300;
+
+// Width & Heights
+$list-group-icon-width: 1.25rem !default;
+$list-group-lg-icon-width: $avatar-width-sm !default;
+
+// Type
+$list-group-sm-item-font-size: $font-size-sm !default;
+$list-group-lg-icon-font-size: $font-size-base * 1.5 !default;
+
+// Padding
+$list-group-item-padding-y: 0.75rem;
+$list-group-lg-item-padding-y: 1.5rem !default;
+$list-group-lg-item-padding-x: 1.5rem !default;
+
+// Margin
+$list-group-icon-margin-x: 0.25rem !default;
+$list-group-lg-icon-margin-x: 0.5rem !default;
+
+// List Comment
+// =========================================================
+
+// Borders
+$list-comment-item-border-left-width: 0.1875rem !default;
+$list-comment-item-border-left-color: $border-color !default;
+
+// Padding
+$list-comment-item-padding-x: 1rem !default;
+
+// Margin
+$list-comment-margin-y: 2.5rem !default;
+
+// List Checked
+// =========================================================
+
+// Colors
+$list-icon-item-color: $body-color !default;
+$list-icon-item-hover-color: $link-color !default;
+
+// Width & Heights
+$list-icon-pseudo-width: 1.25rem !default;
+$list-icon-pseudo-height: 1.25rem !default;
+$list-icon-sm-pseudo-width: 1rem !default;
+$list-icon-sm-pseudo-height: 1rem !default;
+$list-icon-lg-pseudo-width: 1.5rem !default;
+$list-icon-lg-pseudo-height: 1.5rem !default;
+
+// Others
+$list-icon-pseudo-soft-bg-opacity-value: 0.1 !default;
+
+// Type
+$list-checked-pseudo: url("data:image/svg+xml,<svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M13.3035 4.76425C13.5718 4.44865 14.0451 4.41027 14.3607 4.67853C14.6763 4.9468 14.7147 5.42012 14.4464 5.73572L8.07144 13.2357C7.79896 13.5563 7.31616 13.5901 7.00171 13.3105L3.62671 10.3105C3.31713 10.0354 3.28924 9.5613 3.56443 9.25172C3.83962 8.94213 4.31367 8.91424 4.62326 9.18943L7.42515 11.68L13.3035 4.76425Z' fill='#{$grey-200}'/></svg>") !default;
+
+// Padding
+$list-icon-item-padding-x: $list-icon-pseudo-width + 0.75rem !default;
+$list-icon-sm-item-padding-x: $list-icon-sm-pseudo-width + 0.5rem !default;
+$list-icon-lg-item-padding-x: $list-icon-lg-pseudo-width + 1rem !default;
+
+// Margins
+$list-icon-item-margin-y: 0.5rem !default;
+$list-icon-lg-item-margin-y: 1.25rem !default;
+$list-icon-pseudo-margin-y: 0.125rem !default;
+$list-icon-bg-pseudo-margin-y: 0.125rem !default;
+$list-icon-sm-pseudo-margin-y: 0.3125rem !default;
+$list-icon-sm-bg-pseudo-margin-y: 0.25rem !default;
+$list-icon-lg-pseudo-margin-y: 0 !default;
+$list-icon-lg-bg-pseudo-margin-y: 0.0625rem !default;
+
+// List Pointer
+// =========================================================
+
+// Colors
+$list-pointer-item-color: $body-color !default;
+$list-pointer-item-hover-color: $link-color !default;
+
+// Width & Heights
+$list-pointer-pseudo-width: 1.25rem !default;
+$list-pointer-pseudo-height: 1.25rem !default;
+$list-pointer-sm-pseudo-width: 1rem !default;
+$list-pointer-sm-pseudo-height: 1rem !default;
+$list-pointer-lg-pseudo-width: 1.75rem !default;
+$list-pointer-lg-pseudo-height: 1.75rem !default;
+
+// Others
+$list-pointer-pseudo-soft-bg-opacity-value: 0.1 !default;
+
+// Type
+$list-pointer-pseudo: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#{$grey-200}' d='M15.78,11.28a.75.75,0,0,1,.22.53v.38a.77.77,0,0,1-.22.53l-5.14,5.13a.5.5,0,0,1-.71,0l-.71-.71a.49.49,0,0,1,0-.7L13.67,12,9.22,7.56a.5.5,0,0,1,0-.71l.71-.7a.5.5,0,0,1,.71,0Z'/></svg>") !default;
+
+// Padding
+$list-pointer-item-padding-x:    $list-pointer-pseudo-width + 0.5rem !default;
+$list-pointer-sm-item-padding-x: $list-pointer-sm-pseudo-width + 0.5rem !default;
+$list-pointer-lg-item-padding-x: $list-pointer-lg-pseudo-width + 1rem !default;
+
+
+
+// List Separator
+// =========================================================
+
+// Color
+$list-separator-link-color: $body-color !default;
+$list-separator-link-hover-color: $link-hover-color !default;
+
+// Padding
+$list-separator-padding-x: 2rem !default;
+
+// Margin
+$list-separator-item-margin-x: 0.25rem !default;
+
+// Others
+$list-separator-pseudo-content: "•" !default;
+$list-separator-pseudo-opacity: 0.5 !default;
+
+// List Timeline
+// =========================================================
+
+// Width & Heights
+$list-timeline-pseudo-width: 100% !default;
+$list-timeline-pseudo-height: 100% !default;
+
+// Type
+$list-timeline-pseudo-bg: url("data:image/svg+xml,<svg width='309' height='968' viewBox='0 0 309 968' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23 961C125.667 948.167 313.5 863 227.5 685C185.5 609 139 596.5 58 554C-43.8683 500.551 19 440 141.5 384.5C264 329 365.5 203 267.5 121C252.167 109.833 209 88.5 162.5 80.5C103.946 70.4263 65 63.5 23 18' stroke='%23F39568' stroke-width='3' stroke-dasharray='12 12'/%3E%3Ccircle cx='7.5' cy='960.5' r='7.5'  fill='#{$warning}'/%3E%3Ccircle cx='14.5' cy='7.5' r='7.5'  fill='#{$warning}'/></svg>") !default;
+
+// Width & Heights
+$list-timeline-item-max-width: 32rem !default;
+
+// Padding
+$list-timeline-padding-y: 1.5rem !default;
+
+// List Step
+// =========================================================
+
+// Width & Heights
+$list-step-pseudo-width: 3rem !default;
+$list-step-pseudo-height: 9rem !default;
+
+// Type
+$list-step-pseudo-bg: url("data:image/svg+xml,%3Csvg width='187' height='674' viewBox='0 0 187 674' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.3307 1.3767C8.94892 -1.01509 4.26849 -0.212532 1.8767 3.16927C-0.515094 6.55108 0.287468 11.2315 3.66927 13.6233L12.3307 1.3767ZM0.5 666.5C0.5 670.642 3.85786 674 8 674H75.5C79.6421 674 83 670.642 83 666.5C83 662.358 79.6421 659 75.5 659H15.5V599C15.5 594.858 12.1421 591.5 8 591.5C3.85786 591.5 0.5 594.858 0.5 599V666.5ZM22.2839 27.7273C25.5051 30.3313 30.2274 29.8309 32.8314 26.6097C35.4354 23.3884 34.935 18.6661 31.7138 16.0621L22.2839 27.7273ZM67.7575 48.8281C64.8534 45.8746 60.1048 45.8347 57.1513 48.7388C54.1978 51.643 54.1578 56.3916 57.062 59.3451L67.7575 48.8281ZM88.196 94.6608C90.762 97.9124 95.4781 98.4682 98.7297 95.9022C101.981 93.3362 102.537 88.6201 99.9711 85.3685L88.196 94.6608ZM127.936 125.157C125.749 121.64 121.124 120.561 117.607 122.748C114.089 124.935 113.01 129.559 115.197 133.077L127.936 125.157ZM137.597 174.345C139.35 178.098 143.814 179.719 147.567 177.967C151.32 176.214 152.941 171.75 151.188 167.997L137.597 174.345ZM169.002 213.422C167.742 209.477 163.522 207.299 159.576 208.559C155.63 209.819 153.453 214.04 154.713 217.985L169.002 213.422ZM165.924 263.406C166.641 267.486 170.529 270.212 174.608 269.495C178.688 268.779 181.415 264.891 180.698 260.811L165.924 263.406ZM185.791 309.388C185.647 305.248 182.174 302.01 178.034 302.154C173.895 302.298 170.656 305.771 170.8 309.911L185.791 309.388ZM169.199 356.656C168.775 360.777 171.772 364.46 175.892 364.884C180.013 365.308 183.697 362.312 184.121 358.191L169.199 356.656ZM175.944 406.286C176.899 402.255 174.406 398.214 170.375 397.258C166.345 396.303 162.303 398.796 161.348 402.827L175.944 406.286ZM147.768 447.791C146.341 451.68 148.337 455.989 152.225 457.416C156.114 458.843 160.423 456.848 161.85 452.959L147.768 447.791ZM142.664 497.633C144.493 493.917 142.963 489.421 139.246 487.592C135.53 485.763 131.034 487.293 129.205 491.01L142.664 497.633ZM106.458 532.206C104.295 535.739 105.405 540.356 108.937 542.519C112.47 544.682 117.087 543.572 119.25 540.04L106.458 532.206ZM92.2476 580.332C94.6861 576.984 93.9487 572.292 90.6004 569.854C87.2521 567.415 82.561 568.153 80.1225 571.501L92.2476 580.332ZM50.9207 608.753C48.2569 611.925 48.6689 616.656 51.8409 619.32C55.0129 621.984 59.7437 621.572 62.4075 618.4L50.9207 608.753ZM30.3173 654.326C33.1655 651.318 33.0363 646.571 30.0288 643.723C27.0213 640.875 22.2743 641.004 19.4262 644.011L30.3173 654.326ZM3.66927 13.6233C9.76744 17.9363 15.9928 22.6418 22.2839 27.7273L31.7138 16.0621C25.1793 10.7798 18.6978 5.87987 12.3307 1.3767L3.66927 13.6233ZM57.062 59.3451C67.683 70.1464 78.1573 81.94 88.196 94.6608L99.9711 85.3685C89.5835 72.2056 78.7471 60.0043 67.7575 48.8281L57.062 59.3451ZM115.197 133.077C123.321 146.144 130.858 159.916 137.597 174.345L151.188 167.997C144.183 152.999 136.357 138.703 127.936 125.157L115.197 133.077ZM154.713 217.985C159.381 232.605 163.176 247.758 165.924 263.406L180.698 260.811C177.828 244.47 173.868 228.66 169.002 213.422L154.713 217.985ZM170.8 309.911C171.33 325.106 170.841 340.697 169.199 356.656L184.121 358.191C185.834 341.541 186.344 325.263 185.791 309.388L170.8 309.911ZM161.348 402.827C157.86 417.544 153.365 432.539 147.768 447.791L161.85 452.959C167.648 437.159 172.316 421.594 175.944 406.286L161.348 402.827ZM129.205 491.01C122.534 504.566 114.972 518.302 106.458 532.206L119.25 540.04C127.997 525.756 135.782 511.616 142.664 497.633L129.205 491.01ZM80.1225 571.501C71.1614 583.805 61.4411 596.226 50.9207 608.753L62.4075 618.4C73.1416 605.617 83.0757 592.925 92.2476 580.332L80.1225 571.501ZM19.4262 644.011C14.0197 649.72 8.44441 655.449 2.6967 661.197L13.3033 671.803C19.1454 665.961 24.8156 660.135 30.3173 654.326L19.4262 644.011Z' fill='#{$gray-400}'/></svg>") !default;
+$list-step-pseudo-nth-type-odd-bg: url("data:image/svg+xml,<svg width='187' height='674' viewBox='0 0 187 674' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M174.174 1.3767C177.555 -1.01509 182.236 -0.212532 184.628 3.16927C187.019 6.55108 186.217 11.2315 182.835 13.6233L174.174 1.3767ZM186.004 666.5C186.004 670.642 182.647 674 178.504 674H111.004C106.862 674 103.504 670.642 103.504 666.5C103.504 662.358 106.862 659 111.004 659H171.004V599C171.004 594.858 174.362 591.5 178.504 591.5C182.647 591.5 186.004 594.858 186.004 599V666.5ZM164.221 27.7273C160.999 30.3313 156.277 29.8309 153.673 26.6097C151.069 23.3884 151.569 18.6661 154.791 16.0621L164.221 27.7273ZM118.747 48.8281C121.651 45.8746 126.4 45.8347 129.353 48.7388C132.307 51.643 132.347 56.3916 129.442 59.3451L118.747 48.8281ZM98.3084 94.6608C95.7424 97.9124 91.0263 98.4682 87.7747 95.9022C84.5231 93.3362 83.9673 88.6201 86.5333 85.3685L98.3084 94.6608ZM58.5685 125.157C60.7554 121.64 65.38 120.561 68.8977 122.748C72.4155 124.935 73.4943 129.559 71.3074 133.077L58.5685 125.157ZM48.9069 174.345C47.1541 178.098 42.6907 179.719 38.9377 177.967C35.1848 176.214 33.5634 171.75 35.3163 167.997L48.9069 174.345ZM17.5026 213.422C18.7626 209.477 22.9828 207.299 26.9287 208.559C30.8745 209.819 33.0518 214.04 31.7917 217.985L17.5026 213.422ZM20.5803 263.406C19.8637 267.486 15.9756 270.212 11.8959 269.495C7.81621 268.779 5.08987 264.891 5.80644 260.811L20.5803 263.406ZM0.713454 309.388C0.85777 305.248 4.33059 302.01 8.47021 302.154C12.6098 302.298 15.8487 305.771 15.7043 309.911L0.713454 309.388ZM17.305 356.656C17.729 360.777 14.7324 364.46 10.612 364.884C6.49165 365.308 2.80775 362.312 2.3838 358.191L17.305 356.656ZM10.5608 406.286C9.60551 402.255 12.0985 398.214 16.1289 397.258C20.1594 396.303 24.2012 398.796 25.1564 402.827L10.5608 406.286ZM38.7361 447.791C40.1632 451.68 38.1677 455.989 34.2791 457.416C30.3906 458.843 26.0814 456.848 24.6544 452.959L38.7361 447.791ZM43.8408 497.633C42.0117 493.917 43.5417 489.421 47.2581 487.592C50.9745 485.763 55.47 487.293 57.2991 491.01L43.8408 497.633ZM80.0465 532.206C82.2096 535.739 81.0995 540.356 77.5671 542.519C74.0346 544.682 69.4175 543.572 67.2543 540.04L80.0465 532.206ZM94.2568 580.332C91.8183 576.984 92.5557 572.292 95.904 569.854C99.2523 567.415 103.943 568.153 106.382 571.501L94.2568 580.332ZM135.584 608.753C138.248 611.925 137.836 616.656 134.664 619.32C131.492 621.984 126.761 621.572 124.097 618.4L135.584 608.753ZM156.187 654.326C153.339 651.318 153.468 646.571 156.476 643.723C159.483 640.875 164.23 641.004 167.078 644.011L156.187 654.326ZM182.835 13.6233C176.737 17.9363 170.512 22.6418 164.221 27.7273L154.791 16.0621C161.325 10.7798 167.807 5.87987 174.174 1.3767L182.835 13.6233ZM129.442 59.3451C118.821 70.1464 108.347 81.94 98.3084 94.6608L86.5333 85.3685C96.9209 72.2056 107.757 60.0043 118.747 48.8281L129.442 59.3451ZM71.3074 133.077C63.1839 146.144 55.6464 159.916 48.9069 174.345L35.3163 167.997C42.3214 152.999 50.147 138.703 58.5685 125.157L71.3074 133.077ZM31.7917 217.985C27.1232 232.605 23.3288 247.758 20.5803 263.406L5.80644 260.811C8.67665 244.47 12.6367 228.66 17.5026 213.422L31.7917 217.985ZM15.7043 309.911C15.1746 325.106 15.663 340.697 17.305 356.656L2.3838 358.191C0.670702 341.541 0.160023 325.263 0.713454 309.388L15.7043 309.911ZM25.1564 402.827C28.6447 417.544 33.1389 432.539 38.7361 447.791L24.6544 452.959C18.856 437.159 14.1889 421.594 10.5608 406.286L25.1564 402.827ZM57.2991 491.01C63.9708 504.566 71.5322 518.302 80.0465 532.206L67.2543 540.04C58.5077 525.756 50.7226 511.616 43.8408 497.633L57.2991 491.01ZM106.382 571.501C115.343 583.805 125.063 596.226 135.584 608.753L124.097 618.4C113.363 605.617 103.429 592.925 94.2568 580.332L106.382 571.501ZM167.078 644.011C172.485 649.72 178.06 655.449 183.808 661.197L173.201 671.803C167.359 665.961 161.689 660.135 156.187 654.326L167.078 644.011Z' fill='#{$gray-400}'/></svg>") !default;
+
+// Lines
+// =========================================================
+
+// Borders
+$lines-border-width: $border-width !default;
+$lines-border-color: $border-color !default;
+$lines-light-border-color: rgba($white, 0.1) !default;
+
+// Width & Heights
+$lines-container-max-width: 1160px !default;
+$lines-item-width: $border-width !default;
+
+
+
+// List Grid Card
+// =========================================================
+
+// Borders
+$list-grid-card-border-width: 0.125rem !default;
+$list-grid-card-border-color: $border-color !default;
+
+// Padding
+$list-grid-card-item-padding-y: 1.25rem !default;
+$list-grid-card-item-padding-x: $list-grid-card-item-padding-y !default;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

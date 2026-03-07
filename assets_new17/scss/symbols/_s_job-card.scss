@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+//  pages -> job card
+// --------------------------------------------------
+
+.t-job-card {
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: none;
+  border: $border solid 0.125rem;
+  border-radius: $border-radius;
+  transition: $card-transition;
+
+  .t-btn-fav {
+    @extend .t-star;
+
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+
+  .t-card-title {
+
+    color: $primary-900;
+    background: linear-gradient(to right, $primary-400, $primary-800) no-repeat left (bottom / 0) 0.25rem;
+    display: inline-flex;
+
+    @include hover {
+      color: $primary-800;
+    }
+  }
+
+  .t-brand-img {
+    @extend .t-detail-corp-img;
+  }
+
+  .t-card-footer {
+    border-top: 2px dashed $grey-200;
+    margin-top: 1rem;
+    padding: 1rem 0 0 0;
+
+    @extend .t-flex;
+
+    @extend .flex-row;
+
+    @extend .align-items-center;
+
+    @extend .justify-content-around;
+
+    .t-brand-img {}
+
+    .t-sub-cnt {
+      flex: 0 0 auto;
+      width: calc(100% - 4rem);
+      padding-left: 0.875rem;
+
+      .t-sub-cnt-row {
+        letter-spacing: 0.5px;
+
+        a {
+          color: $navy;
+
+          &:hover {
+            color: $navy-700;
+          }
+        }
+      }
+    }
+  }
+
+  .t-tag {
+    transform: scale(0.8);
+  }
+
+  &:hover {
+    box-shadow: $box-shadow;
+    border: 0.125rem dashed $primary-200;
+
+    .t-card-title {
+      &:hover {
+        text-decoration: none;
+        background-size: 200% .125rem;
+      }
+    }
+
+    .t-star {
+      // color: $grey-100;
+   
+    }
+  }
+}

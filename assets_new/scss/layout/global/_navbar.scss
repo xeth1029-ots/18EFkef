@@ -1,0 +1,331 @@
+@charset "utf-8";
+
+//  Layout -> Navbars 
+// --------------------------------------------------
+
+.navbar {
+  position: relative;
+  margin-bottom: $navbar-margin-bottom;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-group {
+    display: flex;
+    align-items: center;
+
+    .navbar-item {
+      display: flex;
+      color: $primary;
+
+      .svg-icon {
+        margin-right: 0.25rem;
+      }
+
+      .t-area-txt {}
+
+      .t-area-link {
+        margin-left: 0.25rem;
+        color: $lightgrey;
+
+        &:hover {
+          color: $link;
+        }
+      }
+    }
+  }
+
+  .navbar-brand {
+    display: flex;
+    padding-top: $navbar-brand-padding-y;
+    padding-bottom: $navbar-brand-padding-y;
+    margin-right: $navbar-padding-x;
+    line-height: inherit;
+    white-space: nowrap;
+
+    @include hover-focus {
+      text-decoration: none;
+    }
+
+
+    .navbar-brand-logo {
+      height: 3rem;
+    }
+  }
+
+  .navbar-item {
+    display: flex;
+
+    @at-root .t-area-btn {
+      background-color: $primary-50;
+      color: $primary-800;
+
+      @include in-bk-mid;
+
+      padding: .125rem .625rem;
+      border-radius: .5rem;
+      cursor: default;
+      user-select: none;
+
+      &:hover {
+        color: $primary-800;
+      }
+    }
+  }
+
+
+
+  .navbar-collapse {
+    display: flex;
+    padding-right: $navbar-padding-horizontal;
+    padding-left: $navbar-padding-horizontal;
+    overflow-x: visible;
+    border-top: .125rem solid transparent;
+    box-shadow: inset 0 0.125rem 0 rgba(_var("white-rgb", $white), 0.12);
+    -webkit-overflow-scrolling: touch;
+
+    &.show {
+      overflow-y: auto;
+    }
+
+    @media (max-width: 768px) {
+      border-top: 0;
+      width: 100%;
+      display: block;
+
+      &.collapse {
+        height: auto;
+        padding-bottom: 0;
+        overflow: visible;
+      }
+
+      &.show {
+        overflow-y: visible;
+        border-top: 2px solid $grey-200;
+        display: block;
+      }
+
+      .navbar-fixed-top &,
+      .navbar-static-top &,
+      .navbar-fixed-bottom & {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+
+  .nav.navbar-nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    width: 100%;
+
+    @include sm {
+      flex-direction: column;
+    }
+
+
+    .nav-item {
+      position: relative;
+      text-align: center;
+      text-align-last: center;
+      display: block;
+      font-size: 0.875rem;
+
+      @include sm {
+        display: flex;
+        width: 100%;
+      }
+
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+
+      &[data-sub="true"] {
+        > .nav-link {
+          @include list-group-arrow($color: $primary-800, $background: $white, $size: 0.5rem);
+        }
+
+        .menu-sub {
+          .menu-item {
+            position: relative;
+
+            &:not(:last-child) {
+              @include list-group-divider($grey-100, 0.0625rem);
+            }
+
+            .menu-link {
+              padding-right: 3.5rem;
+
+              @include menu-pointer($primary, $primary-800, $primary-50);
+            }
+          }
+        }
+
+        .menu-sub-dropdown {
+          @include sm-min {
+            min-width: 12rem;
+          }
+
+
+          @include sm {
+            width: 100%;
+          }
+        }
+      }
+
+      &.show {
+        .nav-link {
+          color: $primary-400;
+        }
+      }
+    }
+
+    .nav-link:not(.quicklink):not(.quicklink2) {
+      display: flex;
+      color: $dark;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+
+      @include sm {
+        width: 100%;
+        flex-direction: column;
+      }
+
+
+      &:hover {
+        color: $secondary;
+      }
+
+      &.nav-link-icon {
+        border-radius: .375rem;
+        color: $white;
+
+        &:not(:last-child) {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          @include opacity(0.6);
+        }
+
+        img {
+          width: 2rem;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      position: static;
+      float: none;
+    }
+  }
+
+  &.navbar-expand {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+      $next: breakpoint-next($breakpoint, $grid-breakpoints);
+      $infix: breakpoint-infix($next, $grid-breakpoints);
+
+      &#{$infix} {
+        @include media-breakpoint-up($next) {
+          .navbar-nav {
+            .nav-item {
+              display: flex;
+
+              &:not(:last-child) {
+                border-bottom: none;
+              }
+            }
+          }
+
+          .navbar-nav-scroll {
+            overflow: visible;
+          }
+
+          .navbar-collapse {
+            display: flex;
+          }
+
+          .navbar-toggler {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-toggler {
+    padding: $navbar-toggler-padding-y $navbar-toggler-padding-x;
+    line-height: 1;
+    background-color: transparent;
+    cursor: pointer;
+    color: $navbar-toggler-color;
+    border: $border-width solid transparent;
+
+    @include border-radius($navbar-toggler-border-radius);
+
+    @include hover-focus {
+      text-decoration: none;
+    }
+
+
+    .navbar-nav-scroll {
+      max-height: $navbar-nav-scroll-max-height;
+      overflow-y: auto;
+    }
+
+    [class*="t-main-nav-"] .dropdown-toggle::after {
+      width: auto;
+      height: auto;
+      vertical-align: inherit;
+      border: none;
+    }
+
+    .t-main-nav__overlay {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 2000%;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .nav-backdrop {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: $zindex-modal-background;
+      background-color: $modal-backdrop-bg;
+
+      @include opacity(0);
+
+      &.in {
+        @include opacity($modal-backdrop-opacity);
+      }
+
+      &.fade {
+        opacity: 0;
+      }
+
+      &.show {
+        opacity: $modal-backdrop-opacity;
+      }
+    }
+
+    .t-nav-mobile-scroll {
+      @media (max-width: 768px) {
+        overflow-y: auto;
+      }
+    }
+  }
+}

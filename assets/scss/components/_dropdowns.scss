@@ -1,0 +1,643 @@
+@charset 'utf-8';
+
+// /**
+// //  Layout > Dropdown 
+// // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// .dropdown {
+//   position: relative;
+
+//   &.show {
+//     .dropdown-toggle {
+//       &:after {
+//         transform: rotate(-135deg);
+//       }
+//     }
+//   }
+
+//   .dropdown-toggle {
+//     @include caret-solid;
+
+//     &:after {
+//       transition: $transition-icon;
+//     }
+
+//     &:focus {
+//       outline: 0;
+//     }
+//   }
+
+//   .dropdown-menu {
+//     position: absolute;
+//     top: 100%;
+//     left: 0;
+//     z-index: $zindex-dropdown;
+//     float: left;
+//     min-width: $dropdown-min-width;
+//     padding: $dropdown-padding-y $dropdown-padding-x;
+//     margin: $dropdown-spacer 0 0;
+//     color: $dropdown-color;
+//     list-style: none;
+//     font-size: $font-size-base;
+//     text-align: left;
+//     text-align-last: left;
+//     background-color: $dropdown-bg;
+//     border: $dropdown-border-width solid transparent;
+//     border-radius: 8px;
+//     box-shadow: $shadow-dropdown;
+//     background-clip: padding-box;
+//     display: block;
+//     visibility: hidden;
+//     opacity: 0;
+//     max-height: 0;
+
+//     &:after {
+//       content: '';
+//       width: .8125rem;
+//       height: .8125rem;
+//       background: $white;
+//       position: absolute;
+//       top: -.375rem;
+//       right: .875rem;
+//       transform: rotate(45deg);
+//       z-index: -1;
+//     }
+
+//     &.dropdown-menu-right {
+//       left: auto;
+//     }
+
+//     &:not(.show) {
+//       transform: scaleY(0) translateY(0%);
+//       pointer-events: none;
+//     }
+
+//     &.show {
+//       opacity: 1;
+//       visibility: visible;
+//       transform: scaleY(1) translateY(100%);
+//       transition-delay: 0ms, 0ms, 0ms;
+//       max-height: 30rem;
+//       will-change: transform;
+//       transform-origin: top center;
+//       transition: all .125s ease;
+//     }
+
+//     .dropdown-item {
+//       display: block;
+//       width: 100%;
+//       padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+//       font-size: .875rem;
+//       font-weight: normal;
+//       color: $dropdown-link-color;
+//       text-align: inherit;
+//       white-space: nowrap;
+//       background-color: transparent;
+//       border: 0;
+
+//       @include border-radius($dropdown-border-radius);
+
+//       // &:first-child {
+//       //   border-top-left-radius: calc(0.25rem - 1px);
+//       //   border-top-right-radius: calc(0.25rem - 1px);
+//       // }
+
+//       // &:last-child {
+//       //   border-bottom-right-radius: calc(0.25rem - 1px);
+//       //   border-bottom-left-radius: calc(0.25rem - 1px);
+//       // }
+
+//       .dropdown-item-icon {
+//         color: $lightgrey;
+//         font-size: 1.25rem;
+//         margin-right: .5rem;
+
+//         @include in-bk-mid;
+//       }
+
+//       .dropdown-item-text {
+//         font-size: 1rem;
+
+//         @include in-bk-mid;
+//       }
+
+//       @include hover-focus {
+//         color: $dropdown-link-hover-color;
+//         text-decoration: none;
+
+//         @include gradient-bg($dropdown-link-hover-bg);
+//       }
+
+//       @include btn-active {
+//         color: $dropdown-link-active-color;
+//         text-decoration: none;
+
+//         @include gradient-bg($dropdown-link-active-bg);
+//       }
+
+//       @include btn-disabled {
+//         color: $dropdown-link-disabled-color;
+//         pointer-events: none;
+//         background-color: transparent;
+
+//         // Remove CSS gradients if they're enabled
+//         @if $enable-gradients {
+//           background-image: none;
+//         }
+//       }
+
+//       // @include btn-hover {
+//       //   text-decoration: none;
+//       //   color: $dropdown-link-hover-color;
+//       //   background-color: $dropdown-link-hover-bg;
+
+//       //   .dropdown-item-icon {
+//       //     color: rgba($white, 0.76);
+//       //   }
+
+//       //   .dropdown-item-text {
+//       //     color: $white;
+//       //   }
+//       // }
+
+//     }
+
+//     &[x-placement^='bottom'] {
+//       top: 100%;
+//       bottom: auto;
+//     }
+
+//     &[x-placement^='top'] {
+//       transform-origin: bottom center;
+//       margin-bottom: .5rem;
+
+//       &:after {
+//         bottom: -0.375rem;
+//         top: auto;
+//       }
+//     }
+
+//     &[x-placement^='right'] {
+//       left: auto;
+//       right: 0;
+//     }
+
+//     &[x-placement^='top'],
+//     &[x-placement^='right'],
+//     &[x-placement^='bottom'],
+//     &[x-placement^='left'] {
+//       right: auto;
+//       bottom: auto;
+//     }
+
+//     >.active {
+//       >a {
+
+//         &,
+//         &:hover,
+//         &:focus {
+//           color: $dropdown-link-active-color;
+//           text-decoration: none;
+//           outline: 0;
+//           background-color: $dropdown-link-active-bg;
+//         }
+//       }
+//     }
+
+//     >.disabled {
+//       >a {
+
+//         &,
+//         &:hover,
+//         &:focus {
+//           color: $dropdown-link-disabled-color;
+//         }
+
+//         &:hover,
+//         &:focus {
+//           text-decoration: none;
+//           background-color: transparent;
+//           background-image: none;
+
+//           @include reset-filter;
+
+//           cursor: $cursor-disabled;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .dropup {
+//   .dropdown-menu {
+//     top: auto;
+//     bottom: 100%;
+//     margin-top: 0;
+//     margin-bottom: 0.125rem;
+//   }
+
+//   .dropdown-toggle {
+//     @include caret(up);
+//   }
+// }
+
+// .dropright {
+//   .dropdown-menu {
+//     top: 0;
+//     right: auto;
+//     left: 100%;
+//     margin-top: 0;
+//     margin-left: 0.125rem;
+//   }
+
+//   .dropdown-toggle {
+//     @include caret(right);
+
+//     &::after {
+//       vertical-align: 0;
+//     }
+//   }
+// }
+
+// .dropleft {
+//   .dropdown-menu {
+//     top: 0;
+//     right: 100%;
+//     left: auto;
+//     margin-top: 0;
+//     margin-right: 0.125rem;
+//   }
+
+//   .dropdown-toggle {
+//     @include caret(left);
+
+//     &::before {
+//       vertical-align: 0;
+//     }
+//   }
+// }
+
+// .dropdown-header {
+//   display: block;
+//   padding: $dropdown-header-padding;
+//   margin-bottom: 0;
+
+//   @include font-size($font-size-sm);
+
+//   color: $dropdown-header-color;
+//   white-space: nowrap;
+// }
+
+// // .dropdown-item-text {
+// //   display: block;
+// //   color: $dropdown-link-color;
+// // }
+
+// .dropdown-divider {
+//   @include nav-divider($dropdown-divider-bg);
+// }
+
+// .caret {
+//   display: inline-block;
+//   vertical-align: $caret-vertical-align;
+//   width: 0;
+//   height: 0;
+//   margin-left: $caret-spacing;
+//   border-top: $caret-width dashed;
+// }
+
+// //  Dropdowns JS
+// [class*='t-dropdown--'] [class*='t-dropdown--'] {
+//   left: 100%;
+//   top: 0;
+
+//   &.t-dropdown--reverse-x {
+//     left: auto;
+//     right: 100%;
+//   }
+// }
+
+// .t-dropdown--simple,
+// .t-dropdown--jquery-slide,
+// .t-dropdown--css-animation {
+//   &.t-dropdown--reverse-y {
+//     top: auto;
+//     bottom: 100%;
+//     margin-top: 0 !important;
+//     margin-bottom: 1.25rem;
+//   }
+// }
+
+// /* Simple Dropdown
+// .t-dropdown--simple.t-dropdown--hidden {
+//   display: none;
+// }
+
+// /* CSS Animation Dropdown
+// .t-dropdown--css-animation {
+//   animation-duration: 1s;
+
+//   &.t-dropdown--hidden {
+//     opacity: 0;
+//     visibility: hidden;
+//   }
+// }
+
+// /* jQuery Slide
+// .t-dropdown--jquery-slide {
+//   &.t-dropdown--hidden {
+//     opacity: 0;
+//     visibility: hidden;
+//   }
+// }
+
+// .t-dropdown--hidden {
+//   transition: none !important;
+
+//   &::before,
+//   &::after {
+//     transition: none !important;
+//   }
+// }
+
+// The dropdown wrapper (`<div>`)
+.dropup,
+.dropend,
+.dropdown,
+.dropstart,
+.dropup-center,
+.dropdown-center {
+  position: relative;
+}
+
+.dropdown-toggle {
+  white-space: nowrap;
+
+  // Generate the caret automatically
+  @include caret;
+}
+
+// The dropdown menu
+.dropdown-menu {
+  // scss-docs-start dropdown-css-vars
+  --#{$prefix}dropdown-min-width: #{$dropdown-min-width};
+  --#{$prefix}dropdown-padding-x: #{$dropdown-padding-x};
+  --#{$prefix}dropdown-padding-y: #{$dropdown-padding-y};
+  --#{$prefix}dropdown-spacer: #{$dropdown-spacer};
+
+  @include rfs($dropdown-font-size, --#{$prefix}dropdown-font-size);
+
+  --#{$prefix}dropdown-color: #{$dropdown-color};
+  --#{$prefix}dropdown-bg: #{$dropdown-bg};
+  --#{$prefix}dropdown-border-color: #{$dropdown-border-color};
+  --#{$prefix}dropdown-border-radius: #{$dropdown-border-radius};
+  --#{$prefix}dropdown-border-width: #{$dropdown-border-width};
+  --#{$prefix}dropdown-inner-border-radius: #{$dropdown-inner-border-radius};
+  --#{$prefix}dropdown-divider-bg: #{$dropdown-divider-bg};
+  --#{$prefix}dropdown-divider-margin-y: #{$dropdown-divider-margin-y};
+  --#{$prefix}dropdown-box-shadow: #{$dropdown-box-shadow};
+  --#{$prefix}dropdown-link-color: #{$dropdown-link-color};
+  --#{$prefix}dropdown-link-hover-color: #{$dropdown-link-hover-color};
+  --#{$prefix}dropdown-link-hover-bg: #{$dropdown-link-hover-bg};
+  --#{$prefix}dropdown-link-active-color: #{$dropdown-link-active-color};
+  --#{$prefix}dropdown-link-active-bg: #{$dropdown-link-active-bg};
+  --#{$prefix}dropdown-link-disabled-color: #{$dropdown-link-disabled-color};
+  --#{$prefix}dropdown-item-padding-x: #{$dropdown-item-padding-x};
+  --#{$prefix}dropdown-item-padding-y: #{$dropdown-item-padding-y};
+  --#{$prefix}dropdown-header-color: #{$dropdown-header-color};
+  --#{$prefix}dropdown-header-padding-x: #{$dropdown-header-padding-x};
+  --#{$prefix}dropdown-header-padding-y: #{$dropdown-header-padding-y};
+
+  // scss-docs-end dropdown-css-vars
+
+  position: absolute;
+  z-index: $zindex-dropdown;
+  display: none;
+
+  // none by default, but block on 'open' of the menu
+  min-width: var(--#{$prefix}dropdown-min-width);
+  padding: var(--#{$prefix}dropdown-padding-y) var(--#{$prefix}dropdown-padding-x);
+  margin: 0;
+
+  // Override default margin of ul
+  @include font-size(var(--#{$prefix}dropdown-font-size));
+
+  color: var(--#{$prefix}dropdown-color);
+  text-align: left;
+
+  // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  list-style: none;
+  background-color: var(--#{$prefix}dropdown-bg);
+  background-clip: padding-box;
+  border: var(--#{$prefix}dropdown-border-width) solid var(--#{$prefix}dropdown-border-color);
+
+  @include border-radius(var(--#{$prefix}dropdown-border-radius));
+  @include box-shadow(var(--#{$prefix}dropdown-box-shadow));
+
+  &[data-tu-popper] {
+    top: 100%;
+    left: 0;
+    margin-top: var(--#{$prefix}dropdown-spacer);
+  }
+
+  @if $dropdown-padding-y == 0 {
+    > .dropdown-item:first-child,
+    > li:first-child .dropdown-item {
+      @include border-top-radius(var(--#{$prefix}dropdown-inner-border-radius));
+    }
+
+    > .dropdown-item:last-child,
+    > li:last-child .dropdown-item {
+      @include border-bottom-radius(var(--#{$prefix}dropdown-inner-border-radius));
+    }
+  }
+}
+
+// scss-docs-start responsive-breakpoints
+// We deliberately hardcode the `tu-` prefix because we check
+// this custom property in JS to determine Popper's positioning
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .dropdown-menu#{$infix}-start {
+      --tu-position: start;
+
+      &[data-tu-popper] {
+        right: auto;
+        left: 0;
+      }
+    }
+
+    .dropdown-menu#{$infix}-end {
+      --tu-position: end;
+
+      &[data-tu-popper] {
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+}
+
+// scss-docs-end responsive-breakpoints
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+// Just add .dropup after the standard .dropdown class and you're set.
+.dropup {
+  .dropdown-menu[data-tu-popper] {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: var(--#{$prefix}dropdown-spacer);
+  }
+
+  .dropdown-toggle {
+    @include caret(up);
+  }
+}
+
+.dropend {
+  .dropdown-menu[data-tu-popper] {
+    top: 0;
+    right: auto;
+    left: 100%;
+    margin-top: 0;
+    margin-left: var(--#{$prefix}dropdown-spacer);
+  }
+
+  .dropdown-toggle {
+    @include caret(end);
+
+    &::after {
+      vertical-align: 0;
+    }
+  }
+}
+
+.dropstart {
+  .dropdown-menu[data-tu-popper] {
+    top: 0;
+    right: 100%;
+    left: auto;
+    margin-top: 0;
+    margin-right: var(--#{$prefix}dropdown-spacer);
+  }
+
+  .dropdown-toggle {
+    @include caret(start);
+
+    &::before {
+      vertical-align: 0;
+    }
+  }
+}
+
+// Dividers (basically an `<hr>`) within the dropdown
+.dropdown-divider {
+  height: 0;
+  margin: var(--#{$prefix}dropdown-divider-margin-y) 0;
+  overflow: hidden;
+  border-top: 1px solid var(--#{$prefix}dropdown-divider-bg);
+  opacity: 1;
+
+  // Revisit in v6 to de-dupe styles that conflict with <hr> element
+}
+
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  display: block;
+  width: 100%;
+
+  // For `<button>`s
+  padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x);
+  clear: both;
+  font-weight: $font-weight-normal;
+  color: var(--#{$prefix}dropdown-link-color);
+  text-align: inherit;
+
+  // For `<button>`s
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: nowrap;
+
+  // prevent links from randomly breaking onto new lines
+  background-color: transparent;
+
+  // For `<button>`s
+  border: 0;
+
+  // For `<button>`s
+
+  &:hover,
+  &:focus {
+    color: var(--#{$prefix}dropdown-link-hover-color);
+    text-decoration: if($link-hover-decoration == underline, none, null);
+
+    @include gradient-bg(var(--#{$prefix}dropdown-link-hover-bg));
+  }
+
+  &.active,
+  &:active {
+    color: var(--#{$prefix}dropdown-link-active-color);
+    text-decoration: none;
+
+    @include gradient-bg(var(--#{$prefix}dropdown-link-active-bg));
+  }
+
+  &.disabled,
+  &:disabled {
+    color: var(--#{$prefix}dropdown-link-disabled-color);
+    pointer-events: none;
+    background-color: transparent;
+
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: var(--#{$prefix}dropdown-header-padding-y) var(--#{$prefix}dropdown-header-padding-x);
+  margin-bottom: 0;
+
+  // for use with heading elements
+  @include font-size($font-size-sm);
+
+  color: var(--#{$prefix}dropdown-header-color);
+  white-space: nowrap;
+
+  // as with > li > a
+}
+
+// Dropdown text
+.dropdown-item-text {
+  display: block;
+  padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x);
+  color: var(--#{$prefix}dropdown-link-color);
+}
+
+// Dark dropdowns
+.dropdown-menu-dark {
+  // scss-docs-start dropdown-dark-css-vars
+  --#{$prefix}dropdown-color: #{$dropdown-dark-color};
+  --#{$prefix}dropdown-bg: #{$dropdown-dark-bg};
+  --#{$prefix}dropdown-border-color: #{$dropdown-dark-border-color};
+  --#{$prefix}dropdown-box-shadow: #{$dropdown-dark-box-shadow};
+  --#{$prefix}dropdown-link-color: #{$dropdown-dark-link-color};
+  --#{$prefix}dropdown-link-hover-color: #{$dropdown-dark-link-hover-color};
+  --#{$prefix}dropdown-divider-bg: #{$dropdown-dark-divider-bg};
+  --#{$prefix}dropdown-link-hover-bg: #{$dropdown-dark-link-hover-bg};
+  --#{$prefix}dropdown-link-active-color: #{$dropdown-dark-link-active-color};
+  --#{$prefix}dropdown-link-active-bg: #{$dropdown-dark-link-active-bg};
+  --#{$prefix}dropdown-link-disabled-color: #{$dropdown-dark-link-disabled-color};
+  --#{$prefix}dropdown-header-color: #{$dropdown-dark-header-color};
+
+  // scss-docs-end dropdown-dark-css-vars
+}

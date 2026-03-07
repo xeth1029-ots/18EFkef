@@ -1,0 +1,53 @@
+$grid: 1.25rem;
+
+$media-query-breakpoints: (sm: 576px, md: 768px, lg: 992px);
+
+@mixin media-query($breakpoint) {
+  @if map-has-key($media-query-breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($media-query-breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+  @else {
+    @warn "Invalid breakpoint: #{$breakpoint}.";
+  }
+}
+
+$color--black: rgb(0, 0, 0);
+$color--grey: rgb(150, 160, 161);
+$color--white: rgb(255, 255, 255);
+$color--dark-blue: rgb(7, 42, 200);
+$color--blue: rgb(30, 150, 252);
+$color--light-blue: rgb(162, 214, 249);
+$color--yellow: rgb(252, 243, 0);
+$color--dark-yellow: rgb(255, 189, 0);
+$color--primary: $primary;
+$color--secondary: $secondary;
+
+$font-size--heading: 2.875rem;
+$font-size--heading-mobile: 2.125rem;
+$font-size--subheading: 1.75rem;
+$font-size--paragraph: 1.25rem;
+$font-size--paragraph-mobile: 1.125rem;
+
+$underline-height: 0.3ex;
+$thick-underline-height: 0.4ex;
+
+//Link Styles
+@import "linkStyles/link";
+@import "linkStyles/highlight-mix-blend-mode";
+@import "linkStyles/highlight-background";
+@import "linkStyles/crossing-triangle-waves";
+@import "linkStyles/background-underline-slide";
+@import "linkStyles/multiple-background-gradients";
+@import "linkStyles/clip-path-effects";
+@import "linkStyles/transform-underline-pseudoelement";
+@import "linkStyles/svg-animations";
+@import "linkStyles/svg-filter";
+@import "linkStyles/popup-text";
+@import "linkStyles/fire-gif-background";
+@import "linkStyles/cube-rotation";
+@import "linkStyles/fill-up-transform";
+@import "linkStyles/split-in-half";

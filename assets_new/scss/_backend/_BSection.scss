@@ -1,0 +1,861 @@
+@charset "utf-8";
+
+.bt-wrapper {
+  background-color: _var("grey-50", $grey-50);
+}
+
+.bt-section {
+  padding-top: 3rem;
+
+  @include teacher {
+    .bt-section-header {
+      border-bottom: 0.25rem solid $primary-200;
+
+      > .svg-icon {
+        color: $primary;
+      }
+
+      .btn--checked {
+        @extend .btn--primary;
+      }
+
+      .bt-section-heading {
+        &:first-letter {
+          color: $primary-700;
+        }
+      }
+    }
+
+    .t-legend {
+      background-color: $primary-700;
+    }
+
+    .bt-form-cnt {
+      background: rgba($primary-50, 0.4);
+      border: 0.2rem dotted $primary-100;
+
+      .t-form-label {
+        background-color: $primary-100;
+        border-left: 0.25rem solid $primary-300;
+
+        &:before {
+          border-left: 1.125rem solid $primary-100;
+        }
+      }
+    }
+
+    .bt-section-result {}
+  }
+
+
+  @include unit {
+    .bt-section-header {
+      border-bottom: 0.25rem solid $tertiary-200;
+
+      > .svg-icon {
+        color: $tertiary;
+      }
+
+      .btn--checked {
+        @extend .btn--tertiary;
+      }
+
+      .bt-section-heading {
+        &:first-letter {
+          color: $tertiary-700;
+        }
+      }
+    }
+
+    .t-legend {
+      background-color: $tertiary-700;
+    }
+
+    .bt-form-cnt {
+      background: rgba($tertiary-50, 0.4);
+      border: 0.2rem dotted $tertiary-100;
+
+      .t-form-label {
+        background-color: $tertiary-100;
+        border-left: 0.25rem solid $tertiary-300;
+
+        &:before {
+          border-left: 1.125rem solid $tertiary-100;
+        }
+      }
+    }
+
+    .bt-section-result {}
+  }
+
+
+  @include branch {
+    .bt-section-header {
+      border-bottom: 0.25rem solid $info-200;
+
+      > .svg-icon {
+        color: $info;
+      }
+
+      .btn--checked {
+        @extend .btn--info;
+      }
+
+      .bt-section-heading {
+        &:first-letter {
+          color: $info-700;
+        }
+      }
+    }
+
+    .t-legend {
+      background-color: $info-700;
+    }
+
+    .bt-form-cnt {
+      background: rgba($info-50, 0.4);
+      border: 0.2rem dotted $info-100;
+
+      .t-form-label {
+        background-color: $info-100;
+        border-left: 0.25rem solid $info-300;
+
+        &:before {
+          border-left: 1.125rem solid $info-100;
+        }
+      }
+    }
+
+    .bt-section-result {}
+  }
+
+
+  @include admin {
+    .bt-section-header {
+      border-bottom: 0.25rem solid $quaternary-200;
+
+      > .svg-icon {
+        color: $quaternary;
+      }
+
+      .btn--checked {
+        @extend .btn--quaternary;
+      }
+
+      .bt-section-heading {
+        &:first-letter {
+          color: $quaternary-700;
+        }
+      }
+    }
+
+    .t-legend {
+      background-color: $quaternary-700;
+    }
+
+    .bt-form-cnt {
+      background: rgba($quaternary-50, 0.4);
+      border: 0.2rem dotted $quaternary-100;
+
+      .t-form-label {
+        background-color: $quaternary-100;
+        border-left: 0.25rem solid $quaternary-300;
+
+        &:before {
+          border-left: 1.125rem solid $quaternary-100;
+        }
+      }
+    }
+
+    .bt-section-result {}
+  }
+
+
+  .t-panel {
+    margin-bottom: 1.5rem;
+    box-shadow: 0.125rem 0.125rem 1rem rgba($dark, 0.12);
+
+    .t-panel-heading {
+      padding: 0.8125rem 0.25rem 0.75rem 1.25rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-radius: $border-radius $border-radius 0 0;
+
+      > .svg-icon {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+
+        svg {
+          width: 1.5rem !important;
+          height: 1.5rem !important;
+        }
+
+        @include teacher {
+          color: $primary;
+        }
+
+
+        @include unit {
+          color: $tertiary;
+        }
+
+
+        @include admin {
+          color: $quaternary;
+        }
+
+
+        @include branch {
+          color: $info;
+        }
+      }
+
+      .btn {
+        margin-right: 0.75rem;
+      }
+    }
+
+    .t-panel-main .t-progress-card-container {
+      flex-wrap: nowrap;
+      gap: 0 1rem;
+    }
+
+    &.t-panel-mini {
+      box-shadow: $shadow-card;
+      border-color: rgba(_var("white-rgb", $white), 0.24);
+
+      @include hover {
+        @include scale(1.025);
+
+        box-shadow: $shadow-card-hover;
+      }
+
+
+      @include teacher {
+        border-bottom: $primary-200 0.25rem solid;
+      }
+
+
+      @include unit {
+        border-bottom: $tertiary-200 0.25rem solid;
+      }
+
+
+      @include admin {
+        border-bottom: $quaternary-200 0.25rem solid;
+      }
+
+
+      @include branch {
+        border-bottom: $info-200 0.25rem solid;
+      }
+
+
+      .t-panel-main-heading {
+        @include text-shadow-v2(_var("white", $white), rgba(_var("dark-rgb", $dark), 0.24));
+      }
+
+      .t-panel-main-column {
+        flex-direction: column;
+        padding: 1rem;
+
+        // align-items: normal;
+
+        .t-panel-mini-link {
+          display: inline-flex;
+          margin-right: 0.5rem;
+        }
+
+        .t-flex {
+          flex-direction: column;
+
+          &:first-child {
+            padding-top: .5rem;
+            padding-left: 0.75rem;
+            padding-right: 0.5rem;
+          }
+        }
+      }
+
+      @include col-md-9 {}
+
+
+      .t-panel-main {
+        padding: 0.25rem 1.25rem 0.5rem;
+        border-radius: 0 0 .125rem .125rem;
+        flex-direction: row;
+        align-items: center;
+
+        @include md {
+          flex-direction: column;
+        }
+
+
+        .js-area-chart,
+        .js-bar-chart,
+        .js-donut-chart,
+        .js-pie-chart {
+          width: 100%;
+          padding-top: .75rem;
+        }
+
+        .t-card-panel-main {
+          border-right: 2px dotted _var("grey-50", $grey-50);
+          padding-right: 1rem;
+          display: flex;
+          flex-direction: row;
+          flex: 0 0 auto;
+          width: 60%;
+          justify-content: space-between;
+          align-items: center;
+
+          @include md {
+            width: 100%;
+            border-right: none;
+            border-bottom: 2px dotted _var("grey-50", $grey-50);
+          }
+
+
+          @include col-md-9 {
+            padding-top: 1rem;
+          }
+
+
+          .t-flex {
+            flex-direction: column;
+
+            &:not(:first-child) {
+              padding-top: .5rem;
+              padding-left: 0.75rem;
+              padding-right: 0.5rem;
+            }
+
+            @include col-md-9 {
+              &:first-child {
+                padding-top: .5rem;
+                padding-left: 0.75rem;
+                padding-right: 0.5rem;
+              }
+            }
+          }
+
+          .t-definition-list {
+            // flex-wrap: wrap;
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.5;
+            align-items: baseline;
+            display: flex;
+
+            .t-definition-term {
+              flex: 0 0 auto;
+              text-align: left;
+              text-align-last: left;
+            }
+
+            .t-definition-description {
+              margin-left: 0.5rem;
+              flex: 0 0 auto;
+
+              a {
+                font-size: 125%;
+                font-weight: 500;
+              }
+
+              small {
+                color: $lightgrey;
+                font-size: 70%;
+                padding-left: 0.25rem;
+              }
+            }
+          }
+        }
+
+        .t-card-charts {
+          display: flex;
+          padding-left: 0.75rem;
+          margin-bottom: 1rem;
+          max-width: 25rem;
+          width: 40%;
+
+          @include md {
+            width: 100%;
+            padding-left: 0;
+            padding: 0 1rem 0.5rem;
+          }
+
+
+          .ct-chart-bar .ct-label.ct-horizontal.ct-end {
+            height: auto !important;
+            margin: 1rem 0 0 0;
+            font-weight: 700;
+
+            @include md {
+              margin-top: 1.5rem;
+            }
+          }
+
+          $ct-drop: 2px 4px 6px;
+
+          .ct-series {
+            line {
+              &:nth-child(1) {
+                stroke: $primary !important;
+                filter: drop-shadow($ct-drop rgba($primary-400, 0.66));
+              }
+
+              &:nth-child(2) {
+                stroke: $secondary !important;
+                filter: drop-shadow($ct-drop rgba($secondary-400, 0.66));
+              }
+
+              &:nth-child(3) {
+                stroke: $tertiary !important;
+                filter: drop-shadow($ct-drop rgba($tertiary-400, 0.66));
+              }
+
+              &:nth-child(4) {
+                stroke: $quaternary !important;
+                filter: drop-shadow($ct-drop rgba($quaternary-400, 0.66));
+              }
+
+              &:nth-child(5) {
+                stroke: $info !important;
+                filter: drop-shadow($ct-drop rgba($info-400, 0.66));
+              }
+            }
+          }
+
+          svg {
+            overflow: visible;
+          }
+        }
+      }
+
+      .t-symbol {
+        position: absolute;
+        right: 0.75rem;
+        top: -2rem;
+
+        .svg-icon {
+          background-size: 120% 120%;
+          border-radius: $border-radius-xl;
+        }
+
+        .t-symbol-label {
+          border: 0.125rem solid rgba(_var("white-rgb", $white), 0.24);
+          box-shadow: $t-card-box-shadow $primary-300, $t-card-box-shadow-du $primary-200;
+        }
+      }
+
+      .t-badge {
+        position: absolute;
+        left: 0.25rem;
+        top: -1rem;
+
+        big {
+          font-weight: 900;
+        }
+      }
+
+      .t-panel-main-heading {
+        font-size: 1.0625rem;
+        font-weight: 700;
+        letter-spacing: .03125rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .t-panel-mini-link {
+        font-size: 1.75rem;
+        letter-spacing: .125rem;
+        font-weight: 700;
+        line-height: 1.25;
+        text-decoration: none;
+
+        @include teacher {
+          color: $primary-600;
+
+          @include stroke(0.25rem, rgba($primary-600, 0.2));
+        }
+
+
+        @include unit {
+          color: $tertiary-600;
+
+          @include stroke(0.25rem, rgba($tertiary-600, 0.2));
+        }
+
+
+        @include admin {
+          color: $quaternary-600;
+
+          @include stroke(0.25rem, rgba($quaternary-600, 0.2));
+        }
+
+
+        @include branch {
+          color: $info-600;
+
+          @include stroke(0.25rem, rgba($info-600, 0.2));
+        }
+      }
+    }
+
+    .t-panel {
+      @include teacher {
+        .t-panel-heading {
+          background-color: $primary-100;
+          border-top: $primary-300 solid 0.25rem;
+        }
+
+        .t-table-cnt {
+          background-color: rgba($info, 0.24);
+
+          .svg-icon {
+            color: $primary;
+          }
+        }
+      }
+
+
+      @include unit {
+        .t-panel-heading {
+          background-color: $tertiary-100;
+          border-top: $tertiary-300 solid 0.25rem;
+        }
+
+        .t-table-cnt {
+          background-color: rgba($secondary, 0.24);
+
+          .svg-icon {
+            color: $tertiary;
+          }
+        }
+      }
+
+
+      @include branch {
+        .t-panel-heading {
+          background-color: $info-100;
+          border-top: $info-300 solid 0.25rem;
+        }
+
+        .t-table-cnt {
+          background-color: rgba($success, 0.24);
+
+          .svg-icon {
+            color: $info;
+          }
+        }
+      }
+
+
+      @include admin {
+        .t-panel-heading {
+          background-color: $quaternary-100;
+          border-top: $quaternary-300 solid 0.25rem;
+        }
+
+        .t-table-cnt {
+          background-color: rgba($primary, 0.24);
+
+          .svg-icon {
+            color: $quaternary;
+          }
+        }
+      }
+    }
+  }
+
+  .bt-section-header {
+    position: relative;
+    padding-bottom: .75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    display: flex;
+
+    > .svg-icon {
+      flex: 0 0 auto;
+      margin-right: 0.5rem;
+      align-self: end;
+
+      > svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    .bt-section-heading {
+      font-size: 1.5rem;
+      letter-spacing: 1.25px;
+      -webkit-text-stroke: 0.8755px;
+
+      &:first-letter {
+        font-size: 125%;
+        margin-right: 0.25rem;
+      }
+    }
+
+    .bt-section-para {
+      font-size: 0.875rem;
+      color: $grey;
+      margin-left: 1.5rem;
+    }
+  }
+
+  .t-legend {
+    position: absolute;
+    top: -1.5rem;
+    left: 1rem;
+    border-radius: 1.25rem 1.25rem .25rem 1.25rem;
+    color: _var("white", $white);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .t-form {
+    flex-wrap: wrap;
+    overflow: visible;
+    flex-direction: row;
+
+    > .t-form-inline {
+      white-space: normal;
+      flex-wrap: wrap;
+      flex: 0 0 auto;
+      width: 100%;
+      display: flex;
+
+      .t-form-group {
+        display: flex;
+      }
+    }
+
+    .t-form-label {
+      min-width: 6rem;
+    }
+
+    .t-form-btns {
+      padding-top: 0.75rem;
+      border-top: 1px dashed rgba($dark, 0.12);
+
+      .t-form-group {
+        justify-content: right;
+        align-items: end;
+        margin-bottom: 0;
+        flex-wrap: wrap;
+
+        .btn {
+          margin-top: 0.5rem;
+
+          &:not(:last-child) {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .bt-form-cnt {
+    width: 100%;
+    margin-top: 2.25rem;
+    position: relative;
+    border-radius: $border-radius;
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+
+    .t-form-label {
+      position: relative;
+      border-radius: $border-radius;
+      margin-bottom: 0 !important;
+      font-weight: 500;
+      font-size: 0.875rem;
+      display: flex;
+      height: 100%;
+      padding: 0.75rem;
+      justify-content: center;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        right: -0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 1.125rem solid transparent;
+        border-bottom: 1.125rem solid transparent;
+      }
+    }
+
+    .t-form-control {
+      font-size: 0.875rem;
+      width: 100%;
+    }
+  }
+}
+
+.btn--checked {
+  letter-spacing: 1px;
+  font-size: 1rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+
+  @include teacher {
+    @extend .btn--primary;
+  }
+
+
+  @include unit {
+    @extend .btn--tertiary;
+  }
+
+
+  @include branch {
+    @extend .btn--info;
+  }
+
+
+  @include admin {
+    @extend .btn--quaternary;
+  }
+}
+
+.btn--export {
+  letter-spacing: 1px;
+  font-size: 0.9375rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  @extend .btn--success;
+}
+
+.bt-section-edit {
+  padding: 1.25rem;
+  background-color: _var("white", $white);
+
+  @include btStyleBd;
+}
+
+.bt-section-search {
+  padding: 1.25rem;
+  background-color: _var("white", $white);
+
+  @include btStyleBd;
+
+  [data-bs-toggle="collapse"] {
+    padding-right: 3.5rem;
+    position: absolute;
+    right: 0;
+    top: 0.25rem;
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+
+      @include svg-bg-icon(arrow-bottom, $primary, center, 70%);
+
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      border: 2px solid $primary-200;
+      transition: $transition;
+    }
+
+    &:before {
+      margin-right: 0.5rem;
+    }
+
+    &[aria-expanded="false"] {
+      &:before {
+        content: '收合';
+      }
+
+      &:after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+
+    &[aria-expanded="true"] {
+      &:before {
+        content: '展開';
+      }
+
+      &:after {
+        transform: translateY(-50%) rotate(0deg);
+      }
+    }
+  }
+
+  .bt-form-cnt.collapse {
+    &:not(.show) {
+      visibility: hidden;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .bt-form-cnt.show {
+    visibility: visible;
+  }
+}
+
+.bt-btn-group {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border-top: 2px dotted rgba($dark, 0.12);
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.bt-section-result {
+  padding: 2rem;
+  margin-bottom: 8rem;
+  background-color: _var("white", $white);
+
+  @include btStyleBd;
+
+  .search-result-total {
+    position: absolute;
+    right: 2rem;
+    top: 1.25rem;
+    font-size: 1rem;
+
+    .svg-icon {
+      color: $success-200;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.75rem;
+    }
+
+    .search-result-total-label {
+      display: block;
+      background-color: rgba($dark, 0.88);
+      color: _var("white", $white);
+      border-radius: 3rem;
+      font-weight: 500;
+      padding: .5rem 1rem;
+      margin: 0;
+      user-select: none;
+
+      .search-result-total-text {
+        font-size: 0.875rem;
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 0.125rem;
+
+        big {
+          color: $success-200;
+          margin: 0 0.125rem;
+        }
+      }
+    }
+  }
+}

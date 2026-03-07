@@ -1,0 +1,52 @@
+// List Groups
+
+@mixin list-group-item-variant($state, $background, $color) {
+  .list-group-item-#{$state} {
+    color: $color;
+    background-color: $background;
+
+    &.list-group-item-action {
+      @include hover-focus {
+        color: $color;
+        background-color: darken($background, 5%);
+      }
+
+      &.active {
+        color: $white;
+        background-color: $color;
+        border-color: $color;
+      }
+    }
+  }
+}
+@mixin pointer(
+  $iconColor: $quaternary,
+  $fontColor: $quaternary-800,
+  $hoverBg: $quaternary-50) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    opacity: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-image: t-svg(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='#{$iconColor}' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z'/%3e%3c/svg%3e"));
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 1.25rem 1.25rem;
+    transform: translateY(-50%);
+    transition: .2s;
+  }
+
+  &:hover {
+    color: $fontColor;
+    background-color: $hoverBg;
+
+    &:after {
+      right: 1rem;
+      opacity: 1;
+    }
+  }
+}

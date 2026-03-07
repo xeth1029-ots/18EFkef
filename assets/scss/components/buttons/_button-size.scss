@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+/**
+//   Components -> Buttons -> Buttons size
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+// Button Sizes
+// .btn--xl {
+//   @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $btn-font-size-xl, $btn-line-height-xl, $btn-radius);
+// }
+.btn--lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-radius);
+}
+
+.btn--sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-radius);
+}
+
+.btn--xs {
+  @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $btn-font-size-xs, $btn-line-height-xs, $btn-radius);
+}
+
+.btn--xxs {
+  @include button-size($btn-padding-y-xxs, $btn-padding-x-xxs, $btn-font-size-xxs, $btn-line-height-xxs, $btn-radius);
+}
+
+// Block Button
+.btn--block {
+  display: block;
+  width: 100%;
+
+  +.btn.btn--block {
+    margin-top: $btn-block-spacing-y;
+  }
+}

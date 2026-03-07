@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+//  prototypes -> check
+// --------------------------------------------------
+
+
+.t-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .t-check-label {
+    @include toggle-label;
+
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    width: 7.5rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background: $dark;
+    border: none;
+    transition: $transition;
+
+    &:before {
+      @include before-after;
+
+      width: 2.5rem;
+      height: 2.5rem;
+      top: 0.25rem;
+      left: 0.25rem;
+      border-radius: 2.5rem;
+      background: $primary;
+      transition: $transition;
+    }
+  }
+
+  .t-check-input {
+    @include input-checkbox-not-ab;
+
+    &:before,
+    &:after {
+      @include before-after;
+
+      top: 0;
+      height: 0.25rem;
+      border-radius: 0.125rem;
+      background: _var("white", $white);
+      transition: $transition;
+    }
+
+    &:before {
+      // cross
+      width: 1.6875rem;
+      transform: rotate(-45deg) translate(-0.525rem, 1.425rem);
+    }
+
+    &:after {
+      // cross
+      width: 1.6875rem;
+      transform: rotate(45deg) translate(1.425rem, 0.525rem);
+    }
+  }
+
+  .t-check-input:checked {
+    &:before {
+      // check
+      width: 1.5625rem;
+      transform: rotate(-45deg) translate(2.875rem, 5rem);
+    }
+
+    &:after {
+      // check
+      width: 0.75rem;
+      transform: rotate(45deg) translate(5rem, -2.5rem);
+    }
+  }
+
+  .t-check-input:checked + .t-check-label {
+    &:before {
+      background: $info;
+      left: calc(100% - 2.75rem);
+    }
+  }
+
+  .t-check-input:disabled {
+    &:before,
+    &:after {
+      cursor: not-allowed !important;
+    }
+
+    & + .t-check-label {
+      background: $grey-300 !important;
+      cursor: not-allowed !important;
+
+      &:before {
+        background: $grey-200 !important;
+      }
+    }
+  }
+}
+
+@each $name, $value in $toggle-theme-colors {
+  .t-check-#{$name} {
+    @extend .t-check;
+
+    .t-check-label {
+      &:before {
+        background: $value;
+      }
+    }
+
+    .t-check-input:checked + .t-check-label {
+      &:before {
+        background: invert($value);
+      }
+    }
+  }
+}

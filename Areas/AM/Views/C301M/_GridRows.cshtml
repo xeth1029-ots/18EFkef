@@ -1,0 +1,46 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C301MFormModel
+
+@if (Model.Grid != null && Model.Grid.Count > 0)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        // 是否可以修改
+        string EditStr = "查看";
+        string MeetingDate = item.MeetingDateE.TONotNullString();
+        string MeetingTime = item.TimeE.TONotNullString();
+        if (MeetingDate == "")
+        {
+            MeetingDate = item.MeetingDateS.TONotNullString();
+            MeetingTime = item.TimeS.TONotNullString();
+        }
+        DateTime tmpDT = DateTime.Parse(MeetingDate + " " + MeetingTime);
+        // 是否可以修改 = (會議迄日 >= 現在)
+        if (tmpDT != DateTime.MinValue && tmpDT >= DateTime.Now) { EditStr = "修改"; }
+
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.MeetingName</td>
+            <td>@item.MeetingTypeName</td>
+            <td>@item.MeetingDateName</td>
+            <td>@item.Location</td>
+            <td>@item.SignUpDateName</td>
+            <td align="center">
+                <button type="button" class="btn btn-info" onclick="doUpd('@item.Seq')">&emsp;@EditStr&emsp;</button>
+                <button type="button" class="btn btn-primary" onclick="doSignUp('@item.Seq','1')">報名管理</button>
+                <button type="button" class="btn btn-danger" onclick="doDel('@item.Seq', '@item.ROWID')">&emsp;刪除&emsp;</button>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="7">(查無資料，請重新查詢)</td>
+    </tr>
+}

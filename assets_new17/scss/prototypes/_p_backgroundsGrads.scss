@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+//  Prototypes -> backgrounds Grad 
+// --------------------------------------------------
+
+// .t-bg-iso-v1 {
+//   position: relative;
+
+//   &:before {
+//     content: '';
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     background: 
+//       repeating-linear-gradient(150deg, 
+//         rgba(_var("white-rgb", $white), 0) 0, 
+//         rgba(_var("white-rgb", $white), 0) 49px, 
+//         rgba(_var("white-rgb", $white), 10%) 50px, 
+//         rgba($dark, 0.32) 51px, 
+//         rgba(_var("white-rgb", $white), 0) 55px), 
+//       repeating-linear-gradient(30deg, 
+//         rgba(_var("white-rgb", $white), 0) 0, 
+//         rgba(_var("white-rgb", $white), 0) 49px, 
+//         rgba(_var("white-rgb", $white), 10%) 50px, 
+//         rgba($dark, 30%) 51px, 
+//         rgba(_var("white-rgb", $white), 0) 55px);
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+
+.t-bg-bullet-v1 {
+  background: repeating-linear-gradient(to right, transparent, transparent 50px, white 50px, white 55px), repeating-linear-gradient(to bottom, transparent, transparent 50px, white 50px, white 55px), linear-gradient(45deg, pink, skyblue);
+}
+
+.t-bg-bullet-v2 {
+  background: repeat left -17px top -22px / 55px 55px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35px 35px'><foreignObject width='35px' height='35px'><div xmlns='http://www.w3.org/1999/xhtml' style='color:white;font-size:35px'>✦</div></foreignObject></svg>"), repeating-linear-gradient(to right, transparent, transparent 50px, white 50px, white 55px), repeating-linear-gradient(to bottom, transparent, transparent 50px, white 50px, white 55px), linear-gradient(45deg, pink, skyblue);
+  grid-area: 2 / 1;
+  cursor: pointer;
+
+  &:hover {
+    background: repeating-linear-gradient(to right, transparent, transparent 50px, rgb(255 255 255 / 0.5) 50px, rgb(255 255 255 / 0.5) 55px), repeating-linear-gradient(to bottom, transparent, transparent 50px, rgb(255 255 255 / 0.5) 50px, rgb(255 255 255 / 0.5) 55px), linear-gradient(45deg, pink, skyblue);
+    box-shadow: 10px 10px 20px pink;
+  }
+
+  &:hover + img {
+    filter: drop-shadow(10px 10px 20px pink);
+  }
+}

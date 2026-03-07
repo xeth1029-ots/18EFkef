@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1,width=device-width">
+		<meta name="format-detection" content="telephone=no">
+		<title>Vanilla JS Calendar - A lightweight date and time picker written in pure JavaScript.</title>
+		<style>
+			body {
+				box-sizing: border-box;
+				padding: 40px 0;
+				margin: 0;
+				width: 100vw;
+				height: 100vh;
+				font-family: 'Helvetica', 'Arial', sans-serif;
+				background-color: #00878a;
+				background-image: linear-gradient(135deg,#c6ffae -20%,#00878a);
+				background-position: 0 0;
+				background-repeat: no-repeat;
+			}
+
+			h1 {
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				font-size: 52px;
+				line-height: 70px;
+				font-weight: 700;
+				color: white;
+				width: 100%;
+				text-align: center;
+				margin: 0 auto 15px;
+				text-shadow: 0 1px 3px rgb(80 145 120 / 40%);
+			}
+
+			.vanilla-calendar {
+				border: 1px solid gainsboro;
+				margin: 0 auto;
+			}
+
+			.vanilla-calendar-info {
+				display: grid;
+				grid-auto-flow: column;
+				justify-content: start;
+				gap: 5px;
+				margin: 20px auto;
+				width: 300px;
+				background-color: white;
+				border-radius: 4px;
+				padding: 10px 15px;
+				font-size: 14px;
+				color: black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Vanilla Calendar</h1>
+		<div class="vanilla-calendar"></div>
+		<div class="vanilla-calendar-info">
+			<span id="vanilla-calendar-info-date"></span>
+			<span id="vanilla-calendar-info-time"></span>
+		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const generateDate = (date) => {
+					const year = date.getUTCFullYear();
+					let month = date.getUTCMonth() + 1;
+					let day = date.getUTCDate();
+
+					month = month < 10 ? `0${month}` : month;
+					day = day < 10 ? `0${day}` : day;
+
+					return `${year - 1911}-${month}-${day}`;
+				};
+
+				const calendarInfoDate = document.querySelector('#vanilla-calendar-info-date');
+				const calendarInfoTime = document.querySelector('#vanilla-calendar-info-time');
+				const calendar = new VanillaCalendar('.vanilla-calendar', {
+					settings: {
+						lang: 'tss',
+						selection: {
+							time: 12,
+						},
+						selected: {
+							dates: [generateDate(new Date())],
+						},
+					},
+					actions: {
+						clickDay(e, dates) {
+							console.dir(dates)
+							let ChYear = dates.toString().substr(0, 4) - 1911;
+							let month = dates.toString().substr(5, 2);
+							let day = dates.toString().substr(8, 2);
+							calendarInfoDate.innerText = `${ChYear}-${month}-${day}`;;
+							console.log(ChYear , month , day)
+						},
+						changeTime(e, time) {
+							calendarInfoTime.innerText = time;
+						},
+					},
+				});
+				calendar.init();
+				calendarInfoDate.innerText = generateDate(new Date());
+				calendarInfoTime.innerText = calendar.selectedTime;
+			});
+		</script>
+	</body>
+</html>

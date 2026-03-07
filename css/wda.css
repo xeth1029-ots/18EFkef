@@ -1,0 +1,18 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+@media only screen and (max-width: 576px) {
+    .container {
+        max-width: 100% !important;
+    }
+
+    .observer-nav {
+        display: none;
+    }
+
+    .t-custom-footer::before {
+        top: -8%;
+    }
+}
+
+.zero-font-margin { font-size: 0em; margin: 0; }

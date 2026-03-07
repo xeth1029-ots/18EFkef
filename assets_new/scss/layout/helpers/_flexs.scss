@@ -1,0 +1,366 @@
+@charset "utf-8";
+
+//  Layout -> Flexs 
+// --------------------------------------------------
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .flex#{$infix}-row {
+      flex-direction: row !important;
+    }
+
+    .flex#{$infix}-column {
+      flex-direction: column !important;
+    }
+
+    .flex#{$infix}-row-reverse {
+      flex-direction: row-reverse !important;
+    }
+
+    .flex#{$infix}-column-reverse {
+      flex-direction: column-reverse !important;
+    }
+
+    .flex#{$infix}-wrap {
+      flex-wrap: wrap !important;
+    }
+
+    .flex#{$infix}-nowrap {
+      flex-wrap: nowrap !important;
+    }
+
+    .flex#{$infix}-wrap-reverse {
+      flex-wrap: wrap-reverse !important;
+    }
+
+    .justify-content#{$infix}-start {
+      justify-content: flex-start !important;
+    }
+
+    .justify-content#{$infix}-end {
+      justify-content: flex-end !important;
+    }
+
+    .justify-content#{$infix}-center {
+      justify-content: center !important;
+    }
+
+    .justify-content#{$infix}-between {
+      justify-content: space-between !important;
+    }
+
+    .justify-content#{$infix}-around {
+      justify-content: space-around !important;
+    }
+
+    .align-items#{$infix}-start {
+      align-items: flex-start !important;
+    }
+
+    .align-items#{$infix}-end {
+      align-items: flex-end !important;
+    }
+
+    .align-items#{$infix}-center {
+      align-items: center !important;
+    }
+
+    .align-items#{$infix}-baseline {
+      align-items: baseline !important;
+    }
+
+    .align-items#{$infix}-stretch {
+      align-items: stretch !important;
+    }
+
+    .align-content#{$infix}-start {
+      align-content: flex-start !important;
+    }
+
+    .align-content#{$infix}-end {
+      align-content: flex-end !important;
+    }
+
+    .align-content#{$infix}-center {
+      align-content: center !important;
+    }
+
+    .align-content#{$infix}-between {
+      align-content: space-between !important;
+    }
+
+    .align-content#{$infix}-around {
+      align-content: space-around !important;
+    }
+
+    .align-content#{$infix}-stretch {
+      align-content: stretch !important;
+    }
+
+    .align-self#{$infix}-auto {
+      align-self: auto !important;
+    }
+
+    .align-self#{$infix}-start {
+      align-self: flex-start !important;
+    }
+
+    .align-self#{$infix}-end {
+      align-self: flex-end !important;
+    }
+
+    .align-self#{$infix}-center {
+      align-self: center !important;
+    }
+
+    .align-self#{$infix}-baseline {
+      align-self: baseline !important;
+    }
+
+    .align-self#{$infix}-stretch {
+      align-self: stretch !important;
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .flex#{$infix}-root {
+      flex: 1;
+    }
+
+    .flex#{$infix}-column-auto {
+      flex: none;
+    }
+
+    .flex#{$infix}-column-fluid {
+      flex: 1 0 auto;
+    }
+
+    .flex#{$infix}-row-auto {
+      flex: 0 0 auto;
+    }
+
+    .flex#{$infix}-row-fluid {
+      flex: 1 auto;
+      min-width: 0;
+    }
+
+    .flex#{$infix}-center {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flex#{$infix}-stack {
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+
+@for $i from 0 through 20 {
+  .t-gap-#{$i} {
+    gap: unquote("#{$i * 0.25}rem !important");
+  }
+
+  %t-gap-#{$i} {
+    gap: unquote("#{$i * 0.25}rem !important");
+  }
+}
+
+// .gap-0 {
+//   gap: 0 !important;
+// }
+
+// .gap-1 {
+//   gap: 0.25rem !important;
+// }
+
+// .gap-2 {
+//   gap: 0.5rem !important;
+// }
+
+// .gap-3 {
+//   gap: 0.75rem !important;
+// }
+
+// .gap-4 {
+//   gap: 1rem !important;
+// }
+
+// .gap-5 {
+//   gap: 1.25rem !important;
+// }
+
+// .gap-6 {
+//   gap: 1.5rem !important;
+// }
+
+// .gap-7 {
+//   gap: 1.75rem !important;
+// }
+
+// .gap-8 {
+//   gap: 2rem !important;
+// }
+
+// .gap-9 {
+//   gap: 2.25rem !important;
+// }
+
+// .gap-10 {
+//   gap: 2.5rem !important;
+// }
+
+// .gap-11 {
+//   gap: 2.75rem !important;
+// }
+
+// .gap-12 {
+//   gap: 3rem !important;
+// }
+
+// .gap-13 {
+//   gap: 3.25rem !important;
+// }
+
+// .gap-14 {
+//   gap: 3.5rem !important;
+// }
+
+// .gap-15 {
+//   gap: 3.75rem !important;
+// }
+
+// .gap-16 {
+//   gap: 4rem !important;
+// }
+
+// .gap-17 {
+//   gap: 4.25rem !important;
+// }
+
+// .gap-18 {
+//   gap: 4.5rem !important;
+// }
+
+// .gap-19 {
+//   gap: 4.75rem !important;
+// }
+
+// .gap-20 {
+//   gap: 5rem !important;
+// }
+
+// // // Utility generator
+// // // Used to generate utilities & print utilities
+// // @mixin generate-utility($utility, $infix, $is-rfs-media-query: false) {
+// //   $values: map-get($utility, values);
+
+// //   // If the values are a list or string, convert it into a map
+// //   @if type-of($values)=="string"or type-of(nth($values, 1)) !="list" {
+// //     $values: zip($values, $values);
+// //   }
+
+// //   @each $key,
+// //   $value in $values {
+// //     $properties: map-get($utility, property);
+
+// //     // Multiple properties are possible, for example with vertical or horizontal margins or paddings
+// //     @if type-of($properties)=="string" {
+// //       $properties: append((), $properties);
+// //     }
+
+// //     // Use custom class if present
+// //     $property-class: if(map-has-key($utility, class), map-get($utility, class), nth($properties, 1));
+// //     $property-class: if($property-class==null, "", $property-class);
+
+// //     // Use custom CSS variable name if present, otherwise default to `class`
+// //     $css-variable-name: if(map-has-key($utility, css-variable-name), map-get($utility, css-variable-name), map-get($utility, class));
+
+// //     // State params to generate pseudo-classes
+// //     $state: if(map-has-key($utility, state), map-get($utility, state), ());
+
+// //     $infix: if($property-class==""and str-slice($infix, 1, 1)=="-", str-slice($infix, 2), $infix);
+
+// //     // Don't prefix if value key is null (eg. with shadow class)
+// //     $property-class-modifier: if($key, if($property-class==""and $infix=="", "", "-") + $key, "");
+
+// //     @if map-get($utility, rfs) {
+
+// //       // Inside the media query
+// //       @if $is-rfs-media-query {
+// //         $val: rfs-value($value);
+
+// //         // Do not render anything if fluid and non fluid values are the same
+// //         $value: if($val==rfs-fluid-value($value), null, $val);
+// //       }
+
+// //       @else {
+// //         $value: rfs-fluid-value($value);
+// //       }
+// //     }
+
+// //     $is-css-var: map-get($utility, css-var);
+// //     $is-local-vars: map-get($utility, local-vars);
+// //     $is-rtl: map-get($utility, rtl);
+
+// //     @if $value !=null {
+// //       @if $is-rtl==false {
+// //         /* rtl:begin:remove
+// //       }
+
+// //       @if $is-css-var {
+// //         .#{$property-class + $infix + $property-class-modifier} {
+// //           --#{$prefix}#{$css-variable-name}: #{$value};
+// //         }
+
+// //         @each $pseudo in $state {
+// //           .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
+// //             --#{$prefix}#{$css-variable-name}: #{$value};
+// //           }
+// //         }
+// //       }
+
+// //       @else {
+// //         .#{$property-class + $infix + $property-class-modifier} {
+// //           @each $property in $properties {
+// //             @if $is-local-vars {
+
+// //               @each $local-var,
+// //               $variable in $is-local-vars {
+// //                 --#{$prefix}#{$local-var}: #{$variable};
+// //               }
+// //             }
+
+// //             #{$property}: $value if($enable-important-utilities,  !important, null);
+// //           }
+// //         }
+
+// //         @each $pseudo in $state {
+// //           .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
+// //             @each $property in $properties {
+// //               @if $is-local-vars {
+
+// //                 @each $local-var,
+// //                 $variable in $is-local-vars {
+// //                   --#{$prefix}#{$local-var}: #{$variable};
+// //                 }
+// //               }
+
+// //               #{$property}: $value if($enable-important-utilities,  !important, null);
+// //             }
+// //           }
+// //         }
+// //       }
+
+// //       @if $is-rtl==false {
+// //         /* rtl:end:remove
+// //       }
+// //     }
+// //   }
+// // }

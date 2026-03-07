@@ -1,0 +1,141 @@
+@charset "utf-8";
+
+.teachers-list-items-small-areas-cnt {
+  position: relative;
+  background-color: rgba($white, 0.4);
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 3rem;
+    height: 4rem;
+    text-shadow: -2px 2px $white, -1.5px 1.5px $white, -1px 1px $white, -0.5px 0.5px $white;
+    font-size: 8rem;
+    z-index: 0;
+  }
+
+  &::before {
+    top: -2rem;
+    left: 1rem;
+    content: open-quote;
+  }
+
+  &::after {
+    bottom: -1rem;
+    right: 1rem;
+    content: close-quote;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1.25rem;
+  }
+
+  @each $color,
+  $value in $department-colors {
+    &.teachers-list-items-small-areas-cnt {
+      &.teachers-list-items-small-areas-cnt-#{$color} {
+        background-image: linear-gradient(-45deg, transparent, transparent 2%, white 2%, white 85%, transparent, 85%, transparent), linear-gradient(to bottom right, tint-color($value, 60%), tint-color($value, 60%) 90%, transparent 90%);
+
+        .teachers-list-items-small-areas-heading {
+          &.teachers-list-items-small-areas-heading-#{$color} {
+            background-color: $value;
+            box-shadow: 0.5rem 0.5rem 0 tint-color($value, 80%);
+          }
+        }
+
+
+        .teachers-list-small-item {
+          border: 2px solid tint-color($value, 80%);
+          box-shadow: 0 0.125rem 0.5rem tint-color($value, 90%);
+
+          &:hover {
+            background-color: tint-color($value, 90%);
+            border: 2px dotted tint-color($value, 60%);
+            box-shadow: 0 0.25rem 1rem tint-color($value, 80%);
+
+            .teachers-list-small-item-cnt {
+              h6 {
+                color: shade-color($value, 60%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .teachers-list-items-small-areas-heading {
+    display: inline-block;
+    border-radius: $border-radius-lg;
+    color: $white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    padding: 0.75rem 4rem;
+    width: max-content;
+    letter-spacing: 2px;
+    line-height: 1.25;
+
+
+    &:first-letter {
+      font-size: 200%;
+      padding-right: .5rem;
+    }
+  }
+
+  .teachers-list-items-small-areas {
+
+    border-radius: $border-radius;
+    box-shadow: 0 0.25rem 1rem $grey-50;
+    padding: 2rem 0 1.5rem;
+    margin-top: 3rem;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: left;
+
+
+    .teachers-list-small-item {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.375rem 0.75rem;
+      border-radius: $border-radius;
+      transition: $transition-base;
+      margin: 0.5rem;
+
+      &:hover {
+        transform: scale(1.125);
+      }
+
+      .teachers-list-small-item-cnt {
+        padding: 1rem;
+        flex: 0 0 auto;
+
+        h6 {
+          font-size: 1.125rem;
+        }
+      }
+
+      .teachers-list-small-item-avatar {
+        flex: 0 0 auto;
+        border-radius: 50%;
+        border: 2px solid rgba($white , 0.80);
+        box-shadow: 0 0 0.375rem rgba($grey , 0.32);
+
+        img {
+          border-radius: inherit;
+          width: 3rem;
+          height: 3rem;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

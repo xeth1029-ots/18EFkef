@@ -1,0 +1,79 @@
+
+// TRANSITION
+// =========================================================
+
+$linear:      "0.250, 0.250, 0.750, 0.750" !default;
+$ease:        "0.250, 0.100, 0.250, 1.000" !default;
+$ease-in:     "0.420, 0.000, 1.000, 1.000" !default;
+$ease-out:    "0.000, 0.000, 0.580, 1.000" !default;
+$ease-in-out: "0.420, 0.000, 0.580, 1.000" !default;
+
+$easeInQuad:  "0.550, 0.085, 0.680, 0.530" !default;
+$easeInCubic: "0.550, 0.055, 0.675, 0.190" !default;
+$easeInQuart: "0.895, 0.030, 0.685, 0.220" !default;
+$easeInQuint: "0.755, 0.050, 0.855, 0.060" !default;
+$easeInSine:  "0.470, 0.000, 0.745, 0.715" !default;
+$easeInExpo:  "0.950, 0.050, 0.795, 0.035" !default;
+$easeInCirc:  "0.600, 0.040, 0.980, 0.335" !default;
+$easeInBack:  "0.600, -0.280, 0.735, 0.045" !default;
+
+$easeOutQuad: "0.250, 0.460, 0.450, 0.940" !default;
+$easeOutCubic: "0.215, 0.610, 0.355, 1.000" !default;
+$easeOutQuart: "0.165, 0.840, 0.440, 1.000" !default;
+$easeOutQuint: "0.230, 1.000, 0.320, 1.000" !default;
+$easeOutSine: "0.390, 0.575, 0.565, 1.000" !default;
+$easeOutExpo: "0.190, 1.000, 0.220, 1.000" !default;
+$easeOutCirc: "0.075, 0.820, 0.165, 1.000" !default;
+$easeOutBack: "0.175, 0.885, 0.320, 1.275" !default;
+
+$easeInOutQuad: "0.455, 0.030, 0.515, 0.955" !default;
+$easeInOutCubic: "0.645, 0.045, 0.355, 1.000" !default;
+$easeInOutQuart: "0.770, 0.000, 0.175, 1.000" !default;
+$easeInOutQuint: "0.860, 0.000, 0.070, 1.000" !default;
+$easeInOutSine: "0.445, 0.050, 0.550, 0.950" !default;
+$easeInOutExpo: "1.000, 0.000, 0.000, 1.000" !default;
+$easeInOutCirc: "0.785, 0.135, 0.150, 0.860" !default;
+$easeInOutBack: "0.680, -0.550, 0.265, 1.550" !default;
+
+$transition-timing:         0.25s          !default;
+$transition-timing-xs:      0.125s          !default;
+$transition-timing-sm:      0.2s       !default;
+$transition-timing-md:      0.3s       !default;
+$transition-timing-lg:      0.35s       !default;
+
+
+$transition-function:       ease-in-out !default;
+$transition-ease-in-out:    ease-in-out !default;
+$transition-ease-in:        ease-in     !default;
+$transition-ease-out:       ease-out    !default;
+$transition-ease:           ease        !default;
+$transition-linear:         linear      !default;  // cubic-bezier(unquote($easingValue))
+
+
+
+
+$transition-link:               background $transition-timing $transition-ease-in-out , 
+                                width $transition-timing $transition-ease-in-out , 
+                                font-weight $transition-timing $transition-ease-in-out , 
+                                color $transition-timing $transition-ease-in-out , 
+                                text-decoration $transition-timing $transition-ease-in-out    !default;
+                                
+$transition-filter:             filter $transition-timing $transition-ease-in-out             !default;
+$transition-filter-link:        $transition-link, $transition-filter                          !default;
+
+$transition-base:               all 0.25s  $transition-ease-in-out       !default;
+$transition-fast:               all 0.125s $transition-ease-in-out          !default;
+$transition-icon:               all 0.125s $transition-ease-in-out          !default;
+$transition-fade:               opacity 0.15s linear         !default;
+$transition-collapse:           height 0.35s ease ,
+                                max-height 0.35s ease      !default;
+$transition-collapse-width:     width .35s ease !default;
+$transition-input:              all 0.125s ease-in-out       !default;
+$transition-input-bt:           all 0.25s linear           !default;
+$transition-3d-Button:          all 0.25s ease             !default;
+$transition-check-mark:         all 0.3s   cubic-bezier(0.12, 0.49, 0.17, 0.87)    !default;
+$transition-side:               all 0.125s cubic-bezier(0.12, 0.49, 0.17, 0.87)  !default;
+$transition-tabs:               all 0.25s  cubic-bezier(0.12, 0.49, 0.17, 0.87)  !default;
+$transition-header:             all 0.25s ease-in-out  !default;
+$transition-mask:               all 600ms ease;
+$transition:                     $transition-base     !default;

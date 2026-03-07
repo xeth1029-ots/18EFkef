@@ -1,0 +1,25 @@
+@charset "utf-8";
+//  Prototypes -> Border Color
+// --------------------------------------------------
+
+@each $color, $value in $element-colors {
+  .t-bd-#{$color} {
+    border-color: $value !important;
+  }
+
+  %t-bd-#{$color} {
+    border-color: $value !important;
+  }
+}
+
+@each $color, $value in $element-soft-colors {
+  .t-bd-#{$color} {
+    border-color: $value !important;
+  }
+
+  %t-bd-#{$color} {
+    border-color: $value !important;
+  }
+}
+
+

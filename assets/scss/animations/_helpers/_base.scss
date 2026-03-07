@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+
+
+body {
+  backface-visibility: hidden;
+}
+
+.#{$animated-prefix}animated {
+  @include animate-prefixer(animation-duration, calc(#{$base-duration}));
+  @include animate-prefixer(animation-fill-mode, $base-fill-mode);
+
+  &.#{$animated-prefix}infinite {
+    animation-iteration-count: $base-iteration-count;
+  }
+
+  @for $i from 1 through 20 {
+    &.#{$animated-prefix}dura-#{$i}s {
+      animation-duration: #{$i * 0.5}s;
+    }
+  }
+  @for $i from 1 through 10 {
+    &.#{$animated-prefix}delay-#{$i}s {
+      animation-delay: #{$i * 0.5}s;
+    }
+  }
+
+  &.#{$animated-prefix}hinge {
+    @include animate-prefixer(animation-duration, calc(#{$base-duration} * 2));
+  }
+
+  &.#{$animated-prefix}bounceIn,
+  &.#{$animated-prefix}bounceOut {
+    @include animate-prefixer(animation-duration, calc(#{$base-duration} * 0.75));
+  }
+
+  &.#{$animated-prefix}flipOutX,
+  &.#{$animated-prefix}flipOutY {
+    @include animate-prefixer(animation-duration, calc(#{$base-duration} * 0.75));
+  }
+
+  &#{$animated-prefix}repeat-1 {
+    animation-iteration-count: 1;
+    // animation-iteration-count: var(--animate-repeat);
+  }
+
+  &#{$animated-prefix}repeat-2 {
+    animation-iteration-count: calc(1 * 2);
+    // animation-iteration-count: calc(var(--animate-repeat) * 2);
+  }
+
+  &#{$animated-prefix}repeat-3 {
+    animation-iteration-count: calc(1 * 3);
+    // animation-iteration-count: calc(var(--animate-repeat) * 3);
+  }
+}

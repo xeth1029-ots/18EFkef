@@ -1,0 +1,605 @@
+@charset "utf-8";
+
+// Components Bubbles 
+// --------------------------------------------------
+// @extend %ab-bubble;
+%ab-bubble {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+%bubble-before {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-right: 1.5rem solid $white;
+  border-left: .75rem solid transparent;
+  border-top: .75rem solid $white;
+  border-bottom: 1.25rem solid transparent;
+  bottom: -1.5rem;
+}
+
+%bubble-before-lt {
+  &:before {
+    @extend %bubble-before;
+    border-left: 1.5rem solid $white;
+    border-right: .75rem solid transparent;
+    left: 2rem;
+  }
+}
+
+%bubble-before-rt {
+  &:before {
+    @extend %bubble-before;
+    border-right: 1.5rem solid $white;
+    border-left: .75rem solid transparent;
+    right: 2rem;
+  }
+}
+
+.t-talk-bubble {
+  position: relative;
+  margin: 1.5rem;
+  display: inline-block;
+  height: auto;
+  background-color: _var("dark", $dark);
+  border-radius: $border-radius-sm;
+  color: $white;
+  @include bubble-after-shadow($color: _var("dark", $dark));
+
+  .t-talk-text {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  &.t-round {
+    border-radius: 1.875rem;
+  }
+
+  &.left-top {
+    &:after {
+      @extend %ab-bubble;
+
+      left: -1.25rem;
+      right: auto;
+      top: 0;
+      bottom: auto;
+      border: 1.375rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+    }
+  }
+
+  &.left-in {
+    &:after {
+      @extend %ab-bubble;
+
+      left: -1.25rem;
+      right: auto;
+      top: 2.375rem;
+      bottom: auto;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) $dark transparent transparent;
+    }
+  }
+
+  &.btm-left {
+    &:after {
+      @extend %ab-bubble;
+
+      left: 0;
+      right: auto;
+      top: auto;
+      bottom: -1.25rem;
+      border: 1.375rem solid;
+      border-color: transparent transparent transparent $dark;
+    }
+  }
+
+  &.btm-left-in {
+    &:after {
+      @extend %ab-bubble;
+
+      left: 2.375rem;
+      right: auto;
+      top: auto;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent $dark;
+    }
+  }
+
+  &.btm-left-in-auto {
+    &:after {
+      @extend %ab-bubble;
+
+      left: 2.375rem;
+      right: auto;
+      top: auto;
+      bottom: -0.625rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+      border-bottom-width: 0;
+    }
+  }
+
+  &.btm-right-in {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: 2.375rem;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) $dark transparent transparent;
+    }
+  }
+
+  &.btm-right-in-auto {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: 2.375rem;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+    }
+  }
+
+  &.btm-right {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: 0;
+      bottom: -1.25rem;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) $dark transparent transparent;
+    }
+  }
+
+  &.right-in {
+    &:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: auto;
+      right: -1.25rem;
+      top: 2.375rem;
+      bottom: auto;
+      border: 0.75rem solid;
+      border-color: _var("dark", $dark) transparent transparent $dark;
+    }
+  }
+
+  &.right-top {
+    &:after {
+      @extend %ab-bubble;
+
+      left: auto;
+      right: -1.25rem;
+      top: 0;
+      bottom: auto;
+      border: 1.25rem solid;
+      border-color: _var("dark", $dark) transparent transparent transparent;
+    }
+  }
+
+  &.t-border {
+    border: 0.25rem solid $border;
+
+    &.left-top {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: -2.5rem;
+        right: auto;
+        top: -0.5rem;
+        bottom: auto;
+        border: 2rem solid;
+        border-color: $border transparent transparent transparent;
+      }
+    }
+
+    &.left-in {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: -2.5rem;
+        right: auto;
+        top: 1.875rem;
+        bottom: auto;
+        border: 1.25rem solid;
+        border-color: $border $border transparent transparent;
+      }
+    }
+
+    &.btm-left {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 2.125rem;
+        right: auto;
+        top: auto;
+        bottom: -2rem;
+        border: 1rem solid;
+        border-color: $border transparent transparent $border;
+      }
+    }
+
+    &.btm-left-in {
+      &:before {
+        content: " ";
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 2.125rem;
+        right: auto;
+        top: auto;
+        bottom: -2rem;
+        border: 1rem solid;
+        border-color: $border transparent transparent $border;
+      }
+    }
+
+    &.btm-left-in-auto {
+      &:before {
+        content: " ";
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 2.125rem;
+        right: auto;
+        top: auto;
+        bottom: -2rem;
+        border: 1rem solid;
+        border-color: $border transparent transparent transparent;
+      }
+    }
+
+    &.btm-right {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: -0.5rem;
+        bottom: -2.5rem;
+        border: 1.25rem solid;
+        border-color: $border $border transparent transparent;
+      }
+    }
+
+    &.btm-right-in {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: 2.125rem;
+        bottom: -2rem;
+        border: 1.25rem solid;
+        border-color: $border $border transparent transparent;
+        z-index: -1;
+      }
+    }
+
+    &.btm-right-in-auto {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: 1.875rem;
+        bottom: -2.125rem;
+        border: 1.25rem solid;
+        border-color: $border transparent transparent transparent;
+        z-index: -1;
+      }
+    }
+
+    &.right-in {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: -2.5rem;
+        top: 1.875rem;
+        bottom: auto;
+        border: 1.25rem solid;
+        border-color: $border transparent transparent $border;
+      }
+    }
+
+    &.right-top {
+      &:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: auto;
+        right: -2.25rem;
+        top: -0.25rem;
+        bottom: auto;
+        border: 2rem solid;
+        border-color: $border transparent transparent transparent;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+// .t-mask-bubble {
+//   --r: 1.5rem;
+//   --t: 2rem;
+//   --s: calc(var(--r) + var(--t));
+
+//   margin: calc(-1 * var(--t)) 0;
+//   border: solid var(--t) transparent;
+//   padding: calc(2 * var(--r)/3);
+//   border-radius: var(--s);
+//   background: linear-gradient(135deg, $primary, $secondary) border-box;
+//   color: $white;
+//   --mask:
+//     radial-gradient(circle var(--t) at var(--start) 0%,
+//     transparent calc(100% - 0.5px), #000 calc(100% + 0.5px)) left var(--start) bottom var(--t)/ var(--s) var(--t) no-repeat border-box,
+//     linear-gradient(#000 0 0) padding-box;
+//   mask: var(--mask);
+
+//   &.t-mask-bubble-left {
+//     --start: 0%;
+//     place-self: start
+//   }
+
+//   &.t-mask-bubble-right {
+//     --start: 100%;
+//     place-self: end
+//   }
+// }
+
+// <div class="t-talk-bubble">
+//   <div class="t-talk-text">
+//     <p>CSS Talk Bubble configured by classes. Defaults to square shape, no triangle. Height is auto-adjusting to the height of the text.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble left-top">
+//   <div class="t-talk-text">
+//     <p>This one adds a right triangle on the left, flush at the top by using .t-tri-right and .left-top to specify the location.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble left-in">
+//   <div class="t-talk-text">
+//     <p>This t-talk-bubble uses .left-in class to show a triangle on the left slightly indented. Still a blocky square.</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-round btm-left">
+//   <div class="t-talk-text">
+//     <p>And now using .t-round we can smooth the sides down. Also uses .btm-left to show a triangle at the bottom flush to the left.</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-left-in">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-right-in-auto">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border t-round btm-left-in-auto">
+//   <div class="t-talk-text">
+//     <p>Now we add a t-border and it looks like a comic. Uses .t-border .t-round and .btm-left-in</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble t-border btm-right-in">
+//   <div class="t-talk-text">
+//     <p>Now flipped the other way and square. Uses .t-border and .btm-right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble btm-right">
+//   <div class="t-talk-text">
+//     <p>Flush to the bottom right. Uses .btm-right only.</p>
+//   </div>
+// </div>
+// <div class="t-talk-bubble t-round right-in">
+//   <div class="t-talk-text">
+//     <p>Moving our way back up the right side indented. Uses .t-round and .right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-border btm-right-in">
+//   <div class="t-talk-text">
+//     <p>Now flipped the other way and square. Uses .t-border and .btm-right-in</p>
+//   </div>
+// </div>
+
+// <div class="t-talk-bubble t-round t-border right-top">
+//   <div class="t-talk-text">
+//     <p>And finally on the right flush at the top. Uses .t-round .t-border and .right-top</p>
+//   </div>
+// </div>
+
+.t-bubble-thought {
+  position: relative;
+  display: inline-flex;
+  background-color: _var("white", $white);
+  padding: 1.25rem;
+  border-radius: 1.875rem;
+  margin: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &:before,
+  &:after {
+    content: "";
+    color: $white;
+    background-color: currentColor;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &:before {
+    width: 2.75rem;
+    height: 2.75rem;
+    top: -0.75rem;
+    left: 1.75rem;
+    box-shadow: -3.125rem 1.875rem 0 -.75rem currentColor;
+  }
+
+  &:after {
+    bottom: -0.625rem;
+    right: 1.625rem;
+    width: 1.875rem;
+    height: 1.875rem;
+    box-shadow: 2.5rem -2.125rem 0 0 currentColor, -1.75rem -.375rem 0 -.125rem currentColor, -1.5rem 1.0625rem 0 -.375rem currentColor, -.3125rem -1.5625rem 0 -.625rem currentColor;
+  }
+}
+
+// <div class="t-bubble-thought">This is a thought bubble.</div>
+// <div class="t-bubble-thought">I have cats.</div>
+// <div class="t-bubble-thought">This is a CodePen on the internet.</div>
+// <div class="t-bubble-thought">Qui inventore asperiores ipsum asperiores. Ullam voluptas quia quia voluptatem accusantium iste corrupti. Voluptatum deserunt vitae inventore.</div>
+// <div class="t-bubble-thought">This is another thought bubble.</div>
+// <div class="t-bubble-thought">I would walk a thousand miles just to see if you put your name in the Goblet of Fire, Harry.</div>
+// <div class="thought"> &#x1f192; </div>
+
+
+// .t-bubble {
+//   --r: 1.5625rem;
+//   --t: 1.875rem;
+//   max-width: 18.75rem;
+//   padding: calc(2 * var(--r) / 3);
+//   -webkit-mask: radial-gradient(var(--t) at var(--pres) 0, transparent 98%, $dark 102%) var(--pres) (100% / calc(100% - var(--r))) var(--t) no-repeat, conic-gradient(at var(--r) var(--r), $dark 75%, transparent 0) calc(var(--r) / -2) calc(var(--r) / -2) padding-box, radial-gradient(50% 50%, $dark 98%, transparent 101%) 0 (0 / var(--r)) var(--r) space padding-box;
+//   background: linear-gradient(135deg, $primary, $primary-200) border-box;
+//   color: $white;
+
+//   &.t-bubble-left {
+//     --pres: 0%;
+//     border-left: var(--t) solid transparent;
+//     margin-right: var(--t);
+//     place-self: start;
+//   }
+
+//   &.t-bubble-right {
+//     --pres: 100%;
+//     border-right: var(--t) solid transparent;
+//     margin-left: var(--t);
+//     place-self: end;
+//   }
+// }
+
+
+// <div class="t-bubble t-bubble-left">Bro ipsum dolor sit amet gaper backside single track, manny Bike epic clipless. Schraeder drop gondy, rail fatty slash gear jammer steeps</div>
+// <div class="t-bubble t-bubble-right">Ok, Thank you</div>
+// <div class="t-bubble t-bubble-left"> ut labore et dolore magna </div>
+// <div class="t-bubble t-bubble-right">👌</div>
+// 
+// 
+// 
+// 
+
+
+// .from-me, .from-them {
+//   max-width: 255px;
+//   word-wrap: break-word;
+//   margin-bottom: 12px;
+//   line-height: 24px;
+//   position: relative;
+//   padding: 10px 20px;
+//   border-radius: 25px;
+//   margin-left: 100px;
+
+//   &:before,
+//   &:after {
+//     content: "";
+//     position: absolute;
+//     bottom: 0;
+//     height: 25px;
+//   }
+// }
+
+// .from-me {
+//   color: white;
+//   background: #0b93f6;
+//   align-self: flex-end;
+
+//   &:before {
+//     right: -4rem;
+//     width: 6.25rem;
+//     height: 4.75rem;
+//     background-color: inherit;
+//     clip-path: path("M82 79c-11 0-23-1-35-2a445 445 0 01-47-6 10 10 0 000-3V3a142 142 0 0016 32 104 104 0 0022 24 91 91 0 0027 15 103 103 0 0033 5c-2 0-8 0-17 0Z");
+//     transform: scale(0.5);
+//   }
+// }
+
+// .from-them {
+//   background: #e5e5ea;
+//   color: black;
+//   align-self: flex-start;
+
+//   &:before {
+//     left: -4rem;
+//     width: 6.25rem;
+//     height: 4.75rem;
+//     background-color: inherit;
+//     clip-path: path("M98 1v66a10 10 0 000 3 445 445 0 01-47 6c-12 1-23 2-35 2C6 77 0 76 0 76A103 103 0 0033 71a91 91 0 0028-15 104 104 0 0022-24A142 142 0 0098 1Z");
+//     transform: scale(0.5);
+//   }
+// }
+
+
+// <div class='speech-bubble'>Hello!</div>
+// .speech-bubble {
+//   position: relative;
+//   margin: .5em auto;
+//   padding: 1em;
+//   width: 10em; height: 4em;
+//   border-radius: .25em;
+//   transform: rotate(-4deg) rotateY(15deg);
+//   background: #629bdd;
+//   font: 2em/4 Century Gothic, Verdana, sans-serif;
+//   text-align: center;
+// }
+// .speech-bubble:before, .speech-bubble:after {
+//   position: absolute;
+//   z-index: -1;
+//   content: '';
+// }
+// .speech-bubble:after {
+//   top: 0; right: 0; bottom: 0; left: 0;
+//   border-radius: inherit;
+//   transform: rotate(2deg) translate(.35em, -.15em) scale(1.02);
+//   background: #f4fbfe;
+// }
+// .speech-bubble:before {
+//   border: solid 0 transparent;
+//   border-right: solid 3.5em #f4fbfe;
+//   border-bottom: solid .25em #629bdd;
+//   bottom: .25em; left: 1.25em;
+//   width: 0; height: 1em;
+//   transform: rotate(45deg) skewX(75deg);
+// }

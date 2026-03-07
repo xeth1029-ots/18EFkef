@@ -1,0 +1,35 @@
+
+//  Components -> Backgrounds
+// --------------------------------------------------
+$grad-adjust-hue-r: 40deg;
+$grad-adjust-hue-l: -$grad-adjust-hue-r;
+@each $color, $value in $element-colors {
+  .t-bg-#{$color} {
+    background-color: $value !important;
+  }
+
+  %t-bg-#{$color} {
+    background-color: $value;
+  }
+}
+
+@each $color, $value in $element-soft-colors {
+  .t-bg-#{$color} {
+    background-color: $value !important;
+  }
+
+  %t-bg-#{$color} {
+    background-color: $value;
+  }
+}
+
+@each $color, $value in $element-colors {
+  .t-bg-grad-#{$color} {
+    @include gradient-x-three-colors(adjust-hue($value , $grad-adjust-hue-l) -20% 0 , tint-color($value, 0%), 50%, adjust-hue($value , $grad-adjust-hue-r) 120%);
+  }
+
+  %t-bg-grad-#{$color} {
+    @include gradient-x-three-colors(adjust-hue($value , $grad-adjust-hue-l) -20% 0 , tint-color($value, 0%), 50%, adjust-hue($value , $grad-adjust-hue-r) 120%);    // background-color: $value;
+  }
+}
+

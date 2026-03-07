@@ -1,0 +1,106 @@
+﻿@using WKEFSERVICE.Areas.A2.Models;
+@model C302MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C302M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h1 class="bt-section-heading">已報名會議管理</h1>
+                            <p class="bt-section-para">提供教師可查詢已報名的會議，並於會議後可查詢實際參與名單與是否通過測驗。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            @*<button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                    <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                        <svg>
+                                                            <use href="#ic-reset"></use>
+                                                        </svg>
+                                                    </i>
+                                                    清空條件
+                                                </button>*@
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.Seq_forUnSign)
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 查詢清除
+    function doSearchClear() {
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 取消報名
+    function doSaveUnSign(Seq) {
+        blockConfirm("您確認要取消報名此會議？", null, function () {
+            var form = $("form[id=main_form]");
+            $("#main_form #Seq_forUnSign").val(Seq);
+            form.attr('action', '@Url.Action("SaveUnSign", "C302M")').submit();
+        });
+    }
+
+    // 檢視
+    function doDetail(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("Detail", "C302M")?' + $.param(data);
+        window.location = url;
+    }
+
+</script>

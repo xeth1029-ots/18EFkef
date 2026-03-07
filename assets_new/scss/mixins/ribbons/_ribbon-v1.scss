@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+//   Mixins > ribbon v1
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin ribbon($background: $primary) {
+  position: relative;
+  display: flex;
+  padding: 0.5em 1.25em 0.5em 1.75em;
+  border-radius: 0.3125em 0.3125em 0.3125em 0;
+  margin: 0 0 0 -1.75em;
+  width: fit-content;
+  font-weight: 700;
+  color: color-yiq($background);
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, shade-color($background, 40%) 2px, $background 10px);
+  border-bottom: 0.125rem solid shade-color($background, 40%);
+  line-height: 1.375;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0.375em;
+    left: 0;
+    width: 0.75em;
+    height: calc(0.375em + 85%);
+    background: shade-color($background, 40%);
+    border-radius: 0 0 0 0.3125em;
+    z-index: -1;
+  }
+
+  @at-root a#{&} {
+    &:hover {
+      color: rgba(color-yiq($background), 0.66);
+    }
+  }
+}
+
+@mixin ribbon-r($background: $primary) {
+  position: relative;
+  display: flex;
+  padding: 0.5em 1.25em 0.5em 1.75em;
+  border-radius: 0.5em 0.15em 0.15em 0.5em;
+  margin: 0 0 0 -1.75em;
+  width: fit-content;
+  font-weight: 700;
+  color: color-yiq($background);
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, shade-color($background, 80%) 2px, shade-color($background, 40%)  10px);
+  border-bottom: 0.125rem solid shade-color($background, 60%);
+  line-height: 1.375;
+  user-select: none;
+  opacity: .8;
+  box-shadow: 4px 4px 0 rgba($background, 0.4);
+
+
+}

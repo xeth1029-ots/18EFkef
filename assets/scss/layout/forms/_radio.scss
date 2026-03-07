@@ -1,0 +1,104 @@
+//
+//  Layout -> radio 
+// --------------------------------------------------
+.rad-inp {
+    display: none;
+
+    ~ .rad-lab {
+        cursor: pointer;
+        font-size: .875rem;
+        user-select: none;
+
+        .rad, a, font, span {
+            @include in-bk-mid;
+        }
+
+        .rad {
+            background-color: $white;
+            border: 1px solid $grey-200;
+            border-radius: 100%;
+            margin-right: .25rem;
+            width: pxTorem(18px);
+            height: pxTorem(18px);
+
+            &:hover {
+                border-color: lighten($secondary, 20%);
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                height: pxTorem(9px);
+                width: pxTorem(9px);
+                background-color: $secondary;
+                border-radius: 100%;
+                opacity: 0.08;
+                pointer-events: none;
+                transition: all 0.125s ease-in-out;
+            }
+
+            &.rad--md {
+                width: pxTorem(22px);
+                height: pxTorem(22px);
+
+                &:after {
+                    width: pxTorem(12px);
+                    height: pxTorem(12px);
+                }
+            }
+
+            &.rad--lg {
+                width: pxTorem(24px);
+                height: pxTorem(24px);
+
+                &:after {
+                    width: pxTorem(16px);
+                    height: pxTorem(16px);
+                }
+            }
+        }
+
+        &:hover .rad:after {
+            transform: translate(-50%, -50%) scale(1.75);
+        }
+    }
+
+    &:checked + .rad-lab {
+        .rad {
+            border-color: lighten($secondary, 5%);
+
+            &:after {
+                transform: scale(1) translate(-50%, -50%);
+                transition: all .25s ease-in-out;
+                opacity: 1;
+            }
+        }
+    }
+
+    &:disabled + .rad-lab {
+        .rad {
+            border-color: $grey-100;
+            background: $grey-200;
+            cursor: not-allowed;
+        }
+
+        a, font, span {
+            cursor: not-allowed;
+        }
+
+        &:after {
+            display: none;
+        }
+    }
+
+    &:checked:disabled + .rad-lab {
+        .rad {
+            &:after {
+                background-color: $grey-400;
+            }
+        }
+    }
+}

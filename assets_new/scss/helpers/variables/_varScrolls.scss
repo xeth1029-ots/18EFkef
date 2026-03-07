@@ -1,0 +1,42 @@
+
+// Scrollbar
+// =========================================================
+
+// Width & Heights
+$scrollbar-width: 0.6125rem !default;
+$scrollbar-horizontal-height: $scrollbar-width !default;
+
+// Backgrounds
+$scrollbar-bg-color: rgba($gray-400, 0.6) !default;
+$scrollbar-horizontal-bg-color: $scrollbar-bg-color !default;
+
+// Go To
+// =========================================================
+
+// Colors
+$go-to-color: lighten($dark, 10%) !default;
+$go-to-hover-color: $white !default;
+
+// Backgrounds
+$go-to-bg-color: lighten(rgba($dark, 0.1), 20%) !default;
+$go-to-bg-hover-color: lighten($dark, 10%) !default;
+
+// Borders
+$go-to-border-radius: $border-radius !default;
+
+// Type
+$go-to-font-size: $btn-icon-font-size !default;
+
+// Width & Heights
+$go-to-width: $btn-icon-width !default;
+$go-to-height: $go-to-width !default;
+
+// Z-Index
+$go-to-z-index: 9999 !default;
+
+// Opacity
+$go-to-opacity: 0.5 !default;
+$go-to-opacity-on-hover: 1 !default;
+
+// Transitions
+$go-to-transition: $transition-timing ease-out !default;

@@ -1,0 +1,197 @@
+@charset "utf-8";
+
+/** –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//  Components > patterns
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+$pattern-prefix : 't-pattern' !default;
+$size: 0.15rem !default;
+$pattern-sizes : (sm: 0.25rem,
+md: 0.5rem,
+lg: 1rem,
+xl: 2rem,
+) !default;
+
+$pattern-list: ('checks',
+'grid',
+'grid',
+'dots',
+'cross-dots',
+'vertical-lines',
+'horizontal-lines',
+'diagonal-lines',
+'vertical-stripes',
+'horizontal-stripes',
+'diagonal-stripes',
+'triangles',
+'zigzag'
+) !default;
+
+$dots : (sm: 0.05rem,
+md: 0.10rem,
+lg: 0.15rem,
+xl: 0.20rem) !default;
+
+// .bb-pattern-checks-{sm, md, lg, xl}
+@if index($pattern-list, 'checks') {
+
+  @each $name,
+  $size in $pattern-sizes {
+    .#{$pattern-prefix}-checks-#{$name} {
+      background-image:
+        repeating-linear-gradient(45deg, currentColor 25%, transparent 25%, transparent 75%, currentColor 75%, currentColor),
+        repeating-linear-gradient(45deg, currentColor 25%, transparent 25%, transparent 75%, currentColor 75%, currentColor);
+      background-position: 0 0,
+      #{$size} #{$size};
+      background-size: calc(2 * #{$size}) calc(2 * #{$size});
+    }
+  }
+}
+
+// .bb-pattern-grid-{sm, md, lg, xl}
+@if index($pattern-list, 'grid') {
+
+  @each $name,
+  $size in $pattern-sizes {
+    .#{$pattern-prefix}-grid-#{$name} {
+      background-image:
+        linear-gradient(currentColor 1px, transparent 1px),
+        linear-gradient(to right, currentColor 1px, transparent 1px);
+      background-size: #{$size} #{$size};
+      // background-position: calc(-0.5 * #{$size}) calc(-0.5 * #{$size});
+    }
+  }
+}
+
+// .bb-pattern-dots-{sm, md, lg, xl}
+@if index($pattern-list, 'dots') {
+
+  @each $name,
+  $size in $dots {
+    .#{$pattern-prefix}-dots-#{$name} {
+      background-image: radial-gradient(currentColor #{$size}, transparent #{$size});
+      background-size: calc(10 * #{$size}) calc(10 * #{$size});
+    }
+  }
+}
+
+// .bb-pattern-cross-dots-{sm, md, lg, xl}
+@if index($pattern-list, 'cross-dots') {
+
+  @each $name,
+  $size in $dots {
+    .#{$pattern-prefix}-cross-dots-#{$name} {
+      background-image: radial-gradient(currentColor #{$size}, transparent #{$size}),
+      radial-gradient(currentColor #{$size}, transparent #{$size});
+      background-size: calc(20 * #{$size}) calc(20 * #{$size});
+      background-position: 0 0,
+      calc(10 * #{$size}) calc(10 * #{$size});
+    }
+  }
+}
+
+@each $name,
+$size in $pattern-sizes {
+
+  // .bb-pattern-vertical-lines-{sm, md, lg, xl}
+  @if index($pattern-list, 'vertical-lines') {
+    .#{$pattern-prefix}-vertical-lines-#{$name} {
+      background-image: repeating-linear-gradient(to right,
+        currentColor,
+        currentColor 1px,
+        transparent 1px,
+        transparent);
+      background-size: #{$size} #{$size};
+    }
+  }
+
+  // .bb-pattern-horizontal-lines-{sm, md, lg, xl}
+  @if index($pattern-list, 'horizontal-lines') {
+    .#{$pattern-prefix}-horizontal-lines-#{$name} {
+      background-image: repeating-linear-gradient(0deg,
+        currentColor,
+        currentColor 1px,
+        transparent 1px,
+        transparent);
+      background-size: #{$size} #{$size};
+    }
+  }
+
+  // .bb-pattern-diagonal-lines-{sm, md, lg, xl}
+  @if index($pattern-list, 'diagonal-lines') {
+    .#{$pattern-prefix}-diagonal-lines-#{$name} {
+      background-image: repeating-linear-gradient(45deg,
+        currentColor 0,
+        currentColor 1px,
+        transparent 0,
+        transparent 50%);
+      background-size: #{$size} #{$size};
+    }
+  }
+}
+
+
+@each $name,
+$size in $pattern-sizes {
+
+  // .bb-pattern-vertical-stripes-{sm, md, lg, xl}
+  @if index($pattern-list, 'vertical-stripes') {
+    .#{$pattern-prefix}-vertical-stripes-#{$name} {
+      background-image: linear-gradient(90deg, transparent 50%, currentColor 50%);
+      background-size: #{$size} #{$size};
+    }
+  }
+
+  // .bb-pattern-horizontal-stripes-{sm, md, lg, xl}
+  @if index($pattern-list, 'horizontal-stripes') {
+    .#{$pattern-prefix}-horizontal-stripes-#{$name} {
+      background-image: linear-gradient(0deg, transparent 50%, currentColor 50%);
+      background-size: #{$size} #{$size};
+    }
+  }
+
+  // .bb-pattern-diagonal-stripes-{sm, md, lg, xl}
+  @if index($pattern-list, 'diagonal-stripes') {
+    .#{$pattern-prefix}-diagonal-stripes-#{$name} {
+      background: repeating-linear-gradient(45deg,
+      transparent,
+      transparent #{$size},
+      currentColor #{$size},
+      currentColor calc(2 * #{$size}));
+    }
+  }
+}
+
+// .bb-pattern-zigzag-{sm, md, lg, xl}
+@if index($pattern-list, 'zigzag') {
+
+  @each $name,
+  $size in $pattern-sizes {
+    .#{$pattern-prefix}-zigzag-#{$name} {
+      background: linear-gradient(135deg, currentColor 25%, transparent 25%) -#{$size} 0,
+      linear-gradient(225deg, currentColor 25%, transparent 25%) -#{$size} 0,
+      linear-gradient(315deg, currentColor 25%, transparent 25%),
+      linear-gradient(45deg, currentColor 25%, transparent 25%);
+      background-size: calc(2 * #{$size}) calc(2 * #{$size});
+    }
+  }
+}
+
+// .bb-pattern-triangles-{sm, md, lg, xl}
+@if index($pattern-list, 'triangles') {
+
+  @each $name,
+  $size in $pattern-sizes {
+    .#{$pattern-prefix}-triangles-#{$name} {
+      background-image: linear-gradient(45deg,
+        currentColor 50%,
+        transparent 50%);
+      background-size: #{$size} #{$size};
+    }
+  }
+}
+
+// .bb-text-pattern
+.#{$pattern-prefix}-txt {
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

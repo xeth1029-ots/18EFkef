@@ -1,0 +1,83 @@
+@charset "utf-8";
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//  Mixins > Position
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+/// Shorthand mixin for offset positioning
+/// @param {String} $position - Either `relative`, `absolute` or `fixed`
+/// @param {Length} $top [null] - Top offset
+/// @param {Length} $right [null] - Right offset
+/// @param {Length} $bottom [null] - Bottom offset
+/// @param {Length} $left [null] - Left offset
+@mixin position($position, $T: null, $R: null, $B: null, $L: null) {
+  position: $position;
+  top: $T;
+  right: $R;
+  bottom: $B;
+  left: $L;
+}
+/// Shorthand mixin for absolute positioning
+/// Serves as an alias for `position(absolute, ...)`
+/// @param {Arglist} $args - Offsets
+/// @require {mixin} position
+@mixin absolute($args...) {
+  @include position(absolute, $args...);
+}
+
+/// Shorthand mixin for relative positioning
+/// Serves as an alias for `position(relative, ...)`
+/// @param {Arglist} $args - Offsets
+/// @require {mixin} position
+@mixin relative($args...) {
+  @include position(relative, $args...);
+}
+
+/// Shorthand mixin for fixed positioning
+/// Serves as an alias for `position(fixed, ...)`
+/// @param {Arglist} $args - Offsets
+/// @require {mixin} position
+@mixin fixed($args...) {
+  @include position(fixed, $args...);
+}
+
+// absolute Align
+@mixin absolute-align($dir) {
+  @if ($dir == 'x' or $dir == 'h') {
+    position: absolute;
+    // 水平置中
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @else if ($dir == 'y' or $dir == 'v') {
+    position: absolute;
+    // 垂直置中
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @else if ($dir == 'c') {
+    position: absolute;
+    // 垂直、水平置中
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+@mixin absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-x-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin absolute-y-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

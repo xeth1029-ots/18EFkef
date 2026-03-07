@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+//  Mixins > Buttons Preserve
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin preserve-btns($background-color: $primary, $color: $white, $size: 3rem, $font-size: 2rem) {
+  $height: $size;
+  $transform-origin-1: top left;
+  $transform-origin-2: bottom left;
+  $transform-1: rotateX(90deg);
+  $transform-2: rotateX(-90deg);
+  $side-size: 3rem;
+
+  perspective: $size * 5;
+  transform-style: preserve-3d;
+  transform: rotateX(30deg);
+
+  &:before {
+    content: "";
+    width: 100%;
+    height: $height;
+    position: absolute;
+    transform-style: preserve-3d;
+    background-color: darken($background-color, 16%);
+    bottom: 0;
+    left: 0;
+    transform-origin: $transform-origin-2;
+    transform: $transform-2;
+    z-index: -1;
+    transition: transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  }
+
+  .btn--preserve-face {
+    transform-style: preserve-3d;
+    color: $color;
+    cursor: pointer;
+    font-size: $font-size;
+    font-weight: 900;
+    background-color: $background-color;
+    border: none;
+    padding: 0.75rem 1rem 0.5rem;
+    margin: 0;
+    outline: none;
+    text-shadow: 0.0625rem 0.0625rem rgba($dark, 0.36);
+    transform: translateZ($size);
+    transition: transform 120ms ease-out;
+  }
+
+  
+
+  @include btn-focus {
+    // box-shadow: 0 0 0 0.25rem rgba($color, 0.32);
+  }
+
+
+  @include active {
+    .btn-preserve-face {
+      transform: translateZ(0);
+    }
+
+    &:before {
+      height: 0;
+    }
+
+    // @include btn-focus {
+    //   @if $enable-shadows {
+    //     box-shadow: $btn-box-shadow-value rgba($color, 0.12), $btn-focus-box-shadow-value rgba($color, 0.48);
+    //   }
+    // }
+  }
+}
+
+@each $color, $value in $element-colors {
+  .pb-btn-preserve--#{$color} {
+    @include preserve-btns($background-color: $value, $color: color-contrast($value), $size: 2rem, $font-size: 1.25rem);
+  }
+}

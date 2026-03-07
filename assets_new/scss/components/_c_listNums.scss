@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+//  Componentsom > list-counter
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin list-counter($textShadow: 1vmin 0 4vmin, $color: currentColor, $fontSize: inherit, $stroke: $white, $stroke-width: 0.5vmin) {
+  counter-reset: list;
+  position: relative;
+  font-size: 1.5rem;
+  z-index: 1;
+
+  &:before {
+    content: counter(list);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: $color;
+    font-size: $fontSize;
+    font-weight: 700;
+    -webkit-text-stroke: $stroke-width $stroke;
+    text-shadow: $textShadow $color;
+    transform: translate(-15%, 0);
+    z-index: -2;
+    opacity: 0.2;
+  }
+}
+
+.t-list-counter {
+  .t-list-counter-item {
+    @include list-counter(1vmin 0 4vmin, currentColor, inherit, $white, 0.5vmin);
+  }
+}

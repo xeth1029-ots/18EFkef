@@ -1,0 +1,245 @@
+@charset "utf-8";
+
+//  Symbols -> Cards
+// --------------------------------------------------
+
+.t-card-title {
+  position: relative;
+  margin-bottom: 0.875rem;
+  font-weight: 700;
+  font-size: 125%;
+  display: flex;
+  transition: $transition-base;
+
+  @include hover {
+    font-size: 127.5%;
+    text-decoration: none;
+    background-size: 200% .125rem;
+  }
+}
+
+// .t-card-glass {
+//   display: flex;
+//   position: relative;
+//   justify-content: center;
+//   align-items: center;
+//   background-image: linear-gradient(132deg, rgba($primary-50, 0.66) 0%, rgba($primary-25, 0.88) 99.25%);
+//   text-align: center;
+//   border-radius: 1rem;
+//   padding: 0.25rem;
+//   width: 100%;
+//   z-index: 1;
+
+//   &::before {
+//     position: absolute;
+//     content: "";
+//     top: -2px;
+//     bottom: -2px;
+//     left: -2px;
+//     right: -2px;
+//     background-image: linear-gradient(312.25deg, $primary-200 0%, rgba(_var("white-rgb", $white), 0) 66.25%);
+//     z-index: -1;
+//     border-radius: 1.125rem;
+//   }
+
+//   .t-card-glass-inner {
+//     background-color: rgba(_var("white-rgb", $white), 0.8);
+//     display: flex;
+//     width: 100%;
+//     padding: 1rem;
+//     flex-direction: column;
+//     justify-content: center;
+//     box-shadow: 0 2.5rem 5rem $primary-100;
+//     border-radius: .875rem;
+//     font-size: 0.8125rem;
+//   }
+// }
+
+.t-card-glass {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 0.25rem 0.5rem;
+  width: 100%;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    z-index: -1;
+    border-radius: 1.125rem;
+  }
+
+  .t-card-glass-inner {
+    background-color: rgba(_var("white-rgb", $white), 0.8);
+    display: flex;
+    width: 100%;
+    padding: 1rem .5rem 1rem 1rem;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: .875rem;
+    font-size: 0.8125rem;
+    text-align: left;
+    justify-content: space-between;
+
+    @include hover {
+      transition: $transition;
+    }
+
+
+    a {}
+
+    .t-list-txts-item i {
+      margin-right: 0.25rem;
+    }
+
+    .btn {
+      padding: 0.5rem 0.5rem;
+      writing-mode: vertical-lr;
+
+      .svg-icon {
+        margin-left: 0;
+      }
+    }
+  }
+
+  @include teacher {
+    color: $primary-800;
+    background-image: linear-gradient(132deg, rgba($primary-50, 0.66) 0%, rgba($primary-25, 0.88) 99.25%);
+
+    &::before {
+      background-image: linear-gradient(312.25deg, $primary-300 0%, rgba(_var("white-rgb", $white), 0) 66.25%);
+    }
+
+    .t-card-glass-inner {
+      box-shadow: 0 2.5rem 5rem $primary-100;
+
+      @include hover {
+        transition: $primary;
+        box-shadow: 0 2.5rem 5rem $primary-200;
+      }
+
+
+      a {
+        color: $primary-800;
+      }
+
+      .t-list-txts-item i {
+        color: $primary;
+      }
+    }
+
+    .btn {
+      @extend .btn--primary;
+    }
+  }
+
+
+  @include unit {
+    background-image: linear-gradient(132deg, rgba($tertiary-50, 0.66) 0%, rgba($tertiary-25, 0.88) 99.25%);
+
+    &::before {
+      background-image: linear-gradient(312.25deg, $tertiary-300 0%, rgba(_var("white-rgb", $white), 0) 66.25%);
+    }
+
+    .t-card-glass-inner {
+      box-shadow: 0 2.5rem 5rem $tertiary-100;
+
+      @include hover {
+        transition: $transition;
+        box-shadow: 0 2.5rem 5rem $tertiary-200;
+      }
+
+
+      a {
+        color: $tertiary-800;
+      }
+
+      .t-list-txts-item i {
+        color: $tertiary;
+        margin-right: 0.25rem;
+      }
+
+      .btn {
+        @extend .btn--tertiary;
+      }
+    }
+  }
+
+
+  @include branch {
+    background-image: linear-gradient(132deg, rgba($info-50, 0.66) 0%, rgba($info-25, 0.88) 99.25%);
+
+    &::before {
+      background-image: linear-gradient(312.25deg, $info-300 0%, rgba(_var("white-rgb", $white), 0) 66.25%);
+    }
+
+    .t-card-glass-inner {
+      box-shadow: 0 2.5rem 5rem $info-100;
+
+      @include hover {
+        box-shadow: 0 2.5rem 5rem $info-200;
+      }
+
+
+      a {
+        color: $info-800;
+      }
+
+      .t-list-txts-item i {
+        color: $info;
+      }
+
+      .btn {
+        @extend .btn--info;
+      }
+    }
+  }
+
+
+  @include admin {
+    background-image: linear-gradient(132deg, rgba($quaternary-50, 0.66) 0%, rgba($quaternary-25, 0.88) 99.25%);
+
+    &::before {
+      background-image: linear-gradient(312.25deg, $quaternary-300 0%, rgba(_var("white-rgb", $white), 0) 66.25%);
+    }
+
+    .t-card-glass-inner {
+      box-shadow: 0 2.5rem 5rem $quaternary-100;
+
+      @include hover {
+        transition: $quaternary;
+        box-shadow: 0 2.5rem 5rem $quaternary-200;
+      }
+
+
+      a {
+        color: $quaternary-800;
+      }
+
+      .t-list-txts-item i {
+        color: $quaternary;
+        margin-right: 0.25rem;
+      }
+
+      .btn {
+        @extend .btn--quaternary;
+      }
+    }
+  }
+
+
+  @include col-md-12 {
+    .btn {
+      padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+      writing-mode: horizontal-tb;
+    }
+  }
+}

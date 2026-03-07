@@ -1,0 +1,96 @@
+
+// Grid breakpoints
+//== Screen
+$screen-xs: 576px !default;
+$screen-xs-min: $screen-xs !default;
+
+$screen-phone: $screen-xs-min !default;
+
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default;
+
+$screen-tablet: $screen-sm-min !default;
+
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default;
+
+$screen-desktop: $screen-md-min !default;
+
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default;
+
+$screen-lg-desktop: $screen-lg-min !default;
+
+$screen-xl: 1400px !default;
+$screen-xl-min: $screen-xl !default;
+$screen-xl-desktop: $screen-xl-min !default;
+
+$screen-xxl:                1600px !default;
+$screen-xxl-min:            $screen-xxl !default;
+$screen-xxl-desktop:        $screen-xxl-min !default;
+$container-max-width-xxl:   1536px      !default;
+
+$screen-xs-max: ($screen-sm - 0.02px) !default;
+$screen-sm-max: ($screen-md - 0.02px) !default;
+$screen-md-max: ($screen-lg - 0.02px) !default;
+$screen-lg-max: ($screen-xl - 0.02px) !default;
+$screen-xl-max: ($screen-xxl - 0.02px) !default;
+
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+
+// Grid containers
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
+
+// Content Spacing
+$content-spacing: (
+  desktop: 1.5rem, 
+  tablet-and-mobile: 1.125rem,
+  mobile: 1.375rem) !default;
+
+
+// Header
+$header-config: (
+  z-index: 97,
+  bg-color: $body-bg,
+  box-shadow: if(isDarkMode(), none, 0px 10px 30px 0px rgba(82,63,105,0.08)),
+  border-color: if(isDarkMode(), $gray-100, #F2F2F2),
+  transition-speed: 0.3s,
+  height: (
+    desktop: (
+      default: 90px,
+      sticky: 70px
+    ),
+    tablet-and-mobile: 70px
+  )
+) !default;
+
+// Grid columns
+
+$grid-columns:                12     !default;
+$grid-gutter-width:           1.25rem !default;
+$grid-row-columns:            6      !default;
+
+$container-padding-x: $grid-gutter-width !default;
+
+// @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+// @include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+// @include _assert-ascending($container-max-widths, "$container-max-widths");
+
+

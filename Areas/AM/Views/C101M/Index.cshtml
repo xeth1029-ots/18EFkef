@@ -1,0 +1,175 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C101MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C101M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">帳號管理</h3>
+                            <p class="bt-section-para">依輸入條件，查詢系統帳號資料，並提供帳號之新增、修改等維護功能。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.USERNO, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.USERNO, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.USERNAME, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.USERNAME, new { size = "30", maxlength = "100", placeholder = "", @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.GRPID, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.GRPID, new SelectList(Model.GRPID_list, "Value", "Text", Model.GRPID), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.UNITID, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.UNITID, new SelectList(Model.UNITID_list, "Value", "Text", Model.UNITID), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.AUTHSTATUS, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.AUTHSTATUS, new SelectList(Model.AUTHSTATUS_list, "Value", "Text", Model.AUTHSTATUS), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("最後登入(起 ~ 迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.LASTLOGIN_S_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.LASTLOGIN_E_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary" onclick="doNew()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-add"></use>
+                                                    </svg>
+                                                </i>
+                                                新增
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+                            @*
+                                <div class="t-form-inline">
+                                    @Html.HiddenFor(m => m.TheAuthStatus)
+                                    @Html.DatePickerTWFor(m => m.TheAuthDate, new { placeholder = "啟用/停用日期(YYY/MM/DD)", @style = "width: 400px;" })
+                                    &nbsp;
+                                    <button type="button" class="btn btn-success" onclick="doStatus('1')">啟用</button>
+                                    <button type="button" class="btn btn-danger " onclick="doStatus('2')">停用</button>
+                                </div>
+                                <br />
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <button type="button" class="btn btn-info" onclick="doCheckAll('main_form', 'Ck1', 1)">全選</button>
+                                        <button type="button" class="btn btn-info" onclick="doCheckAll('main_form', 'Ck1', 0)">全不選</button>
+                                    </div>
+                                </div>
+                            *@
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="8%">項次</th>
+                                            <th align="left" width="12%">帳號</th>
+                                            <th align="left" width="12%">姓名</th>
+                                            <th align="left" width="20%">單位</th>
+                                            <th align="left" width="14%">角色</th>
+                                            <th align="left" width="10%">狀態</th>
+                                            <th align="left" width="14%">最後登入時間</th>
+                                            <th align="left" width="10%">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#USERNO').removeAttr('value');
+        $('#USERNAME').removeAttr('value');
+        $('#UNITID option').removeAttr('selected');
+        $('#GRPID option').removeAttr('selected');
+        $('#AUTHSTATUS option').removeAttr('selected');
+        $('#LASTLOGIN_S_AD').removeAttr('value');
+        $('#LASTLOGIN_E_AD').removeAttr('value');
+        $('#LASTLOGIN_S_AD_TW').removeAttr('value');
+        $('#LASTLOGIN_E_AD_TW').removeAttr('value');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 編輯
+    function doDetail(USERNO) {
+        var data = { "USERNO": USERNO }
+        var url = '@Url.Action("Detail", "C101M")?' + $.param(data);
+        window.location = url;
+    }
+
+    // 新增
+    function doNew() {
+        var url = '@Url.Action("New", "C101M")';
+        window.location = url;
+    }
+
+</script>

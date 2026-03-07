@@ -1,0 +1,29 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A2.Models;
+@model C301MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        string BtnStyle = "danger";
+        string BtnStr = "我要報名";
+        if (item.isSignUp > 0) { BtnStr = "已報名"; BtnStyle = "info"; }
+        if (item.isCanSignUp != 1) { BtnStr = "檢視"; BtnStyle = "info"; }
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.MeetingName</td>
+            <td>@item.MeetingTypeName</td>
+            <td>@item.MeetingDateName</td>
+            <td>@item.Location</td>
+            <td>@item.SignUpDateName</td>
+            <td align="center">
+                <button type="button" class="btn btn-@BtnStyle" onclick="doDetail('@item.Seq')">@BtnStr</button>
+            </td>
+        </tr>
+    }
+}

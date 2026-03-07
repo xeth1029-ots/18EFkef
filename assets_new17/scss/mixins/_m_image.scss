@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+//  Mixins > img
+//====================================================
+// @include img-retina;
+@mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
+  background-image: url($file-1x);
+  @media only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    // Standardized
+    background-image: url($file-2x);
+    background-size: $width-1x $height-1x;
+  }
+
+  @include deprecate("`img-retina()`", "v4.3.0", "v5");
+}
+
+// @include img-fluid;
+// Image Mixins
+@mixin img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+// @include img-square;
+// Image square Mixins
+@mixin img-square {
+  aspect-ratio: 1 / 1;
+}
+// @include img-video;
+// Video Mixins
+@mixin img-video {
+  aspect-ratio: 16 / 9;
+}
+
+// @include mg-ratio($w: 100, $h: 100);
+@mixin img-ratio($w: 100, $h: 100) {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+// @include img-bg-ratio('t-job-detail-bg',100%, cover)
+@mixin img-bg-ratio($parent, $ratio: 100%, $fill: cover) {
+  .#{$parent}-container {
+    position: relative;
+    border-radius: inherit;
+    display: block;
+    width: 100%;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      padding-top: $ratio;
+    }
+
+    .#{$parent}-image {
+      aspect-ratio: auto;
+      border-radius: inherit;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: $fill;
+
+      @include absolute($T: 0, $L: 0);
+      @include size($width: 100%);
+    }
+  }
+}
+
+// @include ratio(100%, 100%, cover);
+@mixin object-fit($w: 100%, $h: 100%, $fit: cover) {
+  position: absolute;
+  width: $w;
+  height: $w;
+  object-fit: $fit;
+}
+
+// @include ratio(16, 9);
+@mixin ratio($x, $y, $pseudo: false) {
+  $padding: unquote($y / $x * 100 + "%");
+
+  @if $pseudo {
+    &:before {
+      @include pseudo($pos: relative);
+
+      width: 100%;
+      padding-top: $padding;
+    }
+  }
+  @else {
+    padding-top: $padding;
+  }
+}
+
+
+
+
+

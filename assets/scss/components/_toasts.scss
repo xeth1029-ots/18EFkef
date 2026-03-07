@@ -1,0 +1,83 @@
+//
+//  Components -> Toasts 
+// --------------------------------------------------
+
+.tu-toast {
+  border-radius: $toast-border-radius;
+  border: $toast-border-width $toast-border-style $toast-border-color;
+  color: $toast-color;
+  min-width: $toast-min-width;
+  max-width: $toast-max-width;
+  padding: $toast-spacer-y $toast-spacer-x;
+  text-align: center;
+  user-select: none;
+  pointer-events: none;
+
+  &.float-toast {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: $transition-input;
+    animation-duration: $toast-animation-duration;
+    animation-fill-mode: both;
+    z-index: $zindex-toast;
+  }
+
+  &.toast--success {
+    background-color: rgba($success-600, $toast-opacity);
+  }
+
+  &.toast--error {
+    background-color: rgba($danger-600, $toast-opacity);
+  }
+
+  &.toast--info {
+    background-color: rgba($info-600, $toast-opacity);
+  }
+
+  &.toast--warning {
+    background-color: rgba($warning-600, $toast-opacity);
+  }
+
+  &.toast--help {
+    background-color: rgba($primary-600, $toast-opacity);
+  }
+
+  &.toast--default {
+    background-color: rgba($dark, $toast-opacity);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: $toast-border-radius;
+    background-color: inherit;
+    background-attachment: fixed;
+    backdrop-filter: blur($toast-blur);
+    filter: blur($toast-blur);
+  }
+
+  >svg {
+    position: relative;
+    width: $toast-icon-size;
+  }
+
+  >i {
+    position: relative;
+    font-size: $toast-icon-size;
+    margin-bottom: $toast-icon-margin;
+  }
+
+  >font {
+    position: relative;
+    display: block;
+    font-size: $toast-font-size;
+    color: $toast-color;
+    margin-top: $toast-font-margin;
+  }
+}

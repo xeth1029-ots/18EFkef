@@ -1,0 +1,55 @@
+@function randomColorNum($max: 255, $min: 1, $u: 1) {
+  @return ($min * 1 + random($max * 1)) * $u;
+}
+
+@function randomNums($min, $max) {
+  $rand: random();
+  $randomNum: $min + floor($rand * ($max - $min + 1));
+
+  @return $randomNum;
+}
+
+// background: randomColor();
+@function randomColor($opacity: 1) {
+  @return rgba(randomColorNum(), randomColorNum(), randomColorNum(), randomNums(1, 100) / $opacity);
+}
+
+// box-shadow: shadowSet(100px, 100px, 2);
+@function shadowSet($maxWidth, $maxHeight, $count) {
+  $shadow: 0 0 0 0 randomColor();
+
+  @for $i from 0 through $count {
+    $x: #{random(10000) / 10000 * $maxWidth};
+    $y: #{random(10000) / 10000 * $maxHeight};
+    $shadow: $shadow, #{$x} #{$y} 0 #{random(5)}px randomColor();
+  }
+
+  @return $shadow;
+}
+
+// randomOpacityShadow($color: $bgColor ,$opacity: 100 , $max:100 ,$min: 40);
+@function randomOpacityShadow($color: #000, $opacity: 100, $max: 100, $min: 1) {
+  @return rgba($color, randomNums($min, $max) / $opacity);
+}
+
+@function custome-box-shadow($n: 6, $multip: 0.25, $color: $primary) {
+  $box-shadow: "";
+
+  @for $i from 1 through $n {
+    $shadows: unquote('#{$i * $multip}+"px "+#{$i * $multip}+#{"px " + $color}');
+    $box-shadow: $box-shadow + $shadows + " ,";
+  }
+
+  @return str_slice(unquote($box-shadow), 0, str_length($box-shadow) - 1);
+}
+
+@function custome-box-shadow-v2($n: 6, $multip: 0.25, $color: $primary) {
+  $box-shadow: "";
+
+  @for $i from 1 through $n {
+    $shadows: #{-$i * $multip}+"px "+#{$i * $multip}+#{"px " + $color};
+    $box-shadow: $box-shadow + $shadows + " ,";
+  }
+
+  @return str_slice(unquote($box-shadow), 0, str_length($box-shadow) - 1);
+}

@@ -1,0 +1,77 @@
+@charset "utf-8";
+//  Tabs
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+$box-shadow-tab:    0rem 1rem 3rem rgba($tertiary, 0.12) !default;
+$box-shadow-tab-ac: 0rem 1rem 3rem rgba($tertiary, 0.48) !default;
+
+$box-shadow-border-color:              rgba($white, 0.66) !default;
+$box-shadow-border-color-ac:           rgba($white, 0.88) !default;
+
+$tab-transition-default:               opacity 1.2s  ease;
+$tab-transition:                       all     0.75s cubic-bezier(0.18, 1.14, 0.5, 1.18);
+$filter-transition:                    filter  0.5s  cubic-bezier(0.18, 1.14, 0.5, 1.18);
+
+////////////////////////////////////
+//  BOOKMARK
+////////////////////////////////////
+$tab-bookmark-item-padding:            0.75rem 2rem !default;
+$tab-bookmark-item-radius:             $border-radius $border-radius 0 0 !default;
+// $tab-bookmark-item-border: 2px solid rgba($white, 0.24) !default;
+$tab-bookmark-item-background:         $grey-100 !default;
+$tab-bookmark-item-background-hover:   $grey-200 !default;
+
+$tab-bookmark-item-transition:          0.0625s all cubic-bezier(0.18, 0.89, 0.35, 1.15) !default;
+$tab-bookmark-item-size:                1.25rem !default;
+$tab-bookmark-item-size-sm:             $tab-bookmark-item-size - 0.125rem !default;
+$tab-bookmark-item-position-x:          -#{$tab-bookmark-item-size-sm}    !default;
+$tab-bookmark-gap:                      0.875rem    !default;
+$tab-bookmark-first-margin:             0.875rem    !default;
+$tab-bookmark-first-margin-sm:          0.75rem    !default;
+$tab-letter-spacing:                    0.03125rem      !default;
+////////////////////////////////////
+//  SEGMENT
+////////////////////////////////////
+$tab-segment-padding:              0.375rem !default;
+$tab-segment-radius:               0.75rem !default;
+$tab-segment-border:               2px solid rgba($white, 0.24) !default;
+$tab-segment-item-padding:         0.5rem 0.875rem !default;
+$tab-segment-gap:                  0.25rem    !default;
+$tab-segment-shadow:               0 0.1875rem 0.375rem 0 !default;
+$tab-segment-shadow-color:         rgba($dark, 0.12) !default;
+$tab-segment-shadow-color-primary: rgba($primary, 0.12) !default;
+
+////////////////////////////////////
+//  LINE
+////////////////////////////////////
+$tab-line-border-top-width:         0.125rem !default;
+$tab-line-active-line:              0.25rem !default;
+$tab-line-gap:                      0.25rem !default;
+////////////////////////////////////
+//  PILL
+////////////////////////////////////
+$tab-pill-border-top-width:          0.125rem !default;
+$tab-pill-active-line:               0.25rem !default;
+$tab-pill-gap:                       0.5rem !default;
+$tab-pill-padding:                   0.375rem 0.5rem !default;
+$tab-pill-item-padding:              0.375rem 1.5rem !default;
+$tab-pill-border-radius:             1e5px !default;
+
+////////////////////////////////////
+//  PILL
+////////////////////////////////////
+$tab-pill-top-background:                $white !default;
+$tab-pill-top-item-background:           $tab-pill-top-background !default;
+
+$tab-pill-top-gap:                       0.5rem !default;
+$tab-pill-top-nav-padding:               0 0.625rem !default;
+$tab-pill-top-item-padding:              0.5rem 1.5rem 0.1875rem !default;
+$tab-pill-top-item-padding-active:       1rem 1.875rem 0.375rem  !default;
+$tab-pill-top-item-radius:               120% 120% 0% 0% / 120% 120% 0 0 !default;
+$tab-pill-top-border-radius:             1e5px !default;
+$tab-pill-top-contents-radius:           0 0 $border-radius-xs $border-radius-xs !default;
+
+
+
+
+
+

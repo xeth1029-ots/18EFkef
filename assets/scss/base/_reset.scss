@@ -1,0 +1,98 @@
+//
+//  Base -> Reset
+// --------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: $font-size-html-base;
+
+  &.js-font-scale {
+    &-up {
+      &-1st {
+        font-size: #{$font-size-html-base + 1px};
+      }
+
+      &-2nd {
+        font-size: #{$font-size-html-base + 2px};
+      }
+
+      &-3rd {
+        font-size: #{$font-size-html-base + 3px};
+      }
+
+      &-4th {
+        font-size: #{$font-size-html-base + 4px};
+      }
+    }
+
+    &-down {
+      &-1st {
+        font-size: #{$font-size-html-base - 1px};
+      }
+
+      &-2nd {
+        font-size: #{$font-size-html-base - 2px};
+      }
+
+      &-3rd {
+        font-size: #{$font-size-html-base - 3px};
+      }
+
+      &-4th {
+        font-size: #{$font-size-html-base - 4px};
+      }
+    }
+  }
+
+  // scroll-behavior: smooth;
+  @media (max-width: $screen-lg-min) {
+    font-size: $font-size-html-lg;
+  }
+
+  @media (max-width: $screen-md-min) {
+    font-size: $font-size-html-md;
+  }
+
+  @media (max-width: $screen-sm-min) {
+    font-size: $font-size-html-sm;
+  }
+
+  @media (max-width: $screen-xs-min) {
+    font-size: $font-size-html-xs;
+  }
+}
+
+body {
+  background-color: $white;
+  color: $body-color;
+  font-family: $font-family-base;
+  font-style: normal;
+  line-height: $line-height-base;
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+}
+
+
+// // simple (no scale)  
+// p {
+//   @include font-size(15px);
+// }
+
+// //  fluid scale based on default bounding
+// :root {
+//   @include font-size(16px, 24px);
+// }
+
+// //  fluid scale based on custom bounding
+// //  (you could also change defaults) 
+// :root {
+//   @include font-size(16px, 24px, 320px, 960px);
+// }

@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+//  Layout -> Forms 
+// --------------------------------------------------
+.t-form {
+
+  &.t-form-input-field {
+
+    .t-form-group {
+
+      > label {
+        font-size: 0.75rem;
+        position: absolute;
+        top: $input-label-field-top;
+        left: $input-label-field-left;
+        pointer-events: none;
+        transition: $transition-input;
+        z-index: 1;
+        margin-bottom: 0;
+      }
+
+      .t-form-control {
+        padding: $field-input-control-padding;
+      }
+    }
+  }
+
+  .t-form-group {
+    position: relative;
+    display: flex;
+    margin: 0 0.5rem 1.5rem;
+
+    > label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: .75rem;
+    }
+  }
+
+  .t-form-check {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .t-form-col {
+    position: relative;
+
+    @include in-bk-mid;
+  }
+
+  .t-form-legend {
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.t-form-inline {
+  display: inline-flex;
+
+  .t-form-group {
+flex: 1 1 45%;
+    margin-right: 0.75rem;
+  }
+}
+
+.t-form-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > .t-form-group {
+    max-width: 100%;
+    flex: 0 0 auto;
+    width: auto;
+  }
+}

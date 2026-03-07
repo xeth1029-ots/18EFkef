@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+//   Mixins > Buttons Inverse
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Button Inverse Variant
+@mixin button-inverse-variant($color: color-yiq($color), $color-hover: $white) {
+  background-color: rgba($color, 0.08);
+  background-image: none;
+  border-color: rgba($color, 0.02);
+  transition: $transition;
+
+  &:not(.btn-inverse-light) {
+    color: $color;
+  }
+
+  @include btn-hover {
+    background-color: rgba($color, 0.80);
+    border-color: rgba($color, 0.12);
+    color: color-contrast(rgba($color, 0.80), shade-color(rgba($color, 0.80), 87.5%), $white)
+  }
+
+
+  @include btn-focus {
+    box-shadow: 0 0 0 0.25rem rgba($color, 0.36);
+  }
+
+
+  @include btn-active {
+    background-color: rgba($color, 0.66);
+    border-color: rgba($color, 0.08);
+    color: color-contrast(rgba($color, 0.66), shade-color(rgba($color, 0.66), 87.5%), $white);
+
+    @include btn-focus {
+      @if $enable-shadows {
+        box-shadow:
+          $btn-box-shadow-value rgba($color, 0.12),
+          $btn-focus-box-shadow-value rgba(mix(color-contrast($background), $border, 10%), 0.16);
+      }
+    }
+  }
+
+
+  @include btn-disabled {
+    color: color-contrast($color, shade-color($color, 87.5%), $white);
+    background-color: $color;
+    border-color: $white;
+  }
+}

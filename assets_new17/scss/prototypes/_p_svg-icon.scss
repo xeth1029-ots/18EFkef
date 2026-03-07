@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+//==================================================== Prototypes -> Svg icon
+//====================================================
+
+@each $name, $value in $element-colors {
+  @include svg-variant(".t-f-#{$name}", $value);
+}
+
+@each $name, $value in $greys {
+  @include svg-variant(".t-f-grey#{$name}", $value);
+}
+
+// %svg-transition {
+//   transition: fill 0.25s ease;
+// }
+
+.svg-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  transition: fill 0.25s ease;
+  line-height: 1;
+
+  @include svg-icon-size(get($font-sizes, 5));
+  @include svg-icon-color(currentColor);
+
+  // Theme colors
+  @each $name, $color in $theme-colors {
+    &.svg-icon-#{$name} {
+      @include svg-icon-color($color);
+    }
+  }
+
+  @each $name, $value in $font-sizes {
+    &.svg-icon-#{$name} {
+      @include svg-icon-size($value, true);
+    }
+  }
+
+  // // Responsive icon sizes
+  // @each $breakpoint in map-keys($grid-breakpoints) {
+  //     // @include media-breakpoint-up($breakpoint) {
+  //         $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+  //         // Sizes
+  //         @each $name, $value in $font-sizes {
+  //             &.svg-icon#{$infix}-#{$name} {
+  //                 @include svg-icon-size($value, true);
+  //             }
+  //         }
+  //     // }
+  // }
+}

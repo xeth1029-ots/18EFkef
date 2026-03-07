@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+//   Mixins > btn blur
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Custom variant
+// <!-- HTML !-->
+// <btn class="btn-86" role="btn">Button 86</btn>
+//colors
+$color_gallery_approx: #f0f0f0;
+$color_charade_approx: #28282d;
+
+//@extend-elements
+
+%extend_1 {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all .4s;
+}
+
+.btn--blur {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: $color_gallery_approx;
+  z-index: 1;
+  touch-action: manipulation;
+
+  &:after {
+    @extend %extend_1;
+
+    transform: translate(10px, 10px);
+    width: 2.25rem;
+    height: 2.25rem;
+    background: #ffffff15;
+    backdrop-filter: blur(6px);
+    border-radius: 3.125rem;
+  }
+
+  &:before {
+    @extend %extend_1;
+
+    transform: translate(0%, 0);
+    width: 100%;
+    height: 100%;
+    background: $color_charade_approx;
+    border-radius: .625rem;
+  }
+
+  &:hover::before {
+    transform: translate(5%, 20%);
+    width: 110%;
+    height: 110%;
+  }
+
+  &:hover::after {
+    border-radius: .625rem;
+    transform: translate(0, 0);
+    width: 100%;
+    height: 100%;
+  }
+
+  &:active::after {
+    transition: 0s;
+    transform: translate(0, 5%);
+  }
+}
+
+//colors
+$color_linen_approx: #fbeee0;
+$color_cola_approx: #422800;
+$white: #fff;
+
+.btn-74 {
+  background-color: $color_linen_approx;
+  border: 2px solid $color_cola_approx;
+  border-radius: 30px;
+  box-shadow: $color_cola_approx 4px 4px 0 0;
+  color: $color_cola_approx;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  touch-action: manipulation;
+
+  &:hover {
+    background-color: $white;
+  }
+
+  &:active {
+    box-shadow: $color_cola_approx 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+}
+
+@media (min-width: 768px) {
+  .btn-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+// <!-- HTML !-- > <btn class="btn-74" role="btn" > Button 74</btn >

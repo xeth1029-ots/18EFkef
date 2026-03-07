@@ -1,0 +1,213 @@
+// Prefix for :root CSS variables
+$variable-prefix: tu- !default;
+$prefix: $variable-prefix !default;
+$fixedAreaR: 2rem !default;
+$fixedAreaB: $fixedAreaR !default;
+
+// Characters which are escaped by the escape-svg function
+$escaped-characters: (("<", "%3c"),
+(">", "%3e"),
+("#", "%23"),
+("(", "%28"),
+(")", "%29"),
+) !default;
+
+// Options
+
+$enable-caret: true !default;
+$enable-rounded: true !default;
+$enable-shadows: true !default;
+$enable-gradients: true !default;
+$enable-transitions: true !default;
+$enable-reduced-motion: true !default;
+$enable-smooth-scroll: true !default;
+$enable-grid-classes: true !default;
+$enable-container-classes: true !default;
+$enable-cssgrid: false !default;
+$enable-button-pointers: true !default;
+$enable-rfs: true !default;
+$enable-validation-icons: true !default;
+$enable-negative-margins: false !default;
+$enable-deprecation-messages: true !default;
+$enable-important-utilities: true !default;
+$legacy-support-for-ie: true !default;
+$enable-responsive-font-sizes: false !default;
+
+
+// Set a specific jump point for requesting color jumps
+$theme-color-interval: 8% !default;
+$theme-color-interval-sec: 12% !default;
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 204 !default;
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark: $dark !default;
+$yiq-text-light: $white !default;
+$min-contrast-ratio: 1.5 !default;
+$min-contrast-ratio: 2.4 !default;
+// Customize the light and dark text colors for use in our color contrast function.
+$color-contrast-dark: $dark !default;
+$color-contrast-light: $white !default;
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
+
+
+//== Screen
+$screen-xs: 576px !default;
+$screen-xs-min: $screen-xs !default;
+$screen-phone: $screen-xs-min !default;
+
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default;
+$screen-tablet: $screen-sm-min !default;
+
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default;
+$screen-desktop: $screen-md-min !default;
+
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default;
+$screen-lg-desktop: $screen-lg-min !default;
+
+$screen-xl: 1400px !default;
+$screen-xl-min: $screen-xl !default;
+$screen-xl-desktop: $screen-xl-min !default;
+
+
+// Gradient
+$gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0)) !default;
+// scss-docs-end variable-gradient
+
+// Spacing
+// scss-docs-start spacer-variables-maps
+$spacer: 1rem !default;
+$spacers: (0: 0,
+1: $spacer * .25,
+2: $spacer * .5,
+3: $spacer,
+4: $spacer * 1.5,
+5: $spacer * 2,
+6: $spacer * 2.5,
+7: $spacer * 3,
+8: $spacer * 3.5,
+9: $spacer * 4,
+10: $spacer * 4.5) !default;
+
+
+// Position
+// scss-docs-start position-map
+$position-values: (0: 0,
+50: 50%,
+100: 100%) !default;
+// scss-docs-end position-map
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg: $white !default;
+$body-color: $gray-900 !default;
+$body-text-align: null !default;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color: $primary !default;
+// $link-decoration:                         underline !default;
+$link-shade-percentage: 20% !default;
+$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration: null !default;
+
+$stretched-link-pseudo-element: after !default;
+$stretched-link-z-index: 1 !default;
+
+// Paragraphs
+//
+// Style p element.
+
+$paragraph-margin-bottom: 1rem !default;
+
+
+
+// Components
+
+// scss-docs-start border-variables
+$border-width: 2px;
+$border-widths: (1: 1px,
+2: 2px,
+3: 3px,
+4: 4px,
+5: 5px) !default;
+
+$border-style: solid !default;
+$border-color: $gray-50 !default;
+$border-color-translucent: rgba($black, .175) !default;
+$border-width: .125rem !default;
+
+
+// scss-docs-start border-radius-variables
+$border-radius: .625rem !default;
+$border-radius-sm: .375rem !default;
+$border-radius-lg: .75rem !default;
+$border-radius-xl: 1rem !default;
+$border-radius-2xl: 2rem !default;
+$border-radius-pill: 50rem !default;
+
+$box-shadow: 0rem .5rem 1rem rgba($black, .16) !default;
+$box-shadow-sm: 0rem .125rem .25rem rgba($black, .85) !default;
+$box-shadow-lg: 0rem 1rem 3rem rgba($black, .175) !default;
+$box-shadow-inset: inset 0rem 1px 2px rgba($black, .075) !default;
+
+$tt-box-shadow: 0rem .375rem 1.5rem 0rem rgba($gray-600, .125) !default;
+$tt-box-shadow-sm: 0rem .1875rem .375rem rgba($gray-600, .25) !default;
+$tt-box-shadow-lg: 0rem 1rem 1.75rem 0rem rgba($dark, .1) !default;
+$tt-box-shadow-xl: 0 2.75rem 5.5rem -3.5rem rgba($dark, .2),
+										0 2rem 4rem -2rem rgba($dark, .3) !default;
+// noColor
+$t-btn-box-shadow: 0 0.75rem 1.125rem -0.5rem !default;
+$t-btn-box-shadow-hover: 0 0.75rem 1.25rem -0.375rem !default;
+$t-btn-box-shadow-active: 0 0.5rem 1.5rem -0.625rem !default;
+$t-btn-box-shadow-focus: 0 0.875rem 1.5rem -0.125rem !default;
+
+$component-active-color: $white !default;
+$component-active-bg: $primary !default;
+
+// scss-docs-start caret-variables
+$caret-width: .3rem !default;
+$caret-vertical-align: $caret-width * .85 !default;
+$caret-spacing: $caret-width * .85 !default;
+// scss-docs-end caret-variables
+
+$transition-base: all .25s ease-in-out !default;
+$transition-fade: opacity .15s linear !default;
+// scss-docs-start collapse-transition
+$transition-collapse: height .35s ease !default;
+$transition-collapse-width: width .35s ease !default;
+// scss-docs-end collapse-transition
+
+// stylelint-disable function-disallowed-list
+// scss-docs-start aspect-ratios
+$aspect-ratios: (
+	"1x1":    100%,
+	"4x3":   calc(3 / 4 * 100%),
+	"16x9":  calc(9 / 16 * 100%),
+	"21x9":  calc(9 / 21 * 100%)) !default;
+
+// stylelint-enable function-disallowed-list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

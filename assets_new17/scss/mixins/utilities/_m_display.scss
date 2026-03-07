@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+//  Mixins > displays
+// ====================================================
+
+@mixin in-bk-mid {
+    display: inline-block;
+    vertical-align: middle;
+}
+@mixin tb-cell-mid {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin imposter($offset) {
+  width: 100vw;
+  height: 100vh;
+
+  @if $offset {
+    height: calc(100vh - #{$offset});
+  }
+
+  @include flex-center();
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}

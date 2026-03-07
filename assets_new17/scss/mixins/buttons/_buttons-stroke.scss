@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+//  Mixins > Buttons Outline
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// tint-color($primary, 95%) ;
+// shade-color($primary, 20%) ;
+
+// Button Outline Variant
+@mixin button-outline-variant($color: color-contrast($color, shade-color($background, 87.5%), $white), $color-hover: color-contrast(shade-color($color, 5%), shade-color($background, 87.5%), $white), $active-background: $color, $active-border: shade-color($color, 2.5%)) {
+  background-color: transparent;
+  border-color: tint-color($color, 40%);
+  color: shade-color($color, 30%);
+
+  // color-contrast($background, shade-color($background, 87.5%), $white);
+  @include btn-hover {
+    @include gradient-bg($active-background);
+
+    border-color: $active-border;
+    color: $color-hover;
+  }
+
+
+  @include btn-focus {
+    box-shadow: 0 0 0 0.25rem rgba($color, 0.32);
+  }
+
+
+  @include btn-disabled {
+    background-color: transparent;
+    color: $color;
+  }
+
+
+  @include btn-active {
+    box-shadow: 0 0 0 0.25rem rgba($color, 0.24);
+
+    @include gradient-bg($active-background);
+
+    @include btn-focus {
+      @if $enable-shadows {
+        box-shadow: $btn-box-shadow-value rgba($color, 0.12), $btn-focus-box-shadow-value rgba($color, 0.48);
+      }
+    }
+  }
+}

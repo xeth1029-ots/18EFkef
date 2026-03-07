@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+//  Layout -> SideBar Jobs
+// --------------------------------------------------
+$sidebar-w: 16.625rem;
+
+.t-wrapper-page {
+  position: relative;
+  flex: 1 0 auto;
+  flex-direction: row;
+  display: flex;
+
+  .t-wrapper-inner {
+    position: relative;
+    flex: 1 auto;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    width: calc(100% - #{$sidebar-w});
+  }
+
+  .t-side-bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 101;
+    width: $sidebar-w;
+    padding-left: 1rem;
+
+    .t-panel-resume {
+      position: relative;
+
+      .t-panel-resume-header {
+        position: relative;
+        padding: 1rem 2rem;
+        border-radius: $border-radius $border-radius 0 0;
+        font-size: 1.25rem;
+
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: -.375rem;
+          border-radius: $border-radius-sm;
+          width: 60%;
+          height: 0.75rem;
+          box-shadow: 0 0.125rem 0.25rem rgba($primary-800, 0.16);
+
+          @include text_gradient_under($primary, $primary-300, $w: 100%, $h: 100%);
+        }
+
+        @include gradient-directional($primary-50, $primary-200, 45deg);
+      }
+
+      .t-list {
+        position: relative;
+        .t-list-item {
+          padding: 0.75rem 1rem;
+          border-radius: 0;
+
+          .svg-icon {
+            color: $primary;
+            margin-right: 1rem;
+          }
+
+          .t-list-link {
+            text-decoration: none;
+            color: $primary-800;
+            font-size: 1.0625rem;
+          }
+        }
+      }
+    }
+  }
+}

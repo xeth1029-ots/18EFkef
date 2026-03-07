@@ -1,0 +1,145 @@
+@mixin caret-down {
+  border-top: $caret-width solid;
+  border-right: $caret-width solid transparent;
+  border-bottom: 0;
+  border-left: $caret-width solid transparent;
+}
+
+@mixin caret-up {
+  border-top: 0;
+  border-right: $caret-width solid transparent;
+  border-bottom: $caret-width solid;
+  border-left: $caret-width solid transparent;
+}
+
+@mixin caret-right {
+  border-top: $caret-width solid transparent;
+  border-right: 0;
+  border-bottom: $caret-width solid transparent;
+  border-left: $caret-width solid;
+}
+
+@mixin caret-left {
+  border-top: $caret-width solid transparent;
+  border-right: $caret-width solid;
+  border-bottom: $caret-width solid transparent;
+}
+
+@mixin caret($direction: down) {
+  @if $enable-caret {
+    &::after {
+      display: inline-block;
+      margin-left: $caret-spacing;
+      vertical-align: $caret-vertical-align;
+      content: "";
+
+      @if $direction==down {
+        @include caret-down;
+      }
+
+      @else if $direction==up {
+        @include caret-up;
+      }
+
+      @else if $direction==right {
+        @include caret-right;
+      }
+    }
+
+    @if $direction==left {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        display: inline-block;
+        margin-right: $caret-spacing;
+        vertical-align: $caret-vertical-align;
+        content: "";
+        @include caret-left;
+      }
+    }
+
+    &:empty::after {
+      margin-left: 0;
+    }
+  }
+}
+
+@mixin caret-down-solid {
+  border-left: $caret-solid-border-width solid transparent;
+  border-top: $caret-solid-border-width solid transparent;
+  border-right:  $caret-solid-border-width solid currentColor;
+  border-bottom:  $caret-solid-border-width solid currentColor;
+  transform: rotate(45deg);
+}
+
+@mixin caret-up-solid {
+  border-left: $caret-solid-border-width solid transparent;
+  border-top: $caret-solid-border-width solid transparent;
+  border-right:  $caret-solid-border-width solid currentColor;
+  border-bottom:  $caret-solid-border-width solid currentColor;
+  transform: rotate(-135deg);
+}
+
+@mixin caret-right-solid {
+  border-left: $caret-solid-border-width solid transparent;
+  border-top: $caret-solid-border-width solid transparent;
+  border-right:  $caret-solid-border-width solid currentColor;
+  border-bottom:  $caret-solid-border-width solid currentColor;
+  transform: rotate(-45deg);
+}
+
+@mixin caret-left-solid {
+  border-left: $caret-solid-border-width solid transparent;
+  border-top: $caret-solid-border-width solid transparent;
+  border-right:  $caret-solid-border-width solid currentColor;
+  border-bottom:  $caret-solid-border-width solid currentColor;
+  transform: rotate(135deg);
+}
+
+@mixin caret-solid($direction: down) {
+  @if $enable-caret {
+    &::after {
+      content: '';
+      display: inline-block;
+      margin-left: $caret-spacing;
+      vertical-align: $caret-solid-vertical-align;
+      width: $caret-solid-width;
+      height: $caret-solid-height;
+
+
+      @if $direction==down {
+        @include caret-down-solid ;
+      }
+
+      @else if $direction==up {
+        @include caret-up-solid;
+      }
+
+      @else if $direction==right {
+        @include caret-right-solid;
+      }
+    }
+
+    @if $direction==left {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        content: '';
+        display: inline-block;
+        margin-right: $caret-spacing;
+        vertical-align: $caret-solid-vertical-align;
+        width: $caret-solid-width;
+        height: $caret-solid-height;
+        @include caret-left-solid;
+      }
+    }
+
+    &:empty::after {
+      margin-left: 0;
+    }
+  }
+}

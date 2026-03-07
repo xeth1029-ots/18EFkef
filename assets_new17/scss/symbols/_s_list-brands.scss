@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+//  symbols  brands
+// --------------------------------------------------
+.t-list-brands {
+  display: flex;
+
+  .t-list-brands-item {
+    .t-list-brands-link {
+      width: 3.5rem;
+      display: block;
+      opacity: 0.66;
+      filter: grayscale(80);
+
+      &:hover {
+        transform: scale(1.075);
+        filter: grayscale(0);
+      }
+
+      img {}
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////

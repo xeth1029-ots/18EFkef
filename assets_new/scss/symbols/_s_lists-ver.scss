@@ -1,0 +1,264 @@
+@charset "utf-8";
+
+//  Symbols Lists ver
+// --------------------------------------------------
+
+.t-definition-list-v {
+  display: flex;
+  line-height: 2;
+  font-size: 0.9375rem;
+  margin-bottom: 0.875rem;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+
+  .t-definition-term-v {
+    color: $grey-400;
+    margin-bottom: 0.5rem;
+  }
+
+  .t-definition-description-v {
+    margin-left: .375rem;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-list {
+  .t-list-item {
+    position: relative;
+    border-radius: $border-radius-sm;
+    display: block;
+    padding: 0.625rem 0.875rem;
+    background-color: _var("white", $white);
+    transition: $transition;
+    font-size: 0.9375rem;
+
+    @include hover {
+      background-color: $gray-50;
+    }
+
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border;
+    }
+
+    .t-list-link-sm {
+      font-size: 80%;
+    }
+
+    .t-list-link {
+      display: block;
+
+      &:not(:last-child) {
+        margin-bottom: .375rem;
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+.t-date-item {
+  border-right: 1px dotted rgba($dark, 0.12);
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.9375rem;
+
+  .date-year {
+    font-size: 80%;
+    font-weight: 300;
+    color: $grey-500;
+  }
+
+  .date-month {
+    font-size: 102.50%;
+  }
+
+  .date-day {
+    font-weight: 300;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+.t-list-danger {
+  width: 100%;
+
+  @include branch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+  }
+
+
+  .t-list-item {
+    position: relative;
+    border-radius: $border-radius-sm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0.875rem;
+    background-color: $danger-25;
+    transition: $transition;
+    font-size: 0.9375rem;
+
+    @include hover {
+      background-color: $danger-50;
+    }
+
+
+    @include branch {
+      width: calc(50% - 0.5rem);
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: baseline;
+
+      .flex-column {
+        margin-top: 0.5rem;
+      }
+    }
+
+
+    a {
+      color: $danger-800;
+
+      @include hover {
+        color: $danger-600;
+      }
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border;
+      margin-bottom: .75rem;
+    }
+
+    @include branch {
+      &:last-child {
+        margin-bottom: .75rem;
+      }
+
+      .t-badge {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-list-group-v {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  .t-list-group-item-v {
+    &:not(:last-child) {
+      margin-bottom: 0.75rem;
+    }
+
+    .t-list-group-v {}
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-list-groups-ver {
+  font-size: 0.9375rem;
+  margin-bottom: 1rem;
+
+  @include flex($justify: start, $align-content: start, $align-items: start, $flex-dir: column, $flex-wrap: wrap);
+
+  line-height: $t-line-height-card;
+
+  &[data-list="like"] {
+    > .t-list-groups-ver-item {
+      &:before {
+        background-color: transparent;
+        transform: none;
+        width: 1rem;
+        height: 1rem;
+
+        @include svg-bg-icon(like, $grey-400, center, contain);
+      }
+    }
+  }
+
+  .t-list-groups-ver-item {
+    position: relative;
+    padding-left: 2rem;
+
+    .t-list-groups-ver {
+      margin-top: 1rem;
+      font-size: 90%;
+
+      .t-list-groups-ver-item {
+        padding-left: 1.5rem;
+
+        &:before {
+          top: 0.625em;
+        }
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: $grey-200;
+      border-radius: $border-radius-sm;
+      transform: rotate(30deg);
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-list-marker {
+  display: block;
+  text-align: left;
+
+  .t-list-marker-item {
+    position: relative;
+    padding-left: 1.5rem;
+    padding-top: 0.125rem;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      display: inherit;
+      border-radius: 50%;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    &::after {
+      height: 0.25rem;
+      width: 0.25rem;
+      background: $primary-300;
+      left: 0.25rem;
+    }
+
+    &::before {
+      height: 0.75rem;
+      width: 0.75rem;
+      background: rgba($primary-300, 0.48);
+      left: 0;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////

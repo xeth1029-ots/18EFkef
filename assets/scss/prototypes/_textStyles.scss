@@ -1,0 +1,61 @@
+//
+//  Components -> Texts size 
+// --------------------------------------------------
+
+.t-txt-mark {
+  position: relative;
+  z-index: 1;
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: .25rem;
+    background-image: url("data:image/svg+xml,%3Csvg fill='%23FFC700' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='100%25' height='14px'%3E%3Cpath fill-rule='evenodd' d='M296.739,0.489 C285.945,0.010 273.672,0.221 262.755,0.107 C256.950,0.032 252.201,0.354 246.332,0.729 C238.954,1.208 231.928,1.099 225.028,1.250 C197.012,1.897 170.246,3.016 143.807,4.231 C119.791,5.317 95.259,7.782 71.692,7.663 C49.937,7.511 26.368,7.874 5.021,11.353 C-4.226,12.959 0.483,19.213 9.619,17.825 C30.551,14.704 54.275,14.772 75.655,14.719 C86.428,14.692 97.099,13.610 107.882,12.944 C120.512,12.166 133.165,11.461 145.838,10.724 C170.676,9.284 195.552,7.858 220.991,6.529 C226.702,6.233 232.430,6.096 238.215,5.768 C243.781,5.445 249.180,4.506 254.944,4.164 C260.282,3.845 265.441,3.911 270.998,3.496 C277.816,2.974 284.741,1.990 292.463,1.753 C295.632,1.604 300.215,0.616 296.739,0.489 L296.739,0.489 Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    left: 0;
+    bottom: -.125rem;
+    z-index: -1
+  }
+}
+
+// @while $num < 2.75 {
+//   .text-#{$num * 16 } {
+//     font-size: #{$num}rem;
+//   }
+
+//   %text-#{$num} {
+//     font-size: #{$num}rem;
+//   }
+
+//   $num: $num+0.125;
+// }
+
+
+@for $i from 1 through 9 {
+  .t-font-w-#{$i * 100} {
+    font-weight: #{$i * 100} !important;
+  }
+
+  %t-font-w-#{$i * 100} {
+    font-weight: #{$i * 100};
+  }
+}
+
+// :before {
+//   content: "";
+//   width: 100%;
+//   height: 20px;
+//   background-color: goldenrod;
+//   opacity: 0.6;
+//   z-index: 1;
+//   position: absolute;
+//   top: 60%;
+//   left: 0;
+//   transform: skew(-45deg, 0);
+//   transform-origin: 50% 50%;
+// }

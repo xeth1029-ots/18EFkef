@@ -1,0 +1,49 @@
+.chartist-tooltip {
+  position: absolute;
+  display: inline-block;
+  border-radius: $tooltip-border-radius;
+  opacity: 0;
+  min-width: 2rem;
+  padding: .125rem .5rem .375rem;
+  text-align: center;
+  text-align-last: center;
+  background-color: $default;
+  box-shadow: $tooltip-box-shadow;
+  color: $grey;
+  pointer-events: none;
+  z-index: 1;
+  transition: $transition-base;
+  transform: scale(.5);
+  user-select: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: .375rem solid transparent;
+    border-top-color: $default;
+    transform: translateX(-50%);
+  }
+
+  &.tooltip-show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @each $color,
+  $value in $element-colors {
+    &.chartist-tooltip-#{$color} {
+      background-color: $value;
+      color: color-yiq($value);
+
+      &:before {
+        border-top-color: $value;
+
+      }
+
+    }
+  }
+}

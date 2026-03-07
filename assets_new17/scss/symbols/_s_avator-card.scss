@@ -1,0 +1,129 @@
+@charset "utf-8";
+
+// Symbol avator 
+// --------------------------------------------------
+$i: 1;
+
+@keyframes float {
+  0% {
+    transform: translate(0px);
+  }
+
+  50% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes floatY {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  50% {
+    transform: translate(-10px, -10px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes floatYe {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  50% {
+    transform: translate(10px, 10px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes floatR {
+  0% {
+    transform: translateX(0px);
+  }
+
+  50% {
+    transform: translateX(30px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.t-avator-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  // position: absolute;
+  user-select: none;
+  pointer-events: none;
+  align-self: start;
+  align-items: center;
+  margin: 0 auto;
+
+
+  // .t-avator-card-heading
+
+  .t-avator-card-main-txt {
+    font-size: 0.875rem;
+    @include stroke(0.375px, currentColor);
+    @include heading-shadow-v2($white);
+  }
+
+  .t-symbol {
+    user-select: none;
+    pointer-events: none;
+
+    > img {
+      opacity: 0.80;
+      background-color: rgba($white, 0.8);
+      border-radius: 50%;
+
+      @include img-square;
+      @include img-fluid;
+
+      width: 3rem;
+      height: 3rem;
+      box-shadow: 2px 2px 1.5rem rgba($warning, 0.48);
+      transition: $transition;
+    }
+  }
+
+  .t-bubble-thought {
+    user-select: none;
+    pointer-events: none;
+    background-color: rgba($white, 0.82);
+    opacity: 0.88;
+    box-shadow: 0 2px 0.5rem rgba($dark, 0.2);
+    font-size: 0.75rem;
+    margin: 0 0 .75rem 0;
+
+    &:before {
+      background-color: rgba($white, 0.82);
+    box-shadow: 0 2px 0.5rem rgba($dark, 0.2);
+    }
+
+    &:after {
+      background-color: rgba($white, 0.82);
+    box-shadow: 0 2px 0.5rem rgba($dark, 0.2);
+    }
+  }
+
+  // @for $i from 1 through 6 {
+  //   &:nth-child(#{$i}) {
+  //     top: percentage(random(100) / 100);
+  //     left: percentage(random(100) / 100);
+
+  //   }
+  // }
+}

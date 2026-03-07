@@ -1,0 +1,175 @@
+//
+//  Components -> Badges
+// --------------------------------------------------
+.t-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $badge-padding-y $badge-padding-x;
+  font-size: $badge-font-size;
+  font-family: $badge-font-family;
+  font-weight: $badge-font-weight;
+  color: contrast-color($badge-bg-color, $grey-900, $white);
+  // line-height: $badge-line-height;
+  white-space: nowrap;
+  text-align: center;
+  background-color: $badge-bg-color;
+  border-radius: $badge-border-radius;
+  margin-bottom: 0;
+  user-select: none;
+  transition: $transition;
+
+  @each $name, $value in $element-colors {
+    // &.t-badge-#{$name} {
+    //   background: rgba($value, $badge-backdrop-opacity);
+    //   backdrop-filter: blur($badge-backdrop-filter);
+    //   border: $badge-border-width solid rgba($value, $badge-backdrop-border-opacity);
+
+    //   > big {
+    //     background-color: rgba(color-contrast($value, $dark, $white, $min-contrast-ratio), $badge-backdrop-in-box-big-opacity);
+    //     width: $badge-in-box-big;
+    //     height: $badge-in-box-big;
+    //     line-height: $badge-in-box-big;
+    //     border-radius: $border-pill;
+    //     border: $badge-border-width solid rgba(_var("white-rgb", $white), $badge-backdrop-border-opacity);
+    //     margin-left: 0.125rem;
+    //     margin-right: 0.125rem;
+    //     box-shadow: $badge-in-box-shadow-white;
+    //     color: color-contrast(rgba(color-contrast($value, $dark, $white, $min-contrast-ratio), $badge-backdrop-in-box-big-opacity));
+    //     backdrop-filter: blur($badge-backdrop-filter);
+    //   }
+    // }
+
+    &.t-badge-#{$name} {
+      background-color: shade-color($value, 10%);
+      color: color-contrast(shade-color($value, 10%), $white, $dark);
+      padding-top: 0.125rem;
+      padding-bottom: 0.125rem;
+      padding-right: .5rem;
+
+      > big {
+        background-color: rgba($dark, 0.4);
+        color: $white;
+        // width: 1.375rem;
+        // height: 1.375rem;
+        line-height: 1.25;
+        padding: 0.0625rem .5rem;
+        border-radius: $border-pill;
+        border: $badge-border-width solid rgba(_var("white-rgb", $white), 0.12);
+        margin-left: 0.125rem;
+        margin-right: 0.125rem;
+        box-shadow: $badge-in-box-shadow-white;
+      }
+    }
+
+    &.t-badge-darken-#{$name} {
+      color: theme-light-color($name);
+      background-color: theme-inverse-color($name);
+    }
+
+    &.t-badge-light-#{$name} {
+      color: theme-inverse-color($name);
+      background-color: theme-light-color($name);
+    }
+  }
+
+  // Fixed size
+  &.t-badge--circle,
+  &.t-badge--square {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: $badge-size;
+    min-width: $badge-size;
+    padding: 0 0.1rem;
+  }
+
+  &.t-badge--border {
+    border: $badge-border-width solid rgba(_var("white-rgb", $white), 0.12);
+  }
+
+  // Circle
+  &.t-badge--circle {
+    border-radius: 50%;
+    padding: 0;
+    min-width: unset;
+    width: $badge-size;
+  }
+
+  // Sizes
+  &.t-badge--sm {
+    min-width: $badge-size-sm;
+    font-size: $badge-font-size-sm;
+
+    &.badge--circle {
+      width: $badge-size-sm;
+      height: $badge-size-sm;
+    }
+  }
+
+  &.t-badge--lg {
+    min-width: $badge-size-lg;
+    font-size: $badge-font-size-lg;
+
+    &.t-badge--circle {
+      width: $badge-size-lg;
+      height: $badge-size-lg;
+    }
+  }
+
+  &.t-badge--rounded {
+    border-radius: $rounded-pill;
+  }
+
+  &:not(:last-child) {
+    margin-right: .5rem;
+  }
+
+  &:empty {
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+
+    &.lg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &.sm {
+      width: .75rem;
+      height: .75rem;
+    }
+  }
+
+  @include link {
+    text-decoration: none;
+  }
+
+
+  @include link-btn {
+    text-decoration: none;
+  }
+
+
+  @include hover {
+    opacity: 0.88;
+
+    @include scale(1.05);
+  }
+
+
+  > .active & {
+    background-color: $link;
+    color: $white;
+  }
+
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+
+  .btn-xs &,
+  .btn-group-xs > .btn & {
+    top: 0;
+    padding: .125rem .25rem;
+  }
+}

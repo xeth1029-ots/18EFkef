@@ -1,0 +1,544 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A2.Models;
+@using WKEFSERVICE.Models;
+@using WKEFSERVICE.DataLayers;
+@model C502MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+    SessionModel sm = SessionModel.Get();
+    //string TheWidth1 = "width:250px;";
+    string TheWidth2 = "width:400px;";
+    //string titleBtnTxt = "";
+    //已有審核狀態-審核結果通過
+    string[] readonlyArr = { "S", "Y", "N" };
+    bool fg_AuditStatusOK = readonlyArr.Contains(Model.Detail.AuditStatus.TONotNullString());
+    //有審核狀態
+    string titleBtnTxt = string.IsNullOrEmpty(Model.Detail.AuditStatus) ? "" : 
+        (Model.Detail.AuditStatus == "S") ? "title=\"(已送出審核)\"" : 
+        (Model.Detail.AuditStatus == "R") ? "title=\"(審核後退件修正)\"" : "title=\"(已有審核狀態)\"";
+    //審核結果通過或送審中
+    string isReadonly = (fg_AuditStatusOK) ? "readonly disabled" : "";
+    //已有審核狀態
+    bool fg_AuditStatusSHOW = !string.IsNullOrEmpty(Model.Detail.AuditStatus);
+}
+
+@using (Html.BeginForm("Save", "C502M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Detail.IsNew)
+    @Html.HiddenFor(x => x.Detail.Seq)
+    @Html.HiddenFor(x => x.Detail.UnitCode)
+    @Html.HiddenFor(x => x.Detail.TeacherAccount)
+    @Html.HiddenFor(x => x.Detail.AuditStatus)
+
+    @Html.HiddenFor(x => x.Detail.TslidesOrg)
+    @Html.HiddenFor(x => x.Detail.TslidesNew)
+    @Html.HiddenFor(x => x.Detail.TslidesType)
+    @Html.HiddenFor(x => x.Detail.StudyGReportOrg)
+    @Html.HiddenFor(x => x.Detail.StudyGReportNew)
+    @Html.HiddenFor(x => x.Detail.StudyGReportType)
+    @Html.HiddenFor(x => x.Detail.WorksheetsOrg)
+    @Html.HiddenFor(x => x.Detail.WorksheetsNew)
+    @Html.HiddenFor(x => x.Detail.WorksheetsType)
+    @Html.HiddenFor(x => x.Detail.HomeWorkOrg)
+    @Html.HiddenFor(x => x.Detail.HomeWorkNew)
+    @Html.HiddenFor(x => x.Detail.HomeWorkType)
+    @Html.HiddenFor(x => x.Detail.ExpReportOrg)
+    @Html.HiddenFor(x => x.Detail.ExpReportNew)
+    @Html.HiddenFor(x => x.Detail.ExpReportType)
+    @Html.HiddenFor(x => x.Detail.ExamOrg)
+    @Html.HiddenFor(x => x.Detail.ExamNew)
+    @Html.HiddenFor(x => x.Detail.ExamType)
+    @Html.HiddenFor(x => x.Detail.Other1Org)
+    @Html.HiddenFor(x => x.Detail.Other1New)
+    @Html.HiddenFor(x => x.Detail.Other1Type)
+    @Html.HiddenFor(x => x.Detail.Other2Org)
+    @Html.HiddenFor(x => x.Detail.Other2New)
+    @Html.HiddenFor(x => x.Detail.Other2Type)
+
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="align-items-baseline">
+                                <h3 class="bt-section-heading">教學自我審核報告</h3>
+                                @*<p class="bt-section-para">提供教師可針對個人各年度之教學自我審核報告進行線上填寫、修改、刪除、查看審核狀態、列印等功能。</p>*@
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg><use href="#ic-arrow-l"></use></svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm mr-2" onclick="doSave('@Url.Action("TempSave")')" id="SaveBtn" @isReadonly @Html.Raw(titleBtnTxt)>
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg><use href="#ic-save"></use></svg>
+                                    </i>
+                                    暫存
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm mr-2" onclick="doSave('@Url.Action("Save")')" id="SaveBtn" @isReadonly @Html.Raw(titleBtnTxt)>
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg><use href="#ic-save"></use></svg>
+                                    </i>
+                                    正式儲存
+                                </button>
+                                @if (!Model.Detail.IsNew)
+                                {
+                                    <button type="button" class="btn btn--danger btn--sm mr-2" onclick="doAudit()" id="AuditBtn" @isReadonly @Html.Raw(titleBtnTxt)>
+                                        <i class="svg-icon mr-2" aria-hidden="true">
+                                            <svg><use href="#ic-save"></use></svg>
+                                        </i>
+                                        送審
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @*@Html.LabelFor(x => x.Detail.Year, new { @class = "t-form-label" })*@
+                                        <label class="t-form-label"><span style="color:red;">*</span>年度</label>
+                                        @if (Model.Detail.IsNew)
+                                        {
+                                            @Html.DropDownListFor(x => x.Detail.Year, new SelectList(Model.Detail.Year_list, "Value", "Text", Model.Detail.Year), new { @class = "t-form-control ml-4", style = TheWidth2, onchange = "doYearDropDown()" })
+                                        }
+                                        else
+                                        {
+                                            @Html.DropDownListFor(x => x.Detail.Year, new SelectList(Model.Detail.Year_list, "Value", "Text", Model.Detail.Year), new { @class = "t-form-control ml-4", style = TheWidth2, @readonly = "", @disabled = "" })
+                                        }
+                                        @Html.HiddenFor(x => x.Detail.Year)
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.UploadDeadline, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(x => x.Detail.UploadDeadline, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "", style = TheWidth2 })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @*@Html.LabelFor(x => x.Detail.JobAbilityCode, new { @class = "t-form-label" })*@
+                                        <label class="t-form-label"><span style="color:red;">*</span>職能類別</label>
+                                        @Html.DropDownListFor(x => x.Detail.JobAbilityCode, new SelectList(Model.Detail.JobAbilityCode_list, "Value", "Text", Model.Detail.JobAbilityCode), new { @class = "t-form-control ml-4", onchange = "doJobAbilityDown()", style = TheWidth2 })
+                                        @Html.HiddenFor(x => x.Detail.JobAbilityCode)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">一.課程單元基本資料</div>
+                        <div data-grad-under="secondary" class="t-panel-sub-title">(上傳檔案格式僅限.doc, .docx, .ppt, .pdf, .odt, .odp，檔案大小以20MB為限)</div>
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>課程單元</label>
+                                        @Html.CheckBoxListFor(x => x.Detail.CourseUnitCode_SHOW, Model.Detail.CourseUnitCode_SHOW_list, new { @class = "t-form-control", id = "CourseUnitCode_SHOW", style = "margin-left: 20px; " + TheWidth2 + " height:120px; overflow: auto;" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>授課對象</label>
+                                        @Html.DropDownListFor(x => x.Detail.OBJECT_TYPE, new SelectList(Model.Detail.OBJECT_TYPE_list, "Value", "Text", Model.Detail.OBJECT_TYPE), new { @class = "t-form-control ml-4", style = TheWidth2 })
+                                        @Html.HiddenFor(x => x.Detail.OBJECT_TYPE)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>學員人數</label>
+                                        @Html.TextBoxFor(x => x.Detail.StudNum, new { @class = "t-form-control ml-4", style = TheWidth2 })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>教學目標</label>
+                                        @Html.TextAreaFor(x => x.Detail.TObject, new { @class = "t-form-control ml-4" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>教學方法</label>
+                                        @Html.TextAreaFor(x => x.Detail.TMethod, new { @class = "t-form-control ml-4" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>教材簡報</label>
+                                        @Html.TextBoxFor(m => m.Detail.FILE_Tslides, new { type = "file", @class = "t-form-control ml-4", accept = ".doc, .docx, .ppt, .pdf, .odt, .odp", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_Tslides)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.TslidesNew)" download="@Model.Detail.TslidesOrg" title="點擊以下載 @Model.Detail.TslidesOrg" onclick="doLog('@Model.Detail.TslidesOrg', '@Model.Detail.TslidesNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.TslidesOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.Other, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(x => x.Detail.Other, new { @class = "t-form-control ml-4" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">二.教學/訓練成效成果證據</div>
+                        <div data-grad-under="secondary" class="t-panel-sub-title">(上傳檔案格式僅限PDF，檔案大小以20MB為限)</div>
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <span style="color: red; position: absolute; top: 1rem;">*學習分組報告、學習單、作業、心得報告、測驗等5項，請至少選擇其中一項上傳。</span>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">@*<span style="color:red;">*</span>*@學習分組報告</label>
+                                        @Html.TextBoxFor(m => m.Detail.FILE_StudyGReport, new { type = "file", @class = "t-form-control ml-4", accept = ".pdf", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_StudyGReport)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.StudyGReportNew)" download="@Model.Detail.StudyGReportOrg" title="點擊以下載 @Model.Detail.StudyGReportOrg" onclick="doLog('@Model.Detail.StudyGReportOrg', '@Model.Detail.StudyGReportNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.StudyGReportOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">@*<span style="color:red;">*</span>*@學習單</label>
+                                        @Html.TextBoxFor(m => m.Detail.FILE_Worksheets, new { type = "file", @class = "t-form-control ml-4", accept = ".pdf", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_Worksheets)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.WorksheetsNew)" download="@Model.Detail.WorksheetsOrg" title="點擊以下載 @Model.Detail.WorksheetsOrg" onclick="doLog('@Model.Detail.WorksheetsOrg', '@Model.Detail.WorksheetsNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.WorksheetsOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">@*<span style="color:red;">*</span>*@作業</label>
+                                        @Html.TextBoxFor(m => m.Detail.FILE_HomeWork, new { type = "file", @class = "t-form-control ml-4", accept = ".pdf", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_HomeWork)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.HomeWorkNew)" download="@Model.Detail.HomeWorkOrg" title="點擊以下載 @Model.Detail.HomeWorkOrg" onclick="doLog('@Model.Detail.HomeWorkOrg', '@Model.Detail.HomeWorkNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.HomeWorkOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">@*<span style="color:red;">*</span>*@心得報告</label>
+                                        @Html.TextBoxFor(m => m.Detail.FILE_ExpReport, new { type = "file", @class = "t-form-control ml-4", accept = ".pdf", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_ExpReport)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.ExpReportNew)" download="@Model.Detail.ExpReportOrg" title="點擊以下載 @Model.Detail.ExpReportOrg" onclick="doLog('@Model.Detail.ExpReportOrg', '@Model.Detail.ExpReportNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.ExpReportOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">@*<span style="color:red;">*</span>*@測驗</label>
+                                        @Html.TextBoxFor(m => m.Detail.FILE_Exam, new { type = "file", @class = "t-form-control ml-4", accept = ".pdf", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_Exam)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.ExamNew)" download="@Model.Detail.ExamOrg" title="點擊以下載 @Model.Detail.ExamOrg" onclick="doLog('@Model.Detail.ExamOrg', '@Model.Detail.ExamNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.ExamOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.Other1Remark, new { @class = "t-form-label", @style = "width: 200px;" })
+                                        @Html.TextAreaFor(x => x.Detail.Other1Remark, new { @class = "t-form-control ml-4", @style = "width: 83%;" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.FILE_Other1, new { @class = "t-form-label", @style = "width: 200px;" })
+                                        @Html.TextBoxFor(m => m.Detail.FILE_Other1, new { type = "file", @class = "t-form-control ml-4", accept = ".pdf", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_Other1)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.Other1New)" download="@Model.Detail.Other1Org" title="點擊以下載 @Model.Detail.Other1Org" onclick="doLog('@Model.Detail.Other1Org', '@Model.Detail.Other1New')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.Other1Org
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.Other2Remark, new { @class = "t-form-label", @style = "width: 200px;" })
+                                        @Html.TextAreaFor(x => x.Detail.Other2Remark, new { @class = "t-form-control ml-4", @style = "width: 83%;" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.FILE_Other2, new { @class = "t-form-label", @style = "width: 200px;" })
+                                        @Html.TextBoxFor(m => m.Detail.FILE_Other2, new { type = "file", @class = "t-form-control ml-4", accept = ".pdf", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.FILE_Other2)
+                                    </div>
+                                    <div class="t-form-group">
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.Other2New)" download="@Model.Detail.Other2Org" title="點擊以下載 @Model.Detail.Other2Org" onclick="doLog('@Model.Detail.Other2Org', '@Model.Detail.Other2New')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.Other2Org
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title"><p style="color:red">*</p>三.成效指標達成度分析與檢討</div>
+                        <div data-grad-under="secondary" class="t-panel-sub-title">依據實際授課情形及成果證據，檢視成效指標的達成情形</div>
+                        <div class="bt-form-cnt" style="padding: 1.5rem 1.5rem 0rem 0rem">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <span id="Count_Detail_Effect" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.TextAreaFor(x => x.Detail.Effect, new { @class = "t-form-control ml-4", style = "height: 150px;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">四.可行之改善(精進)作法</div>
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>(一) 教學計劃之改善(優化)</label>
+                                        <span id="Count_Detail_PlanImprove" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.TextAreaFor(m => m.Detail.PlanImprove, new { @class = "t-form-control ml-4" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>(二) 評量設計之改善(優化)</label>
+                                        <span id="Count_Detail_ExamImprove" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.TextAreaFor(m => m.Detail.ExamImprove, new { @class = "t-form-control ml-4" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>(三) 教材之改善(優化)</label>
+                                        <span id="Count_Detail_materialsImprove" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.TextAreaFor(m => m.Detail.materialsImprove, new { @class = "t-form-control ml-4" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">五.其他</div>
+                        <div class="bt-form-cnt" style="padding: 1.5rem 1.5rem 0rem 0rem">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.TextAreaFor(x => x.Detail.Other3, new { @class = "t-form-control ml-4", style = "height: 150px;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (fg_AuditStatusSHOW)
+                {
+                    <div class="col-sm-12">
+                        <div class="t-panel bt-section-edit">
+                            <div data-grad-under="info" class="t-panel-title">六.審核</div>
+                            <div class="bt-form-cnt" style="padding: 1.5rem 1.5rem 0rem 0rem">
+                                <div class="t-form t-txt-left">
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(x => x.Detail.AuditStatus_Name, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(x => x.Detail.AuditStatus_Name, new { @class = "t-form-control ml-4", @readonly = "readonly", @disabled = "disabled", style = TheWidth2 })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(x => x.Detail.AuditReason_Txt, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(x => x.Detail.AuditReason_Txt, new { @class = "t-form-control ml-4", @readonly = "readonly", @disabled = "disabled", style = TheWidth2 })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        doYearDropDown();
+        doJobAbilityDown();
+
+        document.getElementById('Count_Detail_Effect').innerText = "字數統計：" + CountFont($("#Detail_Effect").val());
+        document.getElementById('Count_Detail_PlanImprove').innerText = "字數統計：" + CountFont($("#Detail_PlanImprove").val());
+        document.getElementById('Count_Detail_ExamImprove').innerText = "字數統計：" + CountFont($("#Detail_ExamImprove").val());
+        document.getElementById('Count_Detail_materialsImprove').innerText = "字數統計：" + CountFont($("#Detail_materialsImprove").val());
+
+        document.getElementById('Detail_Effect').addEventListener('keyup', function () {
+            document.getElementById('Count_Detail_Effect').innerText = "字數統計：" + CountFont($("#Detail_Effect").val());
+        }, false);
+        document.getElementById('Detail_PlanImprove').addEventListener('keyup', function () {
+            document.getElementById('Count_Detail_PlanImprove').innerText = "字數統計：" + CountFont($("#Detail_PlanImprove").val());
+        }, false);
+        document.getElementById('Detail_ExamImprove').addEventListener('keyup', function () {
+            document.getElementById('Count_Detail_ExamImprove').innerText = "字數統計：" + CountFont($("#Detail_ExamImprove").val());
+        }, false);
+        document.getElementById('Detail_materialsImprove').addEventListener('keyup', function () {
+            document.getElementById('Count_Detail_materialsImprove').innerText = "字數統計：" + CountFont($("#Detail_materialsImprove").val());
+        }, false);
+    });
+
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    function doSave(SaveName) {
+        $.ajax({
+            url: "@Url.Action("ConfirmUploadSame", "C502M")",
+            data: {
+                "Year": $('#Detail_Year').val(),
+                "TeacherAccount": "@sm.UserInfo.UserNo",
+            },
+            dataType: "json",
+            method: "post",
+            success: function (data) {
+                //console.log(data);
+                if (data === "") {
+                    var form = $("form[id=main_form]");
+                    form.attr('action', SaveName).submit();
+                }
+                else {
+                    blockConfirm(data, null,
+                        function () {
+                            var form = $("form[id=main_form]");
+                            form.attr('action', SaveName).submit();
+                        },
+                        function () {
+                            return;
+                        }
+                    );
+                }
+            },
+            error: function (data) {
+                console.log("C502M get data error");
+            }
+        });
+    }
+
+    function doAudit() {
+        blockConfirm("您確定要送出審核？", null, function () {
+            var form = $("form[id=main_form]");
+            form.attr('action', '@Url.Action("SendToAudit", "C502M")').submit();
+        });
+    }
+
+    function doYearDropDown() {
+        $.ajax({
+            url: "@Url.Action("GetUploadDeadlineStr", "C502M")",
+            data: { "Year": $('#Detail_Year').val() },
+            dataType: "json",
+            success: function (data) {
+                //console.log(data);
+                if (data == "") { data = "<無>"; }
+                $('#Detail_UploadDeadline').val(data);
+            },
+            error: function (data) {
+                console.log("C502M get data error");
+            }
+        });
+    }
+
+    function doJobAbilityDown() {
+        const tmpStr = "checkbox_Detail_CourseUnitCode_SHOW_" + $("#Detail_JobAbilityCode").val();
+        //console.log(tmpStr);
+        for (let item of document.getElementById("CourseUnitCode_SHOW").children) {
+        //console.log(item.id);
+            document.getElementById(item.id).style.display = "unset";
+            if (tmpStr !== item.id.substring(0, item.id.length - 1)) {
+                document.getElementById(item.id).style.display = "none";
+            }
+        };
+    }
+
+    function doLog(Org, New) {
+        $.ajax({
+            url: "@Url.Action("FileDownloadLog", "Backend", new { area = "" })",
+            data: { "Func": "A2/C502M", "Org": Org, "New": New },
+            dataType: "json",
+            method: "post",
+            success: function (data) { },
+            error: function (data) { }
+        });
+    }
+
+    $("#Detail_FILE_Tslides").on("change", function () { CheckFileTypeByComp("Detail_FILE_Tslides"); });
+    $("#Detail_FILE_StudyGReport").on("change", function () { CheckFileTypeByComp("Detail_FILE_StudyGReport"); });
+    $("#Detail_FILE_Worksheets").on("change", function () { CheckFileTypeByComp("Detail_FILE_Worksheets"); });
+    $("#Detail_FILE_HomeWork").on("change", function () { CheckFileTypeByComp("Detail_FILE_HomeWork"); });
+    $("#Detail_FILE_ExpReport").on("change", function () { CheckFileTypeByComp("Detail_FILE_ExpReport"); });
+    $("#Detail_FILE_Exam").on("change", function () { CheckFileTypeByComp("Detail_FILE_Exam"); });
+    $("#Detail_FILE_Other1").on("change", function () { CheckFileTypeByComp("Detail_FILE_Other1"); });
+    $("#Detail_FILE_Other2").on("change", function () { CheckFileTypeByComp("Detail_FILE_Other2"); });
+    function CheckFileTypeByComp(ID_Name) {
+        let fileType = "." + document.getElementById(ID_Name).value.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();
+        let acceptType = document.getElementById(ID_Name).accept.toLowerCase();
+        //console.log(fileType);
+        //console.log(acceptType);
+        //console.log(acceptType.indexOf(fileType));
+        //console.log(document.getElementById(ID_Name).files[0].size);
+        if (acceptType.indexOf(fileType) === -1) {
+            blockAlert("請選擇正確的檔案格式！ (" + acceptType + ")");
+            document.getElementById(ID_Name).value = null;
+        }
+        if (document.getElementById(ID_Name).files[0].size > (20 * 1024 * 1024)) {
+            blockAlert("檔案大小以 20MB 為限！");
+            document.getElementById(ID_Name).value = null;
+        }
+    }
+
+    function CountFont(s) {
+        const str_filter = /(\s)|(\n)/g;
+        s = s.replace(str_filter, "");
+        const utf8Data = new TextEncoder().encode(s);
+        let p = 0;
+        let counter = 0;
+        while (p < utf8Data.length) {
+            const first = utf8Data[p];
+            counter += 1;
+            if (first <= 0x7F) {
+                p += 1;
+            } else if (first <= 0xDF) {
+                p += 2;
+            } else if (first <= 0xEF) {
+                p += 3;
+            } else {
+                p += 4;
+            }
+        }
+        return counter;
+    }
+
+</script>

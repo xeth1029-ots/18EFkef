@@ -1,0 +1,310 @@
+@charset "utf-8";
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+///
+$pattern-prefix: "t-pattern" !default;
+
+$size: 0.32em !default;
+
+$pattern-sizes: (
+	sm: 0.24em, 
+	md: 0.36em, 
+	lg: 0.66em, 
+	xl: 0.8em) !default;
+
+$dots: (
+	sm: 0.04em, 
+	md: 0.10em, 
+	lg: 0.16em, 
+	xl: 0.20em) !default;
+
+
+$pattern-list: 
+"checks", 
+"grid", 
+"dots", 
+"cross-dots", 
+"vertical-lines", 
+"horizontal-lines", 
+"diagonal-lines", 
+"vertical-stripes",
+"horizontal-stripes", 
+"diagonal-stripes", 
+"triangles", 
+"zigzag" !default;
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+$default-bg:                 $default  !default;
+$body-bg:                    if(isDarkMode(), $dark, $default) !default;
+$body-color:                 $dark     !default;
+$body-text-align:            null      !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$images-path:                  "../images/"                     !default;
+$background-noise:             url("#{$images-path}noise.svg")  !default;
+$background:                   $primary                         !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$escaped-characters: (
+	("<", "%3c"),
+	(">", "%3e"),
+	("#", "%23"),
+	("(", "%28"),
+	(")", "%29"),
+) !default;
+
+// Options
+$enable-caret:                           true !default;
+$enable-rounded:                         true !default;
+$enable-shadows:                         true !default;
+$enable-gradients:                       true !default;
+$enable-transitions:                     true !default;
+$enable-reduced-motion:                  true !default;
+$enable-smooth-scroll:                   true !default;
+$enable-grid-classes:                    true !default;
+$enable-container-classes:               true !default;
+$enable-cssgrid:                         false !default;
+$enable-button-pointers:                 true !default;
+$enable-rfs:                             true !default;
+$enable-validation-icons:                true !default;
+$enable-negative-margins:                false !default;
+$enable-deprecation-messages:            true !default;
+$enable-important-utilities:             true !default;
+$legacy-support-for-ie:                  false !default;
+$enable-responsive-font-sizes:           false !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$enable-custom-buttons-shadow:            false !default;
+$enable-custom-buttons-3d:                false !default;
+$enable-custom-buttons-brand:             true !default;
+$enable-custom-buttons-left-circle:       true !default;
+$enable-custom-buttons-soft:              true !default;
+$enable-custom-buttons-stroke:            true !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+$theme-color-interval:            8%     !default;
+$theme-color-interval-sec:        12%    !default;
+
+$yiq-contrasted-threshold:        204    !default;
+$yiq-text-dark:                   $dark  !default;
+$yiq-text-light:                  $white !default;
+
+
+
+$contrast-color-threshold:        55%;
+$min-contrast-ratio:              4.5    !default; // 4.5
+$max-contrast-ratio:              7      !default; // 7
+$color-contrast-dark:             $black  !default;
+$color-contrast-light:            $white !default;
+
+$theme-colors-rgb:                map-loop($theme-colors, to-rgb, "$value") !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$gradient:                       linear-gradient(180deg, rgba($white, .15), rgba($white, 0)) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Spacing
+$spacer: 1rem !default;
+$spacers: (0: 0,
+1: $spacer * .25,
+2: $spacer * .5,
+3: $spacer,
+4: $spacer * 1.5,
+5: $spacer * 2,
+6: $spacer * 2.5,
+7: $spacer * 3,
+8: $spacer * 3.5,
+9: $spacer * 4,
+10: $spacer * 4.5) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Position
+// scss-docs-start position-map
+$position-values: (0: 0,
+50: 50%,
+100: 100%) !default;
+
+$stretched-link-pseudo-element: after !default;
+$stretched-link-z-index:        1 !default;
+$paragraph-margin-bottom:       1rem !default;
+
+$component-active-color: $white !default;
+$component-active-bg: $primary !default;
+
+$caret-width:                   .3125rem !default;
+$caret-vertical-align:          $caret-width * .85 !default;
+$caret-spacing: $caret-width *  .85 !default;
+$caret-width:                   .4375rem                          !default;
+$caret-vertical-align:          middle                            !default;
+$caret-spacing:                 $caret-width * .75                !default;
+$caret-solid-width:             .375rem                           !default;
+$caret-solid-height:            .375rem                           !default;
+$caret-solid-border-width:      .125rem                           !default;
+$caret-solid-vertical-align:    middle                            !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$aspect-ratios: (
+	"1x1":    100%,
+	"4x3":   calc(3 / 4 * 100%),
+	"16x9":  calc(9 / 16 * 100%),
+	"21x9":  calc(9 / 21 * 100%)) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Body
+
+$primary-light:                $primary-100      !default;
+$primary-inverse:              $primary-800      !default;
+$component-active-color:       $primary-inverse  !default;
+$component-active-bg:          $primary          !default;
+$component-hover-bg:           $primary-light    !default;
+$component-hover-color:        $primary          !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Colors
+$paragraph-color:    $dark !default;
+$link-color:         $primary;
+$link-hover-color:   darken($primary, 12%);
+$active-color:       $link-color !default;
+$disabled-color:     $gray-400 !default;
+$text-muted:         darken($gray-500, 5%) !default;
+
+$white-50: rgba($white, 0.4) !default;
+$white-70: rgba($white, 0.66) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Backgrounds
+$light-bg-color: $gray-300 !default;
+$overlay-soft-bg-color: rgba($dark, 0.25) !default;
+$secondary-bg-color: transparent !default;
+$active-bg-color: $primary !default;
+$disabled-bg-color: rgba($gray-300, 0.5) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== Margin & Padding Default
+$default-num:     				1rem 											!default;
+
+//==  Utilities
+$displays:        none, inline, inline-block, block, table, inline-table, table-row, table-cell, flex, inline-flex, grid !default;
+$overflows:       auto, hidden , visible !default;
+$positions:       static, relative, absolute, fixed, sticky !default;
+$user-selects:    all, auto, none 	!default;
+$text-aligns:     left, right, center, justify!default;
+$vertical-aligns: baseline, top, middle, bottom, text-bottom, text-top !default;
+$floats:          none, left, right !default;
+$pointer-events:  auto, none !default;
+$word-wraps:      normal, break-word !default;
+$white-spaces:    normal, nowrap 	 !default;
+$cursors:         auto, default, pointer, move, zoom-in, zoom-out, help, wait, grab, not-allowed!default;
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Paragraphs
+$paragraph-margin-bottom: 1rem !default;
+
+
+$component-active-color: $primary-800 !default;
+$component-active-bg: $primary !default;
+$component-hover-bg: $primary-200 !default;
+$component-hover-color: $primary !default;
+
+// Custom hover and active background colors
+$hover-bg: rgba($gray-100, 0.8) !default;
+
+// Custom variable(to remove)
+$active-bg:                        $hover-bg !default;
+$border-size:                     0.25rem                             !default;
+
+
+// GO TOP
+$fixedAreaR:              1.5rem !default;
+$fixedAreaB:              $fixedAreaR !default;
+$go-icon-size-box:        3rem;
+$go-icon-size:            ($go-icon-size-box * 0.618);
+$go-icon-size-box-radius: 2rem;
+$go-icon-box-shadow:      0 1.5rem 3rem 0 rgba($primary-800, 0.36), 
+																										0 1rem 2rem 0 rgba($primary-600, 0.48), 
+																										inset 0 -0.5rem 1.5rem 0 rgba($primary-200, 0.48)  ,inset 0px 10px 10px rgb(255 255 255 / 50%), inset 0px -5px 10px rgb(0 0 0 / 30%) ;
+$dark-icon-box-shadow:    0 1.5rem 3rem 0 rgba($grey-800, 0.36), 
+																										0 1rem 2rem 0 rgba($grey-600, 0.48), 
+																										inset 0 -0.5rem 1.5rem 0 rgba($white, 0.24) , inset 0px 10px 10px rgb(255 255 255 / 50%), inset 0px -5px 10px rgb(0 0 0 / 30%) ;
+
+$light-background:        linear-gradient($light 0%, $grey-200 38%, $grey-300 48%, $grey-500 74%, $grey-700 100%);
+$dark-background:         linear-gradient($neutral 0%, $neutral-900 38%, $neutral-800 48%, $neutral-700 74%, $neutral-600 100%);
+$light-shadow-v1:         0 1.5rem 3rem 0;
+$light-shadow-v2:         inset 0 -0.5rem 1.5rem 0 ;
+
+
+// inset 0px 10px 10px rgb(255 255 255 / 50%), inset 0px -5px 10px rgb(0 0 0 / 30%)$light-shadow-v1 rgba($primary-500, 0.42), $light-shadow-v2 rgba($primary-600, 0.8)
+$light-shadow:            $light-shadow-v1 rgba($primary-50, 0.66), $light-shadow-v2 rgba($primary-100, 0.8);
+$dark-shadow:             inset 0px 10px 10px rgb(255 255 255 / 50%), inset 0px -5px 10px rgb(0 0 0 / 30%) ;
+$float-transition:        0.35s all ease-in-out;
+$float-z-index:           99;
+$change-mode-bottom:      5.25rem;
+// button::after {
+//     width: 100px;
+//     height: 100px;
+//     transform: translateX(-63px) rotateX(80deg);
+//     background: rgb(0,0,0);
+//     background: -moz-radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 40%);
+//     background: -webkit-radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 40%);
+//     background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 40%);
+//     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#b8d3f0",GradientType=1);
+//     content: '';
+//     position: absolute;
+//     transition: 500ms;
+
+
+
+
+// PIXEL Buttons
+$button-shadow-size:              0.25rem                             !default;
+$button-padding-y:                0.25rem                             !default;
+$button-padding-x:                0.75rem                             !default;
+$button-shadow-color:             rgba($dark, 0.12)                   !default;
+$button-shadow-size:              $shadow-size                        !default;
+$button-shadow-size--hover:       0.3625rem                           !default;
+$button-shadow-size--focus:       0.5rem                              !default;
+$button-padding:                  $button-padding-y 
+                                  (#{$button-shadow-size + $button-shadow-size})
+                                  (#{$button-shadow-size + $button-shadow-size})
+                                  $button-padding-x                   !default;
+
+$button-padding--active:          ($button-padding-y + $button-shadow-size) 
+                                  $button-padding-x 
+                                  $button-padding-y 
+                                  ($button-padding-x + $button-shadow-size)  !default;
+
+$noise-sm:                url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+$noise-md:                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+$noise-lg:                url("data:image/svg+xml,%3Csvg viewBox='0 0 2000 2000' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+$noise-xxl:               url("data:image/svg+xml,%3Csvg viewBox='0 0 20000 20000' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+$noise-iphone:            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1000 600' version='1.1'%3E%3Cdefs%3E%3ClinearGradient id='gradient__0' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop stop-color='%231d03ff' offset='0.0%25'/%3E%3Cstop stop-color='%237f86f3' offset='16.7%25'/%3E%3Cstop stop-color='%23efedff' offset='33.3%25'/%3E%3Cstop stop-color='white' offset='50.0%25'/%3E%3Cstop stop-color='%23efedff' offset='66.7%25'/%3E%3Cstop stop-color='%237f86f3' offset='83.3%25'/%3E%3Cstop stop-color='%231d03ff' offset='100.0%25'/%3E%3C/linearGradient%3E%3Cfilter id='grain' x='-500' y='-300' width='2000' height='1200' filterUnits='userSpaceOnUse'%3E&gt; %3CfeFlood flood-color='%23ffffff' result='neutral-gray'/%3E%3CfeTurbulence in='neutral-gray' type='fractalNoise' baseFrequency='2.5' numOctaves='100' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0' result='destaturatedNoise'/%3E%3CfeComponentTransfer in='desaturatedNoise' result='theNoise'%3E%3CfeFuncA type='table' tableValues='0 0 0.23 0'/%3E%3C/feComponentTransfer%3E%3CfeBlend in='SourceGraphic' in2='theNoise' mode='soft-light' result='noisy-image'/%3E%3C/filter%3E%7D %3C/defs%3E%3C/svg%3E#grain");
+$noise-iphone-xxl:        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='600' viewBox='0 0 1000 600' version='1.1'%3E%3Cdefs%3E%3ClinearGradient id='gradient__0' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop stop-color='%231d03ff' offset='0.0%25'/%3E%3Cstop stop-color='%237f86f3' offset='16.7%25'/%3E%3Cstop stop-color='%23efedff' offset='33.3%25'/%3E%3Cstop stop-color='white' offset='50.0%25'/%3E%3Cstop stop-color='%23efedff' offset='66.7%25'/%3E%3Cstop stop-color='%237f86f3' offset='83.3%25'/%3E%3Cstop stop-color='%231d03ff' offset='100.0%25'/%3E%3C/linearGradient%3E%3Cfilter id='grain' x='-500' y='-300' width='2000' height='1200' filterUnits='userSpaceOnUse'%3E&gt;%3CfeFlood flood-color='%23ffffff' result='neutral-gray'/%3E%3CfeTurbulence in='neutral-gray' type='fractalNoise' baseFrequency='2.5' numOctaves='100' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0' result='destaturatedNoise'/%3E%3CfeComponentTransfer in='desaturatedNoise' result='theNoise'%3E%3CfeFuncA type='table' tableValues='0 0 1 0'/%3E%3C/feComponentTransfer%3E%3CfeBlend in='SourceGraphic' in2='theNoise' mode='soft-light' result='noisy-image'/%3E%3C/filter%3E%7D %3C/defs%3E%3C/svg%3E#grain");
+
+$noise-png:               url('data:image/png;base64,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');
+
+
+
+
+

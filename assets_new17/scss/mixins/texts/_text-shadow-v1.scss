@@ -1,0 +1,200 @@
+@charset "utf-8";
+
+//  Mixins > Text shadow
+//====================================================
+
+// @include text-shadow-v1($shadow: $white);
+@mixin text-shadow-v1($shadow: $white, $size: 0.075em) {
+  text-shadow:
+    $shadow #{$size} 0 0,
+    $shadow 0 #{$size} 0,
+    $shadow 0 -#{$size} 0,
+    $shadow -#{$size} 0 0,
+    $shadow -#{$size} -#{$size} 0,
+    $shadow #{$size} -#{$size} 0,
+    $shadow #{$size} #{$size} 0,
+    $shadow -#{$size} #{$size} 0;
+}
+
+// @include text-shadow-v2($white, $dark)
+@mixin text-shadow-v2($shadow-1: $white, $shadow-2: $dark) {
+
+  text-shadow:
+    1px 1px 0 $shadow-1,
+    2px 2px 0 $shadow-2,
+    3px 3px 0 $shadow-1,
+    // 4px 4px 0 $shadow-2,
+}
+
+// @include text-shadow-v3( 2px,2px,2px,rgba(0,0,0,.25));
+// @include text-shadow-v3(-1px,-2px,3px,#00FFFF, 1px,2px,3px,#0080FF);
+// @include text-shadow-v3(2px, 2px, 2px, $secondary, -2px, -2px, 2px, $primary);
+@mixin text-shadow-v3($x1: 2px,
+$y1: 2px,
+$blur1: 6px,
+$color1:$secondary,
+$x2: -2px,
+$y2: -2px,
+$blur2: -6px,
+$color2: $primary) {
+  font-weight: 700;
+
+  @if $x2 {
+    text-shadow: $x1 $y1 $blur1 $color1,
+      $x2 $y2 $blur2 $color2;
+  }
+
+  @else {
+    text-shadow: $x1 $y1 $blur1 $color1;
+  }
+}
+
+// @include text-shadow-v2($white, $dark)
+@mixin text-shadow-v4($color: #3498db) {
+  text-shadow: 1px 1px 0 $color, 2px 2px 0 $color, 3px 3px 0 currentColor, 4px 4px 0 currentColor;
+}
+
+// @include shade(text, #aaa, #333, 10, 135deg, true);
+@mixin shade($type, $color: #3498db, $borderColor: $white, $depth: 20, $angle: 135deg, $long: false, $fade: false) {
+  $angle: $angle - 90;
+  $x: 1.1 * cos($angle) + 0px;
+  $y: 1.1 * sin($angle) + 0px;
+  $darken: lightness($color) / $depth / 2;
+  $opacify: 0;
+  $shadow: ();
+
+  @if $long==true {
+    $darken: 0;
+  }
+
+  @if $fade==true {
+    $opacify: opacity($color) / $depth;
+
+    // added this for rendering in some browsers, remove if you like.
+    @include translateZ(0);
+  }
+
+  @for $i from 1 through $depth {
+    $shadow: $shadow, ($i * $x) ($i * $y) 0 hsla(hue($color),
+      saturation($color),
+      lightness($color) - $i * $darken, 1 - $i * $opacify);
+  }
+
+  #{$type}-shadow: 
+  1.5px 1.5px 0 $borderColor,
+  0px 1.5px 0 $borderColor,
+  -1.5px -1.5px 0 $borderColor,
+  -1.5px -1.5px 0 $borderColor,
+  -1.5px 1.5px 0 $borderColor,
+  1.5px -1.5px 0 $borderColor,
+  $shadow;
+}
+
+// @include outline($color: $white, $outline: 0.125rem);
+@mixin outline($color: $white, $outline: 0.125rem) {
+  text-shadow: #{$outline} #{$outline} 0 $color,
+  -#{$outline} -#{$outline} 0 $color,
+  -#{$outline} -#{$outline} 0 $color,
+  -#{$outline} #{$outline} 0 $color,
+  #{$outline} -#{$outline} 0 $color;
+}
+
+;
+
+// .t-text-cartoon {
+//   color: #fff;
+//   @include text-cartoon(5rem, 900, $white, $dark);
+// }
+
+// .t-text-cartoon-2 {
+//   @include text-cartoon(5rem, 900, #f7d9e3, #884c5e);
+// }
+@mixin text-cartoon($font-size: 7.5rem,
+$font-weight: 900,
+$color: $white,
+$shadowColor: $dark) {
+  $fsize: ($font-size / 20);
+  // $through: 18;
+
+  font-weight: $font-weight;
+  font-size: $font-size;
+  color: $color;
+  text-shadow: 0px -#{$fsize} 0px #{$shadowColor},
+  0px -#{$fsize} 0px #{$shadowColor},
+  0px #{$fsize} 0px #{$shadowColor},
+  0px #{$fsize} 0px #{$shadowColor},
+  -#{$fsize} 0px 0px #{$shadowColor},
+  #{$fsize} 0px 0px #{$shadowColor},
+  -#{$fsize} 0px 0px #{$shadowColor},
+  #{$fsize} 0px 0px #{$shadowColor},
+  -#{$fsize} -#{$fsize} 0px #{$shadowColor},
+  #{$fsize} -#{$fsize} 0px #{$shadowColor},
+  -#{$fsize} #{$fsize} 0px #{$shadowColor},
+  #{$fsize} #{$fsize} 0px #{$shadowColor},
+  -#{$fsize} #{$fsize * 3} 0px #{$shadowColor},
+  0px #{$fsize * 3} 0px #{$shadowColor},
+  #{$fsize} #{$fsize * 3} 0px #{$shadowColor},
+  0px #{$fsize * 3} #{$fsize/6} rgba($color, 0.1),
+  0px 0px #{$fsize} rgba($color, 0.1),
+  0px #{$fsize} #{$fsize/2} rgba($color, 0.3),
+  0px #{$fsize * 2} #{$fsize} rgba($color, 0.2),
+  0px #{$fsize * 3} #{$fsize * 3} rgba($color, 0.25),
+  0px #{$fsize * 4} #{$fsize * 4} rgba($color, 0.2),
+  0px #{$fsize * 6} #{$fsize * 6} rgba($color, 0.15);
+}
+
+// .tt {
+//   @include text-cartoon(4rem, 900,$white, $dark);
+// }
+
+
+
+// .t-text-cartoon {
+//   @include text-cartoon(
+//     $font-size: 4rem,
+//     $font-weight: 900,
+//     $color: #fff,
+//     $shadow-color: #000
+//   );
+// }
+
+// .t-text-cartoon-2 {
+//   @include text-cartoon(
+//     $font-size: 3.5rem,
+//     $font-weight: 900,
+//     $color: #f7d9e3,
+//     $shadow-color: #884c5e
+//   );
+// }
+
+// .t-text-shadow-v1 {
+//   font-size: 3.5rem;
+//   color: #000;
+//   @include text-shadow-v1($shadow: $primary);
+// }
+
+// .t-text-shadow-v2 {
+//   font-size: 3.5rem;
+//   @include text-shadow-v2($shadow: $white, $shadow2: $dark);
+// }
+
+// .t-text-shaded {
+//   font-size: 3.5rem;
+
+//   @include text-shaded($size: 1px, $shadow: $primary, $through: 10);
+// }
+// .t-text-shadow-v3 {
+//   font-size: 3.5rem;
+//   @include text-shadow-v3(2px, 2px, 2px, rgba(0, 0, 0, 0.25));
+//   @include text-shadow-v3(-1px, -2px, 3px, #00ffff, 1px, 2px, 3px, #0080ff);
+//   @include text-shadow-v3(2px, 2px, 2px, $secondary, -2px, -2px, 2px, $primary);
+// }
+
+// .t-shade {
+//   font-size: 3.5rem;
+//   @include shade(text, #aaa, #333, 10, 135deg, true);
+// }
+// .t-outline {
+//   font-size: 5rem;
+//   @include outline(rgba($dark, 0.66), 0.125rem);
+// }

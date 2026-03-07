@@ -1,0 +1,246 @@
+@charset "utf-8";
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//  Mixins > Buttons
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Button Variant
+@mixin button-variant($background, $border: rgba($background, 0.24), $hover-background: darken($background, 8%), $hover-border: darken($border, 10%), $active-background: darken($background, 4%), $active-border: darken($border, 6%), $t-btn-box-shadow: $t-btn-box-shadow, $t-btn-box-shadow-hover: $t-btn-box-shadow-hover, $t-btn-box-shadow-active: $t-btn-box-shadow-active, $t-btn-box-shadow-focus: $t-btn-box-shadow-focus) {
+  border-color: $border;
+  color: color-yiq($background);
+  box-shadow: $t-btn-box-shadow rgba($background, 0.48);
+  background-color: $background;
+
+  @if $enable-gradients {
+    @include gradient-bg($background);
+  }
+
+  @include btn-hover {
+    border-color: $hover-border;
+    color: color-yiq($hover-background);
+    background-color: $hover-background;
+    box-shadow: $t-btn-box-shadow-hover rgba($background, 0.72);
+
+    @if $enable-gradients {
+      @include gradient-bg($hover-background);
+    }
+  }
+
+
+  @include btn-focus {
+    box-shadow: $t-btn-box-shadow-focus rgba($background, 0.54);
+
+    // @if $enable-shadows {
+    //   box-shadow: $btn-box-shadow, 0 0 0 3px rgba(mix(color-yiq($background), $border, 15%), 0.5);
+    // }
+  }
+
+
+  @include btn-active {
+    color: color-yiq($active-background);
+    background-color: $active-background;
+    border-color: $active-border;
+    box-shadow: $t-btn-box-shadow-active rgba($background, 0.6);
+
+    @if $enable-gradients {
+      @include gradient-bg($active-background);
+    }
+
+    @include btn-focus {
+      @if $enable-shadows {
+        box-shadow: $btn-box-shadow, 0 0 0 3px rgba(mix(color-yiq($background), $border, 15%), 0.5);
+      }
+    }
+  }
+
+
+  @include btn-disabled {
+    color: color-yiq($background);
+    background-color: $background;
+    border-color: $white;
+
+    // @if $enable-gradients {
+    //   background-image: none;
+    // }
+  }
+}
+
+// Button Outline Variant
+@mixin button-outline-variant($color: color-yiq($color), $color-hover: color-yiq($color), $active-background: $color, $active-border: $color) {
+  background-color: transparent;
+  border-color: lighten($color, 5%);
+  color: darken($color, 5%);
+
+  @include hover {
+    background-color: $active-background;
+    border-color: $active-border;
+    color: $color-hover;
+  }
+
+
+  &:not(:disabled):not(.disabled):not(.btn--disabled):focus,
+  &:not(:disabled):not(.disabled):not(.btn--disabled).focus {
+    box-shadow: 0 0 0 3px rgba($color, 0.5);
+  }
+
+  &.btn--disabled,
+  &.disabled,
+  &:disabled {
+    background-color: transparent;
+    color: $color;
+  }
+
+  &:not(:disabled):not(.disabled):not(.btn--disabled):active,
+  &:not(:disabled):not(.disabled):not(.btn--disabled).active,
+  .show > &.dropdown-toggle {
+    background-color: $active-background;
+    border-color: $active-border;
+    color: color-yiq($active-background);
+
+    &:not(:disabled):not(.disabled):not(.btn--disabled):focus {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows and $btn-active-box-shadow != none {
+        box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, 0.5);
+      }
+      @else {
+        box-shadow: 0 0 0 3px rgba($color, 0.5);
+      }
+    }
+  }
+}
+
+// Button Inverse Variant
+@mixin button-inverse-variant($color: color-yiq($color), $color-hover: $white) {
+  background-color: rgba($color, 0.12);
+  background-image: none;
+  border-color: rgba($color, 0);
+  transition: $transition-base;
+
+  &:not(.btn-inverse-light) {
+    color: $color;
+  }
+
+  @include btn-hover {
+    background-color: $color;
+    border-color: $color;
+    color: $color-hover;
+  }
+
+
+  @include btn-focus {
+    box-shadow: 0 0 0 4px rgba($color, 0.5);
+  }
+
+  @include btn-active {
+    .show > &.dropdown-toggle {
+      background-color: $color;
+      border-color: $color;
+      color: $color-hover;
+    }
+  }
+}
+
+// Button BoxShadow Variant
+@mixin button-boxShadow-variant($background, $border, $hover-background: lighten($background, 7.5%), $hover-border: lighten($border, 12.5%), $active-background: lighten($background, 12.5%), $active-border: lighten($border, 15%)) {
+  border-color: $border;
+  box-shadow: 0 4px 12px 0 rgba($background, 0.66);
+  color: color-yiq($background);
+
+  @include gradient-bg($background);
+
+  @include hover {
+    @include gradient-bg($hover-background);
+
+    border-color: $hover-border;
+    color: color-yiq($hover-background);
+    transform: translateY(-2px);
+  }
+
+
+  &:not(:disabled):not(.disabled):not(.btn--disabled):focus,
+  &:not(:disabled):not(.disabled):not(.btn--disabled).focus {
+    // box-shadow: 0 6px 18px 0 rgba($background, 0.82);
+    box-shadow: 0 1px 2px 0 rgba($background, 0.45), 0 1px 3px 1px rgba($background, 0.3);
+    transform: translateY(0);
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.btn--disabled,
+  &.disabled,
+  &:disabled {
+    background-color: $background;
+    border-color: $white;
+    color: color-yiq($background);
+
+    // Remove CSS gradients if they're enabled
+    @if $enable-gradients {
+      background-image: none;
+    }
+  }
+
+  &:not(:disabled):not(.disabled):not(.btn--disabled):active,
+  &:not(:disabled):not(.disabled):not(.btn--disabled).active {
+    background-color: $active-background;
+    color: color-yiq($active-background);
+    box-shadow: 0 1px 2px 0 rgba($background, 0.48), 0 1px 3px 1px rgba($background, 0.32);
+    transform: translateY(0);
+
+    @if $enable-gradients {
+      background-image: none;
+
+      // Remove the gradient for the pressed/active state
+    }
+
+    border-color: $active-border;
+
+    &:not(:disabled):not(.disabled):not(.btn--disabled):focus {
+      box-shadow: none;
+    }
+  }
+}
+
+// Button 3d Variant
+@mixin button-3d-variant($background, $hover-background: darken($background, 7.5%)) {
+  @include gradient-bg($background);
+
+  border: 0;
+  box-shadow: 0 4px 0 0 darken($background, 20%), 0 0 20px 0 rgba($background, 0.2);
+  color: color-yiq($background);
+  transition: $transition-3d-Button;
+
+  @include hover {
+    @include gradient-bg($hover-background);
+
+    box-shadow: 0 4px 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+    color: color-yiq($hover-background);
+    transform: translateY(0);
+  }
+
+
+  &:not(:disabled):not(.disabled):not(.btn--disabled):focus,
+  &:not(:disabled):not(.disabled):not(.btn--disabled).focus {
+    box-shadow: 0 4px 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+  }
+
+  &:not(:disabled):not(.disabled):not(.btn--disabled):active,
+  &:not(:disabled):not(.disabled):not(.btn--disabled).active {
+    box-shadow: 0 0 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+    transform: translateY(4px);
+
+    &:not(:disabled):focus {
+      box-shadow: 0 0 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+    }
+  }
+}
+
+// Button sizes
+@mixin button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  padding: $padding-y $padding-x;
+
+  @include font-size($font-size);
+
+  line-height: $line-height;
+
+  // Manually declare to provide an override to the browser default
+  @include border-radius($border-radius, 0);
+}

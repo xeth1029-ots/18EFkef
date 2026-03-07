@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+//  Mixins > backend
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin attr($attr, $value, $important: "") {
+  @if $value != null {
+    #{$attr}: #{$value} #{$important};
+  }
+}
+
+@mixin button-reset {
+  appearance: none;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none  !important;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin input-reset {
+  border: 0;
+  background-color: transparent;
+  outline: none !important;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+@mixin fix-fixed-position-lags {
+  // webkit hack for smooth font view on fixed positioned elements
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@mixin fix-animation-lags {
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+}
+
+// $rootVars: () !default;
+
+// $rootVars: map-merge($theme-colors, $brand-colors);
+// @debug $rootVars;
+// @each $color, $value in $theme-colors {
+//   :root {
+//     @include setVar("--#{$cssPrefix}#{$color}", $value);
+//   }
+// }
+
+// @debug $themes;
+
+// // Mixins and Functions
+// @mixin setVar($varName, $value) {
+//   $rootVars: map-merge($themes, (#{$varName}: $value)) !global;
+// }
+
+// @function getVar($varName) {
+//   @return map-get($rootVars, #{$varName});
+// }
+
+// @mixin var($property, $varName, $fallback: false) {
+//   $var: getVar($varName);
+
+//   @if $var {
+//     // If we got a variable from the map, use it
+//     #{$property}: #{$var};
+
+//     // Output legacy CSS
+//     @if $fallback {
+//       // If we have a fallback, include it
+//       #{$property}: var(--#{$varName}, $var, $fallback);
+//     }
+//     @else {
+//       // else, dont
+//       #{$property}: var(--#{$varName}, $var);
+//     }
+//   }
+//   @else {
+//     // No variable set, use the fallback
+//     #{$property}: #{$fallback};
+
+//     // Output legacy CSS
+//     #{$property}: var(--#{$varName}, $fallback);
+
+//     // Still provide the link to a CSS variable, should it become available
+//   }
+// }
+
+// // @include setVar("default", red);

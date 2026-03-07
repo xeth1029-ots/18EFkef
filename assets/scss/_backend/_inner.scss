@@ -1,0 +1,436 @@
+@charset "utf-8";
+
+/**
+//  Pages > Inner
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+// .dl-list {
+//   dl {
+//     display: inline-block;
+//     vertical-align: middle
+//   }
+// }
+.slider-timeBar {
+
+  border-radius: 8px;
+  background-color: rgba($cloud-dancer, .66);
+  padding: .75rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.demo-list {
+  min-width: 800px;
+  font-size: 0;
+
+  &.demo-list-index {
+    min-width: auto;
+
+    .list-icon {
+      font-size: 2.5rem;
+      position: absolute;
+      right: 0.5rem;
+    }
+
+
+    .list-primary-items {
+      &:before {
+        padding-top: 66%;
+      }
+    }
+
+    .list-secondary-items {
+      &:before {
+        padding-top: 66%;
+      }
+    }
+
+    .list-tertiary-items {
+      &:before {
+        padding-top: 66%;
+      }
+    }
+
+    .list-quaternary-items {
+      &:before {
+        padding-top: 66%;
+      }
+    }
+
+    .list-side-items {
+      .list-icon {
+        font-size: 4.5rem;
+      }
+
+      &:before {
+        padding-top: 80%;
+      }
+    }
+
+    >li {
+      vertical-align: middle;
+    }
+
+    >div.row {
+      vertical-align: middle;
+    }
+
+  }
+
+  >li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: (100% / 6);
+
+    &:not(:nth-child(8)) {}
+
+    small {
+      position: relative;
+    }
+  }
+
+  >div.row {
+    display: inline-block;
+    vertical-align: top;
+    width: 100% / 6 * 4;
+    padding: 1rem;
+    margin: 0;
+  }
+}
+
+.list-primary-items {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    width: 100%;
+  }
+
+  a {
+    @include absolute($T: 0, $L: 0);
+    @include size($width: 100%);
+
+    background-color: #EFF9F9;
+    overflow: hidden;
+    border-radius: 6px;
+    border: transparent 2px solid;
+
+    &:hover,
+    &.active {
+      .title {
+        max-height: 100%;
+        height: 100%;
+        width: 100%;
+
+        >font {
+          @include absolute-center;
+
+          width: 100%;
+        }
+      }
+    }
+
+    &:hover {
+      opacity: .66;
+    }
+
+    &.active {
+      border: $primary 2px solid;
+      opacity: .88;
+    }
+
+    small {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+      color: $dark;
+      font-weight: 500;
+      font-size: .75rem;
+      padding: 0.75rem 0.75rem 0 0.75rem;
+      width: 100%;
+    }
+
+    img {
+      @include absolute-center;
+
+      width: 80%;
+    }
+
+    .title {
+      @include gradient-x($primary, darken($primary, 20%));
+
+      color: $white;
+      opacity: .88;
+      padding: .25rem 1rem;
+      text-align: center;
+
+      @include absolute($B: 0, $L: 0);
+
+      max-height: 2rem;
+      width: 100%;
+      transition: $transition-input;
+
+      >font {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.list-secondary-items {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    width: 100%;
+  }
+
+  a {
+    @include absolute($T: 0, $L: 0);
+    @include size($width: 100%);
+
+    background-color: #F8F8FF;
+    overflow: hidden;
+    border-radius: 6px;
+    border: transparent 2px solid;
+
+    &:hover,
+    &.active {
+      .title {
+        max-height: 100%;
+        height: 100%;
+        width: 100%;
+
+        >font {
+          @include absolute-center;
+
+          width: 100%;
+        }
+      }
+    }
+
+    &:hover {
+      opacity: .66;
+    }
+
+    &.active {
+      border: $secondary 2px solid;
+      opacity: .88;
+    }
+
+    small {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+      color: $dark;
+      font-weight: 500;
+      font-size: .75rem;
+      padding: 0.75rem 0.75rem 0 0.75rem;
+      width: 100%;
+    }
+
+    img {
+      @include absolute-center;
+
+      width: 80%;
+    }
+
+    .title {
+
+
+      color: $white;
+      opacity: .88;
+      padding: .25rem 1rem;
+      text-align: center;
+      @include gradient-x($secondary, darken($secondary, 20%));
+
+      @include absolute($B: 0, $L: 0);
+
+      max-height: 2rem;
+      width: 100%;
+      transition: $transition-input;
+
+      >font {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.list-tertiary-items {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    width: 100%;
+  }
+
+  a {
+    @include absolute($T: 0, $L: 0);
+    @include size($width: 100%);
+
+    background-color: #FFF7F7;
+    overflow: hidden;
+    border-radius: 6px;
+    border: transparent 2px solid;
+
+    &:hover,
+    &.active {
+      .title {
+        max-height: 100%;
+        height: 100%;
+        width: 100%;
+
+        >font {
+          @include absolute-center;
+
+          width: 100%;
+        }
+      }
+    }
+
+    &:hover {
+      opacity: .66;
+    }
+
+    &.active {
+      border: $tertiary 2px solid;
+      opacity: .88;
+    }
+
+    small {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+      color: $dark;
+      font-weight: 500;
+      font-size: .75rem;
+      padding: 0.75rem 0.75rem 0 0.75rem;
+      width: 100%;
+    }
+
+    img {
+      @include absolute-center;
+
+      width: 80%;
+    }
+
+    .title {
+      @include gradient-x($tertiary, darken($tertiary, 20%));
+
+      color: $white;
+      opacity: .88;
+      padding: .25rem 1rem;
+      text-align: center;
+
+      @include absolute($B: 0, $L: 0);
+
+      max-height: 2rem;
+      width: 100%;
+      transition: $transition-input;
+
+      >font {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.list-quaternary-items {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    width: 100%;
+  }
+
+  a {
+    @include absolute($T: 0, $L: 0);
+    @include size($width: 100%);
+
+    background-color: #FFF7F7;
+    overflow: hidden;
+    border-radius: 6px;
+    border: transparent 2px solid;
+
+    &:hover,
+    &.active {
+      .title {
+        max-height: 100%;
+        height: 100%;
+        width: 100%;
+
+        >font {
+          @include absolute-center;
+
+          width: 100%;
+        }
+      }
+    }
+
+    &:hover {
+      opacity: .66;
+    }
+
+    &.active {
+      border: $quaternary 2px solid;
+      opacity: .88;
+    }
+
+    small {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+      color: $dark;
+      font-weight: 500;
+      font-size: .75rem;
+      padding: 0.75rem 0.75rem 0 0.75rem;
+      width: 100%;
+    }
+
+    img {
+      @include absolute-center;
+
+      width: 80%;
+    }
+
+    .title {
+      @include gradient-x($quaternary, darken($quaternary, 20%));
+
+      color: $white;
+      opacity: .88;
+      padding: .25rem 1rem;
+      text-align: center;
+
+      @include absolute($B: 0, $L: 0);
+
+      max-height: 2rem;
+      width: 100%;
+      transition: $transition-input;
+
+      >font {
+        font-size: 1rem;
+      }
+    }
+  }
+}

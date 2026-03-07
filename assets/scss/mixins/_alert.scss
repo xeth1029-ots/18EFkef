@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+// 
+//  Mixins > Alert
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin alert-variant($background, $border, $color) {
+  background-color: $background;
+  border-color: $border;
+  color: $color;
+
+  hr {
+    border-top-color: darken($border, 5%);
+  }
+
+  i:not(.close) {
+    color: lighten($color, 25%);
+  }
+
+  a {
+    color: darken($color, 5%);
+    font-size: $font-size-base;
+    text-decoration: underline;
+
+    &:hover {
+      color: darken($color, 10%);
+    }
+  }
+}
+
+@mixin alert-dk-variant($background, $border, $color) {
+  background-color: $background;
+  border-color: $border;
+  color: $color;
+
+  i:not(.close) {
+    color: lighten($color, 5%);
+  }
+
+  hr {
+    border-top-color: lighten($border, 5%);
+  }
+
+  a {
+    color: lighten($color, 5%);
+    font-size: $font-size-base;
+    text-decoration: underline;
+
+    &:hover {
+      color: lighten($color, 10%);
+    }
+  }
+}
+
+@mixin alert-lt-variant($background, $border, $color) {
+  background-color: $background;
+  border-color: $border;
+  border-left-width: 4px;
+  color: $color;
+
+  hr {
+    border-top-color: darken($border, 5%);
+  }
+
+  i:not(.close) {
+    color: lighten($color, 25%);
+  }
+
+  a {
+    color: darken($color, 5%);
+    font-size: $font-size-base;
+    text-decoration: underline;
+
+    &:hover {
+      color: darken($color, 10%);
+    }
+  }
+}
+
+@mixin alert-lt-w-variant($background, $border, $color) {
+  background-color: $white;
+  border-color: $border;
+  border-left: 4px solid lighten($color, 25%);
+
+  color: darken($color, 10%) hr {
+    border-top-color: darken($border, 5%);
+  }
+
+  ;
+
+  i:not(.close) {
+    color: lighten($color, 25%);
+  }
+
+  a {
+    color: darken($color, 5%);
+    font-size: $font-size-base;
+    text-decoration: underline;
+
+    &:hover {
+      color: darken($color, 10%);
+    }
+  }
+}

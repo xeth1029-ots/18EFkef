@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+//  Mixins > Text hide
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// CSS image replacement
+@mixin text-hide($ignore-warning: false) {
+  // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+
+  @include deprecate("`text-hide()`", "v4.1.0", "v5", $ignore-warning);
+}
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// @include text_overflow(100%) 
+@mixin text_overflow($width: 100%) {
+  display: inline-block;
+  width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+// @include hide_txt
+@mixin hide_txt {
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+
+// @include text-shorten(3);
+@mixin text_shorten($numLines: 1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+ 
+  @supports (-webkit-line-clamp: $numLines) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: $numLines;
+    -webkit-box-orient: vertical;
+  }
+}
+
+// @include text_ellipsis($line: 1, $lineHeight: $line-height-base)
+@mixin text_ellipsis($line: 1, $lineHeight: $line-height-base) {
+  position: relative;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  max-height: calc(1rem * #{$lineHeight} * #{$line});
+  text-overflow: ellipsis;
+  word-break: break-word;
+
+  &:after {
+    content: '...';
+    display: block;
+    @include absolute($B: 0, $R: 0);
+    background: linear-gradient(to right, rgba($white, 0), rgba($white, 1) 75%);
+    // height: calc(1em * #{$lineHeight});
+    // width: 25%;
+    @include size($width: 25%, $height: calc(1em * #{$lineHeight}));
+    text-align: right;
+  }
+
+  @supports (-webkit-line-clamp: 1) {
+    &:after {
+      display: none;
+    }
+  }
+}
+

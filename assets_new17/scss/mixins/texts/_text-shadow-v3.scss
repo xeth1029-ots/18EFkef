@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+//  Mixins > Text shadow v3
+//====================================================
+
+@function generateShadows($color, $sh: 0.5px, $step: 20) {
+  $val: $sh $sh 0px $color;
+  $steps: $step;
+
+  @for $i from 2 through $steps {
+    $val: #{$val},
+    #{$i / 2}px #{$i / 2}px 0px #{$color};
+  }
+
+  @return $val;
+}
+// @include generateShadow($color: $primary-200, $sh: 0.5px, $step: 20);
+@mixin generateShadow($color: $primary-200, $sh: 0.5px, $step: 20) {
+  text-shadow: generateShadows($color , $sh , $step);
+  // &:after {
+  //   width: 100%;
+  //   height: 100%;
+  //   position: absolute;
+  //   left: 0;
+  //   top: 0;
+  //   z-index: -1;
+  //   box-shadow: generateShadows($color , $sh , $step);
+  // }
+}
+
+// @include shadow (6, $dark, $primary)
+@mixin shadow($length, $color-one, $color-two) {
+  $string: "";
+
+  @for $i from 0 through $length {
+    $string: $string+"#{-$i}px #{$i + 1}px #{$color-one},";
+    $string: $string+"-#{$i + 1}px #{$i}px #{$color-two}";
+
+    @if $i !=$length {
+      $string: $string + ",";
+    }
+  }
+
+  text-shadow: #{$string};
+}
+
+// body {
+//   padding:0px 30px 45px 30px;
+//   margin:0;
+// }
+// h1{
+//  font-size: 8rem;
+//  display:block;
+//  text-transform:uppercase;
+//  letter-spacing: 12px;
+//  text-align:center;
+//  font-family:"Raleway", sans-serif;
+//  font-weight:800;
+// }
+// .hover {
+//   color:#d9d9d9;
+//   transition: all .2s ease-in-out;
+//   @include shadow(15, #333, #999);
+//   &:hover {
+//     color:white;
+//     @include shadow(15, #beeb9f, #00a388);
+//   }
+// }
+// .colorful {
+//   color:#C8D9DB;
+//   @include shadow(15, #E55C5C, #42777C);
+// }
+// .really-colorful {
+//   color:#ff6138;
+//   @include shadow(15, #beeb9f, #00a388);
+// }
+// p {
+//   text-align:center;
+//   font-family:sans-serif;
+//   color:#999;
+// }
+// a {
+//   color: lighten(crimson,20%);
+// }
+
+// // <h1 class="really-colorful">Neat-O Text Shadow</h1>
+// // <h1 class="hover">Try hovering this one.</h1>
+// // <h1 class="colorful">One more!</h1>
+// // <p>Be sure to check out <a href="https://codepen.io/cscoles4/pen/yNMGqq">the original</a> by Sue Coles!</p>

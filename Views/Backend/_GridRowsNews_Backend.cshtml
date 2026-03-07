@@ -1,0 +1,65 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@model WKEFSERVICE.Models.HomeModel
+
+@if (Model.NewsGrid.ToCount() > 0)
+{
+    for (int i = 0; i < Model.NewsGrid.Count; i++)
+    {
+        var item = Model.NewsGrid[i];
+        string[] dateArr = new string[] { };
+        DateTime dateWeek = DateTime.MinValue;
+        if (item.PostDateS_Name.TONotNullString() != "")
+        {
+            dateArr = item.PostDateS_Name.TONotNullString().Split('/');
+            dateWeek = new DateTime(dateArr[0].TOInt32() + 1911, dateArr[1].TOInt32(), dateArr[2].TOInt32());
+        }
+        string stylePostTo = "unit";
+        string stylePostTo2 = "tertiary";
+        if (item.PostTo.TONotNullString() == "2") { stylePostTo = "teacher"; stylePostTo2 = "primary"; }
+        if (item.PostTo.TONotNullString() == "3") { stylePostTo = "branch"; stylePostTo2 = "info"; }
+        if (item.PostTo.TONotNullString() == "4") { stylePostTo = "danger"; stylePostTo2 = "danger"; }
+
+        // 有設定會議ID & 會議介於可報名區間內 & 是否顯示我要報名
+        bool isShowSignupBtn = (item.MeetingSeq.TONotNullString() != "" && item.isCanSignUp == 1 && item.IsShowSignUp == "1");
+
+        @Html.HiddenFor(m => m.NewsGrid[i].ROWID)
+        @Html.HiddenFor(m => m.NewsGrid[i].Seq)
+
+        <li class="t-news-list-item t-news-list-item-@stylePostTo">
+            <div class="t-news-cnt">
+                <div class="t-flex align-items-center">
+                    <div class="t-news-icon"></div>
+                    <dl class="t-date-item">
+                        <dt>
+                            <p class="date-year" style="display: inline-block; margin-bottom: unset;">@dateArr[0]</p>
+                        </dt>
+                        <dd>
+                            <p class="date-month" style="display: inline-block; margin-bottom: unset; margin-right: 8px;">@dateArr[1]/@dateArr[2]</p>
+                            <p class="date-day" style="display: inline-block; margin-bottom: unset; margin-right: 8px;">@dateWeek.ToString("ddd")</p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="t-news-cnt-main">
+                    <a href="javascript:;" class="t-news-txt" onclick="window.open('NewsDetail?Seq=@item.Seq' + location.search)">
+                        @item.PostCaption
+                    </a>
+                    @if (isShowSignupBtn)
+                    {
+                        <a style="right: 90px; width: 170px" href="javascript:;" class="t-news-btn" onclick="doHomeSignUp('@item.MeetingSeq')" title="「另開新視窗」立即報名">
+                            立即報名
+                        </a>
+                    }
+                </div>
+                <label class="t-ribbon-r-@stylePostTo2">@item.PostTo_Name</label>
+                <div style="position: absolute; top: 60px; right: 30px; font-size: 0.80rem;">@item.PublishedUnitName</div>
+                @if (item.IsOnTop == "1")
+                {
+                    <svg style="position: absolute; top: -5px; right: 160px; width: 30px; height: 30px;">
+                        <use href="#bi-bookmark-fill"></use>
+                    </svg>
+                }
+            </div>
+        </li>
+    }
+}

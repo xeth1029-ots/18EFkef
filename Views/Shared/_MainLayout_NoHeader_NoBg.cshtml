@@ -1,0 +1,165 @@
+﻿@using WKEFSERVICE.Models
+@{
+    SessionModel sm = SessionModel.Get();
+    string s_MainTitle2 = "勞動部勞動力發展署-關鍵就業力課程網站系統"; //string s_MainTitle = "勞動部勞動力發展署-關鍵就業力課程";
+}
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>@s_MainTitle2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content=">@s_MainTitle2">
+    <meta name="keywords" content="@s_MainTitle2">
+    <meta name="author" content="東柏資訊">
+    <meta name="copyright" content="本網頁著作權屬關鍵就業力課程網站系統所有">
+
+    @*antiClickjack*@
+    <style id="antiClickjack" type="text/css">
+        html { display: none; }
+        body { display: none !important; background-color: #ffffff; }
+    </style>
+    <script type="text/javascript">
+        //解決不支援 X-Frame-Options設定，需額外判斷
+        //if (top != self) { top.location = self.location; }
+        if (self === top || self == top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            if (antiClickjack) { antiClickjack.parentNode.removeChild(antiClickjack); }
+            document.documentElement.style.display = 'block';
+        }
+        else {
+            top.location = self.location;
+        }
+        if (parent.document.frames != undefined && parent.document.frames.length != 0) {
+            top.location.replace(self.location);
+        }
+    </script>
+
+    @Styles.Render("~/Content/jquery")
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/css/base")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery-ui.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*Scripts.Render("~/bundles/jqueryval")*@
+    <!--20180827 加入解決 IE 10 以下不支援 CSS3 pointer-events:none 設定問題（https://github.com/kmewhort/pointer_events_polyfill）-->
+    @Scripts.Render("~/Scripts/polyfill/pointer_events_polyfill.js")
+    @Scripts.Render("~/bundles/globaljs")
+    @Scripts.Render("~/Scripts/ckeditor/ckeditor.js")
+
+    @*
+        @Styles.Render("~/Content/owlcarousel")
+        @Styles.Render("~/Content/FontBootstrap")
+        @Scripts.Render("~/bundles/FrontBootstrapScript")
+        @Styles.Render("~/Content/FontBootstrapTable")
+        @Scripts.Render("~/bundles/FrontOwlScript")
+        @Scripts.Render("~/bundles/modernizr")
+        @Styles.Render("~/Content/main")
+        @Scripts.Render("~/Scripts/polyfill/pointer_events_polyfill.js")
+        @Scripts.Render("~/Scripts/global_1.js")
+        @Scripts.Render("~/bundles/HCAAPISVI")
+        <style>
+            .btnbar {
+                text-align: center;
+            }
+        </style>
+    *@
+
+    <!-- 警告：Respond.js 無法在 file:// 協定下運作 -->
+    @* OWASP,7D6C50CEE460CA785AA1B6D6C66520A9F575A9E65A8F02BBE2B3797F6D90B501A729D2F191AAE282931D218EB9FE7ACEE6C1FBD2B3954DFCDF1795C7
+    6FD6D76D52642D3CF54BC533AE664AB0A6E508F3E5CF3B4E5DC45A796398A0C34E58AED4152F11316BCD999A83F6CEE2112082F1B7782E76EB79A3AE
+    CD4E26616189090554753C4D849A01516E1F6656AB403A13303310C7F3501E8C7A53292DC8B9AF9C49DEC94DE5D2424A24ADB8BCC8395BA04C61C21E
+    4EF2F6B68A5F0C22DEDAFDC1A4ACDE100DB60A680C3E548E9B810A77E62F0A38D8B9C5803F5E99C85B5E71BECCA659ACE736E9C0548029D60B7994DE
+    5C0DE7C84D2877092C197BF87B0703DC8FC13E2DF51E7109BC41FFC45770424C684CADE1AD73BD2A6B7A37D8136DC715F285A9FB93B01C7D0025B023
+    CC07E2AEC528EB89179A13429C85EC632A216972AEF50AAC3937B687A03BE7CD3A6BB0F670219F45AA1A014EF3D8FC267D25A72B43E0EC71889C559E
+    475B62C630D32C54 *@
+    <style type="text/css">
+        .loading-mask { display: none; text-align: center; padding-top: 10px; }
+        .processing-text { text-align: center; height: 42px; color: burlywood; }
+        .white-background { background-color: #fff; }
+        .hidden-form { display: none; }
+    </style>
+    <script type="text/javascript">
+        @* 前一個頁面最後錯誤或結果訊息 *@
+        var lastErrorMessage = '@Html.Raw(sm.LastErrorMessage)';
+        var lastResultMessage = '@Html.Raw(sm.LastResultMessage)';
+        var redirectUrl = '@Html.Raw(sm.RedirectUrlAfterBlock)';
+
+        ///
+        function RedirectAfterPopup () {
+            if (redirectUrl) {
+                data = { "redirectUrl": redirectUrl };
+                parent.closeWindow(data);
+            }
+        }
+
+        $(document).ready(function () {
+            //20180827 加入解決 IE 10 以下不支援 CSS3 pointer-events:none 設定問題
+            PointerEventsPolyfill.initialize({});
+
+            //20180902 加入可拖放對話盒設定
+            $(".modal-dialog").draggable({ handle: ".modal-header", "cursor": "move" });
+
+            @* blockUI 引用的 loading image *@
+            globalSetting.processingImg = "@Url.Content("~/images/processing.gif")";
+
+            @* 前一個頁面最後錯誤或結果訊息 popup 處理*@
+            if (lastErrorMessage) {
+                blockAlert(lastErrorMessage, "錯誤訊息", function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else if (lastResultMessage) {
+                blockMessage(lastResultMessage, null, function () {
+                    RedirectAfterPopup()
+                });
+            }
+            else {
+                    @* 前一個表單 Post 後的 Validation Summary 訊息顯示 *@
+                    var IsValid = '@(ViewData.ModelState.IsValid)';
+                var validationMsg = $("#ValidationSummary").html();
+                if (IsValid == 'False' && validationMsg) {
+                    blockAlert(validationMsg, "表單檢核訊息");
+                }
+            }
+
+
+            @*binding OnlineHelp button's click*@
+            $("input[type=button][data-role=OnlineHelp]").click(function () {
+                popupHelp();
+            });
+        });
+    </script>
+    @Html.Partial("_PagingLink_js")
+</head>
+<body>
+    <div class="white-background">
+        <div class="container-fluid">
+            <!-- page body start -->
+            @RenderBody()
+            <!-- page body end -->
+        </div>
+    </div>
+    @Html.Partial("_CommonDialog")
+
+    @Html.Partial("_DatePickerTW")
+
+    @*Loading Mask*@
+    <div id="loadingMask" class="loading-mask">
+        <img src="~/images/processing.gif" width="90" alt="processing" /><br />
+        <div class="processing-text">處理中...</div>
+    </div>
+
+    @* Validation Summary *@
+    <div class="hide" id="ValidationSummary">@Html.ValidationSummary()</div>
+
+    @* 線上說明 *@
+    <div class="help-container hide"></div>
+    <form name="OnlineHelpForm" action="~/OnlineHelp/Index" method="post" class="hidden-form"></form>
+    @* /線上說明 *@
+
+    <form name="RedirAfterBlockResult" action="" method="POST"></form>
+</body>
+</html>

@@ -1,0 +1,398 @@
+@charset "UTF-8";
+
+hr {
+  margin: 1rem 0;
+  border: 0;
+  color: _var("grey-50", $grey-50);
+  background-color: currentcolor;
+  height: .0625rem;
+  max-width: 100%;
+  width: 100%;
+  background-position: 50%;
+  &:before,
+  &:after {
+    content: '';
+  }
+  
+  &[data-hr-width="2"] {
+    height: .125rem;
+  }
+
+  &[data-hr-width="3"] {
+    height: .1875rem;
+  }
+
+  &[data-hr-width="4"] {
+    height: .25rem;
+  }
+
+  // <hr data-hr-style="dashed" data-hr-width="2">
+  &[data-hr-style="dashed"] {
+    background: repeating-linear-gradient(to right, currentcolor 0px, currentcolor 4px, transparent 0px, transparent 10px);
+  }
+
+  //  <hr data-hr-style="twill" data-hr-width="2">
+  &[data-hr-style="twill"] {
+    padding: .25rem;
+    background: repeating-linear-gradient(135deg, currentcolor 0px, currentcolor 1px, transparent 1px, transparent 6px);
+  }
+
+  // <hr data-hr-style="dotted" data-hr-width="2">
+  &[data-hr-style="dotted"] {
+    background: radial-gradient(currentcolor 2px, transparent 2px);
+    background-size: 6px 4px;
+    padding: 0.0625rem;
+  }
+
+  // <hr data-hr-style="dashed" data-hr-title="SEPARATOR">
+  &[data-hr-title] {
+    position: relative;
+    background-color: inherit;
+    overflow: visible;
+
+    &:before {
+      content: attr(data-hr-title);
+      background-color: inherit;
+      position: absolute;
+      padding: .5rem;
+      font-size: .75rem;
+      color: $grey-800;
+      white-space: nowrap;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  // <hr data-hr-style="fade" data-hr-width="2">
+  &[data-hr-style="fade"] {
+    color: transparent;
+    background-image: linear-gradient(90deg, rgba($grey-200, 0), rgba($grey-200, 1) 50%, rgba($grey-200, 0) 100%);
+  }
+
+  // <hr data-hr-style="border-fade" data-hr-width="2">
+  &[data-hr-style="border-fade"] {
+    color: transparent;
+    border-width: 0 0 .125rem;
+    border-image: linear-gradient(90deg, rgba($grey-200, 0), rgba($grey-200, 1) 50%, rgba($grey-200, 0) 100%) 0 0 100%;
+    border-style: solid;
+  }
+}
+
+// .dots {
+//   $color: orange;
+//   color: $color;
+//   // height: 8px;
+//   border-width: 0 0 8px;
+//   border-style: solid;
+//   border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1" width="8" height="4"><circle fill="#{$color}" cx="1" cy="0.5" r="0.5"/></svg>') 0 0 100% repeat;
+//    width: 216px;
+// }
+
+// .accessory {
+//   height: 6px;
+//   background-image: radial-gradient(
+//     closest-side,
+//     hsla(0, 0%, 50%, 1.0),
+//     hsla(0, 0%, 50%, 0) 100%);
+//   position: relative;
+// }
+// .accessory:after {
+//   position: absolute;
+//   top:  50%;
+//   left: 50%;
+//   display:block;
+//   background-color: hsl(0, 0%, 75%);
+//   height: 12px;
+//   width:  12px;
+//   transform: rotate(45deg);
+//   margin-top:  -10px;
+//   margin-left: -10px;
+//   border-radius: 4px 0;
+//   border: 4px solid hsla(0, 0%, 100%, 0.35);
+//   background-clip: padding-box;
+//   box-shadow: -10px 10px 0 hsla(0, 0%, 100%, 0.15), 10px -10px 0 hsla(0, 0%, 100%, 0.15);
+// }
+
+// .pill {
+//   height:0px;
+//   border-radius: 2px;
+//   $color: teal;
+//   color: $color;
+//   border: 2px solid currentColor;
+//   width: 80%;
+// }
+
+// .vertical-lines {
+//   height: 10px;
+//   $color: orange;
+//   color: $color;
+//   background-image: linear-gradient(
+//     90deg,
+//     currentColor,
+//     currentColor 33.33%,
+//     transparent 33.33%,
+//     transparent 100%);
+//   background-size: 3px 100%;
+//   width: 60%;
+// }
+
+// .horizontal-lines {
+//   height: 10px;
+//   $color: green;
+//   color: $color;
+//   background-image: linear-gradient(
+//     currentColor,
+//     currentColor 33.33%,
+//     transparent 33.33%,
+//     transparent 100%);
+//   background-size: 100% 3px;
+//   width: 40px;
+// }
+
+// .slash-1 {
+//   height: 10px;
+//   $color: rebeccapurple;
+//   color: $color;
+//   background-image: linear-gradient(-45deg,
+//     transparent,
+//     transparent 25%,
+//     currentColor 25%,
+//     currentColor 50%,
+//     transparent 50%,
+//     transparent 75%,
+//     currentColor 75%);
+//   background-size: 10px 10px;
+//   width: 250px;
+// }
+
+// .slash-2 {
+//   height: 8px;
+//   $color: darkmagenta;
+//   color: $color;
+//   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="3px" height="3px" viewBox="0 0 3 3" fill="#{$color}"><polygon points="0,0.5 0,1.5 1.5,3 2.5,3"/><polygon points="2.5,0 1.5,0 3,1.5 3,0.5"/></svg>');
+//   background-size: 3px 3px;
+//   width: 65%;
+// }
+
+// .slash-3 {
+//   height: 10px;
+//   background-image: linear-gradient(45deg,
+//     hsla(0, 0%, 5%, 0),
+//     hsla(0, 0%, 5%, 0) 33.33%,
+//     hsla(0, 0%, 5%, 1) 33.33%,
+//     hsla(0, 0%, 5%, 1) 66.67%,
+//     hsla(0, 0%, 5%, 0) 66.67%,
+//     hsla(0, 0%, 5%, 0) 100%);
+//   background-size: 10px 100%;
+//   width: 250px;
+// }
+
+// .bookends {
+//   position: relative;
+//   border-width: 5px;
+//   border-color: hsl(0, 0%, 50%) transparent;
+//   height: 11px;
+//   border-style: double;
+//   width: 20%;
+// }
+// .bookends:before,
+// .bookends:after {
+//   position: absolute;
+//   bottom: -3.536px;
+//   width: 7.071px;
+//   height: 7.071px;
+//   display: block;
+//   border-width: 0 7.071px 7.071px 0;
+//   border-color: hsl(0, 0%, 50%);
+//   border-style: double;
+//   box-sizing: border-box;
+// }
+// .bookends:before {
+//   transform: translateZ(0) rotate(-45deg);
+//   left: -21px;
+// }
+// .bookends:after {
+//   transform: translateZ(0) rotate(135deg);
+//   right: -21px;
+// }
+
+// .bookends-dots {
+//   position: relative;
+//   border-bottom: 1px solid hsla(0, 0%, 50%, 0.75);
+//   width: 50%;
+// }
+// .bookends-dots:before,
+// .bookends-dots:after {
+//   position: absolute;
+//   bottom: -5px;
+//   width: 10px;
+//   height: 10px;
+//   display: block;
+//   border-width: 0 1px 1px 0;
+//   border-color: hsla(0, 0%, 50%, 0.75);
+//   border-style: solid;
+//   box-sizing: border-box;
+//   border-radius: 100%;
+// }
+// .bookends-dots:before {
+//   transform: translateZ(0) rotate(-45deg);
+//   left: -10px;
+// }
+// .bookends-dots:after {
+//   transform: translateZ(0) rotate(135deg);
+//   right: -10px;
+// }
+
+// .flair {
+//   width: 65%;
+//   height: 30px;
+//   border-style: solid;
+//   border-color: hsla(0, 0%, 75%, 0.9);
+//   border-width: 1px 0 0 0;
+//   border-radius: 15px;
+// }
+// .flair:before {
+//   display: block;
+//   height: 30px;
+//   margin-top: -31px;    
+//   border-style: solid;
+//   border-color: hsla(0, 0%, 75%, 0.9);
+//   border-width: 0 0 1px 0;
+//   border-radius: 15px;
+// }
+
+// /* Wave
+// @mixin wavy-border($color:#000, $stroke:1, $width:50, $height:25) {
+//   border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$width} #{$height+$stroke}" width="#{$width}" height="#{$height+$stroke}"><path fill="none" stroke="#{$color}" stroke-width="#{$stroke}" d="M0,#{$height+($stroke/2)}c#{$width/4},0,#{$width/4}-#{$height},#{$width/2}-#{$height}s#{$width/4},#{$height},#{$width/2},#{$height}"/></svg>') 0 0 100% repeat;
+//   border-width: 0 0 #{$height+$stroke}px;
+//   border-style: solid;
+// }
+
+// .wave {
+//   width: 35%;
+//   @include wavy-border(hsla(0, 0%, 75%, 0.9), 3, 12, 12);
+//   position: relative;
+// }
+
+// .wave:before,
+// .wave:after {
+//   position: absolute;
+//   display: block;
+//   width: 20px;
+//   height: 30px;
+//   background-color: hsl(0, 0%, 75%);
+//   bottom: -22.5px;
+// }
+
+// .wave:before {
+//   border-radius: 30px 0 0 30px;
+//   left: -2px;
+// }
+
+// .wave:after {
+//   border-radius: 0 30px 30px 0;
+//   right: -2px;
+// }
+
+// /* Shine
+// .shine {
+//   height: 20px;
+//   width: 60%;
+//   background-image: radial-gradient(
+//     farthest-side at 50% -50%,
+//     hsla(0, 0%, 0%, 0.5),
+//     hsla(0, 0%, 0%, 0));
+//   position: relative; 
+// }
+
+// .shine::before {
+//   height: 1px;
+//   position: absolute;
+//   top: -1px;
+//   left: 0;
+//   right: 0;
+//   background-image: linear-gradient(
+//     90deg,
+//     hsla(0, 0%, 0%, 0),
+//     hsla(0, 0%, 0%, 0.75) 50%,
+//     hsla(0, 0%, 0%, 0));
+// }
+
+// /* Charlie
+// .charlie {
+//   position: relative;
+//   font-size: 1.5em;
+//   height: 1em;
+//   border: 0;
+//   -webkit-filter: drop-shadow(hsla(0, 0%, 0%, 0.75) 1px 3px 5px);
+//   width: 75%;
+// }
+
+// .charlie:before,
+// .charlie:after {
+//   display: block;
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   background-size: 1em 100%;
+//   height: inherit;
+// }
+
+// .charlie:before {
+//   background-image:
+//     linear-gradient(315deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%),
+//     linear-gradient(45deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%);
+//   background-position: 50%;
+//   top: -0.5em;
+// }
+
+// .charlie:after {
+//   background-image: 
+//     linear-gradient(135deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%),
+//     linear-gradient(225deg, hsla(0, 0%, 0%, 0.75) 25%, transparent 25%);
+//   background-position: -webkit-calc(50% - 0.5em);
+//   top: 0.5em;
+// }
+
+// .stars {
+//   height: auto;
+//   color: gold;
+//   text-align: center;
+//     &:after {
+//       content: "★";
+//       font-size: 2em;
+//       text-shadow:
+//         -2em 0,
+//         -1em 0,
+//          1em 0,
+//          2em 0;
+//     }
+// }
+
+// &[data-hr-style="dotted-2"] {
+//   height: 1.25rem;
+//   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='dotted' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'><circle cx='3' cy='3' r='2' fill='%23F05346'/><circle cx='13' cy='12' r='2' fill='%23F05346'/> </pattern></defs><rect width='100%' height='100%' fill='url(%23dotted)'/></svg>");
+// }
+
+// &[data-hr-style="line"] {
+//   height: 1.25rem;
+//   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='line' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'> <line x1='0' y1='4' x2='20' y2='4' stroke='%23F05346' stroke-width='4' /> <line x1='0' y1='10' x2='20' y2='10' stroke='%23F05346' stroke-width='2' /> <line x1='0' y1='15' x2='20' y2='15' stroke='%23F05346' stroke-width='1' /> </pattern></defs><rect width='100%' height='100%' fill='url(%23line)'/></svg>");
+// }
+
+// &[data-hr-style="star"] {
+//   height: 1.25rem;
+//   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='star' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'><polygon points='5.5,1.5 7,4.5 10.3,4.9 7.9,7.3 8.5,10.6 5.5,9 2.5,10.6 3.1,7.3 0.7,4.9 4,4.5' fill='%23F05346'/><polygon points='15.5,1.5 17,4.5 20.3,4.9 17.9,7.3 18.5,10.6 15.5,9 12.5,10.6 13.1,7.3 10.7,4.9 14,4.5' fill='%23F05346'/></pattern></defs><rect width='100%' height='100%' fill='url(%23star)'/></svg>");
+// }
+
+// &[data-hr-style="small"] {
+//   height: 1rem;
+//   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='small' width='4' height='15' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'> <circle cx='0.5' cy='1.5' r='0.5' fill='%23F05346'/> <circle cx='0.5' cy='4.5' r='0.5' fill='%23F05346'/> <circle cx='0.5' cy='7.5' r='0.5' fill='%23F05346'/> <circle cx='2.5' cy='2.5' r='0.5' fill='%23F05346'/> <circle cx='2.5' cy='5.5' r='0.5' fill='%23F05346'/> <circle cx='2.5' cy='8.5' r='0.5' fill='%23F05346'/> </pattern></defs><rect width='100%' height='100%' fill='url(%23small)'/></svg>");
+//   background-position: (1rem / 3);
+// }
+
+// &[data-hr-style="star-2"] {
+//   height: 1rem;
+//   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='star2' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'>   <path d='M5.6 1.7c0.2-0.5 0.6-0.5 0.9 0l1 1.9c0.2 0.5 0.9 1 1.4 1L11 5c0.5 0.1 0.7 0.5 0.3 0.8L9.7 7.4C9.4 7.7 9.1 8.5 9.2 9l0.4 2.1c0.1 0.5-0.2 0.8-0.7 0.5l-1.9-1c-0.5-0.3-1.3-0.3-1.8 0l-1.9 1c-0.5 0.3-0.8 0-0.7-0.5L2.9 9C3 8.5 2.8 7.7 2.4 7.4 L0.8 5.9C0.4 5.5 0.6 5.1 1.1 5l2.1-0.3c0.5-0.1 1.2-0.5 1.4-1L5.6 1.7z' fill='%23F05346'/> </pattern></defs><rect width='100%' height='100%' fill='url(%23star2)'/></svg>");
+//   background-position: (1rem / 3);
+// }

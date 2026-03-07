@@ -1,0 +1,141 @@
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  /* background-color: #1f2029; */
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 4%;
+  overflow-x: hidden;
+  transition: all 300ms linear;
+  margin: 0;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* body:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.36;
+  background: conic-gradient(from -120deg at 25% 75%, #bcaaa4 60deg, transparent 0), conic-gradient(from -120deg at 25% 75%, #bcaaa4 60deg, transparent 0) calc(3 * 6rem) calc(6rem / 2), conic-gradient(from 60deg at 75% 75%, #bcaaa4 60deg, transparent 0), conic-gradient(from 60deg at 75% 75%, #bcaaa4 60deg, transparent 0) calc(3 * 6rem) calc(6rem / 2), conic-gradient(#d7ccc8 60deg, #efebe9 0 120deg, #d7ccc8 0 180deg, #efebe9 0 240deg, #d7ccc8 0 300deg, #efebe9 0);
+  background-size: calc(2 * 6rem) 6rem;
+} */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+  --main-color: #351c4d;
+  --box-shadow-tint: #726a95;
+  --light-highlight: #ebeced;
+}
+
+.container {
+  margin: 0 auto;
+  /* padding: 6rem 4rem; */
+  text-align: center;
+  max-width: 60rem;
+}
+
+.t-checkbox-list-item [type=checkbox] {
+  display: none;
+}
+
+.t-checkbox-group {
+  display: inline-block;
+  position: relative;
+}
+
+.t-checkbox-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  position: relative;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0.25rem 2.25rem 0.25rem 5.5rem;
+  color: #36384c;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-top: 2rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  width: auto;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 1px 0px, rgba(52, 69, 69, 0.1) 0px 0px 0px 1px, rgba(60, 66, 87, 0.08) 0px 2px 12px 0px;
+}
+
+.t-checkbox-list-item input[type=checkbox] + .t-checkbox-group:after {
+  content: "";
+  background-color: var(--primary-dark);
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 110 110' style='enable-background:new 0 0 110 110;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%23fff;%7D%0A%3C/style%3E%3Cpath class='st0' d='M98.1,16.2c-2.5-2.3-6.4-2.2-8.7,0.2L36.7,70.1l-13-15.5c-2.9-3.5-7.9-4.1-11.1-1.4c-2.9,2.4-3.5,6.6-1.4,10.1 l16.5,28c3.2,5.4,10.8,5.8,14.5,0.8l56.5-67.3C100.7,22.1,100.4,18.5,98.1,16.2z'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80%;
+  width: 0;
+  height: 0;
+  border-radius: inherit;
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+  opacity: 0;
+  box-shadow: 0 0 0 2px var(--primary-dark);
+}
+
+.t-checkbox-list-item input[type=checkbox]:checked + .t-checkbox-group:after {
+  opacity: 1;
+  width: 2rem;
+  height: 2rem;
+  transition: all 0.25s ease;
+}
+
+.t-checkbox-group .t-checkbox-group-box {
+  /* display: inline-flex; */
+}
+
+.t-checkbox-group .t-checkbox-group-list {
+  padding-left: 4rem;
+  text-align: left;
+}
+
+.t-checkbox-group-list li {
+  display: inline-flex;
+  padding-left: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.t-checkbox-list-item input[type=checkbox]:checked + .t-checkbox-group {
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
+
+.t-checkbox-group [type=checkbox]:focus + *,
+.t-checkbox-group:hover [type=checkbox] + * {
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 2px 0px, var(--white) 0px 0px 0px 2px, rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+}

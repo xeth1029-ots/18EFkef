@@ -1,0 +1,163 @@
+﻿@using WKEFSERVICE.Areas.AM.Models;
+@model C101MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+@using (Html.BeginForm("Save", "C101M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Detail.IsNew)
+
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">帳號管理</h3>
+                                <p class="bt-section-para">依輸入條件，查詢系統帳號資料，並提供帳號之新增、修改等維護功能。</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm" onclick="doSave()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    儲存
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.USERNO, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.USERNO, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.USERNO)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.USERNAME, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.USERNAME, new { size = "30", maxlength = "100", placeholder = "", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.USERNAME)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.IDNO, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.IDNO, new { size = "30", maxlength = "10", placeholder = "", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.IDNO)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.BIRTHDAY, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.BIRTHDAY_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.BIRTHDAY_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.EMAIL, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.EMAIL, new { size = "30", maxlength = "500", placeholder = "", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.EMAIL)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.UNITID, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.UNITID, new SelectList(Model.Detail.UNITID_list, "Value", "Text", Model.Detail.UNITID), new { @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.UNITID)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.GRPID, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.GRPID, new SelectList(Model.Detail.GRPID_list, "Value", "Text", Model.Detail.GRPID), new { @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.GRPID)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AUTHSTATUS, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.AUTHSTATUS, new SelectList(Model.Detail.AUTHSTATUS_list, "Value", "Text", Model.Detail.AUTHSTATUS), new { @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.AUTHSTATUS)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.APPDATE, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.APPDATE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.APPDATE_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AUTHDATES, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.AUTHDATES_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.AUTHDATES_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AUTHDATEE, new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.AUTHDATEE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.AUTHDATEE_AD)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if (@Model.Detail.IsNew.ToString().ToLower() == false) {
+            //setTimeout(() => {
+            $("#Detail_USERNO").attr("readonly", "true");
+            $("#Detail_USERNO").attr("disabled", "true");
+            $("#Detail_USERNAME").attr("readonly", "true");
+            $("#Detail_USERNAME").attr("disabled", "true");
+            $("#Detail_IDNO").attr("readonly", "true");
+            $("#Detail_IDNO").attr("disabled", "true");
+            //$("#Detail_EMAIL").attr("readonly", "true");
+            //$("#Detail_EMAIL").attr("disabled", "true");
+            $("#Detail_APPDATE").attr("style", "pointer-events:none;opacity:.66");
+            //}, 200);
+            $("#Detail_GRPID").attr("readonly", "true");
+            $("#Detail_GRPID").attr("disabled", "true");
+        }
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save")').submit();
+    }
+
+</script>

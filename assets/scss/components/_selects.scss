@@ -1,0 +1,39 @@
+//
+// Components -> Selects
+// --------------------------------------------------
+// select {
+//     appearance: none;
+//     background: no-repeat #F5F5F5;
+//     background-image: url("data:image/svg+xml,%3Csvg id='arrow-line-blue' xmlns='http://www.w3.org/2000/svg' width='16' height='15.999' viewBox='0 0 16 15.999'%3E%3Crect id='bg' width='15.999' height='15.999' transform='translate(16) rotate(90)' fill='%23868e96' opacity='0'/%3E%3Cpath id='union' d='M7.916,15.806.612,8.85a.685.685,0,0,1-.085-.069L.2,8.472a.652.652,0,0,1,0-.945l.324-.309a.685.685,0,0,1,.085-.069L7.916.193a.719.719,0,0,1,.98,0L9.22.5a.638.638,0,0,1,0,.933L2.327,8l6.892,6.564a.637.637,0,0,1,0,.933l-.324.309a.719.719,0,0,1-.98,0Z' transform='translate(0 13.217) rotate(-90)' fill='%23868e96'/%3E%3C/svg%3E%0A");
+//     background-size: 1rem;
+//     background-position: right 1rem center;
+//     // border: #e9eef1 1px solid;
+//     // border: #DDE3E8 1px solid;
+//     border: #F5F5F5 2px solid;
+//     border-radius: 4px;
+//     // box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.04);
+//     cursor: pointer;
+//     display: inline-block;
+//     font-size: 1rem;
+//     padding-left: 2rem;
+//     padding-right: 1rem;
+//     // padding: .625rem  2rem .625rem  1rem;
+//     height: 60px;
+//     line-height: 60px;
+
+//     transition: $transition-input;
+
+//     &:hover,
+//     &:focus {
+//         border: $primary 2px solid;
+//     }
+
+
+//     &::-ms-expand {
+//         display: none;
+//     }
+
+//     @include ie9 {
+//         background: #F5F5F5;
+//     }
+// }

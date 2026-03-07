@@ -1,0 +1,31 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C302MFormModel
+
+@{
+    //強制計算（不分轄區了）
+    //bool fg_SHOW_MadForced = (ViewBag.MF != null && Convert.ToString(ViewBag.MF) == "1") ? true : false;
+}
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.MeetingName</td>
+            <td>@item.MeetingTypeName</td>
+            <td>@item.MeetingDateName</td>
+            <td>@item.Location</td>
+            <td align="center">
+                <button type="button" class="btn btn-info" onclick="doAttend('@item.Seq','1')">&emsp;出席管理&emsp;</button>
+                @*<button type="button" class="btn btn-info" onclick="doAttendMF('@item.Seq','@ViewBag.MF')">&emsp;出席管理&emsp;</button>*@
+                @*<button type="button" class="btn btn-primary" onclick="doAttendReport('@item.Seq')">匯出出席名單</button>*@
+            </td>
+        </tr>
+    }
+}

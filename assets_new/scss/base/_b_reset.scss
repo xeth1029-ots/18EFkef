@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+//  Base -> Reset
+// --------------------------------------------------
+
+$min_width: 320px;
+$max_width: 1800px;
+
+$min_font: 15px;
+$max_font: 20px;
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin font-size-rwd($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $unit_1: unit($min-vw);
+  $unit_2: unit($max-vw);
+  $unit_3: unit($min-font-size);
+  $unit_4: unit($max-font-size);
+
+  @if $unit_1 == $unit_2 and $unit_1 == $unit_3 and $unit_1 == $unit_4 {
+    & {
+      font-size: $min-font-size;
+
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: $font-size-pixel-base;
+  // transition: 0.6s ease-in;
+
+  // // // 如果螢幕寬度為 576px 以下 就套用 css 設定
+  // @media (max-width: $screen-xs-min) {
+  //   font-size: $font-size-pixel-xxs;
+
+  //   @include font-scale($font-size-pixel-xxs);
+  // }
+
+  // // 如果螢幕寬度為 576px 以上 且 767.98px 以下，就套用 css 設定
+  // @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+  //   font-size: $font-size-pixel-xs;
+
+  //   @include font-scale($font-size-pixel-xs);
+  // }
+
+  // // 如果螢幕寬度為 768px 以上 且 991.98px 以下，就套用 css 設定
+  // @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  //   font-size: $font-size-pixel-sm;
+
+  //   @include font-scale($font-size-pixel-sm);
+  // }
+
+  // // 如果螢幕寬度為 992px 以上 且 1199.98px 以下，就套用 css 設定
+  // @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  //   font-size: $font-size-pixel-md;
+
+  //   @include font-scale($font-size-pixel-md);
+  // }
+
+  // // 如果螢幕寬度為 1200px 以上 且 1399.98px 以下，就套用 css 設定
+  // @media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+  //   font-size: $font-size-pixel-lg;
+
+  //   @include font-scale($font-size-pixel-lg);
+  // }
+
+  // // 如果螢幕寬度為 1600px 以上 css 設定
+  // @media (min-width: $screen-xl-min) {
+  //   font-size: $font-size-pixel-xxl;
+  //   @include font-scale($font-size-pixel-xxl);
+  // }
+}
+
+body {
+  background-color: _var("body-bg", $default);
+  color: _var("body-color", $dark);
+  font-family: $font-family-base;
+  font-style: normal;
+  line-height: $line-height-base;
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+  // transition: 0.6s ease-in;
+}
+
+html {
+  @include font-size-rwd($min_width, $max_width, $min_font, $max_font);
+}
+
+a,
+button,
+input,
+textarea,
+optgroup,
+select,
+[tabindex] {
+  &:focus-visible {
+    outline: 2px dashed rgba($primary, 0.72);
+    outline-offset: 2px;
+    border-radius: $border-radius-xs;
+    transition: $transition-filter-link;
+    box-shadow: 0 0 0 6px rgba($primary, 0.12);
+  }
+}

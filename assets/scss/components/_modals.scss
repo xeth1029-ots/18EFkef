@@ -1,0 +1,275 @@
+//
+// Components -> Modals
+// --------------------------------------------------
+
+.modal-open {
+  overflow: hidden;
+
+  .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal;
+
+  font-size: 0;
+  -webkit-overflow-scrolling: touch;
+  text-align: center;
+  outline: 0;
+  transition: $modal-transition;
+  will-change: transform;
+
+  &.modal-centered {
+    &:before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+  }
+
+  &.fade .modal-dialog {
+    @include translate(0, -25%);
+  }
+
+  &.slideRight .modal-dialog {
+    @include translate(25%, 0);
+  }
+
+  &.slideLeft .modal-dialog {
+    @include translate(-25%, 0);
+  }
+
+  &.slideBottom .modal-dialog {
+    @include translate(0, 25%);
+  }
+
+  &.zoomIn .modal-dialog {
+    @include scale(2);
+  }
+
+  &.zoomOut .modal-dialog {
+    @include scale(0.5);
+  }
+
+  &.flip {
+    @include perspective(1000px);
+
+    .modal-dialog {
+      transform-style: preserve-3d;
+      @include rotateX(-70deg);
+    }
+  }
+
+  &.show .modal-dialog {
+    @include translate(0, 0);
+  }
+
+  &[data-backdrop="static"]:active {
+    .modal-dialog {
+      transform: $modal-scale-transform;
+    }
+  }
+
+  .modal-dialog {
+    position: relative;
+    background-color: $white;
+    border-radius: $modal-radius;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    width: 100%;
+    transition: $modal-transition;
+
+
+    .modal-content {
+      border-radius: $modal-radius;
+      border: none;
+      box-shadow: $modal-shadow;
+      margin: 0;
+      height: 100%;
+      max-height: 100%;
+
+      .modal-body {
+        position: relative;
+        overflow: hidden;
+        padding: $modal-inner-padding;
+        width: 100%;
+        font-size: 1.125rem;
+        line-height: 1.75;
+        height: 80%;
+      }
+    }
+
+    &.modal-dialog-scrollable {
+      height: 80%;
+
+      .modal-content {
+        max-height: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        .modal-body {
+          height: calc(100% - 4.375rem);
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal-background;
+  background-color: $modal-backdrop-bg;
+  @include opacity(0);
+
+  &.in {
+    @include opacity($modal-backdrop-opacity);
+  }
+
+  &.fade {
+    opacity: 0;
+  }
+
+  &.show {
+    opacity: $modal-backdrop-opacity;
+  }
+}
+
+.modal-header {
+  position: relative;
+  padding: $modal-title-padding;
+  background-color: $primary-100;
+  border-bottom: 3px solid $primary-200;
+  border-top: 3px solid transparent;
+  border-radius: $modal-radius $modal-radius 0 0;
+  @include clearfix;
+  letter-spacing: 0;
+
+  &.modal-header-drag {
+    cursor: move;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+    margin: 0;
+    line-height: $modal-title-line-height;
+    user-select: none;
+    @include title;
+  }
+
+  .btn-close {
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 1.25rem;
+    transform: translate(0, -50%);
+    border-radius: 100%;
+    background-color: transparent;
+    border: solid 2px $primary-300;
+    transition: .25s all ease;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      top: 1rem;
+      left: 0.46875rem;
+      height: 4px;
+      width: 1.375rem;
+      border-radius: 36px;
+      background-color: $primary;
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+
+    &:hover {
+      transform: translate(0, -50%) rotate(180deg);
+      background: $danger;
+      text-decoration: none;
+      border-color: $danger;
+
+      &:after,
+      &:before {
+        background: $white;
+      }
+    }
+  }
+}
+
+
+
+.modal-footer {
+  text-align: right;
+  border-top: 1px solid $modal-footer-border-color;
+  padding: $modal-footet-padding;
+
+  @include clearfix;
+
+  .btn {
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    +.btn {
+      margin-left: .75rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .btn-group .btn+.btn {
+    margin-left: -1px;
+  }
+
+  .btn-block+.btn-block {
+    margin-left: 0;
+  }
+}
+
+.modal-dialog {
+  max-width: 90%;
+
+  @media (min-width: $screen-xs) {
+    max-width: $modal-md;
+    margin: 1.75rem auto
+  }
+
+  &.modal-sm {
+    @media (min-width: $screen-xs) {
+      max-width: $modal-sm;
+    }
+  }
+
+  &.modal-lg,
+  &.modal-xl {
+    @media (min-width: $screen-md) {
+      max-width: $modal-lg
+    }
+  }
+
+  &.modal-xl {
+    @media (min-width: $screen-lg) {
+      max-width: $modal-xl
+    }
+  }
+
+}

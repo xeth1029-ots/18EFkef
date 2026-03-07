@@ -1,0 +1,37 @@
+// Badge
+// =========================================================
+
+$badge-font-weight:                       $font-weight-bold !default;
+$badge-font-size:                         0.75rem           !default;
+$badge-font-family:                       $font-family-monospace !default;
+$badge-font-weight:                       $font-weight-bold !default;
+$badge-padding-y:                         0.25rem          !default;
+$badge-padding-x:                         0.25rem          !default;
+$badge-border-radius:                     $border-radius-sm !default;
+$badge-border-width:                      1px               !default;
+
+$badge-line-height:                       1                 !default;
+$badge-size-sm:                           1.5rem            !default;
+$badge-font-size-sm:                      0.75rem           !default;
+
+$badge-size-lg:                           2rem             !default;
+$badge-font-size-lg:                      1rem             !default;
+$badge-size:                              1.75rem          !default;
+
+$badge-color:                             $grey-200        !default;
+$badge-bg-color:                          $default-dark    !default;
+
+$badge-transition:                        $btn-transition  !default;
+$badge-focus-width:                       $input-btn-focus-width !default;
+
+
+$badge-in-box-big:                        1.125rem         !default;
+$badge-in-box-shadow-set:                 0 0 .875rem      !default;
+$badge-in-box-shadow:                     $badge-in-box-shadow-set rgba($dark,0.48)    !default;
+$badge-in-box-shadow-white:               $badge-in-box-shadow-set rgba($white, 0.48)  !default;
+// adjust-hue($value, -300deg);
+// Glassmorphism
+$badge-backdrop-filter :                  blur(10px);
+$badge-backdrop-opacity :                 0.36;
+$badge-backdrop-border-opacity :          0.12;
+$badge-backdrop-in-box-big-opacity:       0.88  !default;

@@ -1,0 +1,29 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C101MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].USERNO)
+        @Html.HiddenFor(m => m.Grid[i].USERNAME)
+        @Html.HiddenFor(m => m.Grid[i].UNIT_NAME)
+        @Html.HiddenFor(m => m.Grid[i].GRP_NAME)
+        @Html.HiddenFor(m => m.Grid[i].AUTHSTATUS_NAME)
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.USERNO</td>
+            <td>@item.USERNAME</td>
+            <td>@item.UNIT_NAME</td>
+            <td>@item.GRP_NAME</td>
+            <td>@item.AUTHSTATUS_NAME</td>
+            <td>@item.LASTLOGINTIME</td>
+            <td align="center">
+                <button type="button" class="btn btn-info" onclick="doDetail('@item.USERNO')">編輯</button>
+            </td>
+        </tr>
+    }
+}

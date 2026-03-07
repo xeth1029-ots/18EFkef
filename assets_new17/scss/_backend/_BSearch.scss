@@ -1,0 +1,242 @@
+@charset "utf-8";
+
+.t-user-drop-x {
+  position: absolute;
+  background-color: $white;
+  border: 2px solid $border;
+  border-radius: $border-radius;
+  box-shadow: 2px 2px 4px rgba($dark, 0.12);
+  min-width: 10rem;
+
+  // max-height: 8rem;
+  font-size: .875rem;
+  border-radius: .25rem;
+  overflow: auto;
+  z-index: 200;
+
+  ul {
+    .t-user-li {
+      display: flex;
+      color: inherit;
+      text-decoration: none;
+      padding: .5rem;
+
+      &:hover {
+        background-color: $grey-100;
+      }
+
+      .t-user-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        margin-right: .5rem;
+        object-fit: cover;
+      }
+
+      .t-user-empty {
+        text-align: center;
+        color: $grey;
+        padding: .5rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.t-user-tag {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  border-radius: $border-radius-lg;
+  border: $white 1px solid;
+  background-color: $grey-100;
+  color: _var("dark", $dark);
+  padding: .25rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  user-select: none;
+  transition: $transition-base;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+
+  &[data-name]::before {
+    content: "@ " attr(data-name);
+  }
+
+  &:hover {
+    filter: brightness(0.75);
+  }
+
+  &:after {
+    content: '';
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: .25rem;
+
+    @include svg-bg-icon(user, $info-600, center, 100%);
+  }
+
+  &[is-align="false"]::after {}
+
+  .t-selected-label-close {
+    position: absolute;
+    right: -0.5rem;
+    top: -0.5rem;
+    display: inline-block;
+    border: $white 1px solid;
+    border-radius: $border-radius-lg;
+    cursor: pointer;
+
+    @include size($width: 1.5rem);
+
+    transition: $category-picker-transition;
+
+    // @include svg-bg-icon($type: close, $color: $primary-800, $position: center, $size: contain);
+    background-image: t-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='#{$grey-800}'%3E%3Cpath d='M14.9 2H9.1a3.5 3.5 0 0 0-2.1.9l-4.1 4A3.5 3.5 0 0 0 2 9.2v5.8a3.5 3.5 0 0 0 .9 2.1l4 4.1a3.5 3.5 0 0 0 2.2.9h5.8a3.5 3.5 0 0 0 2.1-.9l4.1-4a3.5 3.5 0 0 0 .9-2.2V9.1a3.5 3.5 0 0 0-.9-2.1l-4-4.1a3.5 3.5 0 0 0-2.2-.9Z' data-name='Vector' opacity='.4'/%3E%3Cpath d='m13 12 3-3a.8.8 0 0 0-1-1l-3 3-3-3a.8.8 0 0 0-1 1l3 3-3 3a.8.8 0 0 0 0 1 .7.7 0 0 0 1 0l3-3 3 3a.7.7 0 0 0 1 0 .8.8 0 0 0 0-1Z' data-name='Vector'/%3E%3C/g%3E%3C/svg%3E"));
+  }
+}
+
+.t-panel-over {
+
+  .t-user-tag {
+    pointer-events: none;
+    background-color: $info-100;
+    margin-right: 0.875rem;
+    .t-selected-label-close {
+      pointer-events: auto;
+    }
+  }
+}
+
+.t-user-department {
+  color: $grey;
+}
+
+.t-user-popover {
+  position: fixed;
+  background-color: $white;
+  border: 2px solid $border;
+  box-shadow: 2px 2px 4px rgba($dark, 0.12);
+  border-radius: .5rem;
+  width: 25rem;
+  padding: 1rem;
+  max-height: 50vh;
+  overflow: auto;
+  z-index: 199;
+}
+
+.t-user-popover:not([open]) {
+  display: none;
+}
+
+.t-user-popover:empty::before {
+  display: grid;
+  place-items: center;
+  height: 5rem;
+  content: '加载中...';
+}
+
+.t-mention {
+  @extend .t-form-control;
+
+  position: relative;
+  align-items: center;
+  display: flex;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 3.5rem;
+
+  &:before {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    // background-color: $info;
+    @include svg-bg-icon(search, $info-600, center, 100%);
+  }
+
+  &:after {
+    content: ' 輸入字符 @ 搜尋教師姓名';
+    color: $grey-400;
+  }
+
+  .t-user-tag {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.t-tips {
+  font-size: smaller;
+  color: $gray;
+}
+
+.t-log {
+  margin-top: .5rem;
+  font-size: smaller;
+  color: $danger;
+}
+
+.t-person-okr {
+  font-size: 14px;
+
+  .t-avatar {
+    width: 2rem;
+    height: 2rem;
+    margin-right: .25rem;
+    border-radius: 100%;
+  }
+
+  .t-link {
+    display: flex;
+    color: inherit;
+    text-decoration: none;
+    line-height: 1.25;
+  }
+
+  .t-department {
+    color: $grey;
+    font-size: .8125rem;
+  }
+
+  .t-name {
+    margin: 0;
+    font-size: 100%;
+  }
+
+  .t-bar {
+    display: flex;
+    background-color: $grey-100;
+    margin: 0 -1rem;
+    padding: .25rem 1rem;
+    justify-content: space-between;
+    margin-top: .5rem;
+  }
+
+  .t-bar-r {
+    color: $info;
+    text-decoration: none;
+  }
+
+  .t-bar-l {
+    color: $grey;
+  }
+
+  .t-okr {
+    padding-left: 0;
+    margin: 0;
+
+    &:before {
+      content: '該人員暫未添加 個人資訊';
+      display: block;
+      padding: .5rem;
+      text-align: center;
+      color: $grey;
+    }
+  }
+}

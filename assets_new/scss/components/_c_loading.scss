@@ -1,0 +1,56 @@
+//
+//  Components -> Loading 
+// --------------------------------------------------
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($primary, 0.82);
+  transition: $transition-base;
+  backdrop-filter: blur(10px);
+  z-index: 1100;
+
+  .loader-cnt {
+    @include absolute-center;
+  }
+
+  #lottie_load {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+.js-tab-placeholder {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 1.25rem;
+  transition: $transition-base;
+
+  &:before {
+    content: '';
+    display: block;
+    position: relative;
+    padding-bottom: 100%;
+  }
+
+  &:after {
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 130' version='1.1' class='lo-gradient'%3E%3Cstyle%3E .lo-gradient rect%7Bfill: url(%23gradient);%7D %3C/style%3E%3Crect class='gradient' x='0' y='0' rx='5' ry='5' width='60' height='60' fill='' stroke-width='0'%3E%3C/rect%3E%3Crect class='gradient' x='70' y='4' rx='4' ry='4' width='300' height='24' fill='' stroke-width='0'%3E%3C/rect%3E%3Crect class='gradient' x='70' y='36' rx='3' ry='3' width='280' height='16' fill='' stroke-width='0'%3E%3C/rect%3E%3Crect class='gradient' x='0' y='66' rx='3' ry='3' width='400' height='10' fill='' stroke-width='0'%3E%3C/rect%3E%3Crect class='gradient' x='0' y='82' rx='3' ry='3' width='380' height='10' fill='' stroke-width='0'%3E%3C/rect%3E%3Crect class='gradient' x='0' y='98' rx='3' ry='3' width='400' height='10' fill='' stroke-width='0'%3E%3C/rect%3E%3Cdefs%3E%3ClinearGradient id='gradient'%3E%3Cstop offset='0%25' stop-color='%23F5F7FA'%3E%3Canimate attributeName='offset' values='-2; 1' dur='2s' repeatCount='indefinite'%3E%3C/animate%3E%3C/stop%3E%3Cstop offset='50%25' stop-color='%23dce0e5'%3E%3Canimate attributeName='offset' values='-1.5; 1.5' dur='2s' repeatCount='indefinite'%3E%3C/animate%3E%3C/stop%3E%3Cstop offset='100%25' stop-color='%23F5F7FA'%3E%3Canimate attributeName='offset' values='-1; 2' dur='2s' repeatCount='indefinite'%3E%3C/animate%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    height: 90%;
+    background-repeat: repeat;
+    background-size: 100%;
+    background-position: center;
+    display: block;
+    visibility: visible;
+    overflow: hidden;
+    z-index: 2;
+  }
+}

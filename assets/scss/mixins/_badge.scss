@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+//  Mixins > Badges
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin badge-variant($default) {
+  color: color-yiq($default);
+  background-color: $default;
+
+  @at-root a#{&} {
+    // @include hover-focus {
+    //   color: color-yiq($default);
+    //   background-color: darken($default, 10%);
+    // }
+    color: color-yiq($default);
+    background-color: darken($default, 4%);
+
+    &:focus,
+    &.focus {
+      outline: 0;
+      box-shadow: 0 0 0 $grey rgba($default, 0.5);
+    }
+  }
+}
+
+@mixin badge-soft-variant($color) {
+  color: element-soft-color-level($color, 8);
+  background-color: element-soft-color-level($color, 0);
+
+  @at-root a#{&} {
+    @include hover-focus {
+      color: element-soft-color-level($color, 10);
+      background-color: element-soft-color-level($color, -2);
+    }
+
+    &:focus,
+    &.focus {
+      outline: 0;
+      box-shadow: 0 0 0 $grey rgba($default, 0.5);
+    }
+  }
+}
+
+@mixin flag-variant($default) {
+  color: color-yiq($default);
+  border-color: $default transparent $default $default;
+}

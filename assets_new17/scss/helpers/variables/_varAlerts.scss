@@ -1,0 +1,41 @@
+
+
+
+// Alerts
+//
+// Define alert colors, border radius, and padding.
+
+// scss-docs-start alert-variables
+$alert-padding-y:               $spacer !default;
+$alert-padding-x:               $spacer !default;
+$alert-margin-bottom:           1rem !default;
+$alert-border-radius:           $border-radius !default;
+$alert-link-font-weight:        $font-weight-bold !default;
+$alert-border-width:            $border-width !default;
+$alert-bg-scale:                -80% !default;
+$alert-border-scale:            -70% !default;
+$alert-color-scale:             40% !default;
+$alert-dismissible-padding-r:   $alert-padding-x * 3 !default; // 3x covers width of x plus default padding on either side
+// Colors
+$alert-link-hover-color: $link-hover-color !default;
+
+// Shadows
+$alert-box-shadow-value: 0 0.25rem 1.5rem !default;
+
+//== Alert Variables
+$alert-padding-y:                   .75rem 							!default;
+$alert-padding-x:                   1.5rem 							!default;
+$alert-margin-bottom:               1rem 							!default;
+$alert-border-radius:               $border-radius 					!default;
+$alert-link-font-weight:            $font-weight-bold 				!default;
+$alert-border-width:                $border-width 					!default;
+
+$alert-bg-level:                    -10 							!default;
+$alert-border-level:                -12								!default;
+$alert-color-level:                 8							   !default;
+// Alerts
+// Define alert colors, border radius, and padding.
+$alert-color-scale: if(isDarkMode(), 60%, 40%) !default;
+$alert-border-scale: if(isDarkMode(), -60%, -70%) !default;
+$alert-bg-scale: if(isDarkMode(), -60%, -80%) !default;
+

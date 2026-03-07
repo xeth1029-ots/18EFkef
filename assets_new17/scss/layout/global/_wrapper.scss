@@ -1,0 +1,57 @@
+.t-wrapper {
+  position: relative;
+}
+
+// @media (min-width: $screen-xxl) {
+//   .container,
+//   .container-xxl {
+//     max-width: $container-max-width-xxl;
+//   }
+// }
+
+// Desktop Mode
+@include md-min {
+  // Containers
+  .container,
+  .container-xxl,
+  .container-fluid {
+    --tu-gutter-x: #{get($content-spacing, desktop)};
+    // padding: 0 get($content-spacing, desktop) !important;
+  }
+}
+
+
+@include media-breakpoint-only(md) {
+  // Containers
+  .container,
+  .container-xxl,
+  .container-fluid {
+    --tu-gutter-x: #{get($content-spacing, desktop-tablet)};
+    // padding: 0 get($content-spacing, desktop) !important;
+  }
+}
+
+
+// Tablet & mobile modes
+@include media-breakpoint-only(sm) {
+  // Containers
+  .container,
+  .container-xxl,
+  .container-fluid {
+    max-width: none;
+    --tu-gutter-x: #{get($content-spacing, tablet-and-mobile)};
+    // padding: 0 get($content-spacing, tablet-and-mobile) !important;
+  }
+}
+
+
+@include media-breakpoint-only(xs) {
+  // Containers
+  .container,
+  .container-xxl,
+  .container-fluid {
+    max-width: none;
+    --tu-gutter-x: #{get($content-spacing, mobile)};
+    // padding: 0 get($content-spacing, mobile) !important;
+  }
+}

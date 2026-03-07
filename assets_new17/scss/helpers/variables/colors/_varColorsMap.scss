@@ -1,0 +1,742 @@
+@charset "utf-8";
+
+// Varibles Colors Naps      gray-100: if(isDarkMode(), #1b1b29, #F5F8FA) !default;
+// #009EF7; #E4E6EF; #1BC5BD;  #7239EA; #FFC700; #F1416C; #181C32;
+// ========================================================
+
+////////////////////////////////////////////////////////////////////////////////
+
+$grays: (
+	"25":  $gray-25,
+	"50":  $gray-50,
+	"100": $gray-100,
+	"200": $gray-200,
+	"300": $gray-300,
+	"400": $gray-400,
+	"500": $gray-500,
+	"600": $gray-600,
+	"700": $gray-700,
+	"800": $gray-800,
+	"900": $gray-900,
+	"950": $gray-950) !default;
+
+$grays-dark: (
+	"25":  $gray-950,
+	"50":  $gray-900,
+	"100": $gray-800,
+	"200": $gray-700,
+	"300": $gray-600,
+	"400": $gray-500,
+	"500": $gray-400,
+	"600": $gray-300,
+	"700": $gray-200,
+	"800": $gray-100,
+	"900": $gray-50,
+	"950": $gray-25) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$greys: () !default;
+$greys: map-merge((
+	"25":  $grey-25,
+	"50":  $grey-50,
+	"100": $grey-100,
+	"200": $grey-200,
+	"300": $grey-300,
+	"400": $grey-400,
+	"500": $grey-500,
+	"600": $grey-600,
+	"700": $grey-700,
+	"800": $grey-800,
+	"900": $grey-900,
+	"950": $grey-950),$greys);
+
+$greys-dark: (
+	"25":  $grey-950,
+	"50":  $grey-900,
+	"100": $grey-800,
+	"200": $grey-700,
+	"300": $grey-600,
+	"400": $grey-500,
+	"500": $grey-400,
+	"600": $grey-300,
+	"700": $grey-200,
+	"800": $grey-100,
+	"900": $grey-50,
+	"950": $grey-25) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$neutrals: () !default;
+$neutrals: map-merge((
+	"25":  $neutral-25,
+	"50":  $neutral-50,
+	"100": $neutral-100,
+	"200": $neutral-200,
+	"300": $neutral-300,
+	"400": $neutral-400,
+	"500": $neutral-500,
+	"600": $neutral-600,
+	"700": $neutral-700,
+	"800": $neutral-800,
+	"900": $neutral-900,
+	"950": $neutral-950),$neutrals);
+
+$neutrals-dark: (
+	"25":  $neutral-950,
+	"50":  $neutral-900,
+	"100": $neutral-800,
+	"200": $neutral-700,
+	"300": $neutral-600,
+	"400": $neutral-500,
+	"500": $neutral-400,
+	"600": $neutral-300,
+	"700": $neutral-200,
+	"800": $neutral-100,
+	"900": $neutral-50,
+	"950": $neutral-25) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$primarys: (
+	"25":  $primary-25,
+	"50":  $primary-50,
+	"100": $primary-100,
+	"200": $primary-200,
+	"300": $primary-300,
+	"400": $primary-400,
+	"500": $primary-500,
+	"600": $primary-600,
+	"700": $primary-700,
+	"800": $primary-800,
+	"900": $primary-900,
+	"950": $primary-950) !default;
+
+$primarys-dark: (
+	"25":  $primary-950,
+	"50":  $primary-900,
+	"100": $primary-800,
+	"200": $primary-700,
+	"300": $primary-600,
+	"400": $primary-500,
+	"500": $primary-400,
+	"600": $primary-300,
+	"700": $primary-200,
+	"800": $primary-100,
+	"900": $primary-50,
+	"950": $primary-25) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$secondarys: (
+	"25":  $secondary-25,
+	"50":  $secondary-50,
+	"100": $secondary-100,
+	"200": $secondary-200,
+	"300": $secondary-300,
+	"400": $secondary-400,
+	"500": $secondary-500,
+	"600": $secondary-600,
+	"700": $secondary-700,
+	"800": $secondary-800,
+	"900": $secondary-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$tertiarys: (
+	"25":  $tertiary-25,
+	"50":  $tertiary-50,
+	"100": $tertiary-100,
+	"200": $tertiary-200,
+	"300": $tertiary-300,
+	"400": $tertiary-400,
+	"500": $tertiary-500,
+	"600": $tertiary-600,
+	"700": $tertiary-700,
+	"800": $tertiary-800,
+	"900": $tertiary-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$quaternarys: (
+	"25":  $quaternary-25,
+	"50":  $quaternary-50,
+	"100": $quaternary-100,
+	"200": $quaternary-200,
+	"300": $quaternary-300,
+	"400": $quaternary-400,
+	"500": $quaternary-500,
+	"600": $quaternary-600,
+	"700": $quaternary-700,
+	"800": $quaternary-800,
+	"900": $quaternary-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$successs: (
+	"25":  $success-25,
+	"50":  $success-50,
+	"100": $success-100,
+	"200": $success-200,
+	"300": $success-300,
+	"400": $success-400,
+	"500": $success-500,
+	"600": $success-600,
+	"700": $success-700,
+	"800": $success-800,
+	"900": $success-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$dangers: (
+	"25":  $danger-25,
+	"50":  $danger-50,
+	"100": $danger-100,
+	"200": $danger-200,
+	"300": $danger-300,
+	"400": $danger-400,
+	"500": $danger-500,
+	"600": $danger-600,
+	"700": $danger-700,
+	"800": $danger-800,
+	"900": $danger-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$warnings: (
+	"25":  $warning-25,
+	"50":  $warning-50,
+	"100": $warning-100,
+	"200": $warning-200,
+	"300": $warning-300,
+	"400": $warning-400,
+	"500": $warning-500,
+	"600": $warning-600,
+	"700": $warning-700,
+	"800": $warning-800,
+	"900": $warning-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$infos: (
+	"25":  $info-25,
+	"50":  $info-50,
+	"100": $info-100,
+	"200": $info-200,
+	"300": $info-300,
+	"400": $info-400,
+	"500": $info-500,
+	"600": $info-600,
+	"700": $info-700,
+	"800": $info-800,
+	"900": $info-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$navys: (
+	"25":  $navy-25,
+	"50":  $navy-50,
+	"100": $navy-100,
+	"200": $navy-200,
+	"300": $navy-300,
+	"400": $navy-400,
+	"500": $navy-500,
+	"600": $navy-600,
+	"700": $navy-700,
+	"800": $navy-800,
+	"900": $navy-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$dimNavys: (
+	"25":  $dimNavy-25,
+	"50":  $dimNavy-50,
+	"100": $dimNavy-100,
+	"200": $dimNavy-200,
+	"300": $dimNavy-300,
+	"400": $dimNavy-400,
+	"500": $dimNavy-500,
+	"600": $dimNavy-600,
+	"700": $dimNavy-700,
+	"800": $dimNavy-800,
+	"900": $dimNavy-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$blues: (
+	"blue-100": $blue-100,
+	"blue-200": $blue-200,
+	"blue-300": $blue-300,
+	"blue-400": $blue-400,
+	"blue-500": $blue-500,
+	"blue-600": $blue-600,
+	"blue-700": $blue-700,
+	"blue-800": $blue-800,
+	"blue-900": $blue-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$indigos: (
+	"indigo-100": $indigo-100,
+	"indigo-200": $indigo-200,
+	"indigo-300": $indigo-300,
+	"indigo-400": $indigo-400,
+	"indigo-500": $indigo-500,
+	"indigo-600": $indigo-600,
+	"indigo-700": $indigo-700,
+	"indigo-800": $indigo-800,
+	"indigo-900": $indigo-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$purples: (
+	"purple-100": $purple-100,
+	"purple-200": $purple-200,
+	"purple-300": $purple-300,
+	"purple-400": $purple-400,
+	"purple-500": $purple-500,
+	"purple-600": $purple-600,
+	"purple-700": $purple-700,
+	"purple-800": $purple-800,
+	"purple-900": $purple-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$pinks: (
+	"pink-100": $pink-100,
+	"pink-200": $pink-200,
+	"pink-300": $pink-300,
+	"pink-400": $pink-400,
+	"pink-500": $pink-500,
+	"pink-600": $pink-600,
+	"pink-700": $pink-700,
+	"pink-800": $pink-800,
+	"pink-900": $pink-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$reds: (
+	"red-100": $red-100,
+	"red-200": $red-200,
+	"red-300": $red-300,
+	"red-400": $red-400,
+	"red-500": $red-500,
+	"red-600": $red-600,
+	"red-700": $red-700,
+	"red-800": $red-800,
+	"red-900": $red-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$oranges: (
+	"orange-100": $orange-100,
+	"orange-200": $orange-200,
+	"orange-300": $orange-300,
+	"orange-400": $orange-400,
+	"orange-500": $orange-500,
+	"orange-600": $orange-600,
+	"orange-700": $orange-700,
+	"orange-800": $orange-800,
+	"orange-900": $orange-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$yellows: (
+	"yellow-100": $yellow-100,
+	"yellow-200": $yellow-200,
+	"yellow-300": $yellow-300,
+	"yellow-400": $yellow-400,
+	"yellow-500": $yellow-500,
+	"yellow-600": $yellow-600,
+	"yellow-700": $yellow-700,
+	"yellow-800": $yellow-800,
+	"yellow-900": $yellow-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$greens: (
+	"green-100": $green-100,
+	"green-200": $green-200,
+	"green-300": $green-300,
+	"green-400": $green-400,
+	"green-500": $green-500,
+	"green-600": $green-600,
+	"green-700": $green-700,
+	"green-800": $green-800,
+	"green-900": $green-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$teals: (
+	"teal-100": $teal-100,
+	"teal-200": $teal-200,
+	"teal-300": $teal-300,
+	"teal-400": $teal-400,
+	"teal-500": $teal-500,
+	"teal-600": $teal-600,
+	"teal-700": $teal-700,
+	"teal-800": $teal-800,
+	"teal-900": $teal-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$limes: (
+	"lime-100": $lime-100,
+	"lime-200": $lime-200,
+	"lime-300": $lime-300,
+	"lime-400": $lime-400,
+	"lime-500": $lime-500,
+	"lime-600": $lime-600,
+	"lime-700": $lime-700,
+	"lime-800": $lime-800,
+	"lime-900": $lime-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$cyans: (
+	"cyan-100": $cyan-100,
+	"cyan-200": $cyan-200,
+	"cyan-300": $cyan-300,
+	"cyan-400": $cyan-400,
+	"cyan-500": $cyan-500,
+	"cyan-600": $cyan-600,
+	"cyan-700": $cyan-700,
+	"cyan-800": $cyan-800,
+	"cyan-900": $cyan-900) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== Brand Colors
+$brand-colors: () !default;
+$brand-colors: map-merge((
+	"facebook": $facebook,
+	"twitter": $twitter,
+	"google-plus": $google-plus,
+	"instagram": $instagram,
+	"pinterest": $pinterest,
+	"youtube": $youtube,
+	"slack": $slack,
+	"dribbble": $dribbble,
+	"dropbox": $dropbox,
+	"twitch": $twitch,
+	"paypal": $paypal,
+	"behance": $behance,
+	"reddit" : $reddit,
+	"github": $github,
+	"linkedin": $linkedin,
+	"line": $line), 
+$brand-colors);
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== Theme Colors
+$theme-colors: () !default;
+$theme-colors: map-merge((
+	"primary":     $primary,
+	"secondary":   $secondary,
+	"tertiary":    $tertiary,
+	"quaternary":  $quaternary,
+	"success":     $success,
+	"danger":      $danger,
+	"warning":     $warning,
+	"navy":        $navy,
+	"dimNavy":     $dimNavy,
+	"info":        $info,
+
+	"dark":        $dark,
+	"grey":        $grey,
+	"lightgrey":   $lightgrey,
+	"black":       $black,
+	"neutral":     $neutral,
+	"white":       $white,
+	"light":       $light,
+	"default":     $default,
+	"border":      $border,
+	// "lighter":      $lighter,
+	// "li`ghtest":     $lightest,
+	// "defaul-dark":  $default-dark,
+	// "grey-light":   $grey-light,
+	// "grey-lighter": $grey-lighter,
+	// "border-g":     $border-g,
+	// "border-n":     $border-n,
+
+	// "blue":        $blue,
+	// "purple":      $purple,
+	// "pink":        $pink,
+	// "red":         $red,
+	// "orange":      $orange,
+	// "yellow":      $yellow,
+	// "lime":        $lime,
+	// "green":       $green,
+	// "teal":        $teal,
+	// "cyan":        $cyan,
+	// "hawthorn":       $hawthorn,
+	// "paua":           $paua,
+	// "lichen-blue":    $lichen-blue,
+	// "lutos":          $lutos,
+	// "dried-mos":      $dried-mos,
+	// "volcanic-glass": $volcanic-glass,
+	// "plaza-taupe":    $plaza-taupe,
+	// "white-sand":     $white-sand,
+	// "cloud-dancer":   $cloud-dancer,
+	// "deep-taupe":     $deep-taupe,
+	// "seafoam":         $seafoam,
+	// "ivory":           $ivory,
+	// "granny":          $granny,
+	// "tiffany":         $tiffany,
+	// "similar":         $similar,
+	// "meteorite":       $meteorite,
+	// "water-light":     $water-light,
+	// "bright":          $bright,
+	// "magnolia":        $magnolia,
+	// "flash":          $flash,
+	// "soap":           $soap,
+	// "pale":           $pale,
+	// "water":          $water,
+	// "whereas":        $whereas,
+), $theme-colors);
+
+
+//== Theme Colors
+$theme-colors-dark: () !default;
+$theme-colors-dark: map-merge((
+	"primary":      $primary-300,
+	"secondary":    $secondary-300,
+	"tertiary":     $tertiary-300,
+	"quaternary":   $quaternary-300,
+	"success":      $success-300,
+	"danger":       $danger-300,
+	"warning":      $warning-300,
+	"navy":         $navy-300,
+	"dimNavy":      $dimNavy-300,
+	"info":         $info-300,
+	"dark":         $white,
+	"grey":         $grey-300,
+	"lightgrey":    $grey-600,
+	"white":        $black,
+	"black":        $white,
+	"neutral":      $neutral-950,
+	"light":        $gray-900,
+	"default":      $grey-950,
+	"border":       $gray-900,
+
+
+	// "blue":        $blue,
+	// "purple":      $purple,
+	// "pink":        $pink,
+	// "red":         $red,
+	// "orange":      $orange,
+	// "yellow":      $yellow,
+	// "lime":        $lime,
+	// "green":       $green,
+	// "teal":        $teal,
+	// "cyan":        $cyan,
+	// "hawthorn":       $hawthorn,
+	// "paua":           $paua,
+	// "lichen-blue":    $lichen-blue,
+	// "lutos":          $lutos,
+	// "dried-mos":      $dried-mos,
+	// "volcanic-glass": $volcanic-glass,
+	// "plaza-taupe":    $plaza-taupe,
+	// "white-sand":     $white-sand,
+	// "cloud-dancer":   $cloud-dancer,
+	// "deep-taupe":     $deep-taupe,
+	// "seafoam":         $seafoam,
+	// "ivory":           $ivory,
+	// "granny":          $granny,
+	// "tiffany":         $tiffany,
+	// "similar":         $similar,
+	// "meteorite":       $meteorite,
+	// "water-light":     $water-light,
+	// "bright":          $bright,
+	// "magnolia":        $magnolia,
+	// "flash":          $flash,
+	// "soap":           $soap,
+	// "pale":           $pale,
+	// "water":          $water,
+	// "whereas":        $whereas,
+), $theme-colors-dark);
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== Element Colors
+$element-colors: () !default;
+$element-colors: map-merge((
+	"primary":     $primary,
+	"secondary":   $secondary,
+	"tertiary":    $tertiary,
+	"quaternary":  $quaternary,
+	"success":     $success,
+	"danger":      $danger,
+	"warning":     $warning,
+	"info":        $info,
+	"dark":        $dark,
+	// "grey":        $grey,
+	// "lightgrey":   $lightgrey,
+	"light":       $light,
+	"white":       $white,
+	// "neutral":     $neutral,
+	// "navy":        $navy,
+	// "dimNavy":     $dimNavy,
+), $element-colors);
+
+//== Element Soft Colors
+$element-soft-colors: () !default;
+$element-soft-colors: map-merge((
+	"soft-primary":     $primary-soft,
+	"soft-secondary":   $secondary-soft,
+	"soft-tertiary":    $tertiary-soft,
+	"soft-quaternary":  $quaternary-soft,
+	"soft-success":     $success-soft,
+	"soft-danger":      $danger-soft,
+	"soft-warning":     $warning-soft,
+	"soft-info":        $info-soft,
+	"soft-dark":        $dark-soft,
+ // "soft-neutral":     $neutral-soft,
+	// "soft-navy":        $navy-soft,
+	// "soft-dimNavy":     $dimNavy-soft,
+), $element-soft-colors);
+
+//== Theme Inverse Colors
+$theme-inverse-colors: (
+		"primary":     $primary-inverse,
+		"secondary":   $secondary-inverse,
+		"tertiary":    $tertiary-inverse,
+		"quaternary":  $quaternary-inverse,
+		"success":     $success-inverse,
+		"danger":      $danger-inverse,
+		"warning":     $warning-inverse,
+		"info":        $info-inverse,
+		"dark":        $dark-inverse,
+		// "grey":        $grey-inverse,
+
+
+		"white":       $white-inverse,
+		// "neutral":     $neutral-inverse,
+		// "navy":        $navy-inverse,
+		// "dimNavy":     $dimNavy-inverse,
+) !default;
+
+//== Theme Light Colors
+$theme-light-colors: (
+		"primary":     $primary-light,
+		"secondary":   $secondary-light,
+		"tertiary":    $tertiary-light,
+		"quaternary":  $quaternary-light,
+		"success":     $success-light,
+		"danger":      $danger-light,
+		"warning":     $warning-light,
+		"info":        $info-light,
+		"dark":        $dark-light,
+		// "grey":        $grey-light,
+
+		"white":       $white-light,
+		// "neutral":     $neutral-light,
+		// "navy":        $navy-light,
+		// "dimNavy":     $dimNavy-light,
+) !default;
+
+//== Theme Text Colors
+$theme-text-colors: (
+	 "white":       $white,
+	 "primary":     $primary,
+		"secondary":   $secondary,
+		"tertiary":    $tertiary,
+		"quaternary":  $quaternary,
+		"success":     $success,
+		"danger":      $danger,
+		"warning":     $warning,
+		"info":        $info,
+		"dark":        $dark,
+		// "grey":        $grey,
+		// "lightgrey":   $lightgrey,
+		"light":       $light,
+		// "neutral":     $neutral,
+		// "navy":        $navy,
+		// "dimNavy":     $dimNavy,
+	 "gray-100":   $gray-100,
+	 "gray-200":   $gray-200,
+	 "gray-300":   $gray-300,
+	 "gray-400":   $gray-400,
+	 "gray-500":   $gray-500,
+	 "gray-600":   $gray-600,
+	 "gray-700":   $gray-700,
+	 "gray-800":   $gray-800,
+	 "gray-900":   $gray-900
+) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$themes: (
+	"dark"   : $theme-colors-dark,
+	"light"  : $theme-colors
+) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== Color Colors
+$colors: (
+	"blue":      $blue,
+	"indigo":    $indigo,
+	"purple":    $purple,
+	"pink":      $pink,
+	"red":       $red,
+	"orange":    $orange,
+	"yellow":    $yellow,
+	"lime":      $lime,
+	"green":     $green,
+	"teal":      $teal,
+	"cyan":      $cyan,
+	"black":     $black,
+	"white":     $white,
+	"gray":      $gray-600,
+	"grey":      $grey-600,
+	"navy":      $navy,
+	"dimNavy":   $dimNavy
+) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+
+$department-colors: () !default;
+$department-colors: map-merge(("pei": $info,
+"tao": $primary,
+"chung": $quaternary,
+"nam": $success,
+"kao": $quaternary,
+"ano": $tertiary,
+// tertiary
+
+), $department-colors);
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== card Soft Colors
+$card-theme-colors: () !default;
+$card-theme-colors: map-merge((
+	"primary":     $primary,
+	"secondary":   $secondary,
+	"tertiary":    $tertiary,
+	"quaternary":  $quaternary,
+	"success":     $success,
+	"danger":      $danger,
+	"warning":     $warning,
+	"info":        $info,
+), $card-theme-colors);
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== toggle Soft Colors
+$toggle-theme-colors: () !default;
+$toggle-theme-colors: map-merge((
+	"primary":     $primary,
+	"secondary":   $secondary,
+	"tertiary":    $tertiary,
+	"quaternary":  $quaternary,
+	"success":     $success,
+	"danger":      $danger,
+	"warning":     $warning,
+	"info":        $info,
+), $toggle-theme-colors);
+
+
+

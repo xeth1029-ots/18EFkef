@@ -1,0 +1,59 @@
+//
+//  Components -> Calendar 
+// --------------------------------------------------
+.t-calendar-date {
+  font-size: 0;
+  background-color: $white;
+  border-radius: $calendar-border-radius;
+  box-shadow: $calendar-shadow;
+  overflow: hidden;
+  user-select: none;
+  @include in-bk-mid;
+
+  @media all and (max-width: 820px) {
+    display: none;
+  }
+
+  dd {
+    padding: 0 .5rem;
+  }
+
+  .t-month,
+  .t-date,
+  .t-day {
+    display: block;
+    width: 100%;
+    font-family: $font-family-base;
+    font-weight: $font-family-clock-weight;
+    text-align: center;
+  }
+
+  .t-month {
+    background-color: $calendar-color;
+    border-bottom: $calendar-border-width dashed rgba($white, 0.38);
+    box-shadow: 0 $calendar-shadow-width 0 darken($calendar-color, 20%);
+    color: $white;
+    font-size: .75rem;
+    line-height: 1.25;
+    padding: $calendar-heading-padding;
+  }
+
+  .t-date {
+    color: $dark;
+    font-size: 1.125rem;
+    line-height: 1;
+    letter-spacing: 2px;
+    padding: 0.25rem 0 0;
+  }
+
+  .t-day {
+    color: $calendar-color;
+    font-size: .75rem;
+    line-height: 1.25;
+  }
+
+  &:hover,
+  &:focus {
+    animation: swing 0.125s ease-out;
+  }
+}

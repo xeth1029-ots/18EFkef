@@ -1,0 +1,268 @@
+//
+// Components -> Modals
+// --------------------------------------------------
+
+@mixin afterfade($params) {
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -3.25rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 3.125rem;
+    flex-shrink: 0;
+    background-image: linear-gradient(to top, rgba(_var("white-rgb", $white), 0.08), transparent);
+    pointer-events: none;
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+
+  .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 3.5rem);
+}
+
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal;
+  -webkit-overflow-scrolling: touch;
+
+  // text-align: center;
+  outline: 0;
+  transition: $modal-transition;
+  will-change: transform;
+
+  &.fade .modal-dialog {
+    @include translate(0, -25%);
+  }
+
+  &.slideRight .modal-dialog {
+    @include translate(25%, 0);
+  }
+
+  &.slideLeft .modal-dialog {
+    @include translate(-25%, 0);
+  }
+
+  &.slideBottom .modal-dialog {
+    @include translate(0, 25%);
+  }
+
+  &.zoomIn .modal-dialog {
+    @include scale(2);
+  }
+
+  &.zoomOut .modal-dialog {
+    @include scale(0.5);
+  }
+
+  &.flip {
+    @include perspective(1000px);
+
+    .modal-dialog {
+      transform-style: preserve-3d;
+
+      @include rotateX(-70deg);
+    }
+  }
+
+  &.show .modal-dialog {
+    @include translate(0, 0);
+  }
+
+  &[data-backdrop="static"]:active {
+    .modal-dialog {
+      transform: $modal-scale-transform;
+    }
+  }
+
+  .modal-dialog {
+    position: relative;
+    margin: 0 auto;
+    width: auto;
+    pointer-events: none;
+    transition: $modal-transition;
+
+    .modal-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-color: _var("white", $white);
+      pointer-events: auto;
+      border-radius: $modal-radius;
+      border: none;
+      box-shadow: $modal-shadow;
+      margin: 0;
+
+      .modal-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: 1.5rem;
+      }
+    }
+
+    &.modal-dialog-scrollable {
+      height: 80%;
+      overflow-y: auto;
+
+      .modal-content {
+        max-height: 100%;
+        overflow: hidden;
+        max-height: 100%;
+        overflow: hidden;
+
+        .modal-body {
+          overflow-y: auto;
+        }
+
+        .modal-footer {
+          &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -3.25rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            height: 3.125rem;
+            flex-shrink: 0;
+            background-image: linear-gradient(to top, rgba(_var("white-rgb", $white), 0.08), transparent);
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($dark, 0.24);
+
+  @include opacity(0);
+
+  &.in {
+    @include opacity($modal-backdrop-opacity);
+  }
+
+  &.fade {
+    opacity: 0;
+  }
+
+  &.show {
+    opacity: $modal-backdrop-opacity;
+  }
+}
+
+.modal-header {
+  position: relative;
+  padding: $modal-title-padding;
+  background-color: $primary-50;
+  border-bottom: 0.25rem solid $primary-200;
+  border-top: .25rem solid transparent;
+  border-radius: $modal-radius $modal-radius 0 0;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 0.95rem;
+  border-top-right-radius: 0.95rem;
+  letter-spacing: 0;
+
+  &.modal-header-drag {
+    cursor: move;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+    margin: 0;
+    line-height: $modal-title-line-height;
+    user-select: none;
+
+    @include title;
+  }
+}
+
+.btn-close {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+
+  @include btn-close($danger, $white, $pill);
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  border-top: 0.125rem solid $grey-200;
+  border-bottom-right-radius: 0.475rem;
+  border-bottom-left-radius: 0.475rem;
+
+  .btn {
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    +.btn {
+      margin-left: .75rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .btn-group .btn+.btn {
+    margin-left: -1px;
+  }
+
+  .btn-block+.btn-block {
+    margin-left: 0;
+  }
+}
+
+.modal-dialog {
+  max-width: 90%;
+
+  @media (min-width: $screen-xs) {
+    max-width: $modal-md;
+    margin: 1.75rem auto;
+  }
+
+  &.modal-sm {
+    @media (min-width: $screen-xs) {
+      max-width: $modal-sm;
+    }
+  }
+
+  &.modal-lg,
+  &.modal-xl {
+    @media (min-width: $screen-md) {
+      max-width: $modal-lg;
+    }
+  }
+
+  &.modal-xl {
+    @media (min-width: $screen-lg) {
+      max-width: $modal-xl;
+    }
+  }
+}

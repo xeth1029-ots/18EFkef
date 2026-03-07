@@ -1,0 +1,111 @@
+
+.t-emoji {
+  display: inline-block;
+  label {
+    // background
+    @include toggle-label;
+    width: 7em;
+    height: 0.8em;
+    border-radius: 1em;
+    background: _var("white", $white);
+    border: 0.2em solid #888;
+    transition: $transition;
+    &:before {
+      // circle
+      @include before-after;
+      font-size: 3em;
+      transition: $transition;
+      left: 0;
+      top: -0.6em;
+    }
+  }
+  input {
+    @include input-checkbox;
+  }
+  input:checked + label {
+    &:before {
+      // circle
+      transform: translateX(1.2em);
+    }
+  }
+  input:disabled {
+    & + label {
+      cursor: not-allowed !important;
+    }
+  }
+}
+.t-emoji-mood {
+  @extend .t-emoji;
+  label {
+    &:before {
+      // circle
+      content: "😄";
+    }
+  }
+  input:checked + label {
+    &:before {
+      // circle
+      content: "😠";
+    }
+  }
+}
+.t-emoji-gender {
+  @extend .t-emoji;
+  label {
+    &:before {
+      // circle
+      content: "👨";
+    }
+  }
+  input:checked + label {
+    &:before {
+      // circle
+      content: "👩";
+    }
+  }
+}
+.t-emoji-pet {
+  @extend .t-emoji;
+  label {
+    &:before {
+      // circle
+      content: "🐶";
+    }
+  }
+  input:checked + label {
+    &:before {
+      // circle
+      content: "🐱";
+    }
+  }
+}
+.t-emoji-mute {
+  @extend .t-emoji;
+  label {
+    &:before {
+      // circle
+      content: "🔇";
+    }
+  }
+  input:checked + label {
+    &:before {
+      // circle
+      content: "🔊";
+    }
+  }
+}
+.t-emoji-like {
+  @extend .t-emoji;
+  label {
+    &:before {
+      // circle
+      content: "👍";
+    }
+  }
+  input:checked + label {
+    &:before {
+      // circle
+      content: "👎";
+    }
+  }
+}

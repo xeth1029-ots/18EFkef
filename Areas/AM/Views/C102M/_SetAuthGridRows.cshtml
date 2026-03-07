@@ -1,0 +1,35 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C102MViewModel
+
+@if (Model.SetAuth.SetAuthGrid != null)
+{
+    for (int i = 0; i < Model.SetAuth.SetAuthGrid.Count; i++)
+    {
+        var item = Model.SetAuth.SetAuthGrid[i];
+        @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].ROWID)
+        @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].GRPID)
+        @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].SYSID)
+        @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].MODULES)
+        @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].SUBMODULES)
+        @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].PRGID)
+        @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].PRGNAME)
+        @*
+            @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].PRG_Q_CHECK)
+            @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].PRG_I_CHECK)
+            @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].PRG_U_CHECK)
+            @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].PRG_D_CHECK)
+            @Html.HiddenFor(m => m.SetAuth.SetAuthGrid[i].PRG_P_CHECK)
+        *@
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.PRGID</td>
+            <td>@item.PRGNAME</td>
+            <td>@Html.CheckBoxFor(m => m.SetAuth.SetAuthGrid[i].PRG_Q_CHECK, new { checkid = "Q", @style = "width: 30px; height: 30px;" })</td>
+            <td>@Html.CheckBoxFor(m => m.SetAuth.SetAuthGrid[i].PRG_I_CHECK, new { checkid = "I", @style = "width: 30px; height: 30px;" })</td>
+            <td>@Html.CheckBoxFor(m => m.SetAuth.SetAuthGrid[i].PRG_U_CHECK, new { checkid = "U", @style = "width: 30px; height: 30px;" })</td>
+            <td>@Html.CheckBoxFor(m => m.SetAuth.SetAuthGrid[i].PRG_D_CHECK, new { checkid = "D", @style = "width: 30px; height: 30px;" })</td>
+            <td>@Html.CheckBoxFor(m => m.SetAuth.SetAuthGrid[i].PRG_P_CHECK, new { checkid = "P", @style = "width: 30px; height: 30px;" })</td>
+        </tr>
+    }
+}

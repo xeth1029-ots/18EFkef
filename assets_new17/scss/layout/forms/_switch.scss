@@ -1,0 +1,111 @@
+@charset "utf-8";
+//  Layout -> switch 
+// --------------------------------------------------
+.t-form-switch {
+
+  .t-form-check-input[type=checkbox] {
+    display: none;
+  }
+
+  .t-form-check-label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    width: 3rem;
+    max-width: 3rem;
+    margin-bottom: 0;
+    height: 1.5rem;
+    background-color: $grey-200;
+    border-radius: 5rem;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: $white;
+      border-radius: 2rem;
+      box-shadow: 0 0.1875rem 0.375rem 0 rgba(140, 152, 164, 0.24);
+      transition: 0.125s all ease-in;
+    }
+  }
+
+  .t-form-check-input {
+    &:checked {
+
+      &.disabled~.t-form-check-label,
+      &:disabled~.t-form-check-label {
+        cursor: $cursor-disabled;
+        @include opacity(0.65);
+        box-shadow: none;;
+      }
+
+      + {
+
+        .t-form-check-label,
+        .t-form-check-input+.t-form-check-label {
+          background: $info;
+        }
+      }
+
+      + {
+
+        .t-form-check-label:before,
+        .t-form-check-input+.t-form-check-label:before {
+          content: attr(data-yes);
+          font-size: .875rem;
+          font-weight: 400;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0.75rem;
+          right: auto;
+          color: $white;
+        }
+
+        .t-form-check-label:after,
+        .t-form-check-input+.t-form-check-label:after {
+          left: calc(100% - 0.25rem);
+          transform: translate(-100%, -50%);
+        }
+      }
+    }
+
+    &.disabled~.t-form-check-label,
+    &:disabled~.t-form-check-label {
+      cursor: $cursor-disabled;
+      @include opacity(0.65);
+      box-shadow: none;;
+    }
+
+    + {
+
+      .t-form-check-label:before,
+      .t-form-check-input+.t-form-check-label:before {
+        content: attr(data-no);
+        font-size: .875rem;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0.75rem;
+        color: $grey;
+      }
+    }
+  }
+
+  .t-form-check-input:not(:disabled) {
+    .t-form-check-label:active:after {
+      width: 3rem;
+    }
+  }
+
+  &:disabled~.t-form-check-label {
+    cursor: $cursor-disabled;
+    @include opacity(0.65);
+    box-shadow: none;;
+  }
+}

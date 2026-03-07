@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+//  Symbols  Progress
+// --------------------------------------------------
+
+.t-resume-progress,
+.t-applys-progress {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+
+  .t-progress-wrap {
+    border-radius: $border-radius;
+    margin-top: 0.5rem;
+    border: $white 2px solid;
+  }
+
+  .t-applys-txt {
+    font-size: 0.875rem;
+
+    strong {
+      color: $primary-600;
+      font-size: 125%;
+      margin-right: .5rem;
+    }
+  }
+}
+
+.t-progress-container {
+  flex: 1 1 auto;
+
+  .t-progress-wrap {
+    border-radius: $border-radius;
+    margin-top: 0.5rem;
+    border: $white 2px solid;
+  }
+
+  .t-progress-txt {
+    font-size: 0.875rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    strong {
+      color: $primary-600;
+      font-size: 125%;
+      margin-right: .5rem;
+    }
+  }
+}
+
+// .t-progress-wrap {
+//   width: 100%;
+//   height: .5rem;
+//   border-radius: $border-radius-sm;
+//   overflow: hidden;
+//   background-color: _var("grey-50", $grey-50);
+//   margin: .5rem 0;
+
+//   .t-progress-bar {
+//     display: block;
+//     height: inherit;
+//     border-radius: $border-radius-sm;
+//     width: 0;
+//     background-color: $primary;
+//   }
+// }

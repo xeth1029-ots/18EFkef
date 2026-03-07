@@ -1,0 +1,306 @@
+@charset "utf-8";
+
+//  Mixins > Text animation
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// @include text-animation;
+@mixin text-animation {
+  animation: text-animation 1.5s ease-in-out infinite;
+
+  @keyframes text-animation {
+    0% {
+      transform: translateY(0);
+      text-shadow: 0 0 0 #0c2ffb, 0 0 0 #2cfcfd,  0 0 0 #fb203b,  0 0 0 #fefc4b;
+    }
+
+    20% {
+      transform: translateY(-1em);
+      text-shadow: 0 0.125em 0 #0c2ffb, 0 0.25em 0 #2cfcfd,  0 -0.125em 0 #fb203b,  0 -0.25em 0 #fefc4b;
+    }
+
+    40% {
+      transform: translateY(0.5em);
+      text-shadow: 0 -0.0625em 0 #0c2ffb, 0 -0.125em 0 #2cfcfd,  0 0.0625em 0 #fb203b,  0 0.125em 0 #fefc4b;
+    }
+
+    60% {
+      transform: translateY(-0.25em);
+      text-shadow: 0 0.03125em 0 #0c2ffb, 0 0.0625em 0 #2cfcfd,  0 -0.03125em 0 #fb203b,  0 -0.0625em 0 #fefc4b;
+    }
+
+    80% {
+      transform: translateY(0);
+      text-shadow: 0 0 0 #0c2ffb, 0 0 0 #2cfcfd,  0 0 0 #fb203b,  0 0 0 #fefc4b;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+
+// .t-glitch {
+//   &:before,
+//   &:after {
+//     content: attr(data-text);
+//     position: absolute;
+//     width: 100%;
+//     top: 0;
+//     color: #222222;
+//     background: transparent;
+//     overflow: hidden;
+//   }
+
+//   &:before {
+//     left: -1px;
+//     text-shadow: 1px 0 green;
+//   }
+
+//   &:after {
+//     left: 1px;
+//     text-shadow: -1px 0 yellow;
+//     animation: noise-anim 3s infinite linear alternate-reverse;
+//   }
+
+//   /* animation:noise-anim-2 3s infinite linear alternate-reverse; */
+// }
+
+// @keyframes noise-anim {
+//   0% {
+//     clip: rect(75px, 9999px, 66px, 0);
+//   }
+
+//   10% {
+//     clip: rect(54px, 9999px, 72px, 0);
+//   }
+
+//   20% {
+//     clip: rect(87px, 9999px, 48px, 0);
+//   }
+
+//   30% {
+//     clip: rect(96px, 9999px, 59px, 0);
+//   }
+
+//   40% {
+//     clip: rect(20px, 9999px, 51px, 0);
+//   }
+
+//   50% {
+//     clip: rect(33px, 9999px, 8px, 0);
+//   }
+
+//   60% {
+//     clip: rect(34px, 9999px, 49px, 0);
+//   }
+
+//   70% {
+//     clip: rect(90px, 9999px, 5px, 0);
+//   }
+
+//   80% {
+//     clip: rect(59px, 9999px, 19px, 0);
+//   }
+
+//   90% {
+//     clip: rect(95px, 9999px, 29px, 0);
+//   }
+
+//   100% {
+//     clip: rect(4px, 9999px, 44px, 0);
+//   }
+// }
+
+// @keyframes noise-anim-2 {
+//   0% {
+//     clip: rect(61px, 9999px, 46px, 0);
+//   }
+
+//   10% {
+//     clip: rect(71px, 9999px, 12px, 0);
+//   }
+
+//   20% {
+//     clip: rect(41px, 9999px, 50px, 0);
+//   }
+
+//   30% {
+//     clip: rect(61px, 9999px, 9px, 0);
+//   }
+
+//   40% {
+//     clip: rect(6px, 9999px, 56px, 0);
+//   }
+
+//   50% {
+//     clip: rect(90px, 9999px, 14px, 0);
+//   }
+
+//   60% {
+//     clip: rect(25px, 9999px, 33px, 0);
+//   }
+
+//   70% {
+//     clip: rect(7px, 9999px, 27px, 0);
+//   }
+
+//   80% {
+//     clip: rect(8px, 9999px, 84px, 0);
+//   }
+
+//   90% {
+//     clip: rect(100px, 9999px, 92px, 0);
+//   }
+
+//   100% {
+//     clip: rect(63px, 9999px, 58px, 0);
+//   }
+// }
+
+// .t-brightenup {
+//   animation: brightenup 3s;
+//   animation-iteration-count: 1;
+//   animation-fill-mode: forwards;
+//   animation-timing-function: ease-in;
+// }
+
+// @keyframes brightenup {
+//   from {
+//     filter: brightness(100%);
+//   }
+
+//   to {
+//     filter: brightness(150%);
+//   }
+// }
+
+// // .t-glitch:before {
+// //     content: attr(data-text);
+// //     position: absolute;
+// //     overflow: hidden;
+// //     left: -1px;
+// //     clip: rect(0, 420px, 0, 0);
+// //     text-shadow: 1px 0 #fff;
+// //     animation: pq-noise-2 2s infinite linear alternate-reverse;
+// // }
+
+// @keyframes pq-noise-2 {
+//   0% {
+//     clip: rect(224px, 9999px, 352px, 0);
+//   }
+
+//   5% {
+//     clip: rect(331px, 9999px, 409px, 0);
+//   }
+
+//   10% {
+//     clip: rect(6px, 9999px, 235px, 0);
+//   }
+
+//   15% {
+//     clip: rect(170px, 9999px, 277px, 0);
+//   }
+
+//   20% {
+//     clip: rect(393px, 9999px, 50px, 0);
+//   }
+
+//   25% {
+//     clip: rect(142px, 9999px, 401px, 0);
+//   }
+
+//   30% {
+//     clip: rect(411px, 9999px, 376px, 0);
+//   }
+
+//   35% {
+//     clip: rect(298px, 9999px, 193px, 0);
+//   }
+
+//   40% {
+//     clip: rect(224px, 9999px, 47px, 0);
+//   }
+
+//   45% {
+//     clip: rect(107px, 9999px, 220px, 0);
+//   }
+
+//   50% {
+//     clip: rect(37px, 9999px, 297px, 0);
+//   }
+
+//   55% {
+//     clip: rect(146px, 9999px, 279px, 0);
+//   }
+
+//   60% {
+//     clip: rect(156px, 9999px, 70px, 0);
+//   }
+
+//   65% {
+//     clip: rect(56px, 9999px, 415px, 0);
+//   }
+
+//   70% {
+//     clip: rect(277px, 9999px, 327px, 0);
+//   }
+
+//   75% {
+//     clip: rect(201px, 9999px, 65px, 0);
+//   }
+
+//   80% {
+//     clip: rect(352px, 9999px, 199px, 0);
+//   }
+
+//   85% {
+//     clip: rect(275px, 9999px, 266px, 0);
+//   }
+
+//   90% {
+//     clip: rect(387px, 9999px, 30px, 0);
+//   }
+
+//   95% {
+//     clip: rect(49px, 9999px, 160px, 0);
+//   }
+
+//   100% {
+//     clip: rect(285px, 9999px, 64px, 0);
+//   }
+// }
+
+// // <h3 class="t-typing ">
+// //   <div class="t-type-bubble t1"></div>
+// //   <div class="t-type-bubble t2"></div>
+// //   <div class="t-type-bubble t3"></div>
+// // </h3>
+
+// .t-typing ..t-type-bubble.t1 {
+//   animation: istyping 1s infinite linear;
+// }
+
+// .t-typing .t-type-bubble.t2 {
+//   animation: istyping 1.5s infinite linear;
+// }
+
+// .t-typing .t-type-bubble.t3 {
+//   animation: istyping1 0.75s infinite linear;
+// }
+
+// @keyframes istyping {
+//   0% {
+//     background-color: gray;
+//   }
+
+//   50% {
+//     background-color: rgba(128, 128, 128, 0.2);
+//   }
+
+//   100% {
+//     background-color: gray;
+//   }
+// }

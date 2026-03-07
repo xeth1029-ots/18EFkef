@@ -1,0 +1,352 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A3.Models;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Models;
+@model C401MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+    string TheWidth = "width:250px";
+    string TheWidth2 = "width:530px";
+    // 是否可以修改
+    bool isCanEdit;
+    if (Model.Detail.IsNew) { isCanEdit = true; }  // 新增模式，都可以修改
+    else
+    {
+        string MeetingDate = Model.Detail.MeetingDateE.TONotNullString();
+        string MeetingTime = Model.Detail.TimeE.TONotNullString();
+        if (MeetingDate == "")
+        {
+            MeetingDate = Model.Detail.MeetingDateS.TONotNullString();
+            MeetingTime = Model.Detail.TimeS.TONotNullString();
+        }
+        DateTime tmpDT = DateTime.Parse(MeetingDate + " " + MeetingTime);
+        SessionModel sm = SessionModel.Get();
+        // 是否可以修改 = (會議迄日 >= 現在) & 只可以修改自己分署資料
+        isCanEdit = (tmpDT != DateTime.MinValue && tmpDT >= DateTime.Now) && (sm.UserInfo.User.UNITID == Model.Detail.CreatedUnit);
+    }
+}
+
+@using (Html.BeginForm("Save", "C401M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Detail.IsNew)
+    @Html.HiddenFor(x => x.Detail.Seq)
+    @Html.HiddenFor(x => x.Detail.Year)
+    @Html.HiddenFor(x => x.Detail.CreatedAccount)
+    @Html.HiddenFor(x => x.Detail.CreatedDatetime)
+    @Html.HiddenFor(x => x.Detail.UpdatedAccount)
+    @Html.HiddenFor(x => x.Detail.UpdatedDatetime)
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">會議報名管理</h3>
+                                <p class="bt-section-para">提供管理者可針對會議活動進行新增、修改等功能管理</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm" onclick="doSave()" id="SaveBtn">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    儲存
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt" id="DisabledAll_Mst">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MeetingType, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.MeetingType, new SelectList(Model.Detail.MeetingType_list, "Value", "Text", Model.Detail.MeetingType), new { @class = "t-form-control ml-4", style = TheWidth })
+                                        @Html.HiddenFor(m => m.Detail.MeetingType)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MeetingName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.MeetingName, new { size = "30", maxlength = "200", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.MeetingName)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("日期", new { @class = "t-form-label" })
+                                        @Html.DatePickerTWFor(m => m.Detail.MeetingDateS_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.DatePickerTWFor(m => m.Detail.MeetingDateE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        @Html.HiddenFor(m => m.Detail.MeetingDateS_AD)
+                                        @Html.HiddenFor(m => m.Detail.MeetingDateE_AD)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("時間", new { @class = "t-form-label" })
+                                        <input type="time" id="Detail_TimeS" name="Detail.TimeS" class="t-form-control ml-4" data-val-required="時間(起) 欄位是必要項。" value="@Model.Detail.TimeS">
+                                        <input type="time" id="Detail_TimeE" name="Detail.TimeE" class="t-form-control ml-4" data-val-required="時間(迄) 欄位是必要項。" value="@Model.Detail.TimeE">
+                                        @Html.HiddenFor(m => m.Detail.TimeS)
+                                        @Html.HiddenFor(m => m.Detail.TimeE)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Days, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.Days, new { type = "number", @class = "t-form-control ml-4", style = TheWidth })
+                                        @Html.HiddenFor(m => m.Detail.Days)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Location, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.Location, new { size = "30", maxlength = "200", @class = "t-form-control ml-4", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail.Location)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("郵遞區號", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.PostalCode1, new { type = "number", maxlength = "3", @class = "t-form-control ml-4", style = TheWidth })
+                                        @*&nbsp;&nbsp;&nbsp;-*@
+                                        @Html.TextBoxFor(m => m.Detail.PostalCode2, new { type = "number", maxlength = "3", @class = "t-form-control ml-4", style = TheWidth })
+                                        @Html.HiddenFor(m => m.Detail.PostalCode1)
+                                        @Html.HiddenFor(m => m.Detail.PostalCode2)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("地址", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.Address, new { size = "30", maxlength = "500", @class = "t-form-control ml-4", required = "" })
+                                        @Html.HiddenFor(m => m.Detail.Address)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.MaximumPeople, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.MaximumPeople, new { type = "number", @class = "t-form-control ml-4", style = TheWidth })
+                                        @Html.HiddenFor(m => m.Detail.MaximumPeople)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("報名日期時間(起)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                        @Html.DatePickerTWFor(m => m.Detail.SignUpDateS_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        <input type="time" id="Detail_SignUpDateS_Time" name="Detail.SignUpDateS_Time" class="t-form-control ml-4" data-val-required="報名日期時間(起) 欄位是必要項。" value="@Model.Detail.SignUpDateS_Time">
+                                        @Html.HiddenFor(m => m.Detail.SignUpDateS_AD)
+                                        @Html.HiddenFor(m => m.Detail.SignUpDateS_Time)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("報名日期時間(迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                        @Html.DatePickerTWFor(m => m.Detail.SignUpDateE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        <input type="time" id="Detail_SignUpDateE_Time" name="Detail.SignUpDateE_Time" class="t-form-control ml-4" data-val-required="報名日期時間(迄) 欄位是必要項。" value="@Model.Detail.SignUpDateE_Time">
+                                        @Html.HiddenFor(m => m.Detail.SignUpDateE_AD)
+                                        @Html.HiddenFor(m => m.Detail.SignUpDateE_Time)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("上架日期時間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                        @Html.DatePickerTWFor(m => m.Detail.MeetingRelease_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        <input type="time" id="Detail_MeetingRelease_Time" name="Detail.MeetingRelease_Time" class="t-form-control ml-4" data-val-required="上架日期時間 欄位是必要項。" value="@Model.Detail.MeetingRelease_Time">
+                                        @Html.HiddenFor(m => m.Detail.MeetingRelease_AD)
+                                        @Html.HiddenFor(m => m.Detail.MeetingRelease_Time)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.CreatedUnitName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.CreatedUnitName, new { @class = "t-form-control ml-4", @readonly = true, @disabled = true })
+                                        @Html.HiddenFor(m => m.Detail.CreatedUnit)
+                                        @Html.HiddenFor(m => m.Detail.CreatedUnitName)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Remark, new { @class = "t-form-label" })
+                                        <textarea class="t-form-control ml-4" cols="20" data-val="true" data-val-required="會議說明 欄位是必要項。" id="Detail_Remark" name="Detail.Remark" rows="3">@Model.Detail.Remark</textarea>
+                                        @Html.HiddenFor(m => m.Detail.Remark)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PicName, new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.PicName_FILE, new { type = "file", @class = "t-form-control ml-4", accept = ".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff" })
+                                        @Html.HiddenFor(m => m.Detail.PicName)
+                                    </div>
+                                    <br />
+                                    @if (Model.Detail.PicName.TONotNullString() == "")
+                                    {
+                                        <div>- 無 -</div>
+                                    }
+                                    else
+                                    {
+                                        string tmpPic = new AMDAO().UploadPathC301M + Model.Detail.PicName.TONotNullString();
+                                        <a href="@tmpPic" download="@Model.Detail.PicName" onclick="doLog('@Model.Detail.PicName', '@Model.Detail.PicName')">檔案下載</a>
+                                    }
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PicHint, new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                        @Html.TextBoxFor(m => m.Detail.PicHint, new { size = "30", maxlength = "40", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.PicHint)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.PicAlign, new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                        @Html.DropDownListFor(m => m.Detail.PicAlign, new SelectList(Model.Detail.PicAlign_list, "Value", "Text", Model.Detail.PicAlign), new { @class = "t-form-control ml-4", style = TheWidth })
+                                        @Html.HiddenFor(m => m.Detail.PicAlign)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 附件明細 -->
+                <div class="col-sm-12" id="DisabledAll_Det">
+                    <div class="t-panel bt-section-result">
+                        <div class="bt-section-heading">附件檔案</div>
+                        <div style="margin-bottom: 10px">
+                            @Html.TextBoxFor(m => m.Detail._UPLOAD_FILE, new { type = "file", accept = ".doc, .docx, .ppt, .pdf, .odt, .odp" })
+                            <button type="button" class="btn btn-info" onclick="doUpload()" id="DetUploadBtn">上傳檔案</button>
+                        </div>
+                        <div class="t-table-cnt t-table-responsive table--dark">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                <thead>
+                                    <tr>
+                                        <th align="left" width="10%">項次</th>
+                                        <th align="left" width="20%">上傳檔原檔名</th>
+                                        <th align="left" width="20%">上傳檔儲存檔名</th>
+                                        <th align="left" width="20%">檔案格式</th>
+                                        <th align="left" width="20%">異動時間</th>
+                                        <th align="left" width="10%">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="DetailAttachedsRows">
+                                    @Html.Partial("_DetailAttachedsRows", Model)
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $("#Detail_PicName_FILE").on("change", function () {
+        let fileType = "." + document.getElementById("Detail_PicName_FILE").value.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();
+        let acceptType = document.getElementById("Detail_PicName_FILE").accept.toLowerCase();
+        //console.log(fileType);
+        //console.log(acceptType);
+        //console.log(acceptType.indexOf(fileType));
+        if (acceptType.indexOf(fileType) === -1) {
+            blockAlert("請選擇正確的檔案格式！ (" + acceptType + ")");
+            document.getElementById("Detail_PicName_FILE").value = null;
+        }
+    });
+
+    $("#Detail__UPLOAD_FILE").on("change", function () {
+        let fileType = "." + document.getElementById("Detail__UPLOAD_FILE").value.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();
+        let acceptType = document.getElementById("Detail__UPLOAD_FILE").accept.toLowerCase();
+        //console.log(fileType);
+        //console.log(acceptType);
+        //console.log(acceptType.indexOf(fileType));
+        if (acceptType.indexOf(fileType) === -1) {
+            blockAlert("請選擇正確的檔案格式！ (" + acceptType + ")");
+            document.getElementById("Detail__UPLOAD_FILE").value = null;
+        }
+    });
+
+    $(document).ready(function () {
+        $("#Detail_MeetingType").attr("style", "pointer-events:none;opacity:.66");
+        if (@isCanEdit.ToString().ToLower() == false) {
+            $("#SaveBtn").attr("readonly", "true");
+            $("#SaveBtn").attr("disabled", "true");
+            $("#DetUploadBtn").attr("readonly", "true");
+            $("#DetUploadBtn").attr("disabled", "true");
+            $("#DetailAttachedsRows button").attr("readonly", "true");
+            $("#DetailAttachedsRows button").attr("disabled", "true");
+        }
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save")').submit();
+    }
+
+    // 上傳檔案
+    function doUpload() {
+        var url = "@Url.Action("DetailAttachedsUpload", "C401M")";
+        var model = new FormData($('form').get(0));
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: model,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (resp) {
+                if (resp) {
+                    //debugger;
+                    document.getElementById('Detail__UPLOAD_FILE').value = null;
+                    $("#DetailAttachedsRows").html(resp);
+                }
+            }
+        });
+    }
+
+    // 刪除
+    function doAttachedsDelete(Seq, RowId) {
+        blockConfirm("您確定要刪除此筆資料嗎？" + "項次：" + RowId, null, function () {
+            $("#Model_Detail_Attacheds_" + Seq).attr("style", "opacity:.66");
+            $("#Model_Detail_Attacheds_BtnDelete_" + Seq).attr("style", "display:none;");
+            $("#Model_Detail_Attacheds_BtnCancel_" + Seq).removeAttr("style");
+            $("#Model_Detail_Attacheds_isActive_" + Seq).val("False");
+        });
+    }
+
+    // 復原刪除
+    function doAttachedsCancel(Seq, RowId) {
+        $("#Model_Detail_Attacheds_" + Seq).removeAttr("style");
+        $("#Model_Detail_Attacheds_BtnDelete_" + Seq).removeAttr("style");
+        $("#Model_Detail_Attacheds_BtnCancel_" + Seq).attr("style", "display:none;");
+        $("#Model_Detail_Attacheds_isActive_" + Seq).val("True");
+    }
+
+    function doLog(Org, New) {
+        $.ajax({
+            url: "@Url.Action("FileDownloadLog", "Backend", new { area = "" })",
+            data: { "Func": "A3/C401M", "Org": Org, "New": New },
+            dataType: "json",
+            method: "post",
+            success: function (data) { },
+            error: function (data) { }
+        });
+    }
+
+</script>

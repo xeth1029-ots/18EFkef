@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+//  Symbols -> Calender
+// --------------------------------------------------
+.t-calender {
+  position: relative;
+  border-radius: 1.25rem;
+  background-color: _var("white", $white);
+  box-shadow: 0 0 0.625rem 0.625rem $border;
+
+  // padding: 1.25rem;
+  .t-calender-header {
+    background-color: $primary-400;
+    padding: 1.25rem;
+    border-radius: 1.25rem 1.25rem 0 0;
+
+    .calender-year {
+      color: _var("white", $white);
+      display: inline-flex;
+      align-items: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .calender-mouth {
+      color: _var("white", $white);
+      display: inline-flex;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-left: 1.25rem;
+    }
+  }
+
+  .t-calender-sub-header {}
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.calender-content {
+  display: grid;
+  grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+  place-items: center;
+  row-gap: 1rem;
+  padding: 1.25rem;
+  text-align: center;
+  width: 100%;
+  font-size: 1.125rem;
+
+  > span {
+    color: $primary;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-calender-day {
+  text-align: center;
+  border-radius: 50rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($grey-50, 0.66);
+  color: $grey-600;
+  cursor: pointer;
+  transition: background-color 0.5s;
+
+  &.disabled {
+    color: #dfdfdf;
+    cursor: not-allowed;
+  }
+
+  &.current {
+    background-color: #f3f9fe;
+    color: $primary-200;
+  }
+
+  &.active {
+    background-color: $primary;
+    color: _var("white", $white);
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-bg-day {
+  position: absolute;
+  left: 75%;
+  transform: translate(-50%, -12rem);
+  font-size: 12rem;
+  color: $primary-100;
+  letter-spacing: 0.125rem;
+  line-height: 1;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-bg-months {
+  color: $black;
+  position: relative;
+  z-index: 2;
+  font-size: 3rem;
+  margin-top: -65px;
+  text-shadow: -2px -2px 1rem $primary-200;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-date {
+  position: relative;
+  box-shadow: none;
+  border: 2px solid _var("grey-50", $grey-50);
+
+  .t-title {
+    position: relative;
+    font-size: 1.25rem;
+  }
+
+  .t-sub-title {
+    color: $black;
+    font-size: 1.0625rem;
+  }
+
+  .t-time {
+    color: $grey-400;
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+
+  .t-box-group {
+    background-color: $primary-100;
+    display: flex;
+    line-height: 1;
+    padding: 2rem 0.5rem;
+    border-radius: $border-radius;
+    text-align: center;
+
+    .t-day {
+      font-size: 2rem;
+      font-weight: 700;
+
+      @include text-stroke($width: 1px, $fill: currentColor, $stroke: currentColor);
+    }
+
+    .t-months {
+      font-size: 0.875rem;
+    }
+
+    .t-week {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-calender-buttons {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}

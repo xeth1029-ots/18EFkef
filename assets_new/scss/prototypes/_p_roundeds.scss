@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+//   Prototypes -> Roundeds
+//====================================================
+// :root {
+//   --borderRadius: 1rem;
+// }
+// .t- {
+//   &br-all {
+//     border-radius: var(--borderRadius);
+//   }
+
+//   &br-top-left {
+//     border-top-left-radius: var(--borderRadius);
+//   }
+
+//   &br-top-right {
+//     border-top-right-radius: var(--borderRadius);
+//   }
+
+//   &br-bottom-left {
+//     border-bottom-left-radius: var(--borderRadius);
+//   }
+
+//   &br-bottom-right {
+//     border-bottom-right-radius: var(--borderRadius);
+//   }
+
+//   &br-four-value {
+//     border-radius: var(--borderRadius) calc(var(--borderRadius)*2) calc(var(--borderRadius)*3) calc(var(--borderRadius)/2);
+//   }
+
+//   &br-three-value {
+//     border-radius: var(--borderRadius) calc(var(--borderRadius)*2) calc(var(--borderRadius)*3);
+//   }
+
+//   &br-two-value {
+//     border-radius: var(--borderRadius) calc(var(--borderRadius)*2);
+//   }
+
+//   &br-slash-one {
+//     border-radius: var(--borderRadius) / calc(var(--borderRadius)*3);
+//   }
+
+//   &br-slash-two {
+//     border-radius: calc(var(--borderRadius)*3) / var(--borderRadius);
+//   }
+
+//   &br-slash-three {
+//     border-radius: calc(var(--borderRadius)*4) calc(var(--borderRadius)*3) calc(var(--borderRadius)*2) (calc(var(--borderRadius)*1) / calc(var(--borderRadius)*1)) calc(var(--borderRadius)*2) calc(var(--borderRadius)*3) calc(var(--borderRadius)*4);
+//   }
+// }
+// --radius-1: 2px;
+// --radius-2: 4px;
+// --radius-3: 1rem;
+// --radius-4: 2rem;
+// --radius-5: 4rem;
+// --radius-6: 8rem;
+// --radius-round: 1e5px;
+// --radius-blob-1: 30% 70% 70% 30%/53% 30% 70% 47%;
+// --radius-blob-2: 53% 47% 34% 66%/63% 46% 54% 37%;
+// --radius-blob-3: 37% 63% 56% 44%/49% 56% 44% 51%;
+// --radius-blob-4: 63% 37% 37% 63%/43% 37% 63% 57%;
+// --radius-blob-5: 49% 51% 48% 52%/57% 44% 56% 43%;
+
+.t-rounded,
+.t-pill {
+  border-radius: 1e5px!important;
+}
+
+@for $i from 0 through 25 {
+  .t-rounded-#{$i * 4} {
+    border-radius: #{$i * 4}px !important;
+  }
+
+  %t-rounded-#{$i * 4} {
+    border-radius: #{$i * 4}px !important;
+  }
+}

@@ -1,0 +1,198 @@
+@charset "utf-8";
+
+//  Symbols -> list card
+// --------------------------------------------------
+
+.t-list-card.t-list-card-user {
+  .t-list-card-lt {
+    align-self: normal;
+  }
+
+  .t-list-card-ct {
+    padding-right: 1rem;
+    position: relative;
+    display: flex;
+
+    .t-user-card-img-cnt {
+      flex: 0 0 auto;
+      text-align: center;
+
+      .t-resume-img {
+        margin: 0 auto;
+      }
+    }
+
+    .t-definition-list {
+      margin-bottom: 0.375rem;
+      .t-definition-term {
+        flex: 0 0 auto;
+      }
+    }
+
+    .t-user-card-cnt {
+      flex: 1 1 auto;
+      padding-left: 1rem;
+    }
+
+    .t-list-substance {
+      line-height: 1.625;
+      margin-top: 1rem;
+      padding-top: 1rem;
+
+      .t-badge {
+        &:not(:last-child) {
+          margin-right: .5rem;
+        }
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      background-color: $border;
+      width: .125rem;
+      height: 100%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .t-definition-list {
+    font-size: 0.875rem;
+    line-height: 1.625;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-list-card {
+  padding: 1.75rem 2rem 1.75rem .5rem;
+
+  @extend .t-flex;
+
+  @extend .flex-row;
+
+  @extend .flex-center;
+
+  box-shadow: none;
+  border-width: 0 0 0 0;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 0;
+  transition: $card-transition;
+
+  .t-list-card-lt {
+    width: 7.5%;
+    text-align: center;
+
+    .t-list-txt {
+      margin-top: 1rem;
+      color: $lightgrey;
+    }
+
+    .t-star {
+      @extend .t-star;
+    }
+  }
+
+  .t-list-card-rt {
+    width: 27.5%;
+    text-align: center;
+    padding-left: 1rem;
+
+    .svg-icon {
+      vertical-align: text-bottom;
+    }
+
+    .t-list-txt {
+      display: block;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      color: $grey;
+
+      b {
+        font-size: 120%;
+        color: $primary;
+      }
+    }
+  }
+
+  .t-list-card-ct {
+    width: 65%;
+    padding: 0 0.5rem;
+
+    .t-card-title {
+      color: $primary-900;
+      background: linear-gradient(to right, $primary-400, $primary-800) no-repeat left (bottom / 0) 0.25rem;
+      display: inline-flex;
+
+      @include hover {
+        color: $primary-800;
+      }
+    }
+
+    .t-list-txts {
+      &:first-of-type {
+        margin-top: .75rem;
+      }
+
+      &:not(:last-of-type) {
+        margin-bottom: .75rem;
+      }
+    }
+
+    .t-list-substance {
+      color: $grey;
+      line-height: $t-line-height-card;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px dashed $grey-200;
+
+      @include text-shorten(2);
+    }
+
+    .t-tag {
+      margin-left: 1rem;
+    }
+  }
+
+  .t-list-brands {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+
+    .t-list-brands-item {
+      a {
+        width: 3rem;
+      }
+    }
+  }
+
+  a {
+    color: $navy;
+
+    @include hover {
+      color: $navy-700;
+    }
+  }
+
+  @include hover {
+    background-color: rgba($primary-25, 0.66);
+    border-bottom: $primary-300 0.25rem solid;
+    box-shadow: 0 0.25rem 1rem $grey-200;
+    transform: scale(1.0125);
+    z-index: 1;
+
+    .t-card-title {
+      text-decoration: none;
+      background-size: 200% .125rem;
+    }
+
+    .t-list-card-lt {
+      .t-star {}
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////

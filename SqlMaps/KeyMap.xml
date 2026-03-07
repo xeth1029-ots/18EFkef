@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="KeyMap" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <resultMaps></resultMaps>
+  <cacheModel id="WKEF-cache" implementation="MEMORY">
+    <flushInterval hours="1" />
+    <property name="Type" value="WEAK" />
+  </cacheModel>
+
+  <!--
+    這個檔案專門用來定義 代碼DDL清單內容，資料來源可以是 DB 代碼表格,
+    也可以是用 Union 直接定義在這裡, 而不要寫在程式中.
+    SQL 返回結果欄位, 一律 Alias 成「CODE」與「TEXT」
+    -->
+  <statements>
+
+    <!-- 筆數條件(共用區塊) -->
+    <sql id="SQLROWNUM">
+      <![CDATA[ AND ROWNUM <= 1001 ]]>
+    </sql>
+
+    <!-- 筆數條件(共用區塊) -->
+    <sql id="SQLROWNUM2">
+      <![CDATA[ AND ROWNUM <= 2001 ]]>
+    </sql>
+
+    <!-- 取得系統功能清單 -->
+    <select id="getSYSID" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+select sysid CODE,prgname TEXT from amfuncm
+where modules = ''
+order by prgorder
+      ]]>
+    </select>
+
+    <!-- 取得模組功能清單 -->
+    <select id="getMODULES" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+select prgid CODE,prgname TEXT 
+from   amfuncm 
+where  modules <> '' 
+and    submodules = ''
+      ]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="sysid">
+            <![CDATA[ and sysid = #sysid# ]]>
+          </isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ order by prgorder ]]>
+    </select>
+
+    <select id="getUNIT_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT a.CODE, a.TEXT
+FROM CODE1 a
+WHERE a.ITEM='UNIT' AND a.CODE!='0'
+ORDER BY a.KEY1, a.CODE
+        ]]>
+    </select>
+
+    <select id="getUNIT_All_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT a.CODE, a.TEXT
+FROM CODE1 a
+WHERE a.ITEM='UNIT'
+ORDER BY a.KEY1, a.CODE
+        ]]>
+    </select>
+    <!--所屬單位清單(短) (含本署)-->
+    <select id="getUNIT_Shot_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT CODE, TEXT
+FROM (VALUES ('0','(全)'),('1','(北)'),('2','(桃)'),('3','(中)'),('4','(南)'),('5','(高)')) AS T(CODE, TEXT)
+        ]]>
+    </select>
+
+    <select id="getGRPID_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT GRPID AS CODE, GRPNAME AS TEXT
+FROM AMGRP
+		]]>
+    </select>
+
+    <select id="getMODULES_list" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT MODULES AS CODE, PRGNAME AS TEXT
+FROM AMFUNCM
+WHERE SYSID=#SYSID#
+AND MODULES<>' '
+AND SUBMODULES=' '
+AND PRGID=' '
+ORDER BY PRGORDER
+		]]>
+    </select>
+
+    <select id="getMeetingSeq_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT CAST(a.Seq as NVARCHAR) AS CODE
+,CONCAT(a.MeetingName ,' (',YEAR(a.MeetingDateS)-1911,FORMAT(a.MeetingDateS,'/M/d')
+,'~',YEAR(a.MeetingDateE)-1911,FORMAT(a.MeetingDateE,'/M/d') ,')') AS TEXT
+FROM Meeting a
+WHERE a.SignUpDateE>=GETDATE() 
+  $SelfSelect$
+        ]]>
+    </select>
+
+    <select id="getTeachUnit_List_UnitCode" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT CourseUnitCode AS CODE
+,CONCAT('【',CourseUnitCode,'】',CourseUnitName) AS TEXT
+FROM CourseUnit
+WHERE Actived='Y'
+ORDER BY CourseUnitCode, OrderBy
+        ]]>
+    </select>
+
+    <select id="getTeachUnit_List_JobACode" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT JobAbilityCode AS CODE
+,CONCAT('【',JobAbilityCode,'】',CourseUnitName ) AS TEXT
+FROM CourseUnit
+WHERE Actived='Y'
+ORDER BY JobAbilityCode, OrderBy
+        ]]>
+    </select>
+
+    <select id="getIndustry_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT IndustryCode AS CODE, IndustryName AS TEXT
+FROM IndustryMst 
+WHERE Actived='Y'
+ORDER BY OrderBy
+        ]]>
+    </select>
+
+    <select id="getEduLevel_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT EduLevel AS CODE, EduName AS TEXT
+FROM Edu
+WHERE Actived='Y'
+ORDER BY OrderBy
+			]]>
+    </select>
+
+    <select id="getExpertise_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT ExpertiseCode AS CODE, ExpertiseName AS TEXT
+FROM Expertise
+WHERE Actived='Y'
+ORDER BY RIGHT(concat(REPLICATE(N' ', 10),ExpertiseCode),10)
+			]]>
+    </select>
+
+    <select id="getReportRecordYears_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT DISTINCT	Year AS CODE,CAST(CAST(Year AS INT)-1911 AS NVARCHAR) AS TEXT
+FROM Report
+ORDER BY Year ASC
+			]]>
+    </select>
+
+    <select id="getJobAbilityCode_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT JobAbilityCode AS CODE, JobAbilityCode + ' ' + JobAbilityName AS TEXT
+FROM JobAbility
+WHERE Actived='Y'
+ORDER BY OrderBy ]]>
+    </select>
+
+    <select id="getDISTIDCode_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+    <![CDATA[
+SELECT a.CODE, a.TEXT
+FROM CODE1 a
+WHERE a.ITEM='DISTID' ]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="DISTID">
+            <![CDATA[ AND a.CODE=#DISTID# ]]>
+          </isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY a.KEY1, a.CODE ]]>
+    </select>
+
+    <select id="getCity_List" resultClass="Turbo.DataLayer.KeyMapModel" parameterClass="Hashtable" cacheModel="WKEF-cache">
+    <![CDATA[
+  SELECT a.CityCode as CODE
+  ,CONCAT(a.CityName,'全區') as TEXT
+  FROM CITY a
+  WHERE a.CityCode !='999'
+  ORDER BY a.OrderBy
+    ]]>
+    </select>
+
+  </statements>
+</sqlMap>

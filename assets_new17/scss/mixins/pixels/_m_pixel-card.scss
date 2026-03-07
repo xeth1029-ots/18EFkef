@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+//  Mixins > PixelCard
+//====================================================
+$w: 13rem;
+$f: 1.5;
+$h: $f * $w;
+$n: 7;
+$g: 1rem;
+
+@function dots($n: 2) {
+  $dots: ();
+
+  @for $i from 0 to $n {
+    $sx: ($i + 1) * 4px;
+
+    @for $j from 0 to 2 {
+      $sg: pow(-1, $j);
+      $dx: if(($i + $j) % 2 > 0, 50%, calc(50% + #{0.5 * $sx}));
+      $dy: $sx - 2px + $sg * 1px;
+
+      @for $k from 0 to 2 {
+        $dots: $dots, var(--disc) $dx calc(.5*var(--unit) + #{pow(-1, $k) * $dy})/ #{$sx} var(--unit);
+      }
+    }
+  }
+
+  @return $dots;
+}
+
+// 
+// @TODO: Add docs to mixin-name!
+//
+@mixin pixelxCard($parent: pixel-card) {
+  :root {
+    --h: #{$h};
+  }
+
+  .#{$parent} {
+    display: grid;
+    place-content: center;
+    position: relative;
+    width: var(--w);
+    height: var(--h);
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 1.0625rem $dark;
+    font-size: var(--fs, 4rem);
+
+    &:before, &:after {
+      /* use absolutely positioned pseudos covering 
+       * entire card to create dithered background */
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      border-radius: inherit;
+      content: "";
+    }
+
+    &:before {
+      /* striped background on the :before (bottom layer) */
+      background: Linear-Gradient(var(--slist0));
+    }
+
+    &:after {
+      /* masking magic on top background layer */
+      --n: calc(2*var(--dn) + 1);
+      --unit: calc(var(--h)/var(--n));
+      --stripe: linear-gradient(transparent 50%, red 0) 0 0/ 100% calc(2*var(--unit));
+      --disc: radial-gradient(circle, red .5px, transparent 1px);
+      --dots: #{dots()};
+      background: Linear-Gradient(transparent calc(50%/var(--n)), var(--slist1), transparent 0);
+      -webkit-mask: var(--stripe), var(--dots);
+      -webkit-mask-composite: xor;
+      mask: var(--stripe), var(--dots);
+      mask-composite: exclude;
+    }
+  }
+}

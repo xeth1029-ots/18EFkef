@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+//   Mixins > Symbol
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin symbol-size($size) {
+  > img {
+    width: $size;
+    height: $size;
+  }
+
+  .t-symbol-label {
+    width: $size;
+    height: $size;
+  }
+
+  &.t-symbol-fixed {
+    .t-symbol-label {
+      width: $size;
+      height: $size;
+    }
+
+    > img {
+      width: $size;
+      height: $size;
+      max-width: auto;
+    }
+  }
+
+  // Ratios
+  &.t-symbol-2by3 {
+    .t-symbol-label {
+      height: $size;
+      width: $size * divide(3, 2);
+    }
+
+    > img {
+      height: $size;
+      width: $size * divide(3, 2);
+      max-width: auto;
+    }
+  }
+}

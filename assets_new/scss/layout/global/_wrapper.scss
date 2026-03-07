@@ -1,0 +1,45 @@
+.t-wrapper {
+  position: relative;
+}
+
+// Desktop Mode
+@include media-breakpoint-only(md) {
+  // Containers
+  .container,
+  .container-xxl,
+  .container-fluid {
+    max-width: none;
+    padding: 0 get($content-spacing, desktop) !important;
+  }
+}
+
+
+// Tablet & mobile modes
+@include media-breakpoint-only(sm) {
+  // Containers
+  .container,
+  .container-xxl,
+  .container-fluid {
+    max-width: none;
+    padding: 0 get($content-spacing, tablet-and-mobile) !important;
+  }
+}
+
+
+@include media-breakpoint-only(xs) {
+  // Containers
+  .container,
+  .container-xxl,
+  .container-fluid {
+    max-width: none;
+    padding: 0 get($content-spacing, mobile) !important;
+  }
+}
+
+
+@media (min-width: $screen-xxl) {
+  .container,
+  .container-xxl {
+    max-width: $container-max-width-xxl;
+  }
+}

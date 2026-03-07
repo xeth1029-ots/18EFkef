@@ -1,0 +1,93 @@
+// Hover mixin and `$enable-hover-media-query` are deprecated.
+
+@mixin btn-hover {
+  &:hover:not(:disabled):not(.disabled):not(.btn--disabled):not([data-tu-menu-trigger="click"]):not([data-tu-menu-trigger="hover"]),
+  &.hover:not(:disabled):not(.disabled):not(.btn--disabled):not([data-tu-menu-trigger="click"]):not([data-tu-menu-trigger="hover"]) {
+    @content;
+  }
+}
+
+@mixin btn-focus {
+  &:focus:not(:disabled):not(.disabled):not(.btn--disabled),
+  &.focus:not(:disabled):not(.disabled):not(.btn--disabled),
+  &:focus-within:not(:disabled):not(.disabled):not(.btn--disabled),
+  &:focus-visible:not(:disabled):not(.disabled):not(.btn--disabled) {
+    @content;
+  }
+}
+
+@mixin btn-active {
+  &:active:not(:disabled):not(.disabled):not(.btn--disabled),
+  &.active:not(:disabled):not(.disabled):not(.btn--disabled) {
+    @content;
+  }
+}
+
+@mixin btn-disabled {
+  &:disabled,
+  &.disabled,
+  &.btn--disabled {
+    @content;
+  }
+}
+
+@mixin hover {
+  &:hover,
+  &.hover {
+    @content;
+  }
+}
+
+@mixin active {
+  &:active,
+  &.active {
+    @content;
+  }
+}
+
+@mixin focus {
+  &:focus,
+  &.focus,
+  &:focus-within,
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin disabled-readonly {
+  &[disabled],
+  &[readonly] {
+    @content;
+  }
+}
+
+@mixin disabled {
+  &[disabled],
+  &:disabled,
+  &.disabled {
+    @content;
+  }
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin plain-hover-focus {
+  &,
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin hover-focus-active {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}

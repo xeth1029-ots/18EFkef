@@ -1,0 +1,339 @@
+@charset "utf-8";
+
+// ==  Base -> Tags
+// ====================================================
+pre,
+code,
+kbd,
+samp {
+  font-family: $font-family-monospace;
+  font-size: $font-size-xs;
+  margin: 0.5rem 0;
+}
+
+a {
+  // &:not([data-decoration]):not([class*='btn']) {
+  cursor: pointer;
+  color: $link;
+  text-decoration: none;
+  transition: $transition-link;
+
+  // text-decoration-color: transparent; filter: brightness(1) contrast(1)  grayscale(1)  invert(1) saturate(1) hue-rotate(0)
+
+  @include hover {
+    color: $link-hover;
+
+    // filter: hue-rotate(180deg); text-decoration: $link-hover-decoration; transition: $transition-filter-link;
+  }
+
+
+  &[href^="http"]:empty:before {
+    content: attr(href);
+  }
+
+  // }
+
+  &[data-decoration] {
+    transition: $transition-filter-link;
+
+    @include hover {
+      filter: hue-rotate(90deg);
+      transition: $transition-filter-link;
+    }
+  }
+}
+
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+strong {
+  font-weight: 700;
+}
+
+b,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+dl,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+dd {
+  margin-inline-start: 0;
+  margin-left: 0;
+}
+
+table {
+  width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+button,
+input {
+  border-color: transparent;
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  border-color: transparent;
+  outline-color: transparent;
+  font-family: $font-family-base;
+  font-size: 100%;
+  line-height: $line-height-base;
+  margin: 0;
+  outline: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+fieldset {
+  padding: 0.35rem 0.75rem 0.625rem;
+}
+
+legend {
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+image,
+img,
+svg {
+  border-style: none;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+img {
+  border-radius: $border-radius-xs;
+}
+
+[data-unit-before]:before,
+[data-unit-after]:after {
+  display: inherit;
+  color: inherit;
+  font-size: 85%;
+  font-weight: inherit;
+}
+
+[data-unit-after]:after {
+  content: attr(data-unit-after);
+  margin-left: 0.125rem;
+}
+
+[data-unit-before]:before {
+  content: attr(data-unit-before);
+  margin-right: 0.125rem;
+}
+
+[href^='mail'] {
+  display: flex;
+  align-items: center;
+  font-family: $font-family-monospace;
+
+  &:before {
+    content: '';
+
+    @include svg-bg-icon(mail, $link, center, contain);
+
+    display: inherit;
+    width: 1.25em;
+    height: 1.25em;
+    align-items: center;
+    margin-right: 0.5em;
+  }
+}
+
+[download] {
+  display: flex;
+  align-items: center;
+  font-family: $font-family-monospace;
+
+  &:before {
+    content: '';
+
+    @include svg-bg-icon(download, $link, center, contain);
+
+    display: inherit;
+    width: 1.25em;
+    height: 1.25em;
+    align-items: center;
+    margin-right: 0.5em;
+  }
+
+  &[href*='pdf'],
+  &[href*='docx'],
+  &[href*='xls'] {
+    &:after {
+      content: '';
+      display: inherit;
+      width: 1.25em;
+      height: 1.25em;
+      align-items: center;
+      margin-left: 0.5em;
+    }
+  }
+
+  &[href*='pdf'] {
+    &:after {
+      @include svg-bg-icon(pdf, $link, center, 80%);
+    }
+  }
+
+  &[href*='docx'] {
+    &:after {
+      @include svg-bg-icon(word, $link, center, 80%);
+    }
+  }
+
+  &[href*='xls'] {
+    &:after {
+      @include svg-bg-icon(excel, $link, center, 80%);
+    }
+  }
+}
+
+[href^='tel'] {
+  display: flex;
+  align-items: center;
+  font-family: $font-family-monospace;
+
+  &:before {
+    content: '';
+
+    @include svg-bg-icon(tel, $link, center, contain);
+
+    display: inherit;
+    width: 1.25em;
+    height: 1.25em;
+    align-items: center;
+    margin-right: 0.5em;
+  }
+}
+
+[href^='https://'] {
+  display: flex;
+  align-items: center;
+  font-family: $font-family-monospace;
+
+  &:before {
+    content: '';
+
+    @include svg-bg-icon(url, $link, center, contain);
+
+    display: inherit;
+    width: 1.25em;
+    height: 1.25em;
+    align-items: center;
+    margin-right: 0.5em;
+  }
+}
+
+::selection {
+  color: $primary;
+  background-color: rgba($primary, 0.12);
+}

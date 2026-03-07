@@ -1,0 +1,99 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A2.Models;
+@model C302MFormModel
+
+<style>
+    .t-table-cnt.table--dark {
+        /*background-color: transparent;*/
+    }
+
+    .t-table-cnt .t-table tbody td {
+        padding: 0.40rem 0.75rem 0.40rem 0.75rem;
+        background-color: transparent;
+    }
+</style>
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        string MeetDate = "";
+        if (item.MeetingDateS.TONotNullString() != "") { MeetDate = item.MeetingDateS.TONotNullString(); }
+        if (item.MeetingDateE.TONotNullString() != "") { MeetDate = item.MeetingDateE.TONotNullString(); }
+        bool isShowCancelBtn = false;
+        if (MeetDate != "")
+        {
+            DateTime MeetDateTime = DateTime.Parse(MeetDate);
+            isShowCancelBtn = (DateTime.Now <= MeetDateTime);
+        }
+
+        <tr style="display: none;">
+            <td>
+                <tabe>
+                    <tr class="spacer"></tr>
+                    <tr class="spacer"></tr>
+                    <tr class="spacer"></tr>
+                    <tr>
+                        <td>類別：</td>
+                        <td>@item.MeetingTypeName</td>
+                        <td>舉辦單位：</td>
+                        <td>@item.UnitName</td>
+                    </tr>
+                    <tr>
+                        <td>會議名稱：</td>
+                        <td>
+                            <a href="javascript:;" onclick="doDetail('@item.Seq')">
+                                @item.MeetingName
+                            </a>
+                        </td>
+                        <td>會議日期：</td>
+                        <td>@item.MeetingDateName</td>
+                    </tr>
+                    <tr>
+                        <td>地址：</td>
+                        <td colspan="3">@item.Location</td>
+                    </tr>
+                    <tr>
+                        <td>報名日期：</td>
+                        <td>@item.SignUpDatetime</td>
+                        <td>報名期間：</td>
+                        <td>@item.SignUpDateName</td>
+                    </tr>
+                    <tr>
+                        <td>報名狀況：</td>
+                        <td>@item.SignUpStr</td>
+                        <td>取消報名：</td>
+                        <td>
+                            <button type="button" class="btn btn-info" onclick="doDetail('@item.Seq')">檢視</button>
+                            @if (isShowCancelBtn)
+                            {
+                                <button type="button" class="btn btn-danger" onclick="doSaveUnSign('@item.Seq')">取消報名</button>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>實際出席狀況：</td>
+                        <td>@item.isAttend_Name</td>
+                        @if (item.MeetingType == "2")
+                        {
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        }
+                        else
+                        {
+                            <td>是否通過測驗：</td>
+                            <td>@item.isTestPassed_Name</td>
+                        }
+                    </tr>
+                    <tr class="spacer"></tr>
+                    <tr class="spacer"></tr>
+                    <tr class="spacer"></tr>
+                </tabe>
+            </td>
+        </tr>
+    }
+}

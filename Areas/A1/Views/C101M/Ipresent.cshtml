@@ -1,0 +1,162 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A1.Models;
+@model C101MViewModel
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.TitleItem = "課程師資介紹";
+
+    ShareCodeListModel model = new ShareCodeListModel();
+    var itemAll = new SelectListItem() { Text = "全部", Value = "" };
+
+    //地區類別選單 City_list1
+    IList<SelectListItem> City_list1 = new List<SelectListItem>();
+    City_list1 = model.City_list1;
+    City_list1.Insert(0, itemAll);
+
+    //地區類別選單 City_list1
+    IList<SelectListItem> City_list2 = new List<SelectListItem>();
+    City_list2 = model.City_list2;
+    City_list2.Insert(0, itemAll);
+}
+
+@using (Html.BeginForm("Ipresent", "C101M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <!-- breadcrumbs -->
+    <section class="t-breadcrumbs-section">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <ul class="t-breadcrumbs">
+                    <li class="t-breadcrumbs-item">
+                        <a href="#C" title="中央功能區塊, 快速鍵: Alt+C " id="AC" accesskey="C" name="C" class="quicklink t-header-top-list-link">:::</a>
+                        目前位置： <a class="t-link" href="~/">首頁</a>
+                    </li>
+                    <li class="t-breadcrumbs-item">@ViewBag.TitleItem</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- searchBar -->
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <!--<div class="mask mask_noise_sm"></div>-->
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">@ViewBag.TitleItem</h3>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                <div class="t-form t-txt-left ">
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Form.Keyword, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Form.Keyword, new { size = "30", maxlength = "30", @class = "t-form-control ml-4", placeholder = "姓名 (中、英文)、專長 / 領域", title = "師資搜尋關鍵字：姓名 (中、英文)、專長 / 領域" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Form.TeachUnit, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Form.TeachUnit, new SelectList(Model.Form.TeachUnit_list, "Value", "Text", Model.Form.TeachUnit), new { @class = "t-form-control ml-4", style = "width:100%", title = "師資搜尋授課單元" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Form.Industry, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Form.Industry, new SelectList(Model.Form.Industry_list, "Value", "Text", Model.Form.Industry), new { @class = "t-form-control ml-4", style = "width:100%", title = "師資搜尋授課產業別" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            <label for="ddlTeachArea" class="t-form-label">授課區域</label>
+                                            @Html.DropDownListFor(m => m.Form.ddlTeachArea, City_list1, new { @class = "t-form-control ml-4", style = "width:98%", title = "師資搜尋授課區域" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            <label for="ddlLiveArea" class="t-form-label">居住地</label>
+                                            @Html.DropDownListFor(m => m.Form.ddlLiveArea, City_list2, new { @class = "t-form-control ml-4", style = "width:98%", title = "師資搜尋居住地" })
+                                        </div>
+                                    </div>
+                                    @*<div class="t-form-inline">
+                                            <div class="t-form-group">
+                                                @Html.LabelFor(m => m.Form.TeachArea, new { @class = "t-form-label", @for = "s_areaPicker1" })
+                                                @Html.TextBoxFor(m => m.Form.TeachArea, new { size = "30", maxlength = "30", @class = "t-form-control ml-4", id = "s_areaPicker1", title = "師資搜尋授課區域" })
+                                            </div>
+                                            <div class="t-form-group">
+                                                @Html.LabelFor(m => m.Form.LiveArea, new { @class = "t-form-label", @for = "s_areaPicker2" })
+                                                @Html.TextBoxFor(m => m.Form.LiveArea, new { size = "30", maxlength = "30", @class = "t-form-control ml-4", id = "s_areaPicker2", title = "師資搜尋居住地" })
+                                            </div>
+                                        </div>*@
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()" onkeypress="doSearchClear()" title="點擊以清空條件">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()" onkeypress="doSearch()" title="點擊以搜尋師資">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*  舊版 <div class="col-sm-12"><div class="t-panel" style="margin-top: 0px;"><section class="t-teachers-list" style="margin-top: 0px;"><div class="bt-section-header t-flex align-items-baseline justify-content-start"><div class="bt-section-heading">查詢結果&nbsp;(@Model.Grid.ToCount())</div></div><div style="margin-bottom: 30px;">@Html.Partial("_PagingLink", Model.Form)</div><!-- 為了分頁，強行硬塞 --><table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table"><thead><tr><th></th></tr></thead><tbody id="rows">@Html.Partial("_GridRows2")</tbody></table></section></div></div> *@
+                @* 新版 *@
+                <div class="col-sm-12">
+                    <div class="t-panel" style="margin-top: 0px; margin-bottom: 10rem;">
+                        <section class="t-teachers-list" style="margin-top: 0px; padding: 0rem 2rem;">
+                            <div class="teachers-list-items-small-areas-cnt teachers-list-items-small-areas-cnt-pei">
+                                <div class="teachers-list-items-small-areas-heading t-block teachers-list-items-small-areas-heading-pei">
+                                    查詢結果&nbsp;(@Model.Form.Grid.ToCount())
+                                </div>
+                                <ul class="teachers-list-items-small-areas">
+                                    @Html.Partial("_GridRows2_NewVer")
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 清空條件
+    function doSearchClear() {
+        $('#Form_Keyword').removeAttr('value');
+        $('#Form_TeachUnit option').removeAttr('selected');
+        $('#s_areaPicker1').removeAttr('value');
+        $('#s_areaPicker2').removeAttr('value');
+        $('#Form_Industry option').removeAttr('selected');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Ipresent", "C101M")').submit();
+    }
+
+    // 教師詳細資料
+    function doViewTeach(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("Detail", "C101M")?' + $.param(data);
+        window.location = url;
+    }
+
+</script>

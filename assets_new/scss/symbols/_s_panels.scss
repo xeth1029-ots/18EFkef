@@ -1,0 +1,340 @@
+@charset "utf-8";
+
+//  Symbols Symbol
+// --------------------------------------------------
+//
+.t-definition-list-v,
+.t-label-list {
+  .t-badge {
+    margin-bottom: .625rem;
+    margin-right: .5rem;
+    padding: 0.3125rem .625rem;
+  }
+}
+
+.t-panel-main-header {
+  width: 100%;
+  display: flex;
+  background-color: $danger-50;
+  border: 2px solid $danger-100;
+  border-radius: $border-radius;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: $danger-800;
+  box-shadow: 0.25rem 0.25rem 0 rgba($danger-200, 0.6);
+  align-items: center;
+  justify-content: space-between;
+
+  .btn--pointer.btn--pointer.btn--pointer {
+    padding-left: 1rem;
+    padding-right: 2rem;
+  }
+}
+
+@mixin wave-svg($color1, $color2, $color3) {
+  background-image: t-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cpath fill='#{$color1}' d='m0 492 180 10 180 12 180-10 180 10 180-8v95H0Z'/%3E%3Cpath fill='#{$color2}' d='m0 544 180 1 180 11 180 3 180-24 180-3v69H0Z'/%3E%3Cpath fill='#{$color3}' d='m0 561 180 18 180-8 180 5 180-27 180 32v20H0Z'/%3E%3C/svg%3E"));
+}
+
+.mask.t-mask-panel-v1 {
+  height: 20%;
+  top: auto;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  opacity: 0.12;
+
+  @include teacher {
+    @include wave-svg($primary-200, $primary-400, $primary-600);
+  }
+
+
+  @include unit {
+    @include wave-svg($tertiary-200, $tertiary-400, $tertiary-600);
+  }
+
+
+  @include branch {
+    @include wave-svg($secondary-200, $secondary-400, $secondary-600);
+  }
+
+
+  @include admin {
+    @include wave-svg($quaternary-200, $quaternary-400, $quaternary-600);
+  }
+}
+
+.t-panel {
+  position: relative;
+  transition: $transition;
+
+  // margin-bottom: 1rem;
+
+  // @include sm-min {
+  //   display: flex;
+  //   flex-direction: row;
+  // }
+
+  .t-panel-heading {
+    display: flex;
+    width: 100%;
+    padding: 0.875rem 0.25rem 0.875rem 1.25rem;
+    align-items: center;
+    border-bottom: 0.1875rem solid $border;
+
+    // @include sm-min {
+    //   width: 25%;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   text-align: center;
+    //   border-bottom: none;
+    //   border-right: 0.125rem solid $border;
+    //   padding: 0.5rem;
+    // }
+
+    .svg-icon {
+      // color: $primary;
+      // margin-right: 0.75rem;
+
+      // @include sm-min {
+      //   margin-right: 0;
+      //   margin-bottom: .5rem;
+      // }
+   
+    }
+
+    .t-panel-heading-txt {
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 1.125rem;
+      width: 100%;
+
+      // @include sm-min {
+      //   flex-direction: column;
+      // }
+
+      &::after {
+        content: attr(data-title);
+        font-size: 110%;
+        opacity: 0.16;
+        display: flex;
+        margin-left: 1rem;
+        font-weight: 700;
+      }
+    }
+
+    .btn,
+    a {
+      display: flex;
+      flex: 0 0 auto;
+    }
+  }
+
+  .t-panel-main {
+    padding: 1.5rem 1rem;
+    flex-direction: column;
+
+    @extend .t-flex;
+
+    // @include sm-min {
+    //   width: 75%;
+    // }
+
+    .t-panel-main-fuild {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+
+      .t-dl-group {
+        width: 100%;
+      }
+    }
+
+    .t-definition-list {
+      width: 100%;
+      margin-bottom: 0.375rem;
+
+      small {
+        color: $primary;
+        padding-left: .5rem;
+      }
+    }
+
+    .t-panel-progress-art {
+      width: 50%;
+      padding: 0 0.5rem;
+    }
+
+    .t-panel-item-cnt {
+      position: relative;
+      flex: 0 0 auto;
+      width: calc(100% - 10rem);
+      align-items: center;
+      justify-content: inherit;
+      align-self: center;
+      padding-left: 2rem;
+
+      .t-definition-list {
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    .t-panel-item-img-container {
+      width: 10rem;
+      cursor: pointer;
+      height: fit-content;
+      text-align: center;
+
+      .t-panel-img {
+        display: block;
+        z-index: 1;
+
+        img {
+          border-radius: 1rem;
+          border: 0.15rem rgba($white, 0.66) solid;
+          box-shadow: 0.125rem 0.125rem 0.5rem rgba($dark, 0.2);
+        }
+
+        &:before {
+          border-color: transparent;
+        }
+
+        picture:after,
+        picture:before {
+          content: '';
+          position: absolute;
+          border-radius: 50%;
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-color: transparent;
+          z-index: -1;
+        }
+
+        picture:before {
+          transform: rotate(80deg);
+          left: 1rem;
+          top: -0.5rem;
+
+          @include pattern-diagonal-stripes(0.125rem, $secondary-100);
+        }
+
+        picture:after {
+          left: 1rem;
+          top: 1rem;
+          transform: rotate(-140deg);
+
+          @include pattern-diagonal-stripes(0.125rem, $info-100);
+        }
+
+        // > source:before {
+        //   border-color: $info-200;
+        // }
+     
+      }
+
+      @include hover {
+        transition: $transition;
+
+        @include scale(1.05);
+
+        opacity: 0.8;
+      }
+    }
+
+    .t-panel-title {}
+  }
+
+  .t-panel-title {
+    font-size: 1.25rem;
+    color: $primary-900;
+
+    @include stroke(0.25rem, rgba($primary-600, 0.2));
+
+    @include teacher {
+      @include stroke(0.25rem, rgba($tertiary-600, 0.2));
+    }
+  }
+
+  .t-panel-sub-title {
+    color: $neutral-800;
+    font-size: 95%;
+    margin-top: 0.5rem;
+  }
+
+  .t-panel-footer {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+
+    > .btn {
+      padding-left: 3rem;
+      padding-right: 3rem;
+
+      &:not(:last-child) {
+        margin-right: 0.75rem;
+      }
+    }
+  }
+
+  .t-para {
+    margin-bottom: 0.625rem;
+  }
+
+  .t-panel-top {
+    padding: 1.5rem 1rem 0.875rem;
+    border-bottom: 0.25rem solid $primary-400;
+    text-align: center;
+
+    @include teacher {
+      border-top: 0.25rem solid $tertiary-600;
+      border-bottom: 0.125rem solid $tertiary-400;
+    }
+  }
+
+  .t-panel-bottom {
+    background-color: $primary-25;
+    border-radius: 0 0 $border-radius $border-radius;
+    padding: 0.75rem 1rem 1rem 1rem;
+
+    @include teacher {
+      background-color: $tertiary-50;
+    }
+
+
+    .t-definition-list {
+      margin-bottom: 0.375rem;
+      font-size: 0.8125rem;
+
+      &:last-of-type {
+        margin-bottom: 1.5rem;
+      }
+
+      .t-definition-term {
+        flex: 0 0 4rem;
+      }
+
+      .t-definition-description {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+
+  [data-grad-under] {
+    line-height: 1.5;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-panel-edit {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}

@@ -1,0 +1,115 @@
+//
+//  Components -> calendar-clock 
+// --------------------------------------------------
+.current-time {
+  display: block;
+  // visibility: hidden;
+
+  @media all and (max-width: $screen-lg-min) {
+    @include visually-hidden();
+    width: 0;
+  }
+
+  .calendar-inner {
+    position: relative;
+    border-radius: $calendar-border-radius;
+    @include in-bk-mid;
+    box-shadow: 0 2px 2px $calendar-shadow-color;
+
+
+    .calendar-header {position: relative;
+      background-color: $calendar-header-bg-color;
+      border-radius: $calendar-border-radius $calendar-border-radius 0 0;
+      border-bottom: $calendar-heading-border-width $calendar-heading-border-style $calendar-heading-border-color;
+      box-shadow: 0 2px 0 $calendar-heading-shadow-color;
+      color: $calendar-header-color;
+      font-size: $calendar-heading-font-size;
+      font-weight: $calendar-heading-font-weight;
+      padding: $calendar-heading-padding;
+    }
+
+    .calendar-content {
+      background-color: $calendar-content-bg-color;
+      border-radius: 0 0 $calendar-border-radius $calendar-border-radius;
+      color: $calendar-content-color;
+      font-weight: $calendar-content-font-weight;
+      font-size: $calendar-content-font-size;
+      line-height: $calendar-content-line-height;
+      padding: $calendar-content-padding;
+    }
+  }
+
+  .clock-inner {
+    background-color: $clock-bg-color;
+    border-radius: 0 $clock-border-radius $clock-border-radius 0;
+    box-shadow: 0 2px 2px $clock-shadow-color;
+    color: $clock-color;
+    padding: $clock-padding;
+    line-height: $clock-line-height;
+    @include in-bk-mid;
+    backdrop-filter: blur(10px);
+    
+    .clock-lt {
+      display: inline-block;
+      vertical-align: bottom;
+      text-align: left;
+      text-align-last: left;
+      @include opacity(.66);
+
+      .clock-month {
+        font-size: $clock-month-font-size;
+        font-weight: $clock-month-font-weight;
+
+        &:after {
+          content: ' ,';
+        }
+      }
+
+      .clock-year {
+        font-size: $clock-year-font-size;
+        font-weight: $clock-year-font-weight;
+      }
+
+      .clock-day {
+        font-size: $clock-day-font-size;
+        font-weight: $clock-day-font-weight;
+        text-transform: uppercase;
+        display: block;
+      }
+    }
+
+    .clock-rt {
+      display: inline-block;
+      vertical-align: bottom;
+      font-size: 0;
+      padding-left: .75rem;
+
+      .clock-hour {
+        font-size: $clock-font-size;
+        font-weight: $clock-font-weight;
+
+        &:after {
+          content: ':';
+
+        }
+      }
+
+      .clock-min {
+        font-size: $clock-font-size;
+        font-weight: $clock-font-weight;
+
+        &:after {
+          content: ':';
+
+        }
+      }
+
+      .clock-sec {
+        font-size: $clock-font-size;
+        font-weight: $clock-font-weight;
+      }
+    }
+
+  }
+
+}

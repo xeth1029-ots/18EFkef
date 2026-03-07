@@ -1,0 +1,27 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C301MViewModel
+
+@if (Model.DetailSignUp.TeacherSearchList.ToCount() > 0)
+{
+    for (int i = 0; i < Model.DetailSignUp.TeacherSearchList.Count; i++)
+    {
+        var item = Model.DetailSignUp.TeacherSearchList[i];
+        @Html.HiddenFor(m => m.DetailSignUp.TeacherSearchList[i].ROWID)
+        @Html.HiddenFor(m => m.DetailSignUp.TeacherSearchList[i].TeacherAccount)
+        @Html.HiddenFor(m => m.DetailSignUp.TeacherSearchList[i].TeacherName)
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@Html.CheckBoxFor(m => m.DetailSignUp.TeacherSearchList[i].IsChecked, new { checkid = "PopCk1", @style = "width: 30px; height: 30px;" })</td>
+            <td>@item.TeacherName</td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+}

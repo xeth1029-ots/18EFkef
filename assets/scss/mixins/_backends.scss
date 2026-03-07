@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+// Attr
+//
+
+@mixin attr($attr, $value, $important: "") {
+  @if $value != null {
+    #{$attr}: #{$value} #{$important};
+  }
+}
+
+//
+// Browsers
+//
+
+@mixin for-edge {
+  // Microsoft Edge
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
+
+//
+// Fixes
+//
+
+//
+// Reset
+//
+//
+// Input placeholder color
+//
+
+@mixin placeholder($color) {
+  // Chrome, Firefox, Opera, Safari 10.1+
+  &::placeholder {
+    color: $color;
+  }
+
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+}
+
+@mixin button-reset {
+  appearance: none;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none  !important;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin input-reset {
+  border: 0;
+  background-color: transparent;
+  outline: none !important;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+@mixin fix-fixed-position-lags {
+  // webkit hack for smooth font view on fixed positioned elements
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@mixin fix-animation-lags {
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+}
+
+@mixin media-breakpoint-direction($direction, $name, $breakpoints: $grid-breakpoints) {
+  @if $direction == up {
+    $min: breakpoint-min($name, $breakpoints);
+
+    @if $min {
+      @media (min-width: $min) {
+        @content;
+      }
+    }
+    @else {
+      @content;
+    }
+  }
+  @else if $direction == down {
+    $max: breakpoint-max($name, $breakpoints);
+
+    @if $max {
+      @media (max-width: $max) {
+        @content;
+      }
+    }
+  }
+}

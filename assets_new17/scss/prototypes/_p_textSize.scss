@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+//==  Prototypes -> Texts size 
+//====================================================
+.t-fs-0 {
+  font-size: 0;
+}
+
+%t-fs-0 {
+  font-size: 0;
+}
+
+@for $i from 12 through 44 {
+  .t-fs-#{$i} {
+    font-size: unquote("#{$i / 16}rem !important");
+  }
+
+  %t-fs-#{$i} {
+    font-size: unquote("#{$i / 16}rem !important");
+  }
+}
+

@@ -1,0 +1,96 @@
+
+
+
+
+
+// tooltip
+$tooltip-arrow-color:               null !default; // Deprecated in Bootstrap 5.2.0 for CSS variables
+$tooltip-font-size:                 $font-size-xxxs !default;
+$tooltip-max-width:                 12rem !default;
+$tooltip-color:                     $neutral-50 !default;
+$tooltip-bg:                        $neutral !default;
+$tooltip-border-radius:             $border-radius-sm !default;
+$tooltip-box-shadow:                $shadow-dropdown-v2 !default;
+$tooltip-opacity:                   .92 !default;
+$tooltip-padding-y:                 .3125rem !default;
+$tooltip-padding-x:                 .625rem !default;
+$tooltip-margin:                    null !default;
+
+$tooltip-arrow-width:               .75rem !default;
+$tooltip-arrow-height:              .375rem !default;
+$tooltip-arrow-color:               $tooltip-bg !default;
+
+$form-feedback-tooltip-padding-y:     $tooltip-padding-y !default;
+$form-feedback-tooltip-padding-x:     $tooltip-padding-x !default;
+$form-feedback-tooltip-font-size:     $tooltip-font-size !default;
+$form-feedback-tooltip-line-height:   $line-height-base !default;
+$form-feedback-tooltip-opacity:       $tooltip-opacity !default;
+$form-feedback-tooltip-border-radius: $tooltip-border-radius !default;
+
+// Popovers
+$popover-bg:                                        $neutral               !default;
+$popover-max-width:                                 18rem                  !default;
+$popover-font-size:                                 $font-size-base        !default;
+$popover-border-width:                              1px                    !default;
+$popover-border-color:                              $neutral-800           !default;
+$popover-border-radius:                             $border-radius-lg--px  !default;
+$popover-box-shadow:                                $shadow-dropdown-v2   !default;
+$popover-header-bg:                                 $neutral               !default;
+$popover-header-color:                              $neutral-100               !default;
+$popover-header-font-weight:                        500                    !default;  
+$popover-header-font-size:                          1rem                   !default;
+$popover-header-padding-y:                          1rem                   !default;
+$popover-header-padding-x:                          1.25rem                !default;
+$popover-header-border-color:                       $neutral-100           !default; 
+$popover-body-color:                                $neutral-100           !default;
+$popover-body-padding-y:                            .75rem                 !default;
+$popover-body-padding-x:                            .625rem                !default;
+$popover-dissmis-btn-height:                        1.5rem                 !default;  // Custom variable
+$popover-dissmis-btn-top:                           0.75rem                !default;  // Custom variable
+$popover-dissmis-btn-end:                           0.75rem                !default;  // Custom variable
+$popover-arrow-width:                               1rem                   !default;
+$popover-arrow-height:                              .5rem                  !default;
+$popover-arrow-color:                               $neutral               !default;
+$popover-arrow-outer-color:                         fade-in($popover-border-color, .05) !default;
+$popover-inner-border-radius:                       $popover-border-radius;
+
+
+
+
+// Popover
+// =========================================================
+
+// Background
+$popover-header-bg: $gray-200;
+
+// Border
+$popover-border-color: transparent;
+$popover-arrow-color: $white;
+$popover-arrow-outer-color: $popover-border-color;
+
+// Type
+$popover-font-size: $font-size-base;
+$popover-header-font-weight: $font-weight-medium !default;
+
+// Box Shadow
+$popover-box-shadow: $box-shadow-lg;
+
+// Padding
+$popover-body-padding-y: 1.5rem;
+$popover-body-padding-x: $popover-body-padding-y;
+$popover-header-padding-x: $popover-body-padding-x;
+$popover-header-padding-y: 1rem;
+
+// Progress
+// 
+// 
+
+
+
+
+
+
+
+
+
+

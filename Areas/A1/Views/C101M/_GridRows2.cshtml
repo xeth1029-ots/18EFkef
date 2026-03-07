@@ -1,0 +1,64 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.A1.Models;
+@model C101MViewModel
+
+<!-- 做點微調 -->
+<style>
+    .teachers-list-items-small-areas-cnt {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+</style>
+<!-- 為了分頁，強行硬塞 -->
+<tr>
+    <td>
+        @if (Model.Form.Grid != null)
+        {
+            string[] UnitStrName = new string[] { "", "北", "桃", "中", "南", "高" };
+            string[] UnitStrList = new string[] { "", "Pei", "Tao", "Chung", "Nam", "Kao" };
+            for (var i = 1; i <= UnitStrList.Length - 1; i++)
+            {
+                string Style01 = "Area" + UnitStrList[i];
+                string Style02 = "teachers-list-items-small-areas-cnt-" + UnitStrList[i].ToLower();
+                string Style03 = "teachers-list-items-small-areas-heading-" + UnitStrList[i].ToLower();
+                string Style04 = UnitStrName[i] + "分署";
+                var ModelGridData = Model.Form.Grid.Where(x => x.UnitCode.TONotNullString() == i.TONotNullString()).ToList();
+                if (!ModelGridData.Any()) { continue; }
+
+                <div class="teachers-list-items-small-areas-cnt @Style02" id="@Style01">
+                    <div class="teachers-list-items-small-areas-heading t-block @Style03">@Style04</div>
+                    <ul class="teachers-list-items-small-areas">
+
+                        @for (int j = 0; j < ModelGridData.Count; j++)
+                        {
+                            var item = ModelGridData[j];
+
+                            string PicPath = (item.Sex == "F") ? "~/assets_new/images/avastarPlaceholders-girl.svg" : "~/assets_new/images/avastarPlaceholders.svg";
+                            if (!string.IsNullOrEmpty(item.SelfPicPath))
+                            {
+                                string picfile1 = string.Concat(new AMDAO().UploadPathTeacher, item.SelfPicPath);
+                                if (File.Exists(Server.MapPath(picfile1))) { PicPath = picfile1; }
+                            }
+
+                            @Html.HiddenFor(m => m.Form.Grid[j].ROWID)
+                            @Html.HiddenFor(m => m.Form.Grid[j].Seq)
+
+                            <li class="teachers-list-small-item" onclick="doViewTeach('@item.Seq')" onkeypress="doViewTeach('@item.Seq')">
+                                <div class="teachers-list-small-item-avatar">
+                                    <img alt="@item.CombineName" width="100%" src="@Url.Content(PicPath)" />
+                                </div>
+                                <div class="teachers-list-small-item-cnt ">
+                                    <div>@item.CombineName</div>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+
+            }
+        }
+    </td>
+</tr>

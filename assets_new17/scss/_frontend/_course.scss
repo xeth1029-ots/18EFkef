@@ -1,0 +1,216 @@
+.t-course-content {
+  position: relative;
+  padding: 2rem 0 8rem;
+  width: 100%;
+
+  // background-color: $neutral-50;
+
+  .t-course-heading {
+    font-size: 1.75rem;
+    width: max-content;
+    letter-spacing: .25rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+
+    // @include text-cartoon(1.75rem, 900, $white, $dark);
+    // @include heading-shadow-v3($primary-400, $primary-800, 20);
+    @include generateShadow($color: $neutral-100, $sh: 0.5px, $step: 10);
+  }
+
+  .t-course-para {
+    font-size: 1rem;
+    color: $grey;
+  }
+
+  .t-tab-cnts {
+    padding-top: 1rem;
+    background-color: _var("white", $white);
+    border-radius: $border-radius;
+  }
+
+  .t-tab-course {
+    background-color: _var("white", $white);
+    border-radius: $border-radius;
+
+    &.t-tab-line-bottom > .t-tab-nav {
+      padding-top: 0.5rem;
+    }
+
+    &.t-tab-line-bottom > .t-tab-contents {
+      > .t-tab-content {
+        padding: 2rem 1rem;
+      }
+    }
+
+    .t-tab-content {
+      white-space: initial;
+    }
+
+    .t-tab-course {
+      padding: 1rem;
+    }
+  }
+
+  .list-checked {
+    font-size: 0.875rem;
+  }
+
+  .t-course-card {
+    position: relative;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 2px solid $border;
+    align-items: center;
+    gap: 1rem;
+
+    @include border-radius($card-border-radius);
+
+    // @include box-shadow($card-box-shadow);
+
+    margin-right: 1rem;
+    white-space: normal;
+
+    &:not(:last-child) {
+      margin-bottom: 2.75rem;
+    }
+
+    .t-course-card-left {
+      width: 30%;
+
+      [class*="t-pattern"] {
+        opacity: 0.66;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0.5rem;
+          top: 0.5rem;
+          border-radius: $border-radius-sm;
+          width: 72%;
+          height: 80%;
+          z-index: -1;
+          opacity: 0.66;
+        }
+      }
+    }
+
+    .t-course-card-main {
+      width: 70%;
+
+      .t-course-card-title {
+        margin-bottom: 1.25rem;
+        padding-left: 1.25rem;
+        letter-spacing: 1px;
+        font-size: 1.375rem;
+
+        &:first-letter {
+          font-size: 150%;
+          font-weight: 900;
+          margin-right: 0.375rem;
+        }
+      }
+
+      .t-course-subhr {
+        color: $grey-100;
+        margin-bottom: 1rem;
+      }
+
+      .t-course-card-subtitle {
+        font-weight: 500;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        color: $grey-700;
+      }
+    }
+
+    .list-checked {}
+  }
+
+  .t-card-bg-primary {
+    border-left: 0.25rem solid $primary-400;
+    background: radial-gradient(circle at 0 0, rgba($primary, 0.66) 0%, rgba($primary, 0.66) 16%, rgba($primary-200, 0.66) 16%, rgba($primary-200, 0.66) 24%, rgba($primary-25, 0.66) 24%, rgba($primary-25, 0.66) 66%);
+
+    .t-course-card-left {
+      [class*="t-pattern"] {
+        &:before {
+          background-color: complement($primary-300);
+        }
+      }
+    }
+
+    .t-course-card-title {
+      border-left: 0.5rem solid $primary-100;
+
+      &:first-letter {
+        color: $primary;
+      }
+    }
+  }
+
+  .t-card-bg-secondary {
+    border-left: 0.25rem solid $secondary-400;
+    background: radial-gradient(circle at 110% 52%, rgba($secondary-200, 0.66) 0%, rgba($secondary-200, 0.66) 16%, rgba($secondary, 0.66) 16%, rgba($secondary, 0.66) 24%, rgba($secondary-25, 0.66) 24%, rgba($secondary-25, 0.66) 66%);
+
+    .t-course-card-left {
+      [class*="t-pattern"] {
+        &:before {
+          background-color: complement($secondary-300);
+        }
+      }
+    }
+
+    .t-course-card-title {
+      border-left: 0.5rem solid $secondary-200;
+
+      &:first-letter {
+        color: $secondary-800;
+      }
+    }
+  }
+
+  .t-card-bg-tertiary {
+    border-left: 0.25rem solid $tertiary-400;
+    background: radial-gradient(circle at 100% 0, rgba($tertiary-200, 0.66) 0%, rgba($tertiary-200, 0.66) 15.9%, rgba($tertiary, 0.66) 15.9%, rgba($tertiary, 0.66) 24.4%, rgba($tertiary-25, 0.66) 24.5%, rgba($tertiary-25, 0.66) 66%);
+
+    .t-course-card-left {
+      [class*="t-pattern"] {
+        &:before {
+          background-color: complement($tertiary-300);
+        }
+      }
+    }
+
+    .t-course-card-title {
+      border-left: 0.5rem solid $tertiary-100;
+
+      &:first-letter {
+        color: $tertiary;
+      }
+    }
+  }
+
+  .t-card-bg-quaternary {
+    border-left: 0.25rem solid $quaternary-400;
+    background: radial-gradient(circle at -8% 52%, rgba($quaternary, 0.66) 0%, rgba($quaternary, 0.66) 15.9%, rgba($quaternary-200, 0.66) 15.9%, rgba($quaternary-200, 0.66) 24.4%, rgba($quaternary-25, 0.66) 24.5%, rgba($quaternary-25, 0.66) 66%);
+
+    .t-course-card-left {
+      [class*="t-pattern"] {
+        &:before {
+          background-color: complement($quaternary-300);
+        }
+      }
+    }
+
+    .t-course-card-title {
+      border-left: 0.5rem solid $quaternary-100;
+
+      &:first-letter {
+        color: $quaternary;
+      }
+    }
+  }
+}

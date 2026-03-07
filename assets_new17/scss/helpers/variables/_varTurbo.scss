@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+$back-shadow: 0 2px 6px 0 rgba($dark, 0.08);
+$back-header-shadow: 0px 10px 30px 0px rgba($dark, 0.12);
+
+// Page bg
+$page-bg: if(isDarkMode(), $dark, $grey-50) !default;
+
+// Content border radius
+$content-border-radius: 1.5rem !default;
+
+// Content Spacing
+$content-spacing: (
+	desktop: 2rem, 
+	tablet-and-mobile: 1rem,
+	mobile:       2.25rem) !default;
+
+// Header
+$header-config: (height: (desktop: 48.75rem, tablet-and-mobile: 3.75rem), bg-color: if(isDarkMode(), $dark, $white), border-bottom: if(isDarkMode(), 0.125rem solid $dark, 0), z-index: 100, box-shadow: if(isDarkMode(), none, 0px 10px 30px 0px rgba(82, 63, 105, 0.05))) !default;
+
+$backWeb-max-width: 1600px;
+$menu-sub-max-width: 12rem;
+$bt-style-border-radius: 12.5rem / 0.25rem;
+$bt-style-border-radius: 1rem;
+
+// Aside
+$aside-config: (width: 265px, z-index: 101, transition-speed: 0.3s, padding-x: 25px, footer-padding-x: 15px, menu-padding-x: 10px, menu-indention: 0.75rem, bg-color: #1E1E2D, scrollbar-color: #4d4d69, scrollbar-hover-color: lighten(#4d4d69, 2%)) !default;
+
+// Aside
+$footer-config: (bg-color: if(isDarkMode(), #1B1B28, $white)) !default;

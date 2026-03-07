@@ -1,0 +1,387 @@
+// @charset "utf-8";
+
+// // Varibles Css Colors Naps
+// // ========================================================
+
+// $variable-prefix:           tu-              !default;
+
+// $prefix:                    $variable-prefix !default;
+// $cssPrefix:                 $prefix          !default;
+
+// $primary:				                                          v('primary' , $primary)       !default;
+// $secondary:			                                          v('secondary' , $secondary)   !default;
+// $tertiary:				                                        v('tertiary' , $tertiary)     !default;
+// $quaternary:			                                        v('quaternary' , $quaternary) !default;
+// $success:				                                          v('success' , $success)       !default;
+// $danger:				                                          v('danger' , $danger)         !default;
+// $warning:				                                          v('warning' , $warning)       !default;
+// $info:					                                          v('info' , $info)             !default;
+
+// $navy:                                                     #1C3879 ;
+// $dimNavy:                                                  #414796 ;
+// $neutral:                                                  #1E2540 ;
+// // @debug $primary;
+
+
+// $primary-25: 																				  v('primary-25' , $primary-25) !default;
+// $primary-50:                                          v('primary-50' , $primary-50) !default;
+// $primary-100:                                         v('primary-100' , $primary-100) !default;
+// $primary-200:                                         v('primary-200' , $primary-200) !default;
+// $primary-300:                                         v('primary-300' , $primary-300) !default;
+// $primary-400:                                         v('primary-400' , $primary-400) !default;
+// $primary-500:                                         v('primary-500' , $primary-500) !default;
+// $primary-600:                                         v('primary-600' , $primary-600) !default;
+// $primary-700:                                         v('primary-700' , $primary-700) !default;
+// $primary-800:                                         v('primary-800' , $primary-800) !default;
+// $primary-900:                                         v('primary-900' , $primary-900) !default;
+
+// $secondary-25:                                          v('secondary-25' , $secondary-25) !default;
+// $secondary-50:                                          v('secondary-50' , $secondary-50) !default;
+// $secondary-100:                                         v('secondary-100' , $secondary-100) !default;
+// $secondary-200:                                         v('secondary-200' , $secondary-200) !default;
+// $secondary-300:                                         v('secondary-300' , $secondary-300) !default;
+// $secondary-400:                                         v('secondary-400' , $secondary-400) !default;
+// $secondary-500:                                         v('secondary-500' , $secondary-500) !default;
+// $secondary-600:                                         v('secondary-600' , $secondary-600) !default;
+// $secondary-700:                                         v('secondary-700' , $secondary-700) !default;
+// $secondary-800:                                         v('secondary-800' , $secondary-800) !default;
+// $secondary-900:                                         v('secondary-900' , $secondary-900) !default;
+
+// $tertiary-25:                                          v('tertiary-25' , $tertiary-25) !default;
+// $tertiary-50:                                          v('tertiary-50' , $tertiary-50) !default;
+// $tertiary-100:                                         v('tertiary-100' , $tertiary-100) !default;
+// $tertiary-200:                                         v('tertiary-200' , $tertiary-200) !default;
+// $tertiary-300:                                         v('tertiary-300' , $tertiary-300) !default;
+// $tertiary-400:                                         v('tertiary-400' , $tertiary-400) !default;
+// $tertiary-500:                                         v('tertiary-500' , $tertiary-500) !default;
+// $tertiary-600:                                         v('tertiary-600' , $tertiary-600) !default;
+// $tertiary-700:                                         v('tertiary-700' , $tertiary-700) !default;
+// $tertiary-800:                                         v('tertiary-800' , $tertiary-800) !default;
+// $tertiary-900:                                         v('tertiary-900' , $tertiary-900) !default;
+
+// $quaternary-25:                                          v('quaternary-25' , $quaternary-25) !default;
+// $quaternary-50:                                          v('quaternary-50' , $quaternary-50) !default;
+// $quaternary-100:                                         v('quaternary-100' , $quaternary-100) !default;
+// $quaternary-200:                                         v('quaternary-200' , $quaternary-200) !default;
+// $quaternary-300:                                         v('quaternary-300' , $quaternary-300) !default;
+// $quaternary-400:                                         v('quaternary-400' , $quaternary-400) !default;
+// $quaternary-500:                                         v('quaternary-500' , $quaternary-500) !default;
+// $quaternary-600:                                         v('quaternary-600' , $quaternary-600) !default;
+// $quaternary-700:                                         v('quaternary-700' , $quaternary-700) !default;
+// $quaternary-800:                                         v('quaternary-800' , $quaternary-800) !default;
+// $quaternary-900:                                         v('quaternary-900' , $quaternary-900) !default;
+
+// $success-25:                                          v('success-25' , $success-25) !default;
+// $success-50:                                          v('success-50' , $success-50) !default;
+// $success-100:                                         v('success-100' , $success-100) !default;
+// $success-200:                                         v('success-200' , $success-200) !default;
+// $success-300:                                         v('success-300' , $success-300) !default;
+// $success-400:                                         v('success-400' , $success-400) !default;
+// $success-500:                                         v('success-500' , $success-500) !default;
+// $success-600:                                         v('success-600' , $success-600) !default;
+// $success-700:                                         v('success-700' , $success-700) !default;
+// $success-800:                                         v('success-800' , $success-800) !default;
+// $success-900:                                         v('success-900' , $success-900) !default;
+
+// $danger-25:                                          v('danger-25' , $danger-25) !default;
+// $danger-50:                                          v('danger-50' , $danger-50) !default;
+// $danger-100:                                         v('danger-100' , $danger-100) !default;
+// $danger-200:                                         v('danger-200' , $danger-200) !default;
+// $danger-300:                                         v('danger-300' , $danger-300) !default;
+// $danger-400:                                         v('danger-400' , $danger-400) !default;
+// $danger-500:                                         v('danger-500' , $danger-500) !default;
+// $danger-600:                                         v('danger-600' , $danger-600) !default;
+// $danger-700:                                         v('danger-700' , $danger-700) !default;
+// $danger-800:                                         v('danger-800' , $danger-800) !default;
+// $danger-900:                                         v('danger-900' , $danger-900) !default;
+
+// $warning-25:                                          v('warning-25' , $warning-25) !default;
+// $warning-50:                                          v('warning-50' , $warning-50) !default;
+// $warning-100:                                         v('warning-100' , $warning-100) !default;
+// $warning-200:                                         v('warning-200' , $warning-200) !default;
+// $warning-300:                                         v('warning-300' , $warning-300) !default;
+// $warning-400:                                         v('warning-400' , $warning-400) !default;
+// $warning-500:                                         v('warning-500' , $warning-500) !default;
+// $warning-600:                                         v('warning-600' , $warning-600) !default;
+// $warning-700:                                         v('warning-700' , $warning-700) !default;
+// $warning-800:                                         v('warning-800' , $warning-800) !default;
+// $warning-900:                                         v('warning-900' , $warning-900) !default;
+
+// $info-25:                                          v('info-25' , $info-25) !default;
+// $info-50:                                          v('info-50' , $info-50) !default;
+// $info-100:                                         v('info-100' , $info-100) !default;
+// $info-200:                                         v('info-200' , $info-200) !default;
+// $info-300:                                         v('info-300' , $info-300) !default;
+// $info-400:                                         v('info-400' , $info-400) !default;
+// $info-500:                                         v('info-500' , $info-500) !default;
+// $info-600:                                         v('info-600' , $info-600) !default;
+// $info-700:                                         v('info-700' , $info-700) !default;
+// $info-800:                                         v('info-800' , $info-800) !default;
+// $info-900:                                         v('info-900' , $info-900) !default;
+
+
+// $white:                                            v('white' , $white) !default;
+// $gray-25:                                          v('gray-25' , $gray-25) !default;
+// $gray-50:                                          v('gray-50' , $gray-50) !default;
+// $gray-100:                                         v('gray-100' , $gray-100) !default;
+// $gray-200:                                         v('gray-200' , $gray-200) !default;
+// $gray-300:                                         v('gray-300' , $gray-300) !default;
+// $gray-400:                                         v('gray-400' , $gray-400) !default;
+// $gray-500:                                         v('gray-500' , $gray-500) !default;
+// $gray-600:                                         v('gray-600' , $gray-600) !default;
+// $gray-700:                                         v('gray-700' , $gray-700) !default;
+// $gray-800:                                         v('gray-800' , $gray-800) !default;
+// $gray-900:                                         v('gray-900' , $gray-900) !default;
+// $black:                                            v('black' , $black) !default;
+
+
+// //== dark Colors
+// $grey-25:                                          v('grey-25' , $grey-25) !default;
+// $grey-50:                                          v('grey-50' , $grey-50) !default;
+// $grey-100:                                         v('grey-100' , $grey-100) !default;
+// $grey-200:                                         v('grey-200' , $grey-200) !default;
+// $grey-300:                                         v('grey-300' , $grey-300) !default;
+// $grey-400:                                         v('grey-400' , $grey-400) !default;
+// $grey-500:                                         v('grey-500' , $grey-500) !default;
+// $grey-600:                                         v('grey-600' , $grey-600) !default;
+// $grey-700:                                         v('grey-700' , $grey-700) !default;
+// $grey-800:                                         v('grey-800' , $grey-800) !default;
+// $grey-900:                                         v('grey-900' , $grey-900) !default;
+// $dark:                                             v('dark' , $dark) !default;
+
+// // @debug $dark;
+// //== Neutrals Colors
+// $neutral-25:                                          v('neutral-25' , $neutral-25) !default;
+// $neutral-50:                                          v('neutral-50' , $neutral-50) !default;
+// $neutral-100:                                         v('neutral-100' , $neutral-100) !default;
+// $neutral-200:                                         v('neutral-200' , $neutral-200) !default;
+// $neutral-300:                                         v('neutral-300' , $neutral-300) !default;
+// $neutral-400:                                         v('neutral-400' , $neutral-400) !default;
+// $neutral-500:                                         v('neutral-500' , $neutral-500) !default;
+// $neutral-600:                                         v('neutral-600' , $neutral-600) !default;
+// $neutral-700:                                         v('neutral-700' , $neutral-700) !default;
+// $neutral-800:                                         v('neutral-800' , $neutral-800) !default;
+// $neutral-900:                                         v('neutral-900' , $neutral-900) !default;
+// $neutral:                                             v('neutral' , $neutral) !default;
+
+// // fusv-enable
+// $blue:                       #05A3E6!default;
+// $purple:                     #6F4FF9 !default;
+// $indigo:                     #3B3DBF !default;
+// $pink:                       #F7658B !default;
+// $red:                        #ED596A !default;
+// $orange:                     #FF6500 !default;
+// $yellow:                     #FECC2A !default;
+// $lime:                       #89DA8B !default;
+// $green:                      #0E927A !default;
+// $teal:                       #16DBCC !default;
+// $cyan:                       #22B8CF !default;
+
+
+
+// // Theme Soft Colors
+// $primary-soft:                                             rgba($primary, .075);
+// $secondary-soft:                                           rgba($secondary, .075);
+// $tertiary-soft:                                            rgba($tertiary, .075);
+// $quaternary-soft:                                          rgba($quaternary, .075);
+// $success-soft:                                             rgba($success, .075);
+// $info-soft:                                                rgba($info, .075);
+// $warning-soft:                                             rgba($warning, .075);
+// $danger-soft:                                              rgba($danger, .075);
+// $light-soft:                                               rgba($gray-100, .075);
+// $dark-soft:                                                rgba($dark, .075);
+// $grey-soft:                                                rgba($grey-700, .075);
+
+
+
+// // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+// $min-contrast-ratio:  4.5 !default;
+
+// // Customize the light and dark text colors for use in our color contrast function.
+// $color-contrast-dark:     $black !default;
+// $color-contrast-light:    $white !default;
+
+// // fusv-disable
+// $blue-100:tint-color($blue, 80%) !default;
+// $blue-200:tint-color($blue, 60%) !default;
+// $blue-300:tint-color($blue, 40%) !default;
+// $blue-400:tint-color($blue, 20%) !default;
+// $blue-500:$blue !default;
+// $blue-600:shade-color($blue, 20%) !default;
+// $blue-700:shade-color($blue, 40%) !default;
+// $blue-800:shade-color($blue, 60%) !default;
+// $blue-900:shade-color($blue, 80%) !default;
+
+// $indigo-100:tint-color($indigo, 80%) !default;
+// $indigo-200:tint-color($indigo, 60%) !default;
+// $indigo-300:tint-color($indigo, 40%) !default;
+// $indigo-400:tint-color($indigo, 20%) !default;
+// $indigo-500:$indigo !default;
+// $indigo-600:shade-color($indigo, 20%) !default;
+// $indigo-700:shade-color($indigo, 40%) !default;
+// $indigo-800:shade-color($indigo, 60%) !default;
+// $indigo-900:shade-color($indigo, 80%) !default;
+
+// $purple-100:tint-color($purple, 80%) !default;
+// $purple-200:tint-color($purple, 60%) !default;
+// $purple-300:tint-color($purple, 40%) !default;
+// $purple-400:tint-color($purple, 20%) !default;
+// $purple-500:$purple !default;
+// $purple-600:shade-color($purple, 20%) !default;
+// $purple-700:shade-color($purple, 40%) !default;
+// $purple-800:shade-color($purple, 60%) !default;
+// $purple-900:shade-color($purple, 80%) !default;
+
+// $pink-100:tint-color($pink, 80%) !default;
+// $pink-200:tint-color($pink, 60%) !default;
+// $pink-300:tint-color($pink, 40%) !default;
+// $pink-400:tint-color($pink, 20%) !default;
+// $pink-500:$pink !default;
+// $pink-600:shade-color($pink, 20%) !default;
+// $pink-700:shade-color($pink, 40%) !default;
+// $pink-800:shade-color($pink, 60%) !default;
+// $pink-900:shade-color($pink, 80%) !default;
+
+// $red-100:tint-color($red, 80%) !default;
+// $red-200:tint-color($red, 60%) !default;
+// $red-300:tint-color($red, 40%) !default;
+// $red-400:tint-color($red, 20%) !default;
+// $red-500:$red !default;
+// $red-600:shade-color($red, 20%) !default;
+// $red-700:shade-color($red, 40%) !default;
+// $red-800:shade-color($red, 60%) !default;
+// $red-900:shade-color($red, 80%) !default;
+
+// $orange-100:tint-color($orange, 80%) !default;
+// $orange-200:tint-color($orange, 60%) !default;
+// $orange-300:tint-color($orange, 40%) !default;
+// $orange-400:tint-color($orange, 20%) !default;
+// $orange-500:$orange !default;
+// $orange-600:shade-color($orange, 20%) !default;
+// $orange-700:shade-color($orange, 40%) !default;
+// $orange-800:shade-color($orange, 60%) !default;
+// $orange-900:shade-color($orange, 80%) !default;
+
+// $yellow-100:tint-color($yellow, 80%) !default;
+// $yellow-200:tint-color($yellow, 60%) !default;
+// $yellow-300:tint-color($yellow, 40%) !default;
+// $yellow-400:tint-color($yellow, 20%) !default;
+// $yellow-500:$yellow !default;
+// $yellow-600:shade-color($yellow, 20%) !default;
+// $yellow-700:shade-color($yellow, 40%) !default;
+// $yellow-800:shade-color($yellow, 60%) !default;
+// $yellow-900:shade-color($yellow, 80%) !default;
+
+// $green-100:tint-color($green, 80%) !default;
+// $green-200:tint-color($green, 60%) !default;
+// $green-300:tint-color($green, 40%) !default;
+// $green-400:tint-color($green, 20%) !default;
+// $green-500:$green !default;
+// $green-600:shade-color($green, 20%) !default;
+// $green-700:shade-color($green, 40%) !default;
+// $green-800:shade-color($green, 60%) !default;
+// $green-900:shade-color($green, 80%) !default;
+
+// $teal-100:tint-color($teal, 80%) !default;
+// $teal-200:tint-color($teal, 60%) !default;
+// $teal-300:tint-color($teal, 40%) !default;
+// $teal-400:tint-color($teal, 20%) !default;
+// $teal-500:$teal !default;
+// $teal-600:shade-color($teal, 20%) !default;
+// $teal-700:shade-color($teal, 40%) !default;
+// $teal-800:shade-color($teal, 60%) !default;
+// $teal-900:shade-color($teal, 80%) !default;
+
+// $lime-100:tint-color($lime, 80%) !default;
+// $lime-200:tint-color($lime, 60%) !default;
+// $lime-300:tint-color($lime, 40%) !default;
+// $lime-400:tint-color($lime, 20%) !default;
+// $lime-500:$lime !default;
+// $lime-600:shade-color($lime, 20%) !default;
+// $lime-700:shade-color($lime, 40%) !default;
+// $lime-800:shade-color($lime, 60%) !default;
+// $lime-900:shade-color($lime, 80%) !default;
+
+
+// $cyan-100:tint-color($cyan, 80%) !default;
+// $cyan-200:tint-color($cyan, 60%) !default;
+// $cyan-300:tint-color($cyan, 40%) !default;
+// $cyan-400:tint-color($cyan, 20%) !default;
+// $cyan-500:$cyan !default;
+// $cyan-600:shade-color($cyan, 20%) !default;
+// $cyan-700:shade-color($cyan, 40%) !default;
+// $cyan-800:shade-color($cyan, 60%) !default;
+// $cyan-900:shade-color($cyan, 80%) !default;
+
+// //== Brands colors
+// $facebook:             #3b5999                 !default;
+// $twitter:              #1da1f2                 !default;
+// $google-plus:          #dd4b39                 !default;
+// $instagram:            #e4405f                 !default;
+// $pinterest:            #bd081c                 !default;
+// $youtube:              #cd201f                 !default;
+// $slack:                #3aaf85                 !default;
+// $dribbble:             #ea4c89                 !default;
+// $github:               #222222                 !default;
+// $dropbox:              #1e90ff                 !default;
+// $twitch:               #4b367c                 !default;
+// $paypal:               #ecb32c                 !default;
+// $behance:              #0057ff                 !default;
+// $reddit:               #e84422                 !default;
+// $linkedin:             #0E76a8                 !default;
+// //== customs Colors
+
+// $link:                                          darken($primary, 30%)    !default;
+// $link-hover:                                    darken($link, 10%)       !default;
+// $link-blue:                                     $navy                   !default;
+// $link-blue-hover:                               darken($navy, 8%)       !default;
+
+// $seafoam:                                         #dbf5f0                 !default;
+// $ivory:                                           #f4efdb                 !default;
+// $granny:                                          #c1ffc1                 !default;
+// $tiffany:                                         #a4e5e0                 !default;
+// $similar:                                         #f5f2eb                 !default;
+// $meteorite:                                       #332a7c                 !default;
+// $water:                                           #edeff6                 !default;
+// $bright:                                          #eaeef6                 !default;
+// $magnolia:                                        #f4f3fd                 !default;
+
+// $hawthorn:             #884C5E                 !default;
+// $paua:                 #302C4D                 !default;
+// $lichen-blue:          #5D89B4                 !default;
+// $lutos:                #E2C1C0                 !default;
+// $dried-moss:           #CCB97E                 !default;
+// $volcanic-glass:       #615C61                 !default;
+// $plaza-taupe:          #AEA393                 !default;
+// $white-sand:           #DBD5D1                 !default;
+// $cloud-dancer:         #F0EEE9                 !default;
+// $deep-taupe:           #7B6660                 !default;
+
+// $flash:                #f2f3f5                 !default;
+// $soap:                 #CBD4F4                 !default;
+// $pale:                 #F7D9E3                 !default;
+// $water:                #CBF0F4                 !default;
+// $whereas:              #f2f0eb                 !default;
+
+// $gray:                           $gray-700 !default;
+// $lightgray:                      $gray-500 !default;
+// $gray-light:                     $gray-100 !default; 
+// $gray-lighter:                   $gray-50  !default;
+
+// $grey:                           $grey-700 !default;
+// $lightgrey:                      $grey-500 !default;
+// $grey-light:                     $grey-100 !default; 
+// $grey-lighter:                   $grey-50  !default;
+
+// $light:                          #B8B8D2 !default;
+// $lighter:                        #eaeaf2 !default;
+// $lightest:                       #f6f6fa !default;
+
+// $default:                        #F5F5F6 !default;
+// $default-dark:                   #E4E4EB !default;
+
+// $border:                         $gray-50     !default;
+// $border-g:                       $grey-50     !default;
+// $border-n:                       $neutral-50  !default;
+
+

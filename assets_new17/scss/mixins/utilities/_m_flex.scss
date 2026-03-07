@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+//  Mixins > flex
+// ====================================================
+// @include flex($justify: flex-start, $flex-wrap: wrap);
+@mixin flex(
+  $justify: center, 
+  $align-content: center, 
+  $align-items: center, 
+  $flex-dir: row, 
+  $flex-wrap: nowrap) {
+  display: flex;
+  justify-content: $justify;
+  align-content: $align-content;
+  align-items: $align-items;
+  flex-direction: $flex-dir;
+  flex-wrap: $flex-wrap;
+}
+
+// @mixin screen ($width) {
+//   @if $width {
+//     @media only screen and (max-width: $width) {
+//       @content;
+//     }
+//   }
+// }
+
+@mixin center-item {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+@function calc-width($col) {
+  @return 100% / $col;
+}
+
+// .span-two {
+//     width: calculate-width(2); // spans 2 columns, width = 50%
+// }
+
+// .span-three {
+//     width: calculate-width(3); // spans 3 columns, width = 33.3%
+// }

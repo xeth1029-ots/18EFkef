@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+//== Helper
+//==========================
+
+@import "helpers/functions";
+@import "helpers/variables";
+@import "helpers/rfs";
+@import "helpers/root";
+
+//== Mixins
+//==========================
+@import "mixins";
+
+// Vendor animations
+@import "_animate.scss";
+
+//== Base
+//==========================
+@import "base/reset";
+@import "base/tags";
+@import "base/typography";
+@import "base/hr";
+
+//== Layout
+//==========================
+// helpers
+@import "layout/helpers/grid";
+@import "layout/helpers/displays";
+@import "layout/helpers/spacing";
+@import "layout/helpers/utilities";
+@import "layout/helpers/zindex";
+@import "layout/helpers/logos";
+
+// docs
+@import "layout/global/breadcrumb";
+@import "layout/global/header";
+@import "layout/global/burger";
+
+// @import "layout/global/sidebar";
+// @import "layout/global/navber";
+@import "layout/global/footer";
+
+// forms
+@import "layout/forms/forms";
+@import "layout/forms/files";
+@import "layout/forms/valid";
+@import "layout/forms/inputGroup";
+@import "layout/forms/time";
+// @import "layout/forms/checkbox";
+// @import "layout/forms/radio";
+// @import "layout/forms/switch";
+// @import "layout/forms/rating";
+
+@import "vendor/swiper/swiper";
+
+//== prototypes
+//==========================
+
+@import "prototypes/backgroundsStyles";
+@import "prototypes/backgroundsMask";
+@import "prototypes/backgrounds";
+
+@import "prototypes/borderWidth";
+@import "prototypes/borderStyle";
+@import "prototypes/borderColor";
+
+@import "prototypes/boxShadows";
+
+@import "prototypes/filters";
+@import "prototypes/filtersCustom";
+@import "prototypes/images";
+@import "prototypes/opacitys";
+@import "prototypes/positions";
+@import "prototypes/roundeds";
+@import "prototypes/triangle";
+
+@import "prototypes/textSize";
+@import "prototypes/textColors";
+@import "prototypes/textStyles";
+@import "prototypes/mark";
+@import "prototypes/shape";
+@import "prototypes/size";
+@import "prototypes/svg-icon";
+@import "prototypes/svg-bg-icon";
+@import "prototypes/transition";
+
+//== Components
+//==========================
+
+@import "components/alerts";
+@import "components/backgroundsCustom";
+@import "components/backgroundsGrads";
+@import "components/badges";
+@import "components/buttons";
+// @import "components/bootstrap-datePicker";
+@import "components/cssTabs";
+@import "components/cards";
+@import "components/carousels";
+@import "components/category-picker";
+// @import "components/calendar-clock";
+@import "components/dropdowns";
+@import "components/heading";
+@import "components/inputs";
+@import "components/lists";
+@import "components/listsNums";
+@import "components/linkStyle";
+@import "components/lazyload";
+// @import "components/loading";
+@import "components/masks";
+@import "components/modals";
+@import "components/menuItem";
+@import "components/menu";
+// @import "components/menuItem";
+// @import "components/notfound";
+// @import "components/owl";
+// @import "components/paginations";
+// @import "components/panels";
+@import "components/popover";
+@import "components/patterns";
+@import "components/pulse";
+@import "components/remark";
+@import "components/rtTools";
+@import "components/ribbon";
+// @import "components/scrollbar";
+@import "components/selects";
+@import "components/separator";
+@import "components/scrollbar";
+@import "components/tables";
+@import "components/tabs";
+@import "components/texts";
+@import "components/toasts";
+@import "components/toggles";
+@import "components/tooltips";
+// @import "components/menu";
+@import "components/observer";
+@import "components/swiper";
+@import "components/darkMode";
+@import "components/darkModeStyles";
+@import "components/_pikaday.scss";
+
+// //== Pages
+//==========================
+@import "_frontend/index";
+@import "_frontend/login";
+@import "_frontend/search";
+@import "_frontend/searchSm";
+@import "_frontend/course";
+@import "_frontend/teacherInner";
+
+
+
+
+// @import "vera";
+@import "_backend/Bsettings";
+@import "_backend/Bheader";
+@import "_backend/BPageItems";
+// @import "_pages/inner";
+// @import "_pages/innerCharts";
+// @import "_pages/map";
+// @import "_pages/echartsMapChart";
+// @import "_pages/chartist-gradients";
+
+//== Vendor
+// @import "vendor/chartist";
+// @import "vendor/mCSB";
+// @import "vendor/pace";
+// @import "vendor/d3-maps";
+// @import "vendor/rangeSlider";
+// @import "vendor/flatpickr";
+
+//

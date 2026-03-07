@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+//  Components -> Buttons -> Buttons Effects
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.btn.btn--hover--rise {
+  &:hover {
+    transform: translateY(-10%);
+  }
+}
+
+.btn.btn--hover--scale {
+  &:hover {
+    transform: scale(1.125);
+  }
+}
+
+.btn.btn--hover--rotate-end {
+  &:hover {
+    transform: rotate(4deg);
+  }
+}
+
+.btn.btn--hover--rotate-start {
+  &:hover {
+    transform: rotate(-4deg);
+  }
+}

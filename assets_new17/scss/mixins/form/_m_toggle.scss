@@ -1,0 +1,45 @@
+
+
+@mixin input-checkbox {
+  position: absolute;
+  height: 0;
+  width: 0;
+  font-size: inherit;
+  margin: 0;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+@mixin input-checkbox-not-ab {
+  height: 0;
+  width: 0;
+  font-size: inherit;
+  margin: 0;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin toggle-label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+@mixin before-after {
+  content: "";
+  display: block;
+  position: absolute;
+}

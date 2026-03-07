@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+//  Mixins > flex
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// 
+// @include mask-filter($color, $size);
+@mixin mask-filter($color, $size) {
+  background: transparent linear-gradient(45deg, transparent, $color $size);
+  background-size: #{$size * 1.5} #{$size * 1.5};
+  backdrop-filter: saturate(50%) blur($size);
+  opacity: 0.92;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: transparent linear-gradient(45deg, transparent, $color $size);
+    width: 100%;
+    height: 100%;
+    background-size: #{$size * 1.25} #{$size * 1.25};
+    backdrop-filter: blur(#{$size * 2});
+    opacity: 0.02;
+    pointer-events: none;
+  }
+}
+
+// .t-header.is-fix {
+//   @include mask-filter($white, 0.125rem);
+// }
+
+@mixin mask-filter-v2($color, $size, $size2) {
+  &.t-header.is-fix {
+    background-color: transparent;
+    background-image: radial-gradient(transparent $size2, $white $size2);
+    background-size: $size $size;
+    backdrop-filter: saturate(50%) blur($size);
+  }
+}
+

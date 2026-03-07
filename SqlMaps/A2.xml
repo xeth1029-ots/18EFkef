@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="A2" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <resultMaps></resultMaps>
+  <cacheModel id="WKEF-cache" implementation="MEMORY">
+    <flushInterval hours="1" />
+    <property name="Type" value="WEAK" />
+  </cacheModel>
+
+  <statements>
+    <select id="detailC201M" resultClass="WKEFSERVICE.Areas.A2.Models.C201MDetailModel"
+            parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT a.Seq, a.ACCOUNT, a.IDNO, a.UnitCode, a.Sex, a.TeacherName, a.TeacherEName,
+CONVERT(NVARCHAR, a.Birthday, 111) AS Birthday, a.IsShowBirthday,
+a.Tel, a.IsShowTel,
+a.Phone, a.IsShowPhone,
+a.PostalCode1, a.PostalCode2,
+a.Address, a.IsShowAddress,
+a.Email, a.IsShowEmail,
+a.EmailWork, a.IsShowEmailWork,
+a.EduLevelHighest, a.EduSchool1, a.EduDept1, a.EduLevel1, a.EduSchool2, a.EduDept2, a.EduLevel2, a.EduSchool3, a.EduDept3, a.EduLevel3,
+a.ServiceUnit1, a.JobTitle1, a.ServiceUnit2, a.JobTitle2,
+a.ExpertiseDesc, a.ExpertiseCode,
+a.TeachJobAbilityDC, a.TeachJobAbilityBC, a.TeachJobAbilityKC,
+a.TeachArea, a.TeachIndustryDetCode, a.WorkHistory, a.ProLicense, a.SelfIntroduction, a.SelfPicPath,
+a.Online, a.JoinYear, 
+CONVERT(NVARCHAR, a.OfflineDate, 111) AS OfflineDate, 
+a.OfflineReason, a.OfflineReasonRemark, 
+a.HomePageCarousel,
+a.CreatedAccount, CONVERT(NVARCHAR, a.CreatedDatetime, 120) AS CreatedDatetime,
+a.UpdatedAccount, CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime,
+(select b.EduName from Edu b WHERE a.EduLevelHighest=b.EduLevel) AS EduLevelHighest_Name,
+(select c1.EduName from Edu c1 WHERE a.EduLevel1=c1.EduLevel) AS EduLevel1_Name,
+(select c2.EduName from Edu c2 WHERE a.EduLevel2=c2.EduLevel) AS EduLevel2_Name,
+(select c3.EduName from Edu c3 WHERE a.EduLevel3=c3.EduLevel) AS EduLevel3_Name,
+(SELECT bb.ExpertiseName + ',' FROM STRING_SPLIT(a.ExpertiseCode, ',') aa LEFT JOIN Expertise bb ON aa.value=bb.ExpertiseCode FOR XML PATH('')) AS Expertise_Str,
+(SELECT aa.IndustryName + ',' FROM IndustryDet aa WHERE aa.IndustryCode IN (SELECT value FROM STRING_SPLIT(a.TeachIndustryDetCode,',')) FOR XML PATH('')) AS IndustryStr,
+a.IndustryAcademicType,
+isnull(r1.THOURS_TRANSDATA_D_DC,0)+isnull(r1.THOURS_TRANSDATA_S_DC,0)+isnull(r1.THOURS_TRANSDATA_K_DC,0) as R1_THOURS_TRANSDATA_DC,
+isnull(r1.THOURS_TRANSDATA_D_BC,0)+isnull(r1.THOURS_TRANSDATA_S_BC,0)+isnull(r1.THOURS_TRANSDATA_K_BC,0) as R1_THOURS_TRANSDATA_BC,
+isnull(r1.THOURS_TRANSDATA_D_KC,0)+isnull(r1.THOURS_TRANSDATA_S_KC,0)+isnull(r1.THOURS_TRANSDATA_K_KC,0) as R1_THOURS_TRANSDATA_KC,
+isnull(r1.THOURS_TRANSDATA_D_TOTAL,0)+isnull(r1.THOURS_TRANSDATA_S_TOTAL,0)+isnull(r1.THOURS_TRANSDATA_K_TOTAL,0) as R1_THOURS_TRANSDATA_TOTAL,
+isnull(r2.THOURS_TRANSDATA_D_DC,0)+isnull(r2.THOURS_TRANSDATA_S_DC,0)+isnull(r2.THOURS_TRANSDATA_K_DC,0) as R2_THOURS_TRANSDATA_DC,
+isnull(r2.THOURS_TRANSDATA_D_BC,0)+isnull(r2.THOURS_TRANSDATA_S_BC,0)+isnull(r2.THOURS_TRANSDATA_K_BC,0) as R2_THOURS_TRANSDATA_BC,
+isnull(r2.THOURS_TRANSDATA_D_KC,0)+isnull(r2.THOURS_TRANSDATA_S_KC,0)+isnull(r2.THOURS_TRANSDATA_K_KC,0) as R2_THOURS_TRANSDATA_KC,
+isnull(r2.THOURS_TRANSDATA_D_TOTAL,0)+isnull(r2.THOURS_TRANSDATA_S_TOTAL,0)+isnull(r2.THOURS_TRANSDATA_K_TOTAL,0) as R2_THOURS_TRANSDATA_TOTAL
+FROM Teacher a
+LEFT JOIN ReviewReport r1 ON r1.Year=cast(Year(GETDATE())-1 as varchar(4)) and r1.IDNO=a.IDNO
+LEFT JOIN ReviewReport r2 ON r2.Year=cast(Year(GETDATE()) as varchar(4)) and r2.IDNO=a.IDNO
+WHERE a.Seq=#Seq# ]]>
+    </select>
+
+    <select id="getJsonIndustry" resultClass="WKEFSERVICE.Areas.A2.Models.JsonIndustry" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT a.IndustryMstCode AS MSTID,
+	a.IndustryCode AS DETID,
+	b.IndustryName AS MSTNAME,
+	a.IndustryName AS DETNAME
+FROM IndustryDet a
+LEFT JOIN IndustryMst b ON a.IndustryMstCode=b.IndustryCode
+WHERE a.Actived='Y' AND b.Actived='Y'
+ORDER BY a.OrderBy, b.OrderBy ]]>
+    </select>
+
+    <select id="queryC202M_0" resultClass="WKEFSERVICE.Areas.A2.Models.C202MGridModel"
+            parameterClass="WKEFSERVICE.Areas.A2.Models.C202MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ 
+SELECT ROW_NUMBER() OVER(ORDER BY tmp.UpdatedDatetime DESC, tmp.UnitCode) AS ROWID,*
+FROM ( 
+  SELECT a.Year, a.PlanCode, a.PlanID, a.PlanID AS TrainID, '' AS ClassID,
+	'1' AS PlanTypeCode,'大專就業學程' AS PlanTypeText,
+	a.UnitCode, a.UnitName,
+	a.TeacherID,
+	a.SchoolName AS ApplyUnit,
+	a.SchoolName AS TrainingUnit,
+	a.ClassName,
+	a.TrainingDateS,
+	a.TrainingDateE,
+	a.ClassDateS,
+	a.ClassDateE,
+	a.JobAbilityCode,
+	a.CourseUnitCode,
+	a.TeachHours,
+	a.TeachNum,
+	a.QuestLink,a.QuesSearchLink,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime,
+	CAST(CAST(
+	CAST(( SELECT SUM(IIF((CAST(ISNULL(Q1 ,'0') AS FLOAT)+CAST(ISNULL(Q2 ,'0') AS FLOAT)+CAST(ISNULL(Q3 ,'0') AS FLOAT)+CAST(ISNULL(Q4 ,'0') AS FLOAT)
+    +CAST(ISNULL(Q5 ,'0') AS FLOAT)+CAST(ISNULL(Q6 ,'0') AS FLOAT)+CAST(ISNULL(Q7 ,'0') AS FLOAT)+CAST(ISNULL(Q8 ,'0') AS FLOAT)
+    +CAST(ISNULL(Q9 ,'0') AS FLOAT)+CAST(ISNULL(Q10,'0') AS FLOAT)+CAST(ISNULL(Q11,'0') AS FLOAT) )/11>=4,1,0))
+	FROM TransData_D_Satisfy ds
+	WHERE ds.Year=a.Year AND ds.PlanID=a.PlanID AND ds.CourseUnitCode=a.CourseUnitCode AND ds.TeacherID=a.TeacherID ) AS FLOAT)
+  /
+	CAST(( SELECT SUM(IIF(ISNULL(StudentID,'')='',0,1))
+	FROM TransData_D_Satisfy ds
+	WHERE ds.Year=a.Year AND ds.PlanID=a.PlanID AND ds.CourseUnitCode=a.CourseUnitCode AND ds.TeacherID=a.TeacherID ) AS FLOAT)*100 AS INT) AS NVARCHAR) AS Satisfy,
+	CAST(( SELECT SUM(IIF(ISNULL(StudentID,'')='',0,1))
+	FROM TransData_D_Satisfy ds
+	WHERE ds.Year=a.Year AND ds.PlanID=a.PlanID AND ds.CourseUnitCode=a.CourseUnitCode AND ds.TeacherID=a.TeacherID ) AS FLOAT) AS FillStudentNum
+	FROM TransData_D_Class a
+  WHERE a.TeacherID = #LoginIDNO#
+  AND EXISTS (SELECT 1 FROM Teacher t WHERE t.IDNO=a.TeacherID 
+    AND NOT ISNULL(YEAR(t.OfflineDate),YEAR(GETDATE())+1)<=ISNULL(#Year#,YEAR(GETDATE())) ) ]]>
+      <dynamic>
+        <isParameterPresent>
+          <!--<isNotEmpty prepend="" property="LoginIDNO"><![CDATA[ AND a.TeacherID = #LoginIDNO# ]]></isNotEmpty>-->
+          <!--<isNotEmpty prepend="" property="Year"><![CDATA[ AND a.Year = #Year# ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND dbo.FN_GET_ACTUALYEAR(SUBSTRING(a.ClassDateS,5,3),SUBSTRING(a.ClassDateS,11,2))=#Year# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="Units"><![CDATA[ AND a.UnitCode IN ($Units$) ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="TrainingUnit"><![CDATA[ AND a.SchoolName LIKE '%' + #TrainingUnit# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="JobAbilityCode"><![CDATA[ AND a.JobAbilityCode = #JobAbilityCode# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CourseUnitCode"><![CDATA[ AND a.CourseUnitCode LIKE '%' + #CourseUnitCode# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ 
+UNION ALL
+  SELECT b.Year, b.PlanCode, b.TrainID AS PlanID, b.TrainID, b.ClassID,
+  '2' AS PlanTypeCode,'小人提' AS PlanTypeText,
+  b.UnitCode, b.UnitName,
+  b.TeacherID,
+  b.JoinCompany AS ApplyUnit,
+  b.TrainingUnit AS TrainingUnit,
+  b.ClassName,
+  b.TrainingTimeS AS TrainingDateS,
+  b.TrainingTimeE AS TrainingDateE,
+  b.ClassDateS,
+  b.ClassDateE,
+  b.JobAbilityCode,
+  b.CourseUnitCode,
+  b.TeachHours,
+  b.TeachNum,
+  b.QuestLink,null QuesSearchLink,
+  CONVERT(NVARCHAR, b.UpdatedDatetime, 120) AS UpdatedDatetime,
+  dbo.FN_GET_Satisfy_S(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) Satisfy,
+  dbo.FN_GET_FillStudentNum_S(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) FillStudentNum
+  FROM dbo.FNTB_TransData_S_Class(#LoginIDNO#) b
+  WHERE b.TeacherID=#LoginIDNO#
+  AND EXISTS (SELECT 1 FROM Teacher t WHERE t.IDNO=b.TeacherID 
+    AND NOT ISNULL(YEAR(t.OfflineDate),YEAR(GETDATE())+1)<=ISNULL(#Year#,YEAR(GETDATE())) ) ]]>
+      <dynamic>
+        <isParameterPresent>
+          <!--<isNotEmpty prepend="" property="LoginIDNO"><![CDATA[ AND b.TeacherID = #LoginIDNO# ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND b.Year = #Year# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="Units"><![CDATA[ AND b.UnitCode IN ($Units$) ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="TrainingUnit"><![CDATA[ AND b.TrainingUnit LIKE '%' + #TrainingUnit# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="JobAbilityCode"><![CDATA[ AND b.JobAbilityCode = #JobAbilityCode# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CourseUnitCode"><![CDATA[ AND b.CourseUnitCode LIKE '%' + #CourseUnitCode# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[
+UNION ALL
+  SELECT b.Year, b.PlanCode, b.TrainID AS PlanID, b.TrainID,convert(nvarchar(50),b.ClassID) ClassID,
+  '3' AS PlanTypeCode,'大人提' AS PlanTypeText,
+  b.UnitCode, b.UnitName,
+  b.TeacherID,
+  b.JoinCompany AS ApplyUnit,
+  b.TrainingUnit AS TrainingUnit,
+  b.ClassName,
+  b.TrainingTimeS AS TrainingDateS,
+  b.TrainingTimeE AS TrainingDateE,
+  b.ClassDateS,
+  b.ClassDateE,
+  b.JobAbilityCode,
+  b.CourseUnitCode,
+  b.TeachHours,
+  b.TeachNum,
+  b.QuestLink,null QuesSearchLink,
+  CONVERT(NVARCHAR, b.UpdatedDatetime, 120) AS UpdatedDatetime,
+  dbo.FN_GET_Satisfy_K(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) Satisfy,
+  dbo.FN_GET_FillStudentNum_K(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) FillStudentNum
+  FROM dbo.TransData_K_Class b
+  WHERE b.TeacherID=#LoginIDNO#
+  AND EXISTS (SELECT 1 FROM Teacher t WHERE t.IDNO=b.TeacherID 
+    AND NOT ISNULL(YEAR(t.OfflineDate),YEAR(GETDATE())+1)<=ISNULL(#Year#,YEAR(GETDATE())) ) ]]>
+      <dynamic>
+        <isParameterPresent>
+          <!--<isNotEmpty prepend="" property="LoginIDNO"><![CDATA[ AND b.TeacherID = #LoginIDNO# ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND b.Year = #Year# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="Units"><![CDATA[ AND b.UnitCode IN ($Units$) ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="TrainingUnit"><![CDATA[ AND b.TrainingUnit LIKE '%' + #TrainingUnit# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="JobAbilityCode"><![CDATA[ AND b.JobAbilityCode = #JobAbilityCode# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CourseUnitCode"><![CDATA[ AND b.CourseUnitCode LIKE '%' + #CourseUnitCode# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ 
+) tmp
+ORDER BY ROW_NUMBER() OVER(ORDER BY tmp.UpdatedDatetime DESC, tmp.UnitCode) ]]>
+    </select>
+
+    <select id="queryC202M_1" resultClass="WKEFSERVICE.Areas.A2.Models.C202MGridModel"
+            parameterClass="WKEFSERVICE.Areas.A2.Models.C202MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY a.UpdatedDatetime DESC, a.UnitCode) AS ROWID,
+	a.Year, a.PlanCode, a.PlanID, a.PlanID AS TrainID, '' AS ClassID,
+	'1' AS PlanTypeCode,'大專就業學程' AS PlanTypeText,
+	a.UnitCode, a.UnitName,
+	a.TeacherID,
+	a.SchoolName AS ApplyUnit,
+	a.SchoolName AS TrainingUnit,
+	a.ClassName,
+	a.TrainingDateS,
+	a.TrainingDateE,
+	a.ClassDateS,
+	a.ClassDateE,
+	a.JobAbilityCode,
+	a.CourseUnitCode,
+	a.TeachHours,
+	a.TeachNum,
+	a.QuestLink,a.QuesSearchLink,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime,
+	CAST(CAST(
+	CAST(( SELECT  SUM(IIF((
+		CAST(ISNULL(Q1 ,'0') AS FLOAT)+CAST(ISNULL(Q2 ,'0') AS FLOAT)+CAST(ISNULL(Q3 ,'0') AS FLOAT)+CAST(ISNULL(Q4 ,'0') AS FLOAT)+CAST(ISNULL(Q5 ,'0') AS FLOAT)+
+		CAST(ISNULL(Q6 ,'0') AS FLOAT)+CAST(ISNULL(Q7 ,'0') AS FLOAT)+CAST(ISNULL(Q8 ,'0') AS FLOAT)+CAST(ISNULL(Q9 ,'0') AS FLOAT)+CAST(ISNULL(Q10,'0') AS FLOAT)+
+		CAST(ISNULL(Q11,'0') AS FLOAT) )/11>=4,1,0))
+    FROM TransData_D_Satisfy ds
+	WHERE ds.Year=a.Year AND ds.PlanID=a.PlanID AND ds.CourseUnitCode=a.CourseUnitCode AND ds.TeacherID=a.TeacherID	) AS FLOAT)
+	/
+	CAST(( SELECT SUM(IIF(ISNULL(StudentID,'')='',0,1))
+	FROM TransData_D_Satisfy ds
+	WHERE ds.Year=a.Year AND ds.PlanID=a.PlanID AND ds.CourseUnitCode=a.CourseUnitCode AND ds.TeacherID=a.TeacherID	) AS FLOAT)*100 AS INT) AS NVARCHAR) AS Satisfy,
+	CAST(( SELECT SUM(IIF(ISNULL(StudentID,'')='',0,1))
+	FROM TransData_D_Satisfy ds
+	WHERE ds.Year=a.Year AND ds.PlanID=a.PlanID AND ds.CourseUnitCode=a.CourseUnitCode AND ds.TeacherID=a.TeacherID	) AS FLOAT) AS FillStudentNum
+  FROM TransData_D_Class a
+  WHERE a.TeacherID = #LoginIDNO#
+  AND EXISTS (SELECT 1 FROM Teacher t WHERE t.IDNO=a.TeacherID 
+    AND NOT ISNULL(YEAR(t.OfflineDate),YEAR(GETDATE())+1)<=ISNULL(#Year#,YEAR(GETDATE())) ) ]]>
+      <dynamic>
+        <isParameterPresent>
+          <!--<isNotEmpty prepend="" property="LoginIDNO"><![CDATA[ AND a.TeacherID = #LoginIDNO# ]]></isNotEmpty>-->
+          <!--<isNotEmpty prepend="" property="Year"><![CDATA[ AND a.Year = #Year# ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND dbo.FN_GET_ACTUALYEAR(SUBSTRING(a.ClassDateS,5,3),SUBSTRING(a.ClassDateS,11,2))=#Year# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="Units"><![CDATA[ AND a.UnitCode IN ($Units$) ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="TrainingUnit"><![CDATA[ AND a.SchoolName LIKE '%' + #TrainingUnit# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="JobAbilityCode"><![CDATA[ AND a.JobAbilityCode = #JobAbilityCode# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CourseUnitCode"><![CDATA[ AND a.CourseUnitCode LIKE '%' + #CourseUnitCode# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY ROW_NUMBER() OVER(ORDER BY a.UpdatedDatetime DESC, a.UnitCode) ]]>
+    </select>
+
+    <select id="queryC202M_2" resultClass="WKEFSERVICE.Areas.A2.Models.C202MGridModel"
+      parameterClass="WKEFSERVICE.Areas.A2.Models.C202MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY b.UpdatedDatetime DESC, b.UnitCode) AS ROWID
+	,b.Year, b.PlanCode
+	,b.TrainID AS PlanID, b.TrainID, b.ClassID
+	,'2' AS PlanTypeCode,'小人提' AS PlanTypeText
+	,b.UnitCode, b.UnitName
+	,b.TeacherID,b.TeacherName
+	,b.JoinCompany AS ApplyUnit
+	,b.TrainingUnit AS TrainingUnit
+	,b.ClassName
+	,b.TrainingTimeS AS TrainingDateS
+	,b.TrainingTimeE AS TrainingDateE
+	,b.ClassDateS
+	,b.ClassDateE
+	,b.JobAbilityCode
+	,b.CourseUnitCode
+	,b.TeachHours
+	,b.TeachNum
+	,b.QuestLink,null QuesSearchLink
+	,CONVERT(NVARCHAR, b.UpdatedDatetime, 120) AS UpdatedDatetime
+  ,dbo.FN_GET_Satisfy_S(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) Satisfy
+  ,dbo.FN_GET_FillStudentNum_S(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) FillStudentNum
+  FROM dbo.FNTB_TransData_S_Class(#LoginIDNO#) b
+  WHERE b.TeacherID=#LoginIDNO#
+  AND EXISTS (SELECT 1 FROM Teacher t WHERE t.IDNO=b.TeacherID 
+    AND NOT ISNULL(YEAR(t.OfflineDate),YEAR(GETDATE())+1)<=ISNULL(#Year#,YEAR(GETDATE())) ) ]]>
+      <dynamic>
+        <isParameterPresent>
+          <!--<isNotEmpty prepend="" property="LoginIDNO"><![CDATA[ AND b.TeacherID = #LoginIDNO# ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND b.Year = #Year# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="Units"><![CDATA[ AND b.UnitCode IN ($Units$) ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="TrainingUnit"><![CDATA[ AND b.TrainingUnit LIKE '%' + #TrainingUnit# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="JobAbilityCode"><![CDATA[ AND b.JobAbilityCode = #JobAbilityCode# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CourseUnitCode"><![CDATA[ AND b.CourseUnitCode LIKE '%' + #CourseUnitCode# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY ROW_NUMBER() OVER(ORDER BY b.UpdatedDatetime DESC, b.UnitCode) ]]>
+    </select>
+
+    <select id="queryC202M_3" resultClass="WKEFSERVICE.Areas.A2.Models.C202MGridModel"
+      parameterClass="WKEFSERVICE.Areas.A2.Models.C202MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ 
+SELECT ROW_NUMBER() OVER(ORDER BY b.UpdatedDatetime DESC, b.UnitCode) AS ROWID
+	,b.Year, b.PlanCode
+	,b.TrainID AS PlanID, b.TrainID,convert(nvarchar(50),b.ClassID) ClassID
+	,'3' AS PlanTypeCode,'大人提' AS PlanTypeText
+	,b.UnitCode, b.UnitName
+	,b.TeacherID,b.TeacherName
+	,b.JoinCompany AS ApplyUnit
+	,b.TrainingUnit AS TrainingUnit
+	,b.ClassName
+	,b.TrainingTimeS AS TrainingDateS
+	,b.TrainingTimeE AS TrainingDateE
+	,b.ClassDateS
+	,b.ClassDateE
+	,b.JobAbilityCode
+	,b.CourseUnitCode
+	,b.TeachHours
+	,b.TeachNum
+	,b.QuestLink,null QuesSearchLink
+	,CONVERT(NVARCHAR, b.UpdatedDatetime, 120) AS UpdatedDatetime
+  ,dbo.FN_GET_Satisfy_K(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) Satisfy
+  ,dbo.FN_GET_FillStudentNum_K(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) FillStudentNum
+  FROM dbo.TransData_K_Class b
+  WHERE b.TeacherID=#LoginIDNO#
+  AND EXISTS ( SELECT 1 FROM Teacher t WHERE t.IDNO=b.TeacherID 
+    AND NOT ISNULL(YEAR(t.OfflineDate),YEAR(GETDATE())+1)<=ISNULL(#Year#,YEAR(GETDATE())) ) ]]>
+      <dynamic>
+        <isParameterPresent>
+          <!--<isNotEmpty prepend="" property="LoginIDNO"><![CDATA[ AND b.TeacherID = #LoginIDNO# ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND b.Year = #Year# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="Units"><![CDATA[ AND b.UnitCode IN ($Units$) ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="TrainingUnit"><![CDATA[ AND b.TrainingUnit LIKE '%' + #TrainingUnit# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="JobAbilityCode"><![CDATA[ AND b.JobAbilityCode = #JobAbilityCode# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CourseUnitCode"><![CDATA[ AND b.CourseUnitCode LIKE '%' + #CourseUnitCode# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY ROW_NUMBER() OVER(ORDER BY b.UpdatedDatetime DESC, b.UnitCode) ]]>
+    </select>
+
+    <select id="queryC202M_Suggest_2" resultClass="WKEFSERVICE.Models.Entities.TransData_S_Satisfy"
+        parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT d.Year
+  ,d.PlanCode
+  ,d.UnitCode
+  ,d.TrainID  /*PK*/ 
+  ,d.ClassID  /*PK*/ 
+  ,d.ClassName
+  ,d.CourseUnitCode  /*PK*/ 
+  ,d.TeacherID  /*PK*/ 
+  ,d.TeacherName
+  ,d.StudentID  /*PK*/ 
+  ,d.StudentName
+  ,d.PersonWorkExp
+  ,d.DutyType
+  ,d.FillDate  /*PK*/ 
+  ,d.Q1,d.Q2,d.Q3,d.Q4,d.Q5,d.Q6,d.Q7,d.Q8,d.Q9,d.Q10,d.Q11
+  ,d.Suggest
+  ,CONVERT(NVARCHAR, d.UpdatedDatetime, 120) AS UpdatedDatetime
+  FROM TransData_S_Satisfy d
+  JOIN TransData_S_Class b on d.Year=b.Year AND d.TrainID=b.TrainID AND d.ClassID=b.ClassID 
+  AND d.CourseUnitCode=b.CourseUnitCode AND d.TeacherID=b.TeacherID
+  WHERE b.TeacherID=#TeacherID# and b.CourseUnitCode=#CourseUnitCode# and b.ClassDateS=#ClassDateS# 
+  ORDER BY d.UpdatedDatetime DESC ]]>
+    </select>
+
+    <select id="queryC202M_Suggest_K" resultClass="WKEFSERVICE.Models.Entities.TransData_K_Satisfy"
+    parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT d.Year
+  ,d.PlanCode
+  ,d.UnitCode
+  ,d.TrainID  /*PK*/ 
+  ,d.ClassID  /*PK*/ 
+  ,d.ClassName
+  ,d.CourseUnitCode  /*PK*/ 
+  ,d.TeacherID  /*PK*/ 
+  ,d.TeacherName
+  ,d.StudentID  /*PK*/ 
+  ,d.StudentName
+  ,d.PersonWorkExp
+  ,d.DutyType
+  ,d.FillDate  /*PK*/ 
+  ,d.Q1,d.Q2,d.Q3,d.Q4,d.Q5,d.Q6,d.Q7,d.Q8,d.Q9,d.Q10,d.Q11
+  ,d.Suggest
+  ,CONVERT(NVARCHAR, d.UpdatedDatetime, 120) AS UpdatedDatetime
+  FROM TransData_K_Satisfy d
+  JOIN TransData_K_Class b on d.Year=b.Year AND d.TrainID=b.TrainID AND d.ClassID=b.ClassID 
+  AND d.CourseUnitCode=b.CourseUnitCode AND d.TeacherID=b.TeacherID
+  WHERE b.TeacherID=#TeacherID# and b.CourseUnitCode=#CourseUnitCode# and b.ClassDateS=#ClassDateS# 
+  ORDER BY d.UpdatedDatetime DESC ]]>
+    </select>
+    
+    <select id="queryC202M_2_OLD1"
+        resultClass="WKEFSERVICE.Areas.A2.Models.C202MGridModel"
+        parameterClass="WKEFSERVICE.Areas.A2.Models.C202MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY b.UpdatedDatetime DESC, b.UnitCode) AS ROWID,
+	b.Year, b.PlanCode, b.TrainID AS PlanID, b.TrainID, b.ClassID,
+	'2' AS PlanTypeCode,'小人提' AS PlanTypeText,
+	b.UnitCode, b.UnitName,
+	b.TeacherID,
+	b.JoinCompany AS ApplyUnit,
+	b.TrainingUnit AS TrainingUnit,
+	b.ClassName,
+	b.TrainingTimeS AS TrainingDateS,
+	b.TrainingTimeE AS TrainingDateE,
+	b.ClassDateS,
+	b.ClassDateE,
+	b.JobAbilityCode,
+	b.CourseUnitCode,
+	b.TeachHours,
+	b.TeachNum,
+	b.QuestLink,null QuesSearchLink,
+	CONVERT(NVARCHAR, b.UpdatedDatetime, 120) AS UpdatedDatetime,
+  dbo.FN_GET_Satisfy_S(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) Satisfy,
+  dbo.FN_GET_FillStudentNum_S(b.TeacherID ,b.CourseUnitCode ,b.ClassDateS) FillStudentNum
+  FROM TransData_S_Class b
+  WHERE b.TeacherID=#LoginIDNO# ]]>
+      <dynamic>
+        <isParameterPresent>
+          <!--<isNotEmpty prepend="" property="LoginIDNO"><![CDATA[ AND b.TeacherID = #LoginIDNO# ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND b.Year = #Year# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="Units"><![CDATA[ AND b.UnitCode IN ($Units$) ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="TrainingUnit"><![CDATA[ AND b.TrainingUnit LIKE '%' + #TrainingUnit# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="JobAbilityCode"><![CDATA[ AND b.JobAbilityCode = #JobAbilityCode# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CourseUnitCode"><![CDATA[ AND b.CourseUnitCode LIKE '%' + #CourseUnitCode# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY ROW_NUMBER() OVER(ORDER BY b.UpdatedDatetime DESC, b.UnitCode) ]]>
+    </select>
+
+    <select id="queryC301M" resultClass="WKEFSERVICE.Areas.A2.Models.C301MGridModel" parameterClass="WKEFSERVICE.Areas.A2.Models.C301MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY a.MeetingDateS DESC, a.MeetingDateE DESC) AS ROWID,
+	a.Seq,
+	a.MeetingName,
+	a.MeetingType,
+	/*CONVERT(NVARCHAR, ISNULL(a.MeetingDateS, ''), 111) + IIF(ISNULL(a.MeetingDateE, '') = '', '', ' ~ ' + CONVERT(NVARCHAR, ISNULL(a.MeetingDateE, ''), 111)) AS MeetingDate*/
+	CONVERT(NVARCHAR, a.MeetingDateS, 111) AS MeetingDateS,
+	CONVERT(NVARCHAR, a.MeetingDateE, 111) AS MeetingDateE,	
+	SUBSTRING(CONVERT(NVARCHAR, a.TimeS, 114), 1, 5) AS TimeS,
+	SUBSTRING(CONVERT(NVARCHAR, a.TimeE, 114), 1, 5) AS TimeE,
+	a.Location,
+	CONVERT(NVARCHAR, a.SignUpDateS, 120) AS SignUpDateS,
+	CONVERT(NVARCHAR, a.SignUpDateE, 120) AS SignUpDateE,
+	(SELECT COUNT(Seq) FROM MeetingSignUp aa WHERE aa.MeetingSeq=a.Seq AND aa.TeacherAccount=#LoginAccount#) AS isSignUp,
+	IIF(GETDATE()>=a.SignUpDateS AND GETDATE()<=a.SignUpDateE,1,0) AS isCanSignUp
+FROM Meeting a
+WHERE 1=1
+			]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="MeetingType"><![CDATA[ AND a.MeetingType = #MeetingType# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="MeetingName"><![CDATA[ AND a.MeetingName LIKE '%' + #MeetingName# + '%' ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="MeetingDateS"><![CDATA[ AND CONVERT(VARCHAR, a.MeetingDateS, 112) >= #MeetingDateS# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="MeetingDateE"><![CDATA[ AND CONVERT(VARCHAR, a.MeetingDateE, 112) <= #MeetingDateE# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="SignUpDateS"><![CDATA[ AND CONVERT(VARCHAR, a.SignUpDateS, 112) >= #SignUpDateS# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="SignUpDateE"><![CDATA[ AND CONVERT(VARCHAR, a.SignUpDateE, 112) <= #SignUpDateE# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="CreatedUnit_forSQL"><![CDATA[ $CreatedUnit_forSQL$ ]]></isNotEmpty>
+          <!--<isNotEmpty prepend="" property="CreatedUnit"><![CDATA[ AND (SELECT COUNT(value) FROM STRING_SPLIT(#CreatedUnit#, ',') WHERE value=a.CreatedUnit)>=1 ]]></isNotEmpty>-->
+          <!--<isNotEmpty prepend="" property="MeetLocated"><![CDATA[ AND (SELECT COUNT(value) FROM STRING_SPLIT(#MeetLocated#, ',') WHERE CHARINDEX(value, a.Address)>=1)>=1 ]]></isNotEmpty>-->
+          <isNotEmpty prepend="" property="IsSignUpStop_forSQL"><![CDATA[ $IsSignUpStop_forSQL$ ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY a.MeetingDateS DESC, a.MeetingDateE DESC ]]>
+    </select>
+
+    <select id="detailC301M" parameterClass="Hashtable" resultClass="WKEFSERVICE.Areas.A2.Models.C301MDetailModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT a.Seq,
+	CAST(DATEPART(YEAR, a.MeetingDateS)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.MeetingDateS) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.MeetingDateS) AS NVARCHAR) + ' ~ ' +
+	CAST(DATEPART(YEAR, a.MeetingDateE)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.MeetingDateE) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.MeetingDateE) AS NVARCHAR) AS MeetingDate,
+	/*CONVERT(NVARCHAR, a.MeetingDateS, 111) AS a.MeetingDateS,*/
+	/*CONVERT(NVARCHAR, a.MeetingDateE, 111) AS a.MeetingDateE,*/
+	SUBSTRING(CONVERT(NVARCHAR, a.TimeS, 114), 1, 5) + ' ~ ' +
+	SUBSTRING(CONVERT(NVARCHAR, a.TimeE, 114), 1, 5) AS MeetingTime,
+	/*SUBSTRING(CONVERT(NVARCHAR, a.SignUpDateS, 120), 1, 16) + ':00' AS a.SignUpDateS,*/
+	/*SUBSTRING(CONVERT(NVARCHAR, a.SignUpDateE, 120), 1, 16) + ':00' AS a.SignUpDateE,*/
+	CAST(DATEPART(YEAR, a.SignUpDateS)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.SignUpDateS) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.SignUpDateS) AS NVARCHAR) + ' ' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(HOUR, a.SignUpDateS) AS NVARCHAR), 2) + ':' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(MINUTE, a.SignUpDateS) AS NVARCHAR), 2) + ' ~ ' +
+	CAST(DATEPART(YEAR, a.SignUpDateE)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.SignUpDateE) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.SignUpDateE) AS NVARCHAR) + ' ' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(HOUR, a.SignUpDateE) AS NVARCHAR), 2) + ':' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(MINUTE, a.SignUpDateE) AS NVARCHAR), 2) AS SignUpDateTime,
+	a.MeetingType,
+	a.MeetingName,
+	a.Location,
+	a.Address,
+	a.Days,
+	a.MaximumPeople,
+	b.UnitName AS UnitName,
+	a.Remark,
+	a.PicName,
+	(SELECT COUNT(Seq) FROM MeetingSignUp aa WHERE aa.MeetingSeq=a.Seq AND aa.TeacherAccount=#LoginAccount#) AS isSignUp,
+	IIF(GETDATE()>=a.SignUpDateS AND GETDATE()<=a.SignUpDateE,1,0) AS isCanSignUp
+FROM Meeting a
+LEFT JOIN Unit b ON a.CreatedUnit=b.UnitCode
+WHERE a.Seq=#Seq# ]]>
+    </select>
+
+    <select id="detailAttachedsC301M" parameterClass="Hashtable" resultClass="WKEFSERVICE.Areas.A2.Models.C301MAttachedsModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY a.Seq) AS ROWID,
+	a.Seq,
+	a.MeetingSeq,
+	a.FileNameOrg,
+	a.FileNameNew,
+	a.FileNameType,
+	a.UpdatedAccount,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM MeetingAttached a
+WHERE a.MeetingSeq=#Seq# ]]>
+    </select>
+
+    <select id="queryC302M" resultClass="WKEFSERVICE.Areas.A2.Models.C302MGridModel" parameterClass="WKEFSERVICE.Areas.A2.Models.C302MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY b.Seq) AS ROWID,
+	b.Seq,
+	b.MeetingType, b.MeetingName,
+	b.CreatedUnit, c.UnitName,
+	CONVERT(NVARCHAR, b.MeetingDateS, 111) AS MeetingDateS,
+	CONVERT(NVARCHAR, b.MeetingDateE, 111) AS MeetingDateE,	
+	SUBSTRING(CONVERT(NVARCHAR, b.TimeS, 114), 1, 5) AS TimeS,
+	SUBSTRING(CONVERT(NVARCHAR, b.TimeE, 114), 1, 5) AS TimeE,
+	b.Location,
+	CONVERT(NVARCHAR, b.SignUpDateS, 120) AS SignUpDateS,
+	CONVERT(NVARCHAR, b.SignUpDateE, 120) AS SignUpDateE,
+	CONVERT(NVARCHAR, a.SignUpDatetime, 120) AS SignUpDatetime,
+	'已報名' AS SignUpStr,
+	ISNULL(d.Attend,'N') AS isAttend,
+	ISNULL(d.TestPassed,'N') AS isTestPassed,
+	d.TestScore
+FROM MeetingSignUp a
+LEFT JOIN Meeting b ON a.MeetingSeq=b.Seq
+LEFT JOIN Unit c ON b.CreatedUnit=c.UnitCode
+LEFT JOIN MeetingAttend d ON d.MeetingSeq=b.Seq AND d.TeacherAccount=a.TeacherAccount
+WHERE a.TeacherAccount=#LoginAccount# ]]>
+    </select>
+
+    <delete id="UnSigninC302M_1" parameterClass="Hashtable" resultClass="int">
+      <![CDATA[
+DELETE FROM MeetingSignUp WHERE MeetingSeq=#MeetingSeq# AND TeacherAccount=#TeacherAccount#
+			]]>
+    </delete>
+
+    <delete id="UnSigninC302M_2" parameterClass="Hashtable" resultClass="int">
+      <![CDATA[
+DELETE FROM MeetingAttend WHERE MeetingSeq=#MeetingSeq# AND TeacherAccount=#TeacherAccount#
+			]]>
+    </delete>
+
+    <select id="detailC302M" parameterClass="Hashtable" resultClass="WKEFSERVICE.Areas.A2.Models.C302MDetailModel" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT
+	a.Seq,
+	CAST(DATEPART(YEAR, a.MeetingDateS)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.MeetingDateS) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.MeetingDateS) AS NVARCHAR) + ' ~ ' +
+	CAST(DATEPART(YEAR, a.MeetingDateE)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.MeetingDateE) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.MeetingDateE) AS NVARCHAR) AS MeetingDate,
+	/*CONVERT(NVARCHAR, a.MeetingDateS, 111) AS a.MeetingDateS,*/
+	/*CONVERT(NVARCHAR, a.MeetingDateE, 111) AS a.MeetingDateE,*/
+	SUBSTRING(CONVERT(NVARCHAR, a.TimeS, 114), 1, 5) + ' ~ ' +
+	SUBSTRING(CONVERT(NVARCHAR, a.TimeE, 114), 1, 5) AS MeetingTime,
+	/*SUBSTRING(CONVERT(NVARCHAR, a.SignUpDateS, 120), 1, 16) + ':00' AS a.SignUpDateS,*/
+	/*SUBSTRING(CONVERT(NVARCHAR, a.SignUpDateE, 120), 1, 16) + ':00' AS a.SignUpDateE,*/
+	CAST(DATEPART(YEAR, a.SignUpDateS)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.SignUpDateS) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.SignUpDateS) AS NVARCHAR) + ' ' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(HOUR, a.SignUpDateS) AS NVARCHAR), 2) + ':' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(MINUTE, a.SignUpDateS) AS NVARCHAR), 2) + ' ~ ' +
+	CAST(DATEPART(YEAR, a.SignUpDateE)-1911 AS NVARCHAR) + '/' + CAST(DATEPART(MONTH, a.SignUpDateE) AS NVARCHAR) + '/' + CAST(DATEPART(DAY, a.SignUpDateE) AS NVARCHAR) + ' ' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(HOUR, a.SignUpDateE) AS NVARCHAR), 2) + ':' + RIGHT(REPLICATE('0', 2) + CAST(DATEPART(MINUTE, a.SignUpDateE) AS NVARCHAR), 2) AS SignUpDateTime,
+	a.MeetingType,
+	a.MeetingName,
+	a.Location,
+	a.MaximumPeople,
+	b.UnitName AS UnitName,
+	a.Remark,
+	a.PicName
+FROM Meeting a
+LEFT JOIN Unit b ON a.CreatedUnit=b.UnitCode
+WHERE 1=1 AND a.Seq=#Seq#
+			]]>
+    </select>
+
+    <select id="detailAttachedsC302M" parameterClass="Hashtable" resultClass="WKEFSERVICE.Areas.A2.Models.C302MAttachedsModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY a.Seq) AS ROWID,
+	a.Seq,
+	a.MeetingSeq,
+	a.FileNameOrg,
+	a.FileNameNew,
+	a.FileNameType,
+	a.UpdatedAccount,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM MeetingAttached a
+WHERE 1=1 AND a.MeetingSeq=#Seq#
+			]]>
+    </select>
+
+    <select id="queryC501M" resultClass="WKEFSERVICE.Areas.A2.Models.C501MGridModel" parameterClass="WKEFSERVICE.Areas.A2.Models.C501MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT ROW_NUMBER() OVER(ORDER BY a.Year DESC, a.FirstTime DESC) AS ROWID,
+	a.Seq,
+	a.TeacherAccount,
+	a.ReportType,
+	a.JobAbilityCode,
+	a.ReportName,
+	a.FileNameRemark,
+	a.FileNameOrg,
+	a.FileNameNew,
+	a.FileNameType,
+	CONVERT(NVARCHAR, a.FirstTime, 120) AS FirstTime, a.Year,
+	a.AuditStatus,
+	a.AuditAccount,   CONVERT(NVARCHAR, a.AuditDatetime, 120) AS AuditDatetime,
+	a.UpdatedAccount, CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM ReportRecord a
+WHERE a.ReportType='1'
+AND a.TeacherAccount=#TeacherAccount# ]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND a.Year = #Year# ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY a.Year DESC, a.FirstTime DESC ]]>
+    </select>
+
+    <select id="GetUploadDeadlineStr" parameterClass="Hashtable" resultClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT CONCAT(DATEPART(YEAR, DateS)-1911,'/',DATEPART(MONTH, DateS),'/',DATEPART(DAY, DateS)
+	,' ~ ',DATEPART(YEAR, DateE)-1911,'/',DATEPART(MONTH, DateE),'/',DATEPART(DAY, DateE)) Result
+FROM Report
+WHERE Year=#Year# AND UnitCode=#UnitID#
+			]]>
+    </select>
+    <select id="GetUploadDeadline" parameterClass="Hashtable" resultClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT DateS, DateE
+FROM Report
+WHERE Year=#Year# AND UnitCode=#UnitID#
+			]]>
+    </select>
+
+    <select id="GetTeacherAttendsData1" parameterClass="Hashtable"
+            resultClass="WKEFSERVICE.Models.Entities.MeetingAttend" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT a.Seq, a.Attend, a.TestPassed
+FROM MeetingAttend a
+JOIN Meeting b ON a.MeetingSeq=b.Seq
+WHERE a.TeacherAccount=#TeacherAccount# AND b.Year=#Year# AND b.MeetingType='1'
+		]]>
+    </select>
+
+    <select id="GetTeacherAttendsData2" parameterClass="Hashtable" resultClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT COUNT(a.Seq) AS MeetingCount
+FROM Meeting a
+LEFT JOIN MeetingAttend b ON a.Seq=b.MeetingSeq 
+WHERE a.Year=#Year# AND a.MeetingType='2' AND a.CreatedUnit=#CreatedUnit# AND b.Attend='Y' AND b.TeacherAccount=#TeacherAccount#
+		]]>
+    </select>
+
+    <select id="GetTeacherReportRecord" parameterClass="Hashtable" resultClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT a.Seq
+FROM SelfReport a
+WHERE 1=1
+  AND a.AuditStatus='Y'
+  AND a.TeacherAccount=#TeacherAccount#
+  AND YEAR(a.FirstTime)=#Year#
+  AND a.FirstTime>=(SELECT DateS FROM Report WHERE Year=#Year# AND UnitCode=#UnitCode#)
+  AND a.FirstTime<=(SELECT DateE FROM Report WHERE Year=#Year# AND UnitCode=#UnitCode#)
+		]]>
+    </select>
+
+    <select id="queryC502M" resultClass="WKEFSERVICE.Areas.A2.Models.C502MGridModel" parameterClass="WKEFSERVICE.Areas.A2.Models.C502MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT 
+	ROW_NUMBER() OVER(ORDER BY a.Year DESC, a.FirstTime DESC) AS ROWID,
+	a.Seq, a.Year, a.UnitCode, a.TeacherAccount,
+	a.JobAbilityCode, a.CourseUnitCode, a.OBJECT_TYPE,
+	a.StudNum, a.TObject, a.TMethod,
+	a.TslidesOrg, a.TslidesNew, a.TslidesType, a.Other,
+	a.StudyGReportOrg, a.StudyGReportNew, a.StudyGReportType, 
+	a.WorksheetsOrg, a.WorksheetsNew, a.WorksheetsType,
+	a.HomeWorkOrg, a.HomeWorkNew, a.HomeWorkType,
+	a.ExpReportOrg, a.ExpReportNew, a.ExpReportType,
+	a.ExamOrg, a.ExamNew, a.ExamType,
+	a.Other1Org, a.Other1New, a.Other1Type, a.Other1Remark,
+	a.Other2Org, a.Other2New, a.Other2Type, a.Other2Remark,
+	a.Effect, a.PlanImprove, a.ExamImprove, a.materialsImprove, a.Other3,
+	CONVERT(NVARCHAR, a.FirstTime, 120) AS FirstTime,
+	a.AuditStatus,
+	a.AuditAccount,   CONVERT(NVARCHAR, a.AuditDatetime, 120) AS AuditDatetime,
+	a.UpdatedAccount, CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM SelfReport a
+WHERE 1=1
+AND a.TeacherAccount=#TeacherAccount#
+			]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="Year"><![CDATA[ AND a.Year = #Year# ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY a.Year DESC, a.FirstTime DESC ]]>
+    </select>
+
+    <select id="queryC601M" resultClass="WKEFSERVICE.Areas.A2.Models.C601MGridModel" parameterClass="WKEFSERVICE.Areas.A2.Models.C601MFormModel" cacheModel="WKEF-cache">
+      <![CDATA[
+SELECT a.Seq, a.Caption,
+	CONVERT(NVARCHAR, a.DateS, 120) AS DateS,
+	CONVERT(NVARCHAR, a.DateE, 120) AS DateE,
+	a.IsOnTop,
+	a.UpdatedAccount,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM Notices a
+WHERE 1=1
+		]]>
+      <dynamic>
+        <isParameterPresent>
+          <isNotEmpty prepend="" property="DateS_A"><![CDATA[ AND CONVERT(VARCHAR, a.DateS, 112) >= #DateS_A# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="DateS_B"><![CDATA[ AND CONVERT(VARCHAR, a.DateS, 112) <= #DateS_B# ]]></isNotEmpty>
+          <isNotEmpty prepend="" property="KeyWord"><![CDATA[ AND a.Caption LIKE '%' + #KeyWord# + '%' ]]></isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ ORDER BY a.IsOnTop DESC, a.DateS DESC, a.DateE DESC, a.Caption ]]>
+    </select>
+
+    <select id="queryC601MAttached" resultClass="WKEFSERVICE.Areas.A2.Models.C601MGridAttachedModel" parameterClass="WKEFSERVICE.Areas.A2.Models.C601MGridModel" cacheModel="WKEF-cache">
+      <![CDATA[ SELECT a.Seq, a.NoticesSeq,
+	a.FileNameOrg, a.FileNameNew, a.FileNameType, 
+	a.UpdatedAccount,
+	CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+  FROM NoticesAttached a
+  WHERE a.NoticesSeq=#Seq# ]]>
+    </select>
+
+    <!--GetTransData_D_Class_TeacherTeachHour-->
+    <select id="GetTransData_D_Class_TeacherTeachHour"
+            resultClass="WKEFSERVICE.Models.Entities.TransData_D_Class" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[ 
+SELECT a.Year  /*PK*/ 
+,a.PlanCode
+,a.UnitCode
+,a.UnitName
+,a.PlanID  /*PK*/ 
+,a.SchoolName
+,a.ClassName
+,a.TrainingDateS
+,a.TrainingDateE
+,a.ClassDateS  /*PK*/ 
+,a.ClassDateE
+,a.TeacherID  /*PK*/ 
+,a.TeacherName
+,a.JobAbilityCode
+,a.CourseUnitCode  /*PK*/ 
+,a.TeachHours
+,a.TeachNum
+,a.QuestLink,a.QuesSearchLink
+,CONVERT(NVARCHAR, a.UpdatedDatetime, 120) AS UpdatedDatetime
+FROM TransData_D_Class a
+WHERE TeacherID=#TeacherID#
+AND dbo.FN_GET_ACTUALYEAR(SUBSTRING(a.ClassDateS,5,3),SUBSTRING(a.ClassDateS,11,2))=YEAR(GETDATE()) ]]>
+    </select>
+
+    <!--GetTransData_S_Class_TeacherTeachHour-->
+    <select id="GetTransData_S_Class_TeacherTeachHour"
+            resultClass="WKEFSERVICE.Models.Entities.TransData_S_Class" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[ 
+SELECT TeacherID,TeacherName,ClassName,CourseUnitCode,ClassDateS,TrainingTimeS
+,CONVERT(NVARCHAR, MAX(UpdatedDatetime), 120) AS UpdatedDatetime
+,MAX([Year]) Year
+,MAX(PlanCode) PlanCode
+,MAX(TrainID) TrainID
+,MIN(ClassID) ClassID
+,MAX(UnitCode) UnitCode
+,MAX(UnitName) UnitName
+,MAX(JoinCompany) JoinCompany
+,MAX(TrainingUnit) TrainingUnit
+,MAX(TrainingTimeE) TrainingTimeE
+,MAX(ClassDateE) ClassDateE
+,MAX(JobAbilityCode) JobAbilityCode
+,MAX(TeachHours) TeachHours
+,MAX(TeachNum) TeachNum
+,MAX(QuestLink) QuestLink
+FROM TransData_S_Class 
+WHERE TeacherID=#TeacherID# 
+AND Year=YEAR(GETDATE())
+GROUP BY TeacherID,TeacherName,ClassName,CourseUnitCode,ClassDateS,TrainingTimeS ]]>
+    </select>
+
+    <!--GetTransData_K_Class_TeacherTeachHour-->
+    <select id="GetTransData_K_Class_TeacherTeachHour"
+           resultClass="WKEFSERVICE.Models.Entities.TransData_K_Class" parameterClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[ 
+SELECT TeacherID,TeacherName,ClassName,CourseUnitCode,ClassDateS,TrainingTimeS
+,CONVERT(NVARCHAR, MAX(UpdatedDatetime), 120) AS UpdatedDatetime
+,MAX([Year]) Year
+,MAX(PlanCode) PlanCode
+,MAX(TrainID) TrainID
+,MIN(ClassID) ClassID
+,MAX(UnitCode) UnitCode
+,MAX(UnitName) UnitName
+,MAX(JoinCompany) JoinCompany
+,MAX(TrainingUnit) TrainingUnit
+,MAX(TrainingTimeE) TrainingTimeE
+,MAX(ClassDateE) ClassDateE
+,MAX(JobAbilityCode) JobAbilityCode
+,MAX(TeachHours) TeachHours
+,MAX(TeachHours_X) TeachHours_X
+,MAX(TeachNum) TeachNum
+,MAX(QuestLink) QuestLink
+FROM TransData_K_Class 
+WHERE TeacherID=#TeacherID# 
+AND Year=YEAR(GETDATE())
+GROUP BY TeacherID,TeacherName,ClassName,CourseUnitCode,ClassDateS,TrainingTimeS ]]>
+    </select>
+
+    <select id="getTeacherTeachSatisfy_D" parameterClass="Hashtable" resultClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+WITH WT1 AS ( select COUNT(CASE WHEN (CAST(0 AS FLOAT)
+	+CAST(ISNULL(ds.Q1,'0') AS FLOAT)+CAST(ISNULL(ds.Q2,'0') AS FLOAT)+CAST(ISNULL(ds.Q3,'0') AS FLOAT)+CAST(ISNULL(ds.Q4,'0') AS FLOAT)+CAST(ISNULL(ds.Q5,'0') AS FLOAT)
+	+CAST(ISNULL(ds.Q6,'0') AS FLOAT)+CAST(ISNULL(ds.Q7,'0') AS FLOAT)+CAST(ISNULL(ds.Q8,'0') AS FLOAT)+CAST(ISNULL(ds.Q9,'0') AS FLOAT)+CAST(ISNULL(ds.Q10,'0') AS FLOAT)
+	+CAST(ISNULL(ds.Q11,'0') AS FLOAT) )/11>=4 THEN 1 END) SatisfyQ,COUNT(1) StudCNT
+  FROM TransData_D_Class a
+  JOIN TransData_D_Satisfy ds on ds.Year=a.Year AND ds.PlanID=a.PlanID AND ds.CourseUnitCode=a.CourseUnitCode AND ds.TeacherID=a.TeacherID 
+  WHERE a.TeacherID=#TeacherID#
+  AND dbo.FN_GET_ACTUALYEAR(SUBSTRING(a.ClassDateS,5,3),SUBSTRING(a.ClassDateS,11,2))=YEAR(GETDATE()) )
+SELECT CASE WHEN StudCNT >0 THEN CAST(CAST( 1.0*SatisfyQ/StudCNT*100 AS INT) AS NVARCHAR) END Satisfy FROM WT1 ]]>
+    </select>
+
+    <select id="getTeacherTeachSatisfy_S" parameterClass="Hashtable" resultClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+WITH WT1 AS (select COUNT(CASE WHEN (CAST(0 AS FLOAT)
+	+CAST(ISNULL(ds.Q1,'0') AS FLOAT)+CAST(ISNULL(ds.Q2,'0') AS FLOAT)+CAST(ISNULL(ds.Q3,'0') AS FLOAT)+CAST(ISNULL(ds.Q4,'0') AS FLOAT)+CAST(ISNULL(ds.Q5,'0') AS FLOAT)
+	+CAST(ISNULL(ds.Q6,'0') AS FLOAT)+CAST(ISNULL(ds.Q7,'0') AS FLOAT)+CAST(ISNULL(ds.Q8,'0') AS FLOAT)+CAST(ISNULL(ds.Q9,'0') AS FLOAT)+CAST(ISNULL(ds.Q10,'0') AS FLOAT)
+	+CAST(ISNULL(ds.Q11,'0') AS FLOAT))/11>=4 THEN 1 END) SatisfyQ,COUNT(1) StudCNT
+  FROM TransData_S_Satisfy ds
+  JOIN TransData_S_Class b on ds.Year=b.Year AND ds.TrainID=b.TrainID AND ds.ClassID=b.ClassID AND ds.CourseUnitCode=b.CourseUnitCode AND ds.TeacherID=b.TeacherID
+  WHERE b.TeacherID=#TeacherID# and b.Year=YEAR(GETDATE()) )
+SELECT CASE WHEN StudCNT >0 THEN CAST(CAST( 1.0*SatisfyQ/StudCNT*100 AS INT) AS NVARCHAR) END Satisfy FROM WT1 ]]>
+    </select>
+
+    <select id="getTeacherTeachSatisfy_K" parameterClass="Hashtable" resultClass="Hashtable" cacheModel="WKEF-cache">
+      <![CDATA[
+WITH WT1 AS (select COUNT(CASE WHEN (CAST(0 AS FLOAT)
+	+CAST(ISNULL(ds.Q1,0) AS FLOAT)+CAST(ISNULL(ds.Q2,0) AS FLOAT)+CAST(ISNULL(ds.Q3,0) AS FLOAT)+CAST(ISNULL(ds.Q4,0) AS FLOAT)+CAST(ISNULL(ds.Q5,0) AS FLOAT)
+	+CAST(ISNULL(ds.Q6,0) AS FLOAT)+CAST(ISNULL(ds.Q7,0) AS FLOAT)+CAST(ISNULL(ds.Q8,0) AS FLOAT)+CAST(ISNULL(ds.Q9,0) AS FLOAT)+CAST(ISNULL(ds.Q10,0) AS FLOAT)
+	+CAST(ISNULL(ds.Q11,0) AS FLOAT))/11>=4 THEN 1 END) SatisfyQ,COUNT(1) StudCNT
+  FROM TransData_K_Satisfy ds
+  JOIN TransData_K_Class b on ds.Year=b.Year AND ds.TrainID=b.TrainID AND ds.ClassID=b.ClassID AND ds.CourseUnitCode=b.CourseUnitCode AND ds.TeacherID=b.TeacherID
+  WHERE b.TeacherID=#TeacherID# and b.Year=YEAR(GETDATE()) )
+SELECT CASE WHEN StudCNT >0 THEN CAST(CAST( 1.0*SatisfyQ/StudCNT*100 AS INT) AS NVARCHAR) END Satisfy FROM WT1 ]]>
+    </select>
+
+  </statements>
+</sqlMap>

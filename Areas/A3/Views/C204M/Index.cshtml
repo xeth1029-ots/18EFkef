@@ -1,0 +1,153 @@
+﻿@using WKEFSERVICE.Areas.A3.Models;
+@model C204MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C204M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">教學自我審核報告</h3>
+                            <p class="bt-section-para">提供各分署可查看、審核各自分署教師之教學自我審核報告。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                @Html.HiddenFor(x => x.Seq_forUnAudit)
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Year, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Year, new SelectList(Model.Year_list, "Value", "Text", Model.Year), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.AuditStatus, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.AuditStatus, new SelectList(Model.AuditStatus_list, "Value", "Text", Model.AuditStatus), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Teacher_Name, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Teacher_Name, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("首次送件時間", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.FirstTime_S_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.FirstTime_E_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="10%">項次</th>
+                                            <th align="left" width="10%">年度</th>
+                                            <th align="left" width="10%">教師</th>
+                                            <th align="left" width="10%">職能類別</th>
+                                            <th align="left" width="15%">首次送件時間</th>
+                                            <th align="left" width="15%">更新時間</th>
+                                            <th align="left" width="10%">審核狀態</th>
+                                            <th align="left" width="20%">功能</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<form name="reportQuery" id="reportQuery" action="" method="post" novalidate="novalidate" class="form-horizontal">
+    @Html.Hidden("RptId")
+    @Html.Hidden("Seq")
+</form>
+
+<script type="text/javascript">
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#Year option').removeAttr('selected');
+        $('#Teacher_Name').removeAttr('value');
+        $('#FirstTime_S_AD').removeAttr('value');
+        $('#FirstTime_E_AD').removeAttr('value');
+        $('#AuditStatus option').removeAttr('selected');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 審核
+    function doAudit(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("Audit", "C204M")?' + $.param(data);
+        window.location = url;
+    }
+
+    // 還原
+    function doUnAudit(Seq, RowId) {
+        blockConfirm("請確認是否要還原成未送出狀態？ (系統將清除首次送件時間) <br/>" + "項次：" + RowId, null, function () {
+            var form = $("form[id=main_form]");
+            $("#Seq_forUnAudit").val(Seq);
+            form.attr('action', '@Url.Action("UnAudit", "C204M")').submit();
+        });
+    }
+
+    // 列印
+    function doPDF(Seq) {
+        $("#reportQuery #RptId").val("A3C204M");
+        $("#reportQuery #Seq").val(Seq);
+        $("form[name=reportQuery]").attr("action", "@Url.Content("~/Report/PDF")").submit();
+    }
+
+</script>

@@ -1,0 +1,27 @@
+//
+//  prototypes -> Border Style
+// --------------------------------------------------
+
+$border-solid:      solid;
+$border-dashed:     dashed;
+$border-dotted:     dotted;
+$border-double:     double;
+$border-hidden:     hidden;
+$border-none:       none;
+
+$border-styles: () !default;
+$border-styles: map-merge((
+  "solid":      $border-solid,
+  "dashed":     $border-dashed,
+  "dotted":     $border-dotted,
+  "double":     $border-double,
+  "hidden":     $border-hidden,
+  "none":       $border-none,
+), $border-styles);
+
+@each $name, $value in $border-styles {
+ .t-border-#{$name} {
+    border-style: $value;
+  }
+}
+

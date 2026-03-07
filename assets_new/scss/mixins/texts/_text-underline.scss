@@ -1,0 +1,135 @@
+@charset "utf-8";
+
+//  Mixins > Text Emphasis
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include text-underfont($parent ,$color: $primary , $size: .25rem .25rem, $fw: 500, $pb: 0.25rem)
+@mixin text-underfont(
+  $color: $primary, 
+  $size: 200% 0.25rem, 
+  $fw: 500, 
+  $pb: 0.25rem, 
+  $position: center 85%) {
+  width: max-content;
+  padding-bottom: $pb;
+  font-weight: $fw;
+  display: flex;
+
+  @include gradient-x(tint-color($color, 40%), shade-color($color, 20%), -20%);
+
+  background-size: $size;
+  background-repeat: repeat-x;
+  background-position: $position;
+  transition: $transition;
+}
+
+////////////////////////////////////////////////
+
+// @include text_gradient_under($color1: #84fab0, $color2: #8fd3f4, $w: 100%, $h: 0.5rem)
+@mixin text_gradient_under($color1: #84fab0, $color2: #8fd3f4, $w: 100%, $h: 0.5rem) {
+  // position: relative;
+  background-image: linear-gradient(120deg, $color1 0%, $color2 100%);
+  background-repeat: no-repeat;
+  background-size: $w $h;
+  background-position: 0 88%;
+  transition: $transition;
+}
+
+////////////////////////////////////////////////
+/// Hover links
+// @include t-underline-v1($color1: $white, $color2: $white, $s: 0 0.5rem, $p: 0 2.25rem, $link: 100% 0.5rem)
+@mixin t-underline-v1($color1: $white, $color2: $white, $s: 0 0.5rem, $p: 0 2.25rem, $link: 100% 0.5rem) {
+  background: linear-gradient(rgba($color1, 0.7), rgba($color2, 0.4)) no-repeat;
+  background-size: $s;
+  background-position: $p;
+
+  @include link {
+    background-size: $link;
+  }
+}
+
+////////////////////////////////////////////////
+/// Hover sQuare
+// @include  underline-v2($color1: $white, $color2: transparent, $s: 0.5rem 0.25rem, $p: -6rem 2.25rem, $link: 0 2.25rem)
+@mixin t-underline-v2($color1: $white, $color2: transparent, $s: 0.5rem 0.25rem, $p: -6rem 2.25rem, $link: 0 2.25rem) {
+  background: linear-gradient(90deg, $color1 50%, $color2 0) repeat-x;
+  background-size: $s;
+  background-position: $p;
+
+  @include link {
+    background-position: $link;
+  }
+}
+
+////////////////////////////////////////////////
+/// Hover checked
+/// @include t-underline-v3($color1: $white, $color2: $black)
+@mixin t-underline-v3($color1: $white, $color2: $black) {
+  background: repeating-conic-gradient($color1 0deg 25%, $color2 0deg 50%);
+  background-size: 0.5rem 0.5rem;
+  background-repeat: repeat-x;
+  background-position: -10rem 2.25rem;
+
+  @include link {
+    background-position: 0 2.25rem;
+  }
+}
+
+////////////////////////////////////////////////
+/// Hover dotted
+/// @include t-underline-v4($color1: $white, $color2: $grey-200)
+@mixin t-underline-v4($color1: $white, $color2: $grey-200) {
+  background: repeating-conic-gradient(from 90deg at 0.5rem 0.5rem, rgba($color1, 1) 0% 25%, rgba($color2, 1) 0% 50%);
+  background-size: 2rem 0.5rem;
+  background-repeat: repeat-x;
+  background-position: -10rem 2.5rem;
+
+  @include link {
+    background-position: 0 2.5rem;
+  }
+}
+
+////////////////////////////////////////////////
+/// Hover block
+/// @include t-underline-v5($color1: $white, $color2: $black, $color3: $secondary)
+@mixin t-underline-v5($color1: $white, $color2: $black, $color3: $secondary) {
+  background: linear-gradient(90deg, rgba($color1, 0.24) 0% 25%, rgba($color2, 0.68) 25% 100%), repeating-conic-gradient(from 270deg at 0 0, $color3 0% 80%, rgba($color1, 1) 80% 100%);
+  background-size: 2rem 0.5rem, 2rem 100%;
+  background-repeat: repeat-x, repeat-y;
+  background-position: -10rem 2.5rem, 0.5rem 0;
+
+  @include link {
+    background-position: 0 2.5rem, 2rem 0;
+  }
+}
+
+////////////////////////////////////////////////
+/// Hover Grad
+///  @include t-underline-v6($color: #96fff7)
+@mixin t-underline-v6($color: #96fff7) {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 97.5%;
+    height: 82%;
+    left: -2.5%;
+    bottom: 5%;
+    background: $color;
+    z-index: -1;
+    transition: $transition;
+  }
+
+  @include link {
+    &:before {
+      left: 0%;
+      bottom: 0%;
+      height: 100%;
+    }
+  }
+}
+
+////////////////////////////////////////////////
+
+////////////////////////////////////////////////

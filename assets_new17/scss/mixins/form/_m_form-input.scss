@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+//  Mixins > Form Input
+// ====================================================
+
+
+@mixin form-floating($label-left: 1rem, $label-top: 1.125rem, $label-offset: -0.5rem, $padding: 0 0.3125rem, $transition: $transition) {
+  position: relative;
+
+  .floating-label {
+    white-space: nowrap;
+    position: absolute;
+    left: $label-left;
+    top: $label-top;
+    padding: $padding;
+    background: $white;
+    user-select: none;
+    pointer-events: none;
+    transition: $transition;
+    z-index: 100;
+  }
+
+  .floating-input:focus ~ .floating-label,
+  .floating-input:not(:placeholder-shown) ~ .floating-label {
+    top: $label-offset;
+  }
+}

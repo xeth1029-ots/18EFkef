@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+//  pages -> user card
+// --------------------------------------------------
+$resume-img-w: 5.5rem;
+$resume-img-h: 6.5rem;
+
+.t-resume-img {
+  width: $resume-img-w;
+  height: $resume-img-h;
+  border-radius: $border-radius;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+.t-user-card {
+  box-shadow: none;
+  transition: $transition;
+
+  .t-btn-fav {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  .t-user-card-main {
+    display: flex;
+    padding: 1rem 1.25rem;
+
+    .t-resume-img {
+      width: $resume-img-w;
+      height: $resume-img-h;
+      border-radius: $border-radius;
+    }
+
+    .t-user-card-cnt {
+      padding-left: 1rem;
+
+      .t-card-title {
+        color: $primary-800;
+        background: linear-gradient(to right, $primary-400, $primary-800) no-repeat left (bottom / 0) 0.25rem;
+        display: inline;
+
+        @extend .t-card-title;
+
+        @include hover {
+          color: $primary-800;
+        }
+      }
+
+      .t-list-txts {
+        line-height: 1.625;
+        font-size: 0.9375rem;
+
+        &:first-of-type {
+          margin-top: .75rem;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: .5rem;
+        }
+      }
+    }
+  }
+
+  .t-card-footer {
+    padding: 0.625rem 1rem;
+
+    .t-definition-list {
+      line-height: 1.625;
+    }
+  }
+
+  .t-card-bt {
+    border-radius: 0 0 $border-radius $border-radius;
+    background-color: $grey-100;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 0.8125rem;
+  }
+
+  &:hover {
+    box-shadow: $box-shadow;
+    border: 0.125rem dashed $primary-200;
+
+    .t-card-title {
+      &:hover {
+        text-decoration: none;
+        background-size: 200% .125rem;
+      }
+    }
+  }
+}
+
+
+//////////////////////////////////////////////////////////////////////

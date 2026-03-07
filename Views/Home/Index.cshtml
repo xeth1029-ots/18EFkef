@@ -1,0 +1,377 @@
+﻿@using WKEFSERVICE.Models
+@model WKEFSERVICE.Models.HomeModel
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    SessionModel sm = SessionModel.Get();
+
+    ShareCodeListModel model = new ShareCodeListModel();
+    var itemAll = new SelectListItem() { Text = "全部", Value = "" };
+
+    // 授課單元 清單
+    IList<SelectListItem> TeachUnit_list = new List<SelectListItem>();
+    TeachUnit_list = model.TeachUnit_list();
+    TeachUnit_list.Insert(0, itemAll);
+
+    // 產業別 清單
+    IList<SelectListItem> Industry_list = new List<SelectListItem>();
+    Industry_list = model.Industry_list;
+    Industry_list.Insert(0, itemAll);
+
+    //地區類別選單 City_list1
+    IList<SelectListItem> City_list1 = new List<SelectListItem>();
+    City_list1 = model.City_list1;
+    City_list1.Insert(0, itemAll);
+
+    //地區類別選單 City_list1
+    IList<SelectListItem> City_list2 = new List<SelectListItem>();
+    City_list2 = model.City_list2;
+    City_list2.Insert(0, itemAll);
+
+    //@ConfigModel.WKEF/ @Url.Content(png_bghero_1)
+    string svg10Ratio3 = "~/assets_new/images/10Ratio3.3333_v1.svg";
+    string jpg_slider_v1 = "~/assets/images/samples/slider-advs-v1.jpg";
+    string jpg_slider_v2 = "~/assets/images/samples/slider-advs-v2.jpg";
+    //string jpg_slider_v3 = "~/assets/images/samples/slider-advs-v3.jpg";
+    string svg_curved_55 = "~/assets/images/svgs/components/curved-shape-55.svg";
+    string png_heroimg_1 = "~/assets/images/hero-img-1.png";
+    string png_bghero_1 = "~/assets/images/bg-hero.png";
+
+    string s_KeyEmpCourseSyllabus = "關鍵就業力課程課綱";
+    string s_latestnews = "最新訊息";
+    string s_CourseIntroduction = "課程介紹";
+    string s_Teacherpresentation = "師資介紹";
+}
+
+<style type="text/css">
+    .container { max-width: 75% }
+    .my-div-space20 { height: 20rem; }
+    .my-div-space22 { height: 22.5rem; }
+    .t-hero { background-image: url("@Url.Content(png_bghero_1)"); }
+    .teacher-search-legend { font-size: 1.8rem;  background-color: #685603; }
+</style>
+
+<!-- Hero -->
+<section class="t-hero">
+    <div class="container">
+        <div class="t-flex flex-column flex-md-row align-items-center justify-content-sm-between">
+            <!-- swiper -->
+            <div class="col-12 col-md-7">
+                <div class="js-swiper-hero swiper">
+                    <div class="swiper-wrapper">
+                        <ul class="banner-list banner-list-fixed owl-carousel owl-theme" id="owlcarousel_swiper">
+                            <li>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid my-div-space22" src="@Url.Content(jpg_slider_v1)" alt="" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid my-div-space22" src="@Url.Content(jpg_slider_v2)" alt="" />
+                                </div>
+                            </li>
+                            @* <li><div class="swiper-slide"><img class="img-fluid my-div-space22" src="@Url.Content(jpg_slider_v3)" alt=""></div></li> *@
+                        </ul>
+                    </div>
+                </div>
+                @* 20251218 新增播放控制器 *@
+                <div class="owl-controls-wrapper">
+                    @*<button type="button"class="owl-prev-custom btn btn-sm btn-outline-secondary"aria-label="上一張"><i class="fas fa-backward"></i></button>*@
+                    <button type="button" id="owlPlay" class="btn btn-sm btn-outline-primary" aria-label="播放輪播" title="播放輪播">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button type="button" id="owlStop" class="btn btn-sm btn-outline-secondary" aria-label="暫停輪播" title="暫停輪播">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                   @*<button type="button"class="owl-next-custom btn btn-sm btn-outline-secondary"aria-label="下一張"><i class="fas fa-forward"></i></button>*@
+                </div>
+            </div>
+            <!-- search -->
+            <div class="col-12 col-md-5">
+                <figure class="t-absolute w-48 h-32 t-tp-6 t-rt-12 opt-48">
+                    <img class="img-fluid" src="@Url.Content(svg_curved_55)" alt="">
+                </figure>
+                <div class="t-hero-search">
+                    <form id="main_form" action="~/A1/C101M/Index" method="post" class="t-form t-form-input-field">
+                        <legend class="t-form-legend-secondary t-absolute t-lt-1 t-tp--3 teacher-search-legend">師資搜尋</legend>
+                        <picture class="t-hero-search-imgs">
+                            <source src="@Url.Content(png_heroimg_1)" data-src="@Url.Content(svg10Ratio3)">
+                            <img src="@Url.Content(png_heroimg_1)" alt="">
+                        </picture>
+                        @*<input id="hid_TeachArea" name="TeachArea" type="hidden" class="t-form-control" placeholder="授課區域" title="師資搜尋授課區域">
+                            <input id="hid_LiveArea" name="LiveArea" type="hidden" class="t-form-control" placeholder="居住地" title="師資搜尋居住地">*@
+                        <div class="t-form-group">
+                            <label for="s_keyWordr">關鍵字</label>
+                            <input id="s_keyWordr" name="Keyword" type="text" class="t-form-control" placeholder="姓名 (中、英文)、專長 / 領域" title="師資搜尋關鍵字：姓名 (中、英文)、專長 / 領域">
+                        </div>
+                        <div class="t-form-inline">
+                            <div class="t-form-group">
+                                <label for="TeachUnit">授課單元</label>
+                                @Html.DropDownList("TeachUnit", TeachUnit_list, new { @class = "t-form-control", style = "width:100%", title = "師資搜尋授課單元" })
+                            </div>
+                            <div class="t-form-group">
+                                <label for="Industry">授課產業別</label>
+                                @Html.DropDownList("Industry", Industry_list, new { @class = "t-form-control", style = "width:100%", title = "師資搜尋授課產業別" })
+                            </div>
+                        </div>
+                        <div class="t-form-inline">
+                            <div class="t-form-group">
+                                <label for="ddlTeachArea">授課區域</label>
+                                @Html.DropDownList("ddlTeachArea", City_list1, new { @class = "t-form-control", style = "width:100%", title = "師資搜尋授課區域" })
+                            </div>
+                            <div class="t-form-group">
+                                <label for="ddlLiveArea">居住地</label>
+                                @Html.DropDownList("ddlLiveArea", City_list2, new { @class = "t-form-control", style = "width:100%", title = "師資搜尋居住地" })
+                            </div>
+                        </div>
+                        @*
+                            <div class="t-form-inline">
+                            <div class="t-form-group"><label for="s_areaPicker1">授課區域</label>
+                            <input id="s_areaPicker1" name="TeachArea" type="text" class="t-form-control" placeholder="授課區域" title="師資搜尋授課區域"></div>
+                            <div class="t-form-group"><label for="s_areaPicker2">居住地</label>
+                            <input id="s_areaPicker2" name="LiveArea" type="text" class="t-form-control" placeholder="居住地" title="師資搜尋居住地"></div></div>
+                        *@
+                        <div class="t-form-group mb-0">
+                            <button type="submit" class="t-hero-search-btn btn btn--primary btn--block btn--lg" title="點擊以搜尋師資">
+                                <i class="svg-icon svg-icon-2hx t-v-align-bottom" aria-hidden="true">
+                                    <svg>
+                                        <use href="#ic-search"></use>
+                                    </svg>
+                                </i>
+                                搜尋師資
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 關鍵就業力主要服務 -->
+<section class="t-main-cards">
+    <div class="container">
+        <div class="row t-flex flex-md-row align-items-center justify-content-sm-between">
+            <div class="col-sm-6 col-md-3">
+                <a class="t-card t-card-sm t-card-transition h-100 t-card-v1" href="~/A1/C102M/Index" title="前往 @s_latestnews">
+                    <div class="t-card-img">
+                        <div class="t-card-img-icons"></div>
+                    </div>
+                    <div class="t-card-body">
+                        <div class="t-card-title text-inherit">@s_latestnews</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <a class="t-card t-card-sm t-card-transition h-100 t-card-v2" href="~/Home/Temp_IntroCourse" title="前往 @s_CourseIntroduction">
+                    <div class="t-card-img">
+                        <div class="t-card-img-icons"></div>
+                    </div>
+                    <div class="t-card-body">
+                        <div class="t-card-title text-inherit">@s_CourseIntroduction</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <a class="t-card t-card-sm t-card-transition h-100 t-card-v3" href="~/A1/C101M/Ipresent" title="前往 @s_Teacherpresentation">
+                    <div class="t-card-img">
+                        <div class="t-card-img-icons"></div>
+                    </div>
+                    <div class="t-card-body">
+                        <div class="t-card-title text-inherit">@s_Teacherpresentation</div>
+                    </div>
+                </a>
+            </div>
+            @*<div class="col-sm-6 col-md-3"><a class="t-card t-card-sm t-card-transition h-100 t-card-v4" href="javascript:;" title="前往課程需求刊登"><div class="t-card-img"><div class="t-card-img-icons"></div></div><div class="t-card-body"><div class="t-card-title text-inherit">課程需求刊登</div></div></a></div>*@
+        </div>
+    </div>
+</section>
+<!-- 關鍵就業力課程課綱  -->
+<section class="t-abouts">
+    <div class="container">
+        <div class="row t-flex flex-md-row align-items-center justify-content-sm-between">
+            <div class="col-sm-12">
+                <div class="t-abouts-inner">
+                    <h3 class="t-abouts-heading" data-title="@s_KeyEmpCourseSyllabus">@s_KeyEmpCourseSyllabus</h3>
+                    <div class="t-abouts-para">
+                        認知職務角色與溝通協調團隊精神與團隊協作促進夥伴關係與化解衝突<br>
+                        環境適應與創新學習價值概念與成本意識問題辨識與分析解決
+                    </div>
+                    <a class="t-abouts-btn btn btn--primary btn--lg" href="~/Home/Temp_IntroCourse" title="瞭解更多 @s_KeyEmpCourseSyllabus">
+                        瞭解更多
+                        <i class="svg-icon svg-icon-2hx t-v-align-bottom" aria-hidden="true">
+                            <svg>
+                                <use href="#ic-arrow-r"></use>
+                            </svg>
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 最新消息  -->
+<section class="t-last-news">
+    <div class="container">
+        <div class="row t-flex flex-md-row align-items-center justify-content-sm-between">
+            <div class="col-sm-12">
+                <div class="t-last-news-inner">
+                    <div class="t-section-heading t-red-heading ">
+                        <a href="#C" title="中央功能區塊, 快速鍵: Alt+C " id="AC" accesskey="C" name="C" class="quicklink t-header-top-list-link">:::</a>
+                        <i class="t-section-heading-icon t-section-heading-icon-news" aria-hidden="true"></i>
+                        <div class="t-section-heading-main" section-title="@s_latestnews">@s_latestnews</div>
+                        <label class="t-section-heading-lab">LATEST NEWS</label>
+                    </div>
+                    <!-- 最新消息列表 -->
+                    <ul class="t-news-list">
+                        @Html.Partial("_GridRowsNews", Model)
+                    </ul>
+                    <a class="t-news-btn btn btn--lg btn--pointer" href="~/A1/C102M/Index" title="瞭解更多 @s_latestnews">更多 @s_latestnews</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="my-div-space20">
+    @*隨便找個東西擋一下*@
+</div>
+@*<!-- 師資介紹  -->
+    <div class="svg-w-100 t-teachers-svg t-svg-path-v001">
+        <div class="mask mask_noise opt-48"></div>
+    </div>
+    <section class="t-teachers">
+        <div class="mask mask_noise opt-48"></div>
+        <div class="container">
+            <div class="row t-flex flex-md-row align-items-center justify-content-sm-between">
+                <div class="col-sm-12">
+                    <div class="t-section-heading t-yellow-heading">
+                        <i class="t-section-heading-icon t-section-heading-icon-ace" aria-hidden="true"></i>
+                        <div class="t-section-heading-main" data-title="@s_Teacherpresentation">@s_Teacherpresentation</div>
+                        <label class="t-section-heading-lab">Teacher</label>
+                    </div>
+                    <section class="banner-zone" style="background-color: transparent;">
+                        <div class="container" style="max-width: 100%">
+                            <ul class="banner-list banner-list-fixed owl-carousel owl-theme" id="owlcarousel_teachers">
+                                @Html.Partial("_GridRowsTeachers", Model)
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>*@
+
+@*<script src="./index.js"></script>*@
+<script type="text/javascript">
+    function doSwiper() {
+        $("#owlcarousel_swiper").owlCarousel({
+            margin: 10,
+            loop: true,
+            autoWidth: true,
+            center: true,
+            dots: true,
+            nav: true,
+            navText: [
+                '<i title="向左滑動" class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">向左滑動<span>',
+                '<i title="向右滑動" class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">向右滑動<span>'
+            ],
+            responsive: { 0: { items: 2, }, 768: { items: 3, }, 992: { items: 4, }, },
+            responsiveClass: true,
+            mouseDrag: false,
+            touchDrag: false,
+            pullDrag: false,
+            autoplay: true,
+            autoplayHoverPause: true,
+            autoplayTimeout: 6000,
+            autoplaySpeed: 2500,
+        });
+
+        $("#owlcarousel_teachers").owlCarousel({
+            margin: 0,
+            loop: true,
+            autoWidth: true,
+            center: true,
+            dots: true,
+            nav: true,
+            navText: [
+                '<i title="向左滑動" class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">向左滑動<span>',
+                '<i title="向右滑動" class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">向右滑動<span>'
+            ],
+            responsive: { 0: { items: 2, }, 768: { items: 3, }, 992: { items: 4, }, },
+            responsiveClass: true,
+            mouseDrag: false,
+            touchDrag: false,
+            pullDrag: false,
+            autoplay: true,
+            autoplayHoverPause: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 2500,
+        });
+
+        $('.owl-carousel').on('changed.owl.carousel', function (event) {
+            $(this).find('.owl-nav').removeClass('disabled');
+            $(this).find('.owl-dots').removeClass('disabled');
+        });
+        $('.owl-carousel').find('.owl-nav').removeClass('disabled');
+        $('.owl-carousel').find('.owl-dots').removeClass('disabled');
+
+        let Last = "";  // Last id name
+        let Idx = 1;    // Title index
+        //"(There are currently no events, please stay tuned!)"
+        var s_staytuned = "(目前暫無活動，敬請期待!)";
+        document.getElementsByClassName("owl-dot").forEach(function (e) {
+            if (Last === "") { Last = e.parentElement.parentElement.id; }
+            if (Last === e.parentElement.parentElement.id) {
+                // Create title string
+                let tmpStr = "";
+                if (e.parentElement.parentElement.id === "owlcarousel_swiper") { tmpStr = "第" + Idx + "張" + s_staytuned; }
+                if (e.parentElement.parentElement.id === "owlcarousel_teachers") { tmpStr = "第" + Idx + "位"; }
+                // Add title
+                e.setAttribute("title", tmpStr);
+                Idx++;
+            }
+            else {
+                // Reset
+                Last = e.parentElement.parentElement.id;
+                Idx = 1;
+                // Create title string
+                let tmpStr = "";
+                if (e.parentElement.parentElement.id === "owlcarousel_swiper") { tmpStr = "第" + Idx + "張" + s_staytuned; }
+                if (e.parentElement.parentElement.id === "owlcarousel_teachers") { tmpStr = "第" + Idx + "位"; }
+                // Add title
+                e.setAttribute("title", tmpStr);
+                Idx++;
+            }
+        });
+    }
+
+    //$(function () { });
+
+    $(document).ready(function () {
+        setTimeout("doSwiper()", 1500);
+        $("#owlPlay").attr("aria-pressed", "true");
+        $("#owlStop").attr("aria-pressed", "false");
+    });
+
+    //新增控制列
+    var owlSwiper = $("#owlcarousel_swiper");
+
+    $("#owlPlay").on("click", function () {
+        owlSwiper.trigger("play.owl.autoplay", [5000]);
+        $("#owlPlay").attr("aria-pressed", "true");
+        $("#owlStop").attr("aria-pressed", "false");
+    });
+
+    $("#owlStop").on("click", function () {
+        owlSwiper.trigger("stop.owl.autoplay");
+        $("#owlPlay").attr("aria-pressed", "false");
+        $("#owlStop").attr("aria-pressed", "true");
+    });
+
+    // 詳細資料
+    function doNewsDetail(Seq) {
+        var data = { "Seq": Seq }
+        var url = "@Url.Action("NewsDetail", "C102M", new { area = "A1" })" + "?" + $.param(data);
+        window.open(url, '_blank');
+    }
+
+</script>

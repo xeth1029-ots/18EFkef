@@ -1,0 +1,297 @@
+@charset "utf-8";
+
+// Prefix for :root CSS variables
+$variable-prefix: tu- !default;
+$prefix: $variable-prefix !default;
+$cssPrefix: $prefix !default;
+
+
+// _var(primary, accent, bg, #f0f0f0);
+@function _var($propertyName: "", $argsFallbacks...) {
+  $fallbacksNb: length($argsFallbacks);
+
+  // No fallbacks.
+  @if $fallbacksNb < 1 {
+    @return var(--#{$prefix}#{$propertyName});
+  }
+
+  // Last fallback: it can be a valid CSS value, or `null`.
+  $fallbacks: nth($argsFallbacks, $fallbacksNb);
+
+  @if $fallbacksNb > 1 {
+    // Last parameter is a valid fallback.
+    @if $fallbacks != null {
+      $fallbacks: meduzen-wrap-v-fallbacks($argsFallbacks, $fallbacksNb - 1, $fallbacks);
+    }
+    @else {
+      // Last parameter is null: it isn’t a valid fallback, we skip it.
+      $fallbacks: var(--#{nth($argsFallbacks, $fallbacksNb - 1)});
+
+      @if $fallbacksNb > 2 {
+        $fallbacks: meduzen-wrap-v-fallbacks($argsFallbacks, $fallbacksNb - 2, $fallbacks);
+      }
+    }
+  }
+
+  @return var(--#{$prefix}#{$propertyName}, $fallbacks);
+}
+
+@function meduzen-wrap-v-fallbacks($argsFallbacks, $upper-index, $fallbacks) {
+  @for $index from $upper-index through 1 {
+    $fallbacks: var(--#{$prefix}#{nth($argsFallbacks, $index)}, #{$fallbacks});
+  }
+
+  @return $fallbacks;
+}
+
+@function v($var, $value) {
+  @return var(--#{$prefix}#{$var}, #{$value});
+}
+
+@function cssvar($name, $prefix: tu-) {
+  @return var(--#{$prefix}#{$name});
+}
+
+///***********************************************/
+//
+// SCSS MIX
+//
+// @description SCSS mixins and functions by CSSCODER
+// @see https://mix.csscoder.pro/
+//
+// @author Aleksandr Zidyganov
+// @see https://csscoder.pro
+// @see http://twitter.com/csscoder
+//
+///***********************************************/
+
+///* Default Variables */
+///***********************************************/
+
+// ///* columns and container */
+// $tu-layout-gutter: 30px !default;
+// $tu-columns-size: 12 !default;
+
+// ///* Media queries */
+// $tu-media-type: 'only screen' !default;
+// $tu-media-breakpoints: (
+//   xs: 480px,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px,
+//   xxl: 1600px
+// ) !default;
+
+// ///* transition */
+// $tu-tr-duration: 200ms !default;
+// $tu-tr-function: ease-in-out !default;
+
+// ///* PX2EM function */
+// $tu-base-font-size: 16px !default;
+
+
+// ///* Font scale CSS variable */
+// $tu-start-step-font-scale: xs !default;
+// $tu-end-step-font-scale: xl !default;
+
+// ///* FUNCTIONS */
+// ///***********************************************/
+
+// ///* Raise a number to a power */
+// @function _pow($x, $n) {
+//   $result: 1;
+//   @for $i from 1 through $n {
+//     $result: $result * $x;
+//   }
+//   @return $result;
+// }
+
+// ///* Remove the unit  */
+// @function _strip-unit($value) {
+//   @if type-of($value) == 'number' {
+//     @return $value / ($value * 0 + 1);
+//   }
+
+//   @return $value;
+// }
+
+// ///* Round a number to a specified decimal precision */
+// @function _precision-round($float, $digits: 5) {
+//   $pow: _pow(10, $digits);
+
+//   @return round($float * $pow) / $pow;
+// }
+
+// ///* PX to EM function */
+// @function _convert-to-em($px, $base) {
+//   @return _precision-round(_strip-unit($px) / _strip-unit($base) * 1em);
+// }
+
+// @function em($value, $base: $tu-base-font-size) {
+//   $em_values: ();
+//   @each $item in $value {
+//     $em_values: append($em_values, _convert-to-em($item, $base));
+//   }
+//   @return $em_values;
+// }
+
+// ///* MIXINS */
+// ///***********************************************/
+
+// ///* media queries breakpoints */
+// @mixin mq($media) {
+//   @if map-has-key($tu_media_breakpoints, $media) {
+//     @media #{$tu_media_type} and (min-width: map-get($tu_media_breakpoints, $media)) {
+//       @content;
+//     }
+//   }
+// }
+
+// @mixin mq-less($media) {
+//   @if map-has-key($tu_media_breakpoints, $media) {
+//     @media #{$tu_media_type} and (max-width: map-get($tu_media_breakpoints, $media) - 1px) {
+//       @content;
+//     }
+//   }
+// }
+
+// @mixin mq-only($media) {
+//   $steps_list: map-keys($tu_media_breakpoints);
+//   @if map-has-key($tu_media_breakpoints, $media) {
+//     $i: index(($tu_media_breakpoints), ($media map-get($tu_media_breakpoints, $media)));
+//     @if $i < length($steps_list) {
+//       $min: nth($steps_list, $i);
+//       $max: nth($steps_list, $i + 1);
+//       @if map-get($tu_media_breakpoints, $min) > 0 {
+//         @media #{$tu_media_type} and (min-width: map-get($tu_media_breakpoints, $min)) and (max-width: map-get($tu_media_breakpoints, $max) - 1px) {
+//           @content;
+//         }
+//       } @else {
+//         @media #{$tu_media_type} and (max-width: map-get($tu_media_breakpoints, $max) - 1px) {
+//           @content;
+//         }
+//       }
+//     } @else {
+//       @media #{$tu_media_type} and (min-width: map-get($tu_media_breakpoints, nth($steps_list, $i))) {
+//         @content;
+//       }
+//     }
+//   }
+// }
+
+// @mixin mq-range($media_start: '', $media_end: '') {
+//   $steps_list: map-keys($tu_media_breakpoints);
+
+//   @if if(map-has-key($tu_media_breakpoints, $media_start) == true and map-has-key($tu_media_breakpoints, $media_end) == true, true, false) {
+//     $range_values: (_strip-unit(map-get($tu_media_breakpoints, $media_start)), _strip-unit(map-get($tu_media_breakpoints, $media_end)));
+//     $max-value: max($range_values...);
+//     $min-value: min($range_values...);
+//     @media #{$tu_media_type} and (min-width: #{$min-value}px) and (max-width: (#{$max-value - 1}px)) {
+//       @content;
+//     }
+//   }
+
+//   @if if(map-has-key($tu_media_breakpoints, $media_start) == true and map-has-key($tu_media_breakpoints, $media_end) == false, true, false) {
+//     @media #{$tu_media_type} and (min-width: map-get($tu_media_breakpoints, $media_start)) {
+//       @content;
+//     }
+//   }
+
+// }
+
+
+// ///* Font scale */
+// @mixin font-scale($font_min: 14px, $font_max: 16px, $firstBreakPoint: $tu-start-step-font-scale, $endBreakPoint: $tu-end-step-font-scale) {
+
+//   $font_min: _strip-unit($font_min);
+//   $font_max: _strip-unit($font_max);
+
+//   // reverse fonts sizes if needed
+//   $listFonts:  $font_min, $font_max;
+//   $font_min: min($listFonts...);
+//   $font_max: max($listFonts...);
+
+//   // reverse breakpoint if needed
+//   @if(_strip-unit(map-get($tu-media-breakpoints, $firstBreakPoint)) > _strip-unit(map-get($tu-media-breakpoints, $endBreakPoint)) ) {
+//     $helper: $firstBreakPoint;
+//     $firstBreakPoint: $endBreakPoint;
+//     $endBreakPoint: $helper;
+//   }
+
+//   $width_min: _strip-unit(map-get($tu-media-breakpoints, $firstBreakPoint));
+//   $width_max: _strip-unit(map-get($tu-media-breakpoints, $endBreakPoint));
+
+//   $k: _precision_round(($font_max - $font_min) / ($width_max - $width_min), 4);
+//   $b: _precision_round($font_min - ($k * $width_min), 4);
+//   $l: $k * 100vw;
+
+//   font-size: $font_min + px;
+
+//   @include mq($firstBreakPoint) {
+//     @if $b >= 0 {
+//       font-size:  calc( #{$l} + #{$b + px} );
+//     } @else {
+//       $b: abs($b);
+//       font-size:  calc( #{$l} - #{$b + px} );
+//     }
+//     outline: 0.0001vw;
+//   }
+
+//   @include mq($endBreakPoint) {
+//     font-size: $font_max + px;
+//   }
+// }
+
+// ///* Font scale CSS variables */
+// $_font-scale-var-min-width: _strip-unit(map-get($tu-media-breakpoints, $tu-start-step-font-scale));
+// $_font-scale-var-max-width: _strip-unit(map-get($tu-media-breakpoints, $tu-end-step-font-scale));
+
+// @mixin font-scale-var($font-min: 12, $font-max: 16) {
+//   // reverse fonts sizes if needed
+//   $listFonts:  $font-min, $font-max;
+//   $font-min: min($listFonts...);
+//   $font-max: max($listFonts...);
+
+//   --minfz: #{_strip-unit($font-min)};
+//   --maxfz: #{_strip-unit($font-max)};
+//   font-size: var(--ssfz);
+//   // fix for Safari resize re-render box
+//   outline: 0.0001vw;
+// }
+// // @supports(--css: variables) {
+// // }
+// // @mixin variable($property, $variable, $fallback) {
+// //   #{$property}: $fallback;
+// //   #{$property}: var($variable);
+// // }
+// // 
+// // .box {
+// //   border: 10px solid #268cd2;
+// //   padding: 10px;
+// //   color: #111;
+// // }
+
+// // .test {
+// //   font-weight: bold;
+// //   @include font-scale-var(32, 68); 
+// //   margin-bottom: 1em;
+// // }
+
+// // .test2 {
+// //   @include font-scale-var(28, 120); 
+// // }
+
+// // 
+// // 
+// // 
+// // // @function color($key) {
+// //   @return map-get($colors, $key);
+// // }
+// // @function getColor($colorName, $alpha: 1) {
+// //   @return rgba(var(--#{$colorName}), $alpha);
+// // }
+// // $colors: ('primary': black, 'secondary': white);
+// // @function color($color) {
+// //   @return map.get($colors, $color);
+// // }

@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+//   Mixins > Buttons pointer
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin button-pointer-sym($color: $primary, $width: 1.5rem, $height: 1.5rem) {
+  content: '';
+  position: absolute;
+  background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='#{$color}' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z'/></svg>"));
+  top: 50%;
+  right: #{$width / 1.5};
+  transform: translateY(-50%);
+  width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 100%;
+  transition: $transition;
+}
+
+// @include button-pointer($color: $primary, $width: 1.25rem, $height: 1.25rem)
+@mixin button-pointer($color: $primary, $width: 1.25rem, $height: 1.25rem, $before: "true") {
+  position: relative;
+  padding-left: #{$width * 2};
+  padding-right: #{$width * 3};
+
+  @if $before == "true" {
+    &:before {
+      @include button-pointer-sym($color, $width, $height);
+    }
+
+    @include btn-hover {
+      &:before {
+        right: #{$width / 4};
+      }
+    }
+  }
+  @else {
+    &:after {
+      @include button-pointer-sym($color, $width, $height);
+    }
+
+    @include btn-hover {
+      &:after {
+        right: #{$width / 4};
+      }
+    }
+  }
+}

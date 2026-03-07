@@ -1,0 +1,371 @@
+﻿@using WKEFSERVICE.Models;
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=no">
+    <title>勞動部勞動力發展署-關鍵就業力課程-動機職能DC</title>
+    @Styles.Render("~/Content/assets_new17_css")
+    @Scripts.Render("~/bundles/assets_new17_js")
+</head>
+<body>
+    <!--NoScript-->
+    @Html.Partial("_NoScript")
+    <main id="web" class="t-wrapper">
+        <!-- Header -->
+        @Html.Partial("_MainHeader")
+        <!-- breadcrumbs -->
+        @Html.Partial("_PartialBread1")
+        <!-- course -->
+        <section id="tCourse" class="t-course-content">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-sm-12">
+                        <div class="t-tab t-tab-line-bottom t-tab-course">
+                            <input id="item_1" type="radio" name="tabsV1" class="hide" checked="">
+                            <input id="item_2" type="radio" name="tabsV1" class="hide">
+                            <input id="item_3" type="radio" name="tabsV1" class="hide">
+                            <h3 class="t-tab-title"><a href="@Url.Content("~/Home/Temp_IntroCourse")" title="前往 辦理緣由">辦理緣由</a></h3>
+                            <h4 class="t-tab-secTitle"><a href="@Url.Content("~/Home/IntroCourse_DC1")" title="前往 課程內容">課程內容</a></h4>
+                            <div id="tab-nav-v1" class="t-tab-nav" data-scroll="x">
+                                <div class=""></div>
+                                @*<label for="item_1" class="t-tab-nav-item" id="item_1_lab" title="前往動機職能 DC">
+                                        <a href="~/Home/IntroCourse_DC1" title="前往動機職能 DC">
+                                            動機職能 DC
+                                        </a>
+                                    </label>
+                                    <label for="item_2" class="t-tab-nav-item" id="item_2_lab" title="前往行為職能 BC">
+                                        <a href="~/Home/IntroCourse_BC1" title="前往行為職能 BC">
+                                            行為職能 BC
+                                        </a>
+                                    </label>
+                                    <label for="item_3" class="t-tab-nav-item" id="item_3_lab" title="前往知識職能 KC">
+                                        <a href="~/Home/IntroCourse_KC1" title="前往知識職能 KC">
+                                            知識職能 KC
+                                        </a>
+                                    </label>*@
+                            </div>
+                            <div class="t-tab-contents">
+                                <div id="tab_content_1" class="t-tab-content">
+                                    <div class="row justify-content-between align-items-top">
+                                        <div class="col-sm-2 mt-3">
+                                            <picture class="">
+                                                <img id="imas11" src="@Url.Content("~/assets_new17/images/course_img.svg")" data-src="@Url.Content("~/assets_new17/images/course_img.svg")" alt="勞動部勞動力發展署" class="t-lazy-load img-fluid" width="240" height="270">
+                                                <source type="image/svg+xml" srcset="@Url.Content("~/assets_new17/images/course_img.svg")" />
+                                                <source type="image/webp" srcset="@Url.Content("~/assets_new17/images/course_img.webp")" />
+                                            </picture>
+                                        </div>
+                                        <h4 class="t-tab-secTitle-m">課程內容</h4>
+                                        <div class="col-sm-10 t-txt-left pl-4">
+                                            <div class="t-sub-nav">
+                                                <label for="item_1" class="t-tab-nav-item" id="item_1_lab" title="前往動機職能 DC">
+                                                    <a href="@Url.Content("~/Home/IntroCourse_DC1")" title="前往動機職能 DC">@ConfigModel.strItemDCtxt</a>
+                                                </label>
+                                                <label for="item_2" class="t-tab-nav-item" id="item_2_lab" title="前往行為職能 BC">
+                                                    <a href="@Url.Content("~/Home/IntroCourse_BC1")" title="前往行為職能 BC">@ConfigModel.strItemBCtxt</a>
+                                                </label>
+                                                <label for="item_3" class="t-tab-nav-item" id="item_3_lab" title="前往知識職能 KC">
+                                                    <a href="@Url.Content("~/Home/IntroCourse_KC1")" title="前往知識職能 KC">@ConfigModel.strItemKCtxt</a>
+                                                </label>
+                                            </div>
+                                            <div class="t-course-heading t-heading-blob t-heading-blob--info" data-grad-under="info">目標任務</div>
+                                            <p class="t-course-para">
+                                                工作意義與工作熱情、自我認知與職涯發展、專業精神與自律自制。
+                                            </p>
+                                        </div>
+                                        <div class="t-pattern-diagonal-lines-md t-fc-dark opt--20 h-4 opt-12 my-4"></div>
+                                        <div class="col-sm-12 t-txt-left">
+                                            <div class="t-course-heading t-heading-blob t-heading-blob--secondary" data-grad-under="secondary">課程單元</div>
+                                        </div>
+                                    </div>
+                                    <div class="t-tab t-tab-card t-tab-course" id="tCourseCotent">
+                                        <input id="item_1_1" type="radio" name="tabsV1_1" title="前往工作意義與工作願景 (DC1)" class="hide">
+                                        <input id="item_2_2" type="radio" name="tabsV1_1" title="前往職涯發展與工作倫理 (DC2)" class="hide">
+                                        <input id="item_3_3" type="radio" name="tabsV1_1" title="前往自我管理與敬業精神 (DC3)" class="hide" checked="">
+                                        <div id="tab-nav-v1_1" class="t-tab-nav" data-scroll="x">
+                                            <label for="" class="t-tab-nav-item flex-column" id="item_1_1_lab" title="前往工作意義與工作願景 (DC1)">
+                                                <a href="~/Home/IntroCourse_DC1" title="前往工作意義與工作願景 (DC1)">
+                                                    <p class="t-tab-nav-item-txt">工作意義與工作願景 (DC1)</p>
+                                                    <p class="t-tab-nav-item-txt-sm" style="display: inline-block; margin-bottom: unset;color: #427821;">(3小時)</p>
+                                                </a>
+                                            </label>
+                                            <label for="" class="t-tab-nav-item flex-column" id="item_2_2_lab" title="前往職涯發展與工作倫理 (DC2)">
+                                                <a href="~/Home/IntroCourse_DC2" title="前往職涯發展與工作倫理 (DC2)">
+                                                    <p class="t-tab-nav-item-txt">職涯發展與工作倫理 (DC2)</p>
+                                                    <p class="t-tab-nav-item-txt-sm" style="display: inline-block; margin-bottom: unset;color: #427821;">(6小時)</p>
+                                                </a>
+                                            </label>
+                                            <label for="" class="t-tab-nav-item flex-column" id="item_3_3_lab" title="前往自我管理與敬業精神 (DC3)">
+                                                <p class="t-tab-nav-item-txt">自我管理與敬業精神 (DC3)</p>
+                                                <p class="t-tab-nav-item-txt-sm" style="display: inline-block; margin-bottom: unset;color: #427821;">(6小時)</p>
+                                            </label>
+                                        </div>
+                                        <div class="t-tab-contents">
+                                            <div id="tab_content_1_1" class="t-tab-content t-txt-left">
+                                                <!--  -->
+                                            </div>
+                                            <div id="tab_content_2_2" class="t-tab-content t-txt-left">
+                                                <!--  -->
+                                            </div>
+                                            <div id="tab_content_3_3" class="t-tab-content t-txt-left">
+                                                <!--  -->
+                                                <div class="t-course-heading t-heading-blob t-heading-blob--quaternary" data-grad-under="quaternary">課程大綱</div>
+                                                <div class="row justify-content-between align-items-top">
+                                                    <div class="col-md-12 t-txt-left">
+                                                        <!--  -->
+                                                        <figure class="flex-row t-course-card t-card-bg-primary">
+                                                            <div class="t-course-card-left">
+                                                                <div class="t-absolute t-pattern-cross-dots-sm t-fc-primary w-40 h-40"></div>
+                                                                <img class="img-fluid t-zindex-1 t-relative" src="@Url.Content("~/assets_new17/images/course-v1-1.png")" alt="" width="534" height="516">
+                                                            </div>
+                                                            <div class="t-course-card-main">
+                                                                <figcaption class="teachers-list-item-caption">
+                                                                    <div class="t-course-card-title">專業態度與敬業精神</div>
+                                                                    <div class="t-pattern-diagonal-stripes-sm t-course-subhr">
+                                                                        <div class="t-course-card-subtitle t-fc-lightgrey t-inline-flex">課程子綱</div>
+                                                                    </div>
+                                                                    <ul class="t-course-list list-checked list-checked-soft-bg-primary list-checked-lg">
+                                                                        <li class="list-checked-item">
+                                                                            職場基本要求：操守、紀律、負責、當責
+                                                                        </li>
+                                                                        <li class="list-checked-item">
+                                                                            專業態度的養成
+                                                                        </li>
+                                                                        <li class="list-checked-item">
+                                                                            敬業精神與當責
+                                                                        </li>
+                                                                    </ul>
+                                                                </figcaption>
+                                                            </div>
+                                                        </figure>
+                                                        <!--  -->
+                                                        <figure class="flex-row t-course-card t-card-bg-secondary">
+                                                            <div class="t-course-card-left">
+                                                                <div class="t-absolute t-pattern-checks-sm t-fc-quaternary w-40 h-40"></div>
+                                                                <img class="img-fluid t-zindex-1 t-relative" src="@Url.Content("~/assets_new17/images/course-v1-2.png")" alt="" width="534" height="516">
+                                                            </div>
+                                                            <div class="t-course-card-main">
+                                                                <figcaption class="teachers-list-item-caption">
+                                                                    <div class="t-course-card-title">自動自發與持續改善</div>
+                                                                    <div class="t-pattern-diagonal-stripes-sm t-course-subhr">
+                                                                        <div class="t-course-card-subtitle t-fc-lightgrey bg-white t-inline-flex ">課程子綱</div>
+                                                                    </div>
+                                                                    <ul class="t-course-list list-checked list-checked-soft-bg-primary list-checked-lg">
+                                                                        <li class="list-checked-item">
+                                                                            自我績效管理的流程
+                                                                        </li>
+                                                                        <li class="list-checked-item">
+                                                                            破除被動等待心理，發揮積極主動自發精神
+                                                                        </li>
+                                                                        <li class="list-checked-item">
+                                                                            運用持續改善的工具，以提升自我職能
+                                                                        </li>
+                                                                    </ul>
+                                                                </figcaption>
+                                                            </div>
+                                                        </figure>
+                                                        <!--  -->
+                                                        <figure class="flex-row t-course-card t-card-bg-tertiary">
+                                                            <div class="t-course-card-left">
+                                                                <div class="t-absolute t-pattern-diagonal-lines-sm t-fc-tertiary w-40 h-40"> </div>
+                                                                <img class="img-fluid t-zindex-1 t-relative" src="@Url.Content("~/assets_new17/images/course-v1-3.png")" alt="" width="534" height="516">
+                                                            </div>
+                                                            <div class="t-course-card-main">
+                                                                <figcaption class="teachers-list-item-caption">
+                                                                    <div class="t-course-card-title">個人形象的建立與展現</div>
+                                                                    <div class="t-pattern-diagonal-stripes-sm t-course-subhr">
+                                                                        <div class="t-course-card-subtitle t-fc-lightgrey bg-white t-inline-flex ">課程子綱</div>
+                                                                    </div>
+                                                                    <ul class="t-course-list list-checked list-checked-soft-bg-primary list-checked-lg">
+                                                                        <li class="list-checked-item">
+                                                                            個人形象的界定與塑造　
+                                                                        </li>
+                                                                        <li class="list-checked-item">
+                                                                            在職場上有效展現個人專業形象
+                                                                        </li>
+                                                                        <li class="list-checked-item">
+                                                                            個人與組織形象的結合與發展
+                                                                        </li>
+                                                                    </ul>
+                                                                </figcaption>
+                                                            </div>
+                                                        </figure>
+                                                        <!--  -->
+                                                        <figure class="flex-row t-course-card t-card-bg-tertiary">
+                                                            <div class="t-course-card-left">
+                                                                <div class="t-absolute t-pattern-diagonal-lines-sm t-fc-tertiary w-40 h-40"> </div>
+                                                                <img class="img-fluid t-zindex-1 t-relative" src="@Url.Content("~/assets_new17/images/course-v1-3.png")" alt="" width="534" height="516">
+                                                            </div>
+                                                            <div class="t-course-card-main">
+                                                                <figcaption class="teachers-list-item-caption">
+                                                                    <div class="t-course-card-title">情緒管理與自律自制</div>
+                                                                    <div class="t-pattern-diagonal-stripes-sm t-course-subhr">
+                                                                        <div class="t-course-card-subtitle t-fc-lightgrey bg-white t-inline-flex ">課程子綱</div>
+                                                                    </div>
+                                                                    <ul class="t-course-list list-checked list-checked-soft-bg-primary list-checked-lg">
+                                                                        <li class="list-checked-item">
+                                                                            如何調適情緒以面對工作壓力　
+                                                                        </li>
+                                                                        <li class="list-checked-item">
+                                                                            自律、自制能力的養成與強化
+                                                                        </li>
+                                                                    </ul>
+                                                                </figcaption>
+                                                            </div>
+                                                        </figure>
+                                                        <!--  -->
+                                                        <div class="t-pattern-diagonal-lines-md t-fc-dark opt--20 h-4 opt-24 my-8 mt-10"></div>
+                                                        <div class="t-course-heading" data-grad-under="tertiary">成效指標</div>
+                                                        <figure class=" flex-row t-course-card shd-none">
+                                                            <div class="col-12">
+                                                                <figcaption></figcaption>
+                                                                <div class="t-absolute t-pattern-cross-dots-sm t-fc-primary mb-6 w-60 h-80"></div>
+                                                                <img class="img-fluid t-zindex-1 t-relative" src="@Url.Content("~/assets_new17/images/course_analysis_DC3.png")" alt="1針對個人專業，發揮職人精神，以勤勉的態度，追求卓越，不斷精進工作品質。2在工作中，主動持續提出改善方案，且為達目標願意承擔責任。3能依工作的輕重緩急排定優先順序，妥善運用自己的時間與資源，有效管理工作流程及進度。4有效管理個人情緒，維持應有工作水準，與人維持良好關係，以達成任務目標。5做好自我管理，以合宜的言行舉止，展現專業形象。" width="534" height="516">
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-3 px-0">
+                                                        <div class="hr-lines-v1 h-100" id="hrLine"></div>
+                                                        <div id="listenList" class="observer-nav">
+                                                            @*<img src="@Url.Content("~/assets_new17/images/3d-rockets.png")" class="float-rocket" id="floatRocket" alt="3d-rockets">
+                                                                <svg class="t-absolute t-tp--4 t-lt--8 float-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.3 85.6">
+                                                                    <g opacity=".7">
+                                                                        <g data-name="Path 256448">
+                                                                            <path fill="#ddac28" d="M53.9 74.5a5 5 0 0 1-1.3.2l-36.7-.5a5 5 0 0 1-5-5l.4-36.8a5 5 0 1 1 10.2.1l-.3 24.1c3.7-3.7 8-8.1 12.9-12.3a105 105 0 0 1 18-13A80.3 80.3 0 0 1 72 23.6 88.6 88.6 0 0 1 95.5 21a125.8 125.8 0 0 1 28.6 4.3 5 5 0 0 1-.1 9.8 5 5 0 0 1-2.5 0 115.8 115.8 0 0 0-26.1-4 78.5 78.5 0 0 0-21 2.3 70.3 70.3 0 0 0-17.3 6.8 128.1 128.1 0 0 0-29.1 24l24.7.3a5 5 0 0 1 1.2 10Z" data-name="Path 256956"></path>
+                                                                            <path fill="#e3aa3e" d="M53.6 73.6a4 4 0 0 0-.9-8l-27-.4-6.9 6.9-5.7-5.9 7-7 .4-26.7a4 4 0 1 0-8.2 0L12 69a4 4 0 0 0 4 4.1l36.7.5a4 4 0 0 0 1-.1m-28-8.4c9-9.2 18.4-18.9 31-25.9 15.4-8.5 35.6-12.9 65.1-5.2l2.1-7.8c-31.4-8.3-53.8-3.7-71.2 6A143.6 143.6 0 0 0 20.2 59l-.1 6 5.5.1m98.2-31a4 4 0 0 0 0-8l-2 8a4 4 0 0 0 2 0M54 75.5a6 6 0 0 1-1.5.2l-36.7-.5a6 6 0 0 1-6-6.1l.4-36.7a6 6 0 1 1 12.2.1l-.3 21.7c3.3-3.4 7.1-7.1 11.2-10.7a106 106 0 0 1 18.2-13 81.3 81.3 0 0 1 20.1-8A89.6 89.6 0 0 1 95.5 20a126.8 126.8 0 0 1 28.8 4.3 6 6 0 0 1 0 11.8 6 6 0 0 1-3 0 114.8 114.8 0 0 0-26-4 77.5 77.5 0 0 0-20.7 2.2 69.3 69.3 0 0 0-17 6.8c-10.9 6-19.3 14-27.3 22.2l22.4.2a6 6 0 0 1 1.4 12ZM16 66.3l3 3 2-2.2h-.8a2 2 0 0 1-2-2v-1l-2.2 2.2Z" data-name="Path 256957"></path>
+                                                                        </g>
+                                                                        <path fill="#f3be2f" d="M11.9 69.1a4 4 0 0 0 4 4.1l36.7.5a4 4 0 0 0 .1-8.2l-32.6-.4.4-32.6a4 4 0 0 0-8.2 0Zm109.8-35a4 4 0 0 0 2.1-7.8Zm-102.9 38c11.2-11 22-24 37.8-32.7 15.4-8.6 35.6-13 65.1-5.3l2.1-7.8c-31.4-8.3-53.8-3.7-71.2 6-17 9.4-29 23.8-39.5 34l5.7 5.8Z" data-name="Path 256447"></path>
+                                                                    </g>
+                                                                </svg>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Start -->
+        @Html.Partial("_Footer")
+        <!-- Footer End -->
+    </main>
+    <!-- Scrolltop -->
+    @Html.Partial("_Scrolltop1")
+    <!-- SVG Symbols -->
+    @*<img src="~/images/ac368bfe-d78c-47d0-be33-18d89ab5e551.svg" />*@
+    @Html.Raw(File.ReadAllText(Server.MapPath("~/images/ac368bfe-d78c-47d0-be33-18d89ab5e551.svg")))
+    <script>
+        var nameArr = ["林大明", "陳小華", "林大明", "林小美", "陳曉潔", "林大明", "陳小華", "林大明", "林小美", "陳曉潔", "林大明", "陳小華", "林大明", "林小美", "陳曉潔", "林大明", "陳小華", "林大明", "林小美", "陳曉潔"];
+        var idArr = ["AreaPei", "AreaTao", "AreaChung", "AreaNam", "AreaKao"];
+
+        var fragment = document.createDocumentFragment();
+        var addButton = document.querySelector("button");
+
+        function buildItem() {
+            // var i = [];
+            let randomColor = (
+                "000000" + Math.floor(Math.random() * 16777215).toString(16)
+            ).slice(-6);
+            let BuildArea = document.querySelectorAll('.teachers-list-items-small-areas-cnt');
+            BuildArea.forEach(function (item, i) {
+                let randomNum = Math.floor(Math.random() * 100) + 1;
+                let apiUrl = 'https://avatars.dicebear.com/api/pixel-art/s';
+                let Url = apiUrl + randomNum + i + ".svg?background=%23" + randomColor + '&mood[]=sad&mood[]=happy"';
+                let li = document.createElement("li");
+                li.className = "teachers-list-small-item";
+                let Html = `<div class="teachers-list-small-item-avatar">
+                                    <img alt="avatar" src="${Url}">
+                                </div>
+                                <div class="teachers-list-small-item-cnt ">
+                                    <div>林大明</div>
+                                </div>`;
+                li.innerHTML = Html;
+                fragment.appendChild(li);
+                let gridView = document.getElementById(idArr[i]);
+                // console.log(gridView)
+                gridView.querySelector('ul').append(fragment);
+                observeriConLi("li");
+            });
+        }
+
+        // 觀察元素是否進入視窗範圍
+        function observeriConLi(items) {
+            if (
+                !("IntersectionObserver" in window) &&
+                !("IntersectionObserverEntry" in window) &&
+                !("intersectionRatio" in window.IntersectionObserverEntry.prototype)
+            ) {
+                return;
+            }
+
+            var elementsToLoadIn = document.querySelectorAll(items);
+            elementsToLoadIn.forEach(function (el) {
+                el.classList.add("an-loadin");
+            });
+            var observerOptions = {
+                root: null,
+                rootMargin: "0px 0px 0px 0px",
+                threshold: 0
+            };
+
+            function observerCallback(entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("an-loaded");
+                        observer.unobserve(entry.target); // 停止觀察
+                    }
+                });
+            }
+
+            var observer = new IntersectionObserver(observerCallback, observerOptions);
+            elementsToLoadIn.forEach(function (el) {
+                return observer.observe(el);
+            });
+        }
+
+        // DOMContentLoaded
+        //document.addEventListener("DOMContentLoaded", function () {
+        //    for (var i = 0; i < 24 + 1; i++) {
+        //        window.requestAnimationFrame(buildItem);
+        //    }
+        //});
+
+        // 建立右側卡片導航
+        const CardNavBuild = new JsBuildSideNav('.t-course-card-title', {
+            nav: 'listenList',
+            navClass: 'observer-nav',
+            navTag: 'div',
+            navItemTag: 'a',
+            navItemClass: 'observer-nav-item',
+            navItemClasPre: ["pei", "tao", "chung", "nam", "kao", "ano"]
+        });
+
+        const floatObserver = new JsScrollStickyObserver("listenList", {
+            prevElementID: "hrLine",
+            stopElementID: "mainFooter",
+            fixedClassName: "is-fix",
+            stopClassName: "is-absolute",
+            callback: {
+                root: "tCourseCotent",
+                rootMargin: '200px',
+                threshold: [1, 0.5, 0]
+            }
+        });
+
+
+        window.addEventListener("load", function (event) {
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C402MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C402M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">師資授課情形統計表</h3>
+                            <p class="bt-section-para"></p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Year, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Year, new SelectList(Model.Year_list, "Value", "Text", Model.Year), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.PlanTypeCode, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.PlanTypeCode, new SelectList(Model.PlanTypeCode_list, "Value", "Text", Model.PlanTypeCode), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.TeacherUnit, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.TeacherUnit, new SelectList(Model.TeacherUnit_list, "Value", "Text", Model.TeacherUnit), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.ExportFormat, new { @class = "t-form-label" })
+                                            @Html.RadioButtonFor(m => m.ExportFormat, "0", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px; margin-left: 30px;" }) <p style="margin-top: 10px;">XLSX</p>
+                                            @Html.RadioButtonFor(m => m.ExportFormat, "1", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px; margin-left: 30px;" }) <p style="margin-top: 10px;">ODS</p>
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-print"></use>
+                                                    </svg>
+                                                </i>
+                                                匯出
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+    });
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#Year option').removeAttr('selected');
+        $('#PlanTypeCode option').removeAttr('selected');
+        $('#TeacherUnit option').removeAttr('selected');
+    }
+
+    // 查詢
+    function doSearch() {
+        //blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+</script>

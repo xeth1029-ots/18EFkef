@@ -1,0 +1,245 @@
+﻿@using WKEFSERVICE.Areas.AM.Models;
+@model C202MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C202M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">教師授課資料</h3>
+                            <p class="bt-section-para">撈取補助大專校院辦理就業學程計畫課程檔、小型企業人力提升計畫課程檔、企業人力資源提升計畫。</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Year, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Year, new SelectList(Model.Year_list, "Value", "Text", Model.Year), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.PlanTypeCode, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.PlanTypeCode, new SelectList(Model.PlanTypeCode_list, "Value", "Text", Model.PlanTypeCode), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Units, new { @class = "t-form-label", style = "align-items: center;" })
+                                            @Html.CheckBoxListFor(m => m.Units_SHOW, Model.Units_SHOW_list, new { @class = "t-form-control ml-4", id = "Units_SHOW" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.TrainingUnit, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.TrainingUnit, new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.JobAbilityCode, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.JobAbilityCode, new SelectList(Model.JobAbilityCode_list, "Value", "Text", Model.JobAbilityCode), new { @class = "t-form-control ml-4", style = "width:100%" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.CourseUnitCode, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.CourseUnitCode, new SelectList(Model.CourseUnitCode_list, "Value", "Text", Model.CourseUnitCode), new { @class = "t-form-control ml-4", style = "width:100%" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.TeacherName, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.TeacherName, new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.TeacherUnit, new { @class = "t-form-label", style = "align-items: center;" })
+                                            @Html.CheckBoxListFor(m => m.TeacherUnit_SHOW, Model.TeacherUnit_SHOW_list, new { @class = "t-form-control ml-4", id = "TeacherUnit_SHOW" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-25" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-25" onclick="doExport()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                匯出師資個人授課總表
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="5%">項次</th>
+                                            <th align="left" width="9%">計畫別</th>
+                                            <th align="left" width="9%">所屬分署</th>
+                                            <th align="left" width="9%">教師姓名</th>
+                                            <th align="left" width="10%">訓練單位</th>
+                                            <th align="left" width="10%">課程名稱</th>
+                                            <th align="center" width="6%">授課單元</th>
+                                            <th align="center" width="5%">授課時數</th>
+                                            <th align="center" width="5%">上課人數</th>
+                                            <th align="center" width="9%">QR Code</th>
+                                            <th align="center" width="9%">問卷填答人數</th>
+                                            <th align="center" width="5%">授課滿意度</th>
+                                            <th align="center" width="5%">功能</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#Units_SHOW div").attr("style", "float:left;width:200px;");
+        $("#TeacherUnit_SHOW div").attr("style", "float:left;width:200px;");
+        Remove_PagingLink_AutoCreate("Units");
+        Remove_PagingLink_AutoCreate("TeacherUnit");
+    });
+    @*
+        Html.CheckBoxListFor 的部份，
+        如果不另外將 Html.Partial("_PagingLink", Model) 自動產生的部分移除，
+        會產生問題，就算取消勾選，仍會殘留上一次查詢之項目
+    *@
+    function Remove_PagingLink_AutoCreate(ComponentName) {
+        var list_1 = document.getElementsByName(ComponentName);
+        var list_2 = document.getElementsByName(ComponentName + "_SHOW");
+        for (let i = list_1.length - 1; i >= 0; i--) {
+            if (list_1[i].parentElement.id === "PagingLink") {
+                //console.log(i, list_1[i]);
+                list_1[i].remove();
+            }
+        }
+        for (let i = list_2.length - 1; i >= 0; i--) {
+            if (list_2[i].parentElement.id === "PagingLink") {
+                //console.log(i, list_2[i]);
+                list_2[i].remove();
+            }
+        }
+    }
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#Year option').removeAttr('selected');
+        $('#PlanTypeCode option').removeAttr('selected');
+        $('#Units_SHOW input').removeAttr('checked');
+        $('#JobAbilityCode option').removeAttr('selected');
+        $('#CourseUnitCode option').removeAttr('selected');
+        $('#TrainingUnit').removeAttr('value');
+        $('#TeacherName').removeAttr('value');
+        $('#TeacherUnit_SHOW input').removeAttr('checked');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 匯出師資個人授課總表 // AM/C202M - 管理者首頁>師資管理>教師授課資料：匯出師資個人授課總表
+    function doExport() {
+        //blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Export")').submit();
+    }
+
+    function Get_Units() {
+        var Result = "";
+        if (document.getElementById("Units_SHOW_1").checked) { Result = Result + "1,"; }
+        if (document.getElementById("Units_SHOW_2").checked) { Result = Result + "2,"; }
+        if (document.getElementById("Units_SHOW_3").checked) { Result = Result + "3,"; }
+        if (document.getElementById("Units_SHOW_4").checked) { Result = Result + "4,"; }
+        if (document.getElementById("Units_SHOW_5").checked) { Result = Result + "5,"; }
+        return Result;
+    }
+
+    function Get_TeacherUnit() {
+        var Result = "";
+        if (document.getElementById("TeacherUnit_SHOW_1").checked) { Result = Result + "1,"; }
+        if (document.getElementById("TeacherUnit_SHOW_2").checked) { Result = Result + "2,"; }
+        if (document.getElementById("TeacherUnit_SHOW_3").checked) { Result = Result + "3,"; }
+        if (document.getElementById("TeacherUnit_SHOW_4").checked) { Result = Result + "4,"; }
+        if (document.getElementById("TeacherUnit_SHOW_5").checked) { Result = Result + "5,"; }
+        return Result;
+    }
+
+    // 檢視
+    function doDetail(PlanTypeCode, PlanID, ClassID, CourseUnitCode, Year, ClassDateS, TeacherID) {
+        var data = {
+            "FilterString":
+                $("#Year").val() + "||" +
+                $("#PlanTypeCode").val() + "||" +
+                Get_Units() + "||" +
+                $("#TrainingUnit").val() + "||" +
+                $("#JobAbilityCode").val() + "||" +
+                $("#CourseUnitCode").val() + "||" +
+                $("#TeacherName").val() + "||" +
+                Get_TeacherUnit(),
+            "PlanTypeCode": PlanTypeCode,
+            "PlanID": PlanID,
+            "ClassID": ClassID,
+            "CourseUnitCode": CourseUnitCode,
+            "Year": Year,
+            "ClassDateS": ClassDateS,
+            "TeacherID": TeacherID,
+        };
+        var url = '@Url.Action("Detail", "C202M")?' + $.param(data);
+        window.location = url;
+    }
+
+</script>

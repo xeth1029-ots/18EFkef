@@ -1,0 +1,412 @@
+// @import 'functionsUtilsHelpers';
+
+// // Play with these to Test!
+// $fg-1: #0094c2;
+// $fg-2: #E35B34;
+// $bg-1: #f1f1f1;
+// $bg-2: #ccc;
+// $bg-3: #444;
+
+// // try #0c0, #0ff
+// // #c00, #f0f as values makes Codepen hang
+
+// // Change particulars of pairings as you like
+// $samples: (fg1-bg1: $fg-1 $bg-1 AAA 24 false, fg1-bg2: $fg-1 $bg-2 AA 19 true, fg1-bg3: $fg-1 $bg-3 AA 16 false, fg2-bg1: $fg-2 $bg-1 AA 16 false, fg2-bg2: $fg-2 $bg-2 AA 19 false, fg2-bg3: $fg-2 $bg-3 AAA 16 false, bg1-bg2: $bg-1 $bg-2 AA 19 true);
+
+// // Content from https://github.com/jhogue/automated-a11y-sass
+// //
+
+// // @function strip-unit($value)
+// // @param {number with unit} $value
+// @function strip-unit($value) {
+//   @return $value / ($value * 0 + 1);
+// }
+
+// // Precomputed linear color channel values, for use in color contrast calculations
+// // See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+// //
+// // Copyright 2017 Google Inc.
+// // From https://github.com/material-components/material-components-web/blob/master/packages/mdc-theme/_constants.scss
+// //
+// // Permission is hereby granted, free of charge, to any person obtaining a copy
+// // of this software and associated documentation files (the "Software"), to deal
+// // in the Software without restriction, including without limitation the rights
+// // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// // copies of the Software, and to permit persons to whom the Software is
+// // furnished to do so, subject to the following conditions:
+// //
+// // The above copyright notice and this permission notice shall be included in
+// // all copies or substantial portions of the Software.
+// //
+// // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// // THE SOFTWARE.
+// //
+// // Algorithm, for c in 0 to 255:
+// // f(c) {
+// //   c = c / 255;
+// //   return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+// // }
+// //
+// // This lookup table is needed since there is no `pow` in SASS.
+// $linear-channel-values: 0 0.000303527 0.000607054 0.000910581 0.0012141079 0.0015176349 0.0018211619 0.0021246889 0.0024282159 0.0027317429 0.0030352698 0.0033465358 0.0036765073 0.004024717 0.004391442 0.0047769535 0.0051815167 0.0056053916 0.006048833 0.0065120908 0.0069954102 0.007499032 0.008023193 0.0085681256 0.0091340587 0.0097212173 0.010329823 0.010960094 0.0116122452 0.0122864884 0.0129830323 0.013702083 0.0144438436 0.0152085144 0.0159962934 0.0168073758 0.0176419545 0.0185002201 0.019382361 0.0202885631 0.0212190104 0.0221738848 0.0231533662 0.0241576324 0.0251868596 0.0262412219 0.0273208916 0.0284260395 0.0295568344 0.0307134437 0.0318960331 0.0331047666 0.0343398068 0.0356013149 0.0368894504 0.0382043716 0.0395462353 0.0409151969 0.0423114106 0.0437350293 0.0451862044 0.0466650863 0.0481718242 0.049706566 0.0512694584 0.052860647 0.0544802764 0.05612849 0.0578054302 0.0595112382 0.0612460542 0.0630100177 0.0648032667 0.0666259386 0.0684781698 0.0703600957 0.0722718507 0.0742135684 0.0761853815 0.0781874218 0.0802198203 0.0822827071 0.0843762115 0.086500462 0.0886555863 0.0908417112 0.0930589628 0.0953074666 0.0975873471 0.0998987282 0.1022417331 0.1046164841 0.107023103 0.1094617108 0.1119324278 0.1144353738 0.1169706678 0.119538428 0.1221387722 0.1247718176 0.1274376804 0.1301364767 0.1328683216 0.1356333297 0.138431615 0.1412632911 0.1441284709 0.1470272665 0.1499597898 0.152926152 0.1559264637 0.1589608351 0.1620293756 0.1651321945 0.1682694002 0.1714411007 0.1746474037 0.177888416 0.1811642442 0.1844749945 0.1878207723 0.1912016827 0.1946178304 0.1980693196 0.2015562538 0.2050787364 0.2086368701 0.2122307574 0.2158605001 0.2195261997 0.2232279573 0.2269658735 0.2307400485 0.2345505822 0.2383975738 0.2422811225 0.2462013267 0.2501582847 0.2541520943 0.2581828529 0.2622506575 0.2663556048 0.270497791 0.2746773121 0.2788942635 0.2831487404 0.2874408377 0.2917706498 0.2961382708 0.3005437944 0.3049873141 0.3094689228 0.3139887134 0.3185467781 0.3231432091 0.3277780981 0.3324515363 0.337163615 0.3419144249 0.3467040564 0.3515325995 0.3564001441 0.3613067798 0.3662525956 0.3712376805 0.376262123 0.3813260114 0.3864294338 0.3915724777 0.3967552307 0.4019777798 0.4072402119 0.4125426135 0.4178850708 0.42326767 0.4286904966 0.4341536362 0.4396571738 0.4452011945 0.4507857828 0.4564110232 0.4620769997 0.4677837961 0.4735314961 0.4793201831 0.4851499401 0.4910208498 0.4969329951 0.502886458 0.5088813209 0.5149176654 0.5209955732 0.5271151257 0.533276404 0.539479489 0.5457244614 0.5520114015 0.5583403896 0.5647115057 0.5711248295 0.5775804404 0.5840784179 0.5906188409 0.5972017884 0.6038273389 0.6104955708 0.6172065624 0.6239603917 0.6307571363 0.637596874 0.644479682 0.6514056374 0.6583748173 0.6653872983 0.672443157 0.6795424696 0.6866853124 0.6938717613 0.7011018919 0.7083757799 0.7156935005 0.7230551289 0.7304607401 0.7379104088 0.7454042095 0.7529422168 0.7605245047 0.7681511472 0.7758222183 0.7835377915 0.7912979403 0.799102738 0.8069522577 0.8148465722 0.8227857544 0.8307698768 0.8387990117 0.8468732315 0.8549926081 0.8631572135 0.8713671192 0.8796223969 0.8879231179 0.8962693534 0.9046611744 0.9130986518 0.9215818563 0.9301108584 0.9386857285 0.9473065367 0.9559733532 0.9646862479 0.9734452904 0.9822505503 0.9911020971 1;
+
+// //// Helper: Calculate Luminance of a single color
+// /// @author Sérgio Gomes
+// /// Adapted from: https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+// ///
+// /// @require {list} $linear-channel-values (custom)
+// /// @require {function} nth (core Sass)
+// /// @require {function} red, green, blue (core Sass)
+// ///
+// /// @param {Valid Color Value} Color to retreive luminance from
+// ///
+// /// Note: White luminance is 1, Black luminance is 0
+// ///
+// /// Note: To be used in other functions or mixins — creates non-standard CSS output:
+// /// @example scss - Usage
+// ///    .sample { luminance: luminance(#c00); }
+// ///
+// /// @example css - Output
+// ///    .sample { luminance: 0.1283736922; }
+// ///
+
+// @function luminance($color) {
+//   // $linear-channel-values are our Lookup Table of constants
+//   $red: nth($linear-channel-values, red($color) + 1);
+//   $green: nth($linear-channel-values, green($color) + 1);
+//   $blue: nth($linear-channel-values, blue($color) + 1);
+//   $calculation: 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
+
+//   @return $calculation;
+// }
+
+// // @function contrast-ratio($fg, $bg)
+// // Helper: Calculate "readability" as defined by WCAG 2.1
+// // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+// // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+// // To be used in other functions or mixins — creates non-standard CSS output:
+// // Usage: 
+// // .sample { color-contrast: contrast-ratio(#c00, #fff); }
+// // Output:
+// // .sample { color-contrast: 5.89; }
+// //
+// @function contrast-ratio($fg, $bg) {
+//   $luminance1: luminance($fg) + 0.05;
+//   $luminance2: luminance($bg) + 0.05;
+//   $ratio: $luminance1 / $luminance2;
+
+//   @if $luminance2 > $luminance1 {
+//     $ratio: 1 / $ratio;
+//   }
+
+//   // Round to a hundreth because 6.96 should not pass a ratio of 7.0
+//   $ratio: round($ratio * 100) / 100;
+
+//   @return $ratio;
+// }
+
+// // @function validate-font-size($size)
+// // Helper: Depending on the unit recalculate a font size value into pixels if possible
+// // To be used in other functions or mixins — creates non-standard CSS output:
+// // Usage: 
+// // .sample { validate-font-size: validate-font-size(1em); }
+// // Output: 
+// // .sample { validate-font-size: 16; }
+// //
+// @function validate-font-size($size) {
+//   @if unit($size) == "em" or unit($size) == "rem" or unit($size) == "px" or unit($size) == "" {
+//     // Check if a flexible unit
+//     @if unit($size) == "em" or unit($size) == "rem" {
+//       // Need to convert to a pixel value. Let's not overcomplicate it with possible EM inheritence scale factors
+//       @return strip-unit($size * 16);
+//     }
+
+//     @if unit($size) == "px" {
+//       // We expect PX, so strip the value and return it
+//       @return strip-unit($size);
+//     }
+
+//     @if unit($size) == "" {
+//       @return $size;
+//     }
+//   }
+//   @else {
+//     @error "validate-font-size(): An unexpected font size unit was supplied.";
+//   }
+// }
+
+// // @function get-ratio($level: 'AA', $size: 16, $bold: false)
+// // Helper: Determine the correct ratio value to use based on font-size and WCAG Level
+// // To be used in other functions or mixins — creates non-standard CSS output:
+// // Usage: 
+// // .sample { get-ratio: get-ratio('AAA', 19, true); }
+// // Output: 
+// // .sample { get-ratio: 4.5; }
+// //
+// @function get-ratio($level: "AA", $size: 16, $bold: false) {
+//   // Default ratio
+//   $ratio: 4.5;
+
+//   @if $level == "AAA" {
+//     $ratio: 7;
+//   }
+
+//   // Make sure the size is valid. If the value is not EM, REM, or PX (preferred), we can't help
+//   $size: validate-font-size($size);
+
+//   // Check font size
+//   @if $size < 24 {
+//     // Small text, use defaults
+//     // But:
+//     @if $size >= 19 and $bold == true {
+//       // Special case: Small text but also bold
+//       @if $level == "AAA" {
+//         $ratio: 4.5;
+//       }
+//       @else {
+//         $ratio: 3;
+//       }
+//     }
+//   }
+//   @else {
+//     // Larger than 24
+//     $ratio: 3;
+
+//     @if $level == "AAA" {
+//       $ratio: 4.5;
+//     }
+//   }
+
+//   @return $ratio;
+// }
+
+// // @function light-or-dark($color)
+// // Helper: Use contrast against white or black to determine if a color is "light" or "dark"
+// // Adapted from: https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+// // To be used in other functions or mixins — creates non-standard CSS output:
+// // Usage: 
+// // .sample { light-or-dark: light-or-dark(#c00); }
+// // Output: 
+// // .sample { light-or-dark: "light"; }
+// //
+// @function light-or-dark($color) {
+//   $light-contrast: contrast-ratio($color, $white);
+//   $dark-contrast: contrast-ratio($color, $black);
+
+//   @if $light-contrast > $dark-contrast {
+//     // Contrast against white is higher than against black, so, this is a dark color
+//     @return "dark";
+//   }
+//   @else {
+//     @return "light";
+//   }
+// }
+
+// // @function color-contrast($color)
+// // Helper: Returns black or white compared to a color, whichever produces the highest contrast
+// // Usage: 
+// // .sample {
+// //   background-color: #c00;
+// //   color: color-contrast(#c00);
+// // }
+// // Output:
+// // .sample {
+// //   background-color: #c00;
+// //   color: #fff;
+// // }
+// //
+// // Names for the forthcoming CSS Module 5 spec function color-contrast();
+// // See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-contrast()
+// //
+// @function color-contrast($color) {
+//   $color-lod: light-or-dark($color);
+
+//   @if $color-lod == "dark" {
+//     @return $white;
+//   }
+//   @else {
+//     @return $black;
+//   }
+// }
+
+// // @function a11y-color($fg, $bg, $level: 'AA', $size: 16, $bold: false) {
+// //   // Helper: make sure the font size value is acceptable
+// //   $font-size: validate-font-size($size);
+// //   // Helper: With the level, font size, and bold boolean, return the proper target ratio. 3.0, 4.5, or 7.0 results expected
+// //   $ratio: get-ratio($level, $font-size, $bold);
+// //   // Calculate the first contrast ratio of the given pair
+// //   $original-contrast: color-contrast($fg, $bg);
+
+// //   @if $original-contrast >= $ratio {
+// //     // If we pass the ratio already, return the original color
+// //     @return $fg;
+// //   } @else {
+// //     // Doesn't pass. Time to get to work
+// //     // Should the color be lightened or darkened?
+// //     // Helper: Single color input, 'light' or 'dark' as output
+// //     $fg-lod: light-or-dark($fg);
+// //     $bg-lod: light-or-dark($bg);
+// //
+
+// //     // Set a "step" value to lighten or darken a color
+// //     // Note: Higher percentage steps means faster compile time, but we might overstep the required threshold too far with something higher than 5%
+// //     $step: 2%;
+
+// //     // Run through some cases where we want to darken, or use a negative step value
+// //     @if $fg-lod == 'light' and $bg-lod == 'light' {
+// //       // Both are light colors, darken the fg (make the step value negative)
+// //       $step: - $step;
+// //     } @else if $fg-lod == 'dark' and $bg-lod == 'light' {
+// //       // bg is light, fg is dark but does not pass, darken more
+// //       $step: - $step;
+// //     }
+// //     // Keeping the rest of the logic here, but our default values do not change, so this logic is not needed
+// //     //@else if $fg-lod == 'light' and $bg-lod == 'dark' {
+// //     //  // bg is dark, fg is light but does not pass, lighten further
+// //     //  $step: $step;
+// //     //} @else if $fg-lod == 'dark' and $bg-lod == 'dark' {
+// //     //  // Both are dark, so lighten the fg
+// //     //  $step: $step;
+// //     //}
+
+// //     // The magic happens here
+// //     // Loop through with a @while statement until the color combination passes our required ratio. Scale the color by our step value until the expression is false
+// //     // This might loop 100 times or more depending on the colors
+// //     @while color-contrast($fg, $bg) < $ratio {
+// //       // Moving the lightness is most effective, but also moving the saturation by a little bit is nice and helps maintain the "power" of the color
+// //       $fg: scale-color($fg, $lightness: $step, $saturation: $step/2);
+// //     }
+// //     @return $fg;
+// //   }
+// // }
+// colors
+// ------
+@function tu-css-color($hue: 500,  $opacity: null, $palette: 'primary', $is-contrast-color: false) {
+  $palette_: $tu-css-palette-primary;
+  @if ($is-contrast-color == true) {
+    @if ($palette=='primary') {
+      $palette_: $tu-css-contrast-palette;
+    } @else if ($palette=='accent') {
+      $palette_: $tu-css-contrast-palette-accent;
+    } @else if ($palette=='warn') {
+      $palette_: $tu-css-contrast-palette-warn;
+    } @else {
+      @error 'Invalid contrast palette';
+    }
+  } @else {
+    @if ($palette=='primary') {
+      $palette_: $tu-css-palette-primary;
+    } @else if ($palette=='accent') {
+      $palette_: $tu-css-palette-accent;
+    } @else if ($palette=='warn') {
+      $palette_: $tu-css-palette-warn;
+    } @else {
+      @error 'Invalid palette';
+    }
+  }
+
+  $color: _tu-css-strip-variable(map_get($palette_, $hue));
+
+  @if (type-of($opacity) == number) {
+    @return rgba($color, $opacity);
+  } @else {
+    @return rgb($color);
+  }
+}
+
+@function tu-css-color-primary($hue: 500,  $opacity: null) {
+  @return tu-css-color($hue, $opacity, 'primary');
+}
+
+@function tu-css-color-accent($hue: 500,  $opacity: null) {
+  @return tu-css-color($hue, $opacity, 'accent');
+}
+
+@function tu-css-color-warn($hue: 500,  $opacity: null) {
+  @return tu-css-color($hue, $opacity, 'warn');
+}
+
+// contrast-colors
+// ---------------
+@function tu-css-contrast-color($hue: 500,  $opacity: null, $palette: 'primary') {
+  @return tu-css-color($hue, $opacity, $palette, true);
+}
+
+@function tu-css-contrast-color-primary($hue: 500,  $opacity: null) {
+  @return tu-css-contrast-color($hue, $opacity, 'primary');
+}
+
+@function tu-css-contrast-color-accent($hue: 500,  $opacity: null) {
+  @return tu-css-contrast-color($hue, $opacity, 'accent');
+}
+
+@function tu-css-contrast-color-warn($hue: 500,  $opacity: null) {
+  @return tu-css-contrast-color($hue, $opacity, 'warn');
+}
+
+// mixins
+// ------
+@mixin tu-css-color-and-contrast($hue) {
+  @warn 'tu-css-color-and-contrast() is deprecated. Please use tu-css-color-and-contrast-primary() instead.';
+  @include tu-css-color-and-contrast-primary($hue);
+}
+
+@mixin tu-css-color-and-contrast-primary($hue) {
+  background: tu-css-color-primary($hue);
+  color: tu-css-contrast-color($hue);
+}
+
+@mixin tu-css-color-and-contrast-accent($hue) {
+  background: tu-css-color-accent($hue);
+  color: tu-css-contrast-color-accent($hue);
+}
+
+@mixin tu-css-color-and-contrast-warn($hue) {
+  background: tu-css-color-warn($hue);
+  color: tu-css-contrast-color-warn($hue);
+}
+
+@mixin tu-css-bg($hue) {
+  background: tu-css-color-primary($hue);
+}
+
+@mixin tu-css-dark-theme {
+  :host-context(#{$tu-css-dark-theme-selector}) & {
+    @content;
+  }
+}
+
+@mixin tu-css-light-theme {
+  :host-context(#{$tu-css-light-theme-selector}) & {
+    @content;
+  }
+}
+
+@mixin tu-css-dark-theme-global {
+  #{$tu-css-dark-theme-selector} & {
+    @content;
+  }
+}
+
+@mixin tu-css-light-theme-global {
+  #{$tu-css-light-theme-selector} & {
+    @content;
+  }
+}
+
+@mixin tu-css-set-palette-defaults($css-var-map, $paletteType: 'primary') {
+  $new-map: ();
+  @each $var, $defaultVal in $css-var-map {
+    @if ($var != 'contrast') {
+      $colorVal: _tu-css-hex-to-rgb($defaultVal);
+      @if $colorVal != null {
+        $new-map: map_merge($new-map, (--tu-#{$paletteType}-#{$var}: #{$colorVal}));
+      }
+    }
+  }
+}

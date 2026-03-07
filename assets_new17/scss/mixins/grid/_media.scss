@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+//  Mixins > Media
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//////////////////////////////////////////////////////////////////////
+@mixin xs {
+  @media (max-width: $screen-xs) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: $screen-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: $screen-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: $screen-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: $screen-xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (max-width: $screen-xxl) {
+    @content;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+@mixin xs-min {
+  @media (max-width: $screen-xs) {
+    @content;
+  }
+}
+
+@mixin sm-min {
+  @media (min-width: $screen-sm) {
+    @content;
+  }
+}
+
+@mixin md-min {
+  @media (min-width: $screen-md) {
+    @content;
+  }
+}
+
+@mixin lg-min {
+  @media (min-width: $screen-lg) {
+    @content;
+  }
+}
+
+@mixin xl-min {
+  @media (min-width: $screen-xl) {
+    @content;
+  }
+}
+
+@mixin xxl-min {
+  @media (min-width: $screen-xxl) {
+    @content;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+@mixin xs-btw {
+  // 如果螢幕寬度為 576px 以下 就套用 css 設定
+  @media (max-width: $screen-xs) {
+    @content;
+  }
+}
+
+@mixin sm-btw {
+  // 如果螢幕寬度為 576px 以上 且 767.98px 以下，就套用 css 設定
+  @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+    @content;
+  }
+}
+
+@mixin md-btw {
+  // 如果螢幕寬度為 768px 以上 且 991.98px 以下，就套用 css 設定
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    @content;
+  }
+}
+
+@mixin lg-btw {
+  // 如果螢幕寬度為 992px 以上 且 1199.98px 以下，就套用 css 設定
+  @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+    @content;
+  }
+}
+
+@mixin xl-btw {
+  // 如果螢幕寬度為 1200px 以上 且 1399.98px 以下，就套用 css 設定
+  @media (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+    @content;
+  }
+}
+
+@mixin xxl-btw {
+  // 如果螢幕寬度為 1600px 以上 css 設定
+  @media (min-width: $screen-xxl-min) {
+    @content;
+  }
+}

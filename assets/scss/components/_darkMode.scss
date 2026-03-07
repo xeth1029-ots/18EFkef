@@ -1,0 +1,122 @@
+$float-size : 3.5rem;
+$float-size-svg : 2rem;
+
+:root {
+  // --primary: #11ece5;
+  // --secondary: #6A85EA;
+  // --tertiary: #F7509F;
+  // --quaternary: #F9F871;
+  // --success: #9EF6AB;
+  // --danger: #B21A6B;
+  // --warning: #FF9A3E;
+  // --info: #00D0FC;
+  // --link: #4AF3DF;
+  // --link-hover: #0892A9;
+  --black: #04040E;
+  --dark: #070711;
+  --grey: #18181F;
+  --lightgrey: #646478;
+  --light: #E8E8F3;
+  --white: #fff;
+  --default: #f2f2f2;
+  --body-color: var(--dark);
+  --body-bg: var(--white);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    // --primary: #11ece5;
+    // --secondary: #6A85EA;
+    // --tertiary: #F7509F;
+    // --quaternary: #F9F871;
+    // --success: #9EF6AB;
+    // --danger: #B21A6B;
+    // --warning: #FF9A3E;
+    // --info: #00D0FC;
+    // --link: #4AF3DF;
+    // --link-hover: #0892A9;
+    --black: #04040E;
+    --dark: #070711;
+    --grey: #18181F;
+    --lightgrey: #646478;
+    --light: #A2A2BB;
+    --white: #fff;
+    --default: #f2f2f2;
+    --body-color: var(--default);
+    --body-bg: var(--dark);
+  }
+}
+
+.dark__mode {
+  // --primary: #11ece5;
+  // --secondary: #6A85EA;
+  // --tertiary: #F7509F;
+  --quaternaryCus: #F9F871;
+  // --success: #9EF6AB;
+  // --danger: #B21A6B;
+  // --warning: #FF9A3E;
+  // --info: #00D0FC;
+  // --link: #4AF3DF;
+  // --link-hover: #0892A9;
+  --black: #04040E;
+  --dark: #070711;
+  --grey: #18181F;
+  --lightgrey: #646478;
+  --light: #A2A2BB;
+  --white: #fff;
+  --default: #f2f2f2;
+  --body-color: var(--default);
+  --body-bg: var(--dark);
+
+  background-color: var(--dark);
+  color: var(--default);
+
+  .float--change-mode {
+    background-color: var(--dark);
+    box-shadow: 0 1.5rem 3rem 0 rgba($secondary-100, 0.42), inset 0 -0.5rem 1.5rem 0 rgba($secondary-800, 0.8);
+    svg {
+      fill: var(--quaternaryCus);
+      stroke: var(--quaternaryCus);
+    }
+  }
+}
+
+.float--change-mode {
+  cursor: pointer;
+  // --btn-size: 2rem;
+  width: $float-size;
+  height: $float-size;
+  position: fixed;
+  right: $fixedAreaR;
+  bottom: 6rem;
+  background-color: var(--default);
+  box-shadow: 0 1.5rem 3rem 0 rgba($secondary-500, 0.42), inset 0 -0.5rem 1.5rem 0 rgba($secondary-500, 0.8);
+  padding: 0.5rem;
+  border-radius: 50%;
+  z-index: 99;
+  transition: $transition-base;
+  &:hover,
+  &:focus:hover {
+    color: $primary-600;
+    opacity: 0.6;
+
+    &:before {
+      content: '';
+      border-radius: inherit;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 1.5rem 3rem 0 rgba(86, 184, 149, 0.42), inset 0 -0.5rem 1.5rem 0 rgba(113, 235, 191, 0.8);
+    }
+  }
+
+  svg {
+    @include absolute-center;
+    width: $float-size-svg;
+    height: $float-size-svg;
+    fill: transparent;
+    transition: 0.6s background-color ease;
+  }
+}

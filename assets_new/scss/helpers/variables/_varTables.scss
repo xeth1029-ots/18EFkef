@@ -1,0 +1,98 @@
+// table
+// =========================================================
+$table-border-collapse: separate;
+$table-line-height:     1.375;
+$table-border-spacing:  0 0.625rem;
+
+$table-sm-font-size:         $font-size-sm !default;
+$table-font-size:            $font-size  !default;
+$table-tbody-font-size:      $font-size-sm  !default;
+$table-thead-cell-th-y:      0.75rem;
+$table-thead-cell-th-x:      0.75rem;
+
+$table-thead-font-size:      $font-size-sm  !default;
+$table-thead-font-color:     $grey-700  !default;
+$table-thead-th-font-weight: $font-weight-medium !default;
+
+$table-th-font-weight:       $font-weight-normal !default;
+
+$table-tr-background:              rgba($white, 0.80) !default;
+$table-tr-background-hover:        rgba($white, 1) !default;
+$table-tr-shadow:                  0 .125rem 1rem rgba($dark, 0.00) !default;
+$table-tr-shadow-hover:            0 .125rem 1rem rgba($dark, 0.18) !default;
+$table-tr-background-backdrop-filter:              blur(4px);
+$table-tr-background-backdrop-filter-hover:        blur(0) !default;
+
+
+
+
+
+$table-cell-padding-y: 1.125rem;
+$table-cell-padding-x: 0.75rem;
+
+$table-cell-padding-y-sm: 0.5rem;
+$table-cell-padding-x-sm: 0.5rem;
+
+$table-cell-padding-y-lg: 1rem;
+$table-cell-padding-x-lg: 1.5rem;
+
+
+
+$table-cell-vertical-align:   top !default;
+
+$table-color:                 var(--#{$prefix}body-color) !default;
+$table-bg:                    transparent !default;
+$table-accent-bg:             transparent !default;
+
+$table-th-font-weight:        null !default;
+
+$table-striped-color:         $table-color !default;
+$table-striped-bg-factor:     .05 !default;
+$table-striped-bg:            rgba($black, $table-striped-bg-factor) !default;
+
+$table-active-color:          $table-color !default;
+$table-active-bg-factor:      .1 !default;
+$table-active-bg:             rgba($black, $table-active-bg-factor) !default;
+
+$table-hover-color:           $table-color !default;
+$table-hover-bg-factor:       .075 !default;
+$table-hover-bg:              rgba($black, $table-hover-bg-factor) !default;
+
+$table-border-factor:         .1 !default;
+$table-border-width:          $border-width !default;
+$table-border-color:          var(--#{$prefix}border-color) !default;
+
+$table-striped-order:         odd !default;
+$table-striped-columns-order: even !default;
+
+$table-group-separator-color: currentcolor !default;
+
+$table-caption-color:         $text-muted !default;
+
+$table-bg-scale:              -80% !default;
+
+
+$table-thead-th-color:    $headings-color !default;
+$table-body-color:        $dark !default;
+$table-thead-light-bg:    $gray-200;
+$table-striped-bg:        $gray-100;
+$table-hover-bg:         rgba($gray-300, 0.4);
+$table-border-color:     $border-color;
+$table-thead-border-color: $table-border-color !default;
+
+
+
+
+
+
+$table-variants: (
+  "primary":    shift-color($primary, $table-bg-scale),
+  "secondary":  shift-color($secondary, $table-bg-scale),
+  "success":    shift-color($success, $table-bg-scale),
+  "info":       shift-color($info, $table-bg-scale),
+  "warning":    shift-color($warning, $table-bg-scale),
+  "danger":     shift-color($danger, $table-bg-scale),
+  "light":      $light,
+  "dark":       $dark,
+) !default;
+

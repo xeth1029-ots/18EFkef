@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="margin:auto;background:#fff;display:block;z-index:1;position:relative;shape-rendering:auto" width="500" height="350" preserveAspectRatio="xMidYMid">
+  <g>
+    <style>
+    @keyframes ld-speed-dash {
+
+      0%,
+      to {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(125px, 0)
+      }
+    }
+
+    .ld.ld-speed-dash {
+      animation: ld-speed-dash .5s linear infinite
+    }
+    </style>
+    <g style="transform:rotate(237.25869388156104deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m122.343 0 862.254 23.561V-23.56z" style="animation-delay:-1.0805311780155122s" />/&gt;</g>
+    <g style="transform:rotate(23.31988529103083deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m143.56 0 975.493 25.475v-50.95z" fill="#d97171" style="animation-delay:-.875641640455799s" />/&gt;</g>
+    <g style="transform:rotate(206.74916642093075deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m109.056 0 967.895 13.105v-26.21z" style="animation-delay:-1.5939203571566913s" />/&gt;</g>
+    <g style="transform:rotate(5.4425831102212deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m118.813 0 998.647 23.745v-47.49z" style="animation-delay:-1.8221044826751605s" />/&gt;</g>
+    <g style="transform:rotate(54.435651867201265deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m112.162 0 874.485 11.273v-22.546z" style="animation-delay:-.3787929915211966s" />/&gt;</g>
+    <g style="transform:rotate(203.1667004001818deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m98.556 0 975.809 15.04v-30.08z" style="animation-delay:-.3762895316358081s" />/&gt;</g>
+    <g style="transform:rotate(346.4301430621022deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m62.503 0 991.626 21.058v-42.116z" fill="#d97171" style="animation-delay:-1.3369245196191353s" />/&gt;</g>
+    <g style="transform:rotate(339.72039974338105deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m57.504 0 981.404 28.224v-56.448z" fill="#d97171" style="animation-delay:-.6215965376777788s" />/&gt;</g>
+    <g style="transform:rotate(255.65207301279142deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m88.155 0 774.342 26.447v-52.894z" style="animation-delay:-.9319270579402511s" />/&gt;</g>
+    <g style="transform:rotate(271.5699455977863deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m52.95 0 708.22 16.956v-33.912z" fill="#d97171" style="animation-delay:-.2981102428322467s" />/&gt;</g>
+    <g style="transform:rotate(35.18794249135368deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m88.287 0 945.18 16.888v-33.776z" style="animation-delay:-.4658482590843087s" />/&gt;</g>
+    <g style="transform:rotate(83.14828349949485deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m89.366 0 735.79 26.936v-53.872z" fill="#d97171" style="animation-delay:-.35687712407441247s" />/&gt;</g>
+    <g style="transform:rotate(268.51442928281534deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m40.52 0 707.778 13.4v-26.8z" style="animation-delay:-.5885912747378327s" />/&gt;</g>
+    <g style="transform:rotate(24.302310970396707deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m134.839 0 973.416 20.26v-40.52z" style="animation-delay:-1.7220295750195154s" />/&gt;</g>
+    <g style="transform:rotate(99.98668324608892deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m99.966 0 752.026 22.04v-44.08z" fill="#d97171" style="animation-delay:-.485480335393636s" />/&gt;</g>
+    <g style="transform:rotate(96.55357506235588deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m81.59 0 734.24 15.473v-30.946z" style="animation-delay:-.013935345093401696s" />/&gt;</g>
+    <g style="transform:rotate(56.217087224953666deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m66.307 0 866.814 12.051V-12.05z" style="animation-delay:-.8246726292835158s" />/&gt;</g>
+    <g style="transform:rotate(355.830280478211deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m116.475 0 999.206 15.292v-30.584z" fill="#d97171" style="animation-delay:-.9760071491592173s" />/&gt;</g>
+    <g style="transform:rotate(254.98219960493395deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m54.447 0 777.735 29.816v-59.632z" fill="#d97171" style="animation-delay:-.6954050398769694s" />/&gt;</g>
+    <g style="transform:rotate(343.3434187548469deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m117.296 0 987.412 10.025v-20.05z" fill="#d97171" style="animation-delay:-1.0476076352307895s" />/&gt;</g>
+    <g style="transform:rotate(137.4806427839514deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m132.702 0 921.115 26.803v-53.606z" style="animation-delay:-.3514403336217766s" />/&gt;</g>
+    <g style="transform:rotate(253.677049664846deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M103.695 0 888.01 18.942v-37.884z" fill="#d97171" style="animation-delay:-.3833004237856652s" />/&gt;</g>
+    <g style="transform:rotate(241.5850210265348deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m66.942 0 842.756 23.157v-46.314z" fill="#d97171" style="animation-delay:-1.1794861572502573s" />/&gt;</g>
+    <g style="transform:rotate(120.20380387555305deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M120.957 0 971.88 23.846v-47.692z" style="animation-delay:-.6392058425884921s" />/&gt;</g>
+    <g style="transform:rotate(108.85012736912803deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m51.675 0 796.928 25.056v-50.112z" fill="#d97171" style="animation-delay:-.5568572199688991s" />/&gt;</g>
+    <g style="transform:rotate(357.07643314194786deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m128.242 0 999.61 21.491V-21.49z" style="animation-delay:-.7840924127547395s" />/&gt;</g>
+    <g style="transform:rotate(246.02346920164842deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m109.01 0 821.909 21.323v-42.646z" fill="#d97171" style="animation-delay:-.5608582136357558s" />/&gt;</g>
+    <g style="transform:rotate(101.18174796968533deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m55.76 0 758.176 20.065v-40.13z" style="animation-delay:-1.869896152290933s" />/&gt;</g>
+    <g style="transform:rotate(117.6477083679297deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m52.729 0 839.21 17.645v-35.29z" fill="#d97171" style="animation-delay:-.1491396338162652s" />/&gt;</g>
+    <g style="transform:rotate(107.87773165334646deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m88.27 0 792.097 24.086v-48.172z" style="animation-delay:-1.3843925605803227s" />/&gt;</g>
+    <g style="transform:rotate(78.94543241513962deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m61.763 0 757.523 26.67v-53.34z" fill="#d97171" style="animation-delay:-1.7171803839510675s" />/&gt;</g>
+    <g style="transform:rotate(183.3478962272795deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m133.733 0 999.488 18.792v-37.584z" fill="#d97171" style="animation-delay:-.7532381309079511s" />/&gt;</g>
+    <g style="transform:rotate(85.1245398140774deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m100.416 0 725.497 26.467v-52.934z" fill="#d97171" style="animation-delay:-.9339476873791199s" />/&gt;</g>
+    <g style="transform:rotate(130.86972747884073deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m56.545 0 896.303 20.754v-41.508z" style="animation-delay:-.5201027373803834s" />/&gt;</g>
+    <g style="transform:rotate(91.1378370651536deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M89.412 0 795.37 15.44v-30.88z" fill="#d97171" style="animation-delay:-.06336857597726489s" />/&gt;</g>
+    <g style="transform:rotate(201.96605767001853deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m130.997 0 978.222 27.893v-55.786z" style="animation-delay:-.7863468809799086s" />/&gt;</g>
+    <g style="transform:rotate(286.81755320755843deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m80.567 0 786.798 29.558v-59.116z" fill="#d97171" style="animation-delay:-1.0063861328045807s" />/&gt;</g>
+    <g style="transform:rotate(281.1570307019591deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m55.703 0 758.05 26.994v-53.988z" fill="#d97171" style="animation-delay:-1.2831360682457094s" />/&gt;</g>
+    <g style="transform:rotate(265.5232424741718deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m40.8 0 723.416 26.996v-53.992z" style="animation-delay:-.9483730817873555s" />/&gt;</g>
+    <g style="transform:rotate(159.69883639153443deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m128.022 0 981.364 13.319V-13.32z" style="animation-delay:-1.7912340933468698s" />/&gt;</g>
+    <g style="transform:rotate(148.86059751805104deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m48.998 0 956.774 19.775v-39.55z" style="animation-delay:-.8537412999856681s" />/&gt;</g>
+    <g style="transform:rotate(171.47750223604535deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m87.824 0 996.687 13.867v-27.734z" style="animation-delay:-.1819005501309156s" />/&gt;</g>
+    <g style="transform:rotate(279.9527071323271deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m107.885 0 751.85 28.916v-57.832z" style="animation-delay:-.4040813972508546s" />/&gt;</g>
+    <g style="transform:rotate(246.52916006483278deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m48.299 0 819.485 19.772v-39.544z" fill="#d97171" style="animation-delay:-1.66819290702489s" />/&gt;</g>
+    <g style="transform:rotate(294.0453440637037deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m83.918 0 822.238 15.562v-31.124z" fill="#d97171" style="animation-delay:-1.4008342755076801s" />/&gt;</g>
+    <g style="transform:rotate(336.2563439918231deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m81.984 0 974.607 23.414v-46.828z" fill="#d97171" style="animation-delay:-1.7415186465527634s" />/&gt;</g>
+    <g style="transform:rotate(94.0287847687887deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m49.738 0 721.077 22.431V-22.43z" style="animation-delay:-.8699120095206111s" />/&gt;</g>
+    <g style="transform:rotate(189.77522893176376deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m72.284 0 995.644 29.153v-58.306z" fill="#d97171" style="animation-delay:-.6175073808243091s" />/&gt;</g>
+    <g style="transform:rotate(353.0892485016328deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m65.454 0 997.82 25.294v-50.588z" style="animation-delay:-1.4937911438459743s" />/&gt;</g>
+    <g style="transform:rotate(204.31060904220365deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m93.343 0 973.398 16.49v-32.98z" fill="#d97171" style="animation-delay:-1.6114960020613585s" />/&gt;</g>
+    <g style="transform:rotate(231.39629956042089deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m86.037 0 887.179 23.428v-46.856z" style="animation-delay:-1.2397307662611574s" />/&gt;</g>
+    <g style="transform:rotate(231.79000180984903deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M57.396 0 942.96 12.895v-25.79z" style="animation-delay:-.5138821523040783s" />/&gt;</g>
+    <g style="transform:rotate(6.4341712852701205deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m122.227 0 998.11 10.296v-20.592z" fill="#d97171" style="animation-delay:-.6080094913292788s" />/&gt;</g>
+    <g style="transform:rotate(75.80100748034204deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m88.73 0 773.587 20.808v-41.616z" style="animation-delay:-.42033515990478926s" />/&gt;</g>
+    <g style="transform:rotate(152.7973835214769deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m123.495 0 966.819 11.517v-23.034z" style="animation-delay:-1.4875929595528576s" />/&gt;</g>
+    <g style="transform:rotate(33.60482716169368deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m102.6 0 949.862 15.93v-31.86z" fill="#d97171" style="animation-delay:-.5190095439753125s" />/&gt;</g>
+    <g style="transform:rotate(174.39380181838845deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m122.084 0 998.565 14.821V-14.82z" style="animation-delay:-.3834200674875899s" />/&gt;</g>
+    <g style="transform:rotate(26.45215494844032deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m92.757 0 968.592 16.943v-33.886z" fill="#d97171" style="animation-delay:-.17431213438774854s" />/&gt;</g>
+    <g style="transform:rotate(187.14559053119612deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m102.792 0 997.67 15.584v-31.168z" fill="#d97171" style="animation-delay:-.978087459155361s" />/&gt;</g>
+    <g style="transform:rotate(262.2846976640039deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m45.807 0 740.276 13.484v-26.968z" style="animation-delay:-.3290589736459874s" />/&gt;</g>
+    <g style="transform:rotate(30.162052293915398deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m143.221 0 959.382 20.33v-40.66z" fill="#d97171" style="animation-delay:-1.486828257832063s" />/&gt;</g>
+    <g style="transform:rotate(6.609090260528512deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m83.143 0 998.007 19.173v-38.346z" style="animation-delay:-1.67116707141743s" />/&gt;</g>
+    <g style="transform:rotate(349.02714651493125deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m142.871 0 994.515 14.047v-28.094z" style="animation-delay:-.8543684169414708s" />/&gt;</g>
+    <g style="transform:rotate(115.6532964490907deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m80.768 0 829.877 19.115v-38.23z" fill="#d97171" style="animation-delay:-.008333821130945747s" />/&gt;</g>
+    <g style="transform:rotate(156.95674939947966deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m49.242 0 976.063 19.57v-39.14z" fill="#d97171" style="animation-delay:-.9755643680707186s" />/&gt;</g>
+    <g style="transform:rotate(149.04369756366447deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m127.47 0 957.268 10.029V-10.03z" fill="#d97171" style="animation-delay:-.09275723148726875s" />/&gt;</g>
+    <g style="transform:rotate(65.90836772161924deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m46.743 0 822.46 25.693v-51.386z" fill="#d97171" style="animation-delay:-1.5224753405185087s" />/&gt;</g>
+    <g style="transform:rotate(319.43310392774225deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m133.54 0 927.894 18.084v-36.168z" style="animation-delay:-.5091113418868232s" />/&gt;</g>
+    <g style="transform:rotate(71.02485561031583deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m52.01 0 797.546 22.04v-44.08z" style="animation-delay:-1.5258026672156255s" />/&gt;</g>
+    <g style="transform:rotate(201.39911265279193deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m141.252 0 979.319 20.574v-41.148z" style="animation-delay:-1.5374497369436138s" />/&gt;</g>
+    <g style="transform:rotate(332.7580827498227deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m69.584 0 966.725 25.087v-50.174z" style="animation-delay:-1.2276314016978003s" />/&gt;</g>
+    <g style="transform:rotate(272.7705986236156deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m54.533 0 714.501 15.82v-31.64z" fill="#d97171" style="animation-delay:-1.0186932699781066s" />/&gt;</g>
+    <g style="transform:rotate(116.34603798829659deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M80.433 0 913.57 27.392v-54.784z" style="animation-delay:-.6039015552516391s" />/&gt;</g>
+    <g style="transform:rotate(35.07253044600639deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m68.715 0 945.528 26.802v-53.604z" fill="#d97171" style="animation-delay:-.5750703686748888s" />/&gt;</g>
+    <g style="transform:rotate(226.34819480363618deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M60.988 0 968.07 21.787v-43.574z" style="animation-delay:-.4584574822982507s" />/&gt;</g>
+    <g style="transform:rotate(42.10127596665722deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m100.666 0 922.589 16.45v-32.9z" style="animation-delay:-1.6925080400621444s" />/&gt;</g>
+    <g style="transform:rotate(152.29917295712406deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m69.168 0 965.616 21.08v-42.16z" style="animation-delay:-.16730849472155618s" />/&gt;</g>
+    <g style="transform:rotate(32.69038935008914deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m49.708 0 952.48 25.859V-25.86z" style="animation-delay:-.09898858982687905s" />/&gt;</g>
+    <g style="transform:rotate(285.05558110234006deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m94.869 0 777.927 26.38v-52.76z" fill="#d97171" style="animation-delay:-1.7743753618332154s" />/&gt;</g>
+    <g style="transform:rotate(106.50445263101982deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m57.037 0 785.227 23.357v-46.714z" fill="#d97171" style="animation-delay:-.8036476017368305s" />/&gt;</g>
+    <g style="transform:rotate(204.143712313339deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m130.365 0 973.756 19.393v-38.786z" style="animation-delay:-.9397074078425532s" />/&gt;</g>
+    <g style="transform:rotate(354.4434403399507deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m67.114 0 998.59 24.902v-49.804z" fill="#d97171" style="animation-delay:-1.9435156989839297s" />/&gt;</g>
+    <g style="transform:rotate(287.24441981911707deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m62.87 0 788.935 20.166v-40.332z" style="animation-delay:-1.773572388592349s" />/&gt;</g>
+    <g style="transform:rotate(88.43065152686404deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M88.883 0 797.1 14.449V-14.45z" style="animation-delay:-1.678888712141199s" />/&gt;</g>
+    <g style="transform:rotate(50.81649567620719deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m127.354 0 889.542 10.504v-21.008z" style="animation-delay:-.8600509878065343s" />/&gt;</g>
+    <g style="transform:rotate(76.30778196104964deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m62.025 0 771.012 27.564v-55.128z" fill="#d97171" style="animation-delay:-1.6326986992419714s" />/&gt;</g>
+    <g style="transform:rotate(20.472061148130813deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m112.06 0 981.053 16.507v-33.014z" style="animation-delay:-1.8793187134274343s" />/&gt;</g>
+    <g style="transform:rotate(301.4702944872582deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m115.61 0 856.618 22.167v-44.334z" fill="#d97171" style="animation-delay:-.33189257786760545s" />/&gt;</g>
+    <g style="transform:rotate(117.76301177188972deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M57.095 0 896.84 29.281V-29.28z" fill="#d97171" style="animation-delay:-1.3184773891831243s" />/&gt;</g>
+    <g style="transform:rotate(270.89636354876995deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="M40.067 0 744.76 14.555v-29.11z" fill="#d97171" style="animation-delay:-1.4042358192701079s" />/&gt;</g>
+    <g style="transform:rotate(13.258856638741724deg)" transform="translate(250 175)">
+      <path class="ld ld-speed-dash" d="m98.587 0 992.003 11.614v-23.228z" style="animation-delay:-1.9831136696597258s" />/&gt;</g>
+  </g>
+</svg>

@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+//==  Prototypes -> Texts Color 
+//====================================================
+@each $color, $value in $element-colors {
+  .t-fc-#{$color} {
+    color: $value !important;
+  }
+
+  %t-fc-#{$color} {
+    color: $value !important;
+  }
+}
+@each $color, $value in $brand-colors {
+  .t-fc-#{$color} {
+    color: $value !important;
+  }
+
+  %t-fc-#{$color} {
+    color: $value !important;
+  }
+}
+@each $color, $value in $element-colors {
+  .t-link-#{$color} {
+    color: $value !important;
+
+    &:hover {
+      color: lighten($value, 20%) !important;
+    }
+  }
+  %t-link-#{$color} {
+    color: $value !important;
+    &:hover {
+      color: lighten($value, 20%) !important;
+    }
+  }
+}

@@ -1,0 +1,113 @@
+.t-card-bg-primary {
+  background: radial-gradient(circle at 0 0, rgba($primary, 0.66) 0%, rgba($primary, 0.66) 16%, rgba($primary-200, 0.66) 16%, rgba($primary-200, 0.66) 24%, rgba($primary-50, 0.66) 24%, rgba($primary-50, 0.66) 66%);
+}
+
+.t-card-bg-secondary {
+  background: radial-gradient(circle at 110% 52%, rgba($secondary-200, 0.66) 0%, rgba($secondary-200, 0.66) 16%, rgba($secondary, 0.66) 16%, rgba($secondary, 0.66) 24%, rgba($secondary-50, 0.66) 24%, rgba($secondary-50, 0.66) 66%);
+}
+
+.t-card-bg-tertiary {
+  background: radial-gradient(circle at 100% 0px, rgba($tertiary-200, 0.66) 0%, rgba($tertiary-200, 0.66) 15.9%, rgba($tertiary, 0.66) 15.9%, rgba($tertiary, 0.66) 24.4%, rgba($tertiary-50, 0.66) 24.5%, rgba($tertiary-50, 0.66) 66%);
+}
+
+.t-card-bg-quaternary {
+  background: radial-gradient(circle at -8% 52%, rgba($quaternary, 0.66) 0%, rgba($quaternary, 0.66) 15.9%, rgba($quaternary-200, 0.66) 15.9%, rgba($quaternary-200, 0.66) 24.4%, rgba($quaternary-50, 0.66) 24.5%, rgba($quaternary-50, 0.66) 66%);
+}
+
+
+
+
+
+
+
+
+
+.t-course-content {
+  position: relative;
+  padding: 2rem 0 8rem;
+width: 100%;
+  // background-color: $neutral-50;
+
+  .t-course-heading {
+    font-size: 1.75rem;
+  }
+
+  .t-course-para {
+    font-size: 1.125rem;
+  }
+
+  .t-tab-cnts {
+    padding-top: 1rem;
+    background-color: _var("white", $white);
+    border-radius: $border-radius;
+
+    // padding: 0 1rem;
+ 
+  }
+
+  .t-tab-course {
+    padding: 1rem 2rem;
+
+    // background-color: _var("white", $white);
+    // border-radius: $border-radius;
+    .t-tab-nav {
+      .t-tab-nav-item {
+        .t-tab-nav-item-txt {
+          // font-size: inherit;
+       
+        }
+
+        .t-tab-nav-item-txt-sm {}
+      }
+    }
+  }
+
+  .list-checked {
+    font-size: 0.875rem;
+  }
+
+  .t-course-card {
+    position: relative;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+
+    @include border-radius($card-border-radius);
+    @include box-shadow($card-box-shadow);
+
+        
+    margin-right: 1rem;
+    white-space: normal;
+
+    &:not(:last-child) {
+      margin-bottom: 2.75rem;
+    }
+
+    .t-course-card-title {
+      margin-bottom: 1.25rem;
+      padding-left: 1.25rem;
+      border-left: 0.5rem solid $primary-100;
+      letter-spacing: 1px;
+      font-size: 1.375rem;
+
+      &:first-letter {
+        font-size: 150%;
+        color: $primary;
+      }
+    }
+
+    .t-course-subhr {
+      color: $grey-100;
+    }
+
+    .t-course-card-subtitle {
+      font-weight: 500;
+      padding: 0 1rem 0 0;
+    }
+
+    .list-checked {}
+  }
+}

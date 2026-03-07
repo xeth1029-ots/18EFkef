@@ -1,0 +1,106 @@
+@mixin ribbon($background: $primary) {
+
+  position: relative;
+  display: flex;
+  padding: 0.5em 1.25em 0.5em 1.75em;
+  border-radius: 0.3125em 0.3125em 0.3125em 0;
+  margin: 0 0 0 -1.75em;
+  // margin: 1.25rem 0 0 -1.875rem;
+  // margin: 0 0 0 -2.5rem;
+  width: fit-content;
+  font-weight: 700;
+  color: color-yiq($background);
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, shade-color($background, 40%) 2px, $background 10px);
+  border-bottom: .125rem solid shade-color($background, 40%);
+  line-height: 1.375;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0.375em;
+    left: 0;
+    width: 0.75em;
+
+    height: calc(0.375em + 85%);
+    background: shade-color($background, 40%);
+    border-radius: 0 0 0 0.3125em;
+    z-index: -1;
+
+  }
+
+  @at-root a#{&} {
+    &:hover {
+      color: rgba(color-yiq($background), 0.66);
+    }
+  }
+
+}
+
+
+
+@mixin ribbon-d($name: "primary",
+$fontSize: 2rem,
+$color: $primary,
+$darker: darken($color, 16%),
+$darkest: darken($color, 24%),
+$strokeColor: $white) {
+  .ribbon-d-$#{name} {
+    background: $color;
+    font-size: $fontSize;
+    padding: .5em 1em;
+    position: relative;
+    transform: skew(-8deg) rotate(-8deg);
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      border-width: 1em .5em 1em .5em;
+      border-style: solid;
+      border-color: $darker $darker $darker transparent;
+      height: 0;
+      width: 0;
+      top: .62em;
+      left: -1em;
+      z-index: -5;
+    }
+
+    &:after {
+      left: 100%;
+      border-color: $darker transparent $darker $darker;
+      top: -.35em;
+    }
+
+    span {
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: .1875rem;
+      -webkit-text-stroke-width: .0625rem;
+      text-shadow: (-0.1875rem) 0.1875rem 0px $darker;
+      font-weight: 700;
+      -webkit-text-stroke-color: $strokeColor;
+
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        border-width: .2em .2em .2em .2em;
+        border-style: solid;
+        border-color: $darker $darker $darkest $darkest;
+        right: -1em;
+        top: -.85em;
+      }
+
+      &:after {
+        left: -1em;
+        top: 1.73em;
+        width: 0;
+        height: 0;
+        border-color: $darkest $darkest $darker $darker;
+      }
+    }
+  }
+}

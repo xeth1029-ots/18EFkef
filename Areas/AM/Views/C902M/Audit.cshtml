@@ -1,0 +1,451 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@using WKEFSERVICE.Models;
+@using WKEFSERVICE.DataLayers;
+@model C902MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "C902M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Detail.Seq)
+    @Html.HiddenFor(x => x.Detail.Year)
+    @Html.HiddenFor(x => x.Detail.YearName)
+    @Html.HiddenFor(x => x.Detail.UploadDeadline)
+    @Html.HiddenFor(x => x.Detail.JobAbilityCode)
+    @Html.HiddenFor(x => x.Detail.JobAbilityName)
+    @Html.HiddenFor(x => x.Detail.CourseUnitCode)
+    @Html.HiddenFor(x => x.Detail.OBJECT_TYPE)
+    @Html.HiddenFor(x => x.Detail.StudNum)
+    @Html.HiddenFor(x => x.Detail.TObject)
+    @Html.HiddenFor(x => x.Detail.TMethod)
+    @Html.HiddenFor(x => x.Detail.TslidesOrg)
+    @Html.HiddenFor(x => x.Detail.TslidesNew)
+    @Html.HiddenFor(x => x.Detail.TslidesType)
+    @Html.HiddenFor(x => x.Detail.Other)
+    @Html.HiddenFor(x => x.Detail.StudyGReportOrg)
+    @Html.HiddenFor(x => x.Detail.StudyGReportNew)
+    @Html.HiddenFor(x => x.Detail.StudyGReportType)
+    @Html.HiddenFor(x => x.Detail.WorksheetsOrg)
+    @Html.HiddenFor(x => x.Detail.WorksheetsNew)
+    @Html.HiddenFor(x => x.Detail.WorksheetsType)
+    @Html.HiddenFor(x => x.Detail.HomeWorkOrg)
+    @Html.HiddenFor(x => x.Detail.HomeWorkNew)
+    @Html.HiddenFor(x => x.Detail.HomeWorkType)
+    @Html.HiddenFor(x => x.Detail.ExpReportOrg)
+    @Html.HiddenFor(x => x.Detail.ExpReportNew)
+    @Html.HiddenFor(x => x.Detail.ExpReportType)
+    @Html.HiddenFor(x => x.Detail.ExamOrg)
+    @Html.HiddenFor(x => x.Detail.ExamNew)
+    @Html.HiddenFor(x => x.Detail.ExamType)
+    @Html.HiddenFor(x => x.Detail.Other1Org)
+    @Html.HiddenFor(x => x.Detail.Other1New)
+    @Html.HiddenFor(x => x.Detail.Other1Type)
+    @Html.HiddenFor(x => x.Detail.Other1Remark)
+    @Html.HiddenFor(x => x.Detail.Other2Org)
+    @Html.HiddenFor(x => x.Detail.Other2New)
+    @Html.HiddenFor(x => x.Detail.Other2Type)
+    @Html.HiddenFor(x => x.Detail.Other2Remark)
+    @Html.HiddenFor(x => x.Detail.Effect)
+    @Html.HiddenFor(x => x.Detail.PlanImprove)
+    @Html.HiddenFor(x => x.Detail.ExamImprove)
+    @Html.HiddenFor(x => x.Detail.materialsImprove)
+    @Html.HiddenFor(x => x.Detail.Other3)
+    @Html.HiddenFor(x => x.Detail.FirstTime)
+    @Html.HiddenFor(x => x.Detail.AuditStatus)
+    @Html.HiddenFor(x => x.Detail.AuditName)
+    @Html.HiddenFor(x => x.Detail.AuditDatetime)
+    @Html.HiddenFor(x => x.Detail.UpdatedName)
+    @Html.HiddenFor(x => x.Detail.UpdatedDatetime)
+
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="align-items-baseline">
+                                <h3 class="bt-section-heading">教學自我審核報告</h3>
+                                <p class="bt-section-para">提供管理者可管理所有教師之教學自我審核報告。</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--danger btn--sm mr-2" onclick="doAudit()" id="AuditBtn">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    審核
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.YearName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(x => x.Detail.YearName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.UploadDeadline, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(x => x.Detail.UploadDeadline, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.JobAbilityName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(x => x.Detail.JobAbilityName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">一.課程單元基本資料</div>
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.CourseUnitCode, new { @class = "t-form-label" })
+                                        @Html.CheckBoxListFor(x => x.Detail.CourseUnitCode_SHOW, Model.Detail.CourseUnitCode_SHOW_list, new { @class = "t-form-control", id = "CourseUnitCode_SHOW", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.OBJECT_TYPE, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(x => x.Detail.OBJECT_TYPE, new SelectList(Model.Detail.OBJECT_TYPE_list, "Value", "Text", Model.Detail.OBJECT_TYPE), new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.StudNum, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(x => x.Detail.StudNum, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.TObject, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(x => x.Detail.TObject, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.TMethod, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(x => x.Detail.TMethod, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label">教材簡報</label>
+                                        @Html.TextBoxFor(x => x.Detail.TslidesOrg, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.TslidesNew)" download="@Model.Detail.TslidesOrg" title="點擊以下載 @Model.Detail.TslidesOrg" onclick="doLog('@Model.Detail.TslidesOrg', '@Model.Detail.TslidesNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.TslidesOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.Other, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(x => x.Detail.Other, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">二.教學/訓練成效成果證據</div>
+                        <div data-grad-under="secondary" class="t-panel-sub-title">(上傳檔案格式僅限PDF，檔案大小以20MB為限)</div>
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <span style="color: red; position: absolute; top: 1rem;">*學習分組報告、學習單、作業、心得報告、測驗等5項，請至少選擇其中一項上傳。</span>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">學習分組報告</label>
+                                        @Html.TextBoxFor(x => x.Detail.StudyGReportOrg, new { @class = "t-form-control ml-4", @style = "width: 70%;", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.StudyGReportNew)" download="@Model.Detail.StudyGReportOrg" title="點擊以下載 @Model.Detail.StudyGReportOrg" onclick="doLog('@Model.Detail.StudyGReportOrg', '@Model.Detail.StudyGReportNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.StudyGReportOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">學習單</label>
+                                        @Html.TextBoxFor(x => x.Detail.WorksheetsOrg, new { @class = "t-form-control ml-4", @style = "width: 70%;", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.WorksheetsNew)" download="@Model.Detail.WorksheetsOrg" title="點擊以下載 @Model.Detail.WorksheetsOrg" onclick="doLog('@Model.Detail.WorksheetsOrg', '@Model.Detail.WorksheetsNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.WorksheetsOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">作業</label>
+                                        @Html.TextBoxFor(x => x.Detail.HomeWorkOrg, new { @class = "t-form-control ml-4", @style = "width: 70%;", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.HomeWorkNew)" download="@Model.Detail.HomeWorkOrg" title="點擊以下載 @Model.Detail.HomeWorkOrg" onclick="doLog('@Model.Detail.HomeWorkOrg', '@Model.Detail.HomeWorkNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.HomeWorkOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">心得報告</label>
+                                        @Html.TextBoxFor(x => x.Detail.ExpReportOrg, new { @class = "t-form-control ml-4", @style = "width: 70%;", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.ExpReportNew)" download="@Model.Detail.ExpReportOrg" title="點擊以下載 @Model.Detail.ExpReportOrg" onclick="doLog('@Model.Detail.ExpReportOrg', '@Model.Detail.ExpReportNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.ExpReportOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">測驗</label>
+                                        @Html.TextBoxFor(x => x.Detail.ExamOrg, new { @class = "t-form-control ml-4", @style = "width: 70%;", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.ExamNew)" download="@Model.Detail.ExamOrg" title="點擊以下載 @Model.Detail.ExamOrg" onclick="doLog('@Model.Detail.ExamOrg', '@Model.Detail.ExamNew')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.ExamOrg
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.Other1Remark, new { @class = "t-form-label", @style = "width: 200px;" })
+                                        @Html.TextAreaFor(x => x.Detail.Other1Remark, new { @class = "t-form-control ml-4", @style = "width: 83%;", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">其他佐證文件1</label>
+                                        @Html.TextBoxFor(x => x.Detail.Other1Org, new { @class = "t-form-control ml-4", @style = "width: 70%;", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.Other1New)" download="@Model.Detail.Other1Org" title="點擊以下載 @Model.Detail.Other1Org" onclick="doLog('@Model.Detail.Other1Org', '@Model.Detail.Other1New')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.Other1Org
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.Other2Remark, new { @class = "t-form-label", @style = "width: 200px;" })
+                                        @Html.TextAreaFor(x => x.Detail.Other2Remark, new { @class = "t-form-control ml-4", @style = "width: 83%;", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <label class="t-form-label" style="width: 200px;">其他佐證文件2</label>
+                                        @Html.TextBoxFor(x => x.Detail.Other2Org, new { @class = "t-form-control ml-4", @style = "width: 70%;", @readonly = "", @disabled = "" })
+                                        <a href="@(new AMDAO().UploadPathTeacherReport + Model.Detail.Other2New)" download="@Model.Detail.Other2Org" title="點擊以下載 @Model.Detail.Other2Org" onclick="doLog('@Model.Detail.Other2Org', '@Model.Detail.Other2New')" data-decoration-offset='4' data-decoration="underline" data-decoration-style='dotted'>
+                                            @Model.Detail.Other2Org
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title"><p style="color:red">*</p>三.成效指標達成度分析與檢討</div>
+                        <div data-grad-under="secondary" class="t-panel-sub-title">依據實際授課情形及成果證據，檢視成效指標的達成情形</div>
+                        <div class="bt-form-cnt" style="padding: 1.5rem 1.5rem 0rem 0rem">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <span id="Count_Detail_Effect" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.TextAreaFor(x => x.Detail.Effect, new { @class = "t-form-control ml-4", style = "height: 150px;", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">四.可行之改善(精進)作法</div>
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <span id="Count_Detail_PlanImprove" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.LabelFor(x => x.Detail.PlanImprove, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(m => m.Detail.PlanImprove, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <span id="Count_Detail_ExamImprove" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.LabelFor(x => x.Detail.ExamImprove, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(m => m.Detail.ExamImprove, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        <span id="Count_Detail_materialsImprove" style="font-size: 12pt; position: absolute; top: -1.3rem; right: 1.3rem;">字數統計：</span>
+                                        @Html.LabelFor(x => x.Detail.materialsImprove, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(m => m.Detail.materialsImprove, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">五.其他</div>
+                        <div class="bt-form-cnt" style="padding: 1.5rem 1.5rem 0rem 0rem">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.TextAreaFor(x => x.Detail.Other3, new { @class = "t-form-control ml-4", style = "height: 150px;", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div data-grad-under="info" class="t-panel-title">審核</div>
+                        <div class="bt-form-cnt" style="padding: 1.5rem 1.5rem 0rem 0rem">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.AuditStatus, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.AuditStatus_Name, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        <label class="t-form-label"><span style="color:red;">*</span>審核狀態</label>
+                                        @Html.DropDownListFor(x => x.Detail.AuditStatus_New, new SelectList(Model.Detail.AuditStatus_New_list, "Value", "Text", Model.Detail.AuditStatus_New), new { @class = "t-form-control ml-4" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AuditReason, new { @class = "t-form-label" })
+                                        @* [退回原因說明] 使用 Html.TextAreaFor 會導致必填驗證時，莫名產生逗號及重複字串問題，只好直接硬寫 HTML *@
+                                        <textarea class="t-form-control ml-4" cols="20" id="Detail_AuditReason" name="Detail.AuditReason" rows="3">@Model.Detail.AuditReason</textarea>
+                                        @Html.HiddenFor(m => m.Detail.AuditReason, new { @id = "Hid_Detail_AuditReason" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.AuditName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.AuditName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.AuditDatetime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.AuditDatetime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.UpdatedName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.UpdatedName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(x => x.Detail.UpdatedDatetime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.UpdatedDatetime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        doJobAbilityDown();
+
+        document.getElementById('Count_Detail_Effect').innerText = "字數統計：" + CountFont($("#Detail_Effect").val());
+        document.getElementById('Count_Detail_PlanImprove').innerText = "字數統計：" + CountFont($("#Detail_PlanImprove").val());
+        document.getElementById('Count_Detail_ExamImprove').innerText = "字數統計：" + CountFont($("#Detail_ExamImprove").val());
+        document.getElementById('Count_Detail_materialsImprove').innerText = "字數統計：" + CountFont($("#Detail_materialsImprove").val());
+    });
+
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    //儲存-送出審核
+    function doAudit() {
+        //取得選中選項的值-取得選中選項的文字內容 通過:Y/不通過:N/退件修正:R;
+        const AuditStatus_New_Value = $("#Detail_AuditStatus_New").find("option:selected").val();
+        //const selectedText = selectedOption.text(); console.log(selectedText); // 選項 1 //console.log(selectedValue); // 1
+        $('#Detail_AuditReason').val($('#Detail_AuditReason').val().trim());
+        $('#Hid_Detail_AuditReason').val($('#Detail_AuditReason').val());
+        if (AuditStatus_New_Value == "R" && $('#Detail_AuditReason').val() == "") {
+            blockAlert("【審核狀態】選擇「退件修正」時，【退回原因說明】為必填。");
+            return;
+        }
+        else if ($('#Detail_AuditReason').val() != "" && AuditStatus_New_Value != "R") {
+            blockAlert("【退回原因說明】不為空，【審核狀態】必須選擇「退件修正」。");
+            return;
+        }
+
+        blockConfirm("您確定要送出審核？", null, function () {
+            var form = $("form[id=main_form]");
+            form.attr('action', '@Url.Action("Save", "C902M")').submit();
+        });
+    }
+
+    function doJobAbilityDown() {
+        const tmpStr = "checkbox_Detail_CourseUnitCode_SHOW_" + $("#Detail_JobAbilityCode").val();
+        //console.log(tmpStr);
+        for (let item of document.getElementById("CourseUnitCode_SHOW").children) {
+        //console.log(item.id);
+            document.getElementById(item.id).style.display = "unset";
+            if (tmpStr !== item.id.substring(0, item.id.length - 1)) {
+                document.getElementById(item.id).style.display = "none";
+            }
+            document.getElementById(item.id).children[0].disabled = true;
+        };
+    }
+
+    function doLog(Org, New) {
+        $.ajax({
+            url: "@Url.Action("FileDownloadLog", "Backend", new { area = "" })",
+            data: { "Func": "AM/C902M", "Org": Org, "New": New },
+            dataType: "json",
+            method: "post",
+            success: function (data) { },
+            error: function (data) { }
+        });
+    }
+
+    function CountFont(s) {
+        const str_filter = /(\s)|(\n)/g;
+        s = s.replace(str_filter, "");
+        const utf8Data = new TextEncoder().encode(s);
+        let p = 0;
+        let counter = 0;
+        while (p < utf8Data.length) {
+            const first = utf8Data[p];
+            counter += 1;
+            if (first <= 0x7F) {
+                p += 1;
+            } else if (first <= 0xDF) {
+                p += 2;
+            } else if (first <= 0xEF) {
+                p += 3;
+            } else {
+                p += 4;
+            }
+        }
+        return counter;
+    }
+
+</script>

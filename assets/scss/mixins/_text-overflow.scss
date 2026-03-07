@@ -1,0 +1,52 @@
+
+//  Mixins > Text Overflow
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin text_overflow($w: 100%) {
+  display: inline-block;
+  width: $w;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+@mixin hide_txt {
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+
+@mixin text_ellipsis($line, $lineHeight) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+
+  /* 顯示行數 Chrome&Safari */
+  max-height: calc(1rem * #{$lineHeight} * #{$line});
+
+  /* 顯示高度 IE&Firefox */
+  text-overflow: ellipsis;
+  word-break: break-word;
+
+  &:after {
+    content: '...';
+    display: block;
+    @include absolute($B: 0, $R: 0);
+    background: linear-gradient(to right, rgba($white, 0), rgba($white, 1) 75%);
+    // height: calc(1em * #{$lineHeight});
+    // width: 25%;
+    @include size($width: 25%, $height: calc(1em * #{$lineHeight}));
+    text-align: right;
+  }
+
+  @supports (-webkit-line-clamp: 1) {
+    &:after {
+      display: none;
+    }
+  }
+}
+
+
+

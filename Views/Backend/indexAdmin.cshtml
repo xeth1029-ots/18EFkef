@@ -1,0 +1,370 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Models.Entities
+@using WKEFSERVICE.Services
+@using WKEFSERVICE.DataLayers
+@model WKEFSERVICE.Models.HomeModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+
+    // 去抓取最新消息資料，預設 5 筆
+    var tmpRtnObj1 = new WKEFSERVICE.Controllers.BackendController().GetNewsDatas("", "4");
+    var tmpNewsModelObj = (HomeModel)tmpRtnObj1.GetType().GetProperty("Model").GetValue(tmpRtnObj1, null);
+
+    // 去抓取會議資料，預設 5 筆
+    var tmpRtnObj2 = new WKEFSERVICE.Controllers.BackendController().GetMeetingsDatas("");
+    var tmpMeetingsModelObj = (HomeModel)tmpRtnObj2.GetType().GetProperty("Model").GetValue(tmpRtnObj2, null);
+
+    // 去抓取自我審核報告，取前 4 筆
+    var tmpRtnObj3 = new WKEFSERVICE.Controllers.BackendController().GetAuditReportsDatas("");
+    var tmpAuditReportsModelObj = (HomeModel)tmpRtnObj3.GetType().GetProperty("Model").GetValue(tmpRtnObj3, null);
+    string C204MCount = tmpAuditReportsModelObj.AuditReportsGrid.ToCount().ToString();
+    tmpAuditReportsModelObj.AuditReportsGrid = tmpAuditReportsModelObj.AuditReportsGrid.Take(4).ToList();
+
+    string s_DISTIDN1 = Model.AdminModel.DISTIDCodeName1;
+    string s_DISTIDN2 = Model.AdminModel.DISTIDCodeName2;
+    string s_DISTIDN3 = Model.AdminModel.DISTIDCodeName3;
+    string s_DISTIDN4 = Model.AdminModel.DISTIDCodeName4;
+    string s_DISTIDN5 = Model.AdminModel.DISTIDCodeName5;
+
+}
+
+<section class="bt-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="t-panel t-panel-mini">
+                    <div class="mask t-mask-panel-v1"></div>
+                    <div class="t-panel-main">
+                        <div class="t-card-panel-main">
+                            <div class="t-flex">
+                                <div class="t-panel-main-heading">講師數量</div>
+                                <a data-under="tertiary" class="t-panel-mini-link" href="javascript:;" title="講師數量 @Model.AdminModel.TeacherCount" data-separated="true">@Model.AdminModel.TeacherCount</a>
+                                <label class="t-badge t-badge-primary t-badge--border t-shadow-label" aria-label="一個月內 @Model.AdminModel.NewTeacherCount 筆新進教師">
+                                    一個月內 <big>@Model.AdminModel.NewTeacherCount</big> 筆新進教師
+                                </label>
+                            </div>
+                            <div class="t-flex">
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">
+                                        @(s_DISTIDN1)
+                                    </dt>
+                                    <dd class="t-definition-description">
+                                        <a href="javascript:;" title="@(s_DISTIDN1) @Model.AdminModel.TeacherCountUnit1 人">@Model.AdminModel.TeacherCountUnit1</a>
+                                        <small>人</small>
+                                    </dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">
+                                        @(s_DISTIDN2)
+                                    </dt>
+                                    <dd class="t-definition-description">
+                                        <a href="javascript:;" title="@(s_DISTIDN2) @Model.AdminModel.TeacherCountUnit2 人">@Model.AdminModel.TeacherCountUnit2</a>
+                                        <small>人</small>
+                                    </dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">
+                                        @(s_DISTIDN3)
+                                    </dt>
+                                    <dd class="t-definition-description">
+                                        <a href="javascript:;" title="@(s_DISTIDN3) @Model.AdminModel.TeacherCountUnit3 人">@Model.AdminModel.TeacherCountUnit3</a>
+                                        <small>人</small>
+                                    </dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">
+                                        @(s_DISTIDN4)
+                                    </dt>
+                                    <dd class="t-definition-description">
+                                        <a href="javascript:;" title="@(s_DISTIDN4) @Model.AdminModel.TeacherCountUnit4 人">@Model.AdminModel.TeacherCountUnit4</a>
+                                        <small>人</small>
+                                    </dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">
+                                        @(s_DISTIDN5)
+                                    </dt>
+                                    <dd class="t-definition-description">
+                                        <a href="javascript:;" title="@(s_DISTIDN5) @Model.AdminModel.TeacherCountUnit5 人">@Model.AdminModel.TeacherCountUnit5</a>
+                                        <small>人</small>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="t-card-charts">
+                            <div class="js-bar-chart" data-series="[[40,124,64,124,156]]" data-labels='["北","桃","中","南","高"]' data-is-stack-bars="true" data-is-show-axis-x="true" data-is-show-axis-y="false" data-is-stroke-rounded="true" data-is-show-label-axis-x="true" data-is-show-label-axis-y="false" data-height="100" data-high="200" data-offset-axis-x="24" data-offset-axis-y="0" data-low="0" data-distance="64" data-stroke-width="17.5%" data-mobile-stroke-width="20%" data-stroke-color='[["#fcd53b"]]' data-is-grid-solid-line="true" data-grid-line-color="#E3E3E8" data-label-color-axis-x="#302C4D" data-label-font-size-axis-x="12px" data-is-show-tooltips="true" data-postfix="%" data-tooltip-custom-class="chart-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="t-panel t-panel-mini">
+                    <div class="mask t-mask-panel-v1"></div>
+                    <div class="t-panel-main">
+                        <div class="t-card-panel-main">
+                            <div class="t-flex">
+                                @*產學類別 <big>0</big> 筆課程開課*@
+                                @*<label class="t-badge t-badge-primary t-badge--border t-shadow-label" aria-label="可授課職能類別產學類別">可授課職能類別產學類別</label>*@
+                                <div class="t-panel-main-heading">可授課職能類別</div>
+                                <div class="t-panel-main-heading">產學類別</div>
+                                @*<a data-under="tertiary" class="t-panel-mini-link" href="javascript:;" title="課程總數 0" data-separated="true">0</a>*@
+                            </div>
+                            <div class="t-flex">
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">動機職能(DC)</dt>
+                                    <dd class="t-definition-description"><a href="javascript:;" title="動機職能(DC)人數">@Model.AdminModel.Teacher_TeachJobAbility_DC</a><span><small>人</small></span></dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">行為職能(BC)</dt>
+                                    <dd class="t-definition-description"><a href="javascript:;" title="行為職能(BC)人數">@Model.AdminModel.Teacher_TeachJobAbility_BC</a><span><small>人</small></span></dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">知識職能(KC)</dt>
+                                    <dd class="t-definition-description"><a href="javascript:;" title="知識職能(KC)人數">@Model.AdminModel.Teacher_TeachJobAbility_KC</a><span><small>人</small></span></dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">學術界</dt>
+                                    <dd class="t-definition-description"><a href="javascript:;" title="學術界人數">@Model.AdminModel.Teacher_IndustryAcademicType_2345</a><span><small>人</small></span></dd>
+                                </dl>
+                                <dl class="t-definition-list">
+                                    <dt class="t-definition-term">產業界</dt>
+                                    <dd class="t-definition-description"><a href="javascript:;" title="產業界人數">@Model.AdminModel.Teacher_IndustryAcademicType_1</a><span><small>人</small></span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="t-card-charts">
+                            <div class="js-bar-chart" data-series="[[40,124,64,124,156]]" data-labels='["北","桃","中","南","高"]' data-is-stack-bars="true" data-is-show-axis-x="true" data-is-show-axis-y="false" data-is-stroke-rounded="true" data-is-show-label-axis-x="true" data-is-show-label-axis-y="false" data-height="100" data-high="200" data-offset-axis-x="24" data-offset-axis-y="0" data-low="0" data-distance="64" data-stroke-width="17.5%" data-mobile-stroke-width="20%" data-stroke-color='[["#fcd53b"]]' data-is-grid-solid-line="true" data-grid-line-color="#E3E3E8" data-label-color-axis-x="#302C4D" data-label-font-size-axis-x="12px" data-is-show-tooltips="true" data-postfix="%" data-tooltip-custom-class="chart-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="t-panel">
+                    <div class="t-panel-heading">
+                        <i class="svg-icon" aria-hidden="true">
+                            <svg>
+                                <use href="#ic-map"></use>
+                            </svg>
+                        </i>
+                        <div class="t-panel-heading-txt">授課推廣</div>
+                        <a class="btn btn--circle  btn--xxs" href="javascript:;" onclick="AMC202MView('', '')" title="「另開新視窗」查看授課推廣內容">
+                            查看所有
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-arrow-double"></use>
+                                </svg>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="t-panel-main">
+                        <div class="t-panel-main-fuild t-progress-card-container">
+                            <figure class="t-progress-card ">
+                                <figcaption class="t-progress-card-title" style="font-size: 1rem;">
+                                    補助大專校院辦理就業學程計畫
+                                </figcaption>
+                                <article class="t-progress-container t-txt-right">
+                                    <text class="t-progress-txt">
+                                        知識職能 (KC)
+                                        <strong class="t-fc-success" style="font-size: 100%">授課時數 @Model.AdminModel.TransData_D_Class_KC_byUnitCode 小時</strong>
+                                    </text>
+                                    <div class="t-progress-wrap t-progress-xs">
+                                        <span class="t-progress-bar t-bg-grad-success t-progress-bar-striped" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 99%"></span>
+                                    </div>
+                                    <a class="btn btn--xs btn--secondary btn--pointer" href="javascript:;" onclick="AMC202MView('1', 'KC')" title="「另開新視窗」查看知識職能 (KC)內容">
+                                        查看明細
+                                    </a>
+                                </article>
+                                <article class="t-progress-container t-txt-right">
+                                    <text class="t-progress-txt">
+                                        行為職能 (BC)
+                                        <strong class="t-fc-info" style="font-size: 100%">授課時數 @Model.AdminModel.TransData_D_Class_BC_byUnitCode 小時</strong>
+                                    </text>
+                                    <div class="t-progress-wrap t-progress-xs">
+                                        <span class="t-progress-bar t-bg-grad-info t-progress-bar-striped" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 99%"></span>
+                                    </div>
+                                    <a class="btn btn--xs btn--secondary btn--pointer" href="javascript:;" onclick="AMC202MView('1', 'BC')" title="「另開新視窗」查看行為職能 (BC)內容">
+                                        查看明細
+                                    </a>
+                                </article>
+                                <article class="t-progress-container t-txt-right">
+                                    <text class="t-progress-txt">
+                                        動機職能 (DC)
+                                        <strong class="t-fc-danger" style="font-size: 100%">授課時數 @Model.AdminModel.TransData_D_Class_DC_byUnitCode 小時</strong>
+                                    </text>
+                                    <div class="t-progress-wrap t-progress-xs">
+                                        <span class="t-progress-bar t-bg-grad-danger t-progress-bar-striped" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 99%"></span>
+                                    </div>
+                                    <a class="btn btn--xs btn--secondary btn--pointer" href="javascript:;" onclick="AMC202MView('1', 'DC')" title="「另開新視窗」查看動機職能 (DC)內容">
+                                        查看明細
+                                    </a>
+                                </article>
+                            </figure>
+                            <figure class="t-progress-card t-progress-card-info ">
+                                <figcaption class="t-progress-card-title" style="font-size: 1rem;">
+                                    小型企業人力提升計畫
+                                </figcaption>
+                                <article class="t-progress-container t-txt-right">
+                                    <text class="t-progress-txt">
+                                        知識職能 (KC)
+                                        <strong class="t-fc-success" style="font-size: 100%">授課時數 @Model.AdminModel.TransData_S_Class_KC_byUnitCode 小時</strong>
+                                    </text>
+                                    <div class="t-progress-wrap t-progress-xs">
+                                        <span class="t-progress-bar t-bg-grad-success t-progress-bar-striped" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 99%"></span>
+                                    </div>
+                                    <a class="btn btn--xs btn--info btn--pointer" href="javascript:;" onclick="AMC202MView('2', 'KC')" title="「另開新視窗」查看知識職能 (KC)內容">
+                                        查看明細
+                                    </a>
+                                </article>
+                                <article class="t-progress-container t-txt-right">
+                                    <text class="t-progress-txt">
+                                        行為職能 (BC)
+                                        <strong class="t-fc-info" style="font-size: 100%">授課時數 @Model.AdminModel.TransData_S_Class_BC_byUnitCode 小時</strong>
+                                    </text>
+                                    <div class="t-progress-wrap t-progress-xs">
+                                        <span class="t-progress-bar t-bg-grad-info t-progress-bar-striped" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 99%"></span>
+                                    </div>
+                                    <a class="btn btn--xs btn--info btn--pointer" href="javascript:;" onclick="AMC202MView('2', 'BC')" title="「另開新視窗」查看行為職能 (BC)內容">
+                                        查看明細
+                                    </a>
+                                </article>
+                                <article class="t-progress-container t-txt-right">
+                                    <text class="t-progress-txt">
+                                        動機職能 (DC)
+                                        <strong class="t-fc-danger" style="font-size: 100%">授課時數 @Model.AdminModel.TransData_S_Class_DC_byUnitCode 小時</strong>
+                                    </text>
+                                    <div class="t-progress-wrap t-progress-xs">
+                                        <span class="t-progress-bar t-bg-grad-danger t-progress-bar-striped" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 99%"></span>
+                                    </div>
+                                    <a class="btn btn--xs btn--info btn--pointer" href="javascript:;" onclick="AMC202MView('2', 'DC')" title="「另開新視窗」查看動機職能 (DC)內容">
+                                        查看明細
+                                    </a>
+                                </article>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="t-panel">
+                    <div class="t-panel-heading">
+                        <i class="svg-icon" aria-hidden="true">
+                            <svg>
+                                <use href="#ic-map"></use>
+                            </svg>
+                        </i>
+                        <div class="t-panel-heading-txt"><small>最新</small>自我審核報告</div>
+                        <a class="btn btn--circle  btn--xxs" href="~/AM/C902M/AutoLoad" target="_blank" title="「另開新視窗」查看自我審核報告">
+                            查看所有
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-arrow-double"></use>
+                                </svg>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="t-panel-main">
+                        <div class="t-panel-main-fuild">
+                            <ul class="t-list-danger">
+                                @Html.Partial("_GridRowsAuditReports_Backend", tmpAuditReportsModelObj)
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="t-panel">
+                    <div class="t-panel-heading">
+                        <i class="svg-icon" aria-hidden="true">
+                            <svg>
+                                <use href="#ic-map"></use>
+                            </svg>
+                        </i>
+                        <div class="t-panel-heading-txt">會議資訊</div>
+                        <a class="btn btn--circle  btn--xxs" href="~/AM/C301M/AutoLoad" target="_blank"  title="「另開新視窗」查看會議資訊內容">
+                            查看所有
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-arrow-double"></use>
+                                </svg>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="t-panel-main">
+                        <div class="t-panel-main-fuild">
+                            <ul class="t-list-group-v">
+                                @Html.Partial("_GridRowsMeetings_Backend", tmpMeetingsModelObj)
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="t-panel">
+                    <div class="t-panel-heading">
+                        <i class="svg-icon" aria-hidden="true">
+                            <svg>
+                                <use href="#ic-map"></use>
+                            </svg>
+                        </i>
+                        <div class="t-panel-heading-txt">訊息公告</div>
+                        <a class="btn btn--circle  btn--xxs" href="~/Backend/NewsAll" target="_blank"  title="「另開新視窗」查看訊息公告內容">
+                            查看更多訊息公告
+                            <i class="svg-icon">
+                                <svg>
+                                    <use href="#ic-arrow-double"></use>
+                                </svg>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="t-panel-main">
+                        <div class="t-panel-main-fuild">
+                            <ul class="t-news-list-backend">
+                                @Html.Partial("_GridRowsNews_Backend", tmpNewsModelObj)
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    // 查看會議內容
+    function doViewMeeting(Seq) {
+        var data = { "Seq": Seq }
+        var url = "@ConfigModel.WKEF/AM/C301M/Detail?" + $.param(data);
+        window.open(url, '_blank');
+    }
+
+    // 查看會議名單
+    function doViewSignUpList(Seq) {
+        var data = { "Seq": Seq }
+        var url = "@ConfigModel.WKEF/AM/C301M/DetailSignUp?" + $.param(data);
+        window.open(url, '_blank');
+    }
+
+    // 查看自我審核報告
+    function doViewAuditReports(Seq) {
+        var data = { "Seq": Seq }
+        var url = "@ConfigModel.WKEF/AM/C902M/Audit?" + $.param(data);
+        window.open(url, '_blank');
+    }
+
+    // 立即報名
+    function doHomeSignUp(MeetingSeq) {
+        alert("身分不符");
+    }
+
+    // 授課推廣 查看明細
+    function AMC202MView(typeA, typeB) {
+        //console.log(typeA + ',' + typeB);
+        var data = { "PlanTypeCode": typeA, "JobAbilityCode": typeB };
+        var url = "@ConfigModel.WKEF/AM/C202M/IndexFromHome?" + $.param(data);
+        window.open(url, '_blank');
+    }
+
+</script>

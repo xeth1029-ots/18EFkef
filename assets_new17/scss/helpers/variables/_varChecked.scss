@@ -1,0 +1,46 @@
+
+
+$radio-background-color:      $gray-25;
+$radio-size:                  1.25rem;
+$radio-btn-size:              (($radio-size * 0.618) - 0.0625rem);
+$radio-size-md:               1.5rem;
+$radio-h-md:                  (($radio-size-md * 0.618) - 0.0625rem);
+$radio-w-md:                  (($radio-size-md * 0.618) - 0.0625rem);
+$radio-size-lg:               1.625rem;
+$radio-h-lg:                  (($radio-size-lg * 0.618) - 0.0625rem);
+$radio-w-lg:                  (($radio-size-lg * 0.618) - 0.0625rem);
+$radio-item-border-w: 0.125rem;
+// -------------------------------------------------- v1
+$checkbox-size:              1.25rem;
+$checkbox-background-color:  $white;
+
+$checkbox-h: 0.625rem;
+$checkbox-w: 0.375rem;
+
+
+$checkbox-border-w: 0.125rem;
+$checkbox-margin-right: 0.375rem;
+
+$checkbox-size-md: 1.5rem;
+$checkbox-h-md: 0.75rem;
+$checkbox-w-md: 0.5rem;
+
+$checkbox-size-lg: 1.625rem;
+$checkbox-h-lg: 0.875rem;
+$checkbox-w-lg: 0.625rem;
+
+$checkbox-item-padding-y: 0.375rem;
+$checkbox-item-padding-x: 1rem;
+
+// -------------------------------------------------- v2
+$checkbox-item-border-w: 0.125rem;
+$checkbox-item-padding: 0.375rem 1rem 0.375rem ($checkbox-size * 2);
+$checkbox-item-border-radius: $border-radius-sm;
+$checkbox-item-font-weight: 500;
+$checkbox-item-line-height: 1.625;
+$checkbox-item-check-box-shadow: 0 0 0.0625rem 0.125rem $primary;
+
+$checkbox-item-check-box-shadow--indeterminate: 0 0 0.0625rem 0.125rem $primary-200;
+$checkbox-item-background-color--indeterminate: $primary-300;
+$checkbox-item-opacity--indeterminate: 0.66;
+$checkbox-item-opacity--disabled: 0.66;

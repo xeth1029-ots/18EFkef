@@ -1,0 +1,351 @@
+/** 
+//  Dashboard Card 卡片 v2
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.dashboard-card.dashboard-card-v2 {
+
+  .dashboard-card-header {
+    border-bottom: 1px solid $border;
+    border-radius: $card-border-width $card-border-width 0 0;
+    font-size: 0;
+    padding: 1.25rem 1rem 1rem;
+
+    &.dashboard-card-header--primary {
+      background-color: rgba($primary, 0.23);
+
+      i {
+        color: $primary;
+      }
+    }
+
+    &.dashboard-card-header--secondary {
+      background-color: rgba($secondary, 0.23);
+
+      i {
+        color: $secondary;
+      }
+    }
+
+    &.dashboard-card-header--tertiary {
+      background-color: rgba($tertiary, 0.23);
+
+      i {
+        color: $tertiary;
+      }
+    }
+
+    &.dashboard-card-header--quaternary {
+      background-color: rgba($quaternary, 0.23);
+
+      i {
+        color: $quaternary;
+      }
+    }
+
+    .dashboard-card-header-lt {
+
+      i,
+      .hd-icon {
+        font-size: 1.25rem;
+        margin-right: .5rem;
+        @include in-bk-mid;
+      }
+
+      h3,
+      .hd-title {
+        font-size: 1.125rem;
+        font-weight: 500;
+        @include in-bk-mid;
+        @include text_overflow($w: calc(100% - 1.75rem));
+      }
+    }
+    .dashboard-card-header-rt {
+
+      // select,
+      // .hd-select {
+      //   background-color: $white;
+      //   border-radius: 4px;
+      //   font-size: .875rem;
+      //   padding: 0.25rem 2rem 0.25rem 0.5rem;
+      //   @include in-bk-mid;
+      // }
+    }
+  }
+}
+
+@charset "utf-8";
+
+/** 
+//  Dashboard Card Main 小張卡片
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+.dashboard-card-main {
+    position: relative;
+    background-color: $white;
+    margin-bottom: 1.25rem;
+    box-shadow: $shadow-card;
+
+    .mask {
+        border-radius: inherit;
+    }
+
+    .circles-text {
+        user-select: none;
+    }
+
+    &.dashboard-card-main-primary-light {
+        background-color: #EEF8F8;
+    }
+
+    &.dashboard-card-main-secondary-light {
+        background-color: #EEEEF5;
+    }
+
+    &.dashboard-card-main-tertiary-light {
+        background-color: #FFEFF2;
+    }
+
+    &.dashboard-card-main-quaternary-light {
+        background-color: #FFFAEB;
+    }
+
+    &.dashboard-card-main-primary {
+        .circles-text {
+            text-shadow: 0px 0px 6px darken($primary, 24%);
+        }
+    }
+
+    &.dashboard-card-main-secondary {
+        .circles-text {
+            text-shadow: 0px 0px 6px darken($secondary, 24%);
+        }
+    }
+
+    &.dashboard-card-main-tertiary {
+        .circles-text {
+            text-shadow: 0px 0px 6px darken($tertiary, 24%);
+        }
+    }
+
+    &.dashboard-card-main-quaternary {
+        .circles-text {
+            text-shadow: 0px 0px 6px darken($quaternary, 24%);
+        }
+    }
+
+    .dashboard-card-content {
+        position: relative;
+        padding: 1rem 1.25rem;
+    }
+
+    .dashboard-card-header {
+        margin-bottom: 0;
+
+        .dashboard-card-header-title {
+            display: block;
+            color: $dark;
+            font-size: 1rem;
+            margin-bottom: .5rem;
+            padding-right: 1rem;
+
+            @include title;
+        }
+    }
+
+    .dashboard-card-float-icon {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .dashboard-card-body {
+        .dashboard-num {
+            font-size: 1.375rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+
+            &:after {
+                font-size: .8125rem;
+                letter-spacing: 0;
+            }
+        }
+
+        .dashboard-card-inner {
+            margin-top: .75rem;
+            text-align: justify;
+            text-align-last: justify;
+
+            .dashboard-card-subtitle {
+                display: block;
+                color: $dark;
+                font-size: 1rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: .0375rem;
+                margin-top: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .dashboard-card-text {
+                display: block;
+                font-size: .875rem;
+                color: $grey;
+                margin-bottom: .75rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .dashboard-card-icon {
+                display: inline-block;
+                vertical-align: top;
+                font-size: 2.5rem;
+            }
+
+            .dashboard-card-chart-pie {
+                display: inline-block;
+                vertical-align: top;
+                text-align: center;
+                text-align-last: center;
+
+                .js-pie {
+                    svg {}
+                }
+            }
+        }
+    }
+}
+
+.dashboard-card-bg {
+    &.dashboard-card-bg-v1 {
+        background-color: darken($primary, 12%);
+    }
+
+    &.dashboard-card-bg-v2 {
+        background-color: darken($secondary, 6%);
+    }
+
+    &.dashboard-card-bg-v3 {
+        background-color: darken($tertiary, 6%);
+    }
+
+    &.dashboard-card-bg-v4 {
+        background-color: darken($quaternary, 20%);
+    }
+
+    &.dashboard-card-bg-v5 {
+        background-color: #302C4D;
+    }
+
+    .dashboard-card-header {
+        border-bottom: none;
+        color: $white;
+
+        .dashboard-card-header-lt {
+            position: relative;
+            z-index: 1;
+
+            i,
+            .hd-icon {
+                color: $white;
+            }
+        }
+
+        .dashboard-card-header-rt {
+            position: relative;
+            z-index: 1;
+
+            .t-form-btn {
+                background-color: $white;
+            }
+        }
+
+        .dashboard-card-header-chart {
+            position: relative;
+        }
+    }
+
+    .dashboard-card-body {
+        background-color: $white;
+        border-radius: $card-inner-border-radius;
+        margin-top: -1.5rem;
+    }
+}
+
+
+
+
+
+
+
+
+  .dashboard-card .dashboard-card-header .search-result-total {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+
+  .dashboard-card .dashboard-card-header .search-result-total big {
+    color: #4D78FF;
+    font-weight: 500;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group {
+    padding: 0 8px 16px;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-title {
+    font-size: 0;
+    padding: 4px;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-title h4 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-list {
+    margin-top: 12px;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-list li:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-list li>a {
+    position: relative;
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: #1A202C;
+    font-size: 16px;
+    padding: 10px 48px;
+    transition: .25s all ease-in-out;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-list li>a:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-list li>a:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 22px;
+    transform: translateY(-50%);
+    border-radius: 6px;
+  }
+
+  .dashboard-card .dashboard-card-body .card-list-group .card-list li>a .b-badge {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .66;
+  }

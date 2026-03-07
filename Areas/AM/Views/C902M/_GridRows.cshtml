@@ -1,0 +1,30 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@using WKEFSERVICE.DataLayers
+@using WKEFSERVICE.Areas.AM.Models
+@model C902MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.Year_Name</td>
+            <td>@item.TeacherName</td>
+            <td>@item.JobAbilityCode</td>
+            <td>@item.FirstTime_Name</td>
+            <td>@item.UpdatedDatetime_Name</td>
+            <td>@item.AuditStatus_Name</td>
+            <td>
+                <button type="button" class="btn btn-info" onclick="doAudit('@item.Seq')">審核</button>
+                <button type="button" class="btn btn-info" onclick="doUnAudit('@item.Seq', '@item.ROWID')" style="color: white; background-color: #dc3545;">還原</button>
+                <button type="button" class="btn btn-info" onclick="doPDF('@item.Seq')" style="color: white; background-color: #007bff;">列印</button>
+            </td>
+        </tr>
+    }
+}

@@ -1,0 +1,27 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A3.Models;
+@model C401MViewModel
+
+@if (Model.DetailSignUp.TeacherSearchList !=null && Model.DetailSignUp.TeacherSearchList.Count > 0)
+{
+    for (int i = 0; i < Model.DetailSignUp.TeacherSearchList.Count; i++)
+    {
+        var item = Model.DetailSignUp.TeacherSearchList[i];
+        @Html.HiddenFor(m => m.DetailSignUp.TeacherSearchList[i].ROWID)
+        @Html.HiddenFor(m => m.DetailSignUp.TeacherSearchList[i].TeacherAccount)
+        @Html.HiddenFor(m => m.DetailSignUp.TeacherSearchList[i].TeacherName)
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@Html.CheckBoxFor(m => m.DetailSignUp.TeacherSearchList[i].IsChecked, new { checkid = "PopCk1", @style = "width: 30px; height: 30px;" })</td>
+            <td>@item.TeacherName</td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td>(查無資料，請重新查詢)</td>
+        <td></td>
+        <td></td>
+    </tr>
+}

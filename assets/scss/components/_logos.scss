@@ -1,0 +1,239 @@
+@charset "utf-8";
+
+html {
+    position: relative;
+    font-size: 16px;
+}
+
+body {
+    position: relative;
+    color: $dark;
+    padding: 4rem 0;
+    font-family: "eurostile", "source-han-sans-traditional";
+    font-size: 1rem;
+    background-color: $white;
+    background-image: radial-gradient(rgba(255, 0, 0, 0.32), rgba(255, 0, 0, 0) 40vw), radial-gradient(rgba(0, 128, 0, 0.32), rgba(0, 128, 0, 0) 40vw), radial-gradient(rgba(0, 0, 255, 0.32), rgba(0, 0, 255, 0) 40vw), radial-gradient(rgba(255, 255, 0, 0.32), rgba(255, 255, 0, 0) 40vw), radial-gradient(rgba(255, 0, 0, 0.32), rgba(255, 0, 0, 0) 40vw);
+    background-position: -40vw 14rem, 50% 10rem, 60vw 14rem, -10vw calc(14rem + 20vw), 30vw calc(14rem + 20vw);
+    background-size: 80vw 80vw;
+    background-repeat: no-repeat;
+
+    // content-visibility: auto;
+    // contain-intrinsic-size: 100vh;
+
+    @media (prefers-color-scheme: dark) {
+        color: $white;
+        background-color: $neutral;
+    }
+}
+
+ul {
+    font-size: 0;
+    list-style: none;
+    padding: 0;
+
+    li {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+}
+
+input {
+    position: relative;
+    backdrop-filter: blur(0.75vw);
+    background-color: rgba($white, 0.06);
+    border: 2px solid rgba($white, 0.04);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba($dark, 0.12), 0 4px 16px rgba($dark, 0.08), inset 0 2px 0 rgba($white, 0.04);
+    color: $white;
+    font-size: 1.125rem;
+    padding: 0.625rem 1.25rem;
+    transition: all 0.25s ease-in-out;
+
+    &:focus {
+        backdrop-filter: blur(1vw);
+        background-color: rgba($white, 0.1);
+    }
+}
+
+mark {
+    background-color: none;
+    background: linear-gradient(90deg, #7bc6cc, #be93c5);
+    background-size: 100% 0.25rem;
+    background-position: 0;
+    background-repeat: no-repeat;
+}
+
+.section-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+
+    @media (prefers-color-scheme: dark) {
+        color: $white;
+    }
+}
+
+.heading {
+    padding: 0.75rem 1rem;
+    letter-spacing: 0.75px;
+    margin-bottom: 1rem;
+
+    .heading-txt {
+        font-size: 3rem;
+    }
+}
+
+@each $color, $value in $element-colors {
+    @include text-bg-before-underline-variant(".text-bg-before-border-#{$color}", $value);
+}
+
+[data-scroll="x"] {
+    scrollbar-width: none;
+
+    /* 滾動條移除 Firefox */
+    -ms-overflow-style: none;
+
+    /* 滾動條移除 IE 10+ */
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    /* 當手指從觸摸屏上移開，會保持一段時間的滾動 */
+    width: 100%;
+    padding-bottom: 0.0625rem;
+    margin-bottom: 0.0625rem;
+    white-space: nowrap;
+    -webkit-mask: linear-gradient(90deg, $dark 85%, transparent);
+    mask: linear-gradient(90deg, $dark 85%, transparent);
+
+    &::-webkit-scrollbar {
+        height: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        visibility: hidden;
+    }
+
+    &:hover {
+        &::-webkit-scrollbar {
+            // height: 8px;
+       
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: rgba($lightgrey, 0);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba($white, 0.16);
+
+            // border: 2px solid $white;
+            visibility: visible;
+
+            &:hover {
+                background-color: rgba($white, 0.32);
+            }
+        }
+    }
+}
+
+.surface-list {
+    position: relative;
+    background-color: rgba($neutral, 0.48);
+    border-radius: 20px;
+
+    .surface-list-item {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: $neutral;
+        background-image: linear-gradient(135deg, rgba($pink, 0.12), rgba($purple, 0.2) 18%, $neutral-800 24%, $neutral-900 100%);
+        background-clip: padding-box;
+        box-shadow: 0 16px 42px 0 rgba($neutral, 0.16);
+        border-radius: 256px 16px 224px 16px /16px 224px 16px 256px;
+        color: $neutral-100;
+        cursor: pointer;
+        margin: 1rem 0.5rem;
+        width: 12rem;
+        height: 12rem;
+        transition: all 0.175s ease-in;
+        z-index: 1;
+
+        &:after {
+            content: "";
+            display: block;
+            top: -2px;
+            left: -2px;
+            bottom: -2px;
+            right: -2px;
+            z-index: -1;
+            position: absolute;
+            border-radius: inherit;
+            background-image: linear-gradient(135deg, rgba($pink, 0.52), rgba($red, 0.66) 24%, $neutral-800 36%, $neutral-900 100%);
+
+            @include opacity(0.36);
+
+            transition: all 0.175s ease-in;
+        }
+
+        &:hover {
+            transform: scale(0.975);
+            box-shadow: 0 12px 32px 0 rgba($neutral, 0.24);
+
+            &:after {
+                background-image: linear-gradient(135deg, rgba($pink, 0.52), rgba($red, 0.36) 20%, rgba($neutral-800, 1) 36%, rgba($neutral-900, 1) 100%);
+
+                @include opacity(0.48);
+            }
+        }
+
+        .surface-t-txts {
+            color: rgba($white, 0.72);
+
+            @include absolute-center;
+
+            font-size: 4rem;
+            font-weight: 700;
+        }
+    }
+}
+
+.btn {
+    appearance: none;
+    background-color: $primary;
+    box-shadow: 0 4px 2px rgba($white, 0.24);
+    border: 0 none $white;
+    border-radius: 10rem;
+    color: $white;
+    cursor: pointer;
+    font-size: 1.375rem;
+    font-weight: 500;
+    padding: 12px 20px;
+    user-select: none;
+    transition: all 150ms linear;
+
+    &:hover {
+        opacity: 0.82;
+    }
+
+    &:focus:not(:focus-visible) {
+        outline: 2px dotted $primary;
+        outline-offset: 2px;
+        box-shadow: 0 2px 2px $primary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $primary;
+        outline-offset: 2px;
+        box-shadow: 0 2px 2px $primary;
+    }
+}

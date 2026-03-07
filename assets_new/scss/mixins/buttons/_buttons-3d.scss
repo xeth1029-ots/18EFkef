@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+//   Mixins > Buttons 3d
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Button 3d Variant
+@mixin button-3d-variant($background, $hover-background: darken($background, 7.5%)) {
+  @include gradient-bg($background);
+
+  border: 0;
+  box-shadow: 0 4px 0 0 darken($background, 20%), 0 0 20px 0 rgba($background, 0.2);
+  color: color-yiq($background);
+  transition: $transition-3d-Button;
+
+  @include btn-hover {
+    @include gradient-bg($hover-background);
+
+    box-shadow: 0 4px 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+    color: color-yiq($hover-background);
+    transform: translateY(0);
+  }
+
+
+  @include btn-focus {
+    box-shadow: 0 4px 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+  }
+
+
+  @include btn-active {
+    box-shadow: 0 0 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+    transform: translateY(4px);
+
+    @include btn-focus {
+      box-shadow: 0 0 0 0 darken($background, 25%), 0 0 20px 0 rgba($background, 0.2);
+    }
+  }
+}
+
+// .button {
+//   position: relative;
+//   overflow: hidden;
+//   z-index: 1;
+//   cursor: pointer;
+//   min-width: 12ch;
+//   padding: calc(0.5em + calc(var(--border-width) * 2)) calc(0.666em + calc(var(--border-width) * 2)) calc(0.5em + calc(var(--border-width) * 2) + var(--depth));
+//   font-family: inherit;
+//   text-align: center;
+//   color: var(--color);
+//   text-transform: uppercase;
+//   letter-spacing: 0.1em;
+//   -webkit-text-stroke: (0.02em currentColor,);
+//   text-shadow: -0.0333em -0.025em 0.075em rgba(white, 0.8), -0.0333em -0.025em 1em rgba(white, 0.25), 0.05em 0.03em 0.1em black;
+//   border-radius: 0.4em;
+
+//   // Gradiented Border
+//   background: var(--noise) repeat, radial-gradient(200% 200% at bottom right, hsl(var(--bc-h) var(--bc-s) calc(var(--bc-l) - 35%)), hsl(var(--bc-h) var(--bc-s) var(--bc-l)) 30%, hsl(var(--bc-h) var(--bc-s) calc(var(--bc-l) + 50%)));
+//   box-shadow: 0.125em 0.125em 0.15em rgba(black, 0.25), -0.15em -0.15em 0.4em rgba(black, 0.1), 0.15em 0.15em 0.4em rgba(black, 0.1), inset 0 calc(var(--depth) * -1) 0.03em var(--shadow);
+//   transform: translatez(0);
+//   transform-style: preserve-3d;
+//   backface-visibility: hidden;
+//   transition: 0.5s;
+//   will-change: transform, box-shadow;
+
+//   // Inset fill
+//   &:before {
+//     content: '';
+
+//     @include fill(var(--border-width));
+
+//     bottom: calc(var(--border-width) + var(--depth));
+//     z-index: -1;
+//     border-radius: 0.3em;
+//     background: var(--noise) repeat, linear-gradient(rgba(white, 0.1), rgba(white, 0.05)), var(--bg-color);
+//     box-shadow: inset 0 -0.05em 0.1em 0 rgba(black, 0.25), inset 0.1em 0.125em 0.1em rgba(black, 0.35), inset -0.6em -0.2em 0.7em rgba(white, 0.35), inset -0.05em -0.04em 0.025em rgba(white, 0.9);
+//   }
+
+//   // Shine on hover
+//   &:after {
+//     content: '';
+//     position: absolute;
+//     top: -50%;
+//     right: calc(var(--border-width) * -1);
+//     bottom: -50%;
+//     left: calc(var(--border-width) * -1);
+//     z-index: 1;
+//     border-radius: inherit;
+//     background: linear-gradient(90deg, transparent 30%, rgba(white, 0.5), rgba(white, 0.5), transparent 70%);
+//     mix-blend-mode: overlay;
+//     transform: translate3d(-100%, 0, 0) rotate(20deg);
+//     transition: 0.7s;
+//   }
+
+//   &:hover,
+//   &:focus {
+//     transform: scale3d(1.05, 1.05, 1) translate3d(0, -5%, 0) rotatey(5deg);
+//     box-shadow: 0em 0.4em 0.3em -0.2em rgba(black, 0.25), -0.3em -0.3em 0.6em rgba(black, 0.1), 0.2em 0.5em 0.6em rgba(black, 0.1), inset 0 calc(var(--depth) * -1) 0.03em var(--shadow);
+
+//     &:after {
+//       transform: translate3d(120%, 0, 0) rotate(40deg);
+//     }
+//   }
+// }

@@ -1,0 +1,186 @@
+@charset "utf-8";
+
+//  Symbols SerachBar
+// --------------------------------------------------
+
+.main-serach-form {
+  position: relative;
+  text-align: left;
+
+  .serach-form-group {
+    position: relative;
+    background-color: _var("white", $white);
+    box-shadow: 0 12px 24px rgba($primary, 0.08);
+    display: flex;
+    width: 100%;
+    margin-right: 0;
+
+    &:nth-child(1) {
+      border-radius: $border-radius 0 0 $border-radius;
+    }
+
+    &:nth-child(2) {
+      border-radius: 0 0 0 0;
+    }
+
+    &:nth-child(3) {
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+
+    @media (max-width: $screen-sm-min) {}
+
+    .select-wrapper {
+      padding-right: 1rem;
+      border-radius: 8px 0 0 8px;
+
+      @include gradient-x($primary, $primary-400, -20%, 120%);
+
+      select.t-form-control {
+        background-color: transparent;
+        color: _var("white", $white);
+        outline: none;
+        border: none;
+        font-size: 1.125rem;
+        padding-top: .875rem;
+        padding-bottom: .875rem;
+        border-radius: inherit;
+
+        @include svg-bg-icon(arrow-bottom, $white, 95% center, 1rem);
+      }
+    }
+
+    .t-form-control:not(select) {
+      border-radius: inherit;
+      font-size: 1.25rem;
+      padding-left: 3.5rem;
+      padding-right: 1.5rem;
+      padding-top: .875rem;
+      padding-bottom: .875rem;
+    }
+  }
+
+  .main-search-btn {
+    position: absolute;
+    right: -3rem;
+    bottom: -0.5rem;
+
+    @media (max-width: $screen-sm-min) {
+      right: auto;
+      bottom: auto;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .btn.btn-pill {
+      color: _var("white", $white);
+
+      // @include gradient-directional($primary-600, $primary-400, -45deg);
+
+      border-radius: 50%;
+      width: 4.125rem;
+      height: 4.125rem;
+      box-shadow: 0 4px 12px rgba($primary, 0.66), 0 6px 24px rgba(_var("white-rgb", $white), 0.36);
+
+      @media (max-width: $screen-sm-min) {
+        width: 100%;
+        border-radius: 8px;
+      }
+
+      .main-search-btn-txt {
+        font-size: 1.5rem;
+        vertical-align: middle;
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+.t-search-bar-section {
+  position: relative;
+  background-color: _var("white", $white);
+  box-shadow: 0 2px 16px rgba($dark, 0.2);
+  padding: 1.5rem 0 2rem 0;
+
+  .t-search-inner {
+    
+    .t-form-inline {
+      
+      @media (max-width: $screen-md-min) {
+        flex-wrap: wrap;
+      }
+
+      .t-form-group {
+        margin-bottom: 0;
+
+        .t-form-control {
+          font-size: 1.125rem;
+          padding-top: .875rem;
+          padding-bottom: .875rem;
+          background-color: _var("grey-50", $grey-50);
+
+          @include placeholder {
+            color: $grey-300;
+          }
+        }
+
+        > label {
+          display: none;
+        }
+
+        &:nth-child(1) {
+          width: 30%;
+        }
+
+        &:nth-child(2) {
+          width: 25%;
+        }
+
+        &:nth-child(3) {
+          width: 25%;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+          @media (max-width: $screen-md-min) {
+            width: 50%;
+          }
+        }
+
+        @media (max-width: $screen-md-min) {
+          flex: 0 0 auto;
+          padding: 0.5rem;
+          width: 50%;
+          margin-right: 0;
+        }
+
+        @media (max-width: $screen-md-min) {}
+      }
+
+      .t-inner-search-btn {
+        width: 20%;
+
+        @media (max-width: $screen-md-min) {
+          flex: 0 0 auto;
+          padding: 0.5rem;
+          width: 50%;
+          margin-right: 0;
+        }
+
+        .t-btn-search {
+          font-size: 1.125rem;
+          font-weight: 500;
+          padding: 0.625rem 1.75rem;
+          min-width: 12rem;
+          width: 100%;
+          letter-spacing: 1px;
+        }
+      }
+    }
+  }
+}
+
+.t-btn-search {
+  width: 100%;
+  letter-spacing: 1px;
+}

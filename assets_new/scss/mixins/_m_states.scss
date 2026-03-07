@@ -1,0 +1,127 @@
+// state
+@mixin hover {
+  &:hover,
+  &.hover {
+    @content;
+  }
+}
+
+@mixin active {
+  &:active,
+  &.active {
+    @content;
+  }
+}
+
+@mixin focus {
+  &:focus,
+  &.focus,
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin disabled {
+  &[disabled],
+  &:disabled,
+  &.disabled {
+    @content;
+  }
+}
+
+@mixin readonly {
+  &[readonly],
+  &.readonly {
+    @content;
+  }
+}
+
+@mixin disabled-readonly {
+  &[disabled],
+  &[readonly] {
+    @content;
+  }
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin plain-hover-focus {
+  &,
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin hover-focus-active {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
+@mixin before {
+  &:before {
+    content: '';
+  }
+}
+
+@mixin after {
+  &:after {
+    content: '';
+  }
+}
+
+@mixin lc {
+  &:not(:first-of-type) {
+    margin-right: .75rem;
+  }
+}
+
+@mixin fc {
+  &:not(:first-of-type) {
+    margin-right: .75rem;
+  }
+}
+
+@mixin lt {
+  &:not(:first-of-type) {
+    margin-right: .75rem;
+  }
+}
+
+@mixin ft {
+  &:not(:first-of-type) {
+    margin-right: .75rem;
+  }
+}
+
+@mixin not-lc {
+  &:not(:last-child) {
+    @content;
+  }
+}
+
+@mixin not-fc {
+  &:not(:first-child) {
+    margin-right: .75rem;
+  }
+}
+
+@mixin not-lt {
+  &:not(:last-of-type) {
+    @content;
+  }
+}
+
+@mixin not-ft {
+  &:not(:first-of-type) {
+    margin-right: .75rem;
+  }
+}

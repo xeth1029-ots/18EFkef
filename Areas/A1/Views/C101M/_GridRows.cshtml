@@ -1,0 +1,101 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.A1.Models;
+@model C101MFormModel
+
+<!-- 為了分頁，強行硬塞 -->
+<tr>
+    <td>
+        @if (Model.Grid.ToCount() > 0)
+        {
+            for (int i = 0; i < Model.Grid.Count; i++)
+            {
+                var item = Model.Grid[i];
+                string SexMark = (item.Sex == "F" ? "♀" : "♂");
+                string SexStyle1 = (item.Sex == "F") ? "t-female" : "t-male";
+                string SexStyle2 = (item.Sex == "F") ? "link-danger" : "link-info";
+                string SexStyle3 = (item.Sex == "F") ? "btn--danger" : "btn--info";
+                string SexStyle4 = (item.Sex == "F") ? "btn--border--danger" : "btn--border--info";
+                string SexStyle5 = (item.Sex == "F") ? "#bc2c3f" : "#0d79cb";
+                string[] SubItemStyleColors = new string[] { "secondary", "primary", "tertiary", "quaternary", "success", "warning", "info" };
+
+                string PicPath = (item.Sex == "F") ? "~/assets_new/images/avastarPlaceholders-girl.svg" : "~/assets_new/images/avastarPlaceholders.svg";
+                if (!string.IsNullOrEmpty(item.SelfPicPath))
+                {
+                    string picfile1 = string.Concat(new AMDAO().UploadPathTeacher, item.SelfPicPath);
+                    if (File.Exists(Server.MapPath(picfile1))) { PicPath = picfile1; }
+                }
+
+                @Html.HiddenFor(m => m.Grid[i].ROWID)
+                @Html.HiddenFor(m => m.Grid[i].Seq)
+
+                <div class="t-panel">
+                    <li class="teachers-list-item @SexStyle1" style="margin-top: 0px;">
+                        <figure class="teachers-list-item-card">
+                            <div class="teachers-list-item-img-container" style="width:6rem;">
+                                <img class="teachers-list-item-img" alt="@item.CombineName" width="100%" src="@Url.Content(PicPath)" />
+                            </div>
+                            <figcaption class="teachers-list-item-caption" style="width: 100%">
+                                <a class="teachers-list-item-heading @SexStyle2" href="javascript:;" onclick="doViewTeach('@item.Seq')" onkeypress="doViewTeach('@item.Seq')" style="color: @SexStyle5;" title="前往 @item.CombineName 詳細資料">
+                                    @item.CombineName
+                                    @*@SexMark*@
+                                </a>
+                                <dl class="teachers-list-item-dls">
+                                    <dt style="color: #1B1B1D;">最高學歷</dt>
+                                    <dd class="text-hide--2line">@item.EduLevelHighest_Name</dd>
+                                    <dt style="color: #1B1B1D;">服務單位</dt>
+                                    <dd class="text-hide--2line">@item.ServiceUnit_Name</dd>
+                                    <dt style="color: #1B1B1D;">職能類別</dt>
+                                    <dd class="text-hide--2line">@item.TeachJobAbility_Name</dd>
+                                    <dt style="color: #1B1B1D;">授課區域</dt>
+                                    <dd class="text-hide--2line">@item.TeachArea_Name</dd>
+                                    <dt style="color: #1B1B1D;">授課產業</dt>
+                                    <dd class="text-hide--2line">@item.Industry_Name</dd>
+                                    <dt style="color: #1B1B1D;">產學類別</dt>
+                                    <dd class="text-hide--2line">@item.IndustryAcademicType_Name</dd>
+                                </dl>
+                            </figcaption>
+                            <div class="teachers-list-item-handles">
+                                <a class="btn @SexStyle3 list-item-btn rounded--48" href="javascript:;" onclick="doViewTeach('@item.Seq')" onkeypress="doViewTeach('@item.Seq')" title="前往 @item.CombineName 詳細資料">
+                                    <i class="svg-icon svg-icon-1x t-v-align-bottom" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-eye"></use>
+                                        </svg>
+                                    </i>
+                                    教師詳細資料
+                                </a>
+                                <a class="btn @SexStyle4 list-item-btn rounded--48" href="mailto:@item.Email" title="點擊以寄信給 @item.CombineName">
+                                    <!--
+                                    <i class="svg-icon svg-icon-1x t-v-align-bottom" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-send"></use>
+                                        </svg>
+                                    </i>
+                                    -->
+                                    寄信給他
+                                </a>
+                            </div>
+                            <div class="teachers-list-item-lab-cobtainer">
+                                <div class="t-label-list flex-row">
+                                    @if (Model.Grid[i].Expertise_List.ToCount() > 0)
+                                    {
+                                        for (int j = 0; j < Model.Grid[i].Expertise_List.Length; j++)
+                                        {
+                                            var itemSub = Model.Grid[i].Expertise_List[j];
+                                            if (itemSub.TONotNullString() == "") { continue; }
+                                            var SubItemStyleColor = SubItemStyleColors[j % SubItemStyleColors.Length];
+                                            <label class="t-badge t-badge-light-@SubItemStyleColor" data-bs-toggle="tooltip" aria-label="@itemSub" data-bs-placement="top">
+                                                @itemSub
+                                            </label>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </figure>
+                    </li>
+                </div>
+            }
+        }
+    </td>
+</tr>

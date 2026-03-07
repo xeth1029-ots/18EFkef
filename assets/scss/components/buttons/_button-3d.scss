@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+/**
+//   Components -> Buttons -> Buttons 3ds
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+// Buttons 3D Colors
+@each $color, $value in $element-colors {
+  .btn.btn--3d--#{$color} {
+    @include button-3d-variant($value);
+  }
+}

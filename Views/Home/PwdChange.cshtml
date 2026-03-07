@@ -1,0 +1,164 @@
+﻿@using WKEFSERVICE.Models;
+@model PwdChangeFormModel
+@{
+    //Layout = "~/Views/Shared/_MainLayout_NoHeader_NoBg.cshtml";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    SessionModel sm = SessionModel.Get();
+
+    //var button = new Dictionary<string, string>();
+    //button.Add("Save", "doSave()");
+}
+
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/slim-icon/styles.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/swiper/swiper-bundle.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/icon-turbotech/style.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/css/all.css">*@
+
+<div style="height: 20px;">&nbsp;</div>
+<div class="container" style="height: auto; margin-bottom: 15rem;">
+    <div class="col-12">
+        @using (Html.BeginForm("doPasswordChange", "Home", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+        {
+            @*<div class="col-sm-12"><div class="theme-news"><div class="form-border">@Html.ControlForTurbo(Model)</div></div></div>*@
+            <div class="wrap">
+                <form class="form-horizontal">
+                    <div class="col-sm-12">
+                        <div class="form-border">
+                            <div class="form-group">
+                                @Html.CustomLabelFor(m => m.EMAIL, new { @class = "col-sm-3 control-label label-set", title = "電子郵件是必填欄位" })
+                                <div class="col-sm-9 form-inline">
+                                    @Html.HiddenFor(m => m.EMAIL)
+                                    @Html.TextBoxFor(m => m.EMAIL, htmlAttributes: new { @class = "form-control formbar-bg", size = "50", disabled = "true", title = "電子郵件" })
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <div class="form-group">
+                                @Html.CustomLabelFor(m => m.UserNo, new { @class = "col-sm-3 control-label label-set", title = "帳號是必填欄位" })
+                                <div class="col-sm-9 form-inline">
+                                    @Html.HiddenFor(m => m.UserNo)
+                                    @Html.TextBoxFor(m => m.UserNo, htmlAttributes: new { @class = "form-control formbar-bg", size = "50", disabled = "true", title = "帳號" })
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <div class="form-group">
+                                @Html.CustomLabelFor(m => m.UserPWD, new { @class = "col-sm-3 control-label label-set", title = "密碼是必填欄位" })
+                                <div class="col-sm-9 form-inline">
+                                    @Html.PasswordFor(m => m.UserPWD, htmlAttributes: new { @class = "t-form-control", placeholder = "請輸入您的密碼", title = "請輸入您的密碼" })
+                                    <i id="i_pwd_eye1" class="fas fa-eye" style="position: absolute; top: 0.8rem; right: 1.8rem;"></i>
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                            <div class="form-group">
+                                @Html.CustomLabelFor(m => m.UserPWD_REPEAT, new { @class = "col-sm-3 control-label label-set", title = "重複使用者密碼是必填欄位" })
+                                <div class="col-sm-9 form-inline">
+                                    @Html.PasswordFor(m => m.UserPWD_REPEAT, htmlAttributes: new { @class = "t-form-control", placeholder = "請再次輸入您的密碼", title = "請再次輸入您的密碼" })
+                                    <i id="i_pwd_eye2" class="fas fa-eye" style="position: absolute; top: 0.8rem; right: 1.8rem; "></i>
+                                    <br />&nbsp;
+                                    <span style='color:red;display:none' id='PwdError'></span>
+                                </div>
+                            </div>
+                            <br />&nbsp;
+                        </div>
+                    </div>
+                    <br />&nbsp;
+                    <div style="text-align: center;">
+                        <div class='btnbar'>
+                            <button id="btnSave" type='button' class='btn btn-blue' onclick='doSave()' onkeypress='doSave()'>
+                                <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
+                                儲存
+                            </button>
+                        </div>
+                        @*@Html.ButtonForTurbo(button)*@
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var Id1 = $('#UserPWD');
+        var Id2 = $('#UserPWD_REPEAT');
+        var PwdError = $('#PwdError');
+        Id1.on('keyup', function () {
+            PwdError.removeAttr('style');
+            if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,20}$/.test(Id1.val())) {
+                PwdError.attr('style', 'color:green;');
+                PwdError.text('');
+                $('#btnSave').removeAttr('disabled');
+                if (Id1.val() == Id2.val()) {
+                    PwdError.attr('style', 'color:green;');
+                    PwdError.text('密碼相同');
+                    $('#btnSave').removeAttr('disabled');
+                } else {
+                    PwdError.attr('style', 'color:red;');
+                    PwdError.text('密碼不相同，請檢查');
+                    $('#btnSave').attr('disabled', 'disabled');
+                };
+            } else {
+                PwdError.attr('style', 'color:red;');
+                PwdError.text('12~20碼，須包含英文大小寫、數字及符號之組合@*密碼必為12-20碼，至少有1個數字、1個英字大寫、1個特殊符號*@');
+                $('#btnSave').attr('disabled', 'disabled');
+            };
+        });
+        Id2.on('keyup', function () {
+            PwdError.removeAttr('style');
+            if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,20}$/.test(Id1.val())) {
+                PwdError.attr('style', 'color:green;');
+                PwdError.text('');
+                $('#btnSave').removeAttr('disabled');
+                if (Id1.val() == Id2.val()) {
+                    PwdError.attr('style', 'color:green;');
+                    PwdError.text('密碼相同');
+                    $('#btnSave').removeAttr('disabled');
+                } else {
+                    PwdError.attr('style', 'color:red;');
+                    PwdError.text('密碼不相同，請檢查');
+                    $('#btnSave').attr('disabled', 'disabled');
+                };
+            } else {
+                PwdError.attr('style', 'color:red;');
+                PwdError.text('12~20碼，須包含英文大小寫、數字及符號之組合@*密碼必為12-20碼，至少有1個數字、1個英字大寫、1個特殊符號*@');
+                $('#btnSave').attr('disabled', 'disabled');
+            };
+        });
+
+        @* 密碼眼睛 *@
+        var pwdObj1 = document.getElementById("UserPWD");
+        var pwdObj2 = document.getElementById("UserPWD_REPEAT");
+        var pwdEye1 = document.getElementById("i_pwd_eye1");
+        var pwdEye2 = document.getElementById("i_pwd_eye2");
+        pwdEye1.addEventListener("click", function (e) {
+            if (e.target.classList.contains('fa-eye')) {
+                e.target.classList.remove('fa-eye');
+                e.target.classList.add('fa-eye-slash');
+                pwdObj1.setAttribute('type', 'text')
+            } else {
+                pwdObj1.setAttribute('type', 'password');
+                e.target.classList.remove('fa-eye-slash');
+                e.target.classList.add('fa-eye')
+            }
+        });
+        pwdEye2.addEventListener("click", function (e) {
+            if (e.target.classList.contains('fa-eye')) {
+                e.target.classList.remove('fa-eye');
+                e.target.classList.add('fa-eye-slash');
+                pwdObj2.setAttribute('type', 'text')
+            } else {
+                pwdObj2.setAttribute('type', 'password');
+                e.target.classList.remove('fa-eye-slash');
+                e.target.classList.add('fa-eye')
+            }
+        });
+    });
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("doPasswordChange")').submit();
+    }
+
+</script>

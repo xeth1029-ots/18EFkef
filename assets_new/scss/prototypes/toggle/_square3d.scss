@@ -1,0 +1,145 @@
+.t-square3d {
+  display: inline-block;
+
+  label {
+    // background
+    @include toggle-label;
+
+    width: 7em;
+    height: 2em;
+    background: _var("white", $white);
+    box-shadow: inset 0 0.1em 0.03em rgba($dark, 0.2), inset 0 0.1em 0.3em rgba($dark, 0.3), 0 0 2em rgba(255, 255, 255, 0.6);
+    transition: $transition;
+
+    &:before {
+      // square
+      @include before-after;
+
+      width: 3.6em;
+      height: 3.2em;
+      top: -0.7em;
+      left: -0.1em;
+      background: #f0134d;
+      border-bottom: 0.07em solid adjust-hue(#f5137f, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#f5137f, -15%), 0 0.12em 0.3em adjust-hue(#f5137f, -15%), 0 0.12em 2em rgba($dark, 0.3), 0.12em 0.15em 0.2em rgba($dark, 0.2);
+      transition: 0.5s cubic-bezier(0.52, -0.41, 0.55, 1.46);
+    }
+  }
+
+  input {
+    @include input-checkbox;
+  }
+
+  input:checked + label {
+    &:before {
+      // square
+      background: $info;
+      border-bottom: 0.07em solid adjust-hue($info, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue($info, -15%), 0 0.12em 0.3em adjust-hue($info, -15%), 0 0.12em 2em rgba($dark, 0.3), -0.12em 0.15em 0.2em rgba($dark, 0.2);
+      transform: translateX(3.5em);
+    }
+  }
+
+  input:disabled {
+    & + label {
+      // background
+      background: $grey-300 !important;
+      cursor: not-allowed !important;
+
+      &:before {
+        // moving square
+        background: $grey-300 !important;
+        border-bottom: 0.07em solid $grey-300 !important;
+        box-shadow: 0 0.16em 0.01em #aaa, 0 0.12em 0.3em rgba(100, 100, 100, 0.6), 0 0.12em 2em rgba($dark, 0.3), 0.12em 0.15em 0.2em rgba($dark, 0.2) !important;
+      }
+    }
+  }
+}
+
+.t-square3d-garden {
+  @extend .t-square3d;
+
+  label {
+    &:before {
+      // square
+      background: #ff2e63;
+      border-bottom: 0.07em solid adjust-hue(#ff2e63, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#ff2e63, -15%), 0 0.12em 0.3em adjust-hue(#ff2e63, -15%), 0 0.12em 2em rgba($dark, 0.3), 0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+
+  input:checked + label {
+    &:before {
+      // square
+      background: #21bf73;
+      border-bottom: 0.07em solid adjust-hue(#21bf73, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#21bf73, -15%), 0 0.12em 0.3em adjust-hue(#21bf73, -15%), 0 0.12em 2em rgba($dark, 0.3), -0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+}
+
+.t-square3d-tomato {
+  @extend .t-square3d;
+
+  label {
+    &:before {
+      // square
+      background: #ff6347;
+      border-bottom: 0.07em solid adjust-hue(#ff6347, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#ff6347, -15%), 0 0.12em 0.3em adjust-hue(#ff6347, -15%), 0 0.12em 2em rgba($dark, 0.3), 0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+
+  input:checked + label {
+    &:before {
+      // square
+      background: #32cd32;
+      border-bottom: 0.07em solid adjust-hue(#32cd32, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#32cd32, -15%), 0 0.12em 0.3em adjust-hue(#32cd32, -15%), 0 0.12em 2em rgba($dark, 0.3), -0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+}
+
+.t-square3d-matcha {
+  @extend .t-square3d;
+
+  label {
+    &:before {
+      // square
+      background: #5b5656;
+      border-bottom: 0.07em solid adjust-hue(#5b5656, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#5b5656, -15%), 0 0.12em 0.3em adjust-hue(#5b5656, -15%), 0 0.12em 2em rgba($dark, 0.3), 0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+
+  input:checked + label {
+    &:before {
+      // square
+      background: $success;
+      border-bottom: 0.07em solid adjust-hue($success, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue($success, -15%), 0 0.12em 0.3em adjust-hue($success, -15%), 0 0.12em 2em rgba($dark, 0.3), -0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+}
+
+.t-square3d-blush {
+  @extend .t-square3d;
+
+  label {
+    &:before {
+      // square
+      background: #ff677d;
+      border-bottom: 0.07em solid adjust-hue(#ff677d, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#ff677d, -15%), 0 0.12em 0.3em adjust-hue(#ff677d, -15%), 0 0.12em 2em rgba($dark, 0.3), 0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+
+  input:checked + label {
+    &:before {
+      // square
+      background: #9399ff;
+      border-bottom: 0.07em solid adjust-hue(#9399ff, 10%);
+      box-shadow: 0 0.16em 0.01em adjust-hue(#9399ff, -15%), 0 0.12em 0.3em adjust-hue(#9399ff, -15%), 0 0.12em 2em rgba($dark, 0.3), -0.12em 0.15em 0.2em rgba($dark, 0.2);
+    }
+  }
+}

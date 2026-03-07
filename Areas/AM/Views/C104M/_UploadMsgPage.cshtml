@@ -1,0 +1,12 @@
+﻿@using EUSERVICE.Services;
+@using EUSERVICE.Areas.AM.Models;
+@model C104MViewModel
+
+<script>
+
+    $(document).ready(function () {
+        var msg = "@Model.Detail.TempMessage.TONotNullString()";
+        if (msg != "") alert(msg);
+    });
+
+</script>

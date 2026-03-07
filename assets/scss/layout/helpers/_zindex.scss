@@ -1,0 +1,12 @@
+
+
+
+@for $i from 0 through 25 {
+  .t-zindex-#{$i} {
+    z-index: #{$i} !important;
+  }
+
+  %t-zindex-#{$i} {
+    z-index: #{$i} !important;
+  }
+}

@@ -1,0 +1,310 @@
+// #backWeb{
+//    background-image: linear-gradient(21deg, rgba(64, 83, 206, 0.3697003234675773) 68%, rgba(255, 206, 196, 0.5) 163%),linear-gradient(163deg, rgba(49, 146, 170, 0.07944489965716128) 86%, rgba(239, 112, 138, 0.5) 40%),linear-gradient(30deg, rgba(76, 79, 173, 0.6173675716587805) 22%, rgba(237, 106, 134, 0.5) 169%),linear-gradient(48deg, rgba(31, 85, 147, 0.7323890641868473) 64%, rgba(247, 126, 132, 0.5) 43%); 
+//    background-blend-mode: overlay,multiply,color,normal;
+//    padding: 0.5rem;
+//    border-radius: $border-radius;
+// }
+// $user-branch
+// linear-gradient(to right top, rgb(191, 219, 254), rgb(251, 207, 232))
+
+.bt-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+  width: 100%;
+  transition: left ease;
+  z-index: 2;
+
+  .bt-header-top {
+    background-color: _var("dark", $dark);
+    color: _var("white", $white);
+    text-align-last: justify;
+    text-align: justify;
+
+    @media (max-width: $screen-sm-min) {
+      display: none;
+    }
+
+    .bt-header-top-lf-list {
+      display: inline-flex;
+    }
+
+    .bt-header-top-rf-list {
+      display: inline-flex;
+    }
+
+    .bt-header-top-list-item {
+      position: relative;
+      padding: 0.375rem 0;
+      display: flex;
+      align-items: center;
+
+      &.active {
+        .bt-header-top-list-link {
+          // color: $primary-100;
+          color: _var("primary-100", $primary-100);
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: 1.25rem;
+
+        &:after {
+          content: '';
+          position: absolute;
+          right: -0.625rem;
+          top: 50%;
+          transform: translate(0, -50%);
+          width: 1px;
+          height: 50%;
+          background-color: rgba(_var("white-rgb", $white), 0.24);
+        }
+      }
+
+      .bt-header-top-list-link {
+        display: block;
+        color: currentColor;
+        font-size: 0.8125rem;
+
+        &:hover {
+          @include opacity(0.66);
+        }
+      }
+    }
+  }
+
+  &.is-fix {
+    @include mask-filter-v2($white, 0.3125rem, 0.0625rem);
+  }
+
+  .navbar-toggler {
+    line-height: 1;
+    background-color: transparent;
+    cursor: pointer;
+    color: $navbar-toggler-color;
+    border: $border-width solid transparent;
+
+    @include md-min {
+      display: none;
+    }
+  }
+
+  .bt-header-main {
+    display: flex;
+    background-color: _var("white", $white);;
+    flex-wrap: wrap;
+    padding: 0.5rem 0.75rem;
+
+    .bt-header-menu {
+      display: inline-flex;
+    }
+
+    .t-avatar.menu-primary {
+      .menu-item {
+        .menu-link {
+          @include menu-pointer($iconColor: $primary, $fontColor: $primary-800, $hoverBg: $primary-50);
+        }
+      }
+    }
+
+    .menu-sub {
+      max-width: $menu-sub-max-width;
+    }
+  }
+
+  .bt-header-navs {
+    padding: 0.25rem 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
+
+    @include btStyleBd;
+
+    // @include md {
+    //   display: none;
+    // }
+    @include md-min {
+      .collapse:not(.show) {
+        display: flex;
+      }
+    }
+
+
+    @include teacher {
+
+      @include gradient-x-three-colors(adjust-hue($primary-600 , 30deg) -20% 0 , tint-color($primary, 0%), 50%, adjust-hue($primary-600 , 30deg ) 120%);
+      // @include gradient-directional($start-color: $primary, $end-color: $primary-800, $deg: 45deg);
+    }
+
+
+    @include unit {
+       @include gradient-x-three-colors(adjust-hue($tertiary-700 , 30deg) -20% 0 , tint-color($tertiary-600, 0%), 50%, adjust-hue($tertiary-700 , 30deg ) 120%);
+      // @include gradient-directional($tertiary-700, $tertiary-800, 45deg);
+    }
+
+
+    @include branch {
+       @include gradient-x-three-colors(adjust-hue($info-700 , 30deg) -20% 0 , tint-color($info, 0%), 50%, adjust-hue($info-700 , 30deg ) 120%);
+      // @include gradient-directional($start-color: $info, $end-color: $info-800, $deg: 45deg);
+    }
+
+
+    @include admin {
+       @include gradient-x-three-colors(adjust-hue($quaternary-600 , 30deg) -20% 0 , tint-color($quaternary, 0%), 50%, adjust-hue($quaternary-600 , 30deg ) 120%);
+      // @include gradient-directional($start-color: $quaternary, $end-color: $quaternary-800, $deg: 45deg);
+    }
+
+
+    .menu {
+      gap: 0.25rem;
+    }
+
+    .menu-item {
+      @include teacher {
+        color: $primary-800;
+      }
+
+
+      @include unit {
+        color: $tertiary-800;
+      }
+
+
+      @include branch {
+        color: $info-800;
+      }
+
+
+      @include admin {
+        color: $quaternary-800;
+      }
+
+
+      &:not(:last-child) {
+        // margin-bottom: 0.5rem;
+     
+      }
+
+      .menu-link {
+        background-color: rgba(_var("white-rgb", $white), 0.04);
+        border-color: rgba(_var("white-rgb", $white), 0.08);
+        padding: 0.5rem 1.125rem;
+        color: _var("white", $white);
+        font-size: .875rem;
+        flex: 0 0 auto;
+
+        @include hover {
+          background-color: rgba(_var("white-rgb", $white), 0.2);
+        }
+
+
+        @include focus {
+          background-color: rgba($dark, 0.08);
+        }
+
+
+        @include active {
+          background-color: rgba($dark, 0.28);
+        }
+      }
+    }
+
+    .menu-sub {
+      max-width: $menu-sub-max-width;
+
+      .menu-link {
+        color: $grey-800;
+        font-size: 80%;
+
+        @include teacher {
+          @include menu-pointer($iconColor: $primary, $fontColor: $primary-800, $hoverBg: $primary-50);
+        }
+
+
+        @include unit {
+          @include menu-pointer($iconColor: $tertiary, $fontColor: $tertiary-800, $hoverBg: $tertiary-50);
+        }
+
+
+        @include branch {
+          @include menu-pointer($iconColor: $info, $fontColor: $info-800, $hoverBg: $info-50);
+        }
+
+
+        @include admin {
+          @include menu-pointer($iconColor: $quaternary, $fontColor: $quaternary-800, $hoverBg: $quaternary-50);
+        }
+      }
+    }
+  }
+
+  .navbar-expand-custom {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .bt-header {
+    flex-direction: column;
+  }
+
+  .bt-header.header-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 97;
+    padding: 0;
+  }
+
+  .header-extended .bt-header {
+    height: 140px;
+  }
+
+  .header-extended.header-fixed .bt-header {
+    box-shadow: var(--tu-header-box-shadow);
+  }
+
+  .bt-header .header-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .bt-header .header-top {
+    flex-grow: 1;
+  }
+
+  .bt-header .header-tabs {
+    align-self: flex-end;
+    align-items: flex-end;
+  }
+
+  .bt-header .header-tabs .nav-link {
+    border: 0;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    color: var(--tu-header-navs-tab-color-default);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    margin-right: 0.25rem;
+  }
+
+  .bt-header .header-tabs .nav-link:hover {
+    color: var(--tu-header-navs-tab-color-hover);
+  }
+
+  .bt-header .header-tabs .nav-link.active {
+    color: var(--tu-header-navs-tab-color-active);
+    background-color: var(--tu-page-bg);
+  }
+
+  .header-extended .bt-header .header-tabs .nav-link.active {
+    background-color: var(--tu-header-navs-bg-color);
+  }
+}
+

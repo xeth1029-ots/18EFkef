@@ -1,0 +1,206 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A3.Models;
+@model C205MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+<style>
+    .t-form-label { width: 250px; }
+</style>
+
+@using (Html.BeginForm("Detail", "C205M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Detail.FilterString)
+    bool fg_QR1 = !string.IsNullOrEmpty(Model.Detail.QRCode) && !string.IsNullOrEmpty(Model.Detail.QuestLink);
+    bool fg_QR2 = !string.IsNullOrEmpty(Model.Detail.QRCode2) && !string.IsNullOrEmpty(Model.Detail.QuesSearchLink);
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">教師授課資料</h3>
+                                <p class="bt-section-para"></p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("計畫別", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.PlanTypeText, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("授課內容所屬分署", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.UnitCode_Text, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("申請單位", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.ApplyName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("訓練單位", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.TrainingUnit_Text, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("計畫/訓練案號", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.CombineID, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("學程/課程名稱", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.ClassName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("開訓日期", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.Date1S, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.Label("結訓日期", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.Date1E, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("授課起日", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.Date2S, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.Label("授課迄日", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.Date2E, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("授課講師姓名", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.TeacherName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                @if (Model.Detail.PlanTypeCode.TONotNullString() == "2")
+                                {
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("內訓/外訓", new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.Detail.TrainingType_Text, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        </div>
+                                    </div>
+                                }
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("授課職能類別", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.JobAbilityCode, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.Label("授課單元", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.CheckBoxListFor(x => x.Detail.CourseUnitCode_SHOW, Model.Detail.CourseUnitCode_SHOW_list, new { @class = "t-form-control", id = "CourseUnitCode_SHOW", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("授課時數", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.TeachHours, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.Label("上課人數", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.TeachNum, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("問卷填答人數", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.FillStudentNum_txt, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.Label("授課滿意度達70%以上對象表示滿意情形", new { @class = "t-form-label", style = "width: 320px" })
+                                        @Html.TextBoxFor(m => m.Detail.Satisfy_txt, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("建議事項(意見或建議)", new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(m => m.Detail.Suggest_txt, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "", style = "height: 150px" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    @if (fg_QR1)
+                                    {
+                                        <div class="t-form-group">
+                                            @Html.Label("QR Code", new { @class = "t-form-label", style = "width: 210px" })
+                                            <div class="t-form-control ml-4" style="width: 200px" onclick="window.open('@Model.Detail.QuestLink')">
+                                                <img src="@Model.Detail.QRCode" title="@Model.Detail.QuestLink" />
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (fg_QR2)
+                                    {
+                                        <div class="t-form-group">
+                                            @Html.Label("問卷填答人數", new { @class = "t-form-label", style = "width: 210px" })
+                                            <div class="t-form-control ml-4" style="width: 200px" onclick="window.open('@Model.Detail.QuesSearchLink')">
+                                                <img src="@Model.Detail.QRCode2" title="@Model.Detail.QuesSearchLink" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        doJobAbilityDown();
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Detail_Back")').submit();
+    }
+
+    function doJobAbilityDown() {
+        const tmpStr = "checkbox_Detail_CourseUnitCode_SHOW_" + $("#Detail_JobAbilityCode").val();
+        //console.log(tmpStr);
+        for (let item of document.getElementById("CourseUnitCode_SHOW").children) {
+            //console.log(item.id);
+            document.getElementById(item.id).style.display = "unset";
+            if (tmpStr !== item.id.substring(0, item.id.length - 1)) {
+                document.getElementById(item.id).style.display = "none";
+            }
+            document.getElementById(item.id).children[0].disabled = true;
+        };
+    }
+
+</script>

@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+//  Mixins > Buttons Outline
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// tint-color($primary, 95%) ;
+// shade-color($primary, 20%) ;
+
+// Button Outline Variant
+@mixin button-outline-variant(
+  $color: color-yiq($color), 
+  $color-hover: color-yiq($color), 
+  $active-background: $color, 
+  $active-border: $color) {
+  
+  background-color: transparent;
+  border-color: tint-color($color, 60%);
+  color: shade-color($color, 20%);
+
+  @include btn-hover {
+    background-color: $active-background;
+    border-color: $active-border;
+    color: $color-hover;
+  }
+
+
+  @include btn-focus {
+    box-shadow: 0 0 0 .25rem rgba($color, 0.32);
+  }
+
+
+  @include btn-disabled {
+    background-color: transparent;
+    color: $color;
+  }
+
+
+  @include btn-disabled {
+    background-active: $active-background;
+    border-color: $active-border;
+    color: color-yiq($active-background);
+
+    @include btn-focus {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows and $btn-active-box-shadow != none {
+        box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, 0.5);
+      }
+      @else {
+        box-shadow: 0 0 0 3px rgba($color, 0.5);
+      }
+    }
+  }
+}

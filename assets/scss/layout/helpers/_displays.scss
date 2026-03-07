@@ -1,0 +1,65 @@
+//
+//  Layout -> Displays 
+// --------------------------------------------------
+@each $value in $displays {
+  .t-#{$value} {
+    display: $value !important;
+  }
+
+  %t-#{$value} {
+    display: $value;
+  }
+}
+
+.hide,
+.hidden {
+  display: none !important;
+
+  &-lg {
+    @media all and (max-width: $screen-lg-min) {
+      display: none !important;
+    }
+
+    &-up {
+      @media all and (min-width: $screen-lg-min) {
+        display: none !important;
+      }
+    }
+  }
+
+  &-md {
+    @media all and (max-width: $screen-md-min) {
+      display: none !important;
+    }
+
+    &-up {
+      @media all and (min-width: $screen-md-min) {
+        display: none !important;
+      }
+    }
+  }
+
+  &-sm {
+    @media all and (max-width: $screen-sm-min) {
+      display: none !important;
+    }
+
+    &-up {
+      @media all and (min-width: $screen-sm-min) {
+        display: none !important;
+      }
+    }
+  }
+
+  &-xs {
+    @media all and (max-width: $screen-xs-min) {
+      display: none !important;
+    }
+
+    &-up {
+      @media all and (min-width: $screen-xs-min) {
+        display: none !important;
+      }
+    }
+  }
+}

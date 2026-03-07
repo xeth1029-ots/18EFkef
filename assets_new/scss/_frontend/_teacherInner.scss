@@ -1,0 +1,387 @@
+@charset "utf-8";
+
+.mask-card-ruler {
+  width: 20rem;
+  height: 20rem;
+  right: 0;
+  top: 0;
+  left: auto;
+  top: auto;
+  transform: translate3d(0px, -120px, 0px) rotate(25deg);
+  opacity: 0.12 !important;
+
+  @include svg-bg-icon(ruler, $grey, center, contain);
+}
+
+.t-teacher-page {
+  padding: 2rem 0 12rem;
+
+  .t-wrapper-inner {
+    position: relative;
+
+    > * {
+      position: relative;
+    }
+
+    .t-panel-heading {
+      > .svg-icon {
+        color: $primary;
+
+        > svg {}
+      }
+    }
+
+    .t-panel-main-txt {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+
+      big {
+        color: $primary;
+        font-size: 175%;
+        margin-left: 0.125rem;
+        margin-right: 0.125rem;
+      }
+    }
+
+    @include sm-min {
+      .t-panel {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        .t-panel-heading {
+          flex-direction: column;
+          display: flex;
+          flex-wrap: nowrap;
+          width: auto;
+          align-items: center;
+          justify-content: center;
+          border-bottom: none;
+          border-right: 0.125rem dashed $border;
+          width: 25%;
+          flex: 0 0 auto;
+          padding: 1rem 0.75rem 1rem 0.75rem;
+
+          [data-tu-inlineEditBtn="true"] {
+            position: absolute;
+            right: 0.5rem;
+            top: 0.5rem;
+            z-index: 9;
+          }
+
+          > .svg-icon {
+            > svg {
+              width: 2.25rem;
+              height: 2.25rem;
+              margin-bottom: 0.5rem;
+            }
+          }
+
+          .t-panel-heading-txt {
+            flex-flow: column;
+            text-align: center;
+            font-size: 1.25rem;
+            letter-spacing: .125rem;
+
+            @include shade(text, $grey-100, $grey-400, 6, 135deg, true);
+
+            &:after {
+              margin-left: 0;
+              opacity: 0.16;
+              margin-top: 0.25rem;
+            }
+          }
+        }
+
+        .t-panel-item-cnt {
+          padding-left: 4rem;
+
+          // width: 100%;
+       
+        }
+      }
+
+      .t-timeline {
+        padding-left: 1rem;
+      }
+
+      .t-panel-main {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        justify-content: center;
+
+        .t-definition-description {
+          position: relative;
+          flex: 0 0 auto;
+          flex-wrap: nowrap;
+          display: flex;
+
+          .t-eye-toggle {
+            margin-right: 0.5rem;
+          }
+        }
+
+        .t-float-label {
+          font-size: 0.75rem;
+          position: absolute;
+          opacity: 0.6;
+          left: -8.5rem;
+          top: 0.5rem;
+          padding: 0.25rem 0.5rem;
+          line-height: 1.25;
+        }
+      }
+
+      .t-panel-title {
+        @include stroke(1.5px);
+
+        font-size: 1.625rem;
+
+        @include title-comic($info-100);
+
+        letter-spacing: .375rem;
+      }
+
+      .t-list-txts-item {
+        font-size: 0.875rem;
+
+        big {
+          margin-left: 0.125rem;
+          margin-right: 0.125rem;
+          color: $primary;
+        }
+      }
+    }
+
+
+    .t-info-item {
+      #edit-userInfo {
+        &.t-panel-heading {
+          @include sm-min {
+            width: 0;
+            padding: 0;
+            border: 0;
+          }
+        }
+
+        + .t-panel-main {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+      }
+
+      &[data-profile="academic_info"] {
+        .t-panel-main {
+          flex-direction: row;
+
+          @include sm {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .t-panel-item-img-container {
+              width: auto;
+            }
+
+            .t-panel-edit-cnt,
+            .t-panel-item-cnt {
+              padding-top: 1rem;
+              padding-left: 0;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+
+    .t-panel-sub-title {
+      @include stroke(0.75px);
+      @include title-comic($grey-100);
+
+      margin-left: 1rem;
+      display: block;
+      font-size: 1.125rem;
+    }
+
+    .t-info-item {
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .t-panel-edit-cnt {
+      display: flex;
+      width: 100%;
+      padding-left: 1rem;
+
+      .t-form {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+
+.t-user-menu {
+  max-width: 12rem;
+
+  .t-user-menu-header {
+    position: relative;
+    z-index: 1;
+
+    // @include menu-af-caret-solid();
+
+    &:before {
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      @extend .t-bg-mesh-hot-v2;
+
+      width: 100%;
+      height: 100%;
+      opacity: 0.24;
+      z-index: -1;
+    }
+
+    .t-badge {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+    }
+  }
+}
+
+.t-eye-toggle {
+  .t-eye-toggle-input {
+    display: none;
+
+    .svg-icon {
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0.5rem;
+        top: 0;
+        background-color: $dark;
+        width: .125rem;
+        height: 100%;
+        transform: rotate(45deg);
+        opacity: 0.4;
+      }
+    }
+
+    &:checked {
+      + .t-eye-toggle-label {
+        background-color: $tertiary-400;
+
+        &:after {
+          transition: $transition;
+          content: '前台顯示';
+        }
+
+        .svg-icon {
+          &:before {
+            transition: $transition;
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .t-eye-toggle-label {
+    // @extend .btn;
+
+    @include text-shadow-v2($white, $grey-500);
+
+    padding: 0.25rem 1rem;
+    background-color: $grey-100;
+    border : 2px solid $grey-50;
+    border-radius: $border-radius-sm;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    transition: $transition;
+    &:after {
+      content: '前台不顯示';
+    }
+
+    @include hover {
+      transform: scale(1.0375);
+      background-color: $tertiary-200;
+    }
+
+
+    // @include text-shaded(0.25px, $tertiary-100, 10);
+    .svg-icon {
+      margin-right: 0.5rem;
+      margin-left: 0;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0.5rem;
+        top: 0;
+        background-color: $dark;
+        width: .125rem;
+        height: 100%;
+        transform: rotate(45deg);
+        opacity: 0.4;
+      }
+    }
+  }
+}
+
+// background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+// <h1 class="title">
+//   <div class="line"> <span>Make every goal count to</span></div>
+//   <div class="line"> <span>help sick kids. Get behind</span></div>
+//   <div class="line"> <span>the dockers!</span></div>
+// </h1>
+// .line {
+
+//   // background & border
+//   span {
+//     display: inline;
+//     background: white;
+//     padding: 0 .2em;
+//     position: relative;
+//     color: darken($color, 40);
+//     border: 5px solid darken($color, 25);
+
+//     &:before {
+//       content: '';
+//       background: currentcolor;
+//       position: absolute;
+//       right: -5px;
+//       bottom: -5px;
+//       left: -5px;
+//       height: 245%;
+//       z-index: -1;
+//       background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 347 128' preserveAspectRatio='none'><path fill='%23#{str-slice(#{darken($color, 35)},2)}' stroke='%23#{str-slice(#{darken($color, 35)},2)}' stroke-linejoin='round' stroke-width='4' d='M2 58.095L345 126V69L2 2z'/></svg>") no-repeat center/ 100% 100%;
+//     }
+//   }
+
+//   &:first-child span:before {
+//     content: none;
+//   }
+// }
+
+.t-avastar {
+  border: 2px solid $info-300;
+  border-radius: 50%;
+
+  img {
+    border-radius: 50%;
+  }
+}

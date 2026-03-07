@@ -1,0 +1,32 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@using WKEFSERVICE.DataLayers
+@using WKEFSERVICE.Areas.A3.Models
+@model C202MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        var tmpPath = new AMDAO().UploadPathTeacherReport + item.FileNameNew;
+
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].Seq)
+
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.TeacherName</td>
+            <td>@item.ReportName</td>
+            <td>@item.FirstTime_Name</td>
+            <td>@item.JobAbilityCode</td>
+            <td>@item.AuditStatus_Name</td>
+            <td align="center">
+                <button type="button" class="btn btn-danger" onclick="doAudit('@item.Seq')">審核</button>
+                <a download="@item.FileNameOrg" style="display: contents;" href="@tmpPath">
+                    <button type="button" class="btn btn--export" onclick="doLog('@item.FileNameOrg', '@item.FileNameNew')">下載</button>
+                </a>
+            </td>
+        </tr>
+    }
+}

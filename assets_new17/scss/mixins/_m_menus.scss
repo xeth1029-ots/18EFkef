@@ -1,0 +1,287 @@
+@charset "utf-8";
+
+//   Mixins > menus
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+$bg-color: rgba($white, 0.24);
+
+// @include menu-pointer($primary, $primary-800, $primary-50);
+@mixin menu-pointer($iconColor: $quaternary, $fontColor: $quaternary-800, $hoverBg: $quaternary-100) {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    opacity: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-image: t-svg(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='#{$iconColor}' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z'/%3e%3c/svg%3e"));
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 1.25rem 1.25rem;
+    transform: translateY(-50%);
+    transition: .25s;
+  }
+
+  &:hover {
+    color: $fontColor;
+    background-color: $hoverBg;
+
+    &:after {
+      right: 1rem;
+      opacity: 1;
+    }
+  }
+}
+
+@mixin menu-arrow($size: 0.625rem, $color: $white, $pr: 2rem, $right: 0.75rem) {
+  &[data-sub="true"] {
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+
+      @include absolute-y-center;
+
+      right: $right;
+      width: $size;
+      height: $size;
+
+      @include svg-bg-icon(arrow-bottom, $color, center, contain);
+    }
+
+    .menu-link.menu-link.menu-link {
+      padding-right: $pr;
+    }
+  }
+}
+
+// Set arrow direction
+@mixin menu-link-arrow-rotate($angle, $angleRtl) {
+  /*rtl:ignore*/
+  transform: rotateZ($angle);
+  transition: get($menu, accordion, arrow-transition);
+
+  [direction="rtl"] & {
+    /*rtl:ignore*/
+    transform: rotateZ($angleRtl);
+  }
+}
+
+// Set menu link padding x
+@mixin menu-link-padding-x($value) {
+  // Menu item
+  .menu-item {
+    .menu-link,
+    .menu-content {
+      padding-left: $value;
+      padding-right: $value;
+    }
+  }
+}
+
+// Set menu link padding y
+@mixin menu-link-padding-y($value) {
+  // Menu item
+  .menu-item {
+    .menu-link,
+    .menu-content {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+  }
+}
+
+// Set menu indention
+@mixin menu-link-indention($value, $offset) {
+  // Accordion mode			
+  .menu-sub:not([data-popper-placement]) {
+    > .menu-item {
+      > .menu-content,
+      > .menu-link {
+        padding-left: calc(#{1 * $value} + #{$offset});
+      }
+
+      > .menu-sub:not([data-popper-placement]) {
+        > .menu-item {
+          > .menu-content,
+          > .menu-link {
+            padding-left: calc(#{2 * $value} + #{$offset});
+          }
+
+          > .menu-sub:not([data-popper-placement]) {
+            > .menu-item {
+              > .menu-content,
+              > .menu-link {
+                padding-left: calc(#{3 * $value} + #{$offset});
+              }
+
+              > .menu-sub:not([data-popper-placement]) {
+                > .menu-item {
+                  > .menu-content,
+                  > .menu-link {
+                    padding-left: calc(#{4 * $value} + #{$offset});
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .menu-fit & {
+      > .menu-item {
+        > .menu-content,
+        > .menu-link {
+          padding-left: #{$value};
+          padding-right: 0;
+        }
+
+        > .menu-sub:not([data-popper-placement]) {
+          > .menu-item {
+            > .menu-content,
+            > .menu-link {
+              padding-left: calc(#{2 * $value});
+              padding-right: 0;
+            }
+
+            > .menu-sub:not([data-popper-placement]) {
+              > .menu-item {
+                > .menu-content,
+                > .menu-link {
+                  padding-left: calc(#{3 * $value});
+                  padding-right: 0;
+                }
+
+                > .menu-sub:not([data-popper-placement]) {
+                  > .menu-item {
+                    > .menu-content,
+                    > .menu-link {
+                      padding-left: calc(#{4 * $value});
+                      padding-right: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Set menu link theme
+@mixin menu-link-theme($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color: rgba($white, 0.24)) {
+  @if $bg-color != null {
+    background-color: $bg-color;
+  }
+
+  @if $title-color != null {
+    color: $title-color;
+
+    .menu-title {
+      color: $title-color;
+    }
+  }
+
+  @if $icon-color != null {
+    .menu-icon {
+      // Font Icon
+      i {
+        color: $icon-color;
+      }
+
+      // Svg icon
+      .svg-icon {
+        @include svg-icon-color($icon-color);
+      }
+    }
+  }
+
+  @if $bullet-color != null {
+    .menu-bullet {
+      .bullet {
+        background-color: $bullet-color;
+      }
+    }
+  }
+
+  @if $arrow-color != null {
+    // Arrow
+    .menu-arrow:after {
+      @include svg-bg-icon(arrow-start, $arrow-color);
+
+      /*rtl:begin:remove*/
+      @include svg-bg-icon(arrow-end, $arrow-color);
+
+      /*rtl:end:remove*/
+    }
+  }
+}
+
+// Set menu link default state
+@mixin menu-link-default-state($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color: rgba($white, 0.24), $all-links: true) {
+  $sel: "";
+
+  @if $all-links == false {
+    $sel: "& > ";
+  }
+
+  #{$sel}.menu-link {
+    @include menu-link-theme($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color);
+  }
+}
+
+// Set menu link hover state
+@mixin menu-link-hover-state($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color: rgba($white, 0.24), $all-links: true) {
+  $sel: "&:not(.here) ";
+
+  @if $all-links == false {
+    $sel: "&:not(.here) > ";
+  }
+
+  &.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here),
+  #{$sel}.menu-link:hover:not(.disabled):not(.active):not(.here) {
+    transition: $transition-link;
+
+    @include menu-link-theme($title-color, $icon-color, $bullet-color, $arrow-color, null);
+  }
+}
+
+// Set menu link active state
+@mixin menu-link-active-state($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color: rgba($white, 0.24), $all-links: true) {
+  $sel: "";
+
+  @if $all-links == false {
+    $sel: "& > ";
+  }
+
+  #{$sel}.menu-link.active {
+    transition: $transition-link;
+
+    @include menu-link-theme($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color);
+  }
+}
+
+// Set menu link show state
+@mixin menu-link-show-state($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color: rgba($white, 0.24), $all-links: true) {
+  //&.here > .menu-link,
+  &.show > .menu-link {
+    transition: $transition-link;
+
+    @include menu-link-theme($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color);
+  }
+}
+
+// Set menu link here state
+@mixin menu-link-here-state($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color: rgba($white, 0.24), $all-links: true) {
+  &.here > .menu-link {
+    transition: $transition-link;
+
+    @include menu-link-theme($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color);
+  }
+}

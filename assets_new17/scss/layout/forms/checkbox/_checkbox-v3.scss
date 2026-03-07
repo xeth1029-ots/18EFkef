@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+//  Layout -> chkeckBox v3
+// --------------------------------------------------
+
+.t-check-list {
+  .t-check-list-item {
+    display: flex;
+    margin-bottom: .5rem;
+
+    &:not(:last-of-type) {
+      margin-right: .5rem;
+    }
+
+    .t-chk-inp {
+      @include check-checked {
+        + .t-chk-lab {
+          background-color: $primary;
+          color: $white;
+          border-color: rgba(_var("white-rgb", $white), 0.8);
+
+          .t-checkbox {
+            background-color: $secondary;
+            border-color: rgba(_var("white-rgb", $white), 0);
+
+            &:after {
+              opacity: 1;
+              border-color: $dark;
+            }
+          }
+        }
+      }
+    }
+
+    .t-chk-lab {
+      background-color: $white;
+      border: dotted 2px rgba($primary, 0.24);
+      border-radius: $border-radius-sm;
+      color: $primary-600;
+      padding: $checkbox-item-padding-y $checkbox-item-padding-x $checkbox-item-padding-y ($checkbox-item-padding-x / 2);
+
+      @include check-hover {
+        background-color: $primary-100;
+        border-color: rgba($primary, 0.66);
+
+        .t-checkbox {
+          border-color: $primary-200;
+        }
+      }
+
+
+      .t-checkbox {
+        position: relative;
+        align-self: center;
+        background-color: transparent;
+        border: solid 2px $primary-100;
+        border-radius: .25rem;
+        margin-right: $checkbox-size / 2;
+        width: $checkbox-size;
+        height: $checkbox-size;
+        pointer-events: none;
+
+        @include ceaser-transition(all, 250ms, "easeInOutCubic");
+
+        &:after {
+          content: '';
+          display: block;
+          width: $checkbox-w;
+          height: $checkbox-h;
+          border: solid $white;
+          border-width: 0 2px 2px 0;
+          opacity: 0;
+          position: absolute;
+          top: 45%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+
+          @include ceaser-transition(all, 250ms, "easeInOutCubic");
+        }
+
+        &:not(:last-child) {
+          margin-right: 0.75rem;
+        }
+      }
+
+      // &:not(.width-auto):nth-last-of-type(2):first-of-type,
+      // &:not(.width-auto):nth-last-of-type(2):first-of-type ~ .t-chk-lab {
+      //   width: calc(100% / 2 - .5rem);
+      // }
+
+      // &:not(.width-auto):nth-last-of-type(3):first-of-type,
+      // &:not(.width-auto):nth-last-of-type(3):first-of-type ~ .t-chk-lab {
+      //   width: calc(100% / 3 - .666rem);
+      // }
+
+      // &:not(.width-auto):nth-last-of-type(4):first-of-type,
+      // &:not(.width-auto):nth-last-of-type(4):first-of-type ~ .t-chk-lab {
+      //   width: calc(100% / 4 - .75rem);
+      // }
+
+      // &:not(.width-auto):nth-last-of-type(5):first-of-type,
+      // &:not(.width-auto):nth-last-of-type(5):first-of-type ~ .t-chk-lab {
+      //   width: calc(100% / 5 - .8rem);
+      // }
+
+      // &:not(.width-auto):nth-last-of-type(6):first-of-type,
+      // &:not(.width-auto):nth-last-of-type(6):first-of-type ~ .t-chk-lab {
+      //   width: calc(100% / 6 - .83333333rem);
+      // }
+   
+    }
+  }
+}

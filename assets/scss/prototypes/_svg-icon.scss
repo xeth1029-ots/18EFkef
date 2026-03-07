@@ -1,0 +1,74 @@
+//
+// Components -> svg icon
+// --------------------------------------------------
+// .svg-icon {
+//   line-height: 1;
+
+//   @include svg-icon-size(get($font-size-base, 5));
+//   // @include svg-icon-size($font-size-base);
+//   @include svg-icon-color($grey);
+
+//   // Theme colors
+//   @each $name, $color in $theme-colors {
+//     &.svg-icon-#{$name} {
+//       @include svg-icon-color($color);
+//     }
+//   }
+// }
+
+@each $name, $value in $element-colors {
+    @include svg-variant(".fill-#{$name}", $value);
+}
+
+@each $name, $value in $greys {
+    @include svg-variant(".fill-grey#{$name}", $value);
+}
+
+.svg-icon {
+    line-height: 1;
+
+    @include svg-icon-size(get($font-sizes, 5));
+    @include svg-icon-color(currentColor);
+
+    // Theme colors
+    @each $name, $color in $theme-colors {
+        &.svg-icon-#{$name} {
+            @include svg-icon-color($color);
+        }
+    }
+
+    // Responsive icon sizes
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+            $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+            // Sizes
+            @each $name, $value in $font-sizes {
+                &.svg-icon#{$infix}-#{$name} {
+                    @include svg-icon-size($value, true);
+                }
+            }
+        }
+    }
+}
+
+.svg-font-up,
+.svg-font-default,
+.svg-font-down {
+    padding: 1rem 1rem 0 0;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.svg-font-up {
+    background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 26'%3E%3Cg%3E%3Cpath d='M3 26a2 2 0 0 0 2-2v-7h10v7a2 2 0 0 0 1 2 2 2 0 0 0 2-2V10c0-6-3-10-8-10S1 4 1 10v14a2 2 0 0 0 2 2Zm2-12v-4c0-4 1-7 5-7 3 0 5 3 5 7v4Zm28 7a2 2 0 0 0 2 2 2 2 0 0 0 1-2v-5h6a2 2 0 0 0 1-2l-1-1h-6V8l-1-2a2 2 0 0 0-2 2v5h-5a2 2 0 0 0-2 1 2 2 0 0 0 2 2h5Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.svg-font-default {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 26'%3E%3Cg data-name='Group 218443'%3E%3Cpath d='M15 26a2 2 0 0 0 2-2v-7h10v7a2 2 0 0 0 1 2 2 2 0 0 0 2-2V10c0-6-3-10-8-10s-9 4-9 10v14a2 2 0 0 0 2 2Zm2-12v-4c0-4 1-7 5-7 3 0 5 3 5 7v4Z' data-name='Path 254864'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.svg-font-down {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 26'%3E%3Cg data-name='Group 218442'%3E%3Cpath d='M4 26a2 2 0 0 0 2-2v-7h10v7a2 2 0 0 0 1 2 2 2 0 0 0 2-2V10c0-6-3-10-8-10S2 4 2 10v14a2 2 0 0 0 2 2Zm2-12v-4c0-4 1-7 5-7 3 0 5 3 5 7v4Zm34 1a2 2 0 0 0 2-2 2 2 0 0 0-2-1h-9a2 2 0 0 0-1 1l1 2Z'/%3E%3C/g%3E%3C/svg%3E");
+}

@@ -1,0 +1,93 @@
+// 
+//  Components -> RtTools
+// --------------------------------------------------
+$zindex-float-tools: 100 !default;
+$t-float-size: 4rem !default;
+
+.t-float-toolsbar {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  z-index: $zindex-float-tools;
+  user-select: none;
+  transition: $transition;
+
+  .t-float-toolsbar-item {
+    display: block;
+    width: $t-float-size;
+
+    &:not(:last-child) {
+      margin-bottom: .625rem;
+    }
+
+    .t-float-toolsbar-link {
+      position: relative;
+      display: block;
+      border-radius: $border-radius;
+      background-color: rgba(_var("white-rgb", $white), 1);
+      box-shadow: 0 2px 8px rgba($dark, 0.12);
+      width: 100%;
+      text-align: center;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      font-size: 0.75rem;
+
+      &:hover {
+        &:before {
+          transition: transform 0.25s ease;
+          transform: scale(1.025) translate(0, -0.625rem);
+        }
+
+        .t-float-toolsbar-link-icon {
+          transition: $transition-base;
+          opacity: .8;
+        }
+
+        .t-float-toolsbar-link-img {
+          transition: $transition-base;
+          opacity: .8;
+        }
+
+        .t-float-toolsbar-link-txt {
+          transition: $transition-base;
+          opacity: .8;
+        }
+      }
+
+      &.active {
+        background-color: $primary;
+        color: $white;
+      }
+
+      .svg-icon {
+        display: block;
+        margin: 0 auto;
+
+        svg,
+        img {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+
+      .t-float-toolsbar-link-txt {
+        color: $grey-800;
+        font-weight: 500;
+        display: block;
+        margin-top: .25rem;
+        font-size: .8125rem;
+        letter-spacing: -0.5px;
+      }
+    }
+  }
+
+  @include md {
+    right: -2.5rem;
+  }
+
+
+  @include hover {
+    right: 1rem;
+  }
+}

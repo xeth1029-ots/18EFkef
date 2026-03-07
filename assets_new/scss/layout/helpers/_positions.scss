@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+//  Layout -> positions 
+// --------------------------------------------------
+.is-fix {
+  @include loop-class-six(".is-fix") {
+    position: fixed;
+    transition: $transition;
+    z-index: 999;
+    box-shadow: $shadow-panel-fixed;
+  }
+}
+
+.is-absolute {
+  @include loop-class-six(".is-absolute") {
+    position: absolute;
+    width: inherit;
+  }
+}
+
+.t-header {
+  @include loop-class-six(".is-fix") {
+    transform: translate3d(0, -100%, 0);
+  }
+
+
+  @include loop-class-six(".is-show") {
+    transform: translate3d(0, 0, 0);
+  }
+}

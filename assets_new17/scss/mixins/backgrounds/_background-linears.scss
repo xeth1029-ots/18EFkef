@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+//  Mixins > Background linears
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// @include scrim-gradient(#000);
+@function scrim-gradient($color: #000) {
+  $scrim-gradient: (1: 0%, 0.738: 19%, 0.541: 34%, 0.382: 47%, 0.278: 56.5%, 0.194: 65%, 0.126: 73%, 0.075: 80.2%, 0.042: 86.1%, 0.021: 91%, 0.008: 95.2%, 0.002: 98.2%, 0: 100%);
+
+  @if type-of($color) != color {
+    @return null;
+  }
+
+  $rgba: "#{red($color)},#{green($color)},#{blue($color)}";
+  $color-stops: ();
+
+  @each $alpha, $stop in $scrim-gradient {
+    $color-stops: append($color-stops, unquote("rgba(#{$rgba}, #{$alpha}) #{$stop}"), "comma");
+  }
+
+  @return $color-stops;
+}
+
+// @include easeOutSine-gradient(#000);
+@function easeOutSine-gradient($color: #000) {
+  $easeOutSine-gradient: (1: 0%, 0.917: 5.3%, 0.834: 10.6%, 0.753: 15.9%, 0.672: 21.3%, 0.591: 26.8%, 0.511: 32.5%, 0.433: 38.4%, 0.357: 44.5%, 0.283: 50.9%, 0.213: 57.7%, 0.147: 65%, 0.089: 72.9%, 0.042: 81.4%, 0.011: 90.6%, 0: 100%);
+
+  @if type-of($color) != color {
+    @return null;
+  }
+
+  $rgba: "#{red($color)},#{green($color)},#{blue($color)}";
+  $color-stops: ();
+
+  @each $alpha, $stop in $easeOutSine-gradient {
+    $color-stops: append($color-stops, unquote("rgba(#{$rgba}, #{$alpha}) #{$stop}"), "comma");
+  }
+
+  @return $color-stops;
+}
+
+// .linear {
+//   background: linear-gradient(rgba(#000, 1) 0%,
+//     rgba(#000, 0) 100%);
+// }
+
+// .scrim {
+//   background: linear-gradient(scrim-gradient(black));
+// }
+
+// .ease {
+//   background: linear-gradient(easeOutSine-gradient(#000));
+// }
+
+$color: #d9480f !default;
+$alpha-from: 1 !default;
+$alpha-to: 0 !default;
+
+@mixin linear-gradient($color: #000000, $alpha-from: 1, $alpha-to: 0) {
+  background-image: linear-gradient(rgba($color, $alpha-from) 0%, rgba($color, $alpha-to) 100%);
+}
+
+@mixin clothoid-gradient($color: #000000, $alpha-from: 1, $alpha-to: 0) {
+  $diff: $alpha-from - $alpha-to;
+
+  background-image: linear-gradient(rgba($color, $alpha-from) 0%, rgba($color, $alpha-from - $diff * 0.7) 50%, rgba($color, $alpha-from - $diff * 0.85) 65%, rgba($color, $alpha-from - $diff * 0.925) 75.5%, rgba($color, $alpha-from - $diff * 0.963) 82.85%, rgba($color, $alpha-from - $diff * 0.981) 88%, rgba($color, $alpha-to) 100%);
+}
+
+// .container--white {
+//   background-color: white;
+//   .linear {
+//     @include linear-gradient($color: #000000, $alpha-from: 1, $alpha-to: 0);
+//   }
+//   .clothoid {
+//     @include clothoid-gradient($color: #000000, $alpha-from: 1, $alpha-to: 0);
+//   }
+// }

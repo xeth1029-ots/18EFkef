@@ -1,0 +1,54 @@
+
+/*  INPUT ICON
+----------------------------------------  */
+.input-icon-rt {
+  cursor: pointer;
+  color: lightgrey;
+  font-size: 1rem;
+
+  @include absolute($R: 1rem, $T: 50%);
+
+  transform: translateY(-50%);
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.input-group {
+  position: relative;
+
+  >i:first-of-type {
+    color: $lightgrey;
+    font-size: 1.25rem;
+
+    @include absolute($T: 50%, $L: 1rem);
+
+    transform: translateY(-50%);
+    transition: $transition-base;
+  }
+
+  .t-form-control {
+    padding-left: 4rem;
+
+    &:focus {
+      +i {
+        color: $primary;
+      }
+    }
+  }
+}
+
+.input-group-txt {
+  .input-txt {
+    font-size: 1rem;
+
+    @include absolute($T: 50%, $R: 1rem);
+
+    transform: translateY(-50%);
+  }
+
+  .t-form-control {
+    padding-right: 3rem;
+  }
+}

@@ -1,0 +1,84 @@
+
+// Step
+// =========================================================
+
+// Colors
+$step-title-color: $headings-color !default;
+$step-text-color: $body-color !default;
+$step-active-icon-color: $white !default;
+$step-is-valid-color: $primary !default;
+$step-is-valid-icon-color: $white !default;
+$step-is-invalid-color: $danger !default;
+$step-is-invalid-icon-color: $white !default;
+
+// Background
+$step-icon-pseudo-bg-color: $gray-500 !default;
+$step-active-icon-bg-color: $active-bg-color !default;
+$step-is-valid-icon-bg-color: $step-is-valid-color !default;
+$step-is-invalid-icon-bg-color: $step-is-invalid-color !default;
+
+// Borders
+$step-border-width: 0.125rem !default;
+$step-border-color: $border-color !default;
+$step-icon-border-radius: $border-radius-rounded !default;
+$step-icon-pseudo-border-radius: $border-radius-rounded !default;
+$step-avatar-border-radius: $step-icon-border-radius !default;
+
+// Width & Height
+$step-icon-width: $btn-icon-width !default;
+$step-icon-height: $step-icon-width !default;
+$step-icon-width-xs: $btn-icon-width-xs !default;
+$step-icon-height-xs: $step-icon-width-xs !default;
+$step-icon-width-sm: $btn-icon-width-sm !default;
+$step-icon-height-sm: $step-icon-width-sm !default;
+$step-icon-width-lg: $font-size-base * 5.5 !default;
+$step-icon-height-lg: $step-icon-width-lg !default;
+
+$step-avatar-width: $step-icon-width !default;
+$step-avatar-height: $step-avatar-width !default;
+$step-avatar-width-xs: $step-icon-width-xs !default;
+$step-avatar-height-xs: $step-avatar-width-xs !default;
+$step-avatar-width-sm: $step-icon-width-sm !default;
+$step-avatar-height-sm: $step-avatar-width-sm !default;
+$step-avatar-width-lg: $step-icon-width-lg !default;
+$step-avatar-height-lg: $step-avatar-width-lg !default;
+
+$step-icon-pseudo-width: 0.25rem !default;
+$step-icon-pseudo-height: $step-icon-pseudo-width !default;
+
+$step-divider-height: 1rem !default;
+
+// Type
+$step-icon-font-size: $btn-icon-font-size !default;
+$step-icon-font-weight: $font-weight-semi-bold !default;
+
+$step-icon-font-size-xs: $btn-icon-font-size-xs !default;
+$step-icon-font-size-sm: $btn-icon-font-size-sm !default;
+$step-icon-font-size-lg: $btn-icon-font-size-lg !default;
+
+$step-title-font-weight: $font-weight-semi-bold !default;
+
+$step-avatar-font-weight: $step-icon-font-weight !default;
+$step-avatar-font-size: $step-icon-font-size !default;
+$step-avatar-font-size-xs: $step-icon-font-size-xs !default;
+$step-avatar-font-size-sm: $step-icon-font-size-sm !default;
+$step-avatar-font-size-lg: $step-icon-font-size-lg !default;
+
+$step-divider-font-size: $font-size-base * 0.8125 !default;
+$step-divider-font-weight: $font-weight-semi-bold !default;
+
+// Padding
+$step-padding-x: 1.5rem !default;
+$step-padding-y: $step-padding-x !default;
+
+// Margins
+$step-item-margin-y: 2.25rem !default;
+$step-icon-margin-y: 1rem !default;
+$step-icon-margin-x: 1rem !default;
+$step-avatar-margin-x: $step-icon-margin-x !default;
+$step-timeline-content-margin-x: 1.5rem !default;
+$step-timeline-icon-margin-x: calc($step-icon-width / 2) !default;
+$step-timeline-icon-xs-margin-x: calc($step-icon-width-xs / 2) !default;
+$step-timeline-icon-sm-margin-x: calc($step-icon-width-sm / 2) !default;
+$step-timeline-icon-lg-margin-x: calc($step-icon-width-lg / 2) !default;
+

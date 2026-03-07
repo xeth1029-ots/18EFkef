@@ -1,0 +1,24 @@
+//
+//  prototypes -> Border Style
+// --------------------------------------------------
+
+@each $color, $value in $element-colors {
+  .t-border-#{$color} {
+    color: $value !important;
+  }
+
+  %t-border-#{$color} {
+    color: $value !important;
+  }
+}
+@each $color, $value in $element-soft-colors {
+  .t-border-#{$color} {
+    color: $value !important;
+  }
+
+  %t-border-#{$color} {
+    color: $value !important;
+  }
+}
+
+

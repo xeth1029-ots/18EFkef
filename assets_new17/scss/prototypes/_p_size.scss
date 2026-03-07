@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+//==  Prototypes -> Size
+//====================================================
+// col
+@for $index from 0 through $grid-columns {
+  .t-w-#{$index * 1} {
+    width: percentage(($index / $grid-columns))!important;
+  }
+
+  %t-w-#{$index * 1} {
+    width: percentage(($index / $grid-columns))!important;
+  }
+}
+
+
+// // svg
+// @for $index from 0 through 10 {
+//   .svg-w-#{$index * 10} {
+//     width: percentage(($index / 10));
+
+//     path {
+//       width: percentage(($index / 10));
+//     }
+//   }
+
+//   %svg-w-#{$index * 10} {
+//     width: percentage(($index / 10));
+
+//     path {
+//       width: percentage(($index / 10));
+//     }
+//   }
+// }
+
+// @for $index from 0 through 10 {
+//   .svg-h-#{$index * 10} {
+//     height: percentage(($index * 1));
+
+//     path {
+//       height: percentage(($index * 1));
+//     }
+//   }
+
+//   %svg-h-#{$index * 10} {
+//     height: percentage(($index* 1));
+
+//     path {
+//       height: percentage(($index * 1));
+//     }
+//   }
+// }
+
+@for $i from 1 through 20 {
+  .w-#{$i * 4} {
+    width: unquote("#{$i * 1}rem !important");
+  }
+
+  %w-#{$i * 4} {
+    width: unquote("#{$i * 1}rem !important");
+  }
+}
+
+@for $i from 1 through 20 {
+  .h-#{$i * 4} {
+    height: unquote("#{$i * 1}rem !important");
+  }
+
+  %h-#{$i * 4} {
+    height: unquote("#{$i * 1}rem !important");
+  }
+}
+

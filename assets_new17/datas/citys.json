@@ -1,0 +1,3340 @@
+[{
+	"CTID": 1,
+	"ZIPCODE": 100,
+	"ZIPNAME": "臺北市中正區",
+	"CTNAME": "臺北市",
+	"ZNAME": "中正區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 103,
+	"ZIPNAME": "臺北市大同區",
+	"CTNAME": "臺北市",
+	"ZNAME": "大同區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 104,
+	"ZIPNAME": "臺北市中山區",
+	"CTNAME": "臺北市",
+	"ZNAME": "中山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 105,
+	"ZIPNAME": "臺北市松山區",
+	"CTNAME": "臺北市",
+	"ZNAME": "松山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 106,
+	"ZIPNAME": "臺北市大安區",
+	"CTNAME": "臺北市",
+	"ZNAME": "大安區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 108,
+	"ZIPNAME": "臺北市萬華區",
+	"CTNAME": "臺北市",
+	"ZNAME": "萬華區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 110,
+	"ZIPNAME": "臺北市信義區",
+	"CTNAME": "臺北市",
+	"ZNAME": "信義區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 111,
+	"ZIPNAME": "臺北市士林區",
+	"CTNAME": "臺北市",
+	"ZNAME": "士林區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 112,
+	"ZIPNAME": "臺北市北投區",
+	"CTNAME": "臺北市",
+	"ZNAME": "北投區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 114,
+	"ZIPNAME": "臺北市內湖區",
+	"CTNAME": "臺北市",
+	"ZNAME": "內湖區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 115,
+	"ZIPNAME": "臺北市南港區",
+	"CTNAME": "臺北市",
+	"ZNAME": "南港區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 1,
+	"ZIPCODE": 116,
+	"ZIPNAME": "臺北市文山區",
+	"CTNAME": "臺北市",
+	"ZNAME": "文山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 2,
+	"ZIPCODE": 200,
+	"ZIPNAME": "基隆市仁愛區",
+	"CTNAME": "基隆市",
+	"ZNAME": "仁愛區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 2,
+	"ZIPCODE": 201,
+	"ZIPNAME": "基隆市信義區",
+	"CTNAME": "基隆市",
+	"ZNAME": "信義區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 2,
+	"ZIPCODE": 202,
+	"ZIPNAME": "基隆市中正區",
+	"CTNAME": "基隆市",
+	"ZNAME": "中正區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 2,
+	"ZIPCODE": 203,
+	"ZIPNAME": "基隆市中山區",
+	"CTNAME": "基隆市",
+	"ZNAME": "中山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 2,
+	"ZIPCODE": 204,
+	"ZIPNAME": "基隆市安樂區",
+	"CTNAME": "基隆市",
+	"ZNAME": "安樂區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 2,
+	"ZIPCODE": 205,
+	"ZIPNAME": "基隆市暖暖區",
+	"CTNAME": "基隆市",
+	"ZNAME": "暖暖區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 2,
+	"ZIPCODE": 206,
+	"ZIPNAME": "基隆市七堵區",
+	"CTNAME": "基隆市",
+	"ZNAME": "七堵區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 207,
+	"ZIPNAME": "新北市萬里區",
+	"CTNAME": "新北市",
+	"ZNAME": "萬里區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 208,
+	"ZIPNAME": "新北市金山區",
+	"CTNAME": "新北市",
+	"ZNAME": "金山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 220,
+	"ZIPNAME": "新北市板橋區",
+	"CTNAME": "新北市",
+	"ZNAME": "板橋區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 221,
+	"ZIPNAME": "新北市汐止區",
+	"CTNAME": "新北市",
+	"ZNAME": "汐止區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 222,
+	"ZIPNAME": "新北市深坑區",
+	"CTNAME": "新北市",
+	"ZNAME": "深坑區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 223,
+	"ZIPNAME": "新北市石碇區",
+	"CTNAME": "新北市",
+	"ZNAME": "石碇區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 224,
+	"ZIPNAME": "新北市瑞芳區",
+	"CTNAME": "新北市",
+	"ZNAME": "瑞芳區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 226,
+	"ZIPNAME": "新北市平溪區",
+	"CTNAME": "新北市",
+	"ZNAME": "平溪區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 227,
+	"ZIPNAME": "新北市雙溪區",
+	"CTNAME": "新北市",
+	"ZNAME": "雙溪區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 228,
+	"ZIPNAME": "新北市貢寮區",
+	"CTNAME": "新北市",
+	"ZNAME": "貢寮區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 231,
+	"ZIPNAME": "新北市新店區",
+	"CTNAME": "新北市",
+	"ZNAME": "新店區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 232,
+	"ZIPNAME": "新北市坪林區",
+	"CTNAME": "新北市",
+	"ZNAME": "坪林區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 233,
+	"ZIPNAME": "新北市烏來區",
+	"CTNAME": "新北市",
+	"ZNAME": "烏來區",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 234,
+	"ZIPNAME": "新北市永和區",
+	"CTNAME": "新北市",
+	"ZNAME": "永和區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 235,
+	"ZIPNAME": "新北市中和區",
+	"CTNAME": "新北市",
+	"ZNAME": "中和區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 236,
+	"ZIPNAME": "新北市土城區",
+	"CTNAME": "新北市",
+	"ZNAME": "土城區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 237,
+	"ZIPNAME": "新北市三峽區",
+	"CTNAME": "新北市",
+	"ZNAME": "三峽區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 238,
+	"ZIPNAME": "新北市樹林區",
+	"CTNAME": "新北市",
+	"ZNAME": "樹林區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 239,
+	"ZIPNAME": "新北市鶯歌區",
+	"CTNAME": "新北市",
+	"ZNAME": "鶯歌區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 241,
+	"ZIPNAME": "新北市三重區",
+	"CTNAME": "新北市",
+	"ZNAME": "三重區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 242,
+	"ZIPNAME": "新北市新莊區",
+	"CTNAME": "新北市",
+	"ZNAME": "新莊區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 243,
+	"ZIPNAME": "新北市泰山區",
+	"CTNAME": "新北市",
+	"ZNAME": "泰山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 244,
+	"ZIPNAME": "新北市林口區",
+	"CTNAME": "新北市",
+	"ZNAME": "林口區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 247,
+	"ZIPNAME": "新北市蘆洲區",
+	"CTNAME": "新北市",
+	"ZNAME": "蘆洲區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 248,
+	"ZIPNAME": "新北市五股區",
+	"CTNAME": "新北市",
+	"ZNAME": "五股區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 249,
+	"ZIPNAME": "新北市八里區",
+	"CTNAME": "新北市",
+	"ZNAME": "八里區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 251,
+	"ZIPNAME": "新北市淡水區",
+	"CTNAME": "新北市",
+	"ZNAME": "淡水區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 252,
+	"ZIPNAME": "新北市三芝區",
+	"CTNAME": "新北市",
+	"ZNAME": "三芝區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 3,
+	"ZIPCODE": 253,
+	"ZIPNAME": "新北市石門區",
+	"CTNAME": "新北市",
+	"ZNAME": "石門區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 260,
+	"ZIPNAME": "宜蘭縣宜蘭市",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "宜蘭市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 261,
+	"ZIPNAME": "宜蘭縣頭城鎮",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "頭城鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 262,
+	"ZIPNAME": "宜蘭縣礁溪鄉",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "礁溪鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 263,
+	"ZIPNAME": "宜蘭縣壯圍鄉",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "壯圍鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 264,
+	"ZIPNAME": "宜蘭縣員山鄉",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "員山鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 265,
+	"ZIPNAME": "宜蘭縣羅東鎮",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "羅東鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 266,
+	"ZIPNAME": "宜蘭縣三星鄉",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "三星鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 267,
+	"ZIPNAME": "宜蘭縣大同鄉",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "大同鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 268,
+	"ZIPNAME": "宜蘭縣五結鄉",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "五結鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 269,
+	"ZIPNAME": "宜蘭縣冬山鄉",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "冬山鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 270,
+	"ZIPNAME": "宜蘭縣蘇澳鎮",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "蘇澳鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 272,
+	"ZIPNAME": "宜蘭縣南澳",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "南澳",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 5,
+	"ZIPCODE": 300,
+	"ZIPNAME": "新竹市",
+	"CTNAME": "新竹市",
+	"ZNAME": "新竹市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 302,
+	"ZIPNAME": "新竹縣竹北市",
+	"CTNAME": "新竹縣",
+	"ZNAME": "竹北市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 303,
+	"ZIPNAME": "新竹縣湖口鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "湖口鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 304,
+	"ZIPNAME": "新竹縣新豐鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "新豐鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 305,
+	"ZIPNAME": "新竹縣新埔鎮",
+	"CTNAME": "新竹縣",
+	"ZNAME": "新埔鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 306,
+	"ZIPNAME": "新竹縣關西鎮",
+	"CTNAME": "新竹縣",
+	"ZNAME": "關西鎮",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 307,
+	"ZIPNAME": "新竹縣芎林鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "芎林鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 308,
+	"ZIPNAME": "新竹縣寶山鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "寶山鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 310,
+	"ZIPNAME": "新竹縣竹東鎮",
+	"CTNAME": "新竹縣",
+	"ZNAME": "竹東鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 311,
+	"ZIPNAME": "新竹縣五峰鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "五峰鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 312,
+	"ZIPNAME": "新竹縣橫山鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "橫山鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 313,
+	"ZIPNAME": "新竹縣尖石鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "尖石鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 314,
+	"ZIPNAME": "新竹縣北埔鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "北埔鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 6,
+	"ZIPCODE": 315,
+	"ZIPNAME": "新竹縣峨眉鄉",
+	"CTNAME": "新竹縣",
+	"ZNAME": "峨眉鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 320,
+	"ZIPNAME": "桃園市中壢區",
+	"CTNAME": "桃園市",
+	"ZNAME": "中壢區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 324,
+	"ZIPNAME": "桃園市平鎮區",
+	"CTNAME": "桃園市",
+	"ZNAME": "平鎮區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 325,
+	"ZIPNAME": "桃園市龍潭區",
+	"CTNAME": "桃園市",
+	"ZNAME": "龍潭區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 326,
+	"ZIPNAME": "桃園市楊梅區",
+	"CTNAME": "桃園市",
+	"ZNAME": "楊梅區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 327,
+	"ZIPNAME": "桃園市新屋區",
+	"CTNAME": "桃園市",
+	"ZNAME": "新屋區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 328,
+	"ZIPNAME": "桃園市觀音區",
+	"CTNAME": "桃園市",
+	"ZNAME": "觀音區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 330,
+	"ZIPNAME": "桃園市桃園區",
+	"CTNAME": "桃園市",
+	"ZNAME": "桃園區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 333,
+	"ZIPNAME": "桃園市龜山區",
+	"CTNAME": "桃園市",
+	"ZNAME": "龜山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 334,
+	"ZIPNAME": "桃園市八德區",
+	"CTNAME": "桃園市",
+	"ZNAME": "八德區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 335,
+	"ZIPNAME": "桃園市大溪區",
+	"CTNAME": "桃園市",
+	"ZNAME": "大溪區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 336,
+	"ZIPNAME": "桃園市復興區",
+	"CTNAME": "桃園市",
+	"ZNAME": "復興區",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 337,
+	"ZIPNAME": "桃園市大園區",
+	"CTNAME": "桃園市",
+	"ZNAME": "大園區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 7,
+	"ZIPCODE": 338,
+	"ZIPNAME": "桃園市蘆竹區",
+	"CTNAME": "桃園市",
+	"ZNAME": "蘆竹區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 350,
+	"ZIPNAME": "苗栗縣竹南鎮",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "竹南鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 351,
+	"ZIPNAME": "苗栗縣頭份鎮",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "頭份鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 352,
+	"ZIPNAME": "苗栗縣三灣鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "三灣鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 353,
+	"ZIPNAME": "苗栗縣南庄鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "南庄鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 354,
+	"ZIPNAME": "苗栗縣獅潭鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "獅潭鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 356,
+	"ZIPNAME": "苗栗縣後龍鎮",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "後龍鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 357,
+	"ZIPNAME": "苗栗縣通霄鎮",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "通霄鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 358,
+	"ZIPNAME": "苗栗縣苑裡鎮",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "苑裡鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 360,
+	"ZIPNAME": "苗栗縣苗栗市",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "苗栗市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 361,
+	"ZIPNAME": "苗栗縣造橋鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "造橋鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 362,
+	"ZIPNAME": "苗栗縣頭屋鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "頭屋鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 363,
+	"ZIPNAME": "苗栗縣公館鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "公館鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 364,
+	"ZIPNAME": "苗栗縣大湖鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "大湖鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 365,
+	"ZIPNAME": "苗栗縣泰安鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "泰安鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 366,
+	"ZIPNAME": "苗栗縣銅鑼鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "銅鑼鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 367,
+	"ZIPNAME": "苗栗縣三義鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "三義鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 368,
+	"ZIPNAME": "苗栗縣西湖鄉",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "西湖鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 8,
+	"ZIPCODE": 369,
+	"ZIPNAME": "苗栗縣卓蘭鎮",
+	"CTNAME": "苗栗縣",
+	"ZNAME": "卓蘭鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 400,
+	"ZIPNAME": "臺中市中區",
+	"CTNAME": "臺中市",
+	"ZNAME": "中區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 401,
+	"ZIPNAME": "臺中市東區",
+	"CTNAME": "臺中市",
+	"ZNAME": "東區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 402,
+	"ZIPNAME": "臺中市南區",
+	"CTNAME": "臺中市",
+	"ZNAME": "南區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 403,
+	"ZIPNAME": "臺中市西區",
+	"CTNAME": "臺中市",
+	"ZNAME": "西區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 404,
+	"ZIPNAME": "臺中市北區",
+	"CTNAME": "臺中市",
+	"ZNAME": "北區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 406,
+	"ZIPNAME": "臺中市北屯區",
+	"CTNAME": "臺中市",
+	"ZNAME": "北屯區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 407,
+	"ZIPNAME": "臺中市西屯區",
+	"CTNAME": "臺中市",
+	"ZNAME": "西屯區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 408,
+	"ZIPNAME": "臺中市南屯區",
+	"CTNAME": "臺中市",
+	"ZNAME": "南屯區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 411,
+	"ZIPNAME": "臺中市太平區",
+	"CTNAME": "臺中市",
+	"ZNAME": "太平區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 412,
+	"ZIPNAME": "臺中市大里區",
+	"CTNAME": "臺中市",
+	"ZNAME": "大里區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 413,
+	"ZIPNAME": "臺中市霧峰區",
+	"CTNAME": "臺中市",
+	"ZNAME": "霧峰區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 414,
+	"ZIPNAME": "臺中市烏日區",
+	"CTNAME": "臺中市",
+	"ZNAME": "烏日區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 420,
+	"ZIPNAME": "臺中市豐原區",
+	"CTNAME": "臺中市",
+	"ZNAME": "豐原區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 421,
+	"ZIPNAME": "臺中市后里區",
+	"CTNAME": "臺中市",
+	"ZNAME": "后里區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 422,
+	"ZIPNAME": "臺中市石岡區",
+	"CTNAME": "臺中市",
+	"ZNAME": "石岡區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 423,
+	"ZIPNAME": "臺中市東勢區",
+	"CTNAME": "臺中市",
+	"ZNAME": "東勢區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 424,
+	"ZIPNAME": "臺中市和平區",
+	"CTNAME": "臺中市",
+	"ZNAME": "和平區",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 426,
+	"ZIPNAME": "臺中市新社區",
+	"CTNAME": "臺中市",
+	"ZNAME": "新社區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 427,
+	"ZIPNAME": "臺中市潭子區",
+	"CTNAME": "臺中市",
+	"ZNAME": "潭子區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 428,
+	"ZIPNAME": "臺中市大雅區",
+	"CTNAME": "臺中市",
+	"ZNAME": "大雅區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 429,
+	"ZIPNAME": "臺中市神岡區",
+	"CTNAME": "臺中市",
+	"ZNAME": "神岡區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 432,
+	"ZIPNAME": "臺中市大肚區",
+	"CTNAME": "臺中市",
+	"ZNAME": "大肚區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 433,
+	"ZIPNAME": "臺中市沙鹿區",
+	"CTNAME": "臺中市",
+	"ZNAME": "沙鹿區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 434,
+	"ZIPNAME": "臺中市龍井區",
+	"CTNAME": "臺中市",
+	"ZNAME": "龍井區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 435,
+	"ZIPNAME": "臺中市梧棲區",
+	"CTNAME": "臺中市",
+	"ZNAME": "梧棲區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 436,
+	"ZIPNAME": "臺中市清水區",
+	"CTNAME": "臺中市",
+	"ZNAME": "清水區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 437,
+	"ZIPNAME": "臺中市大甲區",
+	"CTNAME": "臺中市",
+	"ZNAME": "大甲區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 438,
+	"ZIPNAME": "臺中市外埔區",
+	"CTNAME": "臺中市",
+	"ZNAME": "外埔區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 9,
+	"ZIPCODE": 439,
+	"ZIPNAME": "臺中市大安區",
+	"CTNAME": "臺中市",
+	"ZNAME": "大安區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 500,
+	"ZIPNAME": "彰化縣彰化市",
+	"CTNAME": "彰化縣",
+	"ZNAME": "彰化市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 502,
+	"ZIPNAME": "彰化縣芬園鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "芬園鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 503,
+	"ZIPNAME": "彰化縣花壇鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "花壇鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 504,
+	"ZIPNAME": "彰化縣秀水鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "秀水鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 505,
+	"ZIPNAME": "彰化縣鹿港鎮",
+	"CTNAME": "彰化縣",
+	"ZNAME": "鹿港鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 506,
+	"ZIPNAME": "彰化縣福興鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "福興鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 507,
+	"ZIPNAME": "彰化縣線西鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "線西鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 508,
+	"ZIPNAME": "彰化縣和美鎮",
+	"CTNAME": "彰化縣",
+	"ZNAME": "和美鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 509,
+	"ZIPNAME": "彰化縣伸港鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "伸港鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 510,
+	"ZIPNAME": "彰化縣員林市",
+	"CTNAME": "彰化縣",
+	"ZNAME": "員林市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 511,
+	"ZIPNAME": "彰化縣社頭鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "社頭鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 512,
+	"ZIPNAME": "彰化縣永靖鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "永靖鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 513,
+	"ZIPNAME": "彰化縣埔心鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "埔心鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 514,
+	"ZIPNAME": "彰化縣溪湖鎮",
+	"CTNAME": "彰化縣",
+	"ZNAME": "溪湖鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 515,
+	"ZIPNAME": "彰化縣大村鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "大村鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 516,
+	"ZIPNAME": "彰化縣埔鹽鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "埔鹽鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 520,
+	"ZIPNAME": "彰化縣田中鎮",
+	"CTNAME": "彰化縣",
+	"ZNAME": "田中鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 521,
+	"ZIPNAME": "彰化縣北斗鎮",
+	"CTNAME": "彰化縣",
+	"ZNAME": "北斗鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 522,
+	"ZIPNAME": "彰化縣田尾鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "田尾鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 523,
+	"ZIPNAME": "彰化縣埤頭鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "埤頭鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 524,
+	"ZIPNAME": "彰化縣溪州鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "溪州鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 525,
+	"ZIPNAME": "彰化縣竹塘鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "竹塘鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 526,
+	"ZIPNAME": "彰化縣二林鎮",
+	"CTNAME": "彰化縣",
+	"ZNAME": "二林鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 527,
+	"ZIPNAME": "彰化縣大城鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "大城鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 528,
+	"ZIPNAME": "彰化縣芳苑鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "芳苑鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 11,
+	"ZIPCODE": 530,
+	"ZIPNAME": "彰化縣二水鄉",
+	"CTNAME": "彰化縣",
+	"ZNAME": "二水鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 540,
+	"ZIPNAME": "南投縣南投市",
+	"CTNAME": "南投縣",
+	"ZNAME": "南投市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 541,
+	"ZIPNAME": "南投縣中寮鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "中寮鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 542,
+	"ZIPNAME": "南投縣草屯鎮",
+	"CTNAME": "南投縣",
+	"ZNAME": "草屯鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 544,
+	"ZIPNAME": "南投縣國姓鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "國姓鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 545,
+	"ZIPNAME": "南投縣埔里鎮",
+	"CTNAME": "南投縣",
+	"ZNAME": "埔里鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 546,
+	"ZIPNAME": "南投縣仁愛鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "仁愛鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 551,
+	"ZIPNAME": "南投縣名間鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "名間鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 552,
+	"ZIPNAME": "南投縣集集鎮",
+	"CTNAME": "南投縣",
+	"ZNAME": "集集鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 553,
+	"ZIPNAME": "南投縣水里鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "水里鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 555,
+	"ZIPNAME": "南投縣魚池鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "魚池鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 556,
+	"ZIPNAME": "南投縣信義鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "信義鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 557,
+	"ZIPNAME": "南投縣竹山鎮",
+	"CTNAME": "南投縣",
+	"ZNAME": "竹山鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 12,
+	"ZIPCODE": 558,
+	"ZIPNAME": "南投縣鹿谷鄉",
+	"CTNAME": "南投縣",
+	"ZNAME": "鹿谷鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 13,
+	"ZIPCODE": 600,
+	"ZIPNAME": "嘉義市東區",
+	"CTNAME": "嘉義市",
+	"ZNAME": "東區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+},{
+	"CTID": 13,
+	"ZIPCODE": 600,
+	"ZIPNAME": "嘉義市西區",
+	"CTNAME": "嘉義市",
+	"ZNAME": "西區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 602,
+	"ZIPNAME": "嘉義縣番路鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "番路鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 603,
+	"ZIPNAME": "嘉義縣梅山鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "梅山鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 604,
+	"ZIPNAME": "嘉義縣竹崎鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "竹崎鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 605,
+	"ZIPNAME": "嘉義縣阿里山鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "阿里山鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 606,
+	"ZIPNAME": "嘉義縣中埔鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "中埔鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 607,
+	"ZIPNAME": "嘉義縣大埔鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "大埔鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 608,
+	"ZIPNAME": "嘉義縣水上鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "水上鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 611,
+	"ZIPNAME": "嘉義縣鹿草鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "鹿草鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 612,
+	"ZIPNAME": "嘉義縣太保市",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "太保市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 613,
+	"ZIPNAME": "嘉義縣朴子市",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "朴子市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 614,
+	"ZIPNAME": "嘉義縣東石鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "東石鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 615,
+	"ZIPNAME": "嘉義縣六腳鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "六腳鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 616,
+	"ZIPNAME": "嘉義縣新港鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "新港鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 621,
+	"ZIPNAME": "嘉義縣民雄鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "民雄鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 622,
+	"ZIPNAME": "嘉義縣大林鎮",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "大林鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 623,
+	"ZIPNAME": "嘉義縣溪口鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "溪口鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 624,
+	"ZIPNAME": "嘉義縣義竹鄉",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "義竹鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 14,
+	"ZIPCODE": 625,
+	"ZIPNAME": "嘉義縣布袋鎮",
+	"CTNAME": "嘉義縣",
+	"ZNAME": "布袋鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 630,
+	"ZIPNAME": "雲林縣斗南鎮",
+	"CTNAME": "雲林縣",
+	"ZNAME": "斗南鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 631,
+	"ZIPNAME": "雲林縣大埤鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "大埤鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 632,
+	"ZIPNAME": "雲林縣虎尾鎮",
+	"CTNAME": "雲林縣",
+	"ZNAME": "虎尾鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 633,
+	"ZIPNAME": "雲林縣土庫鎮",
+	"CTNAME": "雲林縣",
+	"ZNAME": "土庫鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 634,
+	"ZIPNAME": "雲林縣褒忠鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "褒忠鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 635,
+	"ZIPNAME": "雲林縣東勢鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "東勢鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 636,
+	"ZIPNAME": "雲林縣台西鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "台西鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 637,
+	"ZIPNAME": "雲林縣崙背鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "崙背鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 638,
+	"ZIPNAME": "雲林縣麥寮鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "麥寮鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 640,
+	"ZIPNAME": "雲林縣斗六市",
+	"CTNAME": "雲林縣",
+	"ZNAME": "斗六市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 643,
+	"ZIPNAME": "雲林縣林內鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "林內鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 646,
+	"ZIPNAME": "雲林縣古坑鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "古坑鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 647,
+	"ZIPNAME": "雲林縣莿桐鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "莿桐鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 648,
+	"ZIPNAME": "雲林縣西螺鎮",
+	"CTNAME": "雲林縣",
+	"ZNAME": "西螺鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 649,
+	"ZIPNAME": "雲林縣二崙鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "二崙鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 651,
+	"ZIPNAME": "雲林縣北港鎮",
+	"CTNAME": "雲林縣",
+	"ZNAME": "北港鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 652,
+	"ZIPNAME": "雲林縣水林鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "水林鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 653,
+	"ZIPNAME": "雲林縣口湖鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "口湖鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 654,
+	"ZIPNAME": "雲林縣四湖鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "四湖鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 15,
+	"ZIPCODE": 655,
+	"ZIPNAME": "雲林縣元長鄉",
+	"CTNAME": "雲林縣",
+	"ZNAME": "元長鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 700,
+	"ZIPNAME": "臺南市中西區",
+	"CTNAME": "臺南市",
+	"ZNAME": "中西區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 701,
+	"ZIPNAME": "臺南市東區",
+	"CTNAME": "臺南市",
+	"ZNAME": "東區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 702,
+	"ZIPNAME": "臺南市南區",
+	"CTNAME": "臺南市",
+	"ZNAME": "南區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 703,
+	"ZIPNAME": "臺南市西區",
+	"CTNAME": "臺南市",
+	"ZNAME": "西區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 704,
+	"ZIPNAME": "臺南市北區",
+	"CTNAME": "臺南市",
+	"ZNAME": "北區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 708,
+	"ZIPNAME": "臺南市安平區",
+	"CTNAME": "臺南市",
+	"ZNAME": "安平區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 709,
+	"ZIPNAME": "臺南市安南區",
+	"CTNAME": "臺南市",
+	"ZNAME": "安南區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 710,
+	"ZIPNAME": "臺南市永康區",
+	"CTNAME": "臺南市",
+	"ZNAME": "永康區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 711,
+	"ZIPNAME": "臺南市歸仁區",
+	"CTNAME": "臺南市",
+	"ZNAME": "歸仁區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 712,
+	"ZIPNAME": "臺南市新化區",
+	"CTNAME": "臺南市",
+	"ZNAME": "新化區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 713,
+	"ZIPNAME": "臺南市左鎮區",
+	"CTNAME": "臺南市",
+	"ZNAME": "左鎮區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 714,
+	"ZIPNAME": "臺南市玉井區",
+	"CTNAME": "臺南市",
+	"ZNAME": "玉井區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 715,
+	"ZIPNAME": "臺南市楠西區",
+	"CTNAME": "臺南市",
+	"ZNAME": "楠西區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 716,
+	"ZIPNAME": "臺南市南化區",
+	"CTNAME": "臺南市",
+	"ZNAME": "南化區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 717,
+	"ZIPNAME": "臺南市仁德區",
+	"CTNAME": "臺南市",
+	"ZNAME": "仁德區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 718,
+	"ZIPNAME": "臺南市關廟區",
+	"CTNAME": "臺南市",
+	"ZNAME": "關廟區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 719,
+	"ZIPNAME": "臺南市龍崎區",
+	"CTNAME": "臺南市",
+	"ZNAME": "龍崎區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 720,
+	"ZIPNAME": "臺南市官田區",
+	"CTNAME": "臺南市",
+	"ZNAME": "官田區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 721,
+	"ZIPNAME": "臺南市麻豆區",
+	"CTNAME": "臺南市",
+	"ZNAME": "麻豆區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 722,
+	"ZIPNAME": "臺南市佳里區",
+	"CTNAME": "臺南市",
+	"ZNAME": "佳里區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 723,
+	"ZIPNAME": "臺南市西港區",
+	"CTNAME": "臺南市",
+	"ZNAME": "西港區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 724,
+	"ZIPNAME": "臺南市七股區",
+	"CTNAME": "臺南市",
+	"ZNAME": "七股區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 725,
+	"ZIPNAME": "臺南市將軍區",
+	"CTNAME": "臺南市",
+	"ZNAME": "將軍區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 726,
+	"ZIPNAME": "臺南市學甲區",
+	"CTNAME": "臺南市",
+	"ZNAME": "學甲區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 727,
+	"ZIPNAME": "臺南市北門區",
+	"CTNAME": "臺南市",
+	"ZNAME": "北門區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 730,
+	"ZIPNAME": "臺南市新營區",
+	"CTNAME": "臺南市",
+	"ZNAME": "新營區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 731,
+	"ZIPNAME": "臺南市後壁區",
+	"CTNAME": "臺南市",
+	"ZNAME": "後壁區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 732,
+	"ZIPNAME": "臺南市白河區",
+	"CTNAME": "臺南市",
+	"ZNAME": "白河區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 733,
+	"ZIPNAME": "臺南市東山區",
+	"CTNAME": "臺南市",
+	"ZNAME": "東山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 734,
+	"ZIPNAME": "臺南市六甲區",
+	"CTNAME": "臺南市",
+	"ZNAME": "六甲區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 735,
+	"ZIPNAME": "臺南市下營區",
+	"CTNAME": "臺南市",
+	"ZNAME": "下營區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 736,
+	"ZIPNAME": "臺南市柳營區",
+	"CTNAME": "臺南市",
+	"ZNAME": "柳營區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 737,
+	"ZIPNAME": "臺南市鹽水區",
+	"CTNAME": "臺南市",
+	"ZNAME": "鹽水區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 741,
+	"ZIPNAME": "臺南市善化區",
+	"CTNAME": "臺南市",
+	"ZNAME": "善化區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 742,
+	"ZIPNAME": "臺南市大內區",
+	"CTNAME": "臺南市",
+	"ZNAME": "大內區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 743,
+	"ZIPNAME": "臺南市山上區",
+	"CTNAME": "臺南市",
+	"ZNAME": "山上區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 744,
+	"ZIPNAME": "臺南市新市區",
+	"CTNAME": "臺南市",
+	"ZNAME": "新市區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 16,
+	"ZIPCODE": 745,
+	"ZIPNAME": "臺南市安定區",
+	"CTNAME": "臺南市",
+	"ZNAME": "安定區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 800,
+	"ZIPNAME": "高雄市新興區",
+	"CTNAME": "高雄市",
+	"ZNAME": "新興區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 801,
+	"ZIPNAME": "高雄市前金區",
+	"CTNAME": "高雄市",
+	"ZNAME": "前金區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 802,
+	"ZIPNAME": "高雄市苓雅區",
+	"CTNAME": "高雄市",
+	"ZNAME": "苓雅區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 803,
+	"ZIPNAME": "高雄市鹽埕區",
+	"CTNAME": "高雄市",
+	"ZNAME": "鹽埕區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 804,
+	"ZIPNAME": "高雄市鼓山區",
+	"CTNAME": "高雄市",
+	"ZNAME": "鼓山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 805,
+	"ZIPNAME": "高雄市旗津區",
+	"CTNAME": "高雄市",
+	"ZNAME": "旗津區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 806,
+	"ZIPNAME": "高雄市前鎮區",
+	"CTNAME": "高雄市",
+	"ZNAME": "前鎮區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 807,
+	"ZIPNAME": "高雄市三民區",
+	"CTNAME": "高雄市",
+	"ZNAME": "三民區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 811,
+	"ZIPNAME": "高雄市楠梓區",
+	"CTNAME": "高雄市",
+	"ZNAME": "楠梓區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 812,
+	"ZIPNAME": "高雄市小港區",
+	"CTNAME": "高雄市",
+	"ZNAME": "小港區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 813,
+	"ZIPNAME": "高雄市左營區",
+	"CTNAME": "高雄市",
+	"ZNAME": "左營區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 814,
+	"ZIPNAME": "高雄市仁武區",
+	"CTNAME": "高雄市",
+	"ZNAME": "仁武區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 815,
+	"ZIPNAME": "高雄市大社區",
+	"CTNAME": "高雄市",
+	"ZNAME": "大社區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 820,
+	"ZIPNAME": "高雄市岡山區",
+	"CTNAME": "高雄市",
+	"ZNAME": "岡山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 821,
+	"ZIPNAME": "高雄市路竹區",
+	"CTNAME": "高雄市",
+	"ZNAME": "路竹區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 822,
+	"ZIPNAME": "高雄市阿蓮區",
+	"CTNAME": "高雄市",
+	"ZNAME": "阿蓮區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 823,
+	"ZIPNAME": "高雄市田寮區",
+	"CTNAME": "高雄市",
+	"ZNAME": "田寮區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 824,
+	"ZIPNAME": "高雄市燕巢區",
+	"CTNAME": "高雄市",
+	"ZNAME": "燕巢區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 825,
+	"ZIPNAME": "高雄市橋頭區",
+	"CTNAME": "高雄市",
+	"ZNAME": "橋頭區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 826,
+	"ZIPNAME": "高雄市梓官區",
+	"CTNAME": "高雄市",
+	"ZNAME": "梓官區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 827,
+	"ZIPNAME": "高雄市彌陀區",
+	"CTNAME": "高雄市",
+	"ZNAME": "彌陀區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 828,
+	"ZIPNAME": "高雄市永安區",
+	"CTNAME": "高雄市",
+	"ZNAME": "永安區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 829,
+	"ZIPNAME": "高雄市湖內區",
+	"CTNAME": "高雄市",
+	"ZNAME": "湖內區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 830,
+	"ZIPNAME": "高雄市鳳山區",
+	"CTNAME": "高雄市",
+	"ZNAME": "鳳山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 831,
+	"ZIPNAME": "高雄市大寮區",
+	"CTNAME": "高雄市",
+	"ZNAME": "大寮區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 832,
+	"ZIPNAME": "高雄市林園區",
+	"CTNAME": "高雄市",
+	"ZNAME": "林園區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 833,
+	"ZIPNAME": "高雄市鳥松區",
+	"CTNAME": "高雄市",
+	"ZNAME": "鳥松區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 840,
+	"ZIPNAME": "高雄市大樹區",
+	"CTNAME": "高雄市",
+	"ZNAME": "大樹區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 842,
+	"ZIPNAME": "高雄市旗山區",
+	"CTNAME": "高雄市",
+	"ZNAME": "旗山區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 843,
+	"ZIPNAME": "高雄市美濃區",
+	"CTNAME": "高雄市",
+	"ZNAME": "美濃區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 844,
+	"ZIPNAME": "高雄市六龜區",
+	"CTNAME": "高雄市",
+	"ZNAME": "六龜區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 845,
+	"ZIPNAME": "高雄市內門區",
+	"CTNAME": "高雄市",
+	"ZNAME": "內門區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 846,
+	"ZIPNAME": "高雄市杉林區",
+	"CTNAME": "高雄市",
+	"ZNAME": "杉林區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 847,
+	"ZIPNAME": "高雄市甲仙區",
+	"CTNAME": "高雄市",
+	"ZNAME": "甲仙區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 848,
+	"ZIPNAME": "高雄市桃源區",
+	"CTNAME": "高雄市",
+	"ZNAME": "桃源區",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 849,
+	"ZIPNAME": "高雄市那瑪夏區",
+	"CTNAME": "高雄市",
+	"ZNAME": "那瑪夏區",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 851,
+	"ZIPNAME": "高雄市茂林區",
+	"CTNAME": "高雄市",
+	"ZNAME": "茂林區",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 852,
+	"ZIPNAME": "高雄市茄萣區",
+	"CTNAME": "高雄市",
+	"ZNAME": "茄萣區",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 20,
+	"ZIPCODE": 880,
+	"ZIPNAME": "澎湖縣馬公市",
+	"CTNAME": "澎湖縣",
+	"ZNAME": "馬公市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 20,
+	"ZIPCODE": 881,
+	"ZIPNAME": "澎湖縣西嶼鄉",
+	"CTNAME": "澎湖縣",
+	"ZNAME": "西嶼鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 20,
+	"ZIPCODE": 882,
+	"ZIPNAME": "澎湖縣望安鄉",
+	"CTNAME": "澎湖縣",
+	"ZNAME": "望安鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 20,
+	"ZIPCODE": 883,
+	"ZIPNAME": "澎湖縣七美鄉",
+	"CTNAME": "澎湖縣",
+	"ZNAME": "七美鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 20,
+	"ZIPCODE": 884,
+	"ZIPNAME": "澎湖縣白沙鄉",
+	"CTNAME": "澎湖縣",
+	"ZNAME": "白沙鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 20,
+	"ZIPCODE": 885,
+	"ZIPNAME": "澎湖縣湖西鄉",
+	"CTNAME": "澎湖縣",
+	"ZNAME": "湖西鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 900,
+	"ZIPNAME": "屏東縣屏東市",
+	"CTNAME": "屏東縣",
+	"ZNAME": "屏東市",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 901,
+	"ZIPNAME": "屏東縣三地門鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "三地門鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 902,
+	"ZIPNAME": "屏東縣霧台鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "霧台鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 903,
+	"ZIPNAME": "屏東縣瑪家鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "瑪家鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 904,
+	"ZIPNAME": "屏東縣九如鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "九如鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 905,
+	"ZIPNAME": "屏東縣里港鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "里港鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 906,
+	"ZIPNAME": "屏東縣高樹鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "高樹鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 907,
+	"ZIPNAME": "屏東縣鹽埔鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "鹽埔鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 908,
+	"ZIPNAME": "屏東縣長治鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "長治鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 909,
+	"ZIPNAME": "屏東縣麟洛鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "麟洛鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 911,
+	"ZIPNAME": "屏東縣竹田鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "竹田鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 912,
+	"ZIPNAME": "屏東縣內埔鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "內埔鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 913,
+	"ZIPNAME": "屏東縣萬丹鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "萬丹鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 920,
+	"ZIPNAME": "屏東縣潮州鎮",
+	"CTNAME": "屏東縣",
+	"ZNAME": "潮州鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 921,
+	"ZIPNAME": "屏東縣泰武鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "泰武鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 922,
+	"ZIPNAME": "屏東縣來義鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "來義鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 923,
+	"ZIPNAME": "屏東縣萬巒鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "萬巒鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 924,
+	"ZIPNAME": "屏東縣崁頂鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "崁頂鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 925,
+	"ZIPNAME": "屏東縣新埤鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "新埤鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 926,
+	"ZIPNAME": "屏東縣南州鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "南州鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 927,
+	"ZIPNAME": "屏東縣林邊鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "林邊鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 928,
+	"ZIPNAME": "屏東縣東港鎮",
+	"CTNAME": "屏東縣",
+	"ZNAME": "東港鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 929,
+	"ZIPNAME": "屏東縣琉球鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "琉球鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 931,
+	"ZIPNAME": "屏東縣佳冬鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "佳冬鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 932,
+	"ZIPNAME": "屏東縣新園鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "新園鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 940,
+	"ZIPNAME": "屏東縣枋寮鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "枋寮鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 941,
+	"ZIPNAME": "屏東縣枋山鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "枋山鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 942,
+	"ZIPNAME": "屏東縣春日鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "春日鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 943,
+	"ZIPNAME": "屏東縣獅子鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "獅子鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 944,
+	"ZIPNAME": "屏東縣車城鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "車城鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 945,
+	"ZIPNAME": "屏東縣牡丹鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "牡丹鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 946,
+	"ZIPNAME": "屏東縣恆春鎮",
+	"CTNAME": "屏東縣",
+	"ZNAME": "恆春鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 21,
+	"ZIPCODE": 947,
+	"ZIPNAME": "屏東縣滿州鄉",
+	"CTNAME": "屏東縣",
+	"ZNAME": "滿州鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 950,
+	"ZIPNAME": "臺東縣台東市",
+	"CTNAME": "臺東縣",
+	"ZNAME": "台東市",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 951,
+	"ZIPNAME": "臺東縣綠島鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "綠島鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 952,
+	"ZIPNAME": "臺東縣蘭嶼鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "蘭嶼鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 953,
+	"ZIPNAME": "臺東縣延平鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "延平鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 954,
+	"ZIPNAME": "臺東縣卑南鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "卑南鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 955,
+	"ZIPNAME": "臺東縣鹿野鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "鹿野鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 956,
+	"ZIPNAME": "臺東縣關山鎮",
+	"CTNAME": "臺東縣",
+	"ZNAME": "關山鎮",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 957,
+	"ZIPNAME": "臺東縣海端鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "海端鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 958,
+	"ZIPNAME": "臺東縣池上鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "池上鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 959,
+	"ZIPNAME": "臺東縣東河鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "東河鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 961,
+	"ZIPNAME": "臺東縣成功鎮",
+	"CTNAME": "臺東縣",
+	"ZNAME": "成功鎮",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 962,
+	"ZIPNAME": "臺東縣長濱鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "長濱鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 963,
+	"ZIPNAME": "臺東縣太麻里鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "太麻里鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 964,
+	"ZIPNAME": "臺東縣金峰鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "金峰鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 965,
+	"ZIPNAME": "臺東縣大武鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "大武鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 22,
+	"ZIPCODE": 966,
+	"ZIPNAME": "臺東縣達仁鄉",
+	"CTNAME": "臺東縣",
+	"ZNAME": "達仁鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 970,
+	"ZIPNAME": "花蓮縣花蓮市",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "花蓮市",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 971,
+	"ZIPNAME": "花蓮縣新城鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "新城鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 972,
+	"ZIPNAME": "花蓮縣秀林鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "秀林鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 973,
+	"ZIPNAME": "花蓮縣吉安鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "吉安鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 974,
+	"ZIPNAME": "花蓮縣壽豐鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "壽豐鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 975,
+	"ZIPNAME": "花蓮縣鳳林鎮",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "鳳林鎮",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 976,
+	"ZIPNAME": "花蓮縣光復鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "光復鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 977,
+	"ZIPNAME": "花蓮縣豐濱鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "豐濱鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 978,
+	"ZIPNAME": "花蓮縣瑞穗鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "瑞穗鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 979,
+	"ZIPNAME": "花蓮縣萬榮鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "萬榮鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 981,
+	"ZIPNAME": "花蓮縣玉里鎮",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "玉里鎮",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 982,
+	"ZIPNAME": "花蓮縣卓溪鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "卓溪鄉",
+	"LCID": "01",
+	"KLNAME": "山地鄉",
+	"LNAME": "[山地鄉]"
+}, {
+	"CTID": 23,
+	"ZIPCODE": 983,
+	"ZIPNAME": "花蓮縣富里鄉",
+	"CTNAME": "花蓮縣",
+	"ZNAME": "富里鄉",
+	"LCID": "02",
+	"KLNAME": "平地鄉",
+	"LNAME": "[平地鄉]"
+}, {
+	"CTID": 24,
+	"ZIPCODE": 890,
+	"ZIPNAME": "金門縣金沙鎮",
+	"CTNAME": "金門縣",
+	"ZNAME": "金沙鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 24,
+	"ZIPCODE": 891,
+	"ZIPNAME": "金門縣金湖鎮",
+	"CTNAME": "金門縣",
+	"ZNAME": "金湖鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 24,
+	"ZIPCODE": 892,
+	"ZIPNAME": "金門縣金寧鄉",
+	"CTNAME": "金門縣",
+	"ZNAME": "金寧鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 24,
+	"ZIPCODE": 893,
+	"ZIPNAME": "金門縣金城鎮",
+	"CTNAME": "金門縣",
+	"ZNAME": "金城鎮",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 24,
+	"ZIPCODE": 894,
+	"ZIPNAME": "金門縣烈嶼鄉",
+	"CTNAME": "金門縣",
+	"ZNAME": "烈嶼鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 24,
+	"ZIPCODE": 896,
+	"ZIPNAME": "金門縣烏坵鄉",
+	"CTNAME": "金門縣",
+	"ZNAME": "烏坵鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 25,
+	"ZIPCODE": 209,
+	"ZIPNAME": "連江縣南竿鄉",
+	"CTNAME": "連江縣",
+	"ZNAME": "南竿鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 25,
+	"ZIPCODE": 210,
+	"ZIPNAME": "連江縣北竿鄉",
+	"CTNAME": "連江縣",
+	"ZNAME": "北竿鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 25,
+	"ZIPCODE": 211,
+	"ZIPNAME": "連江縣莒光鄉",
+	"CTNAME": "連江縣",
+	"ZNAME": "莒光鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 25,
+	"ZIPCODE": 212,
+	"ZIPNAME": "連江縣東引鄉",
+	"CTNAME": "連江縣",
+	"ZNAME": "東引鄉",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 817,
+	"ZIPNAME": "高雄市東沙",
+	"CTNAME": "高雄市",
+	"ZNAME": "東沙",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 18,
+	"ZIPCODE": 819,
+	"ZIPNAME": "高雄市南沙",
+	"CTNAME": "高雄市",
+	"ZNAME": "南沙",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 4,
+	"ZIPCODE": 290,
+	"ZIPNAME": "宜蘭縣釣魚台列嶼",
+	"CTNAME": "宜蘭縣",
+	"ZNAME": "釣魚台列嶼",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}, {
+	"CTID": 999,
+	"ZIPCODE": 999,
+	"ZIPNAME": "其他",
+	"CTNAME": "其他",
+	"ZNAME": "其他",
+	"LCID": "03",
+	"KLNAME": "非原住民地區",
+	"LNAME": "[非原住民地區]"
+}]

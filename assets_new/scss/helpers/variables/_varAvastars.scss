@@ -1,0 +1,68 @@
+
+
+
+// Avatar
+// =========================================================
+
+// Width & Heights
+$avatar-width: $btn-icon-width !default;
+$avatar-width-xss: 1rem !default;
+$avatar-width-xs: $btn-icon-width-xs !default;
+$avatar-width-sm: $btn-icon-width-sm !default;
+$avatar-width-lg: $btn-icon-width-lg !default;
+$avatar-width-xl: $font-size-base * 5.625 !default;
+$avatar-width-xxl: $font-size-base * 7 !default;
+$avatar-status-width: $btn-status-width !default;
+$avatar-status-width-sm: $font-size-base * 0.9375 !default;
+$avatar-status-width-lg: $font-size-base * 1.625 !default;
+
+$avatar-height: $btn-icon-width !default;
+$avatar-height-xss: $avatar-width-xss !default;
+$avatar-height-xs: $avatar-width-xs !default;
+$avatar-height-sm: $avatar-width-sm !default;
+$avatar-height-lg: $avatar-width-lg !default;
+$avatar-height-xl: $avatar-width-xl !default;
+$avatar-height-xxl: $avatar-width-xxl !default;
+$avatar-status-height: $avatar-status-width !default;
+$avatar-status-height-sm: $avatar-status-width-sm !default;
+$avatar-status-height-lg: $avatar-status-width-lg !default;
+
+// Backgrounds
+$avatar-bg-color: $white !default;
+
+// Border
+$avatar-img-border-radius: $border-radius !default;
+$avatar-circle-border-radius: $border-radius-rounded !default;
+$avatar-border-width: 2px !default;
+$avatar-border-color: $white !default;
+$avatar-border-width-lg: 5px !default;
+$avatar-border-color-lg: $white !default;
+$avatar-border-width-xl: 7px !default;
+$avatar-border-color-xl: $white !default;
+$avatar-status-border-radius: $avatar-circle-border-radius !default;
+$avatar-status-border-width: 0.125rem !default;
+$avatar-status-border-color: $white !default;
+
+// Z-index
+$avatar-group-z-index: 2 !default;
+
+// Type
+$avatar-font-size-xss: $btn-icon-font-size-xs !default;
+$avatar-font-size-xs: $btn-icon-font-size-xs !default;
+$avatar-font-size: $btn-icon-font-size !default;
+$avatar-font-size-sm: $btn-icon-font-size-sm !default;
+$avatar-font-size-lg: $btn-icon-font-size-lg !default;
+$avatar-font-size-xl: $font-size-base * 2 !default;
+$avatar-font-size-xxl: $font-size-base * 3 !default;
+$avatar-font-weight: $btn-icon-font-weight !default;
+$avatar-status-font-size: $btn-status-font-size !default;
+$avatar-status-line-height: $btn-status-line-height !default;
+$avatar-status-font-size-sm: $font-size-base * 0.5 !default;
+$avatar-status-font-size-lg: $font-size-base * 0.75 !default;
+
+// Margins
+$avatar-group-margin-x-xs: -0.6125rem !default;
+$avatar-group-margin-x: -1rem !default;
+$avatar-group-margin-x-sm: -0.875rem !default;
+$avatar-group-margin-x-lg: -1.5rem !default;
+$avatar-group-margin-x-xl: -2rem !default;

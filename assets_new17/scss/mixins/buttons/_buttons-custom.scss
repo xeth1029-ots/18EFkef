@@ -1,0 +1,220 @@
+@charset "utf-8";
+
+//   Mixins > button custom
+// // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// button {
+//   width: 150px;
+//   height: 50px;
+//   cursor: pointer;
+//   border: none;
+//   transition: 500ms;
+//   border-radius: 10px;
+//   color: rgba(255,255,255,1);
+//   font-size: 30px;
+//   text-shadow: 1px 0px 0px #333;
+//   background: rgba(0,0,0,0.1);
+//   border-bottom: 5px solid rgba(0,0,0,0.2);
+//   box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+//   font-family: 'Damion', cursive;
+// }
+
+// button:hover {
+//   transform: translateY(-5px);
+//   box-shadow: 0px 15px 10px rgba(0,0,0,0.2);
+// }
+
+// button:focus {
+//   outline: none;
+// }
+
+// button {
+//   width: 150px;
+//   height: 50px;
+//   cursor: pointer;
+//   background:linear-gradient(45deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+//   background-size: 200%;
+//   background-position: left;
+//   transition: 500ms;
+//   box-shadow: inset 0px 0px 5px #AA771C, 5px 5px 10px rgba(0,0,0,0.2);
+//   border: 4px solid #BF953F;
+//   border-radius: 5px;
+//   color: #AA771C;
+//   font-size: 25px;
+//   font-family: 'Monoton', cursive;
+// }
+
+// button:hover {
+//   background-position: right;
+// }
+
+// button:focus {
+//   outline: none;
+// }
+// // 
+// button {
+//   width: 150px;
+//   height: 50px;
+//   cursor: pointer;
+//   font-size: 20px;
+//   font-family: 'Staatliches', cursive;
+//   letter-spacing: 5px;
+//   background: #ffc421;
+//   border: 2px solid black;
+//   box-shadow: 0px 0px 0px rgba(0,0,0,0.4);
+//   transition: 500ms;
+// }
+ 
+// button {
+//   width: 150px;
+//   height: 50px;
+//   cursor: pointer;
+//   background: black;
+//   border: none;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 5px 0 8px 5px;
+//   box-shadow: -8px 8px 5px rgba(0,0,0,0.5);
+//   transition: 500ms;
+//   font-family: 'Orbitron', sans-serif;
+//   font-size: 16px;
+// }
+
+// button div {
+//   width: 142px;
+//   height: 42px;
+//   background: white;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// button:before {
+//   height: 42px;
+//   width: 5px;
+//   border: 4px solid black;
+//   background: #ddd;
+//   content: '';
+//   position: absolute;
+//   transform: skewY(-30deg) translateX(-78px) translateY(-42px);
+// }
+
+// button:after {
+//   width: 135px;
+//   height: 3px;
+//   border: 4px solid black;
+//   background: #bbb;
+//   content: '';
+//   position: absolute;
+//   transform: skewX(-55deg) translateY(26px) translateX(32px)
+// }
+
+// button:focus {
+//   outline: none;
+// }
+
+// button:hover {
+//   transform: translateX(5px) translateY(-5px);
+//   box-shadow: -15px 15px 5px rgba(0,0,0,0.5);
+// }
+// button:after {
+//   content: '';
+//   position: absolute;
+//   transform: translateX(-55px) translateY(-40px);
+//   width: 25px;
+//   height: 25px;
+//   border-radius: 50%;
+//   background: transparent;
+//   box-shadow: 0px 0px 50px transparent;
+//   transition: 500ms;
+// }
+
+// button:hover {
+//   transform: translateY(-5px);
+//   box-shadow: 0px 10px 10px rgba(0,0,0,0.4);
+// }
+
+// button:hover:after {
+//   background: white;
+//   box-shadow: 0px 0px 20px #ffc421, 0px 0px 30px #ffc421, inset 0px 0px 10px #ffc421;
+//   animation: spin 1s infinite linear;
+// }
+
+// @keyframes spin{
+//   25%{transform: translateX(-25px) translateY(-35px);
+//       width: 15px;
+//       height: 15px;}
+//   50% {transform: translateX(-55px) translateY(-30px);
+//       width: 5px;
+//       height: 5px;}
+//   75% {transform: translateX(-85px) translateY(-35px);
+//       width: 15px;
+//       height: 15px;}
+// }
+
+// button:focus {
+//   outline: none;
+// }
+// Custom variant
+@mixin button-custom-variant($color, $icon-color, $border-color, $bg-color, $color-active, $icon-color-active, $border-color-active, $bg-color-active) {
+  @if $color != null {
+    color: $color;
+  }
+
+  @if $icon-color != null {
+    i {
+      color: $icon-color;
+    }
+
+    .svg-icon {
+      @include svg-icon-color($icon-color);
+    }
+
+    &.dropdown-toggle:after {
+      color: $icon-color;
+    }
+  }
+
+  @if $border-color != null {
+    border-color: $border-color;
+  }
+
+  @if $bg-color != null {
+    background-color: $bg-color;
+  }
+
+  .btn-check:checked + &,
+  .btn-check:active + &,
+  &:focus:not(.btn-active),
+  &:hover:not(.btn-active),
+  &:active:not(.btn-active),
+  &.active,
+  &.show,
+  .show > & {
+    @if $color-active != null {
+      color: $color-active;
+    }
+
+    @if $icon-color-active != null {
+      i {
+        color: $icon-color-active;
+      }
+
+      .svg-icon {
+        @include svg-icon-color($icon-color-active);
+      }
+
+      &.dropdown-toggle:after {
+        color: $icon-color-active;
+      }
+    }
+
+    @if $border-color-active != null {
+      border-color: $border-color-active;
+    }
+
+    @if $bg-color-active != null {
+      background-color: $bg-color-active !important;
+    }
+  }
+}

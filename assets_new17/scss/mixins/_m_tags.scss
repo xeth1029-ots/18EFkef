@@ -1,0 +1,51 @@
+// 
+// @include selected-label;
+//
+@mixin selected-label {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  border-radius: $border-radius-lg;
+  border: $white 1px solid;
+  background-color: $grey-100;
+  color: _var("dark", $dark);
+  padding: .625rem 1.125rem;
+  font-size: $category-item-label-size;
+  font-weight: 500;
+  user-select: none;
+  margin-right: 1.25rem;
+  margin-bottom: 0.25rem;
+  transition: $transition-base;
+
+  @include hover {
+    background-color: $grey-600;
+    color: _var("grey-50", $grey-50);
+    transform: scale(1.025);
+  }
+
+
+  > span {
+    display: block;
+  }
+
+  @include xs {
+    padding: 0.375rem 0.875rem;
+  }
+}
+
+@mixin selected-label-close {
+  position: absolute;
+  right: -0.5rem;
+  top: -0.5rem;
+  display: inline - block;
+  border: $white 1px solid;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+
+  @include size(1.5rem);
+
+  transition: $transition;
+
+  // @include svg-bg-icon($type: close, $color: $primary-800, $position: center, $size: contain);
+  background-image: t-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='#{$grey-800}'%3E%3Cpath d='M14.9 2H9.1a3.5 3.5 0 0 0-2.1.9l-4.1 4A3.5 3.5 0 0 0 2 9.2v5.8a3.5 3.5 0 0 0 .9 2.1l4 4.1a3.5 3.5 0 0 0 2.2.9h5.8a3.5 3.5 0 0 0 2.1-.9l4.1-4a3.5 3.5 0 0 0 .9-2.2V9.1a3.5 3.5 0 0 0-.9-2.1l-4-4.1a3.5 3.5 0 0 0-2.2-.9Z' data-name='Vector' opacity='.4'/%3E%3Cpath d='m13 12 3-3a.8.8 0 0 0-1-1l-3 3-3-3a.8.8 0 0 0-1 1l3 3-3 3a.8.8 0 0 0 0 1 .7.7 0 0 0 1 0l3-3 3 3a.7.7 0 0 0 1 0 .8.8 0 0 0 0-1Z' data-name='Vector'/%3E%3C/g%3E%3C/svg%3E"));
+}

@@ -1,0 +1,215 @@
+﻿@using WKEFSERVICE.Areas.A3.Models;
+@model C401MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C401M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">會議報名管理</h3>
+                            <p class="bt-section-para">提供管理者可針對會議活動進行查詢、新增、修改、刪除、報名名單管理等功能</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.MeetingType, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.MeetingType, new SelectList(Model.MeetingType_list, "Value", "Text", Model.MeetingType), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.MeetingName, new { @class = "t-form-label" })
+                                            @Html.TextBoxFor(m => m.MeetingName, new { size = "30", maxlength = "30", placeholder = "", @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("會議日期(起 ~ 迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.MeetingDateS_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.MeetingDateE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.Label("報名日期(起 ~ 迄)", new { @class = "t-form-label", style = "min-width: 10rem;" })
+                                            @Html.DatePickerTWFor(m => m.SignUpDateS_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                            @Html.DatePickerTWFor(m => m.SignUpDateE_AD, new { @class = "t-form-control ml-4", placeholder = "YYY/MM/DD" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.CreatedUnit, new { @class = "t-form-label" })
+                                            @Html.CheckBoxListFor(m => m.CreatedUnit_SHOW, Model.CreatedUnit_SHOW_list, new { @class = "t-form-control ml-4", id = "CreatedUnit_SHOW" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.MeetLocated, new { @class = "t-form-label" })
+                                            @Html.CheckBoxListFor(m => m.MeetLocated_SHOW, Model.MeetLocated_SHOW_list, new { @class = "t-form-control ml-4", id = "MeetLocated_SHOW" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.IsSignUpStop, new { @class = "t-form-label" })
+                                            @Html.RadioButtonFor(m => m.IsSignUpStop, "1", new { style = "margin-top: 10px; margin-left: 30px; margin-right: 10px; width: 30px; height: 30px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">是</p>
+                                            @Html.RadioButtonFor(m => m.IsSignUpStop, "0", new { style = "margin-top: 10px; margin-left: 30px; margin-right: 10px; width: 30px; height: 30px;" }) <p style="display: inline-block; margin-bottom: unset; margin-top: 10px;">否</p>
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary" onclick="doNew()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-add"></use>
+                                                    </svg>
+                                                </i>
+                                                新增
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-search"></use>
+                                                    </svg>
+                                                </i>
+                                                查詢
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.Seq_forDel)
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        @if (Model.Grid != null)
+                        {
+                            @Html.Partial("_PagingLink", Model)
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="05%">項次</th>
+                                            <th align="left" width="15%">會議名稱</th>
+                                            <th align="left" width="20%">日期</th>
+                                            <th align="left" width="25%">地點</th>
+                                            <th align="left" width="25%">報名日期</th>
+                                            <th align="left" width="10%">功能</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rows">
+                                        @Html.Partial("_GridRows")
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#CreatedUnit_SHOW div").attr("style", "float:left;width:250px;");
+        $("#MeetLocated_SHOW div").attr("style", "float:left;width:250px;");
+        $("#MeetingType").attr("style", "pointer-events:none;opacity:.66");
+        //$("#CreatedUnit_SHOW").attr("style", "pointer-events:none;opacity:.66");
+
+        Remove_PagingLink_AutoCreate("CreatedUnit");
+        Remove_PagingLink_AutoCreate("MeetLocated");
+    });
+    @*
+        Html.CheckBoxListFor 的部份，
+        如果不另外將 Html.Partial("_PagingLink", Model) 自動產生的部分移除，
+        會產生問題，就算取消勾選，仍會殘留上一次查詢之項目
+    *@
+    function Remove_PagingLink_AutoCreate(ComponentName) {
+        var list_1 = document.getElementsByName(ComponentName);
+        var list_2 = document.getElementsByName(ComponentName + "_SHOW");
+        for (let i = list_1.length - 1; i >= 0; i--) {
+            if (list_1[i].parentElement.id === "PagingLink") {
+                //console.log(i, list_1[i]);
+                list_1[i].remove();
+            }
+        }
+        for (let i = list_2.length - 1; i >= 0; i--) {
+            if (list_2[i].parentElement.id === "PagingLink") {
+                //console.log(i, list_2[i]);
+                list_2[i].remove();
+            }
+        }
+    }
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#MeetingName').removeAttr('value');
+        $('#MeetingDateS_AD').removeAttr('value');
+        $('#MeetingDateE_AD').removeAttr('value');
+        $('#SignUpDateS_AD').removeAttr('value');
+        $('#SignUpDateE_AD').removeAttr('value');
+        $('#MeetingDateS_AD_TW').removeAttr('value');
+        $('#MeetingDateE_AD_TW').removeAttr('value');
+        $('#SignUpDateS_AD_TW').removeAttr('value');
+        $('#SignUpDateE_AD_TW').removeAttr('value');
+        $('#MeetLocated_SHOW input').removeAttr('checked');
+    }
+
+    // 查詢
+    function doSearch() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 新增
+    function doNew() {
+        var url = '@Url.Action("New", "C401M")';
+        window.location = url;
+    }
+
+    // 修改
+    function doUpd(Seq) {
+        var data = { "Seq": Seq }
+        var url = '@Url.Action("Detail", "C401M")?' + $.param(data);
+        window.location = url;
+    }
+
+    // 報名管理
+    function doSignUp(Seq, vPage) {
+        var data = { "Seq": Seq, "vPage": vPage }
+        var url = '@Url.Action("DetailSignUp", "C401M")?' + $.param(data);
+        window.location = url;
+    }
+
+    // 刪除
+    function doDel(Seq, RowId) {
+        blockConfirm("您確定要刪除此筆資料嗎？" + "項次：" + RowId, null, function () {
+            var form = $("form[id=main_form]");
+            $("#main_form #Seq_forDel").val(Seq);
+            form.attr('action', '@Url.Action("Delete")').submit();
+        });
+    }
+
+</script>

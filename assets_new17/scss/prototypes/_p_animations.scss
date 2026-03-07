@@ -1,0 +1,541 @@
+@charset "utf-8";
+
+//==  Prototypes -> Animations  
+//====================================================
+
+:root {
+  --tu-an-delay: 0ms;
+  --tu-an-easing: var(--tu-an-ease-out);
+  --tu-an-duration: 600ms;
+  --tu-an-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --tu-an-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --tu-an-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --tu-an-opacity: 1;
+  --tu-an-visibility: visible;
+  --tu-an-translate-y: 0;
+  --tu-an-translate-x: 0;
+  --tu-an-scale: 1;
+  --tu-an-rotate: 0deg;
+  --tu-an-perspective: 0;
+  --tu-an-rotate-x: 0deg;
+  --tu-an-rotate-y: 0deg;
+  --tu-an-ratio: 1;
+  --tu-an-translate-ratio: 1;
+  --tu-an-scale-ratio: 0.2;
+  --tu-an-duration-ratio: 1;
+  --tu-an-translate-x-amount: 5rem;
+  --tu-an-translate-y-amount: 5rem;
+  --tu-an-blur: 0;
+}
+
+// running paused
+:root:not(.no-js) [data-tu-an] > * {
+  pointer-events: none;
+  transition-duration: calc(var(--tu-an-duration) * var(--tu-an-duration-ratio));
+  transition-timing-function: var(--tu-an-easing);
+  transition-delay: var(--tu-an-delay);
+  transition-property: transform, opacity, filter;
+  opacity: var(--tu-an-opacity);
+  visibility: var(--tu-an-visibility);
+  transform: translateX(var(--tu-an-translate-x)) translateY(var(--tu-an-translate-y)) scale(var(--tu-an-scale)) rotate(var(--tu-an-rotate)) perspective(var(--tu-an-perspective)) rotateX(var(--tu-an-rotate-x)) rotateY(var(--tu-an-rotate-y));
+  filter: blur(var(--tu-an-blur));
+}
+
+:root:not(.no-js) [data-tu-an].tu-an-inview,
+:root:not(.no-js) [data-tu-an].tu-an-once {
+  // animation-play-state: running;
+  // animation-play-state: paused;
+}
+
+:root:not(.no-js) [data-tu-an].tu-an-inview > *,
+:root:not(.no-js) [data-tu-an].tu-an-once > * {
+  pointer-events: auto;
+  --tu-an-opacity: 1;
+  --tu-an-visibility: visible;
+  --tu-an-translate-y: 0;
+  --tu-an-translate-x: 0;
+  --tu-an-scale: 1;
+  --tu-an-rotate: 0deg;
+  --tu-an-rotate-x: 0deg;
+  --tu-an-rotate-y: 0deg;
+  --tu-an-blur: 0;
+  animation: var(--tu-an-names);
+  animation-play-state: paused;
+}
+
+:root:not(.no-js) [data-tu-an].tu-an-inview.tu-an-init,
+:root:not(.no-js) [data-tu-an].tu-an-inview.tu-an-init > * {
+  animation-play-state: running;
+}
+
+:root:not(.no-js) [data-tu-an*=ease-in] {
+  --tu-an-easing: var(--tu-an-ease-in);
+}
+
+:root:not(.no-js) [data-tu-an*=ease-out] {
+  --tu-an-easing: var(--tu-an-ease-out);
+}
+
+:root:not(.no-js) [data-tu-an*=ease-in-out] {
+  --tu-an-easing: var(--tu-an-ease-in-out);
+}
+
+:root:not(.no-js) [data-tu-an*=sm] {
+  --tu-an-translate-ratio: 0.5;
+}
+
+:root:not(.no-js) [data-tu-an*=md] {
+  --tu-an-translate-ratio: 0.75;
+}
+
+:root:not(.no-js) [data-tu-an*=lg] {
+  --tu-an-translate-ratio: 1.5;
+}
+
+:root:not(.no-js) [data-tu-an*=xl] {
+  --tu-an-translate-ratio: 2;
+}
+
+:root:not(.no-js) [data-tu-an*="2xl"] {
+  --tu-an-translate-ratio: 3;
+}
+
+:root:not(.no-js) [data-tu-an~=extra-slow] {
+  --tu-an-duration-ratio: 3;
+}
+
+:root:not(.no-js) [data-tu-an~=slow] {
+  --tu-an-duration-ratio: 1.5;
+}
+
+:root:not(.no-js) [data-tu-an~=fast] {
+  --tu-an-duration-ratio: 0.5;
+}
+
+:root:not(.no-js) [data-tu-an~=extra-fast] {
+  --tu-an-duration-ratio: 0.25;
+}
+
+:root:not(.no-js) [data-tu-an*=fade],
+:root:not(.no-js) [data-tu-an*=zoom] {
+  --tu-an-opacity: 0;
+
+  // --tu-an-visibility: hidden;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+:root:not(.no-js) [data-tu-an*=up] > * {
+  --tu-an-translate-y: calc(0px + var(--tu-an-translate-y-amount) * var(--tu-an-translate-ratio));
+}
+
+:root:not(.no-js) [data-tu-an*=down] > * {
+  --tu-an-translate-y: calc(0px - var(--tu-an-translate-y-amount) * var(--tu-an-translate-ratio));
+}
+
+:root:not(.no-js) [data-tu-an*=left] > * {
+  --tu-an-translate-x: calc(0px + var(--tu-an-translate-x-amount) * var(--tu-an-translate-ratio));
+}
+
+:root:not(.no-js) [data-tu-an*=right] > * {
+  --tu-an-translate-x: calc(0px - var(--tu-an-translate-x-amount) * var(--tu-an-translate-ratio));
+}
+
+:root:not(.no-js) [data-tu-an*=zoom-in] > * {
+  --tu-an-scale: calc(1 + var(--tu-an-scale-ratio));
+}
+
+:root:not(.no-js) [data-tu-an*=zoom-out] > * {
+  --tu-an-scale: calc(1 - var(--tu-an-scale-ratio));
+}
+
+:root:not(.no-js) [data-tu-an*=flip] > * {
+  --tu-an-perspective: 2000px;
+  backface-visibility: hidden;
+}
+
+:root:not(.no-js) [data-tu-an*=flip-up] > * {
+  --tu-an-rotate-x: -100deg;
+}
+
+:root:not(.no-js) [data-tu-an*=flip-down] > * {
+  --tu-an-rotate-x: 100deg;
+}
+
+:root:not(.no-js) [data-tu-an*=flip-left] > * {
+  --tu-an-rotate-y: -100deg;
+}
+
+:root:not(.no-js) [data-tu-an*=flip-right] > * {
+  --tu-an-rotate-y: 100deg;
+}
+
+:root:not(.no-js) [data-tu-an*=blur] {
+  --tu-an-blur: 5px;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+:root:not(.no-js) [data-tu-an*=shake-y] {
+  --tu-an-names: shake-y .75s var(--tu-an-ease-out) running infinite;
+}
+
+:root:not(.no-js) [data-tu-an*=shake-x] {
+  --tu-an-names: shake-x .75s var(--tu-an-ease-out) running infinite;
+}
+
+:root:not(.no-js) [data-tu-an*=float] {
+  --tu-an-names: float 4s 0s var(--tu-an-ease-out) running infinite;
+}
+
+:root:not(.no-js) [data-tu-an*=swirl-in] {
+  --tu-an-names: swirl-in-zoomin 4s 0s var(--tu-an-ease-out) running 1;
+}
+
+:root:not(.no-js) [data-tu-an*=growIn] {
+  --tu-an-names: growIn .75s 0s var(--tu-an-ease-out) running infinite normal
+none;
+}
+
+:root:not(.no-js) [data-tu-an*=pulse] {
+  --tu-an-names: pulse 2.5s 0s var(--tu-an-ease-out) running infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root body [data-tu-an] > * {
+    transition: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    filter: none;
+  }
+}
+
+.t-float {
+  animation: float 4s 0s infinite alternate backwards ease-in-out;
+}
+
+.t-animation-slide-in-down {
+  animation-name: animationSlideInDown;
+}
+
+.t-animation-slide-in-up {
+  animation-name: animationSlideInUp;
+}
+
+.t-animation-blink {
+  animation: animationBlink 1s steps(5, start) infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(-0%);
+  }
+
+  50% {
+    transform: translateY(-25%);
+  }
+
+  100% {
+    transform: translateY(25%);
+  }
+}
+
+@keyframes animationSlideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes animationSlideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes animationBlink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes growIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-bloom {
+  0% {
+    filter: brightness(1) blur(20px);
+    opacity: 0;
+  }
+
+  10% {
+    filter: brightness(2) blur(10px);
+    filter: brightness(0.5) blur(10px);
+    opacity: 1;
+  }
+
+  to {
+    filter: brightness(1) blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-bloom {
+  to {
+    filter: brightness(1) blur(20px);
+    opacity: 0;
+  }
+
+  10% {
+    filter: brightness(2) blur(10px);
+    filter: brightness(0.5) blur(10px);
+    opacity: 1;
+  }
+
+  0% {
+    filter: brightness(1) blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-up {
+  to {
+    transform: scale(1.25);
+  }
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes scale-down {
+  to {
+    transform: scale(0.75);
+  }
+}
+
+@keyframes slide-out-up {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slide-out-down {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slide-out-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in-up {
+  0% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slide-in-down {
+  0% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes shake-x {
+  0%,
+  to {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-5%);
+  }
+
+  40% {
+    transform: translateX(5%);
+  }
+
+  60% {
+    transform: translateX(-5%);
+  }
+
+  80% {
+    transform: translateX(5%);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: (0 0 0 0.5em rgba($quaternary-200, 0.24),);
+  }
+
+  50% {
+    box-shadow: (0 0 0 1.25em rgba($secondary-400, 0.24),);
+  }
+
+  100% {
+    box-shadow: (0 0 0 2em rgba($secondary-200, 0.24),);
+  }
+}
+
+@keyframes shake-y {
+  0%,
+  to {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-5%);
+  }
+
+  40% {
+    transform: translateY(5%);
+  }
+
+  60% {
+    transform: translateY(-5%);
+  }
+
+  80% {
+    transform: translateY(5%);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes ping {
+  90%,
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes blink {
+  0%,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes bounce {
+  25% {
+    transform: translateY(-20%);
+  }
+
+  40% {
+    transform: translateY(-3%);
+  }
+
+  0%,
+  60%,
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes backgroundPosition {
+  from {
+    background-position: 0 0, -36px 0, 100% -36px, 0 100%;
+  }
+
+  to {
+    background-position: 0 -36px, 0 0, 100% 0, -36px 100%;
+  }
+}
+
+@keyframes swirl-in-zoomin {
+  0% {
+    transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}

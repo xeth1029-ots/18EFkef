@@ -1,0 +1,48 @@
+// Blockquote
+// =========================================================
+
+// Color
+$blockquote-color: $headings-color !default;
+$blockquote-footer-color: $headings-color;
+$blockquote-footer-source-color: $gray-700 !default;
+$blockquote-light-color: $white !default;
+$blockquote-light-footer-color: $white !default;
+$blockquote-light-footer-source-color: $white-70 !default;
+
+// Width & Heights
+$blockquote-pseudo-width: 4rem !default;
+$blockquote-pseudo-height: $blockquote-pseudo-width !default;
+$blockquote-sm-pseudo-width: 2.5rem !default;
+$blockquote-sm-pseudo-height: $blockquote-sm-pseudo-width !default;
+$blockquote-lg-pseudo-width: 6rem !default;
+$blockquote-lg-pseudo-height: $blockquote-lg-pseudo-width !default;
+
+// Type
+$blockquote-pseudo: url("data:image/svg+xml,<svg width='5' height='4' viewBox='0 0 5 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.244 2.84803C2.244 3.08003 2.168 3.26803 2.016 3.41203C1.864 3.54803 1.672 3.61603 1.44 3.61603C1.16 3.61603 0.927996 3.52403 0.743996 3.34003C0.567996 3.15603 0.479996 2.89203 0.479996 2.54803C0.479996 2.18003 0.583996 1.82003 0.791996 1.46803C1.008 1.10803 1.308 0.824028 1.692 0.616028L1.968 1.03603C1.76 1.18003 1.592 1.34003 1.464 1.51603C1.344 1.69203 1.264 1.89603 1.224 2.12803C1.296 2.09603 1.38 2.08003 1.476 2.08003C1.7 2.08003 1.884 2.15203 2.028 2.29603C2.172 2.44003 2.244 2.62403 2.244 2.84803ZM4.452 2.84803C4.452 3.08003 4.376 3.26803 4.224 3.41203C4.072 3.54803 3.88 3.61603 3.648 3.61603C3.368 3.61603 3.136 3.52403 2.952 3.34003C2.776 3.15603 2.688 2.89203 2.688 2.54803C2.688 2.18003 2.792 1.82003 3 1.46803C3.216 1.10803 3.516 0.824028 3.9 0.616028L4.176 1.03603C3.968 1.18003 3.8 1.34003 3.672 1.51603C3.552 1.69203 3.472 1.89603 3.432 2.12803C3.504 2.09603 3.588 2.08003 3.684 2.08003C3.908 2.08003 4.092 2.15203 4.236 2.29603C4.38 2.44003 4.452 2.62403 4.452 2.84803Z' fill='#{$dark}' fill-opacity='.125'/></svg>") !default;
+$blockquote-light-pseudo: url("data:image/svg+xml,<svg width='5' height='4' viewBox='0 0 5 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.244 2.84803C2.244 3.08003 2.168 3.26803 2.016 3.41203C1.864 3.54803 1.672 3.61603 1.44 3.61603C1.16 3.61603 0.927996 3.52403 0.743996 3.34003C0.567996 3.15603 0.479996 2.89203 0.479996 2.54803C0.479996 2.18003 0.583996 1.82003 0.791996 1.46803C1.008 1.10803 1.308 0.824028 1.692 0.616028L1.968 1.03603C1.76 1.18003 1.592 1.34003 1.464 1.51603C1.344 1.69203 1.264 1.89603 1.224 2.12803C1.296 2.09603 1.38 2.08003 1.476 2.08003C1.7 2.08003 1.884 2.15203 2.028 2.29603C2.172 2.44003 2.244 2.62403 2.244 2.84803ZM4.452 2.84803C4.452 3.08003 4.376 3.26803 4.224 3.41203C4.072 3.54803 3.88 3.61603 3.648 3.61603C3.368 3.61603 3.136 3.52403 2.952 3.34003C2.776 3.15603 2.688 2.89203 2.688 2.54803C2.688 2.18003 2.792 1.82003 3 1.46803C3.216 1.10803 3.516 0.824028 3.9 0.616028L4.176 1.03603C3.968 1.18003 3.8 1.34003 3.672 1.51603C3.552 1.69203 3.472 1.89603 3.432 2.12803C3.504 2.09603 3.588 2.08003 3.684 2.08003C3.908 2.08003 4.092 2.15203 4.236 2.29603C4.38 2.44003 4.452 2.62403 4.452 2.84803Z' fill='#{$white}' fill-opacity='.15'/></svg>") !default;
+$blockquote-font-size: 1.25rem;
+$blockquote-sm-font-size: $font-size-base !default;
+$blockquote-lg-font-size: $font-size-base * 1.8125 !default;
+$blockquote-lg-font-weight: $font-weight-medium !default;
+$blockquote-footer-font-size: 1rem;
+$blockquote-footer-font-weight: $font-weight-bold !default;
+$blockquote-footer-source-font-size: $font-size-sm !default;
+$blockquote-footer-source-font-weight: $font-weight-normal !default;
+
+// Position
+$blockquote-pseudo-top-offset: 2rem !default;
+$blockquote-pseudo-left-offset: 1.5rem !default;
+$blockquote-sm-pseudo-top-offset: 1.125rem !default;
+$blockquote-sm-pseudo-left-offset: 1rem !default;
+$blockquote-lg-pseudo-top-offset: 3rem !default;
+$blockquote-lg-pseudo-left-offset: 2rem !default;
+
+// Padding
+$blockquote-padding-x: $blockquote-pseudo-width + 0.75rem !default;
+$blockquote-sm-padding-x: $blockquote-pseudo-width + 0.25rem !default;
+$blockquote-lg-padding-x: $blockquote-pseudo-width + 1.5rem !default;
+
+// Margin
+$blockquote-margin-y: 0;
+$blockquote-footer-margin-y: 1.5rem !default;
+$blockquote-footer-source-margin-y: 0.25rem !default;

@@ -1,0 +1,79 @@
+//
+//  Components -> Badges
+// --------------------------------------------------
+.badge {
+  display: inline-block;
+  vertical-align: middle;
+  padding: $badge-padding-y $badge-padding-x;
+  font-size: $badge-font-size;
+  font-family: $badge-font-family;
+  font-weight: $badge-font-weight;
+  color: $badge-color;
+  line-height: $badge-line-height;
+  white-space: nowrap;
+  text-align: center;
+  background-color: $badge-bg-color;
+  border-radius: $badge-border-radius;
+  margin-bottom: 0;
+
+  &.badge-rounded {
+    border-radius: 50%;
+  }
+
+  &:empty {
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+
+    &.lg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &.sm {
+      width: .75rem;
+      height: .75rem;
+    }
+  }
+
+  .active &{
+    background-color: $link;
+    color: $white;
+  }
+
+  .active &,
+  & {
+
+    @each $color,
+    $value in $element-colors {
+      &.t-badge-#{$color} {
+        @include badge-variant($value);
+      }
+    }
+    @each $color, $value in $element-soft-colors {
+      &.t-badge-#{$color} {
+        @include badge-soft-variant($color);
+      }
+    }
+  }
+
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+
+  .btn-xs &,
+  .btn-group-xs>.btn & {
+    top: 0;
+    padding: .125rem .25rem;
+  }
+
+  >i,
+  >font {
+    vertical-align: middle;
+  }
+
+  >i+font {
+    margin-left: .25rem;
+  }
+}

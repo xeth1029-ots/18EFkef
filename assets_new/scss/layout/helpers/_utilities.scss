@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+//  Layout -> Utilities 
+// --------------------------------------------------
+@each $value in $floats {
+  .t-float-#{$value} {
+    float: $value !important;
+  }
+
+  %t-float-#{$value} {
+    float: $value;
+  }
+}
+
+@each $value in $vertical-aligns {
+  .t-v-align-#{$value} {
+    vertical-align: $value !important;
+  }
+
+  %t-v-align-#{$value} {
+    vertical-align: $value;
+  }
+}
+
+@each $value in $text-aligns {
+  .t-txt-#{$value} {
+    text-align: $value !important;
+  }
+
+  %t-txt-#{$value} {
+    text-align: $value;
+  }
+}
+
+@each $value in $user-selects {
+
+  .t-select#{$value} {
+    user-select: $value !important;
+  }
+
+  %t-select#{$value} {
+    user-select: $value;
+  }
+}
+
+@each $value in $positions {
+  .t-#{$value} {
+    position: $value !important;
+  }
+
+  %t-#{$value} {
+    position: $value;
+  }
+}
+
+@each $value in $overflows {
+  .t-overflow-#{$value} {
+    overflow: $value !important;
+  }
+
+  %t-overflow-#{$value} {
+    overflow: $value;
+  }
+}
+
+@each $value in $pointer-events {
+  .t-pointer-even-#{$value} {
+    pointer-events: $value !important;
+  }
+
+  %t-pointer-even-#{$value} {
+    pointer-events: $value;
+  }
+}
+
+@each $value in $word-wraps {
+  .t-word-wrap-#{$value} {
+    word-break: $value !important;
+  }
+
+  %t-word-wrap-#{$value} {
+    word-break: $value;
+  }
+}
+
+@each $value in $white-spaces {
+  .t-white-space-#{$value} {
+    white-space: $value !important;
+  }
+
+  %t-white-spaces-#{$value} {
+    white-space: $value;
+  }
+}
+
+@each $value in $cursors {
+  .t-cursor-#{$value} {
+    cursor: $value !important;
+  }
+
+  %t-cursor-#{$value} {
+    cursor: $value;
+  }
+}
+
+.t-text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.t-center-block {
+  display: block !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.t-table-fixed {
+  display: table !important;
+  table-layout: fixed !important;
+}
+
+.t-in-bk-mid {
+  @include in-bk-mid;
+}
+
+.t-tb-cell-mid {
+  @include tb-cell-mid;
+}
+
+.t-visibility-visible {
+  @include visually-visible;
+}
+
+.t-visibility-hidden {
+  @include visually-hidden;
+}
+
+.content-space {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+}

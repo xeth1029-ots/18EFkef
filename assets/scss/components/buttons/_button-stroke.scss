@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+/**
+//   Components -> Buttons -> Buttons border
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+// Buttons Border Colors
+@each $color,
+$value in $element-colors {
+  .btn.btn--border--#{$color} {
+    @include button-outline-variant($value);
+  }
+}

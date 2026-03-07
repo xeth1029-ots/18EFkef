@@ -1,0 +1,61 @@
+//
+//  Components -> Alerts
+// --------------------------------------------------
+.alert {
+  border: $alert-border-width solid transparent;
+  font-size: $font-size-xs;
+  padding: $alert-padding-y $alert-padding-x;
+
+  @include border-radius($alert-border-radius);
+
+  i:not(.close) {
+    font-size: 1.5rem;
+    margin-right: .25rem;
+  }
+
+  a,
+  font,
+  span,
+  i {
+    vertical-align: middle;
+  }
+
+  .close {
+    @include absolute($R: 0.375rem, $T: 0.375rem);
+
+    cursor: pointer;
+    font-size: 1.125rem;
+
+    &:hover {
+      opacity: 0.66;
+    }
+  }
+}
+
+// Alternate styles
+@each $color, $value in $element-colors {
+  .alert--#{$color} {
+    @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+  }
+}
+
+// // background styles
+// @each $color, $value in $element-colors {
+//     .alert--dk--#{$color} {
+//         @include alert-dk-variant(theme-color-level($color, -1), theme-color-level($color, -3), theme-color-level($color, -10));
+//     }
+// }
+
+// // ltl styles
+// @each $color, $value in $element-colors {
+//     .alert--ltl--#{$color} {
+//         @include alert-lt-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+//     }
+// }
+
+// // ltl styles
+// @each $color, $value in $element-colors {
+//     .alert--ltl--w--#{$color} {
+//         @include alert-lt-w-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+//     }
+// }

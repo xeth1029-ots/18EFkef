@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+//==  Prototypes -> Triangle  
+//====================================================
+
+
+// usage
+.t-arrow-up {
+  @include triangle(32px, $yellow, up);
+}
+
+.t-arrow-down {
+  @include triangle(32px, $gray, down);
+}
+
+.t-arrow-up-left {
+  @include triangle(32px 24px, $blue, up-left);
+}
+
+.t-arrow-left {
+  @include triangle(32px 24px, $green, left);
+}
+
+.t-arrow-right {
+  @include triangle(32px 24px, $purple, right);
+}
+
+.t-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.625rem;
+}

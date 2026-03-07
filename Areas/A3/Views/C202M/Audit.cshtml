@@ -1,0 +1,190 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A3.Models;
+@using WKEFSERVICE.DataLayers;
+@model C202MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+    SessionModel sm = SessionModel.Get();
+    string TheWidth = "width:250px";
+    string TheWidth2 = "width:320px";
+    string isReadonly = "";
+    string StyleStr = "";
+    // " " = 未送出
+    if (Model.Detail.AuditStatus.TONotNullString() == "" || Model.Detail.AuditStatus.TONotNullString() == " ")
+    {
+        isReadonly = "readonly disabled";
+        StyleStr = "pointer-events:none;opacity:.66";
+    }
+    var tmpPath = new AMDAO().UploadPathTeacherReport + Model.Detail.FileNameNew;
+}
+
+@using (Html.BeginForm("Save", "C202M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.Detail.Seq)
+    @Html.HiddenFor(x => x.Detail.Year)
+    @Html.HiddenFor(x => x.Detail.UnitCode)
+    @Html.HiddenFor(x => x.Detail.FileNameNew)
+
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">教學自我審核報告</h3>
+                                <p class="bt-section-para">提供教師可上傳個人之教學自我審核報告。</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm mr-2" onclick="doSave()" id="SaveBtn" @isReadonly>
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    審核
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt" id="DisabledAll_Mst">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.YearName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.YearName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.YearName)
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.TeacherName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.TeacherName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.TeacherName)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.JobAbilityName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.JobAbilityName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.JobAbilityName)
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.FirstTime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.FirstTimeName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.FirstTime)
+                                        @Html.HiddenFor(x => x.Detail.FirstTimeName)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.ReportName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.ReportName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.ReportName)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.FileNameRemark, new { @class = "t-form-label" })
+                                        @Html.TextAreaFor(m => m.Detail.FileNameRemark, new { @class = "t-form-control ml-4", style = "height: 200px", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.FileNameRemark)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.UploadDeadline, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.UploadDeadline, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.UploadDeadline)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.FileNameOrg, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.FileNameOrg, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.FileNameOrg)
+                                        <a download="@Model.Detail.FileNameOrg" style="display: contents;" href="@tmpPath">
+                                            <button type="button" class="btn btn--export" onclick="doLog('@Model.Detail.FileNameOrg', '@Model.Detail.FileNameNew')">下載</button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AuditStatus, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.AuditStatus_Name, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.AuditStatus)
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AuditStatus_New, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.AuditStatus_New, new SelectList(Model.Detail.AuditStatus_New_list, "Value", "Text", Model.Detail.AuditStatus_New), new { @class = "t-form-control ml-4", onchange = "doYearDropDown()", style = StyleStr })
+                                        @Html.HiddenFor(x => x.Detail.AuditStatus_New)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AuditName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.AuditName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.AuditName)
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.AuditDatetime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.AuditDatetime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.AuditDatetime)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.UpdatedName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.UpdatedName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.UpdatedName)
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.UpdatedDatetime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.UpdatedDatetime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                        @Html.HiddenFor(x => x.Detail.UpdatedDatetime)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 審核
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Save", "C202M")').submit();
+    }
+
+    function doLog(Org, New) {
+        $.ajax({
+            url: "@Url.Action("FileDownloadLog", "Backend", new { area = "" })",
+            data: { "Func": "A3/C202M", "Org": Org, "New": New },
+            dataType: "json",
+            method: "post",
+            success: function (data) { },
+            error: function (data) { }
+        });
+    }
+
+</script>

@@ -1,0 +1,74 @@
+//
+//  prototypes -> BoxShadows 
+// --------------------------------------------------
+
+$tu-shadow-sm       : 0 1px 2px 0 rgba($dark, 0.05);
+$tu-shadow          : 0 1px 3px 0 rgba($dark, 0.1), 0 1px 2px -1px rgba($dark, 0.1);
+$tu-shadow-md       : 0 4px 6px -1px rgba($dark, 0.1), 0 2px 4px -2px rgba($dark, 0.1);
+$tu-shadow-lg       : 0 10px 15px -3px rgba($dark, 0.1), 0 4px 6px -4px rgba($dark, 0.1);
+$tu-shadow-xl       : 0 20px 25px -5px rgba($dark, 0.1), 0 8px 10px -6px rgba($dark, 0.1);
+$tu-shadow-2xl      : 0 25px 50px -12px rgba($dark, 0.25);
+$tu-shadow-inner    : inset 0 2px 4px 0 rgba($dark, 0.05);
+$tu-shadow-header   : 0px 2px 4px rgba($dark, .08), 0px 8px 12px rgba($dark, .04);
+
+
+
+$shadow-styles: () !default;
+$shadow-styles: map-merge((
+  "shadow-sm":      $tu-shadow-sm ,
+  "shadow-md":      $tu-shadow-md ,
+  "shadow-lg":      $tu-shadow-lg ,
+  "shadow-xl":      $tu-shadow-xl ,
+  "shadow-2xl":     $tu-shadow-2xl ,
+  "shadow-inner":   $tu-shadow-inner ,
+  "shadow":         $tu-shadow ,
+  "shadow-header":  $tu-shadow-header ,
+), $shadow-styles);
+
+
+
+@each $name, $value in $shadow-styles {
+ .t-#{$name} {
+    box-shadow: $value;
+  }
+}
+
+.t-shadow-card {
+  box-shadow: 
+    0 .0625rem .25rem rgba($dark ,0.08), 
+    0 .25rem .5rem rgba($dark ,0.04);
+}
+
+.t-shadow-none {
+  @include shd-none;
+}
+
+.t-shadow-hv-v1 {
+  &1 {
+    @include shd--hv--ver_1;
+    transition: $transition-base;
+  }
+
+  &2 {
+    @include shd--hv--ver_2;
+    transition: $transition-base;
+  }
+
+  &3 {
+    @include shd--hv--ver_3;
+
+    transition: $transition-base;
+  }
+
+  &4 {
+    @include shd--hv--ver_4;
+
+    transition: $transition-base;
+  }
+
+  &5 {
+    @include shd--hv--ver_5;
+
+    transition: $transition-base;
+  }
+}

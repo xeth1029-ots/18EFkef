@@ -1,0 +1,489 @@
+
+
+
+// :root {
+//   --black: #21222c;
+//   --blackSecondary: #414558;
+//   --blackTernary: #a7abbe;
+//   --blackLight: hsla(230, 15%, 15%, 5%);
+//   --white: #f8f8f2;
+//   --whiteSecondary: #fff;
+//   --whiteLight: hsla(60, 30%, 96%, 5%);
+//   --cyan: #80ffea;
+//   --cyanSecondary: #ccfff6;
+//   --cyanLight: hsla(170, 100%, 75%, 5%);
+//   --green: #8aff80;
+//   --greenSecondary: #d0ffcc;
+//   --greenLight: hsla(115, 100%, 75%, 5%);
+//   --orange: #ffca80;
+//   --orangeSecondary: #ffeacc;
+//   --orangeLight: hsla(35, 100%, 75%, 5%);
+//   --pink: #ff80bf;
+//   --pinkSecondary: #ffcce6;
+//   --pinkLight: hsla(330, 100%, 75%, 5%);
+//   --purple: #9580ff;
+//   --purpleSecondary: #d5ccff;
+//   --purpleLight: hsl(250, 100%, 75%, 5%);
+//   --red: #ff9580;
+//   --redSecondary: #ffd5cc;
+//   --redLight: hsla(10, 100%, 75%, 5%);
+//   --yellow: #fff80;
+//   --yellowSecondary: #ffc;
+//   --yellowLight: hsla(60, 100%, 75%, 5%);
+//   --cyan-transparent: rgba(128, 255, 234, 0.1);
+//   --green-transparent: rgba(138, 255, 128, 0.1);
+//   --orange-transparent: rgba(255, 202, 128, 0.1);
+//   --pink-transparent: rgba(255, 128, 191, 0.1);
+//   --purple-transparent: rgba(149, 128, 255, 0.1);
+//   --red-transparent: rgba(255, 149, 128, 0.1);
+//   --yellow-transparent: rgba(255, 255, 128, 0.1);
+//   --disabled: #6c7393;
+//   --gradientDegree: 135deg;
+//   --glowColor: hsla(0, 0%, 100%, 0.25);
+//   --cyan-100: rgba(128, 255, 234, 0.1);
+//   --green-100: rgba(138, 255, 128, 0.1);
+//   --orange-100: rgba(255, 202, 128, 0.1);
+//   --pink-100: rgba(255, 128, 191, 0.1);
+//   --purple-100: rgba(149, 128, 255, 0.1);
+//   --red-100: rgba(255, 149, 128, 0.1);
+//   --yellow-100: rgba(255, 255, 128, 0.1);
+//   --cyan-200: rgba(128, 255, 234, 0.2);
+//   --green-200: rgba(138, 255, 128, 0.2);
+//   --orange-200: rgba(255, 202, 128, 0.2);
+//   --pink-200: rgba(255, 128, 191, 0.2);
+//   --purple-200: rgba(149, 128, 255, 0.2);
+//   --red-200: rgba(255, 149, 128, 0.2);
+//   --yellow-200: rgba(255, 255, 128, 0.2);
+//   --cyan-300: rgba(128, 255, 234, 0.3);
+//   --green-300: rgba(138, 255, 128, 0.3);
+//   --orange-300: rgba(255, 202, 128, 0.3);
+//   --pink-300: rgba(255, 128, 191, 0.3);
+//   --purple-300: rgba(149, 128, 255, 0.3);
+//   --red-300: rgba(255, 149, 128, 0.3);
+//   --yellow-300: rgba(255, 255, 128, 0.3);
+//   --cyan-400: rgba(128, 255, 234, 0.4);
+//   --green-400: rgba(138, 255, 128, 0.4);
+//   --orange-400: rgba(255, 202, 128, 0.4);
+//   --pink-400: rgba(255, 128, 191, 0.4);
+//   --purple-400: rgba(149, 128, 255, 0.4);
+//   --red-400: rgba(255, 149, 128, 0.4);
+//   --yellow-400: rgba(255, 255, 128, 0.4);
+//   --cyan-500: rgba(128, 255, 234, 0.5);
+//   --green-500: rgba(138, 255, 128, 0.5);
+//   --orange-500: rgba(255, 202, 128, 0.5);
+//   --pink-500: rgba(255, 128, 191, 0.5);
+//   --purple-500: rgba(149, 128, 255, 0.5);
+//   --red-500: rgba(255, 149, 128, 0.5);
+//   --yellow-500: rgba(255, 255, 128, 0.5);
+//   --cyan-600: rgba(128, 255, 234, 0.6);
+//   --green-600: rgba(138, 255, 128, 0.6);
+//   --orange-600: rgba(255, 202, 128, 0.6);
+//   --pink-600: rgba(255, 128, 191, 0.6);
+//   --purple-600: rgba(149, 128, 255, 0.6);
+//   --red-600: rgba(255, 149, 128, 0.6);
+//   --yellow-600: rgba(255, 255, 128, 0.6);
+//   --cyan-700: rgba(128, 255, 234, 0.7);
+//   --green-700: rgba(138, 255, 128, 0.7);
+//   --orange-700: rgba(255, 202, 128, 0.7);
+//   --pink-700: rgba(255, 128, 191, 0.7);
+//   --purple-700: rgba(149, 128, 255, 0.7);
+//   --red-700: rgba(255, 149, 128, 0.7);
+//   --yellow-700: rgba(255, 255, 128, 0.7);
+//   --cyan-800: rgba(128, 255, 234, 0.8);
+//   --green-800: rgba(138, 255, 128, 0.8);
+//   --orange-800: rgba(255, 202, 128, 0.8);
+//   --pink-800: rgba(255, 128, 191, 0.8);
+//   --purple-800: rgba(149, 128, 255, 0.8);
+//   --red-800: rgba(255, 149, 128, 0.8);
+//   --yellow-800: rgba(255, 255, 128, 0.8);
+//   --cyan-900: rgba(128, 255, 234, 0.9);
+//   --green-900: rgba(138, 255, 128, 0.9);
+//   --orange-900: rgba(255, 202, 128, 0.9);
+//   --pink-900: rgba(255, 128, 191, 0.9);
+//   --purple-900: rgba(149, 128, 255, 0.9);
+//   --red-900: rgba(255, 149, 128, 0.9);
+//   --yellow-900: rgba(255, 255, 128, 0.9);
+//   --accentColor: var(--purple);
+//   --purple-cyan: linear-gradient(var(--gradientDegree), var(--purple) 0%, var(--cyan) 100%);
+//   --yellow-pink: linear-gradient(var(--gradientDegree), var(--yellow) 0%, var(--pink) 100%);
+//   --cyan-green: linear-gradient(var(--gradientDegree), var(--cyan) 0%, var(--green) 100%);
+//   --pink-purple: linear-gradient(var(--gradientDegree), var(--pink) 0%, var(--purple) 100%);
+// }
+
+// .t-bg-purple-cyan {
+//   background: linear-gradient(var(--gradientDegree), var(--purple) 0, var(--cyan) 100%);
+// }
+
+// .t-bg-purple-cyan-transparent {
+//   background: linear-gradient(var(--gradientDegree), var(--purple-transparent) 0, var(--cyan-transparent) 100%);
+// }
+
+// .t-text-purple-cyan {
+//   -webkit-text-fill-color: transparent;
+//   -moz-text-fill-color: transparent;
+//   background-clip: text;
+//   -webkit-background-clip: text;
+//   -moz-background-clip: text;
+//   background-image: linear-gradient(var(--gradientDegree), var(--purple) 0, var(--cyan) 100%);
+//   background-size: 100%;
+//   -webkit-box-decoration-break: clone;
+// }
+
+// .t-bg-yellow-pink {
+//   background: linear-gradient(var(--gradientDegree), var(--yellow) 0, var(--pink) 100%);
+// }
+
+// .t-bg-yellow-pink-transparent {
+//   background: linear-gradient(var(--gradientDegree), var(--yellow-transparent) 0, var(--pink-transparent) 100%);
+// }
+
+// .t-text-yellow-pink {
+//   -webkit-text-fill-color: transparent;
+//   -moz-text-fill-color: transparent;
+//   background-clip: text;
+//   -webkit-background-clip: text;
+//   -moz-background-clip: text;
+//   background-image: linear-gradient(var(--gradientDegree), var(--yellow) 0, var(--pink) 100%);
+//   background-size: 100%;
+//   -webkit-box-decoration-break: clone;
+// }
+
+// .t-bg-cyan-green {
+//   background: linear-gradient(var(--gradientDegree), var(--cyan) 0, var(--green) 100%);
+// }
+
+// .t-bg-cyan-green-transparent {
+//   background: linear-gradient(var(--gradientDegree), var(--cyan-transparent) 0, var(--green-transparent) 100%);
+// }
+
+// .t-text-cyan-green {
+//   -webkit-text-fill-color: transparent;
+//   -moz-text-fill-color: transparent;
+//   background-clip: text;
+//   -webkit-background-clip: text;
+//   -moz-background-clip: text;
+//   background-image: linear-gradient(var(--gradientDegree), var(--cyan) 0, var(--green) 100%);
+//   background-size: 100%;
+//   -webkit-box-decoration-break: clone;
+// }
+
+// .t-bg-pink-purple {
+//   background: linear-gradient(var(--gradientDegree), var(--pink) 0, var(--purple) 100%);
+// }
+
+// .t-bg-pink-purple-transparent {
+//   background: linear-gradient(var(--gradientDegree), var(--pink-transparent) 0, var(--purple-transparent) 100%);
+// }
+
+// .t-text-pink-purple {
+//   -webkit-text-fill-color: transparent;
+//   -moz-text-fill-color: transparent;
+//   background-clip: text;
+//   -webkit-background-clip: text;
+//   -moz-background-clip: text;
+//   background-image: linear-gradient(var(--gradientDegree), var(--pink) 0, var(--purple) 100%);
+//   background-size: 100%;
+//   -webkit-box-decoration-break: clone;
+// }
+
+// .t-bg-black {
+//   background-color: var(--black);
+// }
+
+// .t-bg-black-secondary {
+//   --accentColor: var(--blackSecondary);
+//   background-color: var(--blackSecondary);
+// }
+
+// .t-bg-black-transparent {
+//   --accentColor: var(--black-transparent);
+//   background-color: var(--black-transparent);
+// }
+
+// .t-text-black {
+//   color: var(--black);
+// }
+
+// .t-text-black-secondary {
+//   color: var(--blackSecondary);
+// }
+
+// .t-glow-black {
+//   --glowColor: var(--black);
+//   background-color: var(--black);
+// }
+
+// .t-border-black {
+//   --borderColor: var(--black);
+// }
+
+// .t-bg-white {
+//   background-color: var(--white);
+// }
+
+// .t-bg-white-secondary {
+//   --accentColor: var(--whiteSecondary);
+//   background-color: var(--whiteSecondary);
+// }
+
+// .t-bg-white-transparent {
+//   --accentColor: var(--white-transparent);
+//   background-color: var(--white-transparent);
+// }
+
+// .t-text-white {
+//   color: var(--white);
+// }
+
+// .t-text-white-secondary {
+//   color: var(--whiteSecondary);
+// }
+
+// .t-glow-white {
+//   --glowColor: var(--white);
+//   background-color: var(--white);
+// }
+
+// .t-border-white {
+//   --borderColor: var(--white);
+// }
+
+// .t-bg-cyan {
+//   background-color: var(--cyan);
+// }
+
+// .t-bg-cyan-secondary {
+//   --accentColor: var(--cyanSecondary);
+//   background-color: var(--cyanSecondary);
+// }
+
+// .t-bg-cyan-transparent {
+//   --accentColor: var(--cyan-transparent);
+//   background-color: var(--cyan-transparent);
+// }
+
+// .t-text-cyan {
+//   color: var(--cyan);
+// }
+
+// .t-text-cyan-secondary {
+//   color: var(--cyanSecondary);
+// }
+
+// .t-glow-cyan {
+//   --glowColor: var(--cyan);
+//   background-color: var(--cyan);
+// }
+
+// .t-border-cyan {
+//   --borderColor: var(--cyan);
+// }
+
+// .t-bg-green {
+//   background-color: var(--green);
+// }
+
+// .t-bg-green-secondary {
+//   --accentColor: var(--greenSecondary);
+//   background-color: var(--greenSecondary);
+// }
+
+// .t-bg-green-transparent {
+//   --accentColor: var(--green-transparent);
+//   background-color: var(--green-transparent);
+// }
+
+// .t-text-green {
+//   color: var(--green);
+// }
+
+// .t-text-green-secondary {
+//   color: var(--greenSecondary);
+// }
+
+// .t-glow-green {
+//   --glowColor: var(--green);
+//   background-color: var(--green);
+// }
+
+// .t-border-green {
+//   --borderColor: var(--green);
+// }
+
+// .t-bg-orange {
+//   background-color: var(--orange);
+// }
+
+// .t-bg-orange-secondary {
+//   --accentColor: var(--orangeSecondary);
+//   background-color: var(--orangeSecondary);
+// }
+
+// .t-bg-orange-transparent {
+//   --accentColor: var(--orange-transparent);
+//   background-color: var(--orange-transparent);
+// }
+
+// .t-text-orange {
+//   color: var(--orange);
+// }
+
+// .t-text-orange-secondary {
+//   color: var(--orangeSecondary);
+// }
+
+// .t-glow-orange {
+//   --glowColor: var(--orange);
+//   background-color: var(--orange);
+// }
+
+// .t-border-orange {
+//   --borderColor: var(--orange);
+// }
+
+// .t-bg-pink {
+//   background-color: var(--pink);
+// }
+
+// .t-bg-pink-secondary {
+//   --accentColor: var(--pinkSecondary);
+//   background-color: var(--pinkSecondary);
+// }
+
+// .t-bg-pink-transparent {
+//   --accentColor: var(--pink-transparent);
+//   background-color: var(--pink-transparent);
+// }
+
+// .t-text-pink {
+//   color: var(--pink);
+// }
+
+// .t-text-pink-secondary {
+//   color: var(--pinkSecondary);
+// }
+
+// .t-glow-pink {
+//   --glowColor: var(--pink);
+//   background-color: var(--pink);
+// }
+
+// .t-border-pink {
+//   --borderColor: var(--pink);
+// }
+
+// .t-bg-purple {
+//   background-color: var(--purple);
+// }
+
+// .t-bg-purple-secondary {
+//   --accentColor: var(--purpleSecondary);
+//   background-color: var(--purpleSecondary);
+// }
+
+// .t-bg-purple-transparent {
+//   --accentColor: var(--purple-transparent);
+//   background-color: var(--purple-transparent);
+// }
+
+// .t-text-purple {
+//   color: var(--purple);
+// }
+
+// .t-text-purple-secondary {
+//   color: var(--purpleSecondary);
+// }
+
+// .t-glow-purple {
+//   --glowColor: var(--purple);
+//   background-color: var(--purple);
+// }
+
+// .t-border-purple {
+//   --borderColor: var(--purple);
+// }
+
+// .t-bg-red {
+//   background-color: var(--red);
+// }
+
+// .t-bg-red-secondary {
+//   --accentColor: var(--redSecondary);
+//   background-color: var(--redSecondary);
+// }
+
+// .t-bg-red-transparent {
+//   --accentColor: var(--red-transparent);
+//   background-color: var(--red-transparent);
+// }
+
+// .t-text-red {
+//   color: var(--red);
+// }
+
+// .t-text-red-secondary {
+//   color: var(--redSecondary);
+// }
+
+// .t-glow-red {
+//   --glowColor: var(--red);
+//   background-color: var(--red);
+// }
+
+// .t-border-red {
+//   --borderColor: var(--red);
+// }
+
+// .t-bg-yellow {
+//   background-color: var(--yellow);
+// }
+
+// .t-bg-yellow-secondary {
+//   --accentColor: var(--yellowSecondary);
+//   background-color: var(--yellowSecondary);
+// }
+
+// .t-bg-yellow-transparent {
+//   --accentColor: var(--yellow-transparent);
+//   background-color: var(--yellow-transparent);
+// }
+
+// .t-text-yellow {
+//   color: var(--yellow);
+// }
+
+// .t-text-yellow-secondary {
+//   color: var(--yellowSecondary);
+// }
+
+// .t-glow-yellow {
+//   --glowColor: var(--yellow);
+//   background-color: var(--yellow);
+// }
+
+// .t-border-yellow {
+//   --borderColor: var(--yellow);
+// }
+
+// .t-bg-animated {
+//    content: '';
+//   -webkit-animation: animatedGradient 6s ease infinite alternate;
+//   animation: animatedGradient 6s ease infinite alternate;
+//   background-image: linear-gradient(var(--gradientDegree), var(--orange), var(--yellow), var(--red), var(--pink), var(--purple), var(--cyan), var(--green));
+//   background-size: 300% 300%;
+
+// }
+
+// @keyframes animatedGradient {
+//   0% {
+//     background-position: 0 50%;
+//   }
+
+//   50% {
+//     background-position: 100% 50%;
+//   }
+
+//   to {
+//     background-position: 0 50%;
+//   }
+// }

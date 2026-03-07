@@ -1,0 +1,329 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C301MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("SaveSignUp", "C301M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(x => x.DetailSignUp.Seq)
+    @Html.HiddenFor(x => x.DetailSignUp.vPage)
+    @Html.HiddenFor(x => x.DetailSignUp.MeetingType)
+    @Html.HiddenFor(x => x.DetailSignUp.CreatedUnit)
+    @Html.HiddenFor(x => x.DetailSignUp.TempSignUpListDelete_TeacherAccount)
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">會議報名管理</h3>
+                                <p class="bt-section-para">提供管理者可針對會議活動進行新增、修改等功能管理</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm" onclick="doSave()" id="SaveBtn">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    儲存
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.DetailSignUp.MeetingTypeName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.DetailSignUp.MeetingTypeName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.DetailSignUp.MeetingName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.DetailSignUp.MeetingName, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.DetailSignUp.MeetingDate, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.DetailSignUp.MeetingDate, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.DetailSignUp.MeetingTime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.DetailSignUp.MeetingTime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.DetailSignUp.Location, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.DetailSignUp.Location, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.DetailSignUp.MaximumPeople, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.DetailSignUp.MaximumPeople, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.DetailSignUp.SignUpDateTime, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.DetailSignUp.SignUpDateTime, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 已報名名單明細 -->
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-result">
+                        <div class="t-form-group flex-column">
+                            <button type="button" class="btn btn--border--quaternary" onclick="doTeacherPopup()">
+                                <i class="svg-icon mr-2" aria-hidden="true">
+                                    <svg><use href="#ic-add"></use></svg>
+                                </i>
+                                添加教師
+                            </button>
+                        </div>
+                        <br />
+                        <div class="bt-section-heading">已報名名單</div>
+                        @*<div class="t-table-cnt t-table-responsive table--dark">	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                        <thead>	<tr>	<th align="left" width="20%">項次</th>	<th align="left" width="35%">姓名</th>	<th align="left" width="35%">報名管道</th>
+                        <th align="left" width="10%">操作</th>	</tr>	</thead>
+                        <tbody id="DetailSignUpRows">	@Html.Partial("_DetailSignUpRows", Model)	</tbody>	</table>	</div>*@
+                        @if (Model.DetailSignUp.SignUpList != null)
+                        {
+                            int ivPage = !string.IsNullOrEmpty(Model.DetailSignUp.vPage) ? Convert.ToInt32(Model.DetailSignUp.vPage) : 1;
+                            Model.DetailSignUp.vPage = ivPage.ToString();
+                            int iprePage = (ivPage - 1 <= 1) ? 1 : (ivPage - 1);
+                            int inextPage = (ivPage + 1 >= 9) ? 9 : (ivPage + 1);
+                            var css_prePage = "btn btn-sm btn-secondary";
+                            var css_nextPage = "btn btn-sm btn-secondary";
+                            if (ivPage <= 1)
+                            {
+                                css_prePage = "btn btn-sm btn-secondary disabled";
+                                css_nextPage = "btn btn-sm btn-secondary";
+                            }
+                            else if (Model.DetailSignUp.SignUpList.Count == 0)
+                            {
+                                css_prePage = "btn btn-sm btn-secondary";
+                                css_nextPage = "btn btn-sm btn-secondary disabled";
+                            }
+                            <a id="prePage" href="javascript:doSignUp('@Model.DetailSignUp.Seq','@(iprePage)')" class="@(css_prePage)">上頁</a>
+                            <a id="nextPage" href="javascript:doSignUp('@Model.DetailSignUp.Seq','@(inextPage)')" class="@(css_nextPage)">下頁</a>
+                            <span>(每次顯示最多50筆)</span>
+                            <div class="t-table-cnt t-table-responsive table--dark">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="20%">項次</th>
+                                            <th align="left" width="35%">姓名</th>
+                                            <th align="left" width="35%">報名管道</th>
+                                            <th align="left" width="10%">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="DetailSignUpRows">
+                                        @Html.Partial("_DetailSignUpRows", Model)
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 彈窗 添加教師 -->
+    <div id="TeacherPopup" class="modal in modal-resize modal-drag" style="display: none;" role="dialog" aria-labelledby="popupWindow" aria-hidden="true">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content" style="width: 700px; height: 800px; margin-left: -20%; margin-top: 15%; ">
+                <div class="modal-header bg-primary text-center" style="height: 60px; padding: 9px 10px 7px 10px; background-color: white; cursor: move;">
+                    <span align="center" style="color: white; font-weight: normal; font-size: 1.0625rem; cursor: move;">添加教師</span>
+                    <button type="button" class="close" data-dismiss="modal" title="關閉視窗" onclick="doTeacherPopupClose()">
+                        <i class="fa fa-window-close fa-2" aria-hidden="true"></i><span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height: 100%; max-width: 100%;">
+                    <div class="t-form-inline">
+                        @Html.TextBoxFor(m => m.DetailSignUp.TeacherSearch, new { @class = "t-form-control ml-4", style = "width: 350px;" })
+                        &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn--dimNavy btn--sm mr-2" onclick="doTeacherSearch()">
+                            <i class="svg-icon mr-2" aria-hidden="true"><svg><use href="#ic-search"></use></svg></i>查詢
+                        </button>
+                        <button type="button" class="btn btn--info btn--sm mr-2" onclick="doTeacherSearchSelectAll()">
+                            全選
+                        </button>
+                        <button type="button" class="btn btn--quaternary btn--sm mr-2" onclick="doTeacherSearchSelect()">
+                            <i class="svg-icon mr-2" aria-hidden="true"><svg><use href="#ic-add"></use></svg></i>選取
+                        </button>
+                    </div>
+                    &nbsp;<br />
+                    <div class="col-sm-12">
+                        <div class="t-table-cnt t-table-responsive table--dark">
+                            <div style="width:100%; height: 520px; overflow-y: auto;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-table" style="width: 98%">
+                                    <thead>
+                                        <tr>
+                                            <th align="left" width="20%" style="text-align: left; ">項次</th>
+                                            <th align="left" width="20%" style="text-align: left; ">選取</th>
+                                            <th align="left" width="60%" style="text-align:center;">姓名</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TeacherPopupRows">
+                                        @Html.Partial("_TeacherPopupRows", Model)
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="height: 50px; padding: 6px 10px 6px 10px; cursor: move;">
+                    <button type="button" class="close" style="margin-left: 50%; margin-right: 50%;" data-dismiss="modal" title="關閉視窗" onclick="doTeacherPopupClose()">
+                        <i class="fa fa-window-close fa-2" aria-hidden="true"></i><span class="sr-only">Close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+    var ThePopupDiv = document.getElementById("TeacherPopup");
+    var isDown = false;
+    $(document).ready(function () {
+        // 添加教師 - 彈窗移動3事件
+        ThePopupDiv.addEventListener('mousedown', function (e) {
+            isDown = true;
+            offset = [ThePopupDiv.offsetLeft - e.clientX, ThePopupDiv.offsetTop - e.clientY];
+        }, true);
+        document.addEventListener('mouseup', function () {
+            isDown = false;
+        }, true);
+        document.addEventListener('mousemove', function (event) {
+            //event.preventDefault();
+            if (isDown) {
+                mousePosition = { x: event.clientX, y: event.clientY };
+                ThePopupDiv.style.left = (mousePosition.x + offset[0]) + 'px';
+                ThePopupDiv.style.top = (mousePosition.y + offset[1]) + 'px';
+            }
+        }, true);
+    });
+    $(document).keyup(function (e) {
+        if (e.key === "Escape") { doTeacherPopupClose(); }
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("SaveSignUp")').submit();
+    }
+
+    // 添加教師 - 彈窗開啟
+    function doTeacherPopup() {
+        document.getElementById("TeacherPopup").style.display = "block";
+    }
+
+    // 添加教師 - 彈窗關閉
+    function doTeacherPopupClose() {
+        document.getElementById("TeacherPopup").style.display = "none";
+    }
+
+    // 添加教師 - 彈窗查詢
+    function doTeacherSearch() {
+        var url = "@Url.Action("TeacherSearch", "C301M")";
+        var model = new FormData($('form').get(0));
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: model,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (resp) {
+                if (resp) {
+                    $("#TeacherPopupRows").html(resp);
+                }
+            }
+        });
+    }
+
+    // 添加教師 - 彈窗全選
+    function doTeacherSearchSelectAll() {
+        $('#main_form input[checkid=PopCk1]').prop('checked', true);
+    }
+
+    // 添加教師 - 彈窗選取
+    function doTeacherSearchSelect() {
+        var url = "@Url.Action("TeacherSearchSelect", "C301M")";
+        var model = new FormData($('form').get(0));
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: model,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (resp) {
+                if (resp) {
+                    $("#DetailSignUpRows").html(resp);
+                    doTeacherPopupClose();
+                }
+            }
+        });
+    }
+
+    // 添加教師刪除
+    function doSignUpListDelete(ROWID, TeacherAccount, TeacherName) {
+        blockConfirm("您確定要刪除此筆資料嗎？<br />項次 " + ROWID + " : " + TeacherName, null, function () {
+            $("#DetailSignUp_TempSignUpListDelete_TeacherAccount").val(TeacherAccount);
+            var url = "@Url.Action("TeacherSearchSelectRemoveRow", "C301M")";
+            var model = new FormData($('form').get(0));
+            $.ajax({
+                method: 'POST',
+                url: url,
+                data: model,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (resp) {
+                    if (resp) {
+                        $("#DetailSignUpRows").html(resp);
+                    }
+                }
+            });
+        });
+    }
+
+    // 報名管理
+    function doSignUp(Seq, vPage) {
+        var data = { "Seq": Seq, "vPage": vPage }
+        var url = '@Url.Action("DetailSignUp", "C301M")?' + $.param(data);
+        window.location = url;
+    }
+
+</script>

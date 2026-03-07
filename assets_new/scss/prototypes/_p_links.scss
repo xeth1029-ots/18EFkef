@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+//==  Prototypes -> links
+//====================================================
+
+// <a href="#" data-link="swap" data-replace="this link">this link</a>
+[data-link="swap"] {
+  position: relative;
+  background-image: linear-gradient(to right, $info, $info 50%, $dark 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: .375rem 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: $transition;
+
+  &:before {
+    content: '';
+    background: $info;
+    display: block;
+    position: absolute;
+    bottom: -.25rem;
+    left: 0;
+    width: 0;
+    height: .25rem;
+    transition: $transition;
+  }
+
+  &:hover {
+    background-position: 0;
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+}
+
+// <a href="#" data-link="replace"data-replace="this link">this link</a>
+[data-link="replace"] {
+  overflow: hidden;
+  position: relative;
+  // display: inline-block;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    transition: transform 0.25s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  &::before {
+    background-color: $info;
+    height: .125rem;
+    bottom: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+  }
+
+  &::after {
+    content: attr(data-replace);
+    height: 100%;
+    top: 0;
+    transform-origin: 100% 50%;
+    transform: translate3d(200%, 0, 0);
+    color: $info;
+  }
+
+  &:hover::before {
+    transform-origin: 0% 50%;
+    transform: scaleX(1);
+  }
+
+  &:hover::after {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// <a href="#" data-link="slider">this link</a>
+
+[data-link="slider"] {
+  box-shadow: inset 0 0 0 0 $info;
+  color: $info;
+  padding: 0 .25rem;
+  margin: 0 -.25rem;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+
+  &:hover {
+    color: _var("white", $white);
+    box-shadow: inset 4rem 0 0 0 rgba($info, 0.48);
+  }
+}
+
+// <a href="#" data-link="growing">this link</a>
+[data-link="growing"] {
+  text-decoration: none;
+  color: _var("dark", $dark);
+  font-weight: 700;
+  position: relative;
+
+  &:hover {
+    color: _var("white", $white);
+    box-shadow: inset 200px 0 0 0 $info;
+  }
+
+  &::before {
+    content: '';
+    background-color: rgba($info, 0.8);
+    position: absolute;
+    left: 0;
+    bottom: .25rem;
+    width: 100%;
+    height: .5rem;
+    z-index: -1;
+    transition: $transition;
+  }
+
+  &:hover::before {
+    bottom: 0;
+    height: 100%;
+  }
+}
+
+// <a href="#" data-link="under-v1">this link</a>
+[data-link="under-v1"] {
+  background: linear-gradient(to right, rgba($info, 1), rgba($teal, 1)), 
+  linear-gradient(to right, rgba($secondary, 1), rgba($primary, 1), rgba($quaternary, 1));
+  background-size: 100% .125rem, 0 0.125rem;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+
+  &:hover {
+    background-size: 0 0.125rem, 100% 0.125rem;
+  }
+}
+
+// <a href="#" data-link="under-v2">this link</a>
+[data-link="under-v2"] {
+  color: _var("dark", $dark);
+  position: relative;
+  text-decoration: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: .25rem;
+    border-radius: .25rem;
+    background-color: _var("dark", $dark);
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .25s ease-in-out;
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+}
+
+// <a href="#" data-link="under-v3">this link</a>
+// <a href="#" class="t-line" data-link="under-v3">this link</a>
+[data-link="under-v3"] {
+  background: linear-gradient(0deg, $primary, $primary) no-repeat right (bottom / 0) var(--bg-h);
+  transition: background-size 350ms;
+  --bg-h: 100%;
+
+  &:where(:hover, :focus-visible) {
+    background-size: 100% var(--bg-h);
+    background-position-x: left;
+  }
+
+  &.t-line {
+    padding-bottom: .125rem;
+    --bg-h: .125rem;
+  }
+}

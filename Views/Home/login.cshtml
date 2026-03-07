@@ -1,0 +1,196 @@
+﻿@using WKEFSERVICE.Models
+@model WKEFSERVICE.Models.LoginModel
+@using WKEFSERVICE.Services
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    SessionModel sm = SessionModel.Get();
+
+    // 有登入 + 非一般使用者
+    if (sm.UserInfo != null && sm.UserInfo.User.iGRPID.HasValue && sm.UserInfo.User.iGRPID.Value > 1)
+    {
+        Response.Redirect(Url.Action("Index", "Backend"));
+    }
+
+    string s_KeyEmpCourses = "關鍵就業力課程";
+    string s_ForgotPXXD = "關鍵就業力課程忘記密碼";
+    string s_clickForgotPXXD = "點我忘記密碼";
+    string s_Memberlogin = "關鍵就業力課程會員登入";
+    string s_title_PlsEnterEmail = "請輸入您的電子郵件(abc@com.tw)或帳號(abc)";
+    string s_PleaseEnterPXXD = "請輸入您的密碼";
+    //string small_ExampleEmailFormat= "(電子郵件格式範例如：abc@gmail.com)";
+    //string small_PXXDlenlimit = string.Format("(密碼格式限制：至少{0}字元，最多{1}字元)", ConfigModel.PwdLenMin,ConfigModel.PwdLenMax);
+    //if (sm.UserInfo != null)
+    //{
+    //    if (sm.UserInfo.User.GRPID == "1") { }
+    //    if (sm.UserInfo.User.GRPID == "2") { }
+    //    if (sm.UserInfo.User.GRPID == "3") { }
+    //    if (sm.UserInfo.User.GRPID == "4") { Response.Redirect(Url.Action("Index", "Backend")); }
+    //}
+}
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/slim-icon/styles.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/swiper/swiper-bundle.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/vendor/icon-turbotech/style.css">*@
+@*<link rel="stylesheet" type="text/css" href="../../../@ConfigModel.WKEF/assets/css/all.css">*@
+
+<!-- breadcrumbs -->
+@Html.Partial("_PartialBread2")
+<style type="text/css">
+    /*style=*/
+    .hidden-player-captcha { display: none; }
+    .spacer-20 { height: 20px; }
+    .spacer-15 { height: 15px; }
+    .content-container { height: auto; margin-bottom: 15rem; }
+    .member-text { display: inline-block; margin-bottom: unset; font-size: 1.8rem; }
+    .login-text { display: inline-block; margin-bottom: unset; font-size: 2.2rem; }
+    .login-text-1-2 { position: relative; display: inline-block; margin-bottom: unset; font-size: 1.2rem; }
+    .red-text { color: red; font-size: inherit; }
+</style>
+<div class="spacer-20">&nbsp;</div>
+<div class="container content-container">
+    <div class="col-12">
+        <!-- 表單驗證相關規則 js/Validate.js -->
+        <div class="apply-tab">
+            <input id="apply_signup" type="radio" name="apply_tabs" class="hide" checked="" title="@s_ForgotPXXD">
+            <!-- TAB 大區塊 -->
+            <div class="tab-navs apply-tab-navs" id="apply_tab_navs">
+                <label for="apply_tab_navs" class="tab-nav apply-tab-nav" id="apply_signin_tab">
+                    <div class="mask mask_diamond_white"></div>
+                    <div class="tab-card-mid">
+                        <div class="card-title">@s_KeyEmpCourses</div>
+                        <div class="card-txt">&nbsp;</div>
+                        <a class="btn btn--border--white btn--lg tab-card--btn" href="~/Home/ForgetPwd" title="@s_clickForgotPXXD">點我 "忘記密碼"</a>
+                    </div>
+                </label>
+            </div>
+            <div class="tabs-contents apply-tabs-contents">
+                <div id="apply_tabs_signin" class="tabs-content apply-tabs-content">
+                    <!-- 必須存在，否則版面會跑掉... -->
+                </div>
+                <!-- 會員登入 -->
+                <div id="apply_tabs_signup" class="tabs-content apply-tabs-content">
+                    <div class="t-form-heading">
+                        <p class="member-text">會員</p>
+                        <p class="login-text">登入</p>
+                    </div>
+                    <div class="login-img"></div>
+                    <div class="tab--default apply-signin-tab">
+                        <input id="apply-signin_default" type="radio" name="apply-signin_tabs" class="hide" checked="" title="@s_Memberlogin">
+                        <div class="tab-navs apply-signin-tab-navs" id="apply-signin_tab_navs">
+                            <label class="tab-nav apply-signin-tab-nav">
+                                <strong>個人會員(一般會員)</strong>
+                            </label>
+                        </div>
+                        <div class="tabs-contents apply-signin-tabs-contents">
+                            <!-- 一般會員登入（表單） -->
+                            <div id="apply-signin_default_tabs" class="tabs-content apply-signin-tabs-content">
+                                @using (Html.BeginForm("doLogin", "Home", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", autocomplete = "off" }))
+                                {
+                                    @Html.HiddenFor(m => m.ErrorMessage)
+                                    <input id="mode1" name="form.Mode" type="hidden" value="2">
+                                    <label id="lab_ERRORMSG"></label>
+                                    <div class="t-form-group">
+                                        <label for="form_UserNo_EMAIL">
+                                            <strong>@s_title_PlsEnterEmail (必要的)</strong>
+                                        </label>
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(x => x.form.UserNo_EMAIL, htmlAttributes: new { @class = "t-form-control formbar-bg", placeholder = s_title_PlsEnterEmail, title = s_title_PlsEnterEmail, required = "" })
+                                            <i class="tu-email" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="t-form-group">
+                                        <label for="form_UserPwd">
+                                            <strong>@s_PleaseEnterPXXD (必要的)</strong>
+                                        </label>
+                                        <div class="input-group">
+                                            @Html.PasswordFor(x => x.form.UserPwd, htmlAttributes: new { @class = "t-form-control", placeholder = s_PleaseEnterPXXD, title = s_PleaseEnterPXXD, autocomplete = "off", required = "" })
+                                            <i class="tu-lock" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="t-form-group">
+                                        <label for="form_ValidateCode">
+                                            <strong>請輸入圖形驗證碼 (必要的)</strong>
+                                        </label>
+                                        <div class="t-form-validatecode">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(x => x.form.ValidateCode, htmlAttributes: new { @class = "t-form-control js-validatecode", placeholder = "請輸入圖片中文字", title = "請輸入圖形驗證碼", required = "" })
+                                                <i class="tu-shield" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="spacer-15">&nbsp;</div>
+                                            <img class="img-captcha" src="@Url.Action("GetValidateCode", "Home")" id="vCode" alt="(點擊)產生新驗證碼" title="點擊以產生新驗證碼" tabindex="0" />
+                                            <a href="@Url.Action("VCodeAudio", "Home")" class="btn btn--square btn--dark" id="imgChgNum2" data-toggle="tooltip" title="(點擊)語音撥放驗證碼" target="frmPlayer" data-placement="right" data-original-title="語音播放">
+                                                <div class="hidden-player-captcha">(點擊)語音撥放驗證碼</div>
+                                                <i id="playCode" title="點擊以撥放語音驗證碼" class="tu-f-volume" aria-hidden="true"></i>
+                                            </a>
+                                            <iframe name="frmPlayer" class="hidden-player-captcha" title="語音撥放器,語音撥放驗證碼存放區"></iframe>
+                                        </div>
+                                        <div class="spacer-15">&nbsp;</div>
+                                        <div class="t-form-btn-bt-row">
+                                            @*data-toggle="tooltip" data-placement="top" data-original-title="清除" value="清除"*@
+                                            <button type="reset" class="btn btn--light btn--square--lg" title="點擊以清除輸入的欄位"><span class="sr-only">清除</span><i class="tu-rotate-ccw" aria-hidden="true"></i></button>
+                                            &nbsp;&nbsp;
+                                            <button type="submit" class="btn btn--shadow--primary btn--icon btn--icon--lg btn--lg" title="點擊以登入">
+                                                <p class="login-text-1-2"> 登 入</p>
+                                                <i class="tu-arrow-right" @*style="position: relative; top: 15px;"*@></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div>
+                                        為杜絕有心人士試探密碼之可能，帳號登入失敗達三次將被鎖住，<br />
+                                        可使用「忘記密碼」功能取回您的使用權限<br />
+                                        <span class="red-text">
+                                            「忘記密碼」功能一天僅限使用一次
+                                        </span>
+                                    </div>
+                                    <br />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function showErrorMessage(Errmsg1) {
+        if (Errmsg1 == "") { return; }
+        $("#lab_ERRORMSG").css({ "color": "red" }).html(Errmsg1);
+        if (Errmsg1 == "驗證碼輸入錯誤") {
+            $('#form_ValidateCode').focus();
+            return;
+        }
+        else if ($('#ErrorMessage').val() != "") {
+            $('#form_UserNo_EMAIL').focus();
+            return;
+        }
+    }
+
+    $(document).ready(function () {
+        if ($('#ErrorMessage').val() != "") {
+            console.log('#ErrorMessage : ' + $('#ErrorMessage').val());
+            showErrorMessage($('#ErrorMessage').val());
+        }
+    });
+
+     $(function () {
+        $('#vCode').on("click", function (e) {
+            $('#vCode').attr("src", '@Url.Action("GetValidateCode")' + "?rand=" + new Date().getMilliseconds());
+        });
+        $('#vCode').on("keypress", function (e) {
+            $('#vCode').attr("src", '@Url.Action("GetValidateCode")' + "?rand=" + new Date().getMilliseconds());
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+     });
+
+    @*
+    function ForgetPasswd()
+    {
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("ForgetPwd", "Home")' ).submit();
+    }
+    *@
+
+</script>

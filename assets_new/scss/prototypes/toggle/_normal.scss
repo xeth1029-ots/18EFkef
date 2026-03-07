@@ -1,0 +1,115 @@
+
+
+.t-normal {
+  display: inline-block;
+  width: 7em;
+  height: 3em;
+  label {
+    // background
+    @include toggle-label;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.5em;
+    background: #f0134d;
+    border: 0.5px solid rgba(117, 117, 117, 0.31);
+    box-shadow: inset 0px 0px 0.25em 0px rgba($dark, 0.2), 0 -0.1875em 0.25em rgba($dark, 0.15);
+    transition: $transition;
+    transform-origin: 20% center;
+    &:before {
+      // circle
+      @include before-after;
+      top: 0.25em;
+      left: 0.25em;
+      width: 2.5em;
+      height: 2.5em;
+      border: none;
+      border-radius: 2em;
+      transition: $transition;
+      box-shadow: inset 0.5px -1px 1px rgba($dark, 0.35);
+      background: _var("white", $white);
+    }
+    &:after {
+      // shadow
+      @include before-after;
+      top: -0.3125em;
+      left: -0.25em;
+      width: calc(100% + 0.5em);
+      height: calc(100% + 0.5em);
+      background: transparent;
+      border-radius: 30px;
+      box-shadow: inset 0px 0.125em 0.25em -0.125em rgba($dark, 0.2), 0px 1px 0.125em 0px rgba(151, 151, 151, 0.2);
+    }
+  }
+  input {
+    @include input-checkbox;
+  }
+  input:checked + label {
+    // background
+    background: $info;
+    &:before {
+      // circle
+      left: 4.2em;
+    }
+  }
+  input:disabled {
+    & + label {
+      // background
+      background: $grey-300 !important;
+      border: none !important;
+      cursor: not-allowed !important;
+      &:before {
+        // circle
+        background: #ddd !important;
+        box-shadow: none !important;
+      }
+      &:after {
+        // shadow
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+.t-normal-garden {
+  @extend .t-normal;
+  label {
+    // background
+    background: #ff2e63;
+  }
+  input:checked + label {
+    // background
+    background: #21bf73;
+  }
+}
+.t-normal-navi {
+  @extend .t-normal;
+  label {
+    // background
+    background: #f5f0e3;
+  }
+  input:checked + label {
+    // background
+    background: #5f6caf;
+  }
+}
+.t-normal-violet {
+  @extend .t-normal;
+  label {
+    // background
+    background: #f0e3ff;
+  }
+  input:checked + label {
+    // background
+    background: #3e206d;
+  }
+}
+.t-normal-juice {
+  @extend .t-normal;
+  label {
+    // background
+    background: #f9f6f7;
+  }
+  input:checked + label {
+    // background
+    background: #ff971d;
+  }
+}

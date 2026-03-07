@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+//  Components -> Ribbon
+// --------------------------------------------------
+// <div class="t-ribbon-primary">最新消息</div>
+// <div class="t-ribbon-d-primary">最新消息</div>
+// Ribbon Styles
+@each $color, $value in $element-colors {
+  .t-ribbon-#{$color} {
+    @include ribbon($background: $value);
+  }
+}
+@each $color, $value in $element-colors {
+  .t-ribbon-r-#{$color} {
+    @include ribbon-r($background: $value);
+  }
+}
+
+// Ribbon Styles
+@each $color, $value in $element-colors {
+  @include ribbon-d($color, 1rem, $value);
+}

@@ -1,0 +1,200 @@
+﻿@using WKEFSERVICE.Services;
+@using WKEFSERVICE.Areas.A2.Models;
+@using WKEFSERVICE.Models;
+@model C501MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+    SessionModel sm = SessionModel.Get();
+    string TheWidth = "width:250px";
+    string TheWidth2 = "width:320px";
+    string isReadonly1 = "";
+    string[] readonlyArr = { "S", "Y", "N" };
+    if (readonlyArr.Contains(Model.Detail.AuditStatus.TONotNullString())) { isReadonly1 = "readonly disabled"; }
+}
+
+@using (Html.BeginForm("Save", "C501M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Detail.IsNew)
+    @Html.HiddenFor(x => x.Detail.Seq)
+
+    <section id="btMeeting" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-edit">
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-between">
+                            <!-- 抬頭 -->
+                            <div class="t-flex align-items-baseline">
+                                <h3 class="bt-section-heading">教學自我審核報告</h3>
+                                <p class="bt-section-para">提供教師可上傳個人之教學自我審核報告。</p>
+                            </div>
+                            <!-- 主按鈕 -->
+                            <div class="t-flex">
+                                <button type="button" class="btn btn--soft--dark btn--sm mr-2" onclick="doBack()">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-arrow-l"></use>
+                                        </svg>
+                                    </i>
+                                    回上一頁
+                                </button>
+                                <button type="button" class="btn btn--checked btn--sm mr-2" onclick="doSave()" id="SaveBtn" @isReadonly1>
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    儲存
+                                </button>
+                                @if (!Model.Detail.IsNew)
+                                {
+                                    <button type="button" class="btn btn--checked btn--sm mr-2" onclick="doAudit()" id="AuditBtn" @isReadonly1>
+                                        <i class="svg-icon mr-2" aria-hidden="true">
+                                            <svg>
+                                                <use href="#ic-save"></use>
+                                            </svg>
+                                        </i>
+                                        送審
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                        <!-- 主欄位 -->
+                        <div class="bt-form-cnt" id="DisabledAll_Mst">
+                            <div class="t-form t-txt-left">
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.Year, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.Year, new SelectList(Model.Detail.Year_list, "Value", "Text", Model.Detail.Year), new { @class = "t-form-control ml-4", onchange = "doYearDropDown()", style = TheWidth })
+                                        @Html.HiddenFor(x => x.Detail.Year)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.UploadDeadline, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.UploadDeadline, new { @class = "t-form-control ml-4", @readonly = "", @disabled = "" })
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.JobAbilityCode, new { @class = "t-form-label" })
+                                        @Html.DropDownListFor(m => m.Detail.JobAbilityCode, new SelectList(Model.Detail.JobAbilityCode_list, "Value", "Text", Model.Detail.JobAbilityCode), new { @class = "t-form-control ml-4", style = TheWidth })
+                                        @Html.HiddenFor(x => x.Detail.JobAbilityCode)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.ReportName, new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail.ReportName, new { size = "30", maxlength = "200", @class = "t-form-control ml-4" })
+                                        @Html.HiddenFor(m => m.Detail.ReportName)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.LabelFor(m => m.Detail.FileNameRemark, new { @class = "t-form-label" })
+                                        @*
+                                            使用 Html.TextAreaFor 會導致必填驗證時，莫名產生逗號及重複字串問題，只好直接硬寫 HTML
+                                            @Html.TextAreaFor(m => m.Detail.FileNameRemark, new { @class = "t-form-control ml-4" })
+                                        *@
+                                        <textarea class="t-form-control ml-4" cols="20" data-val="true" data-val-required="公告內容 欄位是必要項。" id="Detail_FileNameRemark" name="Detail.FileNameRemark" rows="3">@Model.Detail.FileNameRemark</textarea>
+                                        @Html.HiddenFor(m => m.Detail.FileNameRemark)
+                                    </div>
+                                </div>
+                                <div class="t-form-inline">
+                                    <div class="t-form-group">
+                                        @Html.Label("檔案", new { @class = "t-form-label" })
+                                        @Html.TextBoxFor(m => m.Detail._UPLOAD_FILE, new { type = "file", @class = "t-form-control ml-4", accept = ".doc, .docx, .ppt, .pdf, .odt, .odp", style = TheWidth2 })
+                                        @Html.HiddenFor(m => m.Detail._UPLOAD_FILE)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $("#Detail__UPLOAD_FILE").on("change", function () {
+        let fileType = "." + document.getElementById("Detail__UPLOAD_FILE").value.replace(/^.*[\\\/]/, '').split('.').pop().toLowerCase();
+        let acceptType = document.getElementById("Detail__UPLOAD_FILE").accept.toLowerCase();
+        //console.log(fileType);
+        //console.log(acceptType);
+        //console.log(acceptType.indexOf(fileType));
+        if (acceptType.indexOf(fileType) === -1) {
+            blockAlert("請選擇正確的檔案格式！ (" + acceptType + ")");
+            document.getElementById("Detail__UPLOAD_FILE").value = null;
+        }
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 儲存
+    function doSave() {
+        $.ajax({
+            url: "@Url.Action("ConfirmUploadSame", "C501M")",
+            data: {
+                "Year": $('#Detail_Year').val(),
+                "TeacherAccount": "@sm.UserInfo.UserNo",
+                "ReportType": "1"
+            },
+            dataType: "json",
+            method: "post",
+            success: function (data) {
+                //console.log(data);
+                if (data === "") {
+                    var form = $("form[id=main_form]");
+                    form.attr('action', '@Url.Action("Save")').submit();
+                }
+                else {
+                    blockConfirm(data, null,
+                        function () {
+                            var form = $("form[id=main_form]");
+                            form.attr('action', '@Url.Action("Save")').submit();
+                        },
+                        function () {
+                            return;
+                        }
+                    );
+                }
+            },
+            error: function (data) {
+                console.log("C501M get data error");
+            }
+        });
+    }
+
+    // 送審
+    function doAudit() {
+        blockConfirm("您確定要送出審核？", null, function () {
+            var form = $("form[id=main_form]");
+            form.attr('action', '@Url.Action("SendToAudit", "C501M")').submit();
+        });
+    }
+
+    // 年度下拉事件
+    function doYearDropDown() {
+        $.ajax({
+            url: "@Url.Action("GetUploadDeadlineStr", "C501M")",
+            data: { "Year": $('#Detail_Year').val() },
+            dataType: "json",
+            success: function (data) {
+                //console.log(data);
+                if (data == "") { data = "<無>"; }
+                $('#Detail_UploadDeadline').val(data);
+            },
+            error: function (data) {
+                console.log("C501M get data error");
+            }
+        });
+    }
+
+</script>

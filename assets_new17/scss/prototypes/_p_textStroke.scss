@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+//==  Prototypes -> Texts stroke 
+//====================================================
+
+    // <h1 class="t-stroke">宏華國際股份有限公司</h1>
+    // <h1 class="t-background-txt">宏華國際股份有限公司</h1>
+    // <h1 class="t-svg-stroke">宏華國際股份有限公司</h1>
+    // <h1 class="t-txt-stroke">宏華國際股份有限公司</h1>
+    // <h1 data-stroke="outline" data-outline-text="宏華國際股份有限公司" >宏華國際股份有限公司</h1>
+
+[data-stroke="outline"] {
+  @include text-outline($grey-900,  0.025em, 0.15em, $dark , $grey-200 , currentColor);
+}
+
+[data-stroke="outlineWhite"] {
+  @include text-outline($dark,  0.025em, 0.15em, $dark , $dark , $white);
+}
+
+[data-stroke="outlineDark"] {
+  @include text-outline($grey-900,  0.025em, 0.15em, $grey-600 , $grey-200 , $dark);
+}
+
+.t-stroke {
+  @include stroke($w: 1px, $color: currentColor);
+}
+
+
+.t-background-txt {
+  @include background-text(
+  	$fontSize: 2.75rem, 
+  	$color: $yellow , 
+  	$strokeColor : $yellow-600, 
+  	$strokeWidth: 2px);
+}
+
+.t-svg-stroke {
+	@include svg-stroke($dilate: 0.5, $erode: 4);
+}
+
+.t-txt-stroke {
+  @include text-stroke($width: 2px, $fill: currentColor, $stroke: currentColor);
+}

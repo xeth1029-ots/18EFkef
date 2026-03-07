@@ -1,0 +1,362 @@
+//
+// Components -> Tables
+// --------------------------------------------------
+.t-table-cnt {
+  border-radius: .75rem;
+  padding: 0.375rem 0.75rem 0.875rem;
+  background-color: rgba($grey-100, 0.12);
+
+  @each $color, $value in $element-colors {
+    &.table--#{$color} {
+      background-color: rgba($value, 0.24);
+    }
+  }
+
+  &.has-title {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &.has-footer {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 0;
+  }
+
+  &.t-table-responsive {
+    // margin-top: .75rem;
+    // padding: 1.25rem;
+    overflow-x: auto;
+
+    // .t-table {
+    //   width: 100%;
+    //   max-width: 100%;
+
+    //   thead {
+    //     font-weight: 500;
+
+    //     th {
+    //       min-width: 4rem;
+    //       white-space: nowrap;
+    //     }
+    //   }
+
+    //   tbody {
+    //     tr {
+    //       td {
+    //         &:not(.tool-td) {
+    //           white-space: nowrap;
+    //         }
+    //       }
+
+    //       .tool-td {
+    //         white-space: nowrap;
+    //       }
+    //     }
+    //   }
+    // }
+ 
+  }
+
+  &.t-table-responsive--data {
+    overflow-x: auto;
+    width: 100%;
+
+    @media (max-width: $screen-md) {
+      padding: 1.25rem 1.5rem 1.75rem;
+    }
+
+    .t-table {
+      max-width: 100%;
+
+      @media (max-width: $screen-md) {
+        min-width: 100%;
+        line-height: 1.5;
+      }
+
+      thead {
+        @media (max-width: $screen-md) {
+          display: none;
+        }
+
+        th {
+          white-space: nowrap;
+
+          // &:not(.check-th) {
+          //   &:not(:last-child) {
+          //     &:not(:first-child) {
+          //       min-width: 10rem;
+          //     }
+          //   }
+
+          //   &:last-child {
+          //     min-width: 12rem;
+          //   }
+
+          //   &:first-child {
+          //     min-width: 8rem;
+          //   }
+          // }
+
+          .form-check-input {
+            display: inline-block;
+            vertical-align: middle;
+
+            // margin: 0 .25rem;
+         
+          }
+
+          .btn--xs {
+            font-size: .75rem;
+          }
+
+          font,
+          label {
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          label {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          position: relative;
+
+          @media (max-width: $screen-md) {
+            display: flex;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            justify-content: start;
+            flex-wrap: wrap;
+          }
+
+          &:not(:last-child) {
+            @media (max-width: $screen-md) {
+              margin-bottom: 1rem;
+            }
+          }
+
+          td {
+            @media (max-width: $screen-md) {
+              display: inline-flex;
+              flex-direction: column;
+              white-space: initial;
+              flex: 1 1 auto;
+              text-underline-offset: .25rem;
+              font-size: 1rem;
+              padding: 0.625rem;
+              text-align: left;
+            }
+
+            &:not(.td-full) {
+              @media (max-width: $screen-md) {
+                max-width: 50%;
+              }
+
+              @media (max-width: 524px) {
+                &.form-td {
+                  width: 100%;
+                }
+              }
+            }
+
+            &.td-full {
+              @media (max-width: $screen-md) {
+                width: 100%;
+              }
+            }
+
+            &:before {
+              @media (max-width: $screen-md) {
+                content: attr(data-th);
+                display: inline-block;
+                width: 100%;
+                white-space: nowrap;
+                font-weight: 700;
+                margin-right: 1.5rem;
+                margin-bottom: .5rem;
+                color: $grey;
+                text-decoration-color: $grey-200;
+                text-decoration-line: underline;
+                text-decoration-style: dashed;
+                text-underline-offset: 0.375rem;
+              }
+            }
+
+            &.tool-default-td {
+              @media (max-width: $screen-md) {
+                display: block;
+                padding: 0;
+                text-align: right;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+              }
+
+              .btn {
+                @media (max-width: $screen-xs) {
+                  padding: .25rem .375rem;
+                  font-size: 0;
+
+                  font {
+                    // font-size: 0;
+                 
+                  }
+
+                  i {
+                    margin-left: .25rem;
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+
+            &.tool-td {
+              @media (max-width: $screen-md) {
+                display: block;
+                white-space: inherit;
+              }
+
+              .btn {
+                @media (max-width: $screen-md) {
+                  margin-bottom: .5rem;
+                  padding: 0.5rem 1.25rem;
+                }
+
+                &:not(:last-child) {
+                  @media (max-width: $screen-md) {
+                    margin-right: .5rem;
+                  }
+                }
+
+                i,
+                font {
+                  @media (max-width: $screen-md) {
+                    font-size: 1.125rem;
+                  }
+                }
+              }
+            }
+
+            &:not(:last-child) {
+              @media (max-width: $screen-md) {
+                // margin-bottom: .5rem;
+              }
+            }
+
+            .input-group {
+              border-collapse: collapse;
+            }
+
+            .form-check-input {
+              display: inline-block;
+              vertical-align: middle;
+              margin-top: 0;
+            }
+
+            .form-switch {
+              margin: .25rem 0;
+
+              @media (max-width: $screen-md) {
+                display: inline-block;
+                vertical-align: middle;
+              }
+            }
+
+            font {
+              display: inline-block;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .btn-tb-add {
+    border: 1px dashed rgba($primary, 0.66);
+  }
+
+  .t-table {
+    border-collapse: $table-border-collapse;
+    border-spacing: $table-border-spacing;
+    line-height: $table-line-height;
+    width: 100%;
+
+    a {
+      color: $primary-700;
+
+      @include hover {
+        color: $primary-500;
+      }
+    }
+
+    thead {
+      font-weight: $font-weight-medium;
+
+      th {
+        font-weight: inherit;
+        font-size: $table-thead-font-size;
+        color: $table-thead-font-color;
+        padding: $table-thead-cell-th-y $table-thead-cell-th-x #{$table-thead-cell-th-y - 0.25rem} $table-thead-cell-th-x;
+      }
+    }
+
+    tbody {
+      font-size: $table-tbody-font-size;
+
+      tr {
+        background-color: $table-tr-background;
+
+        // backdrop-filter: $table-tr-background-backdrop-filter;
+        transition: $transition;
+        box-shadow: $table-tr-shadow;
+
+        &:hover {
+          background-color: $table-tr-background-hover;
+
+          // backdrop-filter: $table-tr-background-backdrop-filter-hover;
+          box-shadow: $table-tr-shadow-hover;
+        }
+      }
+
+      td {
+        // white-space: nowrap;
+        white-space: normal;
+
+        &:empty {
+          &:after {
+            content: '-- -- --';
+            font-size: .9375rem;
+            color: $grey;
+          }
+        }
+
+
+          padding: $table-cell-padding-y $table-cell-padding-x $table-cell-padding-y $table-cell-padding-x;
+
+
+        &:first-child {
+          border-radius: .5rem 0 0 .5rem;
+        }
+
+        &:last-child {
+          border-radius: 0 .5rem .5rem 0;
+        }
+
+     
+      }
+
+      .tool-td {
+        .btn {
+          margin-bottom: .25rem;
+          margin-top: .25rem;
+        }
+      }
+    }
+  }
+}

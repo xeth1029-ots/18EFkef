@@ -1,0 +1,162 @@
+// <div class="container">
+//   <div class="t-image-itrem">
+//     <figure class="polaroid">
+//       <img src="https://unsplash.t-it/400/300" alt="">
+//       <figcaption class="caption">by John Aguilar</figcaption>
+//     </figure]//   </div>
+
+//   <div class="t-image-itrem">
+//     <figure class="polaroid">
+//       <img src="https://unsplash.t-it/400/300?image=250" alt="">
+//       <figcaption class="caption">by Amanda Forsyth</figcaption>
+//     </figure>
+//   </div>
+
+//   <div class="t-image-itrem">
+//     <figure class="polaroid">
+//       <img src="https://unsplash.t-it/400/300?random" alt="">
+//       <figcaption class="caption">by David Leonard</figcaption>
+//     </figure>
+//   </div>
+
+//   <div class="t-image-itrem">
+//     <figure class="polaroid">
+//       <img src="https://unsplash.t-it/400/300?image=50" alt="">
+//       <figcaption class="caption">by Wendy Andrews</figcaption>
+//     </figure>
+//   </div>
+
+//   <div class="t-image-itrem">
+//     <figure class="polaroid">
+//       <img src="https://unsplash.t-it/400/300?image=70" alt="">
+//       <figcaption class="caption">by Marjorie Smith</figcaption>
+//     </figure>
+//   </div>
+// </div>
+// body {
+//   background: #ECE9E6;
+//   background: -webkit-linear-gradient(to left, #ECE9E6, #FFFFFF);
+//   background: -webkit-linear-gradient(right, #ECE9E6, #FFFFFF);
+//   background: linear-gradient(to left, #ECE9E6, #FFFFFF);
+//   font-size: 14px;
+//   line-height: 1.6;
+//   font-family: "Great Vibes", cursive;
+// }
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.t-container {
+  width: 100%;
+  text-align: center;
+}
+
+.t-polaroid {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.t-caption {
+  font-size: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.t-image-itrem {
+  display: inline-block;
+  margin-top: 2rem;
+  filter: grayscale(90%);
+}
+
+.t-image-itrem .t-polaroid:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.t-image-itrem:nth-of-type(4n+1) {
+  transform: scale(0.8, 0.8) rotate(5deg);
+  transition: all 0.3s;
+}
+
+.t-image-itrem:nth-of-type(4n+1) .t-polaroid:before {
+  transform: rotate(4deg);
+  width: 45%;
+  height: 20%;
+  bottom: 30px;
+  right: 10px;
+}
+
+.t-image-itrem:nth-of-type(4n+2) {
+  transform: scale(0.8, 0.8) rotate(-5deg);
+  transition: all 0.3s;
+}
+
+.t-image-itrem:nth-of-type(4n+2) .t-polaroid:before {
+  transform: rotate(-4deg);
+  width: 45%;
+  height: 20%;
+  bottom: 30px;
+  right: 10px;
+}
+
+.t-image-itrem:nth-of-type(4n+3) {
+  transform: scale(0.8, 0.8) rotate(-3deg);
+  transition: all 0.3s;
+}
+
+.t-image-itrem:nth-of-type(4n+3) .t-polaroid:before {
+  transform: rotate(-4deg);
+  width: 45%;
+  height: 20%;
+  bottom: 30px;
+  right: 10px;
+}
+
+.t-image-itrem:nth-of-type(4n+4) {
+  transform: scale(0.8, 0.8) rotate(-3deg);
+  transition: all 0.3s;
+}
+
+.t-image-itrem:nth-of-type(4n+1) .t-polaroid:before {
+  transform: rotate(-4deg);
+  width: 45%;
+  height: 20%;
+  bottom: 30px;
+  right: 10px;
+}
+
+.t-image-itrem:nth-of-type(4n+5) {
+  transform: scale(0.8, 0.8) rotate(0deg);
+  transition: all 0.3s;
+}
+
+.t-image-itrem:nth-of-type(4n+1) .t-polaroid:before {
+  transform: rotate(0deg);
+  width: 45%;
+  height: 20%;
+  bottom: 30px;
+  right: 10px;
+}
+
+.t-image-itrem:hover {
+  transform: scale(1, 1) rotate(0deg);
+  filter: none;
+  transition: all 0.3s;
+}
+
+.t-image-itrem:hover .t-polaroid:before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  bottom: 0%;
+  right: 5%;
+  z-index: -1;
+  transform: rotate(0deg);
+  transition: all 0.3s;
+}

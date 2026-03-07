@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+//   Components -> Buttons -> Buttons shadows
+// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+@if $enable-custom-buttons-shadow == true {
+  // Buttons Shadow Colors
+  @each $color, $value in $element-colors {
+    .btn.btn--shadow--#{$color} {
+      @include button-boxShadow-variant($value, $value);
+    }
+  }
+}

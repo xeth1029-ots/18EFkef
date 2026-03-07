@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+//   Mixins > skeletons
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// @include skeleton-default($height : 4.375rem)
+@mixin skeleton-default($height: 4.375rem) {
+    clip-path: polygon(0 0, 100% 0, 100% #{$height / 7}, 0 #{$height / 7}, 0 #{$height / 7 * 2}, 80% #{$height / 7 * 2}, 80% #{$height / 7 * 3}, 0 #{$height / 7 * 3}, 0 #{$height / 7 * 4}, 90% #{$height / 7 * 4}, 90% #{$height / 7 * 5}, 0 #{$height / 7 * 5}, 0 #{$height / 7 * 6}, 95% #{$height / 7 * 6}, 95% $height, 0 $height);
+    height: $height;
+}
+// @include skeleton-image-text($height: 4.375rem, $size: 1.25rem) 
+@mixin skeleton-image-text($height: 4.375rem, $size: 1.25rem) {
+    clip-path: polygon(0 0, $height 0, $height $height, 0 $height, 0 0, #{$height + $size} 0, 100% 0, 100% #{$height / 7}, #{$height + $size} #{$height / 7}, #{$height + $size} #{$height / 7 * 2}, 80% 20px, 80% #{$height / 7 * 3}, #{$height + $size} #{$height / 7 * 3}, #{$height + $size} #{$height / 7 * 4}, 90% #{$height / 7 * 4}, 90% #{$height / 7 * 5}, #{$height + $size} #{$height / 7 * 5}, #{$height + $size} #{$height / 7 * 6}, 95% #{$height / 7 * 6}, 95% $height, #{$height + $size} $height, #{$height + $size} 0);
+    height: $height;
+}
+// @include skeleton($background: $grey-100 , $background-image: $dark, $background-size: 12.5rem)
+@mixin skeleton($background: $grey-100 , $background-image: $dark, $background-size: 12.5rem) {
+	  background-color: $background;
+	  background-image: linear-gradient(90deg, transparent, rgba($background-image, 0.05), transparent);
+	  background-repeat: no-repeat;
+	  background-size: $background-size 100%;
+	  animation: 2500ms infinite backgroundAnimation;
+
+	  @keyframes backgroundAnimation {
+	    0% {
+	      background-position: -#{$background-size} 100%;
+	    }
+
+	    100% {
+	      background-position: calc(100% + #{$background-size}) 100%;
+	    }
+	  }
+}

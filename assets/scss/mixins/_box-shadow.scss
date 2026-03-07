@@ -1,0 +1,117 @@
+@charset "utf-8";
+
+
+// box-shadow: bottom-shadow($depth: 1 , $shadow: $primary), top-shadow($depth: 1 , $shadow: $primary);
+@function top-shadow($depth: 1 , $shadow: $dark) {
+  $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
+  $blur: nth(1.5 3 10 14 19, $depth) * 4px;
+  $color: rgba($shadow, nth(.12 .16 .19 .25 .30, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+/// Computes a bottom-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function bottom-shadow($depth: 1  , $shadow: $dark) {
+  $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
+  $blur: nth(1 3 3 5 6, $depth) * 4px;
+  $color: rgba($shadow , nth(.24 .23 .23 .22 .22, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+
+// 
+//  Mixins > Box Shadow
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin box-shadow-blur($color1: #CF77F3, $color2: #009BFF, $color3: #2AC9DB) {
+  box-shadow: 1.25rem 0.3125rem 2.5rem $color1, 0 0.3125rem 2.5rem $color2, -1.25rem 0.3125rem 2.5rem $color3;
+}
+
+@mixin box-shadow($shadow...) {
+  @if $enable-shadows {
+    $result: ();
+
+    @if length($shadow) == 1 {
+      // We can pass `@include box-shadow(none);`
+      $result: $shadow;
+    }
+    @else {}
+
+    // Filter to avoid invalid properties for example `box-shadow: none, 1px 1px black;`
+    @for $i from 1 through length($shadow) {
+      @if nth($shadow, $i) != "none" {
+        $result: append($result, nth($shadow, $i), "comma");
+      }
+    }
+  }
+
+  @if length($result) > 0 {
+    box-shadow: $result;
+  }
+}
+
+@mixin box-shadow-level($level) {
+  @if $level == 1 {
+    box-shadow: 0 1px 3px rgba($dark, 0.12), 0 1px 2px rgba($dark, 0.24);
+  }
+  @else if $level == 2 {
+    box-shadow: 0 3px 6px rgba($dark, 0.16), 0 3px 6px rgba($dark, 0.23);
+  }
+  @else if $level == 3 {
+    box-shadow: 0 10px 20px rgba($dark, 0.19), 0 6px 6px rgba($dark, 0.23);
+  }
+  @else if $level == 4 {
+    box-shadow: 0 14px 28px rgba($dark, 0.25), 0 10px 10px rgba($dark, 0.22);
+  }
+  @else if $level == 5 {
+    box-shadow: 0 19px 38px rgba($dark, 0.3), 0 15px 12px rgba($dark, 0.22);
+  }
+}
+
+@mixin shd-none {
+  box-shadow: none;
+}
+
+@mixin shd--hv--ver_1 {
+  box-shadow: $shd--hv--ver--01;
+
+  &:hover {
+    box-shadow: $shd--hv--ver--01--hv;
+  }
+}
+
+@mixin shd--hv--ver_2 {
+  box-shadow: $shd--hv--ver--02;
+
+  &:hover {
+    top: -2px;
+    box-shadow: $shd--hv--ver--02--hv;
+  }
+}
+
+@mixin shd--hv--ver_3 {
+  box-shadow: $shd--hv--ver--03;
+
+  &:hover {
+    box-shadow: $shd--hv--ver--03--hv;
+  }
+}
+
+@mixin shd--hv--ver_4 {
+  box-shadow: $shd--hv--ver--04;
+
+  &:hover {
+    box-shadow: $shd--hv--ver--04--hv;
+  }
+}
+
+@mixin shd--hv--ver_5 {
+  box-shadow: $shd--hv--ver--05;
+
+  &:hover {
+    box-shadow: $shd--hv--ver--05--hv;
+  }
+}

@@ -1,0 +1,15 @@
+@charset "utf-8";
+// 
+//  Mixins > Background mask
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin bg-grad-mask-bottom($h: 16rem, $color: $white) {
+    content: '';
+    width: 100%;
+    height: $h;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(3.65deg, $color 22.5%, rgba($color, 0) 102.5%);
+}
+

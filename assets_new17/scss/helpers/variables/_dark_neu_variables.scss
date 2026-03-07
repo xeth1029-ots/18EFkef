@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+
+// Input Settings
+$dark--neu-color: rgba($white, 0.72);
+$dark--neu-radius: 12px;
+// Input Placeholder
+$dark--neu-placeholder: rgba($white, 0.12);
+// Input Disabled
+$dark--neu-disabled-opacity: 0.66;
+// Input Shadows
+$dark--neu-shadows: inset 0.25rem 0.25rem 0.5rem
+    darken(rgba($neutral, 0.82), 8%),
+  inset -0.125rem -0.125rem 0.375rem rgba($white, 0.04);
+$dark--neu-shadows-focus: inset 0.25rem 0.25rem 0.5rem
+    darken(rgba($neutral, 0.86), 8%),
+  inset -0.125rem -0.125rem 0.375rem rgba($white, 0.12);
+$dark--neu-shadows-disabled: inset 0.25rem 0.25rem 0.5rem
+    darken(rgba($neutral, 0.46), 8%),
+  inset -0.125rem -0.125rem 0.375rem rgba($white, 0.02);
+$dark--neu-shadows-readonly: inset 0.25rem 0.25rem 0.5rem
+    darken(rgba($neutral, 0.46), 8%),
+  inset -0.125rem -0.125rem 0.375rem rgba($white, 0.02);
+// Input BackGrounds
+$dark--neu-background: rgba($white, 0.02);
+$dark--neu-background-focus: rgba($white, 0.08);
+$dark--neu-background-disabled: rgba($white, 0.0025);
+$dark--neu-background-readonly: rgba($white, 0.0025);
+// Input Border
+$dark--neu-border: 2px solid rgba($white, 0);
+$dark--neu-border-focus: 2px solid rgba($white, 0.005);
+$dark--neu-border-disabled: 2px solid rgba($white, 0.02);
+$dark--neu-border-readonly: 2px solid rgba($white, 0.02);
+// Input Outline
+$dark--neu-outline: 4px solid rgba($primary-100, 0);
+$dark--neu-outline-focus: 4px solid rgba($primary-100, 0.02);
+$dark--neu-outline-disabled: 4px solid rgba($primary-100, 0);
+$dark--neu-outline-readonly: 4px solid rgba($primary-100, 0);

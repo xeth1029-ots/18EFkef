@@ -1,0 +1,144 @@
+// stylelint-disable declaration-no-important
+
+// Visibility
+
+
+
+@mixin fade($type) {
+  @if $type== "hide" {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+  } @else if $type== "show" {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s;
+  }
+}
+
+@mixin invisible($visibility) {
+  visibility: $visibility !important;
+}
+
+$transition-visually : .5s height ease,.5s max-height ease,.5s opacity ease, 0s visibility ease;
+
+
+@mixin visually-hidden($max-height: 0, $height: 0, $width: 0, $opacity: 0) {
+  display: block;
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: hidden;
+  visibility: hidden;
+  transition: $transition-visually;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  @include opacity(0);
+}
+
+@mixin visually-visible($max-height: 40rem, $height: auto, $width: auto, $opacity: 1) {
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: visible;
+  visibility: visible;
+  transition: $transition-visually;
+  @include opacity(1);
+}
+
+@mixin visually-hidden-card($max-height: 0, $height: 0, $width: 0, $opacity: 0) {
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: hidden;
+  visibility: hidden;
+  transition: $transition-visually;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  transform: rotate(-30deg);
+  @include opacity(0);
+}
+
+@mixin visually-visible-card($max-height: 40rem, $height: auto, $width: auto, $opacity: 1) {
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  overflow: visible;
+  visibility: visible;
+  transition: $transition-visually;
+  transform: rotate(0deg);
+  @include opacity(1);
+}
+
+
+
+/// Hides an element visually while still allowing the content to be accessible
+/// to assistive technology, e.g. screen readers. Passing `unhide` will reverse
+/// the affects of the hiding, which is handy for showing the element on focus,
+/// for example.
+///
+/// @link https://goo.gl/Vf1TGn
+///
+/// @argument {string} $toggle [hide]
+///   Accepts `hide` or `unhide`. `unhide` reverses the affects of `hide`.
+///
+/// @example scss
+///   .element {
+///     @include hide-visually;
+///
+///     &:active,
+///     &:focus {
+///       @include hide-visually("unhide");
+///     }
+///   }
+///
+///   // CSS Output
+///   .element {
+///     border: 0;
+///     clip: rect(1px, 1px, 1px, 1px);
+///     clip-path: inset(100%);
+///     height: 1px;
+///     overflow: hidden;
+///     padding: 0;
+///     position: absolute;
+///     width: 1px;
+///   }
+///
+///   .hide-visually:active,
+///   .hide-visually:focus {
+///     clip: auto;
+///     clip-path: none;
+///     height: auto;
+///     overflow: visible;
+///     position: static;
+///     width: auto;
+///   }
+///
+/// @since 5.0.0
+
+@mixin hide-visually($toggle: "hide") {
+  @if not index("hide" "unhide", $toggle) {
+    @error "`#{$toggle}` is not a valid value for the `$toggle` argument in " +
+      "the `hide-visually` mixin. Must be either `hide` or `unhide`.";
+  } @else if $toggle == "hide" {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  } @else if $toggle == "unhide" {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    white-space: inherit;
+    width: auto;
+  }
+}

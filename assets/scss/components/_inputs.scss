@@ -1,0 +1,81 @@
+//
+//  Components -> inputs 
+// --------------------------------------------------
+// select {
+//     appearance: none;
+//     background: url("../img/sel-arrow.svg") no-repeat #fff;
+//     background-size: 1rem;
+//     background-position: right .375rem center;
+//     // border: #e9eef1 1px solid;
+//     // border: #DDE3E8 1px solid;
+//     border: #E5E5E5 1px solid;
+//     border-radius: 4px;
+//     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.04);
+//     cursor: pointer;
+//     display: inline-block;
+//     font-size: .875rem;
+
+//     padding: .625rem  2rem .625rem  1rem;
+
+//     &::-ms-expand {
+//         display: none;
+//     }
+
+//     @include ie9 {
+//         background: #fff;
+//     }
+// }
+
+
+.input--xs {
+    &.input--xs {
+        font-size: .75rem;
+        padding: .375rem .625rem;
+        max-width: 12rem;
+    }
+}
+
+.input--sm {
+    &.input--sm {
+        padding: .5rem .75rem;
+        width: 16rem;
+        max-width: 100%;
+    }
+}
+
+.input--md {
+    &.input--md {
+        width: 20rem;
+        max-width: 100%;
+    }
+}
+
+.input--lg {
+    &.input--lg {
+        padding: .875rem 1rem;
+        width: 24rem;
+        max-width: 100%;
+    }
+}
+
+.input--xlg {
+    &.input--xlg {
+        padding: 1rem 1.125rem;
+        width: 28rem;
+        max-width: 100%;
+    }
+}
+
+.input--xxlg {
+    &.input--xxlg {
+        padding: 1.125rem 1.25rem;
+        width: 32rem;
+        max-width: 100%;
+    }
+}
+
+.input--full {
+    &.input--full {
+        width: 100%;
+    }
+}

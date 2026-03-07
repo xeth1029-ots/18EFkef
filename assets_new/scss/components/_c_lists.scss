@@ -1,0 +1,167 @@
+//
+//  Components -> Lists 
+// --------------------------------------------------
+//
+.list-unstyled {
+  @include list-unstyled;
+}
+
+// list inline
+.list-inline {
+  padding-left: .5rem;
+  margin-bottom: .5rem;
+
+  > li {
+    display: inline-block;
+    vertical-align: middle;
+
+    &:not(:last-child) {
+      padding-right: .5rem;
+    }
+  }
+}
+
+// list column
+.list-column {
+  @include list-column;
+}
+
+// list Group
+.list-group {
+  margin-bottom: 1.25rem;
+  padding-left: 0;
+
+  .list-group-item {
+    position: relative;
+    display: block;
+    padding: 1.25rem 1.375rem;
+    background-color: $list-group-bg;
+    border: 1px solid $list-group-border;
+    border-bottom-color: transparent;
+
+    &:first-child {
+      @include border-top-radius($list-group-border-radius);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom-color: $list-group-border;
+
+      @include border-bottom-radius($list-group-border-radius);
+    }
+
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:focus {
+      background-color: $list-group-disabled-bg;
+      color: $list-group-disabled-color;
+      cursor: $cursor-disabled;
+
+      .list-group-item-heading {
+        color: inherit;
+      }
+
+      .list-group-item-text {
+        color: $list-group-disabled-text-color;
+      }
+    }
+
+    &.active,
+    &.active:hover,
+    &.active:focus {
+      z-index: 2;
+      color: $list-group-active-color;
+      background-color: $list-group-active-bg;
+      border-color: $list-group-active-border;
+
+      .list-group-item-heading,
+      .list-group-item-heading > small,
+      .list-group-item-heading > .small {
+        color: inherit;
+      }
+
+      .list-group-item-text {
+        color: $list-group-active-text-color;
+      }
+    }
+
+    .list-group-item-heading {
+      font-size: 1.125rem;
+      margin-top: 0;
+      margin-bottom: .75rem;
+
+      @include title;
+    }
+
+    .list-group-item-text {
+      color: $grey;
+      font-size: 1rem;
+      margin-bottom: .5rem;
+      line-height: 1.5;
+    }
+  }
+
+  a.list-group-item,
+  button.list-group-item {
+    color: $list-group-link-color;
+    cursor: pointer;
+    transition: .25s all ease;
+
+    .list-group-item-heading {
+      color: $list-group-link-heading-color;
+    }
+
+    // Hover state
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: $list-group-link-hover-color;
+      background-color: $list-group-hover-bg;
+    }
+  }
+
+  button.list-group-item {
+    width: 100%;
+    text-align: left;
+  }
+
+  // // Contextual variants
+  // @include list-group-item-variant(success, $state-success-bg, $state-success-text);
+  // @include list-group-item-variant(info, $state-info-bg, $state-info-text);
+  // @include list-group-item-variant(warning, $state-warning-bg, $state-warning-text);
+  // @include list-group-item-variant(danger, $state-danger-bg, $state-danger-text);
+}
+
+// extend
+%list-icon-item {
+  position: relative;
+  color: $list-icon-item-color;
+  padding-left: $list-icon-item-padding-x;
+
+  &:not(:last-child) {
+    margin-bottom: $list-icon-item-margin-y;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $list-icon-pseudo-width;
+    height: $list-icon-pseudo-height;
+
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+    margin-top: $list-icon-pseudo-margin-y;
+  }
+
+  &[hover]:hover {
+    color: $list-icon-item-hover-color;
+  }
+}
+
+%list-icon-list {
+  @include list-unstyled;
+  @include list-column;
+}

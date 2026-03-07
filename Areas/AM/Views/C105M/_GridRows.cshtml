@@ -1,0 +1,45 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C105MFormModel
+
+@if (Model.Grid != null)
+{
+    for (int i = 0; i < Model.Grid.Count; i++)
+    {
+        var item = Model.Grid[i];
+        @Html.HiddenFor(m => m.Grid[i].ROWID)
+        @Html.HiddenFor(m => m.Grid[i].username)
+        @Html.HiddenFor(m => m.Grid[i].USER_NAME)
+
+        <tr>
+            <td>@item.ROWID</td>
+            <td>@item.username</td>
+            <td>@item.USER_NAME</td>
+            @if (Model.FilterTab == "1")
+            {
+                <td>@item.logtype_Name</td>
+                <td>@item.createtime_Name</td>
+                <td>@item.ip</td>
+                <td>@item.message</td>
+                <td>@item.useragent</td>
+            }
+            @if (Model.FilterTab == "2")
+            {
+                <td>@item.createtime_Name</td>
+                <td>@item.logtype_Name</td>
+                <td>@item.logfunc</td>
+                <td>@item.result_Name</td>
+                <td>@item.filename</td>
+                <td>@item.message</td>
+            }
+            @if (Model.FilterTab == "3")
+            {
+                <td>@item.logtype_Name</td>
+                <td>@item.logfunc</td>
+                <td>@item.createtime_Name</td>
+                <td>@item.arg_Name</td>
+                <td>@item.result_Name</td>
+            }
+        </tr>
+    }
+}

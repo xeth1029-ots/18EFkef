@@ -1,0 +1,183 @@
+// Card
+// =========================================================
+
+// scss-docs-start card-variables
+$card-spacer-y:                     $spacer !default;
+$card-spacer-x:                     $spacer !default;
+$card-title-spacer-y:               $spacer * .5 !default;
+$card-border-width:                 $border-width !default;
+$card-border-color:                 var(--#{$prefix}border-color-translucent) !default;
+$card-border-radius:                $border-radius !default;
+$card-box-shadow:                   null !default;
+$card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
+$card-cap-padding-y:                $card-spacer-y * .5 !default;
+$card-cap-padding-x:                $card-spacer-x !default;
+$card-cap-bg:                       rgba($black, .03) !default;
+$card-cap-color:                    null !default;
+$card-height:                       null !default;
+$card-color:                        null !default;
+$card-bg:                           $white !default;
+$card-img-overlay-padding:          $spacer !default;
+$card-group-margin:                 $grid-gutter-width * .5 !default;
+
+// Backgrounds
+$card-cap-bg:                                               transparent;
+$card-bg:                                                   $white;
+
+// Borders
+$card-border-color:                                         $border-color;
+$card-border-radius:                                        $border-radius-lg;
+$card-cap-border-width:                                     0 !default;
+
+// Padding
+$card-spacer-y:                                             1.75rem;
+$card-spacer-x:                                             $card-spacer-y;
+$card-spacer-y-sm:                                          .8125rem;
+$card-spacer-x-sm:                                          $card-spacer-y-sm;
+$card-spacer-y-lg:                                          2.75rem;
+$card-spacer-x-lg:                                          $card-spacer-y-lg;
+$card-img-overlay-padding:                                  $card-spacer-y $card-spacer-x;
+$card-cap-padding-y:                                        $card-spacer-y;
+$card-cap-padding-x:                                        $card-cap-padding-y;
+
+// Type
+$card-link-font-weight:                                     $font-weight-medium !default;
+$card-subtitle-font-size:                                   $font-size-sm !default;
+
+// Positions
+$card-pinned-top-offset:                                    -.0625rem !default;
+$card-pinned-bottom-offset:                                 $card-pinned-top-offset !default;
+$card-pinned-left-offset:                                   $card-pinned-top-offset !default;
+$card-pinned-right-offset:                                  $card-pinned-top-offset !default;
+$card-cover-left-offset:                                    .6125rem !default;
+
+// Width & Height
+$card-cover-width:                                          107% !default;
+$card-cover-height:                                         110% !default;
+
+// Margins
+$card-title-spacer-y:                                       .25rem;
+$card-title-margin-y:                                       .5rem !default;
+$card-subtitle-margin-y:                                    .5rem !default;
+
+// Shadows
+$card-box-shadow:                                           $box-shadow-lg !default;
+
+// Transitions
+$card-transition:                                           all $transition-timing-sm $transition-function !default;
+$card-transition-translateY:                                -.1875rem !default;
+$card-transition-zoom-img-scale:                            scale(1.03) !default;
+$card-transition-zoom-img-transition:                       transform $transition-timing-md !default;
+
+// Card
+// =========================================================
+
+// Backgrounds
+$card-cap-bg: transparent;
+$card-bg: $white;
+
+// Borders
+$card-border-color: $border-color;
+$card-border-radius: $border-radius-lg;
+$card-cap-border-width: 0 !default;
+
+// Padding
+$card-spacer-y: 1.75rem;
+$card-spacer-x: $card-spacer-y;
+$card-spacer-y-sm: 0.8125rem;
+$card-spacer-x-sm: $card-spacer-y-sm;
+$card-spacer-y-lg: 2.75rem;
+$card-spacer-x-lg: $card-spacer-y-lg;
+$card-img-overlay-padding: $card-spacer-y $card-spacer-x;
+$card-cap-padding-y: $card-spacer-y;
+$card-cap-padding-x: $card-cap-padding-y;
+
+// Type
+$card-link-font-weight: $font-weight-medium !default;
+$card-subtitle-font-size: $font-size-sm !default;
+
+// Positions
+$card-pinned-top-offset: -0.0625rem !default;
+$card-pinned-bottom-offset: $card-pinned-top-offset !default;
+$card-pinned-left-offset: $card-pinned-top-offset !default;
+$card-pinned-right-offset: $card-pinned-top-offset !default;
+$card-cover-left-offset: 0.6125rem !default;
+
+// Width & Height
+$card-cover-width: 107% !default;
+$card-cover-height: 110% !default;
+
+// Margins
+$card-title-spacer-y: 0.25rem;
+$card-title-margin-y: 0.5rem !default;
+$card-subtitle-margin-y: 0.5rem !default;
+
+// Shadows
+$card-box-shadow: $box-shadow-lg !default;
+
+// Transitions
+$card-transition: all $transition-timing-sm $transition-function !default;
+$card-transition-translateY: -0.1875rem !default;
+$card-transition-zoom-img-scale: scale(1.03125) !default;
+$card-transition-zoom-img-transition: transform $transition-timing-md !default;
+
+
+
+// Card
+$card-bg: $body-bg !default;
+$card-box-shadow: if(isDarkMode(), none, 0px 0px 20px 0px rgba(76, 87, 125, 0.02)) !default;
+$card-border-color: $border-color !default;
+$card-border-style: solid !default;
+
+// Custom variable
+$card-border-dashed-color: $border-dashed-color !default;
+$card-cap-bg: $white !default;
+$card-py: 2rem !default;
+$card-px: 2.25rem !default;
+$card-border-radius: $border-radius !default;
+
+$card-header-py: 0.5rem !default;
+
+// Custom variable
+$card-header-height: 70px !default;
+
+// Custom variable
+
+$card-border-enabled: false !default;
+
+
+
+
+
+// Image thumbnails
+
+
+$thumbnail-padding:                 .25rem !default;
+$thumbnail-bg:                      $body-bg !default;
+$thumbnail-border-width:            $border-width !default;
+$thumbnail-border-color:            var(--#{$prefix}border-color) !default;
+$thumbnail-border-radius:           $border-radius !default;
+$thumbnail-box-shadow:              $box-shadow-sm !default;
+
+
+
+// Figures
+
+// scss-docs-start figure-variables
+$figure-caption-font-size:          $small-font-size !default;
+$figure-caption-color:              $gray-600 !default;
+// scss-docs-end figure-variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+

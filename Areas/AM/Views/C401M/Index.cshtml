@@ -1,0 +1,138 @@
+﻿@using WKEFSERVICE.Models;
+@using WKEFSERVICE.DataLayers;
+@using WKEFSERVICE.Areas.AM.Models;
+@model C401MFormModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "C401M", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    <section id="BtLog" class="bt-section pt-0">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel bt-section-search">
+                        <!-- 抬頭 -->
+                        <div class="bt-section-header t-flex align-items-baseline justify-content-start">
+                            <h3 class="bt-section-heading">教師資料明細</h3>
+                            <p class="bt-section-para">提供教師明細資料匯出功能</p>
+                        </div>
+                        <!-- 過濾條件 -->
+                        <div class="t-tab-contents">
+                            <div id="tab_content_1" class="t-tab-content">
+                                @*@Html.ControlForTurbo(Model)*@
+                                <div class="t-form t-txt-left bt-form-cnt">
+                                    <legend class="t-legend" style="width: unset;">查詢條件設定</legend>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Unit, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Unit, new SelectList(Model.Unit_list, "Value", "Text", Model.Unit), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.Online, new { @class = "t-form-label" })
+                                            @Html.DropDownListFor(m => m.Online, new SelectList(Model.Online_list, "Value", "Text", Model.Online), new { @class = "t-form-control ml-4" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group" style="margin-bottom: 0.5rem; margin-left: 8rem;">
+                                            <button type="button" class="btn btn--soft--dark" onclick="CheckAll(1)" style="margin-right: 0.5rem; height: 2rem;">全選</button>
+                                            <button type="button" class="btn btn--soft--dark" onclick="CheckAll(0)" style="margin-right: 0.5rem; height: 2rem;">全不選</button>
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.ExportFields, new { @class = "t-form-label", style = "align-items: center;" })
+                                            @Html.CheckBoxListFor(m => m.ExportFields_SHOW, Model.ExportFields_SHOW_list, new { @class = "t-form-control ml-4", id = "ExportFields_SHOW" })
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline">
+                                        <div class="t-form-group">
+                                            @Html.LabelFor(m => m.ExportFormat, new { @class = "t-form-label" })
+                                            @Html.RadioButtonFor(m => m.ExportFormat, "0", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px; margin-left: 30px;" }) <p style="margin-top: 10px;">XLSX</p>
+                                            @Html.RadioButtonFor(m => m.ExportFormat, "1", new { style = "margin-top: 10px; width: 30px; height: 30px; margin-right: 15px; margin-left: 30px;" }) <p style="margin-top: 10px;">ODS</p>
+                                        </div>
+                                    </div>
+                                    <div class="t-form-inline t-form-btns">
+                                        <div class="t-form-group mb-0">
+                                            <button type="reset" class="btn btn--soft--dark" onclick="doSearchClear()">
+                                                <i class="svg-icon t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-reset"></use>
+                                                    </svg>
+                                                </i>
+                                                清空條件
+                                            </button>
+                                            <button type="button" class="btn btn--quaternary w-80" onclick="doSearch()">
+                                                <i class="svg-icon svg-icon-2x t-v-align-bottom" aria-hidden="true">
+                                                    <svg>
+                                                        <use href="#ic-print"></use>
+                                                    </svg>
+                                                </i>
+                                                匯出
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#ExportFields_SHOW div").attr("style", "float:left;width:200px;");
+        Remove_PagingLink_AutoCreate("ExportFields");
+    });
+    @*
+        Html.CheckBoxListFor 的部份，
+        如果不另外將 Html.Partial("_PagingLink", Model) 自動產生的部分移除，
+        會產生問題，就算取消勾選，仍會殘留上一次查詢之項目
+    *@
+    function Remove_PagingLink_AutoCreate(ComponentName) {
+        var list_1 = document.getElementsByName(ComponentName);
+        var list_2 = document.getElementsByName(ComponentName + "_SHOW");
+        for (let i = list_1.length - 1; i >= 0; i--) {
+            if (list_1[i].parentElement.id === "PagingLink") {
+                //console.log(i, list_1[i]);
+                list_1[i].remove();
+            }
+        }
+        for (let i = list_2.length - 1; i >= 0; i--) {
+            if (list_2[i].parentElement.id === "PagingLink") {
+                //console.log(i, list_2[i]);
+                list_2[i].remove();
+            }
+        }
+    }
+
+    // 查詢清除
+    function doSearchClear() {
+        $('#Unit option').removeAttr('selected');
+        $('#Online option').removeAttr('selected');
+        $('#ExportFields_SHOW input').removeAttr('checked');
+    }
+
+    // 查詢
+    function doSearch() {
+        //blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("Index")').submit();
+    }
+
+    // 全選 匯出欄位
+    function CheckAll(value) {
+        if (value === 0) {
+            $('#ExportFields_SHOW input').prop('checked', false);
+        }
+        else {
+            $('#ExportFields_SHOW input').prop('checked', true);
+        }
+    }
+
+</script>

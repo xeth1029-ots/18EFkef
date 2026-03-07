@@ -1,0 +1,58 @@
+
+
+// Gradients
+// =========================================================
+$gradient-transparent:                                      rgba($white, 0) !default;
+$gradient-light:                                            $gray-100 !default;
+$gradient-white:                                            $white !default;
+$gradient-dark:                                             $dark !default;
+$gradient-primary:                                          $primary !default;
+$gradient-info:                                             $info !default;
+$gradient-success:                                          $success !default;
+$gradient-danger:                                           $danger !default;
+$gradient-warning:                                          $warning !default;
+
+$scrim: (
+  1    : 0,
+  0.738: 0.19,
+  0.541: 0.34,
+  0.382: 0.47,
+  0.278: 0.565,
+  0.194: 0.65,
+  0.126: 0.73,
+  0.075: 0.802,
+  0.042: 0.861,
+  0.021: 0.91,
+  0.008: 0.952,
+  0.002: 0.982,
+  0    : 1
+);
+
+$easeOutSine: (
+  1    : 0,
+  0.917: 0.053,
+  0.834: 0.106,
+  0.753: 0.159,
+  0.672: 0.213,
+  0.591: 0.268,
+  0.511: 0.325,
+  0.433: 0.384,
+  0.357: 0.445,
+  0.283: 0.509,
+  0.213: 0.577,
+  0.147: 0.65,
+  0.089: 0.729,
+  0.042: 0.814,
+  0.011: 0.906,
+  0    : 1
+);
+
+$clothoid: (
+  1    : 0,
+  0.3  : 0.50,
+  0.15 : 0.65,
+  0.075: 0.755,
+  0.037: 0.8285,
+  0.019: 0.88,
+  0    : 1
+);

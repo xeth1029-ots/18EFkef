@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+//  Mixins > float
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin float-left {
+  float: left !important;
+  @include deprecate();
+}
+
+@mixin float-right {
+  float: right !important;
+  @include deprecate();
+}
+
+@mixin float-none {
+  float: none !important;
+  @include deprecate();
+}

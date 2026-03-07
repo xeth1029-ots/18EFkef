@@ -1,0 +1,140 @@
+@charset "utf-8";
+//  Prototypes -> Backgrounds
+// --------------------------------------------------
+
+// attachment
+$background-fixed:      fixed;
+$background-local:      local;
+$background-scroll:     scroll;
+
+$background-styles: () !default;
+$background-styles: map-merge((
+  "fixed":      $background-fixed,
+  "local":      $background-local,
+  "scroll":     $background-scroll,
+), $background-styles);
+
+@each $name, $value in $background-styles {
+ .t-bg-#{$name} {
+    background-attachment: $value;
+  }
+}
+
+// linear-gradient(180deg,#bae2ff,#e5d9ff 85.77%)
+// linear-gradient(to right bottom, rgb(191, 219, 254), rgb(254, 202, 202), rgb(192, 132, 252))
+
+// clip
+$background-border-box:       border-box;
+$background-padding-box:      padding-box;
+$background-content-box:      content-box;
+$background-text:             text;
+
+$background-clips: () !default;
+$background-clips: map-merge((
+  "border-box" :      $background-border-box,
+  "padding-box":      $background-padding-box,
+  "content-box":      $background-content-box,
+  "text"       :      $background-text
+), $background-clips);
+
+@each $name, $value in $background-clips {
+ .t-bg-#{$name} {
+    background-clip: $value;
+  }
+}
+// repeat
+$background-repeat        : repeat;
+$background-no-repeat     : no-repeat;
+$background-repeat-x      : repeat-x;
+$background-repeat-y      : repeat-y;
+$background-repeat-round  : round;
+$background-repeat-space  : space;
+
+$background-repeats: () !default;
+$background-repeats: map-merge((
+  "repeat"         :      $background-repeat,
+  "no-repeat"      :      $background-no-repeat,
+  "repeat-x"       :      $background-repeat-x,
+  "repeat-y"       :      $background-repeat-y,
+  "repeat-round"   :      $background-repeat-round,
+  "repeat-space"   :      $background-repeat-space
+), $background-repeats);
+@each $name, $value in $background-repeats {
+ .t-bg-#{$name} {
+    background-repeat: $value;
+  }
+}
+
+// size
+$background-auto         : auto;
+$background-cover        : cover;
+$background-contain      : contain;
+
+
+$background-sizes: () !default;
+$background-sizes: map-merge((
+  "auto"          :      $background-auto,
+  "cover"         :      $background-cover,
+  "contain"       :      $background-contain,
+), $background-sizes);
+@each $name, $value in $background-sizes {
+ .t-bg-#{$name} {
+    background-size: $value;
+  }
+}
+
+// Positions
+$background-bottom       : bottom;
+$background-center       : center;
+$background-left         : left;
+$background-left-bottom  : left bottom;
+$background-left-top     : left top;
+$background-right        : right;
+$background-right-bottom : right bottom;
+$background-right-top    : right top;
+$background-top          : top;
+
+$background-positions: () !default;
+$background-positions: map-merge((
+  "bottom"          :      $background-bottom,
+  "center"          :      $background-center,
+  "left"            :      $background-left,
+  "left-bottom"     :      $background-left-bottom,
+  "left-top"        :      $background-left-top,
+  "right"           :      $background-right,
+  "right-bottom"    :      $background-right-bottom,
+  "right-top"       :      $background-right-top,
+  "top"             :      $background-top
+), $background-positions);
+
+@each $name, $value in $background-positions {
+ .t-bg-#{$name} {
+    background-position: $value;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

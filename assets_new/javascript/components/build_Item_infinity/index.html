@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - fetch Get json &amp;&amp; scroll infinity observer </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="container" id="container">
+    <section class="gallery_wrapper">
+      <figure class="t-checkbox-list-item">
+        <input type="hidden" id="t_checkbox_group_01_value" class="hidden-value" />
+        <input type="checkbox" id="t_checkbox_group_01" />
+        <label class="t-checkbox-group" for="t_checkbox_group_01">
+          <div class="t-checkbox-group-box">
+            選擇
+          </div>
+          <figcaption></figcaption>
+          <ul class="t-checkbox-group-list">
+            <li>Zip5: 10058</li>
+            <li>City: 臺北市</li>
+            <li>Area: 中正區</li>
+            <li>Road: 八德路１段</li>
+            <li>Scope: 全</li>
+          </ul>
+        </label>
+      </figure>
+    </section>
+    <div class="scroll-trigger">
+      <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="34px" height="34px" viewBox="0 0 128 128" xml:space="preserve">
+        <style type="text/css">
+        .circle-preloader-0 {
+          fill: #0ABF53;
+        }
+        </style>
+        <g>
+          <path class="circle-preloader-0" d="M75.4 126.63a11.43 11.43 0 0 1-2.1-22.65 40.9 40.9 0 0 0 30.5-30.6 11.4 11.4 0 1 1 22.27 4.87h.02a63.77 63.77 0 0 1-47.8 48.05v-.02a11.38 11.38 0 0 1-2.93.37z" />
+          <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="360 64 64" dur="800ms" repeatCount="indefinite"></animateTransform>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <!-- partial -->
+  <script src="../../turboframes_justJavascript/turboframe_JsUtils.js"></script>
+  <script src="./infinity.js"></script>
+    <script src="../../observer/observeEachClass.js"></script>
+  <script>
+  const array = ['foo', 'boo', 'zoo'];
+  const obj = Object.assign({}, array);
+  // console.log(obj)
+  // Function.prototype.construct = function(aArgs) {
+  //   var fConstructor = this,
+  //     fNewConstr = function() {
+  //       fConstructor.apply(this, aArgs);
+  //     };
+  //   fNewConstr.prototype = fConstructor.prototype;
+  //   return new fNewConstr();
+  // };
+
+  // function test() {
+  //   let a = { b: 4 , d:  1  }
+  //   let g = Object.assign({}, a) // 淺層
+  //   let h = JSON.parse(JSON.stringify(a)); // 深層
+  //   console.log(g) // { e: { f: 1 } }
+  //   g.d.e = 32
+  //   console.log('g.d.e set to 32.') // g.d.e set to 32.
+  //   console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(h) // { b: { c: 4 }, d: { e: { f: 1 } } }
+  //   h.d.e = 54
+  //   console.log('h.d.e set to 54.') // h.d.e set to 54.
+  //   console.log(g) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(a) // { b: { c: 4 }, d: { e: 32 } }
+  //   console.log(h) // { b: { c: 4 }, d: { e: 54 } }
+  // }
+  // console.log(test())
+
+  // function addConstructor() {
+  //   for (var nProp = 0; nProp < arguments.length; nProp++) {
+  //     this['property' + nProp] = arguments[nProp];
+  //   }
+  // }
+  // var myArray = ["Zip5", "10058", false];
+  // var myInstance = addConstructor.construct(myArray);
+
+  // console.log(myInstance.property1); // logs 'Hello world!'
+  // console.log(myInstance instanceof addConstructor); // logs 'true'
+  // console.log(myInstance);
+  </script>
+</body>
+
+</html>

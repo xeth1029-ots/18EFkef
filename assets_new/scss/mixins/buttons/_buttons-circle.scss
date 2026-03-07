@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+//   Mixins > Btn Circle
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Button circle Variant
+@mixin button-circle-variant($color: $primary, $size: 1rem) {
+  &.btn {
+    position: relative;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    color: shade-color($color, 60%);
+    padding: 0.125rem 0.375rem 0 #{$size / 2};
+    z-index: 1;
+
+    &:before {
+      content: '';
+
+      @include absolute-y-center;
+
+      left: -#{$size * 1.5 / 2};
+      display: inherit;
+      border-radius: $border-pill;
+      background-color: rgba($color, 0.24);
+      border: 0.125rem solid rgba($color, 0.04);
+      border-right-color: transparent;
+      width: #{$size * 2};
+      height: #{$size * 2};
+      transition: $transition-filter-link;
+      z-index: -1;
+    }
+
+    .svg-icon {
+      padding-bottom: 0.25rem;
+
+      // transition: $transition-filter-link;
+      // align-self: baseline;
+   
+    }
+
+    @include btn-hover {
+      background-color: transparent;
+      color: color-contrast($color);
+      border: 0;
+      box-shadow: none;
+
+      &:before {
+        background-color: $color;
+        width: 100%;
+      }
+
+      .svg-icon {
+        filter: brightness(200);
+      }
+    }
+
+
+    @include btn-focus {
+      background-color: transparent;
+      color: color-contrast($color);
+      border: 0;
+      box-shadow: none;
+
+      &:before {
+        background-color: $color;
+        width: 100%;
+      }
+
+      .svg-icon {
+        filter: brightness(300);
+      }
+    }
+
+
+    @include btn-active {
+      background-color: transparent;
+      border: 0;
+      box-shadow: none;
+
+      &:before {
+        background-color: $color;
+        width: 100%;
+      }
+
+      .svg-icon {
+        filter: brightness(250);
+      }
+
+      @include btn-focus {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+$t-btn-betw-circle-unit: 1rem;
+$t-btn-betw-circle-transition: all 0.25s cubic-bezier(0.75, 0, 0.35, 1);
+$t-btn-betw-circle-rotate: 3deg;
+
+
+
+// .t-btn-betw-circle {
+//   position: relative;
+//   text-align: center;
+
+//   display: inline-block;
+
+//   border-radius: $t-btn-betw-circle-unit * 3;
+//   border: 0.375rem solid $black;
+//   text-decoration: none;
+//   overflow: hidden;
+//   background: $black;
+//   color: #07ffc4;
+//   transition: $t-btn-betw-circle-transition;
+//   transform: rotate(-#{$t-btn-betw-circle-rotate});
+
+//   // span {
+//   //   transition: all 0.25s cubic-bezier(0.75, 0, 0.35, 1);
+//   //   display: inline-block;
+//   //   position: relative;
+//   // }
+
+//   &:before,
+//   &:after {
+//     content: "";
+//     transition: $t-btn-betw-circle-transition;
+//     width: #{$t-btn-betw-circle-unit * 3};
+//     height: #{$t-btn-betw-circle-unit * 3};
+//     border-radius: 50%;
+//     display: inline-block;
+//     vertical-align: middle;
+//     background: $white;
+//   }
+
+//   &:before {
+//     margin-right: #{$t-btn-betw-circle-unit * 1.5};
+//     margin-left: -#{$t-btn-betw-circle-unit * 3};
+//     transform-origin: left;
+//   }
+
+//   &:after {
+//     margin-left: #{$t-btn-betw-circle-unit * 1.5};
+//     transform-origin: right;
+//   }
+
+//   &:hover,
+//   &:focus {
+//     transform: rotate(#{$t-btn-betw-circle-rotate});
+
+//     &:before {
+//       transform: scale3d(1, 1, 1);
+//       margin-left: 0;
+//     }
+
+//     &:after {
+//       margin-right: -#{$t-btn-betw-circle-unit * 3};
+//       transform: scale3d(0, 1, 1);
+//     }
+
+//     span {
+//       transform: translate3d($t-btn-betw-circle-unit * 3, 0, 0);
+//     }
+//   }
+// }

@@ -1,0 +1,162 @@
+﻿@using WKEFSERVICE.Models
+@using WKEFSERVICE.Services
+@model WKEFSERVICE.Areas.A1.Models.C102MViewModel
+@{
+    Layout = "~/Views/Backend/_BackendMainLayout.cshtml";
+    SessionModel sm = SessionModel.Get();
+    string LoginUserNo = "";
+    string LoginCharacter = "";
+    if (sm.UserInfo != null)
+    {
+        LoginUserNo = sm.UserInfo.UserNo;
+        LoginCharacter = sm.UserInfo.LoginCharacter;
+    }
+    // 有設定會議ID & 會議介於可報名區間內 & 是否顯示我要報名
+    bool isShowSignupBtn = (Model.Detail.MeetingSeq.TONotNullString() != "" && Model.Detail.isCanSignUp == 1 && Model.Detail.IsShowSignUp == "1");
+}
+
+@using (Html.BeginForm("Index", "Backend", FormMethod.Post, htmlAttributes: new { id = "main_form", @class = "form-horizontal" }))
+{
+    @*
+        <!-- Breadcrumbs -->
+        <section class="t-breadcrumbs-section">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <ul class="t-breadcrumbs">
+                        <li class="t-breadcrumbs-item">目前位置： <a class="t-link" href="~/">首頁</a></li>
+                        <li class="t-breadcrumbs-item"><a class="t-link" href="javascript:;" onclick="doBack()">訊息公告</a></li>
+                        <li class="t-breadcrumbs-item">@Model.Detail.PostCaption.TONotNullString()</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    *@
+    <!-- 訊息公告 -->
+    <section class="bt-section pt-0" style="margin-top: 20px;">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-sm-12">
+                    <div class="t-panel">
+                        <div class="t-panel-heading">
+                            <i class="svg-icon" aria-hidden="true"><svg><use href="#ic-board"></use></svg></i>
+                            <div class="t-panel-heading-txt">@Model.Detail.PostCaption.TONotNullString()</div>
+                            <button type="button" class="btn btn--soft--dark btn--sm" onclick="doBack()">
+                                <i class="svg-icon mr-2" aria-hidden="true">
+                                    <svg>
+                                        <use href="#ic-arrow-l"></use>
+                                    </svg>
+                                </i>
+                                回上一頁
+                            </button>
+                            @if (isShowSignupBtn)
+                            {
+                                <button type="button" class="btn btn--checked btn--sm" onclick="doHomeSignUp('@Model.Detail.MeetingSeq')" title="移至我要報名">
+                                    <i class="svg-icon mr-2" aria-hidden="true">
+                                        <svg>
+                                            <use href="#ic-save"></use>
+                                        </svg>
+                                    </i>
+                                    我要報名
+                                </button>
+                            }
+                        </div>
+                        <div class="t-panel-main">
+                            <div class="t-panel-main-fuild" style="display: unset;">
+                                <article class="t-blog-cnt">
+                                    <div class="t-blog-info">
+                                        <dl class="t-definition-list">
+                                            <dt class="t-definition-term">公告日期</dt>
+                                            <dd class="t-definition-description">@Model.Detail.PostDateS_Name.TONotNullString()</dd>
+                                        </dl>
+                                        <dl class="t-definition-list">
+                                            <dt class="t-definition-term">停用日期</dt>
+                                            <dd class="t-definition-description">@Model.Detail.PostDateE_Name.TONotNullString()</dd>
+                                        </dl>
+                                        <dl class="t-definition-list">
+                                            <dt class="t-definition-term">發布單位</dt>
+                                            <dd class="t-definition-description">@Model.Detail.PublishedUnitName.TONotNullString()</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="t-inner" style="white-space: pre-line;">
+                                        @Model.Detail.PostContent.TONotNullString()
+                                    </div>
+                                    <div class="t-inner-sub-heading">
+                                        <i class="svg-icon">
+                                            <svg>
+                                                <use href="#ic-file"></use>
+                                            </svg>
+                                        </i>
+                                        相關檔案
+                                    </div>
+                                    <div class="t-inner">
+                                        @*※ 為提供使用者有文書軟體選擇的權利，本文件為ODF開放文件格式， 建議您安裝免費開源軟體
+                                            <a href="javascript:;">(http://zh-tw.libreoffice.org/download/libreoffice-still/)</a>
+                                            或以您慣用的軟體開啟文件。<br>*@
+                                        <ul class="t-list mt-4">
+                                            @Html.Partial("_GridRowsNewsAttacheds_Backend")
+                                        </ul>
+                                    </div>
+                                </article>
+                                <div class="bt-btn-group">
+                                    <button type="button" class="btn btn--soft--dark" onclick="doBack()">
+                                        <i class="svg-icon mr-2" aria-hidden="true">
+                                            <svg>
+                                                <use href="#ic-arrow-l"></use>
+                                            </svg>
+                                        </i>
+                                        回上一頁
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#BackendAddr").attr("style", "display:none;");
+    });
+
+    // 回上一頁
+    function doBack() {
+        blockUI();
+        var form = $("form[id=main_form]");
+        form.attr('action', '@Url.Action("NewsAll", "Backend")').submit();
+    }
+
+    // 立即報名
+    function doHomeSignUp(MeetingSeq) {
+        var LoginUserNo = '@LoginUserNo';
+        var LoginCharacter = '@LoginCharacter';
+        if (LoginUserNo === "") {
+            alert("請先登入");
+        }
+        else {
+            if (LoginCharacter !== "2") {
+                alert("身分不符");
+            }
+            else {
+                var data = { "Seq": MeetingSeq }
+                var url = "@ConfigModel.WKEF/A2/C301M/Detail?" + $.param(data);
+                window.location = url;
+            }
+        }
+    }
+
+    function doLog(Org, New) {
+        $.ajax({
+            url: "@Url.Action("FileDownloadLog", "Backend", new { area = "" })",
+            data: { "Func": "A2/NewsDetail", "Org": Org, "New": New },
+            dataType: "json",
+            method: "post",
+            success: function (data) { },
+            error: function (data) { }
+        });
+    }
+
+</script>

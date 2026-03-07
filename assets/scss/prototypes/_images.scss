@@ -1,0 +1,72 @@
+//
+//  Components -> Images 
+// --------------------------------------------------
+.img-fluid {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.img-outline {
+  outline: .1875rem solid rgba($white, 0.66);
+  outline-offset: -0.5rem;
+}
+
+.img-container {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+  }
+
+  &.percent_1--1 {
+    &:before {
+      padding-top: 100%;
+    }
+  }
+
+  .image {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include absolute($T: 0, $L: 0);
+    @include size($width: 100%);
+  }
+}
+
+//
+// Images Lazy
+// --------------------------------------------------
+
+.js-img-lazy {
+  border-radius: 50%;
+  overflow: hidden;
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+  transition: .125s all ease;
+  filter: blur(0.5px);
+}
+
+.image.js-img-lazy:before {
+  content: '';
+
+  // background-image: url("data:image/svg+xml, %3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 900 400' xml:space='preserve'%3E%3Crect class='st0' width='100%25' height='100%25' clip-path='url(%23clip-path)' fill='url(&quot;%23fill&quot;)' /%3E%3Cdefs%3E%3ClinearGradient id='fill'%3E%3Cstop offset='1.6' stop-color='%23F6F6F6'%3E%3Canimate attributeName='offset' values='-1; -1; 2' keyTimes='0; 0.25; 1' dur='2s' repeatCount='indefinite'%3E%3C/animate%3E%3C/stop%3E%3Cstop offset='2.6' stop-color='%23F5F5FA'%3E%3Canimate attributeName='offset' values='0; 0; 3' keyTimes='0; 0.25; 1' dur='2s' repeatCount='indefinite'%3E%3C/animate%3E%3C/stop%3E%3Cstop offset='2.6' stop-color='%23FBFBFD'%3E%3Canimate attributeName='offset' values='0; 0; 3' keyTimes='0; 0.25; 1' dur='2s' repeatCount='indefinite' /%3E%3C/stop%3E%3C/linearGradient%3E%3CclipPath id='clip-path'%3E%3Crect rx='10' ry='10' width='900' height='400'%3E%3C/rect%3E%3C/clipPath%3E%3C/defs%3E%3Cpath fill='%23D1D1D2' opacity='.66' d='M598.5,288.1l-78-97.5c-1.9-2.6-4.9-4.2-8.2-4.2h-4.4c-3.3,0.1-6.4,1.6-8.3,4.2l-25,31.4l-51.8-72.4 c-2-2.8-5.3-4.4-8.7-4.2h-4.2c-3.3,0-6.4,1.6-8.3,4.2l-99.7,138.5c-2.2,3.4-2.2,7.7,0,11.1l2.9,4.9c1.8,3.2,5.2,5.2,8.9,5.2h273.2 c3.7,0,7.1-2,8.9-5.2l2.9-4.9C600.7,295.8,600.8,291.5,598.5,288.1z M340,282l72.1-100.1L443.2,282H340z M532.2,145.4 c15.1,0,27.3-12.2,27.3-27.3s-12.2-27.3-27.3-27.3c-15.1,0-27.3,12.2-27.3,27.3S517.1,145.4,532.2,145.4z' /%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400' style='enable-background:new 0 0 400 400' xml:space='preserve'%3E%3Cpath class='st0' clip-path='url(%23a)' fill='url(&quot;%23b&quot;)' d='M0 0h400v400H0z'/%3E%3Cdefs%3E%3ClinearGradient id='b'%3E%3Cstop offset='0%25' stop-color='%23F6F6F6'%3E%3Canimate attributeName='offset' values='-1; 0; 2' keyTimes='0; 0.25; 1' dur='2s' repeatCount='indefinite'/%3E%3C/stop%3E%3Cstop offset='15%25' stop-color='%23e5e4e9'%3E%3Canimate attributeName='offset' values='0; 0; 3' keyTimes='0; 0.25; 1' dur='2s' repeatCount='indefinite'/%3E%3C/stop%3E%3Cstop offset='10%25' stop-color='%23E8E8E8'%3E%3Canimate attributeName='offset' values='0; 0; 3' keyTimes='0; 0.25; 1' dur='2s' repeatCount='indefinite'/%3E%3C/stop%3E%3C/linearGradient%3E%3CclipPath id='a'%3E%3Crect rx='10' ry='10' width='400' height='400'/%3E%3C/clipPath%3E%3C/defs%3E%3Cpath d='m348.269 288.1-78-97.5a10.137 10.137 0 0 0-8.2-4.2h-4.4a10.611 10.611 0 0 0-8.3 4.2l-25 31.4-51.8-72.4a10.019 10.019 0 0 0-8.7-4.2h-4.2a10.324 10.324 0 0 0-8.3 4.2l-99.7 138.5a10.159 10.159 0 0 0 0 11.1l2.9 4.9a10.215 10.215 0 0 0 8.9 5.2h273.2a10.215 10.215 0 0 0 8.9-5.2l2.9-4.9a10.362 10.362 0 0 0-.2-11.1Zm-258.5-6.1 72.1-100.1 31.1 100.1Zm192.2-136.6a27.3 27.3 0 1 0-27.3-27.3 27.271 27.271 0 0 0 27.3 27.3Z' fill='%23D1D1D2' opacity='.88'/%3E%3C/svg%3E");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  transition: .25s all ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: blur(0.5px);
+  z-index: 1;
+}

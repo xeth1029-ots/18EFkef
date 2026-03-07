@@ -1,0 +1,86 @@
+// 
+//  Components -> RtTools
+// --------------------------------------------------
+$go-icon-size: 2rem;
+$go-icon-size-box: 3.5rem;
+$go-icon-size-box-radius: 2rem;
+
+.tu-scrolltop {
+  position: fixed;
+
+  right: $fixedAreaR;
+  bottom: $fixedAreaB;
+  transform: translate(4rem, 0);
+  width: $go-icon-size-box;
+  height: $go-icon-size-box;
+
+  display: block;
+  cursor: pointer;
+  background: $primary;
+  border-radius: $go-icon-size-box-radius;
+  box-shadow: 0 1.5rem 3rem 0 rgba($primary-800, 0.42), 
+              inset 0 -0.5rem 1.5rem 0 rgba($primary-50, 0.8);
+  padding: .5rem .25rem .375rem;
+
+
+  @include visually-hidden;
+
+  z-index: 99;
+  transition: $transition-base;
+
+  .js-go-top--arrow {
+    @include visually-hidden;
+
+    background-image: escape-svg(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341.3'%3E%3Cpath fill='#{$white}' d='M256 0c-25.6 0-51.2 10.7-70.4 29.9L17.1 198.4A59.6 59.6 0 0 0 0 241.1c0 14.9 4.3 29.8 15 40.5L47 320a60.5 60.5 0 0 0 46.9 21.3 72 72 0 0 0 36.2-10.6L256 238.9l125.9 89.6a58 58 0 0 0 36.2 12.8c19.2 0 36.3-8.5 47-21.3l32-38.4a56.3 56.3 0 0 0 14.9-40.5q0-25.6-19.2-44.8L324.3 27.7A98.7 98.7 0 0 0 256 0Z'/%3E%3C/svg%3E"));
+    width: $go-icon-size;
+    height: $go-icon-size;
+    opacity: 0.24;
+    margin-bottom: .25rem;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: $transition-base;
+
+    @include absolute-center;
+  }
+
+  [data-tu-scrolltop="on"] & {
+    @include visually-visible(20rem, $go-icon-size-box, $go-icon-size-box);
+
+    transform: translate(0, 0);
+    animation: animation-scrolltop .6s ease-out 1s;
+
+    .js-go-top--arrow {
+      @include visually-visible(10rem, $go-icon-size, $go-icon-size);
+      opacity: 0.72;
+    }
+
+    &:hover,
+    &:focus:hover {
+      color: $primary-600;
+      opacity: 0.6;
+
+      &:before {
+        content: '';
+        border-radius: inherit;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        // box-shadow: 0 1.5rem 3rem 0 rgba($primary-800, 0.42), 
+        //       inset 0 -0.5rem 1.5rem 0 rgba($primary-50, 0.8);
+      }
+    }
+  }
+}
+
+@keyframes animation-scrolltop {
+  from {
+    margin-bottom: -1rem;
+  }
+
+  to {
+    margin-bottom: 0;
+  }
+}

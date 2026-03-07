@@ -1,0 +1,40 @@
+ @charset "utf-8";
+ 
+//== Layout
+//==========================
+// helpers
+@import "layout/helpers/grid";
+@import "layout/helpers/displays";
+@import "layout/helpers/spacing";
+@import "layout/helpers/utilities";
+@import "layout/helpers/zindex";
+@import "layout/helpers/logos";
+@import "layout/helpers/positions";
+@import "layout/helpers/flexs";
+
+// Global
+@import "layout/global/wrapper";
+@import "layout/global/breadcrumb";
+@import "layout/global/navbar";
+@import "layout/global/burger";
+@import "layout/global/header";
+// @import "layout/global/sidebar";
+@import "layout/global/footer";
+@import "layout/global/sidebarJobs";
+
+
+// Forms
+@import "layout/forms/forms";
+@import "layout/forms/formControl";
+@import "layout/forms/form-mask";
+
+
+@import "layout/forms/files";
+@import "layout/forms/valid";
+@import "layout/forms/inputGroup";
+@import "layout/forms/time";
+@import "layout/forms/checkbox";
+@import "layout/forms/radio";
+// @import "layout/forms/switch";
+// @import "layout/forms/rating";
+@import "vendor/swiper/swiper";

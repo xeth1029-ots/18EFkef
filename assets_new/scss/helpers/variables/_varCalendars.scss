@@ -1,0 +1,40 @@
+
+
+
+// calendar
+$calendar-border-radius:                6px                               !default;
+$calendar-shadow-color:                 darken($lighter, 2%)              !default;
+$calendar-header-color:                 $white                            !default;
+$calendar-header-bg-color:              $secondary-600                    !default;
+$calendar-heading-padding:              .125rem 0 0                       !default;
+$calendar-heading-font-size:            .875rem                           !default;
+$calendar-heading-font-weight:          500                               !default;
+$calendar-heading-border-width:         1px                               !default;
+$calendar-heading-border-color:         rgba($white, .16)                 !default;
+$calendar-heading-border-style:         dashed                            !default;
+$calendar-heading-shadow-color:         darken($calendar-header-bg-color, 8%) !default;
+$calendar-content-color:                $secondary-900                    !default;
+$calendar-content-bg-color:             $lighter                          !default;
+$calendar-content-padding:              .125rem .75rem .25rem             !default;
+$calendar-content-font-size:            1.375rem                          !default;
+$calendar-content-font-weight:          900                               !default;
+$calendar-content-line-height:          1                                 !default;
+$calendar-content-border-width:         2px                               !default;
+$calendar-content-border-color:         $lighter                          !default;
+$calendar-content-border-style:         solid                             !default;
+
+// clock
+$clock-color:                           $secondary-900                    !default;
+$clock-shadow-color:                    $calendar-shadow-color            !default;
+$clock-bg-color:                        rgba($secondary-900, 0.16)        !default;
+$clock-border-radius:                   $calendar-border-radius           !default;
+$clock-padding:                         .4375rem .75rem                   !default;
+$clock-line-height:                     $calendar-content-line-height     !default;
+$clock-month-font-size:                 .75rem                            !default;
+$clock-month-font-weight:               400                               !default;
+$clock-year-font-size:                  .875rem                           !default;
+$clock-year-font-weight:                400                               !default;
+$clock-day-font-size:                   1rem                              !default;
+$clock-day-font-weight:                 500                               !default;
+$clock-font-size:                       1.125rem                          !default;
+$clock-font-weight:                     700                               !default;

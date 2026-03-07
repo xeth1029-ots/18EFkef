@@ -1,0 +1,242 @@
+﻿@using Turbo.ReportTK;
+@using System.Collections;
+@using WKEFSERVICE.Models;
+@using WKEFSERVICE.Commons;
+@using WKEFSERVICE.Services;
+@model Report
+@{
+    Layout = null;
+}
+
+<style>
+    .RptPage {
+        page-break-after: always;
+    }
+
+        .RptPage .title {
+            font-size: 24pt;
+            font-family: 標楷體;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .RptPage .content {
+            width: 100%;
+            font-size: 22pt;
+            font-family: 標楷體;
+            text-align: center;
+        }
+
+        .RptPage .memo {
+            width: 100%;
+            font-size: 14pt;
+            font-family: 標楷體;
+            text-align: left;
+        }
+
+        .RptPage .myfooter {
+            width: 100%;
+            font-size: 24pt;
+            font-family: 標楷體;
+            text-align: right;
+        }
+
+        .RptPage .ident {
+            padding-left: 0px;
+            padding-top: 5px;
+        }
+
+        .RptPage .info {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #000000;
+        }
+
+            .RptPage .info th {
+                border: 1px solid black;
+                font-size: 16pt;
+                line-height: 20pt;
+                font-family: 標楷體;
+            }
+
+            .RptPage .info td {
+                border: 1px solid black;
+                font-size: 16pt;
+                line-height: 20pt;
+                font-family: 標楷體;
+            }
+
+    #waterMark {
+        text-align: center;
+        width: 830px;
+        /*margin-left: 100px;*/
+        /*margin-top: 200px;*/
+        /*margin-bottom: 0px;*/
+        /*z-index: -10;*/
+        position: absolute;
+        opacity: 0.2;
+    }
+
+    /*
+    #square {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        display: inline-block;
+    }
+    */
+
+    .myUnderLine {
+        border-bottom: 1.5px #000 solid;
+        padding-bottom: 2px;
+    }
+</style>
+
+@{
+    ShareCodeListModel listModel = new ShareCodeListModel();
+    Hashtable mainDatas = Model.Results.FirstOrDefault();
+    string tmpYear = "";
+    string tmpFirstTime = "";
+    string tmpCourseUnitCode = "";
+    List<string> tmpCourseUnitCodeList = new List<string>();
+    string tmpOBJECT_TYPE = "";
+    if (mainDatas["Year"].TONotNullString() != "")
+    {
+        tmpYear = (mainDatas["Year"].TONotNullString().TOInt32() - 1911).ToString();
+    }
+    if (mainDatas["FirstTime"].TONotNullString() != "")
+    {
+        var tmpDT = DateTime.Parse(mainDatas["FirstTime"].TONotNullString());
+        tmpFirstTime = tmpDT.AddYears(-1911).ToString("yyy/MM/dd");
+    }
+    if (mainDatas["CourseUnitCode"].TONotNullString() != "")
+    {
+        foreach (var item in listModel.TeachUnit_list())
+        {
+            if (mainDatas["CourseUnitCode"].TONotNullString().Contains(item.Value))
+            {
+                tmpCourseUnitCodeList.Add(item.Text);
+            }
+        }
+        tmpCourseUnitCode = string.Join("、", tmpCourseUnitCodeList);
+    }
+    if (mainDatas["OBJECT_TYPE"].TONotNullString() != "")
+    {
+        var tmpObj = listModel.OBJECT_TYPE_List().Where(x => x.Value == mainDatas["OBJECT_TYPE"].TONotNullString()).FirstOrDefault();
+        if (tmpObj != null)
+        {
+            tmpOBJECT_TYPE = tmpObj.Text;
+        }
+    }
+    // 加個操作紀錄LOG
+    try
+    {
+        Hashtable where = new Hashtable();
+        where["Seq"] = mainDatas["Seq"].TONotNullString();
+        FuncLogAdd.Do(ModifyEvent.NONE, ModifyType.PRINT, ModifyState.SUCCESS, "A3/C204M", null, where, "/Report/PDF");
+    }
+    catch { }
+}
+
+<div class="RptPage">
+    @*<img id="waterMark" src="~/images/icon_logo.jpg" />*@
+    <div class="title">關鍵就業力課程</div>
+    <div class="title"><span class="myUnderLine">&nbsp;@tmpYear&nbsp;</span>年度教學自我審核報告</div>
+    <div class="title">&nbsp;</div>
+    <div class="title">
+        職能類別：<span class="myUnderLine">&nbsp;@mainDatas["JobAbilityCode"].TONotNullString()&nbsp;</span>
+        姓名：<span class="myUnderLine">&nbsp;@mainDatas["TeacherName"].TONotNullString()&nbsp;</span>
+        日期：<span class="myUnderLine">&nbsp;@tmpFirstTime&nbsp;</span>
+    </div>
+    <div class="content ident">
+        <table class="info" style="margin-top: 20px; border-collapse: collapse; border: 1px solid black;">
+            <tr>
+                <td align="center" style="height: 50px; border: none;">
+                    <span style="font-weight: bold; font-size: 20pt;">教學/訓練成效分析</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-weight: bold; font-size: 20pt;">一、課程單元基本資料</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-size: 20pt;">
+                        課程單元：@tmpCourseUnitCode<br />
+                        授課對象：@tmpOBJECT_TYPE<br />
+                        學員人數：@mainDatas["StudNum"].TONotNullString()<br />
+                        教學目標：@mainDatas["TObject"].TONotNullString()<br />
+                        教學方法：@mainDatas["TMethod"].TONotNullString()<br />
+                        其他：@mainDatas["Other"].TONotNullString()
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-weight: bold; font-size: 20pt;">二、教學/訓練成效成果證據</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-size: 20pt;">
+
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-weight: bold; font-size: 20pt;">三、成效指標達成度分析與檢討</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-size: 20pt;">
+                        @mainDatas["Effect"].TONotNullString()
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-weight: bold; font-size: 20pt;">四、可行之改善（精進）作法</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-size: 20pt;">
+                        （一）教學計畫之改善（優化）<br />
+                        @mainDatas["PlanImprove"].TONotNullString()
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-size: 20pt;">
+                        （二）評量設計之改善（優化）<br />
+                        @mainDatas["ExamImprove"].TONotNullString()
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-size: 20pt;">
+                        （三）教材之改善（優化）<br />
+                        @mainDatas["materialsImprove"].TONotNullString()
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-weight: bold; font-size: 20pt;">五、其他</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="height: 50px; border: none;">
+                    <span style="font-size: 20pt;">
+                        @mainDatas["Other3"].TONotNullString()
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

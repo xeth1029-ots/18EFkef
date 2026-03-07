@@ -1,0 +1,69 @@
+hr {
+  margin: 1rem 0;
+  border: 0;
+  color: $border;
+  background-color: currentcolor;
+  height: 1px;
+
+  &[data-hr-width="2"] {
+    height: 2px;
+  }
+
+  &[data-hr-style="dashed"] {
+    background: repeating-linear-gradient(to right, currentcolor 0px, currentcolor 4px, transparent 0px, transparent 10px);
+  }
+
+  &[data-hr-style="twill"] {
+    padding: .25rem;
+    background: repeating-linear-gradient(135deg, currentcolor 0px, currentcolor 1px, transparent 1px, transparent 6px);
+  }
+
+  &[data-hr-style="dotted"] {
+    background: radial-gradient(currentcolor 2px, transparent 2px);
+    background-size: 6px 4px;
+    padding: 0.125rem;
+  }
+
+  &[data-hr-title] {
+    position: relative;
+    overflow: visible;
+
+    &:before {
+      content: attr(data-hr-title);
+      background-color: $white;
+      position: absolute;
+      padding: .5rem;
+      font-size: .75rem;
+      color: $dark;
+      white-space: nowrap;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &[data-hr-style="dotted"] {
+    height: 1.25rem;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='dotted' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'><circle cx='3' cy='3' r='2' fill='%23F05346'/><circle cx='13' cy='12' r='2' fill='%23F05346'/> </pattern></defs><rect width='100%' height='100%' fill='url(%23dotted)'/></svg>");
+  }
+
+  &[data-hr-style="line"] {
+    height: 1.25rem;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='line' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'> <line x1='0' y1='4' x2='20' y2='4' stroke='%23F05346' stroke-width='4' /> <line x1='0' y1='10' x2='20' y2='10' stroke='%23F05346' stroke-width='2' /> <line x1='0' y1='15' x2='20' y2='15' stroke='%23F05346' stroke-width='1' /> </pattern></defs><rect width='100%' height='100%' fill='url(%23line)'/></svg>");
+  }
+
+  &[data-hr-style="star"] {
+    height: 1.25rem;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='star' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'><polygon points='5.5,1.5 7,4.5 10.3,4.9 7.9,7.3 8.5,10.6 5.5,9 2.5,10.6 3.1,7.3 0.7,4.9 4,4.5' fill='%23F05346'/><polygon points='15.5,1.5 17,4.5 20.3,4.9 17.9,7.3 18.5,10.6 15.5,9 12.5,10.6 13.1,7.3 10.7,4.9 14,4.5' fill='%23F05346'/></pattern></defs><rect width='100%' height='100%' fill='url(%23star)'/></svg>");
+  }
+
+  &[data-hr-style="small"] {
+    height: 1rem;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='small' width='4' height='15' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'> <circle cx='0.5' cy='1.5' r='0.5' fill='%23F05346'/> <circle cx='0.5' cy='4.5' r='0.5' fill='%23F05346'/> <circle cx='0.5' cy='7.5' r='0.5' fill='%23F05346'/> <circle cx='2.5' cy='2.5' r='0.5' fill='%23F05346'/> <circle cx='2.5' cy='5.5' r='0.5' fill='%23F05346'/> <circle cx='2.5' cy='8.5' r='0.5' fill='%23F05346'/> </pattern></defs><rect width='100%' height='100%' fill='url(%23small)'/></svg>");
+  }
+
+  &[data-hr-style="star-2"] {
+    height: 1rem;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%'><defs><pattern id='star2' width='20' height='20' patternTransform='rotate(0 0 0)' patternUnits='userSpaceOnUse'>   <path d='M5.6 1.7c0.2-0.5 0.6-0.5 0.9 0l1 1.9c0.2 0.5 0.9 1 1.4 1L11 5c0.5 0.1 0.7 0.5 0.3 0.8L9.7 7.4C9.4 7.7 9.1 8.5 9.2 9l0.4 2.1c0.1 0.5-0.2 0.8-0.7 0.5l-1.9-1c-0.5-0.3-1.3-0.3-1.8 0l-1.9 1c-0.5 0.3-0.8 0-0.7-0.5L2.9 9C3 8.5 2.8 7.7 2.4 7.4 L0.8 5.9C0.4 5.5 0.6 5.1 1.1 5l2.1-0.3c0.5-0.1 1.2-0.5 1.4-1L5.6 1.7z' fill='%23F05346'/> </pattern></defs><rect width='100%' height='100%' fill='url(%23star2)'/></svg>");
+  }
+}

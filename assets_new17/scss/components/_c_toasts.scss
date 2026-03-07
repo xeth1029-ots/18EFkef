@@ -1,0 +1,131 @@
+@charset "utf-8";
+
+//  Components -> Toasts 
+// --------------------------------------------------
+// complement(color)
+// 返回一個補充色，相當於adjust-hue($color,180deg)
+
+// invert($color)
+// 返回反相色，紅綠藍色值倒過來，而透明度不變。
+
+// grayscale($color)
+// 將顏色變灰色，即將顏色的飽和度值直接調至 0%  === desaturate($color: 100%);
+
+.t-toast {
+  position: relative;
+  border: $toast-border-width $toast-border-style $toast-border-color;
+  border-radius: $toast-border-radius;
+  color: $toast-color;
+  padding: $toast-padding;
+  text-align: center;
+  user-select: none;
+  letter-spacing: .0625rem;
+  min-width: $toast-min-width;
+  z-index: $toast-zindex;
+  -webkit-backdrop-filter: blur($toast-blur);
+  backdrop-filter: blur($toast-blur);
+
+  transition: $transition-base;
+  
+  &.toastIn {
+    animation-name: toastIn;
+  }
+
+  &.toastOut {
+    animation-name: toastOut;
+  }
+
+  &.t-float-toast {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: $toast-animation-duration;
+    z-index: $toast-zindex-fixed;
+  }
+
+  @each $name, $value in $toast-colors {
+    &.t-toast--#{$name} {
+      background-color: rgba($value, $toast-bg-opacity);
+      box-shadow: $toast-box-shadow;
+
+      &:after,
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: $transition-base;
+        opacity: $toast-opacity-before;
+      }
+
+      &:before {
+        background: linear-gradient($toast-gradient-deg, $value 0%, shade-color($value, 40%) 100%);
+        transform: scale($toast-filter-scale);
+        filter: blur($toast-filter);
+        opacity: $toast-opacity-before;
+        border-radius: inherit;
+      }
+
+      &:after {
+        background: inherit;
+        border-radius: inherit;
+      }
+
+      strong {
+        @include text-stroke($width: 1.5px, $fill: currentColor, $stroke: $toast-stroke-color);
+      }
+    }
+  }
+
+  > svg {
+    width: $toast-icon-size;
+    display: block;
+    margin: $toast-icon-margin auto;
+    opacity: $toast-icon-opacity;
+  }
+
+  // >i {
+  //   position: relative;
+  //   display: block;
+  //   color: $toast-color;
+  //   font-size: $toast-icon-size;
+  //   line-height: 1;
+  //   margin-top: $toast-icon-margin;
+  //   margin-bottom: $toast-icon-margin;
+  //   opacity: $toast-icon-opacity;
+  // }
+
+  strong {
+    position: relative;
+    font-size: $toast-font-size;
+    color: $toast-color;
+  }
+}
+
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+}

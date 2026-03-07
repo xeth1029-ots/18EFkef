@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+//  Prototypes -> Border Width
+// --------------------------------------------------
+
+@for $i from 0 through 8 {
+  .t-bd-#{$i} {
+    border-width: unquote("#{$i}px !important");
+  }
+
+  .t-bd-t-#{$i} {
+    border-top-width: unquote("#{$i}px !important");
+  }
+
+  .t-bd-r-#{$i} {
+    border-right-width: unquote("#{$i}px !important");
+  }
+
+  .t-bd-b-#{$i} {
+    border-bottom-width: unquote("#{$i}px !important");
+  }
+
+  .t-bd-l-#{$i} {
+    border-left-width: unquote("#{$i}px !important");
+  }
+}

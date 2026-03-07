@@ -1,0 +1,9 @@
+
+@mixin in-bk-mid {
+    display: inline-block;
+    vertical-align: middle;
+}
+@mixin tb-cell-mid {
+    display: table-cell;
+    vertical-align: middle;
+}

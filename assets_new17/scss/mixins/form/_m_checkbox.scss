@@ -1,0 +1,160 @@
+@charset "utf-8";
+
+//  Mixins -> checkBox
+// --------------------------------------------------
+
+@mixin check-hover {
+  &:hover:not(:disabled):not(.disabled):not([disabled]),
+  &.hover:not(:disabled):not(.disabled):not([disabled]) {
+    @content;
+  }
+}
+
+@mixin check-focus {
+  &:focus:not(:disabled):not(.disabled):not([disabled]),
+  &.focus:not(:disabled):not(.disabled):not([disabled]),
+  &:focus-visible:not(:disabled):not(.disabled):not([disabled]) {
+    @content;
+  }
+}
+
+@mixin check-active {
+  &:active:not(:disabled):not(.disabled):not([disabled]),
+  &.active:not(:disabled):not(.disabled):not([disabled]) {
+    @content;
+  }
+}
+
+@mixin check-disabled {
+  &:disabled,
+  &.disabled {
+    @content;
+  }
+}
+
+@mixin check-checked {
+  &:checked:not(:disabled):not(.disabled):not([disabled]) {
+    @content;
+  }
+}
+
+// @include check-item($primary);
+@mixin check-item($color: $primary) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0.125rem;
+
+  @include ceaser-transition(all, 250ms, "easeInOutCubic");
+
+  .t-chk-lab {
+    background: _var("white", $white);
+    border-radius: $checkbox-item-border-radius;
+    color: _var("dark", $dark);
+    font-weight: $checkbox-item-font-weight;
+    line-height: $checkbox-item-line-height;
+    padding: $checkbox-item-padding;
+
+    @include ceaser-transition(all, 250ms, "easeInOutCubic");
+
+    &:before,
+    &:after {
+      content: '';
+      border-radius: $checkbox-item-border-radius;
+
+      @include absolute-y-center;
+
+      left: $checkbox-size / 2;
+      overflow: hidden;
+
+      @include ceaser-transition(all, 250ms, "easeInOutCubic");
+    }
+
+    &:before {
+      border: $checkbox-item-border-w solid $border;
+
+      @include size($checkbox-size);
+
+      opacity: 1;
+    }
+
+    &:after {
+      background-color: $color;
+      box-shadow: $checkbox-item-check-box-shadow;
+
+      @include svg-bg-icon(checked, $white, center, 80%);
+      @include size(0);
+
+      opacity: 0;
+    }
+  }
+
+  .t-chk-inp {
+    @include check-checked {
+      @include check-disabled {
+        + .t-chk-lab {
+          background-color: _var("grey-25", $grey-25);
+        }
+      }
+
+
+      + .t-chk-lab {
+        background-color: tint-color($color, 90%);
+        color: shade-color($color, 60%);
+
+        &:before {
+          border: $checkbox-item-border-w solid rgba(_var("white-rgb", $white), 0.88);
+        }
+
+        &:after {
+          opacity: 1;
+
+          @include size($checkbox-size);
+        }
+      }
+    }
+
+
+    &:indeterminate {
+      + .t-chk-lab {
+        &:before {
+          border: $checkbox-item-border-w solid rgba(_var("white-rgb", $white), $checkbox-item-opacity--indeterminate);
+        }
+
+        &:after {
+          opacity: $checkbox-item-opacity--indeterminate;
+
+          @include size($checkbox-size);
+
+          background-color: $checkbox-item-background-color--indeterminate;
+          box-shadow: $checkbox-item-check-box-shadow--indeterminate;
+
+          @include svg-bg-icon(indeterminate, $white, center, 80%);
+        }
+      }
+    }
+
+    &:disabled {
+      + .t-chk-lab {
+        opacity: $checkbox-item-opacity--disabled;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  @include check-hover {
+    .t-chk-lab {
+      background-color: tint-color($color, 80%);
+
+      &:before {
+        border-color: tint-color($color, 60%);
+      }
+    }
+  }
+
+
+  &:not(:last-child) {
+    margin-right: 0.75rem;
+  }
+}
