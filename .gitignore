@@ -1,0 +1,32 @@
+﻿################################################################################
+# 這個 .gitignore 檔案由 Microsoft(R) Visual Studio 自動建立。
+################################################################################
+
+# 忽略所有 IDE 自動產生的設定目錄 
+.vs/
+.idea/
+.vscode/
+
+# 忽略相依套件與暫存檔 
+node_modules/
+temp_logs/
+Packages/
+
+# 忽略編譯輸出的資料夾 
+bin/
+obj/
+Properties/
+Uploads/
+
+# 忽略特定使用者設定檔 
+*.csproj.user
+*.vbproj.user
+*.user
+*.ico
+*.suo
+*.config
+
+# 動態連結函式庫
+*.dll
+
+
